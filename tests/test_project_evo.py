@@ -16,7 +16,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
 PLUGIN = REPO / "plugins" / "project-evo"
-SCRIPTS = PLUGIN / "skills" / "docs-evo" / "scripts"
+SCRIPTS = PLUGIN / "skills" / "dev-evo" / "scripts"
 
 
 def _load(name: str):
@@ -33,15 +33,17 @@ scan_mod = _load("scan")
 
 def test_scaffold_creates_and_idempotent(tmp_path: Path):
     created, skipped = init_mod.generate(tmp_path, "demo")
-    assert len(created) >= 11, "骨架文件不少于 11 件"
-    assert (tmp_path / "PRD.md").exists()
-    assert (tmp_path / "docs" / "guide" / "template.md").exists()
-    assert "D01" in (tmp_path / "PRD.md").read_text(encoding="utf-8"), "PRD 带真实初始内容"
+    assert len(created) >= 10, "骨架文件不少于 10 件"
+    assert (tmp_path / "AGENTS.md").exists()
+    assert "demo" in (tmp_path / "AGENTS.md").read_text(encoding="utf-8"), "AGENTS 标题渲染项目名"
+    assert (tmp_path / "docs" / "adr" / "0000-template.md").exists()
+    assert (tmp_path / "docs" / "requirements" / "0000-template.md").exists()
+    assert "{name}" not in (tmp_path / "AGENTS.md").read_text(encoding="utf-8"), "占位符已渲染"
     # 幂等:二次生成全跳过,内容不变
-    before = (tmp_path / "PRD.md").read_text(encoding="utf-8")
+    before = (tmp_path / "AGENTS.md").read_text(encoding="utf-8")
     created2, skipped2 = init_mod.generate(tmp_path, "demo")
     assert not created2 and len(skipped2) == len(created)
-    assert (tmp_path / "PRD.md").read_text(encoding="utf-8") == before, "已有文件不被覆盖"
+    assert (tmp_path / "AGENTS.md").read_text(encoding="utf-8") == before, "已有文件不被覆盖"
 
 
 def test_check_passes_on_scaffold(tmp_path: Path):
@@ -52,31 +54,89 @@ def test_check_passes_on_scaffold(tmp_path: Path):
 
 def test_check_catches_violations(tmp_path: Path):
     init_mod.generate(tmp_path, "demo")
-    (tmp_path / "INDEX.md").unlink()  # PE-01 是六原语含 INDEX
+    (tmp_path / "AGENTS.md").unlink()  # PE-01 是 AGENTS 五节合同
     results, ok = check_mod.check(tmp_path)
     assert not ok
-    assert "PE-01" in {r[0] for r in results if r[1] == "FAIL"}, "缺 INDEX 应被 PE-01 抓住"
+    assert "PE-01" in {r[0] for r in results if r[1] == "FAIL"}, "缺 AGENTS 应被 PE-01 抓住"
+
+
+def test_check_adr_state_machine(tmp_path: Path):
+    """PE-06:status 非法与 superseded_by 悬空都要 FAIL,合法状态过。"""
+    init_mod.generate(tmp_path, "demo")
+    adr = tmp_path / "docs" / "adr"
+    (adr / "ADR-0001-选库.md").write_text(
+        "---\nid: ADR-0001\nstatus: accepted\ndate: 2026-09-15\n---\n# ADR-0001\n", encoding="utf-8")
+    (adr / "ADR-0002-换库.md").write_text(
+        "---\nid: ADR-0002\nstatus: bogus\n---\n# ADR-0002\n", encoding="utf-8")
+    (adr / "ADR-0003-又换.md").write_text(
+        "---\nid: ADR-0003\nstatus: superseded\nsuperseded_by: ADR-0099\n---\n# ADR-0003\n",
+        encoding="utf-8")
+    results, _ = check_mod.check(tmp_path)
+    fails = {r[0]: r[2] for r in results if r[1] == "FAIL"}
+    assert "PE-06" in fails and "bogus" in fails["PE-06"], "非法 status 应被 PE-06 抓住"
+    assert "悬空" in fails["PE-06"], "superseded_by 悬空应被 PE-06 抓住"
+    # 修成合法状态与可达 supersede 链后 PE-06 通过
+    (adr / "ADR-0002-换库.md").write_text(
+        "---\nid: ADR-0002\nstatus: proposed\n---\n# ADR-0002\n", encoding="utf-8")
+    (adr / "ADR-0003-又换.md").write_text(
+        "---\nid: ADR-0003\nstatus: superseded\nsuperseded_by: ADR-0001\n---\n# ADR-0003\n",
+        encoding="utf-8")
+    results, _ = check_mod.check(tmp_path)
+    assert "PE-06" not in {r[0] for r in results if r[1] == "FAIL"}
+
+
+def test_check_req_trace_and_index(tmp_path: Path):
+    """PE-07:implemented 缺 trace FAIL;PE-08:未登记索引 FAIL。"""
+    init_mod.generate(tmp_path, "demo")
+    req = tmp_path / "docs" / "requirements"
+    (req / "REQ-001-骨架.md").write_text(
+        "---\nid: REQ-001\nstatus: implemented\npriority: must\ntrace: null\n---\n# REQ-001\n",
+        encoding="utf-8")
+    results, _ = check_mod.check(tmp_path)
+    fails = {r[0]: r[2] for r in results if r[1] == "FAIL"}
+    assert "PE-07" in fails and "trace" in fails["PE-07"], "implemented 缺 trace 应被 PE-07 抓住"
+    assert "PE-08" in fails and "REQ-001" in fails["PE-08"], "未登记索引应被 PE-08 抓住"
 
 
 def test_check_title_bracket(tmp_path: Path):
     init_mod.generate(tmp_path, "demo")
-    (tmp_path / "docs" / "guide" / "G001-文档标准细则.md").write_text(
-        "# G001:文档标准细则\n\n## 一、命名(详版)\n", encoding="utf-8"
+    (tmp_path / "docs" / "guides" / "cook-面条.md").write_text(
+        "# 指南:命名(详版)\n\n## 一、命名\n", encoding="utf-8"
     )
     _, ok = check_mod.check(tmp_path)
-    assert not ok, "标题带括号应被 PE-11 抓住"
+    assert not ok, "标题带括号应被 PE-10 抓住"
 
 
 def test_check_ignores_fenced_code_comments(tmp_path: Path):
-    """代码块内的 # 注释带括号不算标题违规(PE-11 围栏感知)。"""
+    """代码块内的 # 注释带括号不算标题违规(PE-10 围栏感知)。"""
     init_mod.generate(tmp_path, "demo")
-    (tmp_path / "docs" / "guide" / "G001-文档标准细则.md").write_text(
-        "# G001:文档标准细则\n\n## 命名\n\n```powershell\n"
+    (tmp_path / "docs" / "guides" / "cook-面条.md").write_text(
+        "# 指南\n\n## 命名\n\n```powershell\n"
         "# 1. 看 skill 本体(意图路由入口)\nGet-Content SKILL.md\n```\n",
         encoding="utf-8",
     )
     _, ok = check_mod.check(tmp_path)
-    assert ok, "围栏内 # 注释不应触发 PE-11"
+    assert ok, "围栏内 # 注释不应触发 PE-10"
+
+
+def test_check_pe11_allowlist_exempts_history(tmp_path: Path, monkeypatch):
+    """PEVO_CHECK_ALLOW 命中的历史档案禁字报 SKIP 不 FAIL,豁免不掩护活跃面。"""
+    init_mod.generate(tmp_path, "demo")
+    (tmp_path / "docs" / "diary" / "2026-01-01-旧档.md").write_text(
+        "# 旧档\n\n改造走向全量镜像 —— 第一批落定\n", encoding="utf-8"
+    )
+    monkeypatch.delenv("PEVO_CHECK_ALLOW", raising=False)
+    _, ok = check_mod.check(tmp_path)
+    assert not ok, "未设豁免时存量禁字应 FAIL"
+    monkeypatch.setenv("PEVO_CHECK_ALLOW", r"docs/diary/2026-01-01-旧档\.md:3")
+    results, ok = check_mod.check(tmp_path)
+    assert ok, "豁免命中后应通过(退出码 0)"
+    pe11 = next(r for r in results if r[0] == "PE-11")
+    assert pe11[1] == "SKIP", "豁免面应显式报 SKIP 留审计痕迹"
+    (tmp_path / "README.md").write_text("# demo\n\n走向 —— 全量\n", encoding="utf-8")
+    monkeypatch.setenv("PEVO_CHECK_ALLOW", ".*")
+    _, ok = check_mod.check(tmp_path)
+    assert not ok, "根三件是活跃面,全域正则也不得掩护"
 
 
 def _git(cwd: Path, *args: str) -> None:
@@ -119,7 +179,7 @@ def test_init_creates_missing_target(tmp_path: Path):
     r = subprocess.run([sys.executable, str(SCRIPTS / "init.py"), str(target), "--name", "demo"],
                        capture_output=True, text=True, encoding="utf-8")
     assert r.returncode == 0, r.stderr
-    assert (target / "PRD.md").is_file()
+    assert (target / "AGENTS.md").is_file()
 
 
 def test_check_script_exit_codes(tmp_path: Path):
@@ -128,7 +188,7 @@ def test_check_script_exit_codes(tmp_path: Path):
     r_ok = subprocess.run([sys.executable, str(SCRIPTS / "check.py"), str(tmp_path)],
                           capture_output=True, text=True, encoding="utf-8")
     assert r_ok.returncode == 0, r_ok.stdout + r_ok.stderr
-    (tmp_path / "PRD.md").unlink()
+    (tmp_path / "AGENTS.md").unlink()
     r_bad = subprocess.run([sys.executable, str(SCRIPTS / "check.py"), str(tmp_path)],
                            capture_output=True, text=True, encoding="utf-8")
     assert r_bad.returncode == 1
@@ -143,7 +203,7 @@ def test_marketplace_catalog_consistency():
 
     names_c = {p["name"] for p in claude_mkt["plugins"]}
     names_x = {p["name"] for p in codex_mkt["plugins"]}
-    assert names_c == names_x == {"project-evo"}, "市场只收一个插件 project-evo(四 skill 同装同版)"
+    assert names_c == names_x == {"project-evo"}, "市场只收一个插件 project-evo(三 skill 同装同版)"
     for p in claude_mkt["plugins"]:
         assert (REPO / p["source"].removeprefix("./")).is_dir(), f"Claude source 不可达: {p['source']}"
     for p in codex_mkt["plugins"]:
@@ -156,7 +216,7 @@ def test_marketplace_catalog_consistency():
 
     skills = PLUGIN / "skills"
     dirs = sorted(d.name for d in skills.iterdir() if d.is_dir())
-    assert dirs == ["docs-evo", "office-pro", "secret-scan", "super-research"], f"四 skill 须齐备: {dirs}"
+    assert dirs == ["dev-evo", "secret-scan", "security-audit", "super-research"], f"四 skill 须齐备: {dirs}"
     for name in dirs:
         text = (skills / name / "SKILL.md").read_text(encoding="utf-8")
         assert text.startswith("---\n"), f"{name}/SKILL.md 缺 frontmatter"
@@ -164,7 +224,7 @@ def test_marketplace_catalog_consistency():
         declared = next(l.split(":", 1)[1].strip() for l in head.splitlines() if l.startswith("name:"))
         assert declared == name, f"frontmatter name({declared}) 须与目录名({name})一致"
 
-    docs = skills / "docs-evo"
+    docs = skills / "dev-evo"
     assert (docs / "references").is_dir() and (docs / "assets" / "templates").is_dir()
     for s in ("init.py", "check.py", "scan.py", "mdrules.py", "md-guard.py"):
         assert (docs / "scripts" / s).is_file(), f"脚本缺失: {s}"
@@ -172,9 +232,9 @@ def test_marketplace_catalog_consistency():
         assert (skills / name / "references").is_dir(), f"参考目录缺失: {name}"
     assert (skills / "secret-scan" / "scripts" / "scan.py").is_file()
     assert (skills / "secret-scan" / "scripts" / "ab.py").is_file()
-    assert (skills / "office-pro" / "scripts" / "which.py").is_file()
-    assert (skills / "office-pro" / "scripts" / "smoke.py").is_file()
-    for c in ("init.md", "check.md", "scan.md", "secret-scan-cli.md", "office-cli.md"):
+    assert (skills / "security-audit" / "scripts" / "validate-findings.cjs").is_file()
+    assert (skills / "security-audit" / "scripts" / "report-schema.json").is_file()
+    for c in ("init.md", "check.md", "scan.md", "secret-scan-cli.md"):
         assert (PLUGIN / "commands" / c).is_file(), f"斜杠命令缺失: {c}"
     json.loads((PLUGIN / "hooks" / "hooks.json").read_text(encoding="utf-8")), "hooks.json 须为合法 JSON"
 

@@ -7,7 +7,7 @@
 
 - `uv run pytest` 全测试(脚本行为 + 清单一致性守卫 + 仓内禁字回归)
 - `uv run .tools/md-ref-scan.py plugins/project-evo/skills/<skill>` 断链扫描(四 skill 各跑一次;pre-commit 自动)
-- `uv run plugins/project-evo/skills/dev-evo/scripts/check.py` 本仓骨架自检(PE-01 至 PE-12)
+- `uv run plugins/project-evo/skills/dev-evo/scripts/check.py` 本仓骨架自检(PE-01 至 PE-12;下游仓 PE-11 历史档案豁免走 PEVO_CHECK_ALLOW,正则见 docs/guides/gates.md)
 - `uv run plugins/project-evo/skills/dev-evo/scripts/scan.py . --no-history` 禁字与密钥扫描(测试夹具与 A/B 用例的公开示例假密钥走 `PEVO_SCAN_ALLOW` 豁免:tests/test_project_evo.py 的 ghp_ 假 token、secret-scan ab 夹具与 S006 与本文件 Commands 节自举示例的 AWS 公开样值;标准命令与完整豁免正则见 docs/guides/gates.md)
 - 提交挡板:`git config core.hooksPath githooks`(md 禁字 + 断链,不过不进库)
 
@@ -38,5 +38,5 @@
 
 - 平台:Windows + PowerShell 7(禁 powershell.exe 5.1 与 cmd);uv 运行时,脚本 PEP 723 零依赖(>=3.12)
 - 当前阶段:v0.6.0 单插件四 skill(2026-09-15 第五十一批集成 security-audit;第五十批 dev-evo 文档即代码重构;沿革:第四十七批四插件收敛、第四十九批 office-pro 移除)
-- 部署:Claude Code `/plugin marketplace add raystyle/ProjectEvo`;Codex `codex plugin marketplace add raystyle/ProjectEvo`;Grok `grok plugin install project-evo@projectevo`;Kimi 无市场,拷 `plugins/project-evo/skills/*` 至 `~/.kimi/skills`
+- 部署:Claude Code `/plugin marketplace add raystyle/projectevo`;Codex `codex plugin marketplace add raystyle/projectevo`;Grok `grok plugin install project-evo@projectevo`;Kimi 无市场,拷 `plugins/project-evo/skills/*` 至 `~/.kimi/skills`
 - 项目状态与待办见 `ROADMAP.md`,不在本文件维护

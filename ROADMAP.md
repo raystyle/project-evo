@@ -17,12 +17,15 @@
 
 | 里程碑 | 状态 | 说明 |
 |--------|------|------|
-| git init + 首版 tag + 远端发布 | 已完成 | 2026-09-03：公开仓 raystyle/ProjectEvo,main + v0.1.0 tag 已推，Release 已发；update 版本探测闭环实测（已是最新，exit 0）[实证] |
+| git init + 首版 tag + 远端发布 | 已完成 | 2026-09-03：公开仓 raystyle/projectevo,main + v0.1.0 tag 已推，Release 已发；update 版本探测闭环实测（已是最新，exit 0）[实证] |
 | 插件市场转型(v0.2.0) | 已完成 | 2026-09-04 第二十八批:SpecterOps/skills 既证形态(双市场清单+双 manifest+commands/hooks);三脚本 PEP 723 化下沉 skill,uv CLI 分发通道退役;双漂移守卫随单源化取消,清单一致性守卫接棒;Codex 面实弹验收(codex-cli 0.149.1 本机:marketplace add + plugin add 成功,缓存按 manifest 版本 0.2.0 归位,51 文件全树随装)[实证] |
 | 封版 v0.2.1(Windows 钩子修复) | 已完成 | 2026-09-10 第四十二至四十三批:Codex 面 PostToolUse md 挡板在 Windows 的变量展开修复(`commandWindows` 用 `$env:` 前缀 + 载荷宽容);secret-scan A/B 对照测试 Windows 编码修复;本机 pytest 全绿 [实证: 2026-09-10 本机实跑] |
 | 封版 v0.2.2(skill 改名 docs-evo) | 已完成 | 2026-09-10 第四十四批:skill 目录与 frontmatter 改名 docs-evo,仓内外引用全量同步;补发 v0.2.0 GitHub Release(此前只有 tag 无 Release) [实证: 2026-09-10 本机实跑] |
 | 单插件四 skill 形态(v0.3.0) | 已完成 | 2026-09-10 第四十七批:四插件收敛为唯一插件 project-evo,skills/ 下 docs-evo 与 super-research、secret-scan、office-pro 同装同版;市场清单与 manifest 单条化;客户端显示 project-evo:<skill> [实证: 2026-09-10 本机实跑] |
 | 封版 v0.3.1(aria2c 下载关 IPv6) | 已完成 | 2026-09-11 第四十八批:super-research aria2c 参考三处落地 `--disable-ipv6=true`(标准命令/参数表/坑表);用户裁定本机网络 IPv6 到镜像站有坑 [实证: 关后 TUNA 镜像 16 连接 21MiB/s] |
+| office-pro skill 移除(v0.6.0) | 已完成 | 2026-09-15 第四十九批:office-pro 全目录与 office-cli 命令下线,仓内外引用全量同步,清单面改三 skill;S007 研究档案保留;与第五十、五十一批合并发 v0.6.0 |
+| dev-evo 文档即代码重构(v0.6.0) | 已完成 | 2026-09-15 第五十批:docs-evo 改名 dev-evo,知识体系全面替换为文档即代码(AGENTS 五节合同/ADR/REQ/投影纪律/三栈对照),init/check 重写,references 17 到 18 篇,本仓 docs 迁移(adr/requirements 落地,AGENTS 五节化) [实证: 本机 pytest 全绿 + 自家 check 自检] |
+| security-audit skill 集成(v0.6.0) | 已完成 | 2026-09-15 第五十一批:Cloudflare security-audit-skill(MIT)全量中文化集成,四 skill 形态:SKILL.md 中文版 + 14 篇 audit- 前缀 references + validate .cjs 校验脚本随行;三清单与六件套同步,版本 0.6.0(与四十九、五十批合并发布) |
 | 项目级安装通道验证 | 已完成 | 2026-09-03 remotex 首装实测：init 补 6 件跳 5 件（含 AGENTS.MD 大写碰撞安全跳过）、check 8 PASS/4 FAIL（FAIL 均为存量文档真实差距）、skill 双落位 + gitignore 幂等；全程未改既有内容文件 [实证] |
 | 与其他 skill 的分工说明 | 已拒绝 | 用户裁定（2026-09-03):project-evo 是独立项目，不与其他 skill 划分边界 |
 

@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-16，第五十三批:check 的 PE-11 豁免通道与仓名小写对齐）
+
+- `check.py` 新增 `PEVO_CHECK_ALLOW` 路径级豁免（分号分隔正则，只作用 `docs/` 下档案的 相对路径:行，命中报 SKIP 留审计处数；根三件 AGENTS/README/CHANGELOG 是活跃面，机制上永不受益，全域正则也吞不掉）。经 security-audit 指导模式聚焦审查后的加固项
+- `docs/guides/gates.md` 补 check 标准命令与豁免正则节；base-init 存量迁移路径接入门禁豁免口径；AGENTS Commands 的 check 行加指针；tests 增豁免三分支用例（未设 FAIL/命中 SKIP/全域正则不掩护根三件）
+- GitHub 仓名已改小写 `projectevo`，活面全仓对齐：根与插件 README 安装命令、AGENTS 部署行、双 manifest homepage/repository、ROADMAP 指针、dev-evo SKILL 安装通道、git remote；CHANGELOG 历史条目按当时事实保留
+- `.gitignore` 增智能体配置类四目录（.agents/skills/、.grok/、.hst/、.kimi-code/，hst init 部署产物不入库）
+
 ### 新增（2026-09-15，第五十一批:security-audit skill 中文化集成）
 
 > 源:Cloudflare security-audit-skill(MIT,skill 目录内附 LICENSE);用户裁定转换为中文并集成,技能名 security-audit 不变。
