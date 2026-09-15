@@ -1,6 +1,6 @@
 # agent-native CLI 设计：人与 agent 双用户契约
 
-> 本篇 = 目标项目造 CLI（或给存量 CLI 补面）时，把 agent 当第二类用户的设计契约：发现怎么被找到、输出怎么省 token、输入怎么稳、自由代码怎么逃生、任务脚本怎么归档、多面怎么同源。与 base-init.md 的 agent-native SKILL.md 模式（骨架层：根 SKILL.md 怎么写）互补；是否引入具体框架走 tool-selection.md 稳度判据。提炼自 wevm/incur（TS 原作）与 douglance/incurs（Rust 移植）两仓 README [实证: 2026-09-04 两仓 README 原文取回核对]；契约方法论框架无关，两仓是样本实现。第二节市场分发小节另源:Claude Code 官方文档原文 + Codex 本机实弹(0.149.1)[实证: 2026-09-04] + Grok/Kimi 本机实弹(1.0.13/0.41.0)[实证: 2026-09-09]。
+> 本篇 = 目标项目造 CLI（或给存量 CLI 补面）时，把 agent 当第二类用户的设计契约：发现怎么被找到、输出怎么省 token、输入怎么稳、自由代码怎么逃生、任务脚本怎么归档、多面怎么同源。与 base-init.md 的 agent-native SKILL.md 模式（骨架层：根 SKILL.md 怎么写）互补；是否引入具体框架走 tool-selection.md 稳度判据。沉淀自 TS 原作与其 Rust 移植两份样本实现 [实证]；契约方法论框架无关。第二节市场分发小节另源:Claude Code 官方文档原文 + Codex 本机实弹(0.149.1)[实证: 2026-09-04] + Grok/Kimi 本机实弹(1.0.13/0.41.0)[实证: 2026-09-09]。
 
 ## 一、双用户公理与 token 经济学
 
@@ -10,7 +10,7 @@
 - **token 是 agent 的货币**：花在读输出上的 token 都从推理预算里扣；省 token 即降本提速
 - **人机同源**：同一命令定义服务两面；呈现可分叉，数据契约不可分叉
 
-经济学证据（incur 对 20 命令 CLI 的会话建模；量级示义，绝对值随模型假设变，未本仓复验 [推断]）：
+经济学证据（20 命令 CLI 的会话建模；量级示义，绝对值随模型假设变，未本仓复验 [推断]）：
 
 | 会话环节 | MCP+JSON | 单一大 skill+JSON | agent-native CLI |
 | --- | --- | --- | --- |
@@ -34,7 +34,7 @@
 
 - **skill 按命令组拆分**：单一大 skill 是发现层最贵形态（11489 token）；按命令组拆文件后 agent 只加载相关组（387） [实证: 信源 README 数字]
 - **--llms 双形态**：markdown 给 agent 读，JSON schema 给程序消费；一族工具同构时 agent 换工具零学习
-- 家族同款：browser-harness `--llms` 紧凑索引 [实证]；本仓 v0.2.0 起转插件市场形态,发现契约由 marketplace.json 承担、命令面收敛为 skill 内 scripts（旧 `project-evo llms` 随转型退役）[实证: 第二十八批]；reader `reader skill` 生成根 SKILL.md [经验: base-init 跨项目适配表]
+- 同款先例：browser-harness `--llms` 紧凑索引 [实证]；本仓 v0.2.0 起转插件市场形态,发现契约由 marketplace.json 承担、命令面收敛为 skill 内 scripts（旧 `project-evo llms` 随转型退役）[实证: 第二十八批]；reader `reader skill` 生成根 SKILL.md [经验]
 
 ### 市场分发:add 形态与 git 协议(双客户端)
 
@@ -49,7 +49,7 @@
 
 要点:
 
-- **同一简写,跨客户端解析不同**(一面 SSH 一面 HTTPS):分发文档按客户端分别给实证,不假设「简写即 https」 [经验: 本仓 v0.2.0 双面验收]
+- **同一简写,跨客户端解析不同**(一面 SSH 一面 HTTPS):分发文档按客户端分别给实证,不假设「简写即 https」 [经验]
 - marketplace.json 插件级 source 七型:`./` 开头相对路径(相对市场根,非 `.claude-plugin/`)、`github`(repo+可选 ref/sha,sha 须 40 位完整值)、**`url`**(git 仓,https 与 `git@` 两式都收)、`git-subdir`(url+path,另收简写与 SSH)、`npm`、`archive`(https zip+sha256)、`command`;marketplace 级 git source 只支持 ref 不支持 sha [实证: 官方文档取回 2026-09-04]
 - 直指单个 json 文件的 URL 只 fetch 该文件,市场内相对路径插件 source 无法解析:市场分发用仓,不用裸 json [实证: 官方文档取回]
 - **Grok 市场面**(读 Claude manifest,无需第三 manifest):`grok plugin install <插件>@projectevo --trust` 安装,`grok plugin marketplace update` 后 `grok plugin update` 同步已装;install 源同收 Git URL/简写/本地路径与 `@ref`/`#subdir`;装于 `~/.grok/installed-plugins` [实证: 2026-09-09 本机 grok 1.0.13 四插件装齐并同步]
@@ -100,7 +100,7 @@ EOF
 设计要点：
 
 - **内置库函数零 import**：运行时预导入 helper 面（导航/页面读写/抓取等），函数名即 API；agent 不猜模块路径 [实证: browser-harness helpers.py def 清单；现役检索见 project-evo:super-research]
-- **直接集成运行时**：代码跑在 CLI 常驻上下文（daemon 连接、tab 状态、配置），不是每次起冷进程；helper 双通道（全量命名空间 + 顶层解包常用名）兼顾全量与顺手 [经验: 云 CLI 仓 omc 同款 TS 片段管道]
+- **直接集成运行时**：代码跑在 CLI 常驻上下文（daemon 连接、tab 状态、配置），不是每次起冷进程；helper 双通道（全量命名空间 + 顶层解包常用名）兼顾全量与顺手 [经验]
 - **产品化形态是 Code Mode**（incurs）：codemode_execute 启动 JS 执行、直接调 tool catalog，配审批生命周期（codemode_decide 逐动作批/拒、codemode_cancel 取消）；本地只读工具免批、远程与破坏性工具须批 [实证: 信源 README]
 - 分工：固定命令管高频与稳定（schema 保障），自由代码管长尾与组合（逃生舱保障）；两者同源一个运行时，脚本产物归档见「九、脚本 workspace」
 

@@ -27,10 +27,10 @@
   modules\     PowerShell 模块(omp/Pester/Posh-SSH)
   cache\ logs\ images\ deploy\   支撑目录
 ome 自身:C:\Users\<u>\AppData\Local\Programs\ome\ome.exe(ome init 装入用户程序目录)
-各仓内:ome 本地状态目录,gitignore 之 [经验: reader 仓 066bdec 同款处理]
+各仓内:ome 本地状态目录,gitignore 之 [经验]
 ```
 
-**代码根与数据根解耦**（家族通用模式）：工具仓只放代码与文档，大体量运行数据（镜像/模型/缓存/实例）放独立数据根，环境变量指路（ome 的 `OHMYENV_ROOT`、browser-harness 的 `BH_HOME` 等，数据根各自以环境变量指路）；数据根不是 git 仓库，README 即清单 [实证： 运行存储根「运行存储」README 明示解耦约定]
+**代码根与数据根解耦**（通用模式）：工具仓只放代码与文档，大体量运行数据（镜像/模型/缓存/实例）放独立数据根，环境变量指路（ome 的 `OHMYENV_ROOT`、browser-harness 的 `BH_HOME` 等，数据根各自以环境变量指路）；数据根不是 git 仓库，README 即清单 [实证： 运行存储根「运行存储」README 明示解耦约定]
 
 ## 二、ome 命令面速查（v0.1.0 实测）
 
@@ -71,7 +71,7 @@ ome 自身:C:\Users\<u>\AppData\Local\Programs\ome\ome.exe(ome init 装入用户
 4. **日常**：跨主版本升级经 `ome daily` 保留待确认，**升级依赖是显式决策**，不静默跳主版本 [实证： daily 语义出自 --help]
 5. **版本快照**：关键工具版本在项目 ROADMAP/diary 记「快照 + 日期」，升级后复验刷新
 6. **新增工具**：先查 `ome status` 防重复安装；Python CLI 一律 `uv tool install`；能被 ome 管的优先进 ome 锁定面
-7. **Node/TS CLI**：走 `npm pack` 全局 tgz，不进 ome 锁定面、也不走 uv tool；工程合同见 tool-typescript.md [实证: browser-harness-ts R001]
+7. **Node/TS CLI**：走 `npm pack` 全局 tgz，不进 ome 锁定面、也不走 uv tool；工程合同见 tool-typescript.md [实证]
 
 ## 五、复验命令
 

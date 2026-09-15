@@ -4,15 +4,15 @@
     "name": "raystyle"
   },
   "metadata": {
-    "description": "项目进化:一个插件四个 skill(文档骨架 docs-evo、资料检索 super-research、密钥扫描 secret-scan、OfficeCLI 专业面 office-pro)",
+    "description": "项目进化:一个插件四个 skill(文档即代码 dev-evo、资料检索 super-research、密钥扫描 secret-scan、安全审计 security-audit)",
     "pluginRoot": "./plugins"
   },
   "plugins": [
     {
       "name": "project-evo",
       "source": "./plugins/project-evo",
-      "description": "项目进化:一个插件四个 skill —— docs-evo(文档骨架与治理)、super-research(资料检索管线)、secret-scan(密钥与隐私扫描)、office-pro(OfficeCLI 专业面);含 init/check/scan 零依赖脚本与 md 禁字挡板",
-      "version": "0.3.1",
+      "description": "项目进化:一个插件四个 skill —— dev-evo(文档即代码:AGENTS 合同/ADR/REQ/投影纪律)、super-research(资料检索管线)、secret-scan(密钥与隐私扫描)、security-audit(安全审计与漏洞审查);含 init/check/scan 零依赖脚本与 md 禁字挡板",
+      "version": "0.6.0",
       "category": "productivity"
     }
   ]

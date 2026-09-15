@@ -4,6 +4,36 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-15，第五十一批:security-audit skill 中文化集成）
+
+> 源:Cloudflare security-audit-skill(MIT,skill 目录内附 LICENSE);用户裁定转换为中文并集成,技能名 security-audit 不变。
+
+- 新 skill `plugins/project-evo/skills/security-audit/`:SKILL.md 中文版(双模式/六阶段工作流/覆盖账本/写隔离/预算闸门/核心原则/反模式);14 篇领域专题全量中文化进 references/(前缀 audit-:recon/hunting/attack-classes/web-auth/client-side/ai-llm/data-lifecycle/cloud-deploy/memory-binary/ipc/protocols-rpc/resource-exhaustion/supply-chain/reporting),交叉引用同步新文件名
+- 校验脚本随行(scripts/,Node .cjs 原样):validate-findings 与 validate-coverage-ledger(含 .test.cjs)、report-schema.json;注记:validate-findings.test.cjs 在本机 Node 24.20.0 下 34 测 22 过 7 挂,源仓同环境同结果(上游自带,与拷贝无关;校验器本体行为正常)
+- 翻译纪律裁定:正文中文、agent 提示词围栏块保留英文原文(源 skill 设计为逐字复制进 hunter/verifier prompt 的模板,保真优先);md-ref-scan SKIP 增补审计运行时产物名(REPORT.md 等 5 个)
+- 六件套同步:三清单四 skill 化并升版 0.6.0、AGENTS 定位、根 README 与插件 README(SKILL 表/用法/发布)、githooks 断链扫描加第四路、tests 守卫四 skill 断言与 security-audit 脚本在位、docs/README 索引
+- 版本 0.5.0 未及发布,与第五十、四十九批合并以 0.6.0 发布
+
+### 变更（2026-09-15，第五十批:docs-evo 改名 dev-evo,知识体系转文档即代码）
+
+> 用户裁定:吸收三份经验(Rust workspace 实证、Python 数据管线实证、TypeScript 方案)重构为「文档即代码」体系;三栈机制对照;保留 diary 与 research;本仓自身 docs 一起迁移。旧体系(根原语 PRD/GOAL/PLAN/TODO/INDEX、docs 六目录、五步工作流、双向问答、P/S/R/G/M/D 编号)全面退役。
+
+- 改名:skills/docs-evo git mv 至 skills/dev-evo,frontmatter 同步;全仓 88 处引用同步(清单 4 份、hooks 3 处、CI、.tools、commands、AGENTS/README、双 skill 交叉引用、tests、docs 索引);历史记载(CHANGELOG/ROADMAP/S 档案)保留原样
+- SKILL.md 重写:新定位文档即代码;意图路由新体系问题前置;速览换六层模型(L0 形态到 L5 索引)、新文件地图、三栈机制对照、ADR/REQ 状态机(mermaid)
+- references 重组 17 到 18 篇:新增 base-agents-contract/base-adr/base-req/base-projection/tool-rust 五篇;改写 base-init/base-writing-standards/tool-typescript(融合 TSDoc 与 API Extractor)/exp-pitfalls(十八条);退役 base-primitives/base-docs-directories/flow-workflow/flow-inquiry 四篇;保留九篇清理旧体系引用与外部仓名(吸收即提炼:成品不点名外部仓库)
+- scripts 重写:init.py 新骨架(AGENTS 五节合同 + docs 五目录 adr/requirements/guides/diary/research,模板 10 件;渲染改 replace 防花括号冲突);check.py 新规则 PE-01 至 PE-12(五节合同、ADR/REQ 状态机与 trace、索引一致、六态、禁字、断链);mdrules/scan/md-guard 不动
+- md-ref-scan:SKIP 集合更新为新体系占位名,NNN 占位通配
+- 本仓迁移:新增 docs/adr/(README + 补录 ADR-0001 市场形态/0002 uv 退役/0003 office-pro 移除,日期用原裁定日)与 docs/requirements/(空表起步);AGENTS 五节化改造(97 行到 40 行,细则下沉 docs/guides/skill-spec.md,地图在 docs/README.md);本仓首次跑自家 check 自检
+- 版本:三清单 0.3.1 直升 0.5.0,后因第五十一批同日并入,合并以 0.6.0 一个 tag 发布
+- 已装用户:更新插件后 skill 显示 project-evo:dev-evo;旧骨架项目按 base-init.md 存量迁移路径走(PRD 条目对应 REQ、proven 对应 implemented REQ 加关联 ADR);Kimi 面重拷并删旧 docs-evo 目录
+
+### 移除（2026-09-15，第四十九批:office-pro skill 下线）
+
+- 删除 `skills/office-pro/` 全目录、斜杠命令 `commands/office-cli.md`、专属测试 `tests/test_office_pro.py`
+- 引用全量同步:AGENTS(地图/索引/硬规则1/环境事实)、根 README(定位/安装/SKILL表/命令行/钉版)、插件 README(描述/用法/输出/架构/发布版本)、双市场清单与双 manifest(描述改三 skill、keywords 去 office、版本 0.3.1 升 0.4.0)、githooks 去 office-pro 断链段、tests 清单守卫改三 skill、docs-evo SKILL 与 references 去交叉引用、docs/README 去索引行、S007 登记注记移除沿革
+- 研究档案 S007 保留(编号不复用,历史沿革在案)
+- 已装用户:更新插件后 office-pro 与 /project-evo:office-cli 随之下线;Kimi 面手动删 `~/.kimi/skills/office-pro`
+
 ## [0.3.1] - 2026-09-11
 
 ### 变更（2026-09-11，第四十八批:aria2c 下载必关 IPv6 入库）

@@ -2,7 +2,7 @@
 
 - 状态:已完成
 - 日期:2026-09-08
-- 关联:https://github.com/iOfficeAI/OfficeCLI ；已沉淀为 `plugins/project-evo/skills/office-pro`
+- 关联:https://github.com/iOfficeAI/OfficeCLI ；曾沉淀为 `plugins/project-evo/skills/office-pro`（2026-09-15 随 skill 下线移除,本文转纯档案）
 
 > 本文件 = 这个项目是什么、怎么给 agent 用、本机钉资产安装与烟测结果。未 clone、未跑官方 `install.ps1`、未 `officecli install`（不往 agent 目录喷 SKILL/MCP）。不把「first and best」当事实。
 

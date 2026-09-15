@@ -2,7 +2,7 @@
 # requires-python = ">=3.12"
 # dependencies = []
 # ///
-"""A/B 对照:secret-scan(A) vs docs-evo scan(B)。对照不是门禁,退出码 0。
+"""A/B 对照:secret-scan(A) vs dev-evo scan(B)。对照不是门禁,退出码 0。
 
 用法: uv run ab.py
 在临时 git 仓种伪造密钥,跑两侧,stdout 打 JSON 对照表。
@@ -20,7 +20,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[4]
-DOCS_EVO_SCAN = REPO / "plugins" / "project-evo" / "skills" / "docs-evo" / "scripts" / "scan.py"
+DEV_EVO_SCAN = REPO / "plugins" / "project-evo" / "skills" / "dev-evo" / "scripts" / "scan.py"
 GHP = "ghp_" + ("A" * 36)
 STRIPE = "sk_live_" + ("B" * 24)
 GLPAT = "glpat-" + ("C" * 20)
@@ -105,7 +105,7 @@ def _docs_evo_has(finds: list[dict], file: str, rule_sub: str, history: bool | N
 
 def main() -> int:
     a_mod = _load(HERE / "scan.py", "ab_a")
-    b_mod = _load(DOCS_EVO_SCAN, "ab_b")
+    b_mod = _load(DEV_EVO_SCAN, "ab_b")
     with tempfile.TemporaryDirectory(prefix="pevo-ab-") as td:
         root = Path(td)
         _plant(root)
@@ -139,7 +139,7 @@ def main() -> int:
         b2 = "SKIP:gitleaks/trufflehog 未装;detect-secrets 可选 uvx 未在本脚本默认拉取"
         report = {
             "A": "secret-scan scan.py",
-            "B": "docs-evo scan.py secrets 部分",
+            "B": "dev-evo scan.py secrets 部分",
             "B2": b2,
             "A_count": len(a_finds),
             "B_count": len(b_finds),

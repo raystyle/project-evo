@@ -1,12 +1,12 @@
 # 依赖选型与探查：数据源与搜索研究方法
 
-> 最小实现阶梯的落地方法：阶梯是知，探查是行。第 2 到 5 档（本仓已有/标准库/平台原生/已装依赖）怎么查、生态库怎么选怎么核。提炼自家族选型手册四篇（结构源仓 R005 Rust 双通道、R008 PyPI、R009 Gallery、云 CLI 仓 R004 npm） [实证: 2026-09-04 四篇原文核对]。
+> 最小实现阶梯的落地方法：阶梯是知，探查是行。第 2 到 5 档（本仓已有/标准库/平台原生/已装依赖）怎么查、生态库怎么选怎么核。四篇选型手册（Rust 双通道、PyPI、Gallery、npm）沉淀 [实证]。
 
 ## 一、先查仓内，再出仓（阶梯 2 到 5 档）
 
 | 档 | 数据源 | 查法 |
 | --- | --- | --- |
-| 本仓已有 | 代码库 + INDEX | `rg` 搜函数名/功能词；INDEX 索引；proven 找先例 |
+| 本仓已有 | 代码库 + AGENTS Read first | `rg` 搜函数名/功能词；README 索引；adr 找先例 |
 | 标准库 | 官方文档 | Rust std 与 docs.rs、Python docs、Node >=22 内置（WebSocket/fetch/sqlite/child_process/test）与 MDN、pwsh `Get-Command`/`About_*` |
 | 平台原生 | 平台文档 | 如浏览器原生控件（ponytail 首例：日期选择器就是 `<input type="date">`） |
 | 已装依赖 | 清单与锁文件 | `Cargo.toml`/lock、`pyproject.toml`+`uv.lock`、`package.json`、`modules.psd1`；必要时 rg 进依赖源码目录 |
@@ -55,7 +55,7 @@
 - **名字防仿冒**：各生态均有仿冒前缀与热门名仿冒，装前与官方文档一字不差核对
 - **锁定单一**：一仓一锁（`Cargo.lock`/`uv.lock`/`package-lock.json`/`modules.psd1`），CI 冻结安装（`--locked`/`uv sync --frozen`/`npm ci`）
 - PowerShell 模块经 psmodule 版本加 SHA256 双锁，不散装 Install-Module
-- **稳妥梯队优先**：名称稳定、小版本演进的库优先（各栈手册列有清单，如 PyPI 的 httpx/pytest/ruff、npm 的 typescript/zod/commander）。Node/TS 测试家族实证是 `node:test`（内置），vitest 非默认；runtime 依赖白名单制见 tool-typescript.md
+- **稳妥梯队优先**：名称稳定、小版本演进的库优先（各栈手册列有清单，如 PyPI 的 httpx/pytest/ruff、npm 的 typescript/zod/commander）。Node/TS 测试实证是 `node:test`（内置），vitest 非默认；runtime 依赖白名单制见 tool-typescript.md
 
 ## 五、结论落位与验收
 

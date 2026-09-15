@@ -6,36 +6,37 @@
 
 | 我要… | 看哪篇 |
 | --- | --- |
-| 在新项目落地骨架 | [base-init.md](base-init.md) |
-| 建根原语 / 写 AGENTS | [base-primitives.md](base-primitives.md) |
-| 决定文档放哪个目录 / 写方案 | [base-docs-directories.md](base-docs-directories.md) |
-| 推进一个目标 / 踩坑就地纠偏 | [flow-workflow.md](flow-workflow.md) |
-| 立项前拷问用户 / 被咨询时怎么答 | [flow-inquiry.md](flow-inquiry.md) |
+| 在新项目落地骨架 / 存量迁移 | [base-init.md](base-init.md) |
+| 写或改 AGENTS 五节合同 | [base-agents-contract.md](base-agents-contract.md) |
+| 立一条 ADR / 替代旧决策 | [base-adr.md](base-adr.md) |
+| 立需求 REQ / 回填 trace | [base-req.md](base-req.md) |
+| 配 API 文档投影 / 公开面漂移门禁 | [base-projection.md](base-projection.md) |
 | 写测试 / 定测试分层与门禁 | [flow-testing.md](flow-testing.md) |
 | 定任务执行的事件模型 / 超时兜底 | [flow-events.md](flow-events.md) |
 | 选依赖 / 查库（五栈数据源） | [tool-selection.md](tool-selection.md) |
 | 给 CLI 增加 agent 用户面 | [tool-cli-agents.md](tool-cli-agents.md) |
-| 建 TypeScript/Node 仓 / tsc / node:test / npm pack | [tool-typescript.md](tool-typescript.md) |
+| 建 Rust 仓 / aidoc / doctest | [tool-rust.md](tool-rust.md) |
+| 建 TypeScript/Node 仓 / TSDoc / API Extractor | [tool-typescript.md](tool-typescript.md) |
 | 写任何文档前 | [base-writing-standards.md](base-writing-standards.md) |
 | 发一个版本 | [flow-release.md](flow-release.md) |
 | 落地前预警 / 踩坑对照 | [exp-pitfalls.md](exp-pitfalls.md) |
 
 ## 二、场景索引（按工作维度）
 
-### 项目骨架与规范
+### 体系骨架与规范
 
-- [base-primitives.md](base-primitives.md) - 根原语详解（PRD/GOAL/PLAN/TODO/INDEX/AGENTS 职责、模板头、文档义务表、分平台 shell 约定）
-- [base-docs-directories.md](base-docs-directories.md) - docs 六目录精确定义、proven/references/guide 分界口诀、方案模板、编号规则
-- [base-writing-standards.md](base-writing-standards.md) - 写作规范（文件名即标题、标题干净、六态完整定义（知行合一：五态为实证服务）、路径两制、门禁选配）
-- [base-init.md](base-init.md) - 初始化五步、关键问题清单、裁剪原则、验收清单、跨项目适配参考
+- [base-agents-contract.md](base-agents-contract.md) - AGENTS 五节合同（Commands/Must/Must not/Read first/环境;三栈写法要点;写作纪律）
+- [base-adr.md](base-adr.md) - ADR 架构决策记录：frontmatter 契约、Nygard 三段、状态机与 supersede 流、何时写何时不写
+- [base-req.md](base-req.md) - REQ 需求登记：frontmatter 契约（status/priority/trace）、Scenario/Criteria、状态机、旧体系迁移映射
+- [base-projection.md](base-projection.md) - 生成投影与 agent 检索面：投影三问、三栈机制对照、llms.txt 式索引、纪律清单（禁止第二真相）
+- [base-writing-standards.md](base-writing-standards.md) - 写作规范（文件名即标题、标题干净、六态完整定义（知行合一:五态为实证服务）、路径两制、门禁选配）
+- [base-init.md](base-init.md) - 初始化五步、关键问题清单、裁剪原则、验收清单、存量迁移路径与旧体系映射
 
 ### 工作流与发布
 
-- [flow-workflow.md](flow-workflow.md) - 五步工作流（登记到立项到执行到验收到归档）、知行合一工作纪律（反冥行妄作/反悬空思索/着实去做/事上磨炼）、最小实现阶梯、拆步骤标准、优先级取舍、自修正闭环、沉淀铁律
-- [flow-inquiry.md](flow-inquiry.md) - 双向问答协议：你问我答（拷问模式：设计树、前沿轮次、事实/决策/实验三分、无静默假设终止）与我问你答（咨询模式：种子扩散、人类组织、落位回写；先读文档再答、答必六态、信源核实）
 - [flow-testing.md](flow-testing.md) - 测试流程规范：双轴分层（地基层/意图层）、五层正名（单元/集成/冒烟/回归/验收）、断言纪律、跨栈载体速查、门禁时机谱、特色机制（黄金文件/快照/防漂移/DryRun/假绿防线）
 - [flow-events.md](flow-events.md) - 事件驱动执行模型：三态事件（成功/失败/未知）、let it crash 监督者模式、超时兜底三选（重试/换路径/记录）、熔断三态、与六态的接口（未知即中转态）
-- [flow-release.md](flow-release.md) - 封版发布模式：前置裁定、三路全平台门禁、封版件、tag 触发、发布验收（reader 仓 R008 模式）
+- [flow-release.md](flow-release.md) - 封版发布模式：前置裁定、三路全平台门禁、封版件、tag 触发、发布验收
 
 ### 平台与环境
 
@@ -46,38 +47,39 @@
 
 - [tool-project.md](tool-project.md) - 项目工具：`.tools/` uv 运行时 Python 脚本约定（PEP 723）、归档规则、沉淀铁律、外部工具路由
 - [tool-selection.md](tool-selection.md) - 依赖选型与探查：最小实现阶梯 2 到 5 档数据源（仓内/标准库/平台原生/已装依赖）、发现层（awesome 清单与官方库搜索）、五栈三通道对照（crates.io/PyPI/Gallery/npm）、稳度四信号、GitHub 通道、锁定与决策树
+- [tool-rust.md](tool-rust.md) - Rust 工程合同：workspace 与工具链、`///` 契约注释（missing_docs deny）、门禁命令、aidoc 投影、daemon 与 E2E 工程要点
 - [tool-cli-agents.md](tool-cli-agents.md) - agent-native CLI 设计：双用户公理与 token 经济学、发现三通道（skills add/mcp add/--llms）、市场分发协议（双客户端 add 形态、git 双协议、简写默认协议相反、钉版、source 七型）、TOON 紧凑输出与 CTA、四面 schema、管道代码逃生舱（零 import 集成运行时）、脚本 workspace 集中归档（同 exec 运行时、apps 即命令、domain-skills 知识层）、定义一次多面暴露（Agent Plugins 三层）、行为 oracle 对齐、落地清单
-- [tool-typescript.md](tool-typescript.md) - TypeScript/Node 工程合同：Node >=22 ESM、tsc 严选项、runtime 依赖白名单、node:test（引号 glob）、checkJs 管 .mjs、npm pack 验收（禁 link）、空串不走 ??、fnm 下 spawn npm-cli.js
+- [tool-typescript.md](tool-typescript.md) - TypeScript/Node 工程合同：Node >=22 ESM、tsc 严选项、runtime 依赖白名单、node:test（引号 glob）、checkJs 管 .mjs、npm pack 验收（禁 link）、空串不走 ??、fnm 下 spawn npm-cli.js;文档即代码面（TSDoc、API Extractor、TypeDoc、test-d）
 
-资料检索（gh / Google / Medium / X / reader / aria2c）不在本 skill，见同插件 skill `super-research`。Office 文件读写（OfficeCLI）不在本 skill，见同插件 skill `office-pro`。
+资料检索（gh / Google / Medium / X / reader / aria2c）不在本 skill，见同插件 skill `super-research`。
 
 ### 经验
 
-- [exp-pitfalls.md](exp-pitfalls.md) - 已知误区十七条（proven 语义、双份漂移、豁免退出、索引底稿、批改塌行、口径返工、环境想当然、CHANGELOG 流水、AGENTS 膨胀等）
-- [exp-sedimentation.md](exp-sedimentation.md) - 经验沉淀分治：成功/错误两条链、实证与经验循环复利、产生时机与检索路径、二犯升格工作流与集成约束四形态（agent hook/uv 脚本门禁/git 钩子/回归测试；结构源仓 G004 模式）
+- [exp-pitfalls.md](exp-pitfalls.md) - 已知误区十八条（ADR/REQ 混淆、手改投影、静默假设、双份漂移、豁免退出、索引底稿、批改塌行、口径返工、环境想当然、CHANGELOG 流水、AGENTS 膨胀、supersede 单边指等）
+- [exp-sedimentation.md](exp-sedimentation.md) - 经验沉淀分治：成功/错误两条链、实证与经验循环复利、产生时机与检索路径、二犯升格工作流与集成约束四形态（agent hook/uv 脚本门禁/git 钩子/回归测试）
 
 ## 三、全量清单（18 篇）
 
 | 文件 | 主题 |
 | --- | --- |
-| base-init.md | 初始化流程与跨项目适配 |
-| base-primitives.md | 根原语详解与模板头 |
-| base-docs-directories.md | 六目录定义与方案模板 |
-| flow-workflow.md | 五步工作流与自修正闭环 |
-| flow-inquiry.md | 双向问答协议（你问我答/我问你答） |
+| base-init.md | 初始化流程与存量迁移 |
+| base-agents-contract.md | AGENTS 五节合同 |
+| base-adr.md | ADR 架构决策记录 |
+| base-req.md | REQ 需求登记 |
+| base-projection.md | 生成投影与 agent 检索面 |
+| base-writing-standards.md | 写作规范与六态（知行合一） |
 | flow-testing.md | 测试流程规范（双轴分层与五层正名） |
 | flow-events.md | 事件驱动执行模型（三态事件与超时兜底） |
-| base-writing-standards.md | 写作规范与六态（知行合一） |
 | flow-release.md | 封版发布模式 |
 | env-platform.md | 三平台适配 |
 | env-environment.md | 环境依赖索引（ome） |
 | tool-project.md | 项目工具约定与路由 |
 | tool-selection.md | 依赖选型与探查（数据源与稳度判据） |
+| tool-rust.md | Rust 工程合同（workspace、契约注释、aidoc） |
 | tool-cli-agents.md | agent-native CLI 设计（双用户契约与自由代码面） |
-| tool-typescript.md | TypeScript/Node 工程合同（tsc、node:test、npm pack） |
-| exp-pitfalls.md | 已知误区十七条 |
+| tool-typescript.md | TypeScript/Node 工程合同（tsc、node:test、TSDoc、API Extractor） |
+| exp-pitfalls.md | 已知误区十八条 |
 | exp-sedimentation.md | 经验沉淀分治细则 |
-| README.md | 本索引 |
 
 另有仓内姊妹件：`../verification/command-test-cases.md`（规范检查命令）。
 

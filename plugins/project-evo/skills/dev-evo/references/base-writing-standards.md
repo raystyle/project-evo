@@ -10,7 +10,7 @@
 
 | 层 | 职责 | 检索方式 | 命名要求 |
 | --- | --- | --- | --- |
-| 目录名 | 领域/类别词，全仓唯一语义 | `rg --files \| rg 目录词` | 小写英文单词或体系固定名（docs/proven/research/references/guide/mistakes;base/flow/env/tool/exp) |
+| 目录名 | 领域/类别词，全仓唯一语义 | `rg --files \| rg 目录词` | 小写英文单词或体系固定名（docs/adr/requirements/guides/diary/research;base/flow/env/tool/exp) |
 | 文件名 | 主题词，同目录唯一 | `rg --files \| rg 主题词` | 编号或类别前缀 + `-` + 主题短词，不含空格/括号/冒号 |
 | 标题 | 节级导航与抽取 | `reader query 文件 ".h2"` | h2 = 一节一事，节名即主题词，可独立成目录 |
 
@@ -20,7 +20,7 @@
 
 - **文件名即标题**：文件名 = 文档主题，打开前就知道内容
 - skill 参考目录（本库）：类别前缀 + 主题词，`base-init` / `flow-release` / `env-platform` / `tool-gh` / `exp-pitfalls`
-- 项目 docs 目录：编号开头，`PNNNN-短名.md`（proven）、`SNNN-标题.md`（research）、`RNNN/GNNN-<类别>细则-<主题>.md`（references/guide）、`M1xx-<错误族>.md`（mistakes)
+- 项目 docs 目录：编号开头，`ADR-NNNN-短名.md`（adr）、`REQ-NNN-短名.md`（requirements）、`SNNN-标题.md`（research）；guides 用主题短词，diary 用日期前缀
 - 博客式长标题（research/diary）：用 `-` 断句
   - 正例：`S004-Word文档读取选型-docx自解与doc直读双路线实测.md`
   - 反例：`S004-Word读取选型(双路线).md`、`S004 Word选型:双路线.md`、`S004-最终版2.md`
@@ -78,7 +78,7 @@ flowchart LR
 
 ## 五、语言与字符硬禁令
 
-中文为主；命令、代码、专有名词保原文。目标：无 AI 写作痕迹、可机械校验。分级：四类禁字为 error 级（`scripts/scan.py` 与 `check.py` 的 PE-12 同源机检，规则唯一权威 `scripts/mdrules.py`）；空格混排为排版偏好不做 error。
+中文为主；命令、代码、专有名词保原文。目标：无 AI 写作痕迹、可机械校验。分级：四类禁字为 error 级（`scripts/scan.py` 与 `check.py` 的 PE-11 同源机检，规则唯一权威 `scripts/mdrules.py`）；空格混排为排版偏好不做 error。
 
 ### 四类禁字（error 级）
 
@@ -101,14 +101,14 @@ flowchart LR
 
 逐段回查四类禁字；确认命中均属豁免区；豁免区外逐个替换；替换后重读确认语义无损。
 
-> 文档路径写法全仓统一一种并在 G001 声明：Windows 主开发仓用反斜杠（`docs\proven\`），跨平台协作仓用正斜杠（`docs/proven/`）；同仓不混用（详见 env-platform.md）
+> 文档路径写法全仓统一一种并在 AGENTS 环境节声明：Windows 主开发仓用反斜杠（`docs\adr\`），跨平台协作仓用正斜杠（`docs/adr/`）；同仓不混用（详见 env-platform.md）
 
 ## 六、门禁选配（按项目落地）
 
 | 门禁 | 形态 | 建议 |
 | --- | --- | --- |
 | markdown lint | rumdl（`.rumdl.toml`）或 markdownlint | 文档仓强烈建议；存量告警清零后门禁 |
-| 断链扫描 | `.tools\md-ref-scan.py`(reader 仓 模式：仓内相对引用递归检查 + 豁免清单） | 文档结构大改后必跑 |
+| 断链扫描 | `.tools\md-ref-scan.py`（仓内相对引用递归检查 + 豁免清单） | 文档结构大改后必跑 |
 | 禁用字符机检 | `.tools\md-char-scan.py` | guide 定了禁用清单就配机检，豁免区显式登记 |
 | 标题规范机检 | `.tools\md-heading-scan.py` | 可选（标题括号/主题词缺失） |
 
@@ -116,9 +116,9 @@ flowchart LR
 
 ## 七、写完自查
 
-1. 三层命名各就位：目录类别词准确、文件名即主题（编号/前缀正确）、已登记 INDEX
+1. 三层命名各就位：目录类别词准确、文件名即主题（编号/前缀正确）、已登记对应 README 索引
 2. 头部有角色定位 `>` 引用；标题成树，`.h2` 自检可导航
 3. 事实性断言标六态，关键结论有标记；中转态（假设/推断/记忆）带进入实证的路径，收尾无滞留
 4. 仓内引用相对路径可达（断链扫描过）
-5. 动作触发的文档义务已对齐（见 base-primitives.md 文档义务表）
+5. 动作触发的文档义务已对齐（见 base-agents-contract.md 五节合同与 base-adr.md、base-req.md 的登记义务）
 6. 吸收即提炼：新增内容已剔除信源冗余，只留最准确精练的可复用表达，自省可再删

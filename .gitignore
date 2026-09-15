@@ -22,3 +22,7 @@ dist/
 build/
 *.tmp
 .pytest_cache/
+.agents/skills/
+.grok/
+.hst/
+.kimi-code/

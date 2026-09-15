@@ -18,13 +18,11 @@ import sys
 from pathlib import Path
 
 DIRS = [
-    "docs/proven",
+    "docs/adr",
+    "docs/requirements",
+    "docs/guides",
     "docs/diary",
     "docs/research",
-    "docs/references",
-    "docs/guide",
-    "docs/mistakes",
-    "poc",
 ]
 
 TEMPLATES = Path(__file__).resolve().parent.parent / "assets" / "templates"
@@ -50,7 +48,8 @@ def generate(target: Path, name: str) -> tuple[list[str], list[str]]:
             skipped.append(rel)
             continue
         path.parent.mkdir(parents=True, exist_ok=True)
-        path.write_text(tpl.format(name=name, date=date), encoding="utf-8")
+        # replace 而非 format:模板可自由使用其他花括号字面量
+        path.write_text(tpl.replace("{name}", name).replace("{date}", date), encoding="utf-8")
         created.append(rel)
     return created, skipped
 
@@ -71,7 +70,7 @@ def main(argv: list[str] | None = None) -> int:
         print(f"created  {rel}")
     for rel in skipped:
         print(f"skip     {rel}(已存在,不覆盖)")
-    print(f"共新建 {len(created)} 件,跳过 {len(skipped)} 件;下一步:填 AGENTS 定位段 + GOAL 起点回指 D01")
+    print(f"共新建 {len(created)} 件,跳过 {len(skipped)} 件;下一步:填 AGENTS 定位与 Commands,首个需求立 docs/requirements/REQ-001")
     return 0
 
 

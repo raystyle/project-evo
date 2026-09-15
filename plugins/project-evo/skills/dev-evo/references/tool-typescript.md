@@ -1,6 +1,6 @@
 # TypeScript/Node 项目工程
 
-> 本文件 = Node/TS 仓怎么建、怎么验（运行时、tsc、测试、依赖、打包）；与 tool-project.md（Python `.tools`）分栈；与 tool-selection.md（出仓选型）分工：本篇是落地后的工程合同。浏览器检索见 `project-evo:super-research`；agent 脚本 workspace 见 tool-cli-agents.md。提炼自 D:\browser-harness-ts 的 package.json、tsconfig、R001、M101 至 M103、P0001 [实证: 2026-09-08 对照源仓]。
+> 本文件 = Node/TS 仓怎么建、怎么验（运行时、tsc、测试、依赖、打包、文档即代码面）；与 tool-project.md（Python `.tools`）分栈；与 tool-selection.md（出仓选型）分工：本篇是落地后的工程合同。浏览器检索见 `project-evo:super-research`；agent 脚本 workspace 见 tool-cli-agents.md。
 
 ## 一、运行时合同
 
@@ -43,7 +43,7 @@
 
 ## 三、运行时依赖白名单
 
-- dependencies 白名单制：新增 runtime 依赖走 PRD 采纳。家族实证现役仅 commander（CLI 解析）与 zod（环境变量与选项校验）[实证: browser-harness-ts D29]
+- dependencies 白名单制：新增 runtime 依赖走 REQ 采纳。常见现役仅 commander（CLI 解析）与 zod（环境变量与选项校验）两枚 [经验]
 - devDependencies 从宽：typescript、`@types/node`、esbuild（仅浏览器 IIFE 产物需要时）
 - 出仓前再问「Node 内置有没有」（接 tool-selection 阶梯 2 到 5 档）
 
@@ -55,11 +55,11 @@
 | 浏览器侧车 SDK | esbuild（devDependency） | 自包含 IIFE，进 git | 产物零 runtime 依赖 |
 | 协议 / IDL 生成 | 仓内 gen 脚本 | `src/generated.ts` 一类 | 禁止手改；换源后 gen 再测 |
 
-保真判据（有上游生成物时）：与上游 diff 只允许头注释差异 [实证: 2026-09-04 源仓首次生成对账]。
+保真判据（有上游生成物时）：与上游 diff 只允许头注释差异 [实证]。
 
 ## 五、测试
 
-家族 TypeScript 默认载体是 **node:test**（Node 内置），不是 vitest [实证: browser-harness-ts `npm test`]。
+家族 TypeScript 默认载体是 **node:test**（Node 内置），不是 vitest [经验]。
 
 ```powershell
 npm test   # build + typecheck:apps + node --test "dist/*.test.js"
@@ -68,9 +68,9 @@ npm test   # build + typecheck:apps + node --test "dist/*.test.js"
 硬规则：
 
 1. 先 tsc 再测编译产物；测试与源码同目录 `src/*.test.ts`，邻模块 import 写 `.js`
-2. glob **必须带引号**：`node --test "dist/*.test.js"`。Windows git-bash 裸 glob 把目录当参数解析会炸 [实证: M002，已固化进 package.json]
-3. 测试钉临时 HOME / 数据根，禁止碰安装态与开发态家目录 [实证: paths.test.ts sandbox]
-4. 混有 `.mjs` 插件或应用时另立 `tsconfig.apps.json`：`allowJs` + `checkJs` + `noEmit`，纳入 `npm test`（`typecheck:apps`）[实证: D32]
+2. glob **必须带引号**：`node --test "dist/*.test.js"`。Windows git-bash 裸 glob 把目录当参数解析会炸 [实证: Windows 实测,已固化进 package.json 形态]
+3. 测试钉临时 HOME / 数据根，禁止碰安装态与开发态家目录 [实证]
+4. 混有 `.mjs` 插件或应用时另立 `tsconfig.apps.json`：`allowJs` + `checkJs` + `noEmit`，纳入 `npm test`（`typecheck:apps`）[实证]
 5. 外部依赖缺失 skip，不失败不伪造（与 flow-testing 闸门同构）
 
 vitest 可作意图层替代；新仓无理由不跟 node:test。
@@ -81,7 +81,7 @@ vitest 可作意图层替代；新仓无理由不跟 node:test。
 
 ## 七、开发态 vs 安装验收
 
-npm CLI 包有两套家，禁止混用 [实证: M014]。
+npm CLI 包有两套家，禁止混用 [实证]。
 
 判定：包根有没有 `tsconfig.json`（`files` 不含此文件）。有 = 开发态，没有 = 安装态。
 
@@ -95,19 +95,19 @@ npm CLI 包有两套家，禁止混用 [实证: M014]。
 
 ## 八、环境解析与空串
 
-坏的配置值不得在 import 时把进程打死：缺省、非法、`<=0` 回落到默认。zod `safeParse`，不 throw [实证: src/env.ts D29]。
+坏的配置值不得在 import 时把进程打死：缺省、非法、`<=0` 回落到默认。zod `safeParse`，不 throw [实证]。
 
-空串不是缺省：失败时 `ErrorEvent.message` 一类字段给 `""`，`?? fallback` 不触发。取值用 truthiness，不用 `??` 链 [实证: M001]。
+空串不是缺省：失败时 `ErrorEvent.message` 一类字段给 `""`，`?? fallback` 不触发。取值用 truthiness，不用 `??` 链 [实证]。
 
 ## 九、Windows 进程与锁
 
-- fnm 下 `Get-Command npm` 是 `npm.ps1`，`spawnSync('npm.cmd')` 无 PATH 直调失败（status null）。改走与 `node.exe` 同目录的 `node npm-cli.js` [实证: M016]
-- 无内核锁时，时间维抢占（`stealAfterMs: 30s`）会偷活锁。只认 pid 死亡，不要用超时当锁失效 [实证: M007]
-- 事件匹配键只用稳定必填字段，不用协议里 deprecated 且 optional 的字段 [实证: M018]
+- fnm 下 `Get-Command npm` 是 `npm.ps1`，`spawnSync('npm.cmd')` 无 PATH 直调失败（status null）。改走与 `node.exe` 同目录的 `node npm-cli.js` [实证]
+- 无内核锁时，时间维抢占（`stealAfterMs: 30s`）会偷活锁。只认 pid 死亡，不要用超时当锁失效 [实证]
+- 事件匹配键只用稳定必填字段，不用协议里 deprecated 且 optional 的字段 [实证]
 
 ## 十、CI 与封版
 
-CI：`fail-fast: false`；矩阵 os（ubuntu / windows / macos）乘 node（22、24）；步骤 `npm ci` + `npm test` [实证: browser-harness-ts `.github/workflows/ci.yml`]。本地过了 CI 不过，以 CI 为准修。
+CI：`fail-fast: false`；矩阵 os（ubuntu / windows / macos）乘 node（22、24）；步骤 `npm ci` + `npm test`。本地过了 CI 不过，以 CI 为准修 [经验]。
 
 封版（接 flow-release.md）：
 
@@ -120,7 +120,25 @@ CI：`fail-fast: false`；矩阵 os（ubuntu / windows / macos）乘 node（22�
 
 ## 十一、架构经验一条
 
-语义层对传输无关的 Host 接口编程，CLI / 插件 / worker 复用同一套 helpers，不产生第二套语义实现 [经验: P0001 源仓移植最有价值的一条]。脚本 workspace 的落位与增量供给见 tool-cli-agents.md。
+语义层对传输无关的 Host 接口编程，CLI / 插件 / worker 复用同一套 helpers，不产生第二套语义实现 [经验]。脚本 workspace 的落位与增量供给见 tool-cli-agents.md。
+
+## 十三、文档即代码面（TSDoc 与 API Extractor）
+
+公开契约以导出、.d.ts 与 TSDoc 为准；API 文档是投影（总纲见 base-projection.md）。
+
+- 契约注释必须是 `/**`（两颗星）紧贴导出声明；入口文件顶 `@packageDocumentation`；发布标签 `@public`/`@beta`/`@internal`（未标 Extractor 警告）
+- 摘要一段（进目录页），细节 `@remarks`；不复述类型签名；链接用 `{@link parse}` 不手写 URL
+- `tsconfig.build.json`：`declaration: true`、`declarationMap: true`、`removeComments: false`（removeComments:true 会挖空 Extractor）
+- 投影管线：tsc 出 .d.ts 后分流,TypeDoc 出 HTML（人）,api-extractor 出 `etc/*.api.md`（进 Git,PR 审公开面）与 `.api.json`,api-documenter 出 `docs/api/`（agent 面）
+- 命令面：`npm run api`（本地 --local 更新后 git add）与 `npm run api:check`（CI 无 --local,漂移必红）
+- 示例锁在 Vitest 或 node:test;类型锁 `*.test-d.ts`（`expectTypeOf`）;语言无官方 doctest,可选 vite-plugin-doctest 试点但不当唯一门禁
+- 落地顺序：收窄 exports 到 补 TSDoc 与测试 到 Extractor 报告进 Git 到 TypeDoc 到 短 AGENTS 到 ADR;不要一上来给私有 helper 写注释 [经验]
+
+## 十四、验收清单（文档面增量）
+
+- 公开导出均有 TSDoc 与 @public 标签
+- etc/*.api.md 与 docs/api/ 是生成物,无人手改痕迹
+- CI api:check 绿;README/AGENTS 无第二份手写 API 真相
 
 ## 十二、验收清单
 

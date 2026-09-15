@@ -4,7 +4,7 @@
 # ///
 """md-ref-scan: skills 树内 markdown 交叉引用断链扫描。
 
-用法: uv run .tools/md-ref-scan.py [根目录,默认 plugins/project-evo/skills/docs-evo]
+用法: uv run .tools/md-ref-scan.py [根目录,默认 plugins/project-evo/skills/dev-evo]
 退出码: 0 无断链 / 1 有断链 / 2 出错。
 规则: 提取 <路径前缀/ ><名>.md 引用,按「本文件目录、根、根/references」三级解析;
 目标项目的固定文件名(CLAUDE/AGENTS/template 等)与命令示例(notes.md/a.md)跳过。
@@ -17,9 +17,12 @@ from pathlib import Path
 import re
 
 SKIP = {
-    "CLAUDE.md", "README.md", "SKILL.md", "AGENTS.md", "PRD.md", "GOAL.md",
-    "PLAN.md", "TODO.md", "INDEX.md", "CHANGELOG.md", "ROADMAP.md",
-    "template.md", "MISTAKES.md", "notes.md", "A.md", "a.md", "b.md", "2.md",
+    "CLAUDE.md", "README.md", "SKILL.md", "AGENTS.md", "CHANGELOG.md",
+    "ROADMAP.md", "template.md", "notes.md", "A.md", "a.md", "b.md", "2.md",
+    "api.md", "API.md", "0000-template.md",
+    # security-audit 运行时产物名(审计输出文件,非仓内静态文件)
+    "REPORT.md", "FINDINGS-DETAIL.md", "NEEDS-VALIDATION.md",
+    "architecture.md", "FILE.md",
 }
 REF = re.compile(r"((?:[A-Za-z0-9_\-]+[/\\])*[A-Za-z0-9_\-]+\.md)")
 
@@ -29,8 +32,8 @@ def scan(root: Path) -> list[str]:
     for p in sorted(root.rglob("*.md")):
         for m in REF.finditer(p.read_text(encoding="utf-8")):
             ref = m.group(1).replace("\\", "/")
-            if Path(ref).name in SKIP:
-                continue
+            if Path(ref).name in SKIP or "NNN" in Path(ref).name:
+                continue  # 占位名(ADR-NNNN-slug / REQ-NNN-slug 等)与固定示意名跳过
             cands = [p.parent / ref, root / ref, root / "references" / Path(ref).name]
             if not any(c.exists() for c in cands):
                 bad.append(f"{p.relative_to(root)} -> {ref}")
@@ -38,7 +41,7 @@ def scan(root: Path) -> list[str]:
 
 
 def main(argv: list[str]) -> int:
-    root = Path(argv[0]) if argv else Path("plugins/project-evo/skills/docs-evo")
+    root = Path(argv[0]) if argv else Path("plugins/project-evo/skills/dev-evo")
     if not root.is_dir():
         print(f"md-ref-scan: 目录不存在 {root}", file=sys.stderr)
         return 2
