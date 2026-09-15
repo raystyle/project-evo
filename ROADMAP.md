@@ -34,6 +34,10 @@
 | 存量迁移映射表生成物 | 待定 | 2026-09-16 首批用户反馈(ohmycloud):旧编号到新编号对照宜机器生成落盘,人写注记即漂移面,生成物可进门禁 |
 | check 一次性迁移修复子命令 | 待定 | 2026-09-16 首批用户反馈(ohmycloud):PE-10 标题括号批量转冒号形,存量首对齐手搓约 25 文件,收尾成本落在用户侧 |
 | ADR/REQ frontmatter 字段表显式化 | 待定 | 2026-09-16 首批用户反馈(ohmycloud):base-adr/base-req 正文状态体态与 PE-06/07 frontmatter 判式不对应,被打回两轮才定位契约差 |
+| check 输出 --json 机器读面 | 待定 | 2026-09-16 飞轮批反馈(hst_rs):回执要报 SKIP 处数只能正则抓 stdout,退出码带不动细节;S008 定高优先 |
+| init 模板 rumdl 撞规预防 | 待定 | 2026-09-16 飞轮批反馈(hst_rs):ADR/REQ 模板 YAML title 与 rumdl MD025 默认规则必撞,init 宜检测并自动落 front_matter_title 空串 |
+| 整文件豁免形态官方示例 | 待定 | 2026-09-16 飞轮批反馈(hst_rs):路径前缀正则不带冒号即整文件豁免(hst_rs 以 ^docs/proven/ 实证),gates.md 补官方示例,免各仓自造前缀式 |
+| skill-spec 对表 agentskills 新字段 | 待定 | 2026-09-16 S008:allowed-tools(Experimental)与 metadata 可选字段是否引入待评估,skill-spec.md 对表现行 spec |
 
 ## 阶段三：延伸（未开始）
 

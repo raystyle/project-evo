@@ -11,3 +11,4 @@
 | S005 | [S005-git密钥隐私扫描skill选型.md](S005-git密钥隐私扫描skill选型.md) | git/GitHub 密钥隐私扫描 skill 选型与落地 | 已完成 2026-09-08 |
 | S006 | [S006-secret-scan-AB对照.md](S006-secret-scan-AB对照.md) | secret-scan 与 docs-evo scan 同夹具 A/B | 已完成 2026-09-08 |
 | S007 | [S007-OfficeCLI-agent原生Office套件.md](S007-OfficeCLI-agent原生Office套件.md) | iOfficeAI/OfficeCLI：agent 用的 docx/xlsx/pptx CLI，本机 v1.0.148 烟测；成果曾沉淀为 office-pro skill，2026-09-15 移除 | 已完成 2026-09-08 |
+| S008 | [S008-dev-evo标准外部对标.md](S008-dev-evo标准外部对标.md) | agentskills spec、AGENTS.md 生态、llms.txt 与 ADR 惯例对标,对照九条用后感定优先级 | 已完成 2026-09-16 |
