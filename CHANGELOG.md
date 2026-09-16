@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-16，第六十三批:全平台连接姿势与多仓飞轮协作篇,ADR-0008 边界修订）
+
+- env-platform 新增第十节「全平台连接姿势」:WSL 到宿主恒走 127.0.0.1 回环 ssh 加 interop 直调不走宿主 mesh IP(mirrored 共享节点身份自连被 RST 属结构性)、lan 三端 mesh 随时随地、四平台测试矩阵与端点支撑;各仓 AGENTS 环境节引用此口径
+- 新增 references/flow-flywheel.md(多仓飞轮协作:工位形态、派发自包含、回执 conclusion 自取、端点测试支撑、吸收纠错分流;六仓四轮实证提炼);references 17 到 18 篇,立 ADR-0008 按 ADR-0007 边界纪律显式修订(首例)
+- 本仓 AGENTS 环境节补连接姿势引用句
+
 ### 新增（2026-09-16，第六十二批:项目治理终态定形与四技能治理面定调）
 
 - 立 ADR-0007:治理终态五件套(ADR/REQ 体系、diary 与 research 档案、三栈文档即代码标准与工具、agent CLI 三栈标准、AGENTS 五节合同与 17 篇边界)冻结,动终态面须立新 ADR 显式 supersede

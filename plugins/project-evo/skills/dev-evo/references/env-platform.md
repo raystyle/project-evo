@@ -90,3 +90,10 @@
 ## 九、立项时的平台决策（回填 base-init.md Step 2)
 
 初始化问关键问题时必含：**「目标平台矩阵是什么？」**，单平台内部工具（只 Windows）可裁剪跨平台开销；对外交付/CI 发布产品必须三平台门禁起步。决策记进 AGENTS 环境节与对应 REQ，后续「顺便支持下 linux」类需求走 REQ 追问链，不静默扩矩阵。
+
+## 十、全平台连接姿势（WSL 与 mesh 分工）
+
+- **WSL 到宿主恒走回环与 interop**：`127.0.0.1` 回环 ssh 加 interop 直调（`/mnt/c` 路径互访加 `cmd`/`powershell.exe` 直调），**不走宿主 mesh IP**:WSL mirrored 网络下宿主与 WSL 共享同一 mesh 节点身份,自连被 RST 属结构性,非配置可修 [实证: 用户实弹定标 2026-09-16]
+- **lan 端 mesh 地址随时随地**：lan 三端（lan-ubuntu、lan-linux、lan-mac）走 mesh 地址互访,不在此限
+- **四平台测试矩阵**：lan-win（Windows 宿主加 WSL 总台,PS 通道加 interop）、lan-ubuntu、lan-linux、lan-mac 全运行时装齐即成局;各仓验收按需向总台要端点测试支撑（协作协议见 flow-flywheel.md）
+- 各仓 AGENTS 环境节引用本口径一句,连接问题先查姿势再查配置 [经验]

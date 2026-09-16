@@ -17,6 +17,7 @@
 | 建 TypeScript/Node 仓 / TSDoc / API Extractor | [tool-typescript.md](tool-typescript.md) |
 | 建 Python 仓 / docstring / MkDocs 投影 | [tool-python.md](tool-python.md) |
 | 写日记 / 研究档案 / SNNN 编号 / 沉淀升 ADR | [flow-archive.md](flow-archive.md) |
+| 多仓飞轮协作 / 派单与回执纪律 | [flow-flywheel.md](flow-flywheel.md) |
 | 写任何文档前 | [base-writing-standards.md](base-writing-standards.md) |
 | 发一个版本 | [flow-release.md](flow-release.md) |
 | 落地前预警 / 踩坑对照 | [exp-pitfalls.md](exp-pitfalls.md) |
@@ -37,6 +38,7 @@
 - [flow-testing.md](flow-testing.md) - 测试流程规范：双轴分层（地基层/意图层）、五层正名（单元/集成/冒烟/回归/验收）、断言纪律、跨栈载体速查、门禁时机谱、特色机制（黄金文件/快照/防漂移/DryRun/假绿防线）
 - [flow-release.md](flow-release.md) - 封版发布模式：前置裁定、三路全平台门禁、封版件、tag 触发、发布验收
 - [flow-archive.md](flow-archive.md) - 日记与研究档案机制：diary 一天一篇与裁定留痕、research SNNN 编号六态索引、择要升 ADR、结构保留红线
+- [flow-flywheel.md](flow-flywheel.md) - 多仓飞轮协作：herdr 工位形态、派发自包含、回执 conclusion 自取、端点测试支撑、吸收纠错分流
 
 ### 平台与环境
 
@@ -57,7 +59,7 @@
 - [exp-pitfalls.md](exp-pitfalls.md) - 已知误区十八条（ADR/REQ 混淆、手改投影、静默假设、双份漂移、豁免退出、索引底稿、批改塌行、口径返工、环境想当然、CHANGELOG 流水、AGENTS 膨胀、supersede 单边指等）
 - [exp-sedimentation.md](exp-sedimentation.md) - 经验沉淀分治：成功/错误两条链、实证与经验循环复利、产生时机与检索路径、二犯升格工作流与集成约束四形态（agent hook/uv 脚本门禁/git 钩子/回归测试）
 
-## 三、全量清单（17 篇）
+## 三、全量清单（18 篇）
 
 | 文件 | 主题 |
 | --- | --- |
@@ -70,6 +72,7 @@
 | flow-testing.md | 测试流程规范（双轴分层与五层正名） |
 | flow-release.md | 封版发布模式 |
 | flow-archive.md | 日记与研究档案机制（SNNN 与沉淀升 ADR） |
+| flow-flywheel.md | 多仓飞轮协作（派单回执与端点支撑） |
 | env-platform.md | 三平台适配 |
 | tool-project.md | 项目工具约定与路由 |
 | tool-rust.md | Rust 工程合同（workspace、契约注释、aidoc） |
