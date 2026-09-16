@@ -40,6 +40,7 @@
 | init 模板 rumdl 撞规预防 | 待定 | 2026-09-16 飞轮批反馈(hst_rs):ADR/REQ 模板 YAML title 与 rumdl MD025 默认规则必撞,init 宜检测并自动落 front_matter_title 空串 |
 | 整文件豁免形态官方示例 | 待定 | 2026-09-16 飞轮批反馈(hst_rs):路径前缀正则不带冒号即整文件豁免(hst_rs 以 ^docs/proven/ 实证),gates.md 补官方示例,免各仓自造前缀式 |
 | skill-spec 对表 agentskills 新字段 | 待定 | 2026-09-16 S008:allowed-tools(Experimental)与 metadata 可选字段是否引入待评估,skill-spec.md 对表现行 spec |
+| PE-12 同目录裸文件名误报 | 待定 | 2026-09-16 终态对齐批反馈(hst_rs):断链检查只认根相对路径,README 同目录裸文件名(中文 S 件名)误报,被迫去反引号规避;建议支持 README 相对解析或明示根相对口径 |
 
 ## 阶段三：延伸（未开始）
 
