@@ -53,13 +53,14 @@ flowchart LR
 
 ## 四、两条链的边界与互转
 
-```text
-踩坑 ──当场──> diary(现象/根因/处理)
-                 │ 同型坑二犯以上:处理方法升格成工作流
-                 └──抽升──> guides(正确工作流)<──AGENTS Read first 索引
-研究 ──收尾──> [实证] 断言 ──沉淀──> guides(实证做法)
-         └── [推断]/[假设] ──留──> research(待验证,禁止跳级)
-选择 ──拍板──> ADR(取舍与备选归档)
+```mermaid
+flowchart TD
+  踩坑 -- "当场" --> diary["diary(现象/根因/处理)"]
+  diary -- "同型坑二犯以上:处理方法升格成工作流,抽升" --> guides["guides(正确工作流与实证做法)"]
+  agents["AGENTS Read first"] -- "索引" --> guides
+  研究 -- "收尾,[实证] 断言沉淀" --> guides
+  研究 -. "[推断]/[假设] 留档" .-> research["research(待验证,禁止跳级)"]
+  选择 -- "拍板" --> adr["ADR(取舍与备选归档)"]
 ```
 
 - **一条知识只有一个权威落位**：ADR 管决策取舍；guides 管实证做法与正确工作流；diary 管错了怎么纠（现象级）；research 管为什么/待验证

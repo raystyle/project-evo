@@ -122,7 +122,7 @@ CI：`fail-fast: false`；矩阵 os（ubuntu / windows / macos）乘 node（22�
 
 语义层对传输无关的 Host 接口编程，CLI / 插件 / worker 复用同一套 helpers，不产生第二套语义实现 [经验]。脚本 workspace 的落位与增量供给见 tool-cli-agents.md。
 
-## 十三、文档即代码面（TSDoc 与 API Extractor）
+## 十二、文档即代码面（TSDoc 与 API Extractor）
 
 公开契约以导出、.d.ts 与 TSDoc 为准；API 文档是投影（总纲见 doc-gov 的 base-projection）。
 
@@ -135,13 +135,13 @@ CI：`fail-fast: false`；矩阵 os（ubuntu / windows / macos）乘 node（22�
 - 示例锁在 Vitest 或 node:test;类型锁 `*.test-d.ts`（`expectTypeOf`）;语言无官方 doctest,可选 vite-plugin-doctest 试点但不当唯一门禁
 - 落地顺序：收窄 exports 到 补 TSDoc 与测试 到 Extractor 报告进 Git 到 TypeDoc 到 短 AGENTS 到 ADR;不要一上来给私有 helper 写注释 [经验]
 
-## 十四、验收清单（文档面增量）
+## 十三、验收清单（文档面增量）
 
 - 公开导出均有 TSDoc 与 @public 标签
 - etc/*.api.md 与 docs/api/ 是生成物,无人手改痕迹
 - CI api:check 绿;README/AGENTS 无第二份手写 API 真相
 
-## 十二、验收清单
+## 十四、验收清单
 
 - engines.node 与 CI 矩阵下限一致
 - tsc 合同就位；import 扩展名 `.js`

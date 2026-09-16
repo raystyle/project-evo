@@ -4,7 +4,7 @@
     "name": "raystyle"
   },
   "metadata": {
-    "description": "项目进化:四插件七 skill(文档治理 evo-adr、代码安全 evo-codesec、研究检索 evo-research、多仓飞轮 evo-herdr)",
+    "description": "项目进化:四插件八 skill(文档治理 evo-adr、代码安全 evo-codesec、研究检索 evo-research、多仓协作 evo-herdr)",
     "pluginRoot": "./plugins"
   },
   "plugins": [

@@ -81,5 +81,4 @@ git push origin main v<版本>      # tag 推送即触发 release 流水线
 | tag 纪律与一致性闸 | `git tag v<版本>` 后推送；已发 release 的 tag 不回退 |
 | release 资产上传/验收 | `gh release create` / `gh release upload --clobber` |
 | 平台矩阵与实机接管 | code-kit 的 env-platform 六/七节 |
-| |
 | Node/TS npm 包资产 | code-kit 的 tool-typescript 第十节：`package.json` 与 lock 双处 version、`npm pack` tgz、安装验收禁 link |

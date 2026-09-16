@@ -8,7 +8,7 @@
 | ADR-0002 | accepted | uv tool 分发通道退役,全走插件市场 | |
 | ADR-0003 | accepted | office-pro skill 移除,收敛为三 skill | |
 | ADR-0004 | accepted | dev-evo 保留 diary 与 research 档案结构 | 0010 拆分后由 doc-gov 承载 |
-| ADR-0005 | accepted | 三栈文档投影工具链体系补齐,Python 篇与档案机制篇入册 | |
+| ADR-0005 | accepted | 三栈文档投影工具链体系补齐,Rust 与 Python 与 TypeScript 三篇齐 | |
 | ADR-0006 | accepted | Rust 栈 aidoc 投影强制化,bin-only 不再豁免 | |
 | ADR-0007 | accepted | 项目治理终态定形:五件套与 17 篇参考边界 | 0008 修订篇目边界;0010 重组四插件,17 篇重分为 9+8 |
 | ADR-0008 | superseded | 终态参考边界修订:新增 flow-flywheel.md 跨仓飞轮协作篇 | 0009 |

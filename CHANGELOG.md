@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 修复（2026-09-16，第七十一批:第七十批评审回执处置）
+
+- codex 全量回执 4F 加 8G(任务协议产物 /tmp/project-evo-review/findings-70.md,增量面自洽零新患),总台逐条独立核实全真后全修:F1 至 F3 三处「四插件七 skill」陈旧计数刷正(marketplace 元数据、docs 地图、gates 门禁表;第六十八批 ADR-0011 扩八 skill 时同步面漏改,git blame 落 e32d1ab);F4 code-kit SKILL 的 md-guard 四类禁字自述对齐 mdrules.py 权威(box-drawing 移出机检类,补 emoji 与全角字母数字)
+- G 批八项同批结清:G1 tool-typescript 十二/十三/十四节号倒置重排(flow-release「第十节」指针经核实不受牵连);G2 exp-sedimentation 两条链 box-drawing 伪流程图改 mermaid(围栏内机检盲区实抓,Must not 违例);G3 AGENTS scan 豁免句删「本文件 Commands 节自举示例的 AWS 公开样值」无据指代(全历史无 AKIA);G4 ADR-0005 索引标题对齐 frontmatter title;G5 ROADMAP 阶段二/三头状态翻正(与表内已完成行矛盾);G6 flow-release 空表格行清除;G7 pyproject 维护环境版本钉齐 0.7.0;G8 security-audit 补 references/README 索引(14 篇与 SKILL 意图路由同序,守卫断言仍留积压并同步措辞)
+
 ### 变更（2026-09-16，第七十批:评审格仓内 cwd 变体与信任屏处理序沉淀）
 
 - herdr-review panes.md:评审格 cwd 定形为两形态按评审范围裁定:跨仓收件用用户级 home(原形态),单仓专属用该仓 cwd(用户裁定本仓 review 只针对本仓,evo-codex-review 驻 project-evo 仓内实建);带起节补 3a 处理序:仓内 cwd 首启弹 codex 目录信任屏,agent start 的 interactive_ready 是假阳,pane read 实证后 pane send-keys enter 替答,信任裁定归用户(本仓与自建仓默认可信,陌生仓先问);坑节补信任屏假阳条目;SKILL.md 形态节同步;yolo 与信任态以 hst doctor 只读复核入顺序纪律

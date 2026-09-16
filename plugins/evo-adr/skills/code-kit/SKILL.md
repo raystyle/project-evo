@@ -63,7 +63,7 @@ uv run <skill>/scripts/scan.py <目标项目> --no-history    # 只扫工作区
 
 ### md-guard:会话内禁字挡板
 
-`md-guard.py` 由插件 hook(`hooks/hooks.json`)与宿主仓 `.claude/settings.json` 调用,编辑 markdown 时提醒四类禁字(Unicode 箭头、破折号/连接号、智能引号、box-drawing);规则唯一权威 `scripts/mdrules.py`,与 check 的 PE-11、scan 三面同源。
+`md-guard.py` 由插件 hook(`hooks/hooks.json`)与宿主仓 `.claude/settings.json` 调用,编辑 markdown 时提醒四类禁字(Unicode 箭头、破折号/连接号、emoji 与装饰符、智能引号与全角字母数字);规则唯一权威 `scripts/mdrules.py`,与 check 的 PE-11、scan 三面同源,围栏内整行豁免。box-drawing 手拼伪流程图是 AGENTS 的写法禁令,不在机检四类内。
 
 ## 三、骨架与模板
 
