@@ -59,4 +59,4 @@ uv run skills/secret-scan/scripts/ab.py   # A/B 对照 secret-scan 与 evo-adr c
 ## 支持与发布
 
 - 支持:[raystyle/project-evo issues](https://github.com/raystyle/project-evo/issues)
-- 当前发布:0.1.0
+- 当前发布:0.2.0
