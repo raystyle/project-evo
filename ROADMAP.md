@@ -29,6 +29,8 @@
 | 项目级安装通道验证 | 已完成 | 2026-09-03 remotex 首装实测：init 补 6 件跳 5 件（含 AGENTS.MD 大写碰撞安全跳过）、check 8 PASS/4 FAIL（FAIL 均为存量文档真实差距）、skill 双落位 + gitignore 幂等；全程未改既有内容文件 [实证] |
 | 与其他 skill 的分工说明 | 已拒绝 | 用户裁定（2026-09-03):project-evo 是独立项目，不与其他 skill 划分边界 |
 | PE-11 历史档案豁免通道 | 已完成 | 2026-09-16 第五十三批:`PEVO_CHECK_ALLOW` 落地(docs/ 下路径级豁免报 SKIP,根三件永不受益;ark_rs 首批用户同款诉求,先于反馈已交付) [实证: pytest 豁免三分支用例] |
+| 三栈工具篇补齐与档案机制入册 | 已完成 | 2026-09-16 第五十六批:tool-python.md 补齐三栈、flow-archive.md 固化 diary 与 research 机制、ADR-0005;references 18 到 20 篇 [实证: 三仓落地性回执支撑] |
+| 封版 v0.6.0 | 已完成 | 2026-09-16 第四十七至五十六批合并发布:单插件四 skill 形态(dev-evo/super-research/secret-scan/security-audit)、dev-evo 文档即代码体系、PE-11 豁免通道、diary 与 research 红线、三栈与档案机制;tag v0.6.0 加 GitHub Release |
 | check 全量报告(去前 5 截断) | 待定 | 2026-09-16 飞轮批首批用户反馈(ark_rs):PE-11/PE-12 只报前 5 处,修一轮冒一轮三轮才清,全量输出一轮修净省往返 |
 | PE-12 扫描面扩散到检索面 | 待定 | 2026-09-16 首批用户反馈(ark_rs):断链扫描现只盖 AGENTS 与 docs 各 README,llms.txt 等新检索面是盲区 |
 | 存量迁移映射表生成物 | 待定 | 2026-09-16 首批用户反馈(ohmycloud):旧编号到新编号对照宜机器生成落盘,人写注记即漂移面,生成物可进门禁 |

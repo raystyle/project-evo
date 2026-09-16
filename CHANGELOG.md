@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+暂无。
+
+## [0.6.0] - 2026-09-16
+
 ### 新增（2026-09-16，第五十六批:三栈工具篇补齐与档案机制入册,ADR-0005）
 
 - 新 reference `tool-python.md`:Python 工程合同(uv 与 PEP 723 零依赖、docstring 契约、MkDocs/Griffe 投影、pytest 与 doctest 门禁);三栈工具篇齐(Rust/Python/TypeScript)

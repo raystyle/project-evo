@@ -37,6 +37,6 @@
 ## 环境
 
 - 平台:Windows + PowerShell 7(禁 powershell.exe 5.1 与 cmd);uv 运行时,脚本 PEP 723 零依赖(>=3.12)
-- 当前阶段:v0.6.0 单插件四 skill(2026-09-15 第五十一批集成 security-audit;第五十批 dev-evo 文档即代码重构;沿革:第四十七批四插件收敛、第四十九批 office-pro 移除)
+- 当前阶段:v0.6.0 已封版发布(2026-09-16 tag 加 Release;第五十六批三栈工具篇与档案机制入册;沿革:第五十一批 security-audit、第五十批 dev-evo 文档即代码、第四十七批四插件收敛、第四十九批 office-pro 移除)
 - 部署:Claude Code `/plugin marketplace add raystyle/projectevo`;Codex `codex plugin marketplace add raystyle/projectevo`;Grok `grok plugin install project-evo@projectevo`;Kimi 无市场,拷 `plugins/project-evo/skills/*` 至 `~/.kimi/skills`
 - 项目状态与待办见 `ROADMAP.md`,不在本文件维护
