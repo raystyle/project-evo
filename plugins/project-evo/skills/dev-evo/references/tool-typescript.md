@@ -127,6 +127,7 @@ CI：`fail-fast: false`；矩阵 os（ubuntu / windows / macos）乘 node（22�
 公开契约以导出、.d.ts 与 TSDoc 为准；API 文档是投影（总纲见 base-projection.md）。
 
 - 契约注释必须是 `/**`（两颗星）紧贴导出声明；入口文件顶 `@packageDocumentation`；发布标签 `@public`/`@beta`/`@internal`（未标 Extractor 警告）
+- 标签集合白名单 `@param`/`@returns`/`@throws`/`@example`/`@remarks`/`@link` 加发布标签;**禁 JSDoc 类型声明语法**（`@param {number} a` 这类,类型只在签名里）;示例放 `@example` 下用 fenced block 标语言（```ts）
 - 摘要一段（进目录页），细节 `@remarks`；不复述类型签名；链接用 `{@link parse}` 不手写 URL
 - `tsconfig.build.json`：`declaration: true`、`declarationMap: true`、`removeComments: false`（removeComments:true 会挖空 Extractor）
 - 投影管线：tsc 出 .d.ts 后分流,TypeDoc 出 HTML（人）,api-extractor 出 `etc/*.api.md`（进 Git,PR 审公开面）与 `.api.json`,api-documenter 出 `docs/api/`（agent 面）

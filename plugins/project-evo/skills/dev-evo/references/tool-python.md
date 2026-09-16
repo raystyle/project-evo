@@ -10,16 +10,18 @@
 
 ## 契约注释（L1）
 
-- 公开函数 docstring 写「做什么 + 何时用 + 边界」,不写怎么做;怎么做是代码的事
+- 风格基准 PEP 257 加 Google 风格,一章固定:模块与函数统一 `"""` 三双引号,章节顺序 `Args` 到 `Returns` 到 `Raises` 到 `Examples`(无则省略)
+- 公开函数 docstring 写「做什么 + 何时用 + 边界」,不写怎么做;怎么做是代码的事;类型只在注解里,docstring 不重复声明
+- 示例一律 doctest `>>>` 格式,禁无提示符纯代码块冒充示例
 - 模块头 docstring 承载用法与白名单口径(如 scan 的 `PEVO_SCAN_ALLOW` 说明)
-- 覆盖率机检用 interrogate,CI 可设下限 deny(三栈对照表口径) [推断: 选型对照,本仓未实装]
+- 覆盖率机检 ruff `D` 规则集(`convention = "google"`,`D100` 至 `D107` 模块与公开项必须有 docstring);示例测试 `pytest --doctest-modules` 纳入 CI
 
 ## 门禁命令（AGENTS Commands 节候选）
 
 ```text
 uv run pytest -q
 uv run python -m compileall scripts      # 语法冒烟
-uv run interrogate --fail-under 90 .     # docstring 覆盖(选配)
+uv run ruff check .                  # lint 含 D 规则(docstring 覆盖与风格)
 ```
 
 ## 投影（agent 面）

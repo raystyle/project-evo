@@ -9,10 +9,12 @@
 
 ## 契约注释（L1）
 
-- 公开契约以 `///` 与类型签名为准；`missing_docs` 设 deny（CI 必红）
+- 公开契约以 `///` 与类型签名为准；`missing_docs` 设 deny（CI 必红）,配 `#![warn(rustdoc::broken_intra_doc_links)]`
+- 章节纪律（固定用词,rustdoc 与 clippy 识别）：`# Examples` 公开函数强制;`# Panics` 可能 panic 时强制;`# Errors` 返 `Result` 时强制（clippy `missing_errors_doc`）;`# Safety` 用于 `unsafe` 项,必须列全不满足即 UB 的前置条件（clippy `missing_safety_doc`）;参数语义非自明时 `# Arguments`
+- clippy 开 `missing_errors_doc` 与 `missing_panics_doc` 与 `missing_safety_doc`
 - 文档链接只用 intra-doc（`` [`Session::call`] ``）,不手写会死的外部 URL
-- I/O 类示例标 `no_run`,不标 `ignore`（保持可编译验证）
-- doctest 即示例冒烟：`cargo test --doc --workspace`；错误矩阵进 tests
+- I/O 类示例标 `no_run`,不标 `ignore`（保持可编译验证）;错误示例用 `compile_fail` 并注明预期
+- doctest 即示例冒烟：`cargo test --doc --workspace`（`cargo test` 默认已含）;错误矩阵进 tests
 
 ## 门禁命令（AGENTS Commands 节候选）
 

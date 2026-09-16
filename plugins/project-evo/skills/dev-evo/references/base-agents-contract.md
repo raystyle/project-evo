@@ -19,7 +19,7 @@
 | 栈 | 头部定位句式 | Commands 特征 | Must not 特征 |
 | --- | --- | --- | --- |
 | Rust | 公开契约以 `///` 与类型签名为准 | fmt/clippy/test/doc/aidoc --check 全列 | 手改 docs/aidoc/、另写 API.md、把 ADR 正文贴进函数文档 |
-| Python | 公开契约以 src 类型与 docstring 为准 | uv sync/pytest/ruff/interrogate/投影校验 | 手写第二份 API.md、手改 ADR status、用 noqa 掩盖新增公开 API |
+| Python | 公开契约以 src 类型与 docstring 为准 | uv sync/pytest/ruff(D 规则)/投影校验 | 手写第二份 API.md、手改 ADR status、用 noqa 掩盖新增公开 API |
 | TypeScript | 公开契约以导出、.d.ts 与 TSDoc 为准 | test/typecheck/lint/docs/api:check | 手改 etc/*.api.md、removeComments:true |
 
 ## 写作纪律

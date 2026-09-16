@@ -14,7 +14,7 @@
 
 | | Rust | Python | TypeScript |
 | --- | --- | --- | --- |
-| 契约注释 | `///`（missing_docs 可 deny） | docstring（interrogate 查覆盖） | TSDoc `/** */`（eslint-tsdoc 查语法） |
+| 契约注释 | `///`（missing_docs 可 deny） | docstring（ruff D 规则查覆盖） | TSDoc `/** */`（eslint-tsdoc 查语法） |
 | agent 投影 | cargo-aidoc：llms.txt 索引 + 分模块 md | Griffe/MkDocStrings（弱,可自写 JSON） | API Extractor 的 .api.json + api-documenter markdown |
 | 人看的站 | cargo doc（HTML） | MkDocs/Sphinx | TypeDoc（HTML） |
 | 漂移门禁 | aidoc --check --strict | mkdocs --strict + 自写状态机校验 | api-extractor run（CI 无 --local） |
@@ -25,6 +25,15 @@ Rust 侧管线（Rust 项目照此配，细节见 tool-rust.md）：`///` 契约
 TS 侧管线（TypeScript 项目照此配，细节见 tool-typescript.md）：`/** TSDoc */` + tsc 出 .d.ts（勿 removeComments）,分流 TypeDoc 给人、api-extractor 出 etc/*.api.md（进 Git,PR 审公开面）与 .api.json,api-documenter 出 docs/api/（agent 面）。
 
 Python 侧管线（Python 项目照此配，细节见 tool-python.md）：docstring 为源（做什么+何时用+边界）,Griffe/MkDocStrings 出分模块 md,`mkdocs build --strict` 兼作漂移门禁,示例执行 `pytest --doctest-modules`。
+
+## 契约注释通用准则（三栈共用）
+
+- **公开项必写**：对外暴露的模块、函数、方法、类型、公开字段必须有契约注释,覆盖率由 lint 钉死（Rust `missing_docs`、Python ruff `D` 规则、TS jsdoc 规则）;私有实现复杂算法写「为什么」而非「是什么」
+- **首句成句**：首段是一句可独立成句的简述（做什么加何时用加边界）,不以项名开头（rustdoc 自动加前缀,余栈同理防复读）;细节隔空行再写
+- **不重复机器可推的信息**：类型、参数名、默认值只在签名里;文字只补语义（用途、前置条件、边界、示例）
+- **示例必须真实可测**：禁止「仅供参考」假代码;断言收尾让示例兼回归测试;外部服务改内存实现或 mock 保 CI 可重复;不执行的块显式标注（`no_run`/`ignore`/`compile_fail`）并注明原因
+- **失效即失败**：文档与代码行为不一致视为 bug,与功能 bug 同等对待;示例挂了是回归不是「文档问题」
+- **风格单一**：每仓一种风格（Rust 原生 `///` 唯一、Python PEP 257 加 Google、TS TSDoc）禁混用;存量在改动时补齐,不推倒重写
 
 ## 无自有 API 面项目（构建树与补丁仓）
 
