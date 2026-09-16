@@ -20,21 +20,19 @@
 | 响应 5 次 | 10940 | 10800 | 5790 |
 | 全程成本 | $0.0325 | $0.0410 | $0.0131 |
 
-三条省法对应后文三节：**发现层省**（schema 不逐轮全量注入，skill 按命令组拆分，常驻仅 frontmatter 级）、**响应层省**（默认紧凑输出）、**维护层省**（一份定义多面渲染，help/skill/schema 不各写各的）。
+三条省法对应后文三节：**发现层省**（`--llms` 按需一次，零常驻成本）、**响应层省**（默认紧凑输出）、**维护层省**（一份定义多面渲染，help/schema/llms 不各写各的）。
 
-## 二、发现契约：三通道与渐进加载
+## 二、发现契约：双通道与渐进加载
 
 | 通道 | 形态 | 每轮成本 | 定位 |
 | --- | --- | --- | --- |
-| `skills add` | 自动生成并安装 skill 文件 | 低（常驻仅 frontmatter） | 默认推荐 |
+| `--llms` | 打印紧凑命令清单(markdown 或 JSON schema),即紧凑版 CLI 使用说明书 | 零（按需一次） | 默认推荐,任何 agent 立即可用 |
 | `mcp add` | 注册为 MCP server | 高（工具 schema 注入每轮） | 需工具编排时 |
-| `--llms` | 打印命令清单（markdown 或 JSON schema） | 零（按需一次） | 任何 agent 立即可用 |
 
 要点：
 
-- **skill 按命令组拆分**：单一大 skill 是发现层最贵形态（11489 token）；按命令组拆文件后 agent 只加载相关组（387） [实证: 信源 README 数字]
-- **--llms 双形态**：markdown 给 agent 读，JSON schema 给程序消费；一族工具同构时 agent 换工具零学习
-- 同款先例：browser-harness `--llms` 紧凑索引 [实证]；本仓 v0.2.0 起转插件市场形态,发现契约由 marketplace.json 承担、命令面收敛为 skill 内 scripts（旧 `project-evo llms` 随转型退役）[实证: 第二十八批]；reader `reader skill` 生成根 SKILL.md [经验]
+- **--llms 即紧凑版 CLI 使用说明书**：markdown 给 agent 读，JSON schema 给程序消费；一族工具同构时 agent 换工具零学习
+- 同款先例：browser-harness `--llms` 紧凑索引 [实证]；reader `--llms`(clap 旗标全覆盖断言做漂移门禁)与 browse `--llms [--full|--json]`(与 docs/surface 同源零漂移) [实证: 2026-09-16 fleet 实况]；本仓 v0.2.0 起转插件市场形态,发现契约由 marketplace.json 承担、命令面收敛为 skill 内 scripts（旧 `project-evo llms` 随转型退役）[实证: 第二十八批]
 
 ### 市场分发:add 形态与 git 协议(双客户端)
 
@@ -74,8 +72,8 @@ hikes[3]{id,name,distanceKm}:
 ## 四、输入契约：schema 化 I/O
 
 - **四面 schema**：args/options/env/output 全声明；入口先验证后执行，格式错误不进业务
-- **类型即文档，一份多渲染**：字段 describe 同时进 --help、skill 文档、JSON schema；改一处三面同步（单一事实源的命令面版）
-- **弃用全通道同步**：一个 deprecated 标记同时体现为 help 中 [deprecated]、skill 文档提示、schema 布尔字段、TTY 使用时 stderr 警告；四处只见一处即漂移
+- **类型即文档，一份多渲染**：字段 describe 同时进 --help、JSON schema、--llms 清单；改一处三面同步（单一事实源的命令面版）
+- **弃用全通道同步**：一个 deprecated 标记同时体现为 help 中 [deprecated]、schema 布尔字段、TTY 使用时 stderr 警告；三处只见一处即漂移
 
 ## 五、自由代码面：管道代码逃生舱
 
@@ -121,7 +119,7 @@ flowchart TD
     graph --> cli[CLI]
     graph --> http[HTTP]
     graph --> mcp[MCP]
-    graph --> art[generated artifacts: openapi / skills / completions / codegen]
+    graph --> art[generated artifacts: openapi / llms 清单 / completions / codegen]
 ```
 
 - **Agent Plugins 1.0 三层打包**：Prompt Artifact（skills/<名>/SKILL.md，教 agent 怎么用）+ Tool Binding（mcp.json，怎么连工具）+ Tool Runtime（bin/，可执行本体）；根 plugin.json 声明三层，支持 skills-only 精简包
@@ -169,21 +167,20 @@ incurs 方法：vendored 上游 TS 实现为**行为 oracle**，其 1062 条测�
 
 | 项 | 自问 | 不满足的代价 |
 | --- | --- | --- |
-| 发现 | 有 --llms 清单或可安装的 skill 文件吗 | agent 每会话重学命令面 |
-| 拆分 | skill 按命令组拆了吗 | 一次加载全量，发现层翻倍 |
+| 发现 | 有 --llms 紧凑清单吗 | agent 每会话重学命令面 |
 | 输出 | 默认输出紧凑且结构稳定吗 | 响应 token 膨胀，解析靠猜 |
 | CTA | 尾部有下一步建议吗 | agent 停下反问用户 |
 | schema | args/options/env/output 有声明吗 | 参数格式靠试错 |
 | 逃生舱 | 固定命令覆盖不了时能管道喂代码吗 | agent 被迫求加新命令或绕开工具 |
 | 归档 | 按需求写的任务脚本有集中 workspace 吗（还是散落在对话里） | 复用靠重写，演化无痕迹 |
-| 弃用 | 弃用四处（help/skill/schema/警告）同步吗 | agent 持续调用死参数 |
-| 同源 | help/skill/llms 出自一份定义吗 | 三面漂移，agent 学到旧契约 |
+| 弃用 | 弃用三处（help/schema/警告）同步吗 | agent 持续调用死参数 |
+| 同源 | help 与 llms 出自一份定义吗 | 两面漂移，agent 学到旧契约 |
 
 样本实现选型提示：incur（TS，npm）与 incur-rs（Rust，crates.io，仓 gakonst/incur-rs）均为 MIT；活跃度与稳度未深查，引入前按 star 维护节奏与发布纪律核 [推断]。
 
 ## 十一、三栈落位与输出面增量
 
-同源双仓深读吸收（2026-09-16）：命令图定义一次,派生 schema 与 llms 清单与 skills 与补全与 HTTP 与 MCP 多面;输出面增量四件与三栈落位如下。
+同源双仓深读吸收（2026-09-16）：命令图定义一次,派生 schema 与 llms 清单与补全与 HTTP 与 MCP 多面;输出面增量四件与三栈落位如下。
 
 输出面增量（加进第三节契约）：
 
@@ -196,6 +193,6 @@ incurs 方法：vendored 上游 TS 实现为**行为 oracle**，其 1062 条测�
 
 | 栈 | 形态 | 落位 |
 | --- | --- | --- |
-| Rust | clap derive 加命令图派生（incur-rs 模型:`#[derive(Incur)]` 一处定义,schema/llms/skills/补全/MCP 全派生） | 自研或引库,弃用与输出策略注记进 derive meta |
+| Rust | clap derive 加命令图派生（incur-rs 模型:`#[derive(Incur)]` 一处定义,schema/llms/补全/MCP 全派生） | 自研或引库,弃用与输出策略注记进 derive meta |
 | TypeScript | Zod 加 Cli 命令图（incur 模型） | 同上 |
-| Python | argparse 加 pydantic | 信封先例可移植:hst(Rust) 的 `--format kv/json/jsonl` 与 stderr 单行 JSON 错误是跨栈同构样板;Python 面补 `--llms` 清单与 skills 自生成即达标 |
+| Python | argparse 加 pydantic | 信封先例可移植:hst(Rust) 的 `--format kv/json/jsonl` 与 stderr 单行 JSON 错误是跨栈同构样板;Python 面补 `--llms` 清单即达标 |

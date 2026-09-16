@@ -12,7 +12,7 @@ reader query  <文件> <mq表达式> [--format json]      # .h2 标题 / .code �
 
 - 退出码 grep 语义：0 命中 / 1 无命中（search） / 2 出错 [实证： 2026-09-03]
 - 目录输入 search 递归批量搜，命中行前缀文件路径
-- 索引：`reader --llms` 出紧凑命令索引；`reader skill` 出完整 SKILL.md
+- 索引：`reader --llms` 出紧凑命令索引(agent 说明书:子命令、参数、退出码、输出契约),命令契约以 `--llms` 与 `--help` 为准
 
 ## 二、输出契约
 
@@ -57,7 +57,7 @@ reader extract "水印扫描版.pdf" --pages 2-4 --ocr     # PP-OCRv6 tiny,约 1
 | --- | --- | --- |
 | 中文参数在 PowerShell 被转义异常 | 路径与关键词加引号；必要时 `--%` 停止解析 | [记忆] |
 | OCR 首跑慢 | 模型下载一次性成本，后续秒级 | [实证： 2026-09-03] |
-| mq select 高级语法不确定 | 先 `reader skill` 查长形态文档再写表达式 | [经验： 2026-09-03 select 语法首试未命中] |
+| mq select 高级语法不确定 | 先 `reader query --help` 与 `--llms` 查形态再写表达式 | [经验： 2026-09-03 select 语法首试未命中] |
 | `--filter 'results[]'` 在 PowerShell 变成空路径 | 用 `--filter results` 或 `"hits[].text"` | [实证： 2026-09-08] |
 | 无效 mq 选择器（如 `.h9`） | exit 2 语法错，不是无命中的 exit 1 | [实证： 2026-09-08] |
 | EPUB `malformed document: no chapter` | 目录 search 会跳过该文件继续；改找同书 PDF | [实证： 2026-09-08 Black Hat Rust 等三本] |

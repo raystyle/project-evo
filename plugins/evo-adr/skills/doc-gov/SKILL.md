@@ -27,7 +27,7 @@ compatibility: 通用(不限语言/平台);提炼自 Rust workspace、Python 数
 | 写或改 AGENTS(五节合同:Commands/Must/Must not/Read first/环境) | `references/base-agents-contract.md` |
 | 不可逆技术选择 / 写 ADR / supersede 旧决策 | `references/base-adr.md` |
 | 立需求 / REQ 状态流转 / 实现后回填 trace | `references/base-req.md` |
-| API 文档怎么生成 / 投影工具链 / 公开面漂移门禁 / llms.txt 检索面 | `references/base-projection.md` |
+| API 文档怎么生成 / 投影工具链 / 公开面漂移门禁 / llms 式检索面(CLI 旗标与库投影) | `references/base-projection.md` |
 | 写任何文档前(命名/标题/六态/门禁) | `references/base-writing-standards.md` |
 | 发一个版本(封版/tag/资产验收) | `references/flow-release.md` |
 | 写日记或研究档案 / diary 一天一篇 / SNNN 编号 / 沉淀升 ADR | `references/flow-archive.md` |
