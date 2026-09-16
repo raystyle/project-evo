@@ -7,3 +7,4 @@
 | ADR-0001 | accepted | 单插件多 skill 市场形态,不四插件各一 skill | |
 | ADR-0002 | accepted | uv tool 分发通道退役,全走插件市场 | |
 | ADR-0003 | accepted | office-pro skill 移除,收敛为三 skill | |
+| ADR-0004 | accepted | dev-evo 保留 diary 与 research 档案结构 | |

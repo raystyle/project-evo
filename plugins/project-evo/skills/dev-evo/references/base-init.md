@@ -16,7 +16,7 @@
 | 技术栈与形态？（CLI/服务/库/前端） | 决定契约注释形态、投影工具链、测试分层 |
 | **目标平台矩阵？**（仅 Windows / 三平台 / 特定 OS） | 决定 CI 矩阵、脚本载体、行尾策略（见 env-platform.md) |
 | 交互对象是谁？（agent 工具？人？） | agent 面需要 llms.txt 式入口索引与稳定输出契约 |
-| 有没有研究/选型场景？ | 无则 research/ 缓建 |
+| 有没有研究/选型场景？ | research 结构保留；无真实研究可暂空（PE-09 SKIP 合法），有则首篇即落 |
 | 文档语言与 lint 工具偏好？ | 中文为主？rumdl/markdownlint? |
 
 一次问清一批，逐条澄清后才动手；裁定记进 diary。
@@ -38,7 +38,7 @@ uv run plugins/project-evo/skills/dev-evo/scripts/init.py <目标项目> --name 
 
 ## Step 4：裁剪原则
 
-- 最小集 = AGENTS + CLAUDE + CHANGELOG + adr + requirements（含各自 README 与模板）；**guides/diary/research 按需生长，不一次建全**
+- 最小集 = AGENTS + CLAUDE + CHANGELOG + adr + requirements（含各自 README 与模板）；**guides 按需生长，不一次建全**；**diary 与 research 结构保留（用户裁定 2026-09-16，不可裁撤）**：init 即建目录，diary 首日一笔，research 无真实研究暂空、PE-09 SKIP 合法
 - **禁止为凑结构建空文档**：每个文件建立时必须有真实初始内容（哪怕是首条 REQ）
 - 已有团队约定（如 CONTRIBUTING、既有 ADR 目录）保留原位，在 AGENTS 的 Read first 登记关系
 - 单平台项目在 AGENTS 环境节注明,免跨平台开销

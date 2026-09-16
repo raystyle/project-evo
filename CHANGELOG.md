@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-16，第五十四批:dev-evo 保留 diary 与 research 档案结构红线固化）
+
+- 用户裁定:diary 与 research 是 dev-evo 骨架保留核心结构,不是可裁撤项;后续收敛或裁剪批不得动两目录结构地位,guides 仍按需生长
+- 立 ADR-0004(仓侧决策锚);base-init 两处口径同步:Step 2 的 research 缓建问法改结构保留暂空合法,Step 4 裁剪原则拆分 guides 按需与 diary/research 保留
+
 ### 新增（2026-09-16，第五十三批:check 的 PE-11 豁免通道与仓名小写对齐）
 
 - `check.py` 新增 `PEVO_CHECK_ALLOW` 路径级豁免（分号分隔正则，只作用 `docs/` 下档案的 相对路径:行，命中报 SKIP 留审计处数；根三件 AGENTS/README/CHANGELOG 是活跃面，机制上永不受益，全域正则也吞不掉）。经 security-audit 指导模式聚焦审查后的加固项
