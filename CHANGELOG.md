@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-16，第五十八批:aidoc 集成补全）
+
+- base-projection 对照表下补 Rust 侧管线段(/// 为源、cargo aidoc 生成 docs/aidoc、--check --strict 漂移门禁),与 TS/Python 两段对称
+- tool-rust 投影节补工具渲染格式豁免实务:无开关可改的分隔符类禁字走路径级豁免在册,漂移真门禁仍是 aidoc --check,源头能改就改不为生成物开口子(首个 aidoc 全量投影仓实战提炼)
+
 ### 新增（2026-09-16，第五十七批:无自有 API 面项目范式入册与三机制反馈登记）
 
 - base-projection 新增「无自有 API 面项目」小节(构建树与补丁仓):公开契约等于字节确定性产物 regenerate-and-diff 门禁、构建门禁进 Commands、一句裁定入地图;来自首个构建树仓用户讨论轮,提炼为通用表达

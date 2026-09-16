@@ -20,6 +20,8 @@
 | 漂移门禁 | aidoc --check --strict | mkdocs --strict + 自写状态机校验 | api-extractor run（CI 无 --local） |
 | 示例执行 | cargo test --doc | pytest --doctest-modules | Vitest（可选 doctest 插件） |
 
+Rust 侧管线（Rust 项目照此配，细节见 tool-rust.md）：`///` 契约注释为源,cargo aidoc 生成 `docs/aidoc/`（llms.txt 索引加 分模块 md 加 api JSON,全部生成物）,`cargo aidoc --check --strict` 作漂移门禁,示例执行 `cargo test --doc`。
+
 TS 侧管线（TypeScript 项目照此配，细节见 tool-typescript.md）：`/** TSDoc */` + tsc 出 .d.ts（勿 removeComments）,分流 TypeDoc 给人、api-extractor 出 etc/*.api.md（进 Git,PR 审公开面）与 .api.json,api-documenter 出 docs/api/（agent 面）。
 
 Python 侧管线（Python 项目照此配，细节见 tool-python.md）：docstring 为源（做什么+何时用+边界）,Griffe/MkDocStrings 出分模块 md,`mkdocs build --strict` 兼作漂移门禁,示例执行 `pytest --doctest-modules`。
