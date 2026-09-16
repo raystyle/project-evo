@@ -38,7 +38,7 @@ compatibility: 通用(不限语言/平台);提炼自 Rust workspace、Python 数
 | 建 TypeScript/Node 项目 / TSDoc / API Extractor / TypeDoc / Vitest | `references/tool-typescript.md` |
 | 建 Python 项目 / docstring / MkDocs 投影 / PEP 723 脚本 | `references/tool-python.md` |
 | 写日记或研究档案 / diary 一天一篇 / SNNN 编号 / 沉淀升 ADR | `references/flow-archive.md` |
-| 多仓飞轮协作 / 派单回执 / conclusion 自取 / 端点测试支撑 | `references/flow-flywheel.md` |
+| 多仓飞轮协作 / 派单回执 / conclusion 自取 / 端点测试支撑 | 同插件 skill `project-evo:herdr-flywheel`(协议已并入该 skill,ADR-0009) |
 | 给 CLI 加 agent 用户面（agent-native 契约、管道逃生舱、脚本 workspace） | `references/tool-cli-agents.md` |
 | 搜论文/Google/Medium/X/GitHub/电子书/种子下载 | 同插件 skill `project-evo:super-research`（本 skill 不承载 CLI 工具手册） |
 | 扫 git/GitHub 密钥密码隐私泄露 | 同插件 skill `project-evo:secret-scan`（本 skill 的 scan 仍管浅密钥+md 禁字） |

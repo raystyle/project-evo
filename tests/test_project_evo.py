@@ -256,7 +256,7 @@ def test_check_json_skip_counts_via_allow(tmp_path: Path):
 
 
 def test_marketplace_catalog_consistency():
-    """清单守卫:市场只收一个插件、双清单一致、双 manifest 与市场版本同步、四 skill 与命令面在位。"""
+    """清单守卫:市场只收一个插件、双清单一致、双 manifest 与市场版本同步、五 skill 与命令面在位。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     codex_mkt = json.loads((REPO / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
     claude_man = json.loads((PLUGIN / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
@@ -264,7 +264,7 @@ def test_marketplace_catalog_consistency():
 
     names_c = {p["name"] for p in claude_mkt["plugins"]}
     names_x = {p["name"] for p in codex_mkt["plugins"]}
-    assert names_c == names_x == {"project-evo"}, "市场只收一个插件 project-evo(三 skill 同装同版)"
+    assert names_c == names_x == {"project-evo"}, "市场只收一个插件 project-evo(五 skill 同装同版)"
     for p in claude_mkt["plugins"]:
         assert (REPO / p["source"].removeprefix("./")).is_dir(), f"Claude source 不可达: {p['source']}"
     for p in codex_mkt["plugins"]:
@@ -277,7 +277,7 @@ def test_marketplace_catalog_consistency():
 
     skills = PLUGIN / "skills"
     dirs = sorted(d.name for d in skills.iterdir() if d.is_dir())
-    assert dirs == ["dev-evo", "secret-scan", "security-audit", "super-research"], f"四 skill 须齐备: {dirs}"
+    assert dirs == ["dev-evo", "herdr-flywheel", "secret-scan", "security-audit", "super-research"], f"五 skill 须齐备: {dirs}"
     for name in dirs:
         text = (skills / name / "SKILL.md").read_text(encoding="utf-8")
         assert text.startswith("---\n"), f"{name}/SKILL.md 缺 frontmatter"

@@ -11,4 +11,5 @@
 | ADR-0005 | accepted | 三栈文档投影工具链体系补齐,Python 篇与档案机制篇入册 | |
 | ADR-0006 | accepted | Rust 栈 aidoc 投影强制化,bin-only 不再豁免 | |
 | ADR-0007 | accepted | 项目治理终态定形:五件套与 17 篇参考边界 | 0008 修订篇目边界 |
-| ADR-0008 | accepted | 终态参考边界修订:新增 flow-flywheel.md 跨仓飞轮协作篇 | |
+| ADR-0008 | superseded | 终态参考边界修订:新增 flow-flywheel.md 跨仓飞轮协作篇 | 0009 |
+| ADR-0009 | accepted | herdr 飞轮 skill 增编与 flow-flywheel.md 退役(四 skill 形态扩五) | 0008 |

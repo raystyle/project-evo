@@ -95,7 +95,7 @@
 
 - **WSL 到宿主恒走回环与 interop**：`127.0.0.1` 回环 ssh 加 interop 直调（`/mnt/c` 路径互访加 `cmd`/`powershell.exe` 直调），**不走宿主 mesh IP**:WSL mirrored 网络下宿主与 WSL 共享同一 mesh 节点身份,自连被 RST 属结构性,非配置可修 [实证: 用户实弹定标 2026-09-16]
 - **lan 端 mesh 地址随时随地**：lan 三端（lan-ubuntu、lan-linux、lan-mac）走 mesh 地址互访,不在此限
-- **四平台测试矩阵**：lan-win（Windows 宿主加 WSL 总台,PS 通道加 interop）、lan-ubuntu、lan-linux、lan-mac 全运行时装齐即成局;各仓验收按需向总台要端点测试支撑（协作协议见 flow-flywheel.md）
+- **四平台测试矩阵**：lan-win（Windows 宿主加 WSL 总台,PS 通道加 interop）、lan-ubuntu、lan-linux、lan-mac 全运行时装齐即成局;各仓验收按需向总台要端点测试支撑（协作协议见同插件 skill herdr-flywheel）
 - 各仓 AGENTS 环境节引用本口径一句,连接问题先查姿势再查配置 [经验]
 
 ## 十一、统一验收脚本载体：pwsh

@@ -18,6 +18,7 @@
 | `../plugins/project-evo/skills/super-research/SKILL.md` | 资料检索管线命令面（gh/bh/aria2c/reader 工位复用） | 搜代码/论文/文章/下载大资产时 |
 | `../plugins/project-evo/skills/secret-scan/SKILL.md` | 密钥与隐私扫描命令面 | 扫 git/GitHub 泄露时 |
 | `../plugins/project-evo/skills/security-audit/SKILL.md` | 安全审计与漏洞审查(双模式、六阶段、覆盖账本;译自 Cloudflare security-audit-skill) | 安全审计/渗透测试/漏洞审查时 |
+| `../plugins/project-evo/skills/herdr-flywheel/SKILL.md` | 多仓 herdr 飞轮协作(派单/回执/断言/吸收;协议唯一权威源,ADR-0009) | 跨仓派单或收回执时 |
 | `../plugins/project-evo/skills/dev-evo/SKILL.md` | skill 本体概览层 | 使用/修改 skill 前 |
 | `../plugins/project-evo/skills/dev-evo/references/README.md` | 参考知识体系渐进索引（快速路由到场景到全量） | 找任何参考时先看 |
 | `../plugins/project-evo/skills/dev-evo/references/base-agents-contract.md` | AGENTS 五节合同（Commands/Must/Must not/Read first/环境） | 写目标项目 AGENTS 时 |

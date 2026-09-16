@@ -14,6 +14,16 @@
 
 - `commands/check.md` 描述「PE-01 至 PE-13」为笔误,脚本检查面实为 PE-01 至 PE-12;CHANGELOG 历史条目按当时事实保留不改
 
+### 新增（2026-09-16，第六十六批:herdr 飞轮 skill 增编与 flow-flywheel 退役）
+
+- 新增第五 skill `herdr-flywheel`(多仓 herdr 工位飞轮协作:派单/回执/断言/吸收四步协议,吸收原 dev-evo flow-flywheel.md 全量、herdr 命令面要点与家族实践坑;工位带起顺序纪律入正文:hst init --yolo 先于 agent 驻场);立 ADR-0009(supersede ADR-0008,ADR-0007 四 skill 形态条款扩为五)
+- `flow-flywheel.md` 从 dev-evo references 退役删除(18 篇回落 17 篇):SKILL 路由、references 三层索引、env-platform 交叉引用全量改指新 skill,全仓 grep 零死链
+- 清单与合同同步:双 marketplace、双 plugin.json 描述与 Codex 接口描述四 skill 改五,AGENTS 定位与 Commands 节、docs 地图、清单守卫测试同步;新 skill 配 references/pitfalls.md 坑实录(六坑三段式)
+
+### 移除（2026-09-16，第六十六批:flow-flywheel.md 退役）
+
+- `plugins/project-evo/skills/dev-evo/references/flow-flywheel.md`:内容全量并入 herdr-flywheel skill(补令裁定二择一为老的清除,单一真相不留双份);CHANGELOG 历史条目按当时事实保留
+
 ## [0.7.0] - 2026-09-16
 
 > 第五十七至六十四批合并发布:治理基建八批(总台统一封版令)。

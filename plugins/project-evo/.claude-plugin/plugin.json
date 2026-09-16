@@ -1,7 +1,7 @@
 {
   "name": "project-evo",
   "version": "0.7.0",
-  "description": "项目进化:一个插件四个 skill —— dev-evo(文档即代码:AGENTS 合同/ADR/REQ/投影纪律)、super-research(资料检索管线)、secret-scan(密钥与隐私扫描)、security-audit(安全审计与漏洞审查);含 init/check/scan 零依赖脚本与 md 禁字挡板",
+  "description": "项目进化:一个插件五个 skill —— dev-evo(文档即代码:AGENTS 合同/ADR/REQ/投影纪律)、super-research(资料检索管线)、secret-scan(密钥与隐私扫描)、security-audit(安全审计与漏洞审查)、herdr-flywheel(多仓 herdr 工位飞轮协作:派单/回执/断言/吸收);含 init/check/scan 零依赖脚本与 md 禁字挡板",
   "author": {
     "name": "raystyle"
   },
