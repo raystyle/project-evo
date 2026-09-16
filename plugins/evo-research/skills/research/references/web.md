@@ -105,7 +105,7 @@ capture_screenshot()                                # 返回 PNG 路径(非 base
 
 ## 六、生态位
 
-- skill 双入口：仓库 SKILL.md + `browser-harness --llms` 紧凑索引 [实证： 2026-09-03]
+- 发现单入口：`browser-harness --llms` 紧凑索引 [实证： 2026-09-03]
 - 长驻监控（X 抓推等）走 rmux 会话（`browser-harness rmux ...`），不占前台
 - Chrome 144+ 首连可能有「允许远程调试」弹窗：提示用户点 Allow，勿轮询重试
 

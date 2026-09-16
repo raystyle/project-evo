@@ -22,7 +22,7 @@
 - [base-agents-contract.md](base-agents-contract.md) - AGENTS 五节合同(Commands/Must/Must not/Read first/环境;三栈写法要点;写作纪律)
 - [base-adr.md](base-adr.md) - ADR 架构决策记录:frontmatter 契约、Nygard 三段、状态机与 supersede 流、何时写何时不写
 - [base-req.md](base-req.md) - REQ 需求登记:frontmatter 契约(status/priority/trace)、Scenario/Criteria、状态机、旧体系迁移映射
-- [base-projection.md](base-projection.md) - 生成投影与 agent 检索面:投影三问、三栈机制对照、llms.txt 式索引、纪律清单(禁止第二真相)
+- [base-projection.md](base-projection.md) - 生成投影与 agent 检索面:投影三问、三栈机制对照、llms 式索引(CLI 旗标与库投影)、纪律清单(禁止第二真相)
 - [base-writing-standards.md](base-writing-standards.md) - 写作规范(文件名即标题、标题干净、六态完整定义(知行合一:五态为实证服务)、路径两制、门禁选配)
 
 ### 工作流与发布

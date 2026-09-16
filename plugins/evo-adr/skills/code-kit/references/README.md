@@ -30,7 +30,7 @@
 
 - [tool-project.md](tool-project.md) - 项目工具:`.tools/` uv 运行时 Python 脚本约定(PEP 723)、归档规则、沉淀铁律、外部工具路由
 - [tool-rust.md](tool-rust.md) - Rust 工程合同:workspace 与工具链、`///` 契约注释(missing_docs deny)、门禁命令、aidoc 投影、daemon 与 E2E 工程要点
-- [tool-cli-agents.md](tool-cli-agents.md) - agent-native CLI 设计:双用户公理与 token 经济学、发现三通道(skills add/mcp add/--llms)、市场分发协议(双客户端 add 形态、git 双协议、简写默认协议相反、钉版、source 七型)、TOON 紧凑输出与 CTA、四面 schema、管道代码逃生舱(零 import 集成运行时)、脚本 workspace 集中归档(同 exec 运行时、apps 即命令、domain-skills 知识层)、定义一次多面暴露(Agent Plugins 三层)、行为 oracle 对齐、落地清单
+- [tool-cli-agents.md](tool-cli-agents.md) - agent-native CLI 设计:双用户公理与 token 经济学、发现双通道(--llms 默认推荐,mcp add 需编排时)、市场分发协议(双客户端 add 形态、git 双协议、简写默认协议相反、钉版、source 七型)、TOON 紧凑输出与 CTA、四面 schema、管道代码逃生舱(零 import 集成运行时)、脚本 workspace 集中归档(同 exec 运行时、apps 即命令、domain-skills 知识层)、定义一次多面暴露(Agent Plugins 三层)、行为 oracle 对齐、落地清单
 - [tool-typescript.md](tool-typescript.md) - TypeScript/Node 工程合同:Node >=22 ESM、tsc 严选项、runtime 依赖白名单、node:test(引号 glob)、checkJs 管 .mjs、npm pack 验收(禁 link)、空串不走 ??、fnm 下 spawn npm-cli.js;文档即代码面(TSDoc、API Extractor、TypeDoc、test-d)
 - [tool-python.md](tool-python.md) - Python 工程合同:uv 运行时与 PEP 723 零依赖、docstring 契约(做什么+何时用+边界)、MkDocs/Griffe 投影、pytest 与 doctest 门禁
 

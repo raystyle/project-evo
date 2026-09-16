@@ -32,7 +32,7 @@
 要点：
 
 - **--llms 即紧凑版 CLI 使用说明书**：markdown 给 agent 读，JSON schema 给程序消费；一族工具同构时 agent 换工具零学习
-- 同款先例：browser-harness `--llms` 紧凑索引 [实证]；reader `--llms`(clap 旗标全覆盖断言做漂移门禁)与 browse `--llms [--full|--json]`(与 docs/surface 同源零漂移) [实证: 2026-09-16 fleet 实况]；本仓 v0.2.0 起转插件市场形态,发现契约由 marketplace.json 承担、命令面收敛为 skill 内 scripts（旧 `project-evo llms` 随转型退役）[实证: 第二十八批]
+- 同款先例：browser-harness `--llms` 紧凑索引 [实证]；reader `--llms` 单面说明书(clap 命令树旗标全覆盖守卫,8d70bc4)与 browse `--llms [--full|--json]`(与 docs/surface 同源零漂移) [实证: 2026-09-16]；本仓 v0.2.0 起转插件市场形态,发现契约由 marketplace.json 承担、命令面收敛为 skill 内 scripts（旧 `project-evo llms` 随转型退役）[实证: 第二十八批]
 
 ### 市场分发:add 形态与 git 协议(双客户端)
 

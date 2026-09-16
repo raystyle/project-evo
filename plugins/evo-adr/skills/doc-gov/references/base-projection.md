@@ -58,7 +58,7 @@ CLI 工具的检索面双形态（2026-09-16 舰队收敛口径）：
 
 - **CLI 面 `--llms`**：紧凑版 CLI 使用说明书(stdout、可管道、按需零常驻),子命令、参数、退出码、输出契约一并给出;markdown 给 agent 读,`--json` 给程序消费
 - **库面投影**：上节 aidoc 等管线出的 llms.txt 索引加分模块 md
-- 漂移守卫三型:clap 旗标全覆盖断言进集成测试、CLI 输出与 docs/surface 同源锁、`cargo aidoc --check --strict` [实证: 2026-09-16 ark 与 reader 与 browse 与 omc 旗标面,hst 库投影面]
+- 漂移守卫三型:clap 旗标全覆盖断言进集成测试、CLI 输出与 docs/surface 同源锁、`cargo aidoc --check --strict` [实证: 2026-09-16 reader(8d70bc4)与 browse 与 omc 旗标面,hst 库投影面;ark 在途]
 
 ## 纪律清单
 
