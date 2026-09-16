@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位：ProjectEvo 插件市场仓。一个插件 `project-evo`，四个 skill：`dev-evo`（文档即代码体系）、`super-research`（资料检索管线）、`secret-scan`（密钥与隐私扫描）、`security-audit`（安全审计与漏洞审查）。客户端显示 `project-evo:<skill>`。
+> 一句话定位：项目治理插件仓。一个插件 `project-evo`，四个治理面 skill：`dev-evo`（文档体系治理）、`super-research`（资料检索治理）、`secret-scan`（密钥隐私治理）、`security-audit`（安全审计治理）。客户端显示 `project-evo:<skill>`。
 
 ## 安装
 

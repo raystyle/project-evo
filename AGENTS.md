@@ -1,7 +1,7 @@
 # ProjectEvo 开发协作规则
 
 > 唯一权威源。`CLAUDE.md` 仅一行 `@AGENTS.md` 桥接,不重复维护。
-> 定位:project-evo 插件市场仓。一个插件四个 skill:dev-evo(文档即代码体系)、super-research(资料检索管线)、secret-scan(密钥与隐私扫描)、security-audit(安全审计与漏洞审查,译自 Cloudflare security-audit-skill,MIT,skill 目录内附 LICENSE),客户端显示 `project-evo:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
+> 定位:项目治理插件市场仓(四 skill 同属项目治理面,非业务工具面):dev-evo(文档体系治理)、super-research(资料检索治理)、secret-scan(密钥隐私治理)、security-audit(安全审计治理,译自 Cloudflare security-audit-skill,MIT,skill 目录内附 LICENSE),客户端显示 `project-evo:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
 
 ## Commands
 

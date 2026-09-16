@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-16，第六十二批:项目治理终态定形与四技能治理面定调）
+
+- 立 ADR-0007:治理终态五件套(ADR/REQ 体系、diary 与 research 档案、三栈文档即代码标准与工具、agent CLI 三栈标准、AGENTS 五节合同与 17 篇边界)冻结,动终态面须立新 ADR 显式 supersede
+- 用户定调入定位口径:ProjectEvo 四 skill 同属项目治理面非业务工具面(dev-evo 文档体系治理、super-research 资料检索治理、secret-scan 密钥隐私治理、security-audit 安全审计治理),AGENTS 与 README 定位句同步
+
 ### 变更（2026-09-16，第六十一批:agent CLI 三栈标准落位与终态清理）
 
 - tool-cli-agents 新增第十一节「三栈落位与输出面增量」:token 计量与分页(cl100k_base)、输出过滤点路径、{ok,data,meta} 信封与 retryability、agent 探测与输出策略;三栈落位表(Rust=incur-rs 模型 clap derive 派生、TS=incur 模型 Zod、Python=argparse 加 pydantic,hst 的 format 信封为活例);源仓深读吸收(wevm/incur 与 gakonst/incur-rs,克隆本地分析)
