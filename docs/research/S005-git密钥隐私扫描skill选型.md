@@ -4,7 +4,7 @@
 - 日期:2026-09-08
 - 关联:用户要用超级研究技能调研「扫描 SKILL + uv Python 扫本地仓与 GitHub 历史」
 
-> 本文件 = 选型依据。落地为 `plugins/project-evo/skills/secret-scan`（第四十七批起四个 skill 同属 project-evo 插件）。不复述真实密钥。
+> 本文件 = 选型依据。落地为 secret-scan skill（第四十七批起随单插件,第六十七批起分插件归属 `plugins/evo-codesec/skills/secret-scan`,ADR-0010）。不复述真实密钥。
 
 ## 背景
 

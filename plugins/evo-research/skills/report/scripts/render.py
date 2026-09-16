@@ -123,6 +123,14 @@ def render_one(md: Path, typst: Path, root: Path, out: Path | None, check: bool,
         ]
         proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
 
+        # typst 未知字体只告警不失败;Linux 面缺 CJK 字体时会静默丢中文字且退出码仍 0,显式提示
+        if "unknown font" in (proc.stderr or "").lower():
+            print(
+                f"[render] 告警:{md.name} 渲染存在未知字体,产物可能丢字(Linux 面缺 CJK 字体时静默丢中文);"
+                "装 CJK 字体(如 fonts-noto-cjk)或换有该字体的 typst 侧",
+                file=sys.stderr,
+            )
+
         if not quiet:
             for stream, sink in ((proc.stdout, sys.stdout), (proc.stderr, sys.stderr)):
                 text = (stream or "").strip()

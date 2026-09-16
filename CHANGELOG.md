@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 修复（2026-09-16，第六十九批:第六十七批评审回执处置）
+
+- 评审闸门首次实战:命名评审格 evo-codex-review 实建于 project-evo 工位右侧(herdr pane neighbor/split 加 agent start),按 herdr-review 请求模板实发第六十七批评审单;codex 回执五面全过(清单一致、守卫与实况、七 skill 零死链、跨插件前缀、吸收件可跑加 interop 五份真样例复跑),四项定夺处置如下
+- S005/S006 活文档旧路径复跑命令修活(夹具与 ab.py 改指 plugins/evo-codesec,加迁移注记);README 钉版示例改现存 tag v0.7.0;report SKILL 实证数字改区间(130 KB 至评审轮五份 306 至 420 KB)
+- Linux 面 CJK 字体静默丢字坑入档:triple-output 加字体前提节,SKILL compatibility 与坑节同记,render.py 检测 typst 未知字体告警并显式提示(退出码不动,字体族参数化列 ROADMAP 积压);守卫断言扩展与机检盲区(市场描述一致性、references README 存在性、md-ref-scan 多根、散文指针)同入积压
+
 ### 新增（2026-09-16，第六十八批:herdr 评审闸门 skill 增编）
 
 - 新增第八 skill `herdr-review`(evo-herdr 第二 skill,ADR-0011 修订 ADR-0010 七 skill 清单为八):推送前评审闸门工作流,沉淀自 hst_rs 等工位实证(十五条发现五轮交叉复核链、D46 至 D53 推送前门禁请求回执原文、命名评审格 hst-codex-review 实况);内容按吸收即提炼:评审请求五件模板(编号门禁语句/提交面/改动面逐条/背景已验证据/分级指令)、F 必修/G 建议/CONFIRM 三态回执与轮次至终审放行、发现逐条核实再修(高也可能部分真)与修复本身过二轮复核、多 agent 交叉互补、评审窗格挂位命名与查看、hst trace 对话检索

@@ -6,7 +6,7 @@ description: >-
   PDF 由 Typst(cmarker)渲染,附零依赖 render.py(支持 --check 编译门禁与加粗标签 lint);
   版式复检口径、信源分级存档与完成登记。触发后先读本文件「意图路由」。
   Use when 写研究报告、把调研成文、出正式报告、渲染 PDF、报告三件套、版式复检、信源存档登记时。
-compatibility: 需 PATH 上的 typst(全平台命令分发安装由宿主工具链 omc 与 ark 统一维护;或 TYPST 环境变量、--typst 显式指定);脚本 PEP 723 零依赖(>=3.12)。
+compatibility: 需 PATH 上的 typst(全平台命令分发安装由宿主工具链 omc 与 ark 统一维护;或 TYPST 环境变量、--typst 显式指定)与本侧 CJK 字体(Linux 面缺则静默丢中文字,装如 fonts-noto-cjk);脚本 PEP 723 零依赖(>=3.12)。
 ---
 
 # report - 研究成文与三件套
@@ -48,7 +48,8 @@ uv run <skill>/scripts/render.py <报告.md> --check
 ## 四、坑(实证)
 
 - **报告须有二级标题**:模板以首个 `## ` 拆题头与正文,缺失时原家族模板会让 cmarker 报 Markdown must be a string(已修为空串兜底)
-- **WSL 调 Windows typst.exe**:render.py 自动把路径参数转 Windows 形态;但 Windows exe 看不到 WSL 专属挂载,报告与根目录要放 Windows 盘路径(如 /mnt/d)一侧,或改用 Linux typst [实证: 2026-09-16 /mnt/d 样例 130 KB 渲染通过]
+- **WSL 调 Windows typst.exe**:render.py 自动把路径参数转 Windows 形态;但 Windows exe 看不到 WSL 专属挂载,报告与根目录要放 Windows 盘路径(如 /mnt/d)一侧,或改用 Linux typst [实证: 2026-09-16 /mnt/d 样例 130 KB 渲染通过;评审轮五份真报告 306 至 420 KB 复跑全过]
+- **Linux 面缺 CJK 字体会静默丢中文字**:typst 未知字体只告警不失败,退出码仍 0,产物文本层只剩 ASCII [实证: 评审轮最小复现];装 CJK 字体(如 fonts-noto-cjk)再渲,render.py 检测到未知字体告警会显式提示
 - **PDF 同步校验比文本不比哈希**:typst 内嵌时间戳,同一 md 两次渲染哈希必不同
 
 安装通道:Claude Code `/plugin marketplace add raystyle/project-evo` 后装 evo-research 插件;Codex `codex plugin marketplace add raystyle/project-evo`;Grok `grok plugin install evo-research@project-evo --trust`;Kimi 无市场,拷 `skills/report/` 至 `~/.kimi/skills`(脚本可直跑)。
