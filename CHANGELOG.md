@@ -4,7 +4,10 @@
 
 ## [Unreleased]
 
-暂无。
+### 新增（2026-09-16，第五十七批:无自有 API 面项目范式入册与三机制反馈登记）
+
+- base-projection 新增「无自有 API 面项目」小节(构建树与补丁仓):公开契约等于字节确定性产物 regenerate-and-diff 门禁、构建门禁进 Commands、一句裁定入地图;来自首个构建树仓用户讨论轮,提炼为通用表达
+- ROADMAP 登记三机制反馈:check.py 下游拷贝哈希锁、仓本地路径排除标记 .evoignore、C/C++ 第四栈裁定已拒绝(通用件入册替代)
 
 ## [0.6.0] - 2026-09-16
 
@@ -505,8 +508,3 @@
 ### 移除（2026-09-03)
 
 - 撤回用户级安装副本（`~/.claude/skills/project-evo`）与项目内 `.claude/skills/` 副本；源码唯一位置改为 `skills/project-evo/`
-
-### 新增（2026-09-16，第五十七批:无自有 API 面项目范式入册与三机制反馈登记）
-
-- base-projection 新增「无自有 API 面项目」小节(构建树与补丁仓):公开契约等于字节确定性产物 regenerate-and-diff 门禁、构建门禁进 Commands、一句裁定入地图;来自首个构建树仓用户讨论轮,提炼为通用表达
-- ROADMAP 登记三机制反馈:check.py 下游拷贝哈希锁、仓本地路径排除标记 .evoignore、C/C++ 第四栈裁定已拒绝(通用件入册替代)
