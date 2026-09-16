@@ -69,4 +69,4 @@ gh auth status                                          # 认证面预检
 
 ## 五、参考索引
 
-- `references/README.md`:三篇渐进索引(gh-ops 命令细则、issue-body 模板与回执)
+- `references/README.md`:两篇渐进索引(gh-ops 命令细则、issue-body 模板与回执)
