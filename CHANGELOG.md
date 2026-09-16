@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-16，第五十六批:三栈工具篇补齐与档案机制入册,ADR-0005）
+
+- 新 reference `tool-python.md`:Python 工程合同(uv 与 PEP 723 零依赖、docstring 契约、MkDocs/Griffe 投影、pytest 与 doctest 门禁);三栈工具篇齐(Rust/Python/TypeScript)
+- 新 reference `flow-archive.md`:diary 一天一篇与裁定留痕、research SNNN 编号与六态与索引登记、择要升 ADR、结构保留红线、旧 proven 与 mistakes 承接
+- base-projection 对照表下补 Python 侧管线段;SKILL 意图路由两行、references README 三层索引同步(18 篇到 20 篇);立 ADR-0005
+
 ### 变更（2026-09-16，第五十五批:check PE-10 报错改相对路径）
 
 - omc 飞轮实踩:报错只给文件名,重名 README.md(根加 docs 各一)定位错文件;PE-10 违规项改输出仓库相对路径(PE-11 本批前已改,PE-12 原生相对)

@@ -8,3 +8,4 @@
 | ADR-0002 | accepted | uv tool 分发通道退役,全走插件市场 | |
 | ADR-0003 | accepted | office-pro skill 移除,收敛为三 skill | |
 | ADR-0004 | accepted | dev-evo 保留 diary 与 research 档案结构 | |
+| ADR-0005 | accepted | 三栈文档投影工具链体系补齐,Python 篇与档案机制篇入册 | |

@@ -17,6 +17,8 @@
 | 给 CLI 增加 agent 用户面 | [tool-cli-agents.md](tool-cli-agents.md) |
 | 建 Rust 仓 / aidoc / doctest | [tool-rust.md](tool-rust.md) |
 | 建 TypeScript/Node 仓 / TSDoc / API Extractor | [tool-typescript.md](tool-typescript.md) |
+| 建 Python 仓 / docstring / MkDocs 投影 | [tool-python.md](tool-python.md) |
+| 写日记 / 研究档案 / SNNN 编号 / 沉淀升 ADR | [flow-archive.md](flow-archive.md) |
 | 写任何文档前 | [base-writing-standards.md](base-writing-standards.md) |
 | 发一个版本 | [flow-release.md](flow-release.md) |
 | 落地前预警 / 踩坑对照 | [exp-pitfalls.md](exp-pitfalls.md) |
@@ -37,6 +39,7 @@
 - [flow-testing.md](flow-testing.md) - 测试流程规范：双轴分层（地基层/意图层）、五层正名（单元/集成/冒烟/回归/验收）、断言纪律、跨栈载体速查、门禁时机谱、特色机制（黄金文件/快照/防漂移/DryRun/假绿防线）
 - [flow-events.md](flow-events.md) - 事件驱动执行模型：三态事件（成功/失败/未知）、let it crash 监督者模式、超时兜底三选（重试/换路径/记录）、熔断三态、与六态的接口（未知即中转态）
 - [flow-release.md](flow-release.md) - 封版发布模式：前置裁定、三路全平台门禁、封版件、tag 触发、发布验收
+- [flow-archive.md](flow-archive.md) - 日记与研究档案机制：diary 一天一篇与裁定留痕、research SNNN 编号六态索引、择要升 ADR、结构保留红线
 
 ### 平台与环境
 
@@ -50,6 +53,7 @@
 - [tool-rust.md](tool-rust.md) - Rust 工程合同：workspace 与工具链、`///` 契约注释（missing_docs deny）、门禁命令、aidoc 投影、daemon 与 E2E 工程要点
 - [tool-cli-agents.md](tool-cli-agents.md) - agent-native CLI 设计：双用户公理与 token 经济学、发现三通道（skills add/mcp add/--llms）、市场分发协议（双客户端 add 形态、git 双协议、简写默认协议相反、钉版、source 七型）、TOON 紧凑输出与 CTA、四面 schema、管道代码逃生舱（零 import 集成运行时）、脚本 workspace 集中归档（同 exec 运行时、apps 即命令、domain-skills 知识层）、定义一次多面暴露（Agent Plugins 三层）、行为 oracle 对齐、落地清单
 - [tool-typescript.md](tool-typescript.md) - TypeScript/Node 工程合同：Node >=22 ESM、tsc 严选项、runtime 依赖白名单、node:test（引号 glob）、checkJs 管 .mjs、npm pack 验收（禁 link）、空串不走 ??、fnm 下 spawn npm-cli.js;文档即代码面（TSDoc、API Extractor、TypeDoc、test-d）
+- [tool-python.md](tool-python.md) - Python 工程合同：uv 运行时与 PEP 723 零依赖、docstring 契约（做什么+何时用+边界）、MkDocs/Griffe 投影、pytest 与 doctest 门禁
 
 资料检索（gh / Google / Medium / X / reader / aria2c）不在本 skill，见同插件 skill `super-research`。
 
@@ -58,7 +62,7 @@
 - [exp-pitfalls.md](exp-pitfalls.md) - 已知误区十八条（ADR/REQ 混淆、手改投影、静默假设、双份漂移、豁免退出、索引底稿、批改塌行、口径返工、环境想当然、CHANGELOG 流水、AGENTS 膨胀、supersede 单边指等）
 - [exp-sedimentation.md](exp-sedimentation.md) - 经验沉淀分治：成功/错误两条链、实证与经验循环复利、产生时机与检索路径、二犯升格工作流与集成约束四形态（agent hook/uv 脚本门禁/git 钩子/回归测试）
 
-## 三、全量清单（18 篇）
+## 三、全量清单（20 篇）
 
 | 文件 | 主题 |
 | --- | --- |
@@ -71,6 +75,7 @@
 | flow-testing.md | 测试流程规范（双轴分层与五层正名） |
 | flow-events.md | 事件驱动执行模型（三态事件与超时兜底） |
 | flow-release.md | 封版发布模式 |
+| flow-archive.md | 日记与研究档案机制（SNNN 与沉淀升 ADR） |
 | env-platform.md | 三平台适配 |
 | env-environment.md | 环境依赖索引（ome） |
 | tool-project.md | 项目工具约定与路由 |
@@ -78,6 +83,7 @@
 | tool-rust.md | Rust 工程合同（workspace、契约注释、aidoc） |
 | tool-cli-agents.md | agent-native CLI 设计（双用户契约与自由代码面） |
 | tool-typescript.md | TypeScript/Node 工程合同（tsc、node:test、TSDoc、API Extractor） |
+| tool-python.md | Python 工程合同（uv、PEP 723、docstring、MkDocs 投影） |
 | exp-pitfalls.md | 已知误区十八条 |
 | exp-sedimentation.md | 经验沉淀分治细则 |
 

@@ -22,6 +22,8 @@
 
 TS 侧管线（TypeScript 项目照此配，细节见 tool-typescript.md）：`/** TSDoc */` + tsc 出 .d.ts（勿 removeComments）,分流 TypeDoc 给人、api-extractor 出 etc/*.api.md（进 Git,PR 审公开面）与 .api.json,api-documenter 出 docs/api/（agent 面）。
 
+Python 侧管线（Python 项目照此配，细节见 tool-python.md）：docstring 为源（做什么+何时用+边界）,Griffe/MkDocStrings 出分模块 md,`mkdocs build --strict` 兼作漂移门禁,示例执行 `pytest --doctest-modules`。
+
 ## agent 检索面（渐进披露）
 
 读序（AGENTS 的 Read first 节引用）：
