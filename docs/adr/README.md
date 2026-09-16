@@ -14,4 +14,4 @@
 | ADR-0008 | superseded | 终态参考边界修订:新增 flow-flywheel.md 跨仓飞轮协作篇 | 0009 |
 | ADR-0009 | accepted | herdr 飞轮 skill 增编与 flow-flywheel.md 退役(四 skill 形态扩五) | 0010 五 skill 改分插件归属 |
 | ADR-0010 | accepted | 市场更名 project-evo 与四插件形态,dev-evo 与 super-research 各拆细 | 0001;0011 修订七 skill 清单为八 |
-| ADR-0011 | accepted | herdr 评审闸门 skill 增编(evo-herdr 双 skill,七 skill 扩八) | |
+| ADR-0011 | accepted | herdr 评审闸门 skill 增编,evo-herdr 双 skill 七扩八 | |

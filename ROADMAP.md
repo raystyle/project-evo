@@ -49,7 +49,7 @@
 | 市场更名 project-evo 与四插件重组 | 已完成 | 2026-09-16 第六十七批:市场名与 GitHub 仓统一 project-evo;四插件 evo-adr/evo-codesec/evo-research/evo-herdr 七 skill;dev-evo 拆 doc-gov 与 code-kit,super-research 拆 research 与 report(吸收家族研究仓报告生成实践);ADR-0010 supersede ADR-0001;REQ-002 落地 [实证: pytest 26 全绿加 md-ref-scan 七 skill 零断链加 render 130 KB 样例] |
 | herdr 评审闸门 skill 增编 | 已完成 | 2026-09-16 第六十八批:evo-herdr 第二 skill herdr-review(评审请求五件模板、F/G/CONFIRM 回执轮次、发现核实与交叉复核、评审窗格检测带起);ADR-0011 修订 ADR-0010 清单为八 skill;REQ-003 落地 [实证: 命名评审格实建 evo-codex-review 加第六十七批评审单实发加 pytest 全绿] |
 | report 渲染字体族参数化 | 待定 | 2026-09-16 评审批(codex):report.typ 字体链写死 Windows 中文字体,Linux 缺 CJK 字体时静默丢中文字且退出 0;已加 render.py 未知字体显式告警与文档 Gotcha,根治做字体族参数化(--font/环境变量)或按平台 fallback 列表,--check 可升级为失败 |
-| 守卫断言扩展与机检盲区 | 待定 | 2026-09-16 评审批(codex):守卫未断言「市场描述 == manifest 描述」与 references/README.md 存在(security-audit 至今无该索引);md-ref-scan 只认首个 root 实参(多根静默忽略,现靠逐次调用规避);跨 skill 散文式指针(无 .md 后缀)不在机检范围 |
+| 守卫断言扩展与机检盲区 | 待定 | 2026-09-16 评审批(codex):守卫未断言「市场描述 == manifest 描述」与 references/README.md 存在(security-audit 至今无该索引);md-ref-scan 只认首个 root 实参(多根静默忽略,现靠逐次调用规避);跨 skill 散文式指针(无 .md 后缀)与节号引用(如「triple-output 第五节」)不在机检范围(快核轮实抓节号悬挂一处) |
 
 ## 阶段三：延伸（未开始）
 

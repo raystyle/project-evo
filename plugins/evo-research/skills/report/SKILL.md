@@ -19,7 +19,7 @@ compatibility: 需 PATH 上的 typst(全平台命令分发安装由宿主工具�
 | --- | --- |
 | 开写一篇新报告 | `references/skeleton.md` + 复制 `assets/templates/report.md` 起步 |
 | 渲染 PDF / 编译门禁 | 本文件「二、命令」 + `references/triple-output.md` |
-| 出 Word(docx) | `references/triple-output.md` 第四节(管线知识面) |
+| 出 Word(docx) | `references/triple-output.md` 第五节(管线知识面) |
 | 版式复检 | `references/layout-check.md` |
 | 信源分级 / 原件存档 / 完成登记 | `references/sources-and-index.md` |
 | 找论文、搜网页、下载原件 | 同插件 skill `evo-research:research` |

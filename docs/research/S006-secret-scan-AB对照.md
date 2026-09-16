@@ -2,7 +2,7 @@
 
 - 状态:已完成
 - 日期:2026-09-08
-- 关联:[S005](S005-git密钥隐私扫描skill选型.md)；夹具 `plugins/evo-codesec/skills/secret-scan/verification/ab-cases.md`(第六十七批起 evo-codesec 插件)
+- 关联:[S005](S005-git密钥隐私扫描skill选型.md)；夹具 `plugins/evo-codesec/skills/secret-scan/verification/ab-cases.md`(第六十七批起 evo-codesec 插件;文内旧称沿革 docs-evo 至 dev-evo 至 code-kit)
 
 > 对照不是门禁。A = `secret-scan` `scan.py`；B = `docs-evo` `scan.py` 的 secrets 部分。人裁决。伪造密钥，无真实凭据。
 

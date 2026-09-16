@@ -9,6 +9,7 @@
 - 评审闸门首次实战:命名评审格 evo-codex-review 实建于 project-evo 工位右侧(herdr pane neighbor/split 加 agent start),按 herdr-review 请求模板实发第六十七批评审单;codex 回执五面全过(清单一致、守卫与实况、七 skill 零死链、跨插件前缀、吸收件可跑加 interop 五份真样例复跑),四项定夺处置如下
 - S005/S006 活文档旧路径复跑命令修活(夹具与 ab.py 改指 plugins/evo-codesec,加迁移注记);README 钉版示例改现存 tag v0.7.0;report SKILL 实证数字改区间(130 KB 至评审轮五份 306 至 420 KB)
 - Linux 面 CJK 字体静默丢字坑入档:triple-output 加字体前提节,SKILL compatibility 与坑节同记,render.py 检测 typst 未知字体告警并显式提示(退出码不动,字体族参数化列 ROADMAP 积压);守卫断言扩展与机检盲区(市场描述一致性、references README 存在性、md-ref-scan 多根、散文指针)同入积压
+- 快核轮两处必修同批结清:report SKILL 节号指针悬挂(插字体节后 docx 管线第四改第五);ADR-0011 标题括号触发 PE-10(第六十八批引入,评审修复轮门禁跑漏骨架自检所致,教训入 herdr-review receipt 纪律:门禁跑全集);S006 头部补旧称沿革注记;节号引用入机检盲区积压行
 
 ### 新增（2026-09-16，第六十八批:herdr 评审闸门 skill 增编）
 

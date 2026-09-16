@@ -1,6 +1,6 @@
 ---
 id: ADR-0011
-title: herdr 评审闸门 skill 增编(evo-herdr 双 skill,七 skill 扩八)
+title: herdr 评审闸门 skill 增编,evo-herdr 双 skill 七扩八
 status: accepted
 date: 2026-09-16
 deciders:
@@ -13,7 +13,7 @@ tags:
   - review
 ---
 
-# ADR-0011:herdr 评审闸门 skill 增编(evo-herdr 双 skill,七 skill 扩八)
+# ADR-0011:herdr 评审闸门 skill 增编,evo-herdr 双 skill 七扩八
 
 ## Context
 
