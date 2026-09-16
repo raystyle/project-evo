@@ -181,13 +181,14 @@ def check(root: Path) -> tuple[list[tuple[str, str, str]], bool]:
     badh: list[str] = []
     cands10 = [root / "AGENTS.md", root / "README.md"] + list((root / "docs").rglob("*.md"))
     for p in [p for p in cands10 if p.exists()]:
+        rel10 = p.relative_to(root).as_posix()
         in_fence = False
         for i, ln in enumerate(_read(p).splitlines(), 1):
             if ln.lstrip().startswith("```"):
                 in_fence = not in_fence
                 continue
             if not in_fence and ln.startswith("#") and "(" in ln:
-                badh.append(f"{p.name}:{i}")
+                badh.append(f"{rel10}:{i}")
     r.append(("PE-10", "FAIL" if badh else "PASS",
               f"标题含括号: {', '.join(badh[:5])}" if badh else "标题无括号"))
 
