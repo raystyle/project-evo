@@ -198,4 +198,4 @@ incurs 方法：vendored 上游 TS 实现为**行为 oracle**，其 1062 条测�
 | --- | --- | --- |
 | Rust | clap derive 加命令图派生（incur-rs 模型:`#[derive(Incur)]` 一处定义,schema/llms/skills/补全/MCP 全派生） | 自研或引库,弃用与输出策略注记进 derive meta |
 | TypeScript | Zod 加 Cli 命令图（incur 模型） | 同上 |
-| Python | argparse 加 pydantic | 家族活例:hst 的 `--format kv/json/jsonl` 信封与 stderr 单行 JSON 错误即是种子,补 `--llms` 清单与 skills 自生成即达标 |
+| Python | argparse 加 pydantic | 信封先例可移植:hst(Rust) 的 `--format kv/json/jsonl` 与 stderr 单行 JSON 错误是跨栈同构样板;Python 面补 `--llms` 清单与 skills 自生成即达标 |
