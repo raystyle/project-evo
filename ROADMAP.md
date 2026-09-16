@@ -51,7 +51,7 @@
 | report 渲染字体族参数化 | 待定 | 2026-09-16 评审批(codex):report.typ 字体链写死 Windows 中文字体,Linux 缺 CJK 字体时静默丢中文字且退出 0;已加 render.py 未知字体显式告警与文档 Gotcha,根治做字体族参数化(--font/环境变量)或按平台 fallback 列表,--check 可升级为失败 |
 | 守卫断言扩展与机检盲区 | 待定 | 2026-09-16 评审批(codex):守卫未断言「市场描述 == manifest 描述」与 references/README.md 存在(security-audit 索引已补,守卫断言仍缺);md-ref-scan 只认首个 root 实参(多根静默忽略,现靠逐次调用规避);跨 skill 散文式指针(无 .md 后缀)与节号引用(如「triple-output 第五节」)不在机检范围(快核轮实抓节号悬挂一处) |
 
-## 阶段三：延伸（部分先行）
+## 阶段三：延伸（进行中）
 
 | 里程碑 | 状态 | 说明 |
 |--------|------|------|
