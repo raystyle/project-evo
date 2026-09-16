@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,四插件七 skill:`evo-adr`(文档治理:doc-gov、code-kit)、`evo-codesec`(代码安全:secret-scan、security-audit)、`evo-research`(研究检索:research、report)、`evo-herdr`(多仓飞轮:herdr-flywheel)。客户端显示 `<插件>:<skill>`。
+> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,四插件八 skill:`evo-adr`(文档治理:doc-gov、code-kit)、`evo-codesec`(代码安全:secret-scan、security-audit)、`evo-research`(研究检索:research、report)、`evo-herdr`(多仓协作:herdr-flywheel、herdr-review)。客户端显示 `<插件>:<skill>`。
 
 ## 安装
 
@@ -49,6 +49,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 | evo-research | `research` | 资料检索管线:gh/bh 发现、aria2c 获取、reader 研读;无头优先、HTTP 优先 | 找论文与文章、查 X 与 GitHub、下大文件、读电子书 |
 | evo-research | `report` | 研究成文:断言式报告骨架、md/pdf/docx 三件套、Typst 渲染、版式复检口径、信源存档与登记 | 写研究报告、出正式报告、渲染 PDF |
 | evo-herdr | `herdr-flywheel` | 多仓 herdr 工位飞轮四步协议:派单、回执、断言、吸收 | 跨仓派发治理任务、总台轮次协调 |
+| evo-herdr | `herdr-review` | 推送前评审闸门:评审请求五件模板、F/G/CONFIRM 三态回执、轮次至终审放行、评审窗格检测带起 | 发评审请求、写对线回执、带起 codex 评审格 |
 
 斜杠命令(Claude Code 面):`/evo-adr:init`、`/evo-adr:check`、`/evo-adr:scan`、`/evo-codesec:secret-scan-cli`。脚本可免插件直跑,具体命令见各 skill 的 SKILL.md 与 `plugins/<插件>/README.md`。
 

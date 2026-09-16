@@ -6,3 +6,4 @@
 |---|---|---|---|---|
 | REQ-001 | implemented | must | check 输出 --json 机器读面与全量违规报告 | tests/test_project_evo.py |
 | REQ-002 | implemented | must | 市场更名 project-evo 与四插件重组落地 | tests/test_project_evo.py |
+| REQ-003 | implemented | must | herdr 评审闸门 skill 增编 | tests/test_project_evo.py |

@@ -35,4 +35,5 @@
 | `../plugins/evo-research/skills/research/SKILL.md` | 资料检索管线命令面（gh/bh/aria2c/reader 工位复用） | 搜代码/论文/文章/下载大资产时 |
 | `../plugins/evo-research/skills/report/SKILL.md` | 研究成文与三件套(骨架、渲染、版式、信源) | 写研究报告或渲染 PDF 时 |
 | `../plugins/evo-herdr/skills/herdr-flywheel/SKILL.md` | 多仓 herdr 飞轮协作(派单/回执/断言/吸收;协议唯一权威源,ADR-0009) | 跨仓派单或收回执时 |
+| `../plugins/evo-herdr/skills/herdr-review/SKILL.md` | 推送前评审闸门(评审请求、F/G/CONFIRM 回执、轮次、窗格检测带起;ADR-0011) | 发评审请求或写对线回执时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |

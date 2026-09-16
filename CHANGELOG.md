@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-16，第六十八批:herdr 评审闸门 skill 增编）
+
+- 新增第八 skill `herdr-review`(evo-herdr 第二 skill,ADR-0011 修订 ADR-0010 七 skill 清单为八):推送前评审闸门工作流,沉淀自 hst_rs 等工位实证(十五条发现五轮交叉复核链、D46 至 D53 推送前门禁请求回执原文、命名评审格 hst-codex-review 实况);内容按吸收即提炼:评审请求五件模板(编号门禁语句/提交面/改动面逐条/背景已验证据/分级指令)、F 必修/G 建议/CONFIRM 三态回执与轮次至终审放行、发现逐条核实再修(高也可能部分真)与修复本身过二轮复核、多 agent 交叉互补、评审窗格挂位命名与查看、hst trace 对话检索
+- 评审格检测带起自愈程序入 panes.md:查工位格右侧有无可用格(neighbor),无则右分 40% 建格起 codex 命名驻场,有则直接对话;全流程命令本机实证(project-evo 工位右侧实建 evo-codex-review 并按请求模板实发第六十七批评审单);立 REQ-003
+- 同步面:evo-herdr 双 manifest 与市场条目描述改两 skill、守卫测试 SKILLS 断言八 skill、pre-commit 补 herdr-review 断链行、AGENTS 定位行与 Commands 节、根 README 与插件 README、docs 地图;herdr-flywheel 参考节加反向指针(协议面与评审特化互指)
+
 ### 变更（2026-09-16，第六十七批:市场更名 project-evo 与四插件重组）
 
 - **破坏性**:市场名 `projectevo` 改 `project-evo`,GitHub 仓同步改名 `raystyle/project-evo`(旧地址重定向);单插件 `project-evo` 重组为四插件 `evo-adr` / `evo-codesec` / `evo-research` / `evo-herdr`(四插件同版本线,自 0.1.0 起);斜杠前缀 `/project-evo:*` 全部变为 `/evo-adr:*`、`/evo-codesec:*`;旧市场消费者须卸旧装新(旧缓存 `cache/projectevo/` 整目录可删)
