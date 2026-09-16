@@ -1,6 +1,7 @@
 # Rust 工程合同：workspace、契约注释与 aidoc
 
 > Rust 栈的文档即代码落地。项目从零起步照此配；投影与状态机总纲见 base-projection.md 与 base-adr.md。
+> 与原生的关系:`///` 契约注释、doctest、`cargo doc` 全是 Rust 原生机制,aidoc 零发明只读同一份 `///`;原生缺的恰是稳定 agent 面(rustdoc 只出 HTML,json 面在 nightly 不稳)与投影漂移门禁,aidoc 只补这两层。
 
 ## 工作区与工具链
 
