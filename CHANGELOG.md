@@ -8,7 +8,7 @@
 
 - 舰队裁定吸收:skill 面退役,agent 发现通道收敛 llms,`--llms` 定位为紧凑版 CLI 使用说明书(stdout 可管道,markdown 加 `--json` 双形态,按需零常驻);七仓对账后入库(hst 库投影型 ADR-0005、ark D50 在途、reader 与 browse 与 omc 旗标型已落地,OfficeCLI 与 clean-chrome 未动)
 - code-kit tool-cli-agents.md:发现契约三通道改双通道(--llms 默认推荐,mcp add 需编排时用);skill 通道老记录按用户裁定直接剔除不留退役说明(通道表行、拆分要点与落地判据行、多面渲染与弃用同步与派生面枚举中的 skill 面);fleet --llms 先例与漂移门禁实证入文
-- research references/reader.md:reader skill 双入口记录剔除,索引与命令契约统一 `--llms` 与 `--help` 口径
+- research references/reader.md:reader skill 双入口记录剔除,索引与命令契约统一 `--llms` 与 `--help` 口径;web.md 双入口改单入口(快核 F1)
 - doc-gov base-projection.md:agent 检索面补 CLI 工具双形态(CLI 面 --llms 说明书加库面投影)与漂移守卫三型(旗标全覆盖断言、surface 同源锁、--check --strict);SKILL.md 路由行同步
 
 ### 新增（2026-09-16，第七十二批:gh-issue skill 增编）
