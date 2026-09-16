@@ -1,6 +1,6 @@
 # agent-native CLI 设计：人与 agent 双用户契约
 
-> 本篇 = 目标项目造 CLI（或给存量 CLI 补面）时，把 agent 当第二类用户的设计契约：发现怎么被找到、输出怎么省 token、输入怎么稳、自由代码怎么逃生、任务脚本怎么归档、多面怎么同源。与 base-init.md 的 agent-native SKILL.md 模式（骨架层：根 SKILL.md 怎么写）互补；是否引入具体框架走 tool-selection.md 稳度判据。沉淀自 TS 原作与其 Rust 移植两份样本实现 [实证]；契约方法论框架无关。第二节市场分发小节另源:Claude Code 官方文档原文 + Codex 本机实弹(0.149.1)[实证: 2026-09-04] + Grok/Kimi 本机实弹(1.0.13/0.41.0)[实证: 2026-09-09]。
+> 本篇 = 目标项目造 CLI（或给存量 CLI 补面）时，把 agent 当第二类用户的设计契约：发现怎么被找到、输出怎么省 token、输入怎么稳、自由代码怎么逃生、任务脚本怎么归档、多面怎么同源。与 base-init.md 的 agent-native SKILL.md 模式（骨架层：根 SKILL.md 怎么写）互补；是否引入具体框架按 star 维护节奏与发布纪律核。沉淀自 TS 原作与其 Rust 移植两份样本实现 [实证]；契约方法论框架无关。第二节市场分发小节另源:Claude Code 官方文档原文 + Codex 本机实弹(0.149.1)[实证: 2026-09-04] + Grok/Kimi 本机实弹(1.0.13/0.41.0)[实证: 2026-09-09]。
 
 ## 一、双用户公理与 token 经济学
 
@@ -179,4 +179,23 @@ incurs 方法：vendored 上游 TS 实现为**行为 oracle**，其 1062 条测�
 | 弃用 | 弃用四处（help/skill/schema/警告）同步吗 | agent 持续调用死参数 |
 | 同源 | help/skill/llms 出自一份定义吗 | 三面漂移，agent 学到旧契约 |
 
-样本实现选型提示：incur（TS，npm）与 incurs（Rust，crates.io）均为 MIT；活跃度与稳度未深查，引入前按 tool-selection.md 四信号核 [推断]。
+样本实现选型提示：incur（TS，npm）与 incur-rs（Rust，crates.io，仓 gakonst/incur-rs）均为 MIT；活跃度与稳度未深查，引入前按 star 维护节奏与发布纪律核 [推断]。
+
+## 十一、三栈落位与输出面增量
+
+同源双仓深读吸收（2026-09-16）：命令图定义一次,派生 schema 与 llms 清单与 skills 与补全与 HTTP 与 MCP 多面;输出面增量四件与三栈落位如下。
+
+输出面增量（加进第三节契约）：
+
+- **token 计量与分页**：`--token-count` 估计量、`--token-limit` 加 `--token-offset` 分页取回,计量用 cl100k_base 精确口径;大输出不截断而是分页
+- **输出过滤**：`--filter-output` 点路径与数组切片（`users[0,2].name` 形态）,agent 只要所需子树
+- **信封同构**：`{ok,data,meta}` 信封 CLI 与 HTTP 同构;错误信封带类型化错误码与 `retryable` 字段,agent 可判重试
+- **agent 探测与输出策略**：stdout 非 TTY 即 agent 环境;`outputPolicy` 可 human 隐藏而 agent 可见（分叉面见第六节）
+
+三栈落位（agent CLI 标准按栈选形,行为契约同一）：
+
+| 栈 | 形态 | 落位 |
+| --- | --- | --- |
+| Rust | clap derive 加命令图派生（incur-rs 模型:`#[derive(Incur)]` 一处定义,schema/llms/skills/补全/MCP 全派生） | 自研或引库,弃用与输出策略注记进 derive meta |
+| TypeScript | Zod 加 Cli 命令图（incur 模型） | 同上 |
+| Python | argparse 加 pydantic | 家族活例:hst 的 `--format kv/json/jsonl` 信封与 stderr 单行 JSON 错误即是种子,补 `--llms` 清单与 skills 自生成即达标 |

@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 变更（2026-09-16，第六十一批:agent CLI 三栈标准落位与终态清理）
+
+- tool-cli-agents 新增第十一节「三栈落位与输出面增量」:token 计量与分页(cl100k_base)、输出过滤点路径、{ok,data,meta} 信封与 retryability、agent 探测与输出策略;三栈落位表(Rust=incur-rs 模型 clap derive 派生、TS=incur 模型 Zod、Python=argparse 加 pydantic,hst 的 format 信封为活例);源仓深读吸收(wevm/incur 与 gakonst/incur-rs,克隆本地分析)
+- 终态清理(用户裁定 dev-evo 终态=ADR+研究日记+三栈文档即代码标准工具+agent CLI 标准):退役 env-environment.md(ome 家族工具索引)、flow-events.md(事件执行模型)、tool-selection.md(依赖选型),references 20 到 17 篇,SKILL 路由与索引同步,残留交叉引用(含 SKILL 六层表 interrogate 旧值换 ruff D)清理
+
 ### 新增（2026-09-16，第六十批:三栈契约注释格式纪律吸收）
 
 - base-projection 新增「契约注释通用准则」六条跨栈共用:公开项必写加覆盖率 lint 钉死、首句成句、不重复机器可推信息、示例必须真实可测(断言收尾兼回归、外部服务 mock 保 CI 可重复)、失效即失败(文档与行为不一致视同功能 bug)、风格单一存量改动时补齐

@@ -1,6 +1,6 @@
 # TypeScript/Node 项目工程
 
-> 本文件 = Node/TS 仓怎么建、怎么验（运行时、tsc、测试、依赖、打包、文档即代码面）；与 tool-project.md（Python `.tools`）分栈；与 tool-selection.md（出仓选型）分工：本篇是落地后的工程合同。浏览器检索见 `project-evo:super-research`；agent 脚本 workspace 见 tool-cli-agents.md。
+> 本文件 = Node/TS 仓怎么建、怎么验（运行时、tsc、测试、依赖、打包、文档即代码面）；与 tool-project.md（Python `.tools`）分栈；出仓选型纪律自含在本篇(先问标准库与平台原生)。浏览器检索见 `project-evo:super-research`；agent 脚本 workspace 见 tool-cli-agents.md。
 
 ## 一、运行时合同
 
@@ -45,7 +45,7 @@
 
 - dependencies 白名单制：新增 runtime 依赖走 REQ 采纳。常见现役仅 commander（CLI 解析）与 zod（环境变量与选项校验）两枚 [经验]
 - devDependencies 从宽：typescript、`@types/node`、esbuild（仅浏览器 IIFE 产物需要时）
-- 出仓前再问「Node 内置有没有」（接 tool-selection 阶梯 2 到 5 档）
+- 出仓前再问「Node 内置有没有」（阶梯:仓内到标准库到平台原生到已装依赖）
 
 ## 四、构建分面
 

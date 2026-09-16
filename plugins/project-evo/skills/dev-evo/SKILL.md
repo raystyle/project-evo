@@ -14,7 +14,7 @@ compatibility: 通用(不限语言/平台);提炼自 Rust workspace、Python 数
 
 # dev-evo - project-evo 文档即代码指南
 
-**渐进知识库型 skill**：本文件只做两件事，**意图路由**（你要做的事 到 该查哪篇参考）与**体系速览**（一层概览）；完整知识在 `references/` 分类扁平目录（前缀 base/flow/env/tool/exp 分组，20 篇自包含），按「rg 定位文件 + mq 提取结构」渐进检索，不要求一次读完。资料检索（gh/Google/Medium/X/reader/aria2c）在同插件的 `super-research` 技能；密钥扫描在 `secret-scan`。
+**渐进知识库型 skill**：本文件只做两件事，**意图路由**（你要做的事 到 该查哪篇参考）与**体系速览**（一层概览）；完整知识在 `references/` 分类扁平目录（前缀 base/flow/env/tool/exp 分组，17 篇自包含），按「rg 定位文件 + mq 提取结构」渐进检索，不要求一次读完。资料检索（gh/Google/Medium/X/reader/aria2c）在同插件的 `super-research` 技能；密钥扫描在 `secret-scan`。
 
 核心思想：**契约在代码，文档是投影；每层只答一个问题**。类型与导出描述形态，契约注释（`///`/docstring/TSDoc）写用法，测试锁行为，ADR 锁 why，REQ 锁需求，AGENTS.md 只当索引与合同。文档生成物勿手改、不另写第二份 API 真相；公开面漂移靠工具门禁（CI 必红），不靠自觉。过程留痕进 diary，研究档案进 research，事实断言标六态。
 
@@ -30,17 +30,14 @@ compatibility: 通用(不限语言/平台);提炼自 Rust workspace、Python 数
 | 立需求 / REQ 状态流转 / 实现后回填 trace | `references/base-req.md` |
 | API 文档怎么生成 / 投影工具链 / 公开面漂移门禁 / llms.txt 检索面 | `references/base-projection.md` |
 | 写测试 / 定测试分层与门禁（单元/集成/冒烟/回归/验收） | `references/flow-testing.md` |
-| 定任务执行的事件模型 / 超时兜底防卡死 | `references/flow-events.md` |
 | 写任何文档前（命名/标题/六态/门禁） | `references/base-writing-standards.md` |
 | 发一个版本（封版/tag/资产验收） | `references/flow-release.md` |
 | 定平台矩阵 / shell 行尾 / CI 三系统 / 换机接管 | `references/env-platform.md` |
-| 盘点环境依赖 / ome 命令 / 换机重建 | `references/env-environment.md` |
 | 建项目脚本工具（.tools / uv / PEP 723) | `references/tool-project.md` |
 | 建 Rust 项目 / cargo 工作区 / missing_docs / doctest / aidoc | `references/tool-rust.md` |
 | 建 TypeScript/Node 项目 / TSDoc / API Extractor / TypeDoc / Vitest | `references/tool-typescript.md` |
 | 建 Python 项目 / docstring / MkDocs 投影 / PEP 723 脚本 | `references/tool-python.md` |
 | 写日记或研究档案 / diary 一天一篇 / SNNN 编号 / 沉淀升 ADR | `references/flow-archive.md` |
-| 选依赖 / 查库（五栈数据源与稳度判据） | `references/tool-selection.md` |
 | 给 CLI 加 agent 用户面（agent-native 契约、管道逃生舱、脚本 workspace） | `references/tool-cli-agents.md` |
 | 搜论文/Google/Medium/X/GitHub/电子书/种子下载 | 同插件 skill `project-evo:super-research`（本 skill 不承载 CLI 工具手册） |
 | 扫 git/GitHub 密钥密码隐私泄露 | 同插件 skill `project-evo:secret-scan`（本 skill 的 scan 仍管浅密钥+md 禁字） |
@@ -76,7 +73,7 @@ reader query references\flow-release.md ".code" # 只要命令
 | 层 | 回答 | 承载件 | 门禁 |
 | --- | --- | --- | --- |
 | L0 形态 | 系统长什么样 | 类型/导出/package exports | tsc、cargo check、publint |
-| L1 用法 | 怎么用、何时失败 | 契约注释（`///`/docstring/TSDoc） | missing_docs、interrogate、eslint-tsdoc |
+| L1 用法 | 怎么用、何时失败 | 契约注释（`///`/docstring/TSDoc） | missing_docs、ruff D、eslint-tsdoc |
 | L1' 公开面 | agent/PR 可见的 API | 生成投影（aidoc、api.md） | 投影 diff 门禁（CI 必红） |
 | L2 行为 | 内部正确性、外部契约 | 测试（doctest、Vitest、pytest） | 测试全绿才合 |
 | L3 任务 | 如何完成一件事 | docs/guides、examples | 示例可跑 |
