@@ -32,12 +32,12 @@
 | 三栈工具篇补齐与档案机制入册 | 已完成 | 2026-09-16 第五十六批:tool-python.md 补齐三栈、flow-archive.md 固化 diary 与 research 机制、ADR-0005;references 18 到 20 篇 [实证: 三仓落地性回执支撑] |
 | 封版 v0.7.0 | 已完成 | 2026-09-16 总台统一封版令:第五十七至六十四批治理基建八批(PE-11 豁免通道、aidoc 补全与强制、契约注释纪律、agent CLI 三栈、终态清理定形 ADR-0007 与 0008、连接姿势与飞轮篇、pwsh 与版本与分发标准);tag v0.7.0 加 Release |
 | 封版 v0.6.0 | 已完成 | 2026-09-16 第四十七至五十六批合并发布:单插件四 skill 形态(dev-evo/super-research/secret-scan/security-audit)、dev-evo 文档即代码体系、PE-11 豁免通道、diary 与 research 红线、三栈与档案机制;tag v0.6.0 加 GitHub Release |
-| check 全量报告(去前 5 截断) | 待定 | 2026-09-16 飞轮批首批用户反馈(ark_rs):PE-11/PE-12 只报前 5 处,修一轮冒一轮三轮才清,全量输出一轮修净省往返 |
+| check 全量报告(去前 5 截断) | 已完成 | 2026-09-16 第六十五批:PE-05/06/07/08/10/11/12 违规清单去截断全量输出,PE-11 由每文件首行改逐行全列 [实证: pytest test_check_reports_all_violations 七处全列] |
 | PE-12 扫描面扩散到检索面 | 待定 | 2026-09-16 首批用户反馈(ark_rs):断链扫描现只盖 AGENTS 与 docs 各 README,llms.txt 等新检索面是盲区 |
 | 存量迁移映射表生成物 | 待定 | 2026-09-16 首批用户反馈(ohmycloud):旧编号到新编号对照宜机器生成落盘,人写注记即漂移面,生成物可进门禁 |
 | check 一次性迁移修复子命令 | 待定 | 2026-09-16 首批用户反馈(ohmycloud):PE-10 标题括号批量转冒号形,存量首对齐手搓约 25 文件,收尾成本落在用户侧 |
 | ADR/REQ frontmatter 字段表显式化 | 待定 | 2026-09-16 首批用户反馈(ohmycloud):base-adr/base-req 正文状态体态与 PE-06/07 frontmatter 判式不对应,被打回两轮才定位契约差 |
-| check 输出 --json 机器读面 | 待定 | 2026-09-16 飞轮批反馈(hst_rs):回执要报 SKIP 处数只能正则抓 stdout,退出码带不动细节;S008 定高优先 |
+| check 输出 --json 机器读面 | 已完成 | 2026-09-16 第六十五批:JSON 载荷 ok/counts/results 含结构化 violations,退出码 0/1/2 不变,回执读 counts.skip 不再正则抓 stdout [实证: pytest JSON 三用例] |
 | init 模板 rumdl 撞规预防 | 待定 | 2026-09-16 飞轮批反馈(hst_rs):ADR/REQ 模板 YAML title 与 rumdl MD025 默认规则必撞,init 宜检测并自动落 front_matter_title 空串 |
 | 整文件豁免形态官方示例 | 待定 | 2026-09-16 飞轮批反馈(hst_rs):路径前缀正则不带冒号即整文件豁免(hst_rs 以 ^docs/proven/ 实证),gates.md 补官方示例,免各仓自造前缀式 |
 | skill-spec 对表 agentskills 新字段 | 待定 | 2026-09-16 S008:allowed-tools(Experimental)与 metadata 可选字段是否引入待评估,skill-spec.md 对表现行 spec |

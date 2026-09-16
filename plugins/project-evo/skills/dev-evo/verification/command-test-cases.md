@@ -98,6 +98,18 @@ $misses
 # 预期: 空结果(有扫描脚本则优先用脚本)
 ```
 
+## 四、机器读面与 --json 契约
+
+```powershell
+# [check --json] 机器读面(回执与门禁脚本消费,取代正则抓 stdout)
+$j = uv run skills\dev-evo\scripts\check.py $ProjectRoot --json | ConvertFrom-Json
+$j.ok; $j.counts.skip; ($j.results | Where-Object status -eq "FAIL").violations
+# 预期: ok 为 bool;counts 含 pass/fail/skip 三数(豁免处数读 counts.skip);
+#       results 每项含 id/status/note/violations,violations 是该检查全部违规项
+#       (file:line 或路径串,无为空数组),note 是人读说明不供解析;
+#       退出码 0/1/2 与人读面一致,出错(2)仍是 stderr 文本不包 JSON
+```
+
 ---
 
 ## 复验前提

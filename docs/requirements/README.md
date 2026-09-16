@@ -4,3 +4,4 @@
 
 | id | 状态 | 优先级 | 标题 | trace |
 |---|---|---|---|---|
+| REQ-001 | implemented | must | check 输出 --json 机器读面与全量违规报告 | tests/test_project_evo.py |

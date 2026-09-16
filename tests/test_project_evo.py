@@ -139,6 +139,22 @@ def test_check_pe11_allowlist_exempts_history(tmp_path: Path, monkeypatch):
     assert not ok, "根三件是活跃面,全域正则也不得掩护"
 
 
+def test_check_reports_all_violations(tmp_path: Path):
+    """全量报告:单检查超 5 处全量列出;PE-11 同文件逐行列出(旧逻辑只报首行与前 5)。"""
+    init_mod.generate(tmp_path, "demo")
+    (tmp_path / "docs" / "guides" / "many-bad.md").write_text(
+        "# 指南\n\n" + "".join(f"## 小节{i}(注)\n\n" for i in range(7)), encoding="utf-8")
+    (tmp_path / "docs" / "diary" / "2026-01-02-多犯.md").write_text(
+        "# 档案\n\n" + "".join(f"第{i}批 —— 存量\n\n" for i in range(6)), encoding="utf-8")
+    results, _ = check_mod.check(tmp_path)
+    pe10 = next(r for r in results if r[0] == "PE-10")
+    pe11 = next(r for r in results if r[0] == "PE-11")
+    assert len(pe10[3]) == 7, "PE-10 七处违规应全量进 violations(旧截断只报 5)"
+    assert pe10[2].count("docs/guides/many-bad.md:") == 7, "人读 note 同样全量"
+    diary_hits = [v for v in pe11[3] if v.startswith("docs/diary/2026-01-02-多犯.md:")]
+    assert len(diary_hits) == 6, "PE-11 同文件六行应逐行列出(旧逻辑每文件只报首行)"
+
+
 def _git(cwd: Path, *args: str) -> None:
     subprocess.run(["git", "-C", str(cwd), *args], check=True, capture_output=True,
                    env={**__import__("os").environ, "GIT_AUTHOR_NAME": "t", "GIT_AUTHOR_EMAIL": "t@t",
@@ -192,6 +208,51 @@ def test_check_script_exit_codes(tmp_path: Path):
     r_bad = subprocess.run([sys.executable, str(SCRIPTS / "check.py"), str(tmp_path)],
                            capture_output=True, text=True, encoding="utf-8")
     assert r_bad.returncode == 1
+
+
+def test_check_json_clean_scaffold(tmp_path: Path):
+    """--json 干净脚手架:JSON 取代人读表,schema 形状与计数,violations 全空,退出码 0。"""
+    init_mod.generate(tmp_path, "demo")
+    r = subprocess.run([sys.executable, str(SCRIPTS / "check.py"), str(tmp_path), "--json"],
+                       capture_output=True, text=True, encoding="utf-8")
+    assert r.returncode == 0, r.stdout + r.stderr
+    assert r.stdout.lstrip().startswith("{")
+    data = json.loads(r.stdout)
+    assert data["ok"] is True
+    assert data["counts"] == {"pass": 9, "fail": 0, "skip": 3}, "脚手架态 PE-06/07/09 SKIP"
+    assert [x["id"] for x in data["results"]] == [f"PE-{i:02d}" for i in range(1, 13)]
+    assert all(x["violations"] == [] for x in data["results"])
+    assert all(set(x) == {"id", "status", "note", "violations"} for x in data["results"])
+
+
+def test_check_json_failures_list_violations(tmp_path: Path):
+    """--json 注错面:violations 为 file:line 串且非空,退出码 1。"""
+    init_mod.generate(tmp_path, "demo")
+    (tmp_path / "docs" / "guides" / "bad.md").write_text(
+        "# 指南\n\n## 小节(注)\n\n坏行 —— 连接\n", encoding="utf-8")
+    r = subprocess.run([sys.executable, str(SCRIPTS / "check.py"), str(tmp_path), "--json"],
+                       capture_output=True, text=True, encoding="utf-8")
+    assert r.returncode == 1
+    data = json.loads(r.stdout)
+    assert data["ok"] is False and data["counts"]["fail"] == 2
+    by_id = {x["id"]: x for x in data["results"]}
+    assert by_id["PE-10"]["violations"] == ["docs/guides/bad.md:3"]
+    assert by_id["PE-11"]["violations"] == ["docs/guides/bad.md:5(破折号/连接号)"]
+
+
+def test_check_json_skip_counts_via_allow(tmp_path: Path):
+    """--json 豁免面:PEVO_CHECK_ALLOW 命中报 SKIP,counts.skip 直读(取代正则抓结论行)。"""
+    init_mod.generate(tmp_path, "demo")
+    (tmp_path / "docs" / "diary" / "2026-01-01-旧档.md").write_text(
+        "# 旧档\n\n存量 —— 禁字\n", encoding="utf-8")
+    r = subprocess.run([sys.executable, str(SCRIPTS / "check.py"), str(tmp_path), "--json"],
+                       capture_output=True, text=True, encoding="utf-8",
+                       env={**os.environ, "PEVO_CHECK_ALLOW": r"docs/diary/2026-01-01-旧档\.md:3"})
+    assert r.returncode == 0, r.stdout + r.stderr
+    data = json.loads(r.stdout)
+    pe11 = next(x for x in data["results"] if x["id"] == "PE-11")
+    assert pe11["status"] == "SKIP" and pe11["violations"] == [], "豁免行不进 violations"
+    assert data["counts"]["skip"] == 4, "脚手架 3 处 SKIP 加豁免 PE-11"
 
 
 def test_marketplace_catalog_consistency():

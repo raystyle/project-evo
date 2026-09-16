@@ -31,6 +31,8 @@ uv run plugins/project-evo/skills/dev-evo/scripts/scan.py . --no-history
 uv run plugins/project-evo/skills/dev-evo/scripts/check.py .
 ```
 
+机器读面(第六十五批起):加 `--json` 输出 `{"ok","counts"(pass/fail/skip),"results"[{id,status,note,violations}]}` 到 stdout,violations 为全量违规项(file:line 或路径串);退出码 0/1/2 不变,出错仍 stderr 文本。飞轮回执与门禁脚本读 `counts.skip` 与 `violations`,不再正则抓结论行。
+
 本仓活跃面零禁字，自检无需豁免。下游仓迁移 dev-evo 后的历史档案存量禁字，用环境变量
 `PEVO_CHECK_ALLOW="正则;正则"` 豁免（只作用于 `docs/` 下档案的 `相对路径:行`，命中报 SKIP
 留审计痕迹；根三件 AGENTS/README/CHANGELOG 是活跃面，机制上永不受益，全域正则也吞不掉；

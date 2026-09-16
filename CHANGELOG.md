@@ -4,7 +4,15 @@
 
 ## [Unreleased]
 
-暂无。
+### 新增（2026-09-16，第六十五批:check --json 机器读面与全量报告）
+
+- `check.py` 新增 `--json`:stdout 出 JSON 机器读面取代人读逐项表,schema 为 `{"ok","counts"(pass/fail/skip),"results"[{id,status,note,violations}]}`,violations 是该检查全部违规项(file:line 或路径串);退出码 0/1/2 不变,出错仍 stderr 文本;立 REQ-001(本仓首件,requirements 体系首次走全流程)
+- 全量报告:PE-05/06/07/08/10/11/12 去前 5 与前 4 截断;PE-11 由每文件只报首行改逐行全列(ark_rs 修一轮冒一轮三轮才清的根因之一);check() 返回值扩四元组,既有下标消费不破
+- 文档面同步:commands/check.md、SKILL 第四节、verification/command-test-cases.md、gates.md check 节、tool-python 退出码行;ROADMAP 两待定行翻已完成;本仓自检 PE-07 由 SKIP 转 PASS(首件 REQ 落地)
+
+### 修复（2026-09-16，第六十五批:commands/check.md PE-13 笔误）
+
+- `commands/check.md` 描述「PE-01 至 PE-13」为笔误,脚本检查面实为 PE-01 至 PE-12;CHANGELOG 历史条目按当时事实保留不改
 
 ## [0.7.0] - 2026-09-16
 

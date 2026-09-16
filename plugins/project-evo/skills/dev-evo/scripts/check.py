@@ -4,8 +4,12 @@
 # ///
 """check:文档即代码骨架合规检查(PE-01 至 PE-12)。
 
-用法: uv run check.py [目标项目]
-退出码: 0 全部通过(含 SKIP)/ 1 存在 FAIL / 2 出错。检查只读,不改目标项目。
+用法: uv run check.py [目标项目] [--json]
+退出码: 0 全部通过(含 SKIP)/ 1 存在 FAIL / 2 出错;--json 不改退出码。检查只读,不改目标项目。
+机器读面: --json 时 stdout 只出 JSON,取代人读逐项表,schema 为
+{"ok": bool, "counts": {"pass"/"fail"/"skip": N}, "results": [{"id","status","note","violations"}]};
+violations 是该检查全部违规项(file:line 或路径串,不截断),note 是人读说明不供解析;
+出错(退出码 2)仍走 stderr 文本,不包 JSON。人读面违规清单同样全量,不再截前 5 或前 4 处。
 规则对象:AGENTS 五节合同、docs/adr 与 docs/requirements 的 ADR/REQ 状态机与索引一致、
 写作规范(六态/标题/禁字)与引用断链。
 白名单: 环境变量 PEVO_CHECK_ALLOW="正则;正则" 豁免历史档案存量禁字(匹配 docs/ 下
@@ -16,6 +20,7 @@
 from __future__ import annotations
 
 import argparse
+import json
 import os
 import re
 import sys
@@ -65,41 +70,45 @@ def _numbered(d: Path, prefix: str) -> list[tuple[Path, str]]:
     return out
 
 
-def check(root: Path) -> tuple[list[tuple[str, str, str]], bool]:
-    """返回 (结果列表[(编号, 状态, 说明)], ok)。状态:PASS/FAIL/SKIP。"""
-    r: list[tuple[str, str, str]] = []
+def check(root: Path) -> tuple[list[tuple[str, str, str, list[str]]], bool]:
+    """返回 (结果列表[(编号, 状态, 说明, 违规清单)], ok)。状态:PASS/FAIL/SKIP。
+
+    违规清单是该检查全部违规项(file:line 或路径,PE-06/07 带说明后缀),全量不截断;
+    结构性检查(PE-01 至 PE-04、PE-09)无文件行定位粒度,违规清单为空列表,细节在说明里。
+    """
+    r: list[tuple[str, str, str, list[str]]] = []
 
     # PE-01 AGENTS 五节合同(Commands/Must/Must not/Read first 四硬节 + 环境软节)
     agents = _read(root / "AGENTS.md")
     if not agents:
-        r.append(("PE-01", "FAIL", "AGENTS.md 不存在"))
+        r.append(("PE-01", "FAIL", "AGENTS.md 不存在", []))
     else:
         heads = re.findall(r"^##\s+(.+?)\s*$", agents, re.M)
         miss = [s for s in AGENT_SECTIONS if s not in heads]
         note = "五节合同齐备" if not miss and "环境" in heads else (
             f"缺节: {', '.join(miss)}" if miss else "四硬节齐备,缺可选环境节")
-        r.append(("PE-01", "FAIL" if miss else "PASS", note))
+        r.append(("PE-01", "FAIL" if miss else "PASS", note, []))
 
     # PE-02 docs/adr 目录与索引
     ok2 = (root / "docs" / "adr").is_dir() and (root / "docs" / "adr" / "README.md").is_file()
     r.append(("PE-02", "PASS" if ok2 else "FAIL",
-              "docs/adr 目录与 README 索引在位" if ok2 else "缺 docs/adr 目录或其 README.md"))
+              "docs/adr 目录与 README 索引在位" if ok2 else "缺 docs/adr 目录或其 README.md", []))
 
     # PE-03 docs/requirements 目录与索引
     ok3 = (root / "docs" / "requirements").is_dir() and \
         (root / "docs" / "requirements" / "README.md").is_file()
     r.append(("PE-03", "PASS" if ok3 else "FAIL",
-              "docs/requirements 目录与 README 索引在位" if ok3 else "缺 docs/requirements 目录或其 README.md"))
+              "docs/requirements 目录与 README 索引在位" if ok3 else "缺 docs/requirements 目录或其 README.md", []))
 
     # PE-04 CLAUDE.md 单行桥接(存在才查)
     claude = root / "CLAUDE.md"
     if not claude.exists():
-        r.append(("PE-04", "SKIP", "CLAUDE.md 不存在"))
+        r.append(("PE-04", "SKIP", "CLAUDE.md 不存在", []))
     else:
         lines = [ln for ln in _read(claude).splitlines() if ln.strip()]
         ok = len(lines) == 1 and lines[0].strip() == "@AGENTS.md"
         r.append(("PE-04", "PASS" if ok else "FAIL",
-                  "" if ok else f"应仅一行 @AGENTS.md,实际 {len(lines)} 行"))
+                  "" if ok else f"应仅一行 @AGENTS.md,实际 {len(lines)} 行", []))
 
     # PE-05 docs 下文件名规范(无空格/括号/冒号;README 豁免)
     bad: list[str] = []
@@ -110,7 +119,7 @@ def check(root: Path) -> tuple[list[tuple[str, str, str]], bool]:
             if _BAD_NAME.search(p.name):
                 bad.append(p.relative_to(root).as_posix())
     r.append(("PE-05", "FAIL" if bad else "PASS",
-              f"命名含空格/括号/冒号: {', '.join(bad[:5])}" if bad else "文件名规范"))
+              f"命名含空格/括号/冒号: {', '.join(bad)}" if bad else "文件名规范", bad))
 
     # PE-06 ADR 命名与状态机
     adrs = _numbered(root / "docs" / "adr", "ADR")
@@ -130,7 +139,7 @@ def check(root: Path) -> tuple[list[tuple[str, str, str]], bool]:
             adr_bad.append(f"{rel}(superseded_by 悬空: {sup or '缺失'})")
     has_adr = bool(adrs)
     r.append(("PE-06", "FAIL" if adr_bad else ("PASS" if has_adr else "SKIP"),
-              f"{'; '.join(adr_bad[:4])}" if adr_bad else ("ADR 状态机合法" if has_adr else "adr 空,跳过")))
+              f"{'; '.join(adr_bad)}" if adr_bad else ("ADR 状态机合法" if has_adr else "adr 空,跳过"), adr_bad))
 
     # PE-07 REQ 命名与状态机(implemented 须带 trace)
     reqs = _numbered(root / "docs" / "requirements", "REQ")
@@ -150,7 +159,7 @@ def check(root: Path) -> tuple[list[tuple[str, str, str]], bool]:
                 req_bad.append(f"{rel}(implemented 缺 trace)")
     has_req = bool(reqs)
     r.append(("PE-07", "FAIL" if req_bad else ("PASS" if has_req else "SKIP"),
-              f"{'; '.join(req_bad[:4])}" if req_bad else ("REQ 状态机合法" if has_req else "requirements 空,跳过")))
+              f"{'; '.join(req_bad)}" if req_bad else ("REQ 状态机合法" if has_req else "requirements 空,跳过"), req_bad))
 
     # PE-08 ADR/REQ 索引一致(每个文件登记进各自 README)
     unreg: list[str] = []
@@ -161,7 +170,7 @@ def check(root: Path) -> tuple[list[tuple[str, str, str]], bool]:
             if key not in idx:
                 unreg.append(f"{sub}/{p.name}")
     r.append(("PE-08", "FAIL" if unreg else "PASS",
-              f"未登记索引: {', '.join(unreg[:5])}" if unreg else "ADR/REQ 均已登记索引"))
+              f"未登记索引: {', '.join(unreg)}" if unreg else "ADR/REQ 均已登记索引", unreg))
 
     # PE-09 六态标记(research 有文档时)
     mark = False
@@ -175,7 +184,7 @@ def check(root: Path) -> tuple[list[tuple[str, str, str]], bool]:
             if re.search(SIX_STATES, _read(p)):
                 mark = True
     r.append(("PE-09", "PASS" if mark else ("SKIP" if not has_r else "FAIL"),
-              "" if mark or not has_r else "research 文档无六态标记"))
+              "" if mark or not has_r else "research 文档无六态标记", []))
 
     # PE-10 标题禁括号(跳过围栏代码块内的 # 注释行)
     badh: list[str] = []
@@ -190,7 +199,7 @@ def check(root: Path) -> tuple[list[tuple[str, str, str]], bool]:
             if not in_fence and ln.startswith("#") and "(" in ln:
                 badh.append(f"{rel10}:{i}")
     r.append(("PE-10", "FAIL" if badh else "PASS",
-              f"标题含括号: {', '.join(badh[:5])}" if badh else "标题无括号"))
+              f"标题含括号: {', '.join(badh)}" if badh else "标题无括号", badh))
 
     # PE-11 四类禁字(emoji/破折号/箭头/智能引号等;豁免区感知,与 scan 同源)
     em: list[str] = []
@@ -206,12 +215,11 @@ def check(root: Path) -> tuple[list[tuple[str, str, str]], bool]:
         live = {ln: labels for ln, labels in v.items()
                 if not (rel.startswith("docs/") and any(a.search(f"{rel}:{ln}") for a in allow11))}
         exempt += len(v) - len(live)
-        if live:
-            first = min(live)
-            em.append(f"{rel}:{first}({'+'.join(live[first])})")
+        for ln in sorted(live):
+            em.append(f"{rel}:{ln}({'+'.join(live[ln])})")
     r.append(("PE-11", "FAIL" if em else ("SKIP" if exempt else "PASS"),
-              f"含禁字: {', '.join(em[:5])}" if em else
-              (f"历史档案禁字豁免 {exempt} 处(PEVO_CHECK_ALLOW),活跃面无禁字" if exempt else "无四类禁字")))
+              f"含禁字: {', '.join(em)}" if em else
+              (f"历史档案禁字豁免 {exempt} 处(PEVO_CHECK_ALLOW),活跃面无禁字" if exempt else "无四类禁字"), em))
 
     # PE-12 AGENTS 与 docs 各 README 反引号路径断链粗检
     dead: list[str] = []
@@ -222,9 +230,9 @@ def check(root: Path) -> tuple[list[tuple[str, str, str]], bool]:
             if not (root / rel).exists():
                 dead.append(rel)
     r.append(("PE-12", "FAIL" if dead else "PASS",
-              f"引用不存在: {', '.join(dead[:5])}" if dead else "README 引用可达"))
+              f"引用不存在: {', '.join(dead)}" if dead else "README 引用可达", dead))
 
-    ok = all(s != "FAIL" for _, s, _ in r)
+    ok = all(s != "FAIL" for _, s, _, _ in r)
     return r, ok
 
 
@@ -234,6 +242,7 @@ def main(argv: list[str] | None = None) -> int:
             stream.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(prog="check.py", description="诊断骨架合规(只读;退出码 0/1/2)")
     parser.add_argument("path", nargs="?", help="目标项目根目录(默认当前目录)")
+    parser.add_argument("--json", action="store_true", help="JSON 输出")
     args = parser.parse_args(argv)
 
     root = Path(args.path).resolve() if args.path else Path.cwd()
@@ -241,11 +250,20 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: 目标目录不存在:{root}", file=sys.stderr)
         return 2
     results, ok = check(root)
-    for pid, status, note in results:
+    if args.json:
+        counts = {"pass": 0, "fail": 0, "skip": 0}
+        for _, st, _, _ in results:
+            counts[st.lower()] += 1
+        print(json.dumps({"ok": ok, "counts": counts,
+                          "results": [{"id": pid, "status": st, "note": note, "violations": v}
+                                      for pid, st, note, v in results]},
+                         ensure_ascii=False, indent=2))
+        return 0 if ok else 1
+    for pid, status, note, _ in results:
         print(f"{status:<5} {pid}  {note}".rstrip())
-    print(f"{'合规: 全部通过' if ok else '不合规: 存在 FAIL'}(PASS {sum(1 for _, s, _ in results if s == 'PASS')}"
-          f" / FAIL {sum(1 for _, s, _ in results if s == 'FAIL')}"
-          f" / SKIP {sum(1 for _, s, _ in results if s == 'SKIP')})")
+    print(f"{'合规: 全部通过' if ok else '不合规: 存在 FAIL'}(PASS {sum(1 for _, s, _, _ in results if s == 'PASS')}"
+          f" / FAIL {sum(1 for _, s, _, _ in results if s == 'FAIL')}"
+          f" / SKIP {sum(1 for _, s, _, _ in results if s == 'SKIP')})")
     return 0 if ok else 1
 
 
