@@ -27,6 +27,7 @@ cargo aidoc --check --strict      # 投影漂移门禁(改 pub/文档后先 carg
 
 ## 投影（agent 面）
 
+- **aidoc 是 Rust 仓强制标配,不是可裁定项**（bin-only 仓不豁免:投影受众是维护者与 agent,不是外部用户）;「无自有 API 面」范式不覆盖 Rust 仓
 - `docs/aidoc/`：llms.txt（入口索引）+ 分 crate 分模块 md + api JSON；全部生成物,手改被覆盖
 - 改 pub 项流程：同步 `///` 与 doctest,跑 `cargo aidoc` 生成,`git add docs/aidoc` 同 PR 提交
 - 工具渲染格式的禁字（如条目分隔符）无开关可改时：路径级豁免登记在册（`PEVO_CHECK_ALLOW` 指 `docs/aidoc/`）,漂移真门禁仍是 `aidoc --check --strict`；源头能改的一律改源头,不为生成物开口子 [经验: 首个 aidoc 全量投影仓 2026-09-16]

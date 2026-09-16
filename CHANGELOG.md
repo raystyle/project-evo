@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 变更（2026-09-16，第五十九批:Rust 栈 aidoc 投影强制化,ADR-0006）
+
+- 用户裁定推翻 bin-only 豁免口径:Rust 仓 aidoc 投影为强制标配,「无自有 API 面项目」范式范围限定为构建树与补丁仓等非三栈形态,Rust 仓不适用
+- tool-rust 投影节改强制口径(受众是维护者与 agent);base-projection 无自有 API 面节加范围限定;各仓既有「不适用」裁定句随重构撤换
+
 ### 新增（2026-09-16，第五十八批:aidoc 集成补全）
 
 - base-projection 对照表下补 Rust 侧管线段(/// 为源、cargo aidoc 生成 docs/aidoc、--check --strict 漂移门禁),与 TS/Python 两段对称
