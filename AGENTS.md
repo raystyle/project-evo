@@ -39,4 +39,5 @@
 - 平台:Windows + PowerShell 7(禁 powershell.exe 5.1 与 cmd);uv 运行时,脚本 PEP 723 零依赖(>=3.12);WSL 到宿主恒走 127.0.0.1 回环加 interop 直调,不走宿主 mesh IP(口径见 dev-evo references/env-platform.md 第十节);验收运维脚本载体统一 pwsh(见同篇第十一节)
 - 当前阶段:v0.7.0 已封版(2026-09-16 总台统一封版令,57 至 64 批治理基建;沿革:v0.6.0 四 skill 形态与终态定形、第五十批 dev-evo 文档即代码、第六十一批终态清理、ADR-0007 治理终态)
 - 部署:Claude Code `/plugin marketplace add raystyle/projectevo`;Codex `codex plugin marketplace add raystyle/projectevo`;Grok `grok plugin install project-evo@projectevo`;Kimi 无市场,拷 `plugins/project-evo/skills/*` 至 `~/.kimi/skills`
+- 工作根:`~/repos/ProjectEvo`(WSL 独立 VHDX 挂载 /mnt/wsl/repos 快捷 ~/repos;2026-09-16 迁移,旧位 /mnt/d/ProjectEvo 过渡后裁)
 - 项目状态与待办见 `ROADMAP.md`,不在本文件维护
