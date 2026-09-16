@@ -24,6 +24,14 @@ TS 侧管线（TypeScript 项目照此配，细节见 tool-typescript.md）：`/
 
 Python 侧管线（Python 项目照此配，细节见 tool-python.md）：docstring 为源（做什么+何时用+边界）,Griffe/MkDocStrings 出分模块 md,`mkdocs build --strict` 兼作漂移门禁,示例执行 `pytest --doctest-modules`。
 
+## 无自有 API 面项目（构建树与补丁仓）
+
+不是所有仓都有自有 API 面（外源构建树加补丁、纯构建定制等形态）。此类项目三栈投影整栈不适用，不立新栈篇；三件通用 [经验: 首个构建树仓用户反馈 2026-09-16]：
+
+- 公开契约 = 字节确定性产物：补丁与生成物可重生成并 diff 等价（regenerate-and-diff）,作为公开面漂移门禁的对应物
+- 构建门禁进 AGENTS Commands 在册：构建命令本身是文档的一部分
+- 一句裁定入文档地图：明示三栈投影不适用、公开契约走什么，替代整栈工具篇
+
 ## agent 检索面（渐进披露）
 
 读序（AGENTS 的 Read first 节引用）：
