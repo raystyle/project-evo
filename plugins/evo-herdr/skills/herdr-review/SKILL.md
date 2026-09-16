@@ -16,9 +16,9 @@ compatibility: 需 herdr 管理的评审窗格(codex 常驻会话)与 PATH 上�
 
 ## 一、形态
 
-- 评审会话 = herdr 窗格里的常驻 codex,用户级 cwd 跨仓收件(同一评审格先后收 hst_rs、ark_rs、OfficeCLI、oxvg 的评审) [实证: hst trace 会话史 2026-09-14/16]
+- 评审会话 = herdr 窗格里的常驻 codex;cwd 两形态按评审范围裁定:跨仓收件用用户级 home(同一评审格先后收 hst_rs、ark_rs、OfficeCLI、oxvg 的评审 [实证: hst trace 会话史 2026-09-14/16]),单仓专属用该仓 cwd(如 evo-codex-review 驻 project-evo [实证: 2026-09-16 用户裁定后实建])
 - 挂位 = 工位 tab 内右侧格,与开发格同 tab 同屏;命名评审格(如 hst-codex-review),live 名可作派单地址,仍以 herdr agent list 实查为准 [实证: 2026-09-16 agent list 见 wT:p2 命名格]
-- 带起 = 检测到自愈:查工位格右侧有无可用格(neighbor),无则右分建格起 codex,有则直接对话;全流程命令实证见 `references/panes.md` 第二节
+- 带起 = 检测到自愈:查工位格右侧有无可用格(neighbor),无则右分建格起 codex,有则直接对话;仓内 cwd 变体首启弹 codex 目录信任屏,agent start 的就绪态是假阳,pane read 实证后替答,信任裁定归用户;全流程命令实证见 `references/panes.md` 第二节
 - 两种规模:**快核**(单提交或小批,评审请求直发会话)与**全量 code review**(整文件集,走任务协议:委派即产物落任务目录,收件人模式收件)
 
 ## 二、工作流(请求 到 放行)

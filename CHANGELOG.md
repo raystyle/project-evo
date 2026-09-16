@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 变更（2026-09-16，第七十批:评审格仓内 cwd 变体与信任屏处理序沉淀）
+
+- herdr-review panes.md:评审格 cwd 定形为两形态按评审范围裁定:跨仓收件用用户级 home(原形态),单仓专属用该仓 cwd(用户裁定本仓 review 只针对本仓,evo-codex-review 驻 project-evo 仓内实建);带起节补 3a 处理序:仓内 cwd 首启弹 codex 目录信任屏,agent start 的 interactive_ready 是假阳,pane read 实证后 pane send-keys enter 替答,信任裁定归用户(本仓与自建仓默认可信,陌生仓先问);坑节补信任屏假阳条目;SKILL.md 形态节同步;yolo 与信任态以 hst doctor 只读复核入顺序纪律
+- 修复:docs/diary/2026-09-16-飞轮批与封版v0.6.0.md 第六十九批标题 ASCII 括号触发 PE-10(第六十九批日记钩子补引入,改「与」并入主题),check 门禁恢复 12 PASS
+
 ### 变更（2026-09-16，计数原语对齐:env-platform 五端四机刷正）
 
 - env-platform.md 第十节「四平台测试矩阵」计数原语按用户 2026-09-16 裁定刷正为「五端四机」:五端 = wsl、lan-win、lan-ubuntu、lan-linux、lan-mac 跨四机(wsl 与 lan-win 同机两面,Linux 面与 Windows 面各自成端),lan-linux2 不在矩阵;与 reader_rs 侧 AGENTS 同口径(总台转单,reader_rs 已落 c0a99b9);同文件 103/105 行既有「五端」表述核对一致零改动
