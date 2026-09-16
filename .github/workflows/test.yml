@@ -21,7 +21,8 @@ jobs:
         run: uv run pytest -q
       - name: smoke
         run: |
-          uv run python plugins/project-evo/skills/dev-evo/scripts/check.py --help
-          uv run python plugins/project-evo/skills/dev-evo/scripts/init.py "$RUNNER_TEMP/demo" --name demo
-          uv run python plugins/project-evo/skills/dev-evo/scripts/check.py "$RUNNER_TEMP/demo"
-          uv run python -c "import json; [json.load(open(p, encoding='utf-8')) for p in ['.claude-plugin/marketplace.json', '.agents/plugins/marketplace.json', 'plugins/project-evo/.claude-plugin/plugin.json', 'plugins/project-evo/.codex-plugin/plugin.json', 'plugins/project-evo/hooks/hooks.json']]"
+          uv run python plugins/evo-adr/skills/code-kit/scripts/check.py --help
+          uv run python plugins/evo-adr/skills/code-kit/scripts/init.py "$RUNNER_TEMP/demo" --name demo
+          uv run python plugins/evo-adr/skills/code-kit/scripts/check.py "$RUNNER_TEMP/demo"
+          uv run python plugins/evo-research/skills/report/scripts/render.py --help
+          uv run python -c "import json, glob; [json.load(open(p, encoding='utf-8')) for p in ['.claude-plugin/marketplace.json', '.agents/plugins/marketplace.json', 'plugins/*/.claude-plugin/plugin.json', 'plugins/*/.codex-plugin/plugin.json', 'plugins/evo-adr/hooks/hooks.json']]"

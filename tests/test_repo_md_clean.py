@@ -12,7 +12,7 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parent.parent
-_MDRULES = REPO / "plugins" / "project-evo" / "skills" / "dev-evo" / "scripts" / "mdrules.py"
+_MDRULES = REPO / "plugins" / "evo-adr" / "skills" / "code-kit" / "scripts" / "mdrules.py"
 
 _spec = importlib.util.spec_from_file_location("pevo_mdrules", _MDRULES)
 mdrules = importlib.util.module_from_spec(_spec)
@@ -20,7 +20,7 @@ _spec.loader.exec_module(mdrules)
 
 
 def test_repo_markdown_clean():
-    if not (REPO / "plugins" / "project-evo").is_dir():
+    if not _MDRULES.is_file():
         pytest.skip("非仓内运行(安装态),跳过")
     bad: list[str] = []
     for p in sorted(REPO.rglob("*.md")):

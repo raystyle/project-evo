@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 变更（2026-09-16，第六十七批:市场更名 project-evo 与四插件重组）
+
+- **破坏性**:市场名 `projectevo` 改 `project-evo`,GitHub 仓同步改名 `raystyle/project-evo`(旧地址重定向);单插件 `project-evo` 重组为四插件 `evo-adr` / `evo-codesec` / `evo-research` / `evo-herdr`(四插件同版本线,自 0.1.0 起);斜杠前缀 `/project-evo:*` 全部变为 `/evo-adr:*`、`/evo-codesec:*`;旧市场消费者须卸旧装新(旧缓存 `cache/projectevo/` 整目录可删)
+- dev-evo 按意图路由拆细为 `doc-gov`(治理知识面,references 9 篇)与 `code-kit`(骨架与门禁工具箱,references 8 篇加五脚本加模板加 verification),17 篇参考总量不变构成重分;立 ADR-0010(supersede ADR-0001,修订 0007/0009 形态条款,0004 档案条款由 doc-gov 承载)
+- super-research 拆 `research`(发现/获取/研读管线)与 `report`(研究成文三件套):report 吸收家族研究仓报告生成实践(断言式骨架、md/pdf/docx 三件套、Typst 渲染、版式复检口径、信源分级存档与登记),按「吸收即提炼」入库;docx 渲染与版式复检带外部依赖以 references 知识形态承载,脚本面仅收零依赖 render.py(参数化项目根、--check 编译门禁、risky-bold lint;修复吸收件「无二级标题时 cmarker 报 Markdown must be a string」缺陷);render 实证过(WSL interop 调 typst,130 KB 样例)
+- 清单与合同同步:双 marketplace 四条、四插件双 manifest 各四份共十份 JSON 重写,AGENTS 定位/Commands/Must/Must-not/Read first/部署节、根 README 与四份插件 README、docs 地图、gates.md、skill-spec.md 分层原则、githooks pre-commit(顺手补 herdr-flywheel 断链扫描既有缺口)、.tools 默认根、.claude 两份 settings、CI 冒烟面、三个测试文件路径常量同步;清单守卫测试重写为四插件/七 skill/同版断言(立 REQ-002 走全流程)
+- 构造纪律入合同(ADR-0010):新写与改写 SKILL.md 命令块实证准入(写进去的命令当会真跑过)、脚本即交付物、一条活路、坑出实碰;skill 依赖的外部命令(gh、bh、reader、aria2c、typst 等)全平台分发安装由宿主工具链 omc 与 ark 统一维护,skill 只认 PATH
+
 ### 新增（2026-09-16，第六十五批:check --json 机器读面与全量报告）
 
 - `check.py` 新增 `--json`:stdout 出 JSON 机器读面取代人读逐项表,schema 为 `{"ok","counts"(pass/fail/skip),"results"[{id,status,note,violations}]}`,violations 是该检查全部违规项(file:line 或路径串);退出码 0/1/2 不变,出错仍 stderr 文本;立 REQ-001(本仓首件,requirements 体系首次走全流程)

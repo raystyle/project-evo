@@ -1,0 +1,37 @@
+{
+  "name": "evo-research",
+  "version": "0.1.0",
+  "description": "项目进化研究检索:research(资料检索管线:gh/bh 发现、aria2c 获取、reader 研读)与 report(研究成文:报告骨架、md/pdf/docx 三件套、Typst 渲染、信源存档与登记)",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/evo-research",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "skill",
+    "research",
+    "search",
+    "arxiv",
+    "typst",
+    "report",
+    "llm"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Evo Research",
+    "shortDescription": "项目进化研究检索:资料检索管线(research)与研究成文三件套(report)。",
+    "longDescription": "两个 skill:research 把资料检索做成可复用管线(gh 搜代码与仓库、bh 搜 Google/Medium/X、aria2c 取论文 PDF 与大资产、reader 研读,无头优先与 HTTP 优先硬规则);report 把研究成果成文为正式报告(断言式标题与题名区骨架、附录信源清单与断言证据对照、md 唯一真源加 md/pdf/docx 三件套产出、Typst 渲染与版式复检口径、信源原件存档与索引登记)。",
+    "developerName": "raystyle",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "用 research 搜一下 agent skills 规范的论文和近期文章。",
+      "把这份调研写成正式报告并渲染三件套。"
+    ]
+  }
+}

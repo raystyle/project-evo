@@ -1,0 +1,21 @@
+{
+  "name": "evo-research",
+  "version": "0.1.0",
+  "description": "项目进化研究检索:research(资料检索管线:gh/bh 发现、aria2c 获取、reader 研读)与 report(研究成文:报告骨架、md/pdf/docx 三件套、Typst 渲染、信源存档与登记)",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/evo-research",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "skill",
+    "research",
+    "search",
+    "arxiv",
+    "typst",
+    "report",
+    "llm"
+  ]
+}

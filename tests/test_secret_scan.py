@@ -10,7 +10,7 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-SCRIPTS = REPO / "plugins" / "project-evo" / "skills" / "secret-scan" / "scripts"
+SCRIPTS = REPO / "plugins" / "evo-codesec" / "skills" / "secret-scan" / "scripts"
 
 
 def _load():

@@ -1,0 +1,36 @@
+{
+  "name": "evo-codesec",
+  "version": "0.1.0",
+  "description": "项目进化代码安全:secret-scan(密钥与隐私深扫:工作区、git 全历史、GitHub alerts 与 code search)与 security-audit(安全审计与漏洞审查,译自 Cloudflare security-audit-skill,MIT)",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/evo-codesec",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "skill",
+    "security",
+    "secrets",
+    "audit",
+    "vulnerability",
+    "llm"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Evo Codesec",
+    "shortDescription": "项目进化代码安全:密钥隐私深扫(secret-scan)与安全审计(security-audit)。",
+    "longDescription": "两个 skill:secret-scan 扫本地 git 与 GitHub 历史的密钥、密码、Token、私钥与可选隐私字段(工作区、git log 全历史、gh secret-scanning alerts、gh search code,误报豁免走 PEVO_SCAN_ALLOW);security-audit 防御性安全审计与漏洞审查(双模式、信任边界、覆盖账本、猎手波次、独立验证、结构化报告,译自 Cloudflare security-audit-skill,MIT)。",
+    "developerName": "raystyle",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "用 secret-scan 扫一下这个仓的密钥泄露。",
+      "对这个服务做一次聚焦的安全审查。"
+    ]
+  }
+}

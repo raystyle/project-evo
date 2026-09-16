@@ -1,14 +1,50 @@
 {
-  "name": "projectevo",
+  "name": "project-evo",
   "interface": {
     "displayName": "ProjectEvo"
   },
   "plugins": [
     {
-      "name": "project-evo",
+      "name": "evo-adr",
       "source": {
         "source": "local",
-        "path": "./plugins/project-evo"
+        "path": "./plugins/evo-adr"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "evo-codesec",
+      "source": {
+        "source": "local",
+        "path": "./plugins/evo-codesec"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "evo-research",
+      "source": {
+        "source": "local",
+        "path": "./plugins/evo-research"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    },
+    {
+      "name": "evo-herdr",
+      "source": {
+        "source": "local",
+        "path": "./plugins/evo-herdr"
       },
       "policy": {
         "installation": "AVAILABLE",

@@ -1,0 +1,21 @@
+{
+  "name": "evo-adr",
+  "version": "0.1.0",
+  "description": "项目进化文档治理:doc-gov(文档体系治理知识:AGENTS 合同、ADR、REQ、投影纪律、六态)与 code-kit(骨架与门禁:init/check/scan 零依赖脚本、md 禁字挡板、模板)",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/evo-adr",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "skill",
+    "documentation",
+    "adr",
+    "requirements",
+    "scaffold",
+    "markdown",
+    "llm"
+  ]
+}

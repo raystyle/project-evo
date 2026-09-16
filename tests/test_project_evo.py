@@ -15,8 +15,15 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-PLUGIN = REPO / "plugins" / "project-evo"
-SCRIPTS = PLUGIN / "skills" / "dev-evo" / "scripts"
+PLUGIN_NAMES = ("evo-adr", "evo-codesec", "evo-research", "evo-herdr")
+PLUGINS = {n: REPO / "plugins" / n for n in PLUGIN_NAMES}
+SCRIPTS = PLUGINS["evo-adr"] / "skills" / "code-kit" / "scripts"
+SKILLS = {
+    "evo-adr": ["code-kit", "doc-gov"],
+    "evo-codesec": ["secret-scan", "security-audit"],
+    "evo-research": ["report", "research"],
+    "evo-herdr": ["herdr-flywheel"],
+}
 
 
 def _load(name: str):
@@ -256,48 +263,61 @@ def test_check_json_skip_counts_via_allow(tmp_path: Path):
 
 
 def test_marketplace_catalog_consistency():
-    """清单守卫:市场只收一个插件、双清单一致、双 manifest 与市场版本同步、五 skill 与命令面在位。"""
+    """清单守卫:市场名 project-evo 收四插件、双清单一致、每插件双 manifest 与市场版本同步、
+    四插件同版、七 skill 分属正确与命令面在位(ADR-0010 四插件形态)。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     codex_mkt = json.loads((REPO / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
-    claude_man = json.loads((PLUGIN / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
-    codex_man = json.loads((PLUGIN / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
+    assert claude_mkt["name"] == codex_mkt["name"] == "project-evo", "市场名须为 project-evo"
 
     names_c = {p["name"] for p in claude_mkt["plugins"]}
     names_x = {p["name"] for p in codex_mkt["plugins"]}
-    assert names_c == names_x == {"project-evo"}, "市场只收一个插件 project-evo(五 skill 同装同版)"
+    assert names_c == names_x == set(PLUGIN_NAMES), f"市场恰收四插件(ADR-0010): {names_c}"
     for p in claude_mkt["plugins"]:
         assert (REPO / p["source"].removeprefix("./")).is_dir(), f"Claude source 不可达: {p['source']}"
     for p in codex_mkt["plugins"]:
         assert (REPO / p["source"]["path"].removeprefix("./")).is_dir(), "Codex source 不可达"
 
-    for k in ("name", "version", "description"):
-        assert claude_man[k] == codex_man[k], f"{k} 双 manifest 漂移,须同步改两面"
-    entry = next(p for p in claude_mkt["plugins"] if p["name"] == "project-evo")
-    assert entry["version"] == claude_man["version"], "市场清单版本与 manifest 漂移"
+    versions = set()
+    for name in PLUGIN_NAMES:
+        plugin = PLUGINS[name]
+        claude_man = json.loads((plugin / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
+        codex_man = json.loads((plugin / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"))
+        for k in ("name", "version", "description"):
+            assert claude_man[k] == codex_man[k], f"{name} 双 manifest 的 {k} 漂移,须同步改两面"
+        entry = next(p for p in claude_mkt["plugins"] if p["name"] == name)
+        assert entry["version"] == claude_man["version"], f"{name} 市场清单版本与 manifest 漂移"
+        versions.add(claude_man["version"])
 
-    skills = PLUGIN / "skills"
-    dirs = sorted(d.name for d in skills.iterdir() if d.is_dir())
-    assert dirs == ["dev-evo", "herdr-flywheel", "secret-scan", "security-audit", "super-research"], f"五 skill 须齐备: {dirs}"
-    for name in dirs:
-        text = (skills / name / "SKILL.md").read_text(encoding="utf-8")
-        assert text.startswith("---\n"), f"{name}/SKILL.md 缺 frontmatter"
-        head = text.split("---")[1]
-        declared = next(l.split(":", 1)[1].strip() for l in head.splitlines() if l.startswith("name:"))
-        assert declared == name, f"frontmatter name({declared}) 须与目录名({name})一致"
+        skills = plugin / "skills"
+        dirs = sorted(d.name for d in skills.iterdir() if d.is_dir())
+        assert dirs == sorted(SKILLS[name]), f"{name} 的 skills 须为 {sorted(SKILLS[name])}: {dirs}"
+        for sname in dirs:
+            text = (skills / sname / "SKILL.md").read_text(encoding="utf-8")
+            assert text.startswith("---\n"), f"{sname}/SKILL.md 缺 frontmatter"
+            head = text.split("---")[1]
+            declared = next(l.split(":", 1)[1].strip() for l in head.splitlines() if l.startswith("name:"))
+            assert declared == sname, f"frontmatter name({declared}) 须与目录名({sname})一致"
+            assert (skills / sname / "references").is_dir(), f"参考目录缺失: {sname}"
 
-    docs = skills / "dev-evo"
-    assert (docs / "references").is_dir() and (docs / "assets" / "templates").is_dir()
+    assert len(versions) == 1, f"四插件同版本线(ADR-0010): {versions}"
+
+    kit = PLUGINS["evo-adr"] / "skills" / "code-kit"
+    assert (kit / "assets" / "templates").is_dir(), "code-kit 缺模板目录"
     for s in ("init.py", "check.py", "scan.py", "mdrules.py", "md-guard.py"):
-        assert (docs / "scripts" / s).is_file(), f"脚本缺失: {s}"
-    for name in dirs:
-        assert (skills / name / "references").is_dir(), f"参考目录缺失: {name}"
-    assert (skills / "secret-scan" / "scripts" / "scan.py").is_file()
-    assert (skills / "secret-scan" / "scripts" / "ab.py").is_file()
-    assert (skills / "security-audit" / "scripts" / "validate-findings.cjs").is_file()
-    assert (skills / "security-audit" / "scripts" / "report-schema.json").is_file()
-    for c in ("init.md", "check.md", "scan.md", "secret-scan-cli.md"):
-        assert (PLUGIN / "commands" / c).is_file(), f"斜杠命令缺失: {c}"
-    json.loads((PLUGIN / "hooks" / "hooks.json").read_text(encoding="utf-8")), "hooks.json 须为合法 JSON"
+        assert (kit / "scripts" / s).is_file(), f"脚本缺失: {s}"
+    secret = PLUGINS["evo-codesec"] / "skills" / "secret-scan"
+    assert (secret / "scripts" / "scan.py").is_file() and (secret / "scripts" / "ab.py").is_file()
+    audit = PLUGINS["evo-codesec"] / "skills" / "security-audit"
+    assert (audit / "scripts" / "validate-findings.cjs").is_file()
+    assert (audit / "scripts" / "report-schema.json").is_file()
+    report = PLUGINS["evo-research"] / "skills" / "report"
+    assert (report / "scripts" / "render.py").is_file(), "report 缺 render.py"
+    assert (report / "assets" / "templates" / "report.md").is_file()
+    assert (report / "assets" / "templates" / "report.typ").is_file()
+    for c in ("init.md", "check.md", "scan.md"):
+        assert (PLUGINS["evo-adr"] / "commands" / c).is_file(), f"evo-adr 斜杠命令缺失: {c}"
+    assert (PLUGINS["evo-codesec"] / "commands" / "secret-scan-cli.md").is_file(), "evo-codesec 缺 secret-scan-cli"
+    json.loads((PLUGINS["evo-adr"] / "hooks" / "hooks.json").read_text(encoding="utf-8")), "hooks.json 须为合法 JSON"
 
 
 def _run_md_guard(payload: str) -> subprocess.CompletedProcess:
@@ -344,7 +364,7 @@ def test_plugin_hooks_use_braced_plugin_root():
     且在 Windows 用 cmd.exe /C 执行(command_runner.rs: COMSPEC 兜底 cmd.exe /C)。
     故裸 $VAR 与 PowerShell 的 $env: 在 Windows 面都不展开,脚本路径必失效。
     """
-    hooks = json.loads((PLUGIN / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+    hooks = json.loads((PLUGINS["evo-adr"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
     handlers = [h for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]]
     assert handlers, "hooks.json 须有 PostToolUse 处理器"
     for h in handlers:

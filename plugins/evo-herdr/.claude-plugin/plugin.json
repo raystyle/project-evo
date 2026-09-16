@@ -1,0 +1,19 @@
+{
+  "name": "evo-herdr",
+  "version": "0.1.0",
+  "description": "项目进化多仓协作:herdr-flywheel(herdr 工位飞轮四步协议:派单、回执、断言、吸收)",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/evo-herdr",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "skill",
+    "collaboration",
+    "workflow",
+    "multi-repo",
+    "llm"
+  ]
+}

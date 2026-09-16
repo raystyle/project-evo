@@ -1,12 +1,12 @@
 ---
 id: ADR-0001
 title: 单插件多 skill 市场形态,不四插件各一 skill
-status: accepted
+status: superseded
 date: 2026-09-10
 deciders:
   - raystyle
 supersedes: []
-superseded_by: null
+superseded_by: ADR-0010
 tags:
   - marketplace
   - plugin

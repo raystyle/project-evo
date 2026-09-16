@@ -1,0 +1,35 @@
+{
+  "name": "evo-herdr",
+  "version": "0.1.0",
+  "description": "项目进化多仓协作:herdr-flywheel(herdr 工位飞轮四步协议:派单、回执、断言、吸收)",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/evo-herdr",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "skill",
+    "collaboration",
+    "workflow",
+    "multi-repo",
+    "llm"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Evo Herdr",
+    "shortDescription": "项目进化多仓协作:herdr 工位飞轮四步协议(派单、回执、断言、吸收)。",
+    "longDescription": "一个 skill:herdr-flywheel 治理多仓 herdr 飞轮协作,一个总台协调多个单仓工位,派单、回执、断言、吸收四步循环(herdr agent prompt 原子派单、agent read 收回执、独立复核断言、反馈吸收分流、工位带起顺序与治理操作坑);本 skill 是该协议唯一权威源。",
+    "developerName": "raystyle",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "用 herdr-flywheel 给 ark_rs 工位派这轮治理单。",
+      "收一下各工位回执并做独立断言。"
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "evo-codesec",
+  "version": "0.1.0",
+  "description": "项目进化代码安全:secret-scan(密钥与隐私深扫:工作区、git 全历史、GitHub alerts 与 code search)与 security-audit(安全审计与漏洞审查,译自 Cloudflare security-audit-skill,MIT)",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/evo-codesec",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "skill",
+    "security",
+    "secrets",
+    "audit",
+    "vulnerability",
+    "llm"
+  ]
+}
