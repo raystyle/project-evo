@@ -49,6 +49,7 @@
 | 市场更名 project-evo 与四插件重组 | 已完成 | 2026-09-16 第六十七批:市场名与 GitHub 仓统一 project-evo;四插件 evo-adr/evo-codesec/evo-research/evo-herdr 七 skill;dev-evo 拆 doc-gov 与 code-kit,super-research 拆 research 与 report(吸收家族研究仓报告生成实践);ADR-0010 supersede ADR-0001;REQ-002 落地 [实证: pytest 26 全绿加 md-ref-scan 七 skill 零断链加 render 130 KB 样例] |
 | herdr 评审闸门 skill 增编 | 已完成 | 2026-09-16 第六十八批:evo-herdr 第二 skill herdr-review(评审请求五件模板、F/G/CONFIRM 回执轮次、发现核实与交叉复核、评审窗格检测带起);ADR-0011 修订 ADR-0010 清单为八 skill;REQ-003 落地 [实证: 命名评审格实建 evo-codex-review 加第六十七批评审单实发加 pytest 全绿] |
 | gh-issue skill 增编 | 已完成 | 2026-09-16 第七十二批:evo-adr 第三 skill,命令出错自动上报 GitHub issue(定位仓、双通道去重、模板正文、自动发单、三态回执);ADR-0012 修订 ADR-0010 清单为九 skill,REQ-004 落地 [实证: 命令面本会话实跑加自发实证单验后即关加 pytest 全绿] |
+| 封版 v0.8.0 | 已完成 | 2026-09-16 第六十五至七十三批九批合并发布:check --json 机器读面、herdr-flywheel、市场更名 project-evo 与四插件重组(ADR-0010)、herdr-review 评审闸门(ADR-0011)、gh-issue 第九 skill(ADR-0012)、发现通道收敛 llms;四插件 0.1.0 升 0.2.0;tag v0.8.0 加 Release |
 | report 渲染字体族参数化 | 待定 | 2026-09-16 评审批(codex):report.typ 字体链写死 Windows 中文字体,Linux 缺 CJK 字体时静默丢中文字且退出 0;已加 render.py 未知字体显式告警与文档 Gotcha,根治做字体族参数化(--font/环境变量)或按平台 fallback 列表,--check 可升级为失败 |
 | 守卫断言扩展与机检盲区 | 待定 | 2026-09-16 评审批(codex):守卫未断言「市场描述 == manifest 描述」与 references/README.md 存在(security-audit 索引已补,守卫断言仍缺);md-ref-scan 只认首个 root 实参(多根静默忽略,现靠逐次调用规避);跨 skill 散文式指针(无 .md 后缀)与节号引用(如「triple-output 第五节」)不在机检范围(快核轮实抓节号悬挂一处) |
 

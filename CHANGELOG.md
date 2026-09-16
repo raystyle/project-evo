@@ -4,6 +4,8 @@
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-09-16
+
 ### 变更（2026-09-16，第七十三批:发现通道收敛 llms 入库）
 
 - 舰队裁定吸收:skill 面退役,agent 发现通道收敛 llms,`--llms` 定位为紧凑版 CLI 使用说明书(stdout 可管道,markdown 加 `--json` 双形态,按需零常驻);七仓对账后入库(hst 库投影型 ADR-0005、ark D50 在途、reader 与 browse 与 omc 旗标型已落地,OfficeCLI 与 clean-chrome 未动)
