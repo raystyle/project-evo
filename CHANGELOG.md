@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-16，第七十二批:gh-issue skill 增编）
+
+- 新增第九 skill `gh-issue`(evo-adr 第三 skill,ADR-0012 修订 ADR-0010 八 skill 清单为九):命令出错自动上报 GitHub issue 工作流。两条用户裁定入文:无草稿确认闸直接 gh issue create 自动发;发前双通道去重(gh search issues 加 gh issue list,open 实质同一票否决,回执附既有链接)
+- 五步成文:定位目标仓(git remote 与 gh repo view 自取,禁硬编码映射表)、四格判定矩阵、六段模板正文(截断保首尾标中段、脱敏对齐 secret-scan)、label 与 viewerPermission 预检后发单、三态回执(已发加查重摘要、命中未发、未能发);references 三篇:gh-ops(仓解析序、去重矩阵、预检、坑表)、issue-body(标题公式、模板、回执)、README 索引
+- 命令面九条本会话实证:remote/repo view/label list/双通道搜索实跑;create 与 close 以本仓自发实证单走通验后即关;label 硬带不存在的 422 整单失败路径实证(预检必要性的依据)
+- 同步面:REQ-004 走全流程(implemented 加 trace)、ADR-0012 与两处索引(ADR-0010 替代列回指)、双 manifest 与市场条目描述逐字同、守卫 SKILLS 九 skill、pre-commit 第九段断链、AGENTS 与根 README 与 docs 地图与 gates 计数八改九、evo-adr README 三 skill 化、ROADMAP 里程碑、diary
+
 ### 修复（2026-09-16，第七十一批:第七十批评审回执处置）
 
 - codex 全量回执 4F 加 8G(任务协议产物 /tmp/project-evo-review/findings-70.md,增量面自洽零新患),总台逐条独立核实全真后全修:F1 至 F3 三处「四插件七 skill」陈旧计数刷正(marketplace 元数据、docs 地图、gates 门禁表;第六十八批 ADR-0011 扩八 skill 时同步面漏改,git blame 落 e32d1ab);F4 code-kit SKILL 的 md-guard 四类禁字自述对齐 mdrules.py 权威(box-drawing 移出机检类,补 emoji 与全角字母数字)

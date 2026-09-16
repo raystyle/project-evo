@@ -4,14 +4,14 @@
     "name": "raystyle"
   },
   "metadata": {
-    "description": "项目进化:四插件八 skill(文档治理 evo-adr、代码安全 evo-codesec、研究检索 evo-research、多仓协作 evo-herdr)",
+    "description": "项目进化:四插件九 skill(文档治理 evo-adr、代码安全 evo-codesec、研究检索 evo-research、多仓协作 evo-herdr)",
     "pluginRoot": "./plugins"
   },
   "plugins": [
     {
       "name": "evo-adr",
       "source": "./plugins/evo-adr",
-      "description": "项目进化文档治理:doc-gov(文档体系治理知识:AGENTS 合同、ADR、REQ、投影纪律、六态)与 code-kit(骨架与门禁:init/check/scan 零依赖脚本、md 禁字挡板、模板)",
+      "description": "项目进化文档治理:doc-gov(文档体系治理知识:AGENTS 合同、ADR、REQ、投影纪律、六态)与 code-kit(骨架与门禁:init/check/scan 零依赖脚本、md 禁字挡板、模板)与 gh-issue(命令出错自动上报:定位仓、双通道去重、模板正文、gh issue create 自动发、三态回执)",
       "version": "0.1.0",
       "category": "productivity"
     },

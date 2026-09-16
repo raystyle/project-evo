@@ -1,6 +1,6 @@
 # docs 地图
 
-> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、diary 留过程痕、research 存研究档案;skill 知识库在 `plugins/<插件>/skills/` 下(四插件八 skill,ADR-0010 与 ADR-0011)。
+> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、diary 留过程痕、research 存研究档案;skill 知识库在 `plugins/<插件>/skills/` 下(四插件九 skill,ADR-0010 与 ADR-0011 与 ADR-0012)。
 
 | 文档 | 讲什么 | 何时看 |
 |------|--------|--------|
@@ -17,6 +17,7 @@
 | `diary/2026-09-08-bh与reader使用过程.md` | 过程日记样例 | 写 diary 前对照格式 |
 | `../plugins/evo-adr/skills/doc-gov/SKILL.md` | 文档治理知识面本体(合同/ADR/REQ/投影/六态) | 写 AGENTS、立 ADR/REQ 时 |
 | `../plugins/evo-adr/skills/code-kit/SKILL.md` | 骨架与门禁工具箱命令面(init/check/scan/md-guard) | 初始化骨架、跑合规检查时 |
+| `../plugins/evo-adr/skills/gh-issue/SKILL.md` | 命令出错自动上报 GitHub issue 工作流(定位仓、去重、组装、发单、回执) | 命令报错要给上游发 issue 时 |
 | `../plugins/evo-adr/skills/doc-gov/references/README.md` | 治理知识渐进索引（快速路由到场景到全量） | 找治理参考时先看 |
 | `../plugins/evo-adr/skills/code-kit/references/README.md` | 工具与工程合同渐进索引 | 找工程参考时先看 |
 | `../plugins/evo-adr/skills/doc-gov/references/base-agents-contract.md` | AGENTS 五节合同（Commands/Must/Must not/Read first/环境） | 写目标项目 AGENTS 时 |

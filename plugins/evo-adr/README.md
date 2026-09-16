@@ -1,6 +1,6 @@
 # evo-adr
 
-项目进化文档治理插件:两个 skill,`doc-gov` 文档即代码治理知识(AGENTS 合同、ADR、REQ、投影纪律、六态)与 `code-kit` 骨架与门禁工具(init/check/scan/md-guard/mdrules 零依赖脚本、模板、PE-01 至 PE-12 诊断、md 禁字挡板)。
+项目进化文档治理插件:三个 skill,`doc-gov` 文档即代码治理知识(AGENTS 合同、ADR、REQ、投影纪律、六态)、`code-kit` 骨架与门禁工具(init/check/scan/md-guard/mdrules 零依赖脚本、模板、PE-01 至 PE-12 诊断、md 禁字挡板)与 `gh-issue` 命令出错自动上报 GitHub issue(定位仓、双通道去重、模板正文、自动发单、三态回执)。
 
 状态:active。插件面客户端:Claude Code、Codex、Grok;纯 skills 面:Kimi 等手拷子集。
 
@@ -32,13 +32,13 @@ grok plugin marketplace add raystyle/project-evo
 grok plugin install evo-adr@project-evo --trust
 ```
 
-Kimi(无市场):把 `skills/` 下两个 skill 目录一并拷至 `~/.kimi/skills/`;斜杠命令与 hook 不随行。
+Kimi(无市场):把 `skills/` 下三个 skill 目录一并拷至 `~/.kimi/skills/`;斜杠命令与 hook 不随行。
 
 本地开发(三客户端同款,路径换本地仓根)。
 
 ## 用法
 
-安装插件后两个 skill 按意图路由自动触发,客户端显示为 `evo-adr:doc-gov` / `evo-adr:code-kit`;也可用斜杠命令(Claude Code 面):
+安装插件后三个 skill 按意图路由自动触发,客户端显示为 `evo-adr:doc-gov` / `evo-adr:code-kit` / `evo-adr:gh-issue`;也可用斜杠命令(Claude Code 面):
 
 - `/evo-adr:init <目标项目> [--name 项目名]` 安装文档骨架(幂等,不覆盖已有)
 - `/evo-adr:check [目标项目]` 诊断骨架合规 PE-01 至 PE-12(只读,--json 出机器读面,退出码 0/1/2)
@@ -52,11 +52,11 @@ uv run skills/code-kit/scripts/check.py [目标项目]
 uv run skills/code-kit/scripts/scan.py [目标项目] --no-history
 ```
 
-示例提示词:「用 evo-adr 为这个项目初始化文档骨架」「帮我立一条 ADR 记录这个决策」。
+示例提示词:「用 evo-adr 为这个项目初始化文档骨架」「帮我立一条 ADR 记录这个决策」「这条命令报错了,用 gh-issue 查重后给上游发个 issue」。
 
 ## 架构
 
-两个 skill 都是渐进知识库:SKILL.md 只做意图路由与速览,完整知识在各自 `references/`(分类扁平,rg 定位渐进检索)。可执行面在 `skills/code-kit/scripts/`(规则唯一权威 `mdrules.py`,check 的 PE-12 与 scan、md-guard 三面同源),模板在 `skills/code-kit/assets/templates/`。PostToolUse hook(`hooks/hooks.json`)对编辑中的 markdown 做四类禁字会话内提醒。
+三个 skill 都是渐进知识库:SKILL.md 只做意图路由与速览,完整知识在各自 `references/`(分类扁平,rg 定位渐进检索)。可执行面在 `skills/code-kit/scripts/`(规则唯一权威 `mdrules.py`,check 的 PE-12 与 scan、md-guard 三面同源),模板在 `skills/code-kit/assets/templates/`。PostToolUse hook(`hooks/hooks.json`)对编辑中的 markdown 做四类禁字会话内提醒。
 
 ## 敏感产物
 

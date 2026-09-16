@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,四插件八 skill:`evo-adr`(文档治理:doc-gov、code-kit)、`evo-codesec`(代码安全:secret-scan、security-audit)、`evo-research`(研究检索:research、report)、`evo-herdr`(多仓协作:herdr-flywheel、herdr-review)。客户端显示 `<插件>:<skill>`。
+> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,四插件九 skill:`evo-adr`(文档治理:doc-gov、code-kit、gh-issue)、`evo-codesec`(代码安全:secret-scan、security-audit)、`evo-research`(研究检索:research、report)、`evo-herdr`(多仓协作:herdr-flywheel、herdr-review)。客户端显示 `<插件>:<skill>`。
 
 ## 安装
 
@@ -44,6 +44,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 |------|-------|--------|--------|
 | evo-adr | `doc-gov` | 文档体系治理知识:契约在代码、文档是投影;AGENTS 五节合同、ADR、REQ 与 trace 回填、投影纪律、六态、三栈机制对照 | 写 AGENTS、立 ADR/REQ、定投影纪律、管 diary/research 档案 |
 | evo-adr | `code-kit` | 骨架与门禁工具箱:init/check/scan/md-guard 零依赖脚本、模板、PE-01 至 PE-12 诊断、md 禁字挡板;附测试分层、平台矩阵、三栈工程合同 | 初始化骨架、跑合规检查、建 Rust/TypeScript/Python 工程 |
+| evo-adr | `gh-issue` | 命令出错自动上报:定位目标仓、双通道去重、模板化正文(截断与脱敏)、gh issue create 自动发、三态回执 | 命令或 CLI 报错要给上游发 bug issue 时 |
 | evo-codesec | `secret-scan` | 密钥与隐私深扫:工作区、git 全历史、GitHub alerts 与 code search;命中一律脱敏 | 查泄露、凭据轮换前体检 |
 | evo-codesec | `security-audit` | 安全审计与漏洞审查(译自 Cloudflare security-audit-skill,MIT):双模式、信任边界、覆盖账本、结构化报告 | 安全问题、渗透测试、漏洞研究 |
 | evo-research | `research` | 资料检索管线:gh/bh 发现、aria2c 获取、reader 研读;无头优先、HTTP 优先 | 找论文与文章、查 X 与 GitHub、下大文件、读电子书 |

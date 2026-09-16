@@ -19,7 +19,7 @@ PLUGIN_NAMES = ("evo-adr", "evo-codesec", "evo-research", "evo-herdr")
 PLUGINS = {n: REPO / "plugins" / n for n in PLUGIN_NAMES}
 SCRIPTS = PLUGINS["evo-adr"] / "skills" / "code-kit" / "scripts"
 SKILLS = {
-    "evo-adr": ["code-kit", "doc-gov"],
+    "evo-adr": ["code-kit", "doc-gov", "gh-issue"],
     "evo-codesec": ["secret-scan", "security-audit"],
     "evo-research": ["report", "research"],
     "evo-herdr": ["herdr-flywheel", "herdr-review"],
@@ -264,7 +264,7 @@ def test_check_json_skip_counts_via_allow(tmp_path: Path):
 
 def test_marketplace_catalog_consistency():
     """清单守卫:市场名 project-evo 收四插件、双清单一致、每插件双 manifest 与市场版本同步、
-    四插件同版、八 skill 分属正确与命令面在位(ADR-0010 四插件形态,ADR-0011 扩八)。"""
+    四插件同版、九 skill 分属正确与命令面在位(ADR-0010 四插件形态,ADR-0011 扩八,ADR-0012 扩九)。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     codex_mkt = json.loads((REPO / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
     assert claude_mkt["name"] == codex_mkt["name"] == "project-evo", "市场名须为 project-evo"
