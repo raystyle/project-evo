@@ -52,7 +52,28 @@ git push origin main v<版本>      # tag 推送即触发 release 流水线
 
 验收记录落在本文档尾部或相关 ADR 内：各路退出码/阶段标记、run id、资产清单、抽查结果、当轮发现的新坑（进 diary 或 ADR）。每次发布一段验收记录，含实测量级与首验项 [经验]。
 
-## 七、与体系其它件的衔接
+## 七、多仓版本标准（跨仓协调）
+
+- **semver 触发判据**：修复与文档批取 patch（0.x.y）,能力新增或行为变化取 minor（0.x.0）,契约破裂或形态重构取 major（x.0.0）;判据写在封版 REQ 里,不凭感觉
+- **各仓版本载体唯一权威**：Rust 仓 Cargo.toml（workspace 版集中处）、Node 仓 package.json 加 lock 双处、插件仓 plugin manifest 三清单;载体外出现版本号即第二真相,清理
+- **统一封版协调**（多仓并进时）：总台发统一封版令,各仓按第三节封版件自理,conclusion 自验（CI 加 tag 加资产）后回执;catalog 与镜像按仓内惯例滚动,不跨仓等齐
+- **版本对齐表**（总台维护）：
+
+```markdown
+| 仓 | 载体 | 当前版 | 待封 | 状态 |
+| --- | --- | --- | --- | --- |
+| <仓名> | Cargo.toml | 1.2.2 | 1.2.3 | 待令 |
+```
+
+## 八、统一分发体系（种子、分发与自升级）
+
+三面可复制标准（实例源 ohmycloud,各仓接入照其实例）。**职责分工**（用户裁定 2026-09-16）：omc 负责资源分发运维与版本分发管理（catalog 真源加种子签发加镜像运维加版本对齐表）；ark 负责落地执行验收（各端 install 加 update 加 status 加 doctor 的实际执行与验收回执）；标准勿混角色：
+
+- **打包种子发布**:env-seed 链(catalog tools.toml 加 sha256 pin 加 manifest 解析脚本加断点续跑台账)到 catalog-seed 流水(lint 加 seq 注入加 minisign 签名加三件套推对象桶)到 六小时定时加 dispatch;各仓 CI 自推镜像走 seed 通道(桶级 token 零建桶权,最小权面)
+- **资源分发**:镜像域版本段路由 `<tool>/<version>/<asset>` 加 `.sha256` 边车(无 manifest,边车即锚);双通道路径镜像优先 GitHub 回退;CLI 资产三平台齐(linux 加 win-gnu 交叉加 mac)
+- **自升级**:三通道体系(dev 滚动源 加 stable 正式源 加 git 源装)、镜像回退腿(GitHub 404 自动回落镜像域)、digest 判新加边车锚校验;发布器与升级器同 digest 判据 [实证: ark 与 hst 已各自跑通]
+
+## 九、与体系其它件的衔接
 
 | 环节 | 依据 |
 | --- | --- |

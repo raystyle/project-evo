@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-16，第六十四批:pwsh 统一载体、多仓版本标准与统一分发体系）
+
+- env-platform 新增第十一节「统一验收脚本载体 pwsh」:五端一份不再三套、非登录 shell PATH 兜底、五端版本对齐判据、既有跨平台载体不强制迁移;flow-testing 跨栈载体节加指针,本仓 AGENTS 环境节引用
+- flow-release 新增第七节「多仓版本标准」:semver 触发判据、各仓版本载体唯一权威、统一封版协调(总台令加 conclusion 自验加 catalog 镜像滚动)、版本对齐表模板
+- flow-release 新增第八节「统一分发体系」:种子发布链(catalog pin 加签名加对象桶加定时)、镜像域版本段分发(sha256 边车加双通道回退)、自升级三通道(dev 加 stable 加 git,镜像回退腿,digest 判新);职责分工入节(omc 分发运维与版本管理,ark 落地执行验收,用户裁定)
+
 ### 新增（2026-09-16，第六十三批:全平台连接姿势与多仓飞轮协作篇,ADR-0008 边界修订）
 
 - env-platform 新增第十节「全平台连接姿势」:WSL 到宿主恒走 127.0.0.1 回环 ssh 加 interop 直调不走宿主 mesh IP(mirrored 共享节点身份自连被 RST 属结构性)、lan 三端 mesh 随时随地、四平台测试矩阵与端点支撑;各仓 AGENTS 环境节引用此口径

@@ -35,6 +35,9 @@
 
 ## 四、跨栈载体速查
 
+> 验收与运维脚本载体全平台统一 pwsh 一份(五端在位,非登录 shell PATH 兜底),标准见 env-platform.md 第十一节;单测载体仍按栈选。
+
+
 | 栈 | 日常单测命令 | 冒烟载体 | 回归载体 | 慢测与真机闸门 |
 | --- | --- | --- | --- | --- |
 | Rust | `cargo test --locked` | `--test smoke` 独立 target | insta 快照、黄金文件 `tests\expected\`、语料基线 | `#[ignore]`；环境变量闸门（如 `OME_TEST_REAL`，缺则 skip 不失败不写真实态） |

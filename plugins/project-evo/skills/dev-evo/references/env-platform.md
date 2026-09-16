@@ -97,3 +97,10 @@
 - **lan 端 mesh 地址随时随地**：lan 三端（lan-ubuntu、lan-linux、lan-mac）走 mesh 地址互访,不在此限
 - **四平台测试矩阵**：lan-win（Windows 宿主加 WSL 总台,PS 通道加 interop）、lan-ubuntu、lan-linux、lan-mac 全运行时装齐即成局;各仓验收按需向总台要端点测试支撑（协作协议见 flow-flywheel.md）
 - 各仓 AGENTS 环境节引用本口径一句,连接问题先查姿势再查配置 [经验]
+
+## 十一、统一验收脚本载体：pwsh
+
+- **全平台运维与验收测试脚本统一走 pwsh 一份**（五端 pwsh 7.6.6 在位）,不再各写 bash 加 cmd 加 zsh 三套 [实证: 用户定调与五端实装 2026-09-16]
+- **非登录 shell PATH 兜底**：各端 pwsh 装标准路径并建 symlink（如 lan-ubuntu `/usr/local/bin/pwsh`）,非登录 shell 免全路径直达 [实证: 2026-09-16 lan-ubuntu 补装]
+- **五端版本对齐判据**：验收脚本声明最低 pwsh 版本,五端 `$PSVersionTable.PSVersion` 达线才跑;不对齐先补端再跑
+- 已有跨平台脚本载体（如 PEP 723 Python 经 uv）的仓不强制迁移,验收与运维面新增脚本一律 pwsh [经验]
