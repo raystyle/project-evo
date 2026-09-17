@@ -55,7 +55,7 @@
 | cli-docs 对外面双标准 skill 增编 | 已完成 | 2026-09-17 第七十七批:总台立单,evo-adr 第五 skill(甲面 README 四节骨架标杆研究定稿、乙面 agent 五件 --llms 手册加旗标全家 CTA 协议加默认帮助面加自省加裸调用面);ADR-0014 修订清单为十一 skill,REQ-006;私有名零出现 [实证: 四标杆 README 实读加 hst 与 omc 契约实读加 pytest 全绿] |
 | Prove2Me DAG 协作模型吸收进飞轮 | 已完成 | 2026-09-17 第七十八批:S009 研究档案(十二则核验与飞轮对照分流);herdr-flywheel 增并行派单与义务图节六纪律与 references/parallel.md 操作细化,纪律标 [经验] 待首跑回填;描述触发词双 manifest 与市场三处同步 [实证: pytest 全绿加 md-ref-scan 零断链加 check 12 PASS] |
 | report 渲染字体族参数化 | 待定 | 2026-09-16 评审批(codex):report.typ 字体链写死 Windows 中文字体,Linux 缺 CJK 字体时静默丢中文字且退出 0;已加 render.py 未知字体显式告警与文档 Gotcha,根治做字体族参数化(--font/环境变量)或按平台 fallback 列表,--check 可升级为失败 |
-| 守卫断言扩展与机检盲区 | 待定 | 2026-09-16 评审批(codex):守卫未断言「市场描述 == manifest 描述」与 references/README.md 存在(security-audit 索引已补,守卫断言仍缺)与插件 README「当前发布」行对齐 manifest 版本(两轮封版靠人工核);md-ref-scan 只认首个 root 实参(多根静默忽略,现靠逐次调用规避);跨 skill 散文式指针(无 .md 后缀)与节号引用(如「triple-output 第五节」)不在机检范围(快核轮实抓节号悬挂一处) |
+| 守卫断言扩展与机检盲区 | 待定 | 2026-09-16 评审批(codex):守卫未断言「市场描述 == manifest 描述」与 references/README.md 存在(security-audit 索引已补,守卫断言仍缺)与插件 README「当前发布」行对齐 manifest 版本(两轮封版靠人工核;第七十八批双 manifest 漂移再实证此缺口,靠纪律补位);md-ref-scan 只认首个 root 实参(多根静默忽略,现靠逐次调用规避);跨 skill 散文式指针(无 .md 后缀)与节号引用(如「triple-output 第五节」)不在机检范围(快核轮实抓节号悬挂一处);PE-10 标题括号扫描面不含 plugins/,插件面存量同形标题 109 处(第七十八批评审 G3 记档) |
 
 ## 阶段三：延伸（进行中）
 
