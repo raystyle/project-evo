@@ -22,7 +22,7 @@ for triple in <目标列表>; do
 done
 # 5 解包冒烟:每包解出跑 --version 对 VER(交叉件在目标实机跑)
 <解包冒烟命令>
-# 6 GitHub 产物发布:gh 直发钉 latest,禁 draft
+# 6 GitHub 产物发布:gh 直发钉 latest,禁 draft(npm 形发 *.tgz、py 形发 wheel 与 sdist,同链)
 gh release create "$TAG" dist/*.zip dist/*.tar.gz dist/*.sha256 --latest \
   --title "<tool> $TAG" --notes "<正式版说明,含发现通道一句>"
 ```

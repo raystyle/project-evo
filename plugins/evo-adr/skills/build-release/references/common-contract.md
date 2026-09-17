@@ -4,7 +4,7 @@
 
 ## 一、边界与产地(三段式)
 
-- **本地编译**:编译与打包在主开发机(交叉编译)与实机矩阵(mac 形在 mac 实机),工具链自控可复现;测试闸先行,版本一致性闸与解包冒烟在发布前过
+- **本地编译和打包**:编译与打包都在本地:二进制形在主开发机交叉编译与实机矩阵(mac 形在 mac 实机),npm 形 `npm pack` 与 py 形 `python -m build` 本地出离线包;工具链自控可复现;测试闸先行,版本一致性闸与解包冒烟在发布前过
 - **GitHub 产物发布**:gh CLI 直发 `--latest`(本地跑),产物进 Release;禁 draft,多发布工具各建 Release 是抢 tag 事故源
 - **CI/CD Action 自动播种**:Release published 事件触发 workflow,从 Release 拉资产 rclone 推镜像段,零上传红灯清点,dispatch 补推口带 tag 入参;CI 面不编译,测试岗(docs 门禁、投影门禁、测试矩阵)随仓裁
 - **发布动作零手工过渡形态**:手挂 release 或手推镜像属过渡特例,禁为新形态;CI 不可产的大件分发不属本面

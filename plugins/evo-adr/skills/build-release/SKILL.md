@@ -10,7 +10,7 @@ compatibility: 需 PATH 上的 gh(发 Release)与 rclone(推段);GitHub Actions 
 
 # build-release - 编译打包发布流水线指导
 
-> 标准通用件:任何仓按清单形态对号入座拿配方,正文与模板只含参数化占位符,不含任何具体环境私有名。**三段式正源**:本地编译(主开发机交叉加实机矩阵)到 GitHub 产物发布(gh release 直发)到 CI/CD Action 自动播种 R2;编译面不在 CI,CI 面管自动播种与随仓测试岗。**边界**:CI 不可产的大件分发不属本面。封版操作面(封版件、tag 触发、发布验收)在同插件 doc-gov 的 flow-release,互引不重复。
+> 标准通用件:任何仓按清单形态对号入座拿配方,正文与模板只含参数化占位符,不含任何具体环境私有名。**三段式正源**:本地编译和打包(编译产物与离线包都在本地出:二进制交叉/实机编译,npm 形 `npm pack`、py 形 `python -m build` 本地出包)到 GitHub 产物发布(gh release 直发)到 CI/CD Action 自动播种 R2;编译与打包面不在 CI,CI 面管自动播种与随仓测试岗。**边界**:CI 不可产的大件分发不属本面。封版操作面(封版件、tag 触发、发布验收)在同插件 doc-gov 的 flow-release,互引不重复。
 
 ## 一、类型路由:什么样的项目,怎么做
 
@@ -29,7 +29,7 @@ compatibility: 需 PATH 上的 gh(发 Release)与 rclone(推段);GitHub Actions 
 
 ## 二、公共契约速览(七铁则)
 
-1. 三段式:本地编译(测试闸先行)到 gh release 直发到 Action 自动播种;发布动作零手工过渡形态
+1. 三段式:本地编译和打包(测试闸先行,二进制与离线包都在本地出)到 gh release 直发到 Action 自动播种;发布动作零手工过渡形态
 2. 镜像恒 rclone(env 四键 Secrets 形),段制:版本段 immutable 加 stable 滚动段,dev 滚动段随仓裁
 3. 逐件 `.sha256` 边车,边车即镜像锚契约
 4. Release 恒 gh CLI 直发 `--latest`,禁 draft
