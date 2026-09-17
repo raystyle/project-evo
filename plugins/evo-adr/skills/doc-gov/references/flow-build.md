@@ -74,9 +74,11 @@ flowchart LR
 
 ## 八、自升级与 ark 升级对齐
 
+- **自升级能力归属**:自研仓(hst、ark、officecli、reader)恒带 self update;fork 族(aria2、herdr-mirror 等)可不带
 - **有自升级能力的 CLI**:self update 双通道,自家 ohmygh stable 段优先,GitHub release 404 自动回落;digest 判新加 `.sha256` 边车锚校验;发布器与升级器同 digest 判据(三通道全貌见 flow-release 第八节,不重复)[实证: ark 与 hst 已各自跑通];dev 加 stable 双通道是否随仓开放由仓裁
-- **无自升级面的静态件**:升级归安装管理方;小件归 ark install/update 走 catalog pin,chromium 类大件归 browse 内嵌版本管理器走 chrome 桶(产地分工见第二节)
-- **对齐判据**:五端升级路径一致,ark update 或各仓 self update 终态同 digest;总台 dist fleet 与 ark 验收双面核 [实证: 2026-09-17 ark 收敛验收,五端探针三工具新 pin 全绿]
+- **无自升级面的 fork 与静态件**:升级归安装管理方;小件与 fork 族归 ark install/update 单通道管(catalog pin 滚即升),chromium 类大件归 browse 内嵌版本管理器走 chrome 桶(产地分工见第二节);终态与自升级路径同 digest
+- **元数据对齐**:ark 工具级元数据 locked、installed、path 三态是全 fleet 共同真源;自升级器升级后须回写对齐 ark 元数据(或 ark 以 installed 探活实值判,不残留 locked 旧漂)
+- **对齐判据**:五端升级路径一致,ark update 或各仓 self update 终态同 digest;双通道判新互认(reader 五端 self update 与 ark update 同报已最新)为验收判据;总台 dist fleet 与 ark 验收双面核 [实证: 2026-09-16 reader 五端验收双通道同报,2026-09-17 ark 收敛验收五端探针三工具新 pin 全绿]
 
 ## 九、跨宿主构建闸与回执对账(实录新增)
 
@@ -95,6 +97,7 @@ flowchart LR
 | R2 AccessDenied | Token 权限面、桶名、endpoint 匹配;禁 Global Key |
 | Release 没文件或没置 latest | 核推的是 v* tag;gh CLI 加 --latest 直发,勿 draft(第六节) |
 | 升级态漂移 | 第八节对齐判据:五端终态同 digest,总台与 ark 双面核 |
+| 元数据旧漂(locked 残留) | 第八节元数据对齐:升级器回写,或 ark 以 installed 探活实值判 |
 | 产物异宿主崩溃 | 第九节跨宿主容器闸;ldd 双流断言 |
 
 ## 十一、安全清单
