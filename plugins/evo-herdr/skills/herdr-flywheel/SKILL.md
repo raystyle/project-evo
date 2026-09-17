@@ -67,5 +67,5 @@ compatibility: 需 herdr 管理的工位会话(HERDR_ENV=1);各工位侧仓自�
 ## 参考
 
 - references/pitfalls.md:治理操作坑实录(send-text 草稿、工位编号漂移、checkout-index 假成功、racily-clean 整片 M、备用屏读不全、yolo 带起时序),按现象、根因、修法三段收录
-- references/parallel.md:并行派单与义务图操作细化(台账五字段、条件归约派单写法、租约改派、重评估三选一、瓶颈三判、四步协议映射)
+- references/parallel.md:并行派单与义务图操作细化(台账五字段、条件归约派单写法、租约改派、任务与尝试记账、重评估三选一、瓶颈三判、四步协议映射)
 - 推送前评审闸门(评审请求、F/G/CONFIRM 回执、轮次至终审放行、评审窗格检测带起)是飞轮协议的评审特化,见同插件 skill `evo-herdr:herdr-review`(ADR-0011)
