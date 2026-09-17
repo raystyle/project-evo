@@ -65,4 +65,4 @@ scan 的白名单走目标项目环境变量 `PEVO_SCAN_ALLOW`(分号分隔正�
 ## 支持与发布
 
 - 支持:[raystyle/project-evo issues](https://github.com/raystyle/project-evo/issues)
-- 当前发布:0.3.0
+- 当前发布:0.4.0

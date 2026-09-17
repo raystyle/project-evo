@@ -42,4 +42,4 @@ Kimi(无市场):把 `skills/` 下两个 skill 目录一并拷至 `~/.kimi/skills
 ## 支持与发布
 
 - 支持:[raystyle/project-evo issues](https://github.com/raystyle/project-evo/issues)
-- 当前发布:0.3.0
+- 当前发布:0.4.0

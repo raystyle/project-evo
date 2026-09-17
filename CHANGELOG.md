@@ -2,7 +2,9 @@
 
 本文件记录 project-evo skill 及本仓库的所有可交付变更。格式：新增/变更/修复/移除 + 日期；先写 `[Unreleased]`，发布时转版本（git tag）。
 
-## [Unreleased]
+## [0.10.0] - 2026-09-17
+
+> 第七十七至七十八批合并发布:cli-docs 对外面双标准 skill 与 Prove2Me DAG 协作模型吸收进飞轮,四插件十一 skill 形态。
 
 ### 新增（2026-09-17，第七十八批:Prove2Me DAG 协作模型吸收进飞轮）
 

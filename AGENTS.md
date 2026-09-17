@@ -39,7 +39,7 @@
 ## 环境
 
 - 平台:Windows + PowerShell 7(禁 powershell.exe 5.1 与 cmd);uv 运行时,脚本 PEP 723 零依赖(>=3.12);WSL 到宿主恒走 127.0.0.1 回环加 interop 直调,不走宿主 mesh IP(口径见 code-kit references/env-platform.md 第十节);验收运维脚本载体统一 pwsh(见同篇第十一节)
-- 当前阶段:v0.9.0 已封版(2026-09-17,第七十五批:build-release 流水线标准指导 skill,ADR-0013 十 skill 形态;沿革:v0.8.0 四插件重组与评审闸门与 gh-issue、v0.7.0 治理基建)
+- 当前阶段:v0.10.0 已封版(2026-09-17,第七十七至七十八批:cli-docs 对外面双标准 skill(ADR-0014 十一 skill 形态)与 Prove2Me DAG 协作模型吸收进 herdr-flywheel;沿革:v0.9.0 build-release 流水线标准、v0.8.0 四插件重组与评审闸门与 gh-issue)
 - 部署:Claude Code `/plugin marketplace add raystyle/project-evo` 后按插件装(如 `/plugin install evo-adr@project-evo`);Codex `codex plugin marketplace add raystyle/project-evo`;Grok `grok plugin install <插件>@project-evo --trust`;Kimi 无市场,拷 `plugins/*/skills/*` 至 `~/.kimi/skills`
 - 工作根:`~/repos/ProjectEvo`(WSL 独立 VHDX 挂载 /mnt/wsl/repos 快捷 ~/repos;2026-09-16 迁移,旧位 /mnt/d/ProjectEvo 过渡后裁)
 - 项目状态与待办见 `ROADMAP.md`,不在本文件维护
