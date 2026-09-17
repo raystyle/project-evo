@@ -7,7 +7,7 @@
 | 全测试 | `uv run pytest` | 每次提交前 |
 | 骨架自检 | `uv run plugins/evo-adr/skills/code-kit/scripts/check.py .` | 改文档结构或 skill 后 |
 | 禁字与密钥扫描 | 见下方带豁免标准命令 | 每次提交前 |
-| 断链扫描 | `uv run .tools/md-ref-scan.py plugins/<插件>/skills/<skill>`（四插件九 skill 各跑） | 改 skill 与文档后 |
+| 断链扫描 | `uv run .tools/md-ref-scan.py plugins/<插件>/skills/<skill>`（四插件十 skill 各跑） | 改 skill 与文档后 |
 | 提交挡板 | `git config core.hooksPath githooks`（md 禁字加断链，一次配置） | 换机后 |
 
 ## scan 标准命令与豁免正则

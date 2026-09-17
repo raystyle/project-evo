@@ -1,6 +1,6 @@
 # docs 地图
 
-> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、diary 留过程痕、research 存研究档案;skill 知识库在 `plugins/<插件>/skills/` 下(四插件九 skill,ADR-0010 与 ADR-0011 与 ADR-0012)。
+> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、diary 留过程痕、research 存研究档案;skill 知识库在 `plugins/<插件>/skills/` 下(四插件十 skill,ADR-0010 至 ADR-0013)。
 
 | 文档 | 讲什么 | 何时看 |
 |------|--------|--------|
@@ -29,7 +29,7 @@
 | `../plugins/evo-adr/skills/code-kit/references/tool-typescript.md` | TypeScript/Node 工程合同（tsc、node:test、TSDoc、API Extractor） | 建或治理 Node/TS 仓时 |
 | `../plugins/evo-adr/skills/code-kit/references/env-platform.md` | 平台适配：shell 分平台、编码行尾、脚本载体、CI 三系统、接管验收 | 定平台矩阵/跨平台协作时 |
 | `../plugins/evo-adr/skills/doc-gov/references/flow-release.md` | 封版发布模式：三路门禁验收、封版件、tag 触发、发布验收 | 发版本时 |
-| `../plugins/evo-adr/skills/doc-gov/references/flow-build.md` | 编译打包流水线：detect 清单、产地分工、rclone 双段镜像、护栏与自升级对齐 | 搭 CI/CD 流水线时 |
+| `../plugins/evo-adr/skills/build-release/SKILL.md` | 编译打包发布流水线指导:七型配方、公共契约、可拷改模板 | 搭 CI/CD 流水线时 |
 | `../plugins/evo-adr/skills/doc-gov/references/exp-pitfalls.md` | 已知误区十八条 | 落地前预警 / 踩坑后对照 |
 | `../plugins/evo-adr/skills/code-kit/verification/command-test-cases.md` | 规范检查命令（参数化 ProjectRoot） | 验证骨架合规时 |
 | `../plugins/evo-codesec/skills/secret-scan/SKILL.md` | 密钥与隐私扫描命令面 | 扫 git/GitHub 泄露时 |

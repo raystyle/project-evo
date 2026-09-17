@@ -80,6 +80,6 @@ git push origin main v<版本>      # tag 推送即触发 release 流水线
 | Unreleased 起步与转版 | CHANGELOG 头部约定 + AGENTS 合同「发布」相关行 |
 | tag 纪律与一致性闸 | `git tag v<版本>` 后推送；已发 release 的 tag 不回退 |
 | release 资产上传/验收 | `gh release create` / `gh release upload --clobber` |
-| 编译打包流水线(detect 到构建到镜像) | 本目录 flow-build(2026-09-17 起分篇,互引不重复) |
+| 编译打包流水线(detect 到构建到镜像) | 同插件 skill evo-adr:build-release(仓无关指导 SKILL,ADR-0013) |
 | 平台矩阵与实机接管 | code-kit 的 env-platform 六/七节 |
 | Node/TS npm 包资产 | code-kit 的 tool-typescript 第十节：`package.json` 与 lock 双处 version、`npm pack` tgz、安装验收禁 link |

@@ -4,14 +4,14 @@
 
 ## [Unreleased]
 
-### 新增（2026-09-17，第七十五批:编译打包发布流程标准 flow-build 起草）
+### 新增（2026-09-17，第七十五批:build-release 流水线标准指导 skill 增编）
 
-- ohmycloud 总台派单(用户令):全仓编译打包发布流程标准定制起草,基底为外部 CI/CD 离线打包通稿,落位 doc-gov references 新篇 `flow-build.md`(与 flow-release 三至八节互引不重复,封版操作面仍在彼);doc-gov references 9 至 10 篇,SKILL 路由行与三层索引同步
-- 采通稿七条:detect 清单驱动、测试过再打包、产物零 commit 回仓、PR 只走 Artifact、通道寿命与匿名下载对比表、故障排查表与安全清单、不发公共注册表(npm/PyPI/crates 禁 publish)
-- 守家规七条:R2 恒 rclone 禁 aws-cli 形(env 四键 Secrets 加 no-check-bucket 加版本段 immutable 缓存头)、双段制 `<tool>/<版本>/` 加 `stable/`(max-age=60、sync delete-excluded)禁 releases/ 形、逐件 .sha256 边车为镜像锚(聚合仅补充)、Release 恒 gh CLI 直发 --latest 禁 draft(ark v1.3.0 Draft 代发实录)、版本一致性闸加 CI 解包冒烟、零上传红灯护栏(豁免开关形,ark draft 窗静默 skip 教训)、dispatch 补推口(always(),aria2 补推坑)
-- 追正核心条款「编译产地与播种分工」置第二节:总台 rclone(omc r2 命令)仅 chrome 级大件;其余仓小件 GitHub Actions 全链自包零总台手工(手挂 release 与手推镜像为过渡期特例禁新形态);CI 内 rclone 自播正道与总台 rclone 分表述勿混
-- 追正二「自升级与 ark 升级对齐」章(第八节,基准 flow-release 第八节在案形):有自升级能力的 CLI(ark 加 hst 实证)self update 双通道加 digest 判新加边车锚校验,发布器与升级器同判据,dev 加 stable 双通道随仓裁;静态件升级归安装管理方(小件归 ark catalog pin,chromium 归 browse 版本管理器走 chrome 桶);对齐判据五端终态同 digest,总台 dist fleet 与 ark 验收双面核
-- 实录新增两条:跨宿主构建闸(aria2 v1.37.2 OSSL 互踩与 24.04 容器冒烟、ldd 双流断言)、回执 digest 三方对账(gh api 自取,GitHub 加镜像加 catalog 逐字等);flow-release 衔接表加互引行
+- ohmycloud 总台派单(用户令),六轮追正定形:全仓编译打包发布流程标准落位 **仓无关指导 SKILL** `build-release`(evo-adr 第四 skill,ADR-0013 修订 ADR-0010 清单为十,REQ-005;herdr-flywheel 同形态先例:SKILL.md 加 references,任何仓可套用);起草期的 doc-gov references 草稿篇 flow-build.md 退役并入,doc-gov 三面回退 9 篇
+- **类型路由制**:「什么样的项目,怎么做」,六型配方(go 交叉六目标、rust matrix 五目标、npm pack 离线包、py wheel、native 自含静态加跨宿主容器闸、manifest 纯文档仓),每型七要素(构建矩阵、测试闸、打包与边车、发布、播种、自升级判据、元数据对齐);CI 不可产的大件分发不属本面,边界一句注记
+- **公共契约节**:仓侧 GitHub CI/CD 全链自包五环(编译、测试、打包、发布、自播,发布动作恒流水线完成零手工)、镜像恒 rclone(env 四键 Secrets 加 no-check-bucket 加版本段 immutable 缓存头,双段制加 stable 滚动段 max-age=60 加 sync delete-excluded,禁 releases/ 形)、逐件 .sha256 边车为锚、Release 恒 gh CLI 直发 --latest 禁 draft、护栏三件(版本一致性闸加解包冒烟、零上传红灯、dispatch 补推口 always())、自升级与元数据对齐(有运行时能力走双通道加 digest 同判据,无则安装管理方单通道,工具级状态共同真源回写)、跨宿主闸与回执三方对账;不发公共注册表(npm/PyPI/crates 禁 publish),产物零 commit 回仓,PR 只走 Artifact
+- **可拷改模板四件**(references/templates.md):通用 workflow 骨架(含零上传红灯加补推口)、各型构建片段、rclone 镜像步(immutable 加滚动双头形)、自升级契约核对清单
+- **通用性终约束(最高优先)**:标准通用件,私有名称与私有信息零出现(正文、注脚、示例、模板默认值全禁);契约全部抽象参数化(镜像域 `<mirror-host>/<tool>/<version>/`、安装管理器元数据抽象化、Secrets 通用 R2 族);实证引一律不进 SKILL,留档仓内 diary
+- 同步面:双 manifest 与市场条目描述、守卫 SKILLS 十 skill、pre-commit 第十段、AGENTS 与根 README 与 docs 地图与 gates 计数、evo-adr README 四 skill 化、CHANGELOG、ROADMAP、diary
 
 暂无。
 

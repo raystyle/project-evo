@@ -14,7 +14,7 @@ compatibility: 通用(不限语言/平台);提炼自 Rust workspace、Python 数
 
 # doc-gov - evo-adr 文档即代码治理知识
 
-**渐进知识库型 skill**:本文件只做两件事,**意图路由**(你要做的事 到 该查哪篇参考)与**体系速览**(一层概览);完整知识在 `references/` 分类扁平目录(前缀 base/flow/exp 分组,10 篇自包含),按「rg 定位文件 + mq 提取结构」渐进检索,不要求一次读完。骨架安装与门禁工具(脚本、模板、PE 诊断)在同插件 `code-kit`;资料检索在同市场 `evo-research:research`,研究成文在 `evo-research:report`,密钥深扫在 `evo-codesec:secret-scan`,多仓飞轮在 `evo-herdr:herdr-flywheel`。
+**渐进知识库型 skill**:本文件只做两件事,**意图路由**(你要做的事 到 该查哪篇参考)与**体系速览**(一层概览);完整知识在 `references/` 分类扁平目录(前缀 base/flow/exp 分组,9 篇自包含),按「rg 定位文件 + mq 提取结构」渐进检索,不要求一次读完。骨架安装与门禁工具(脚本、模板、PE 诊断)在同插件 `code-kit`,编译打包发布流水线在同插件 `build-release`;资料检索在同市场 `evo-research:research`,研究成文在 `evo-research:report`,密钥深扫在 `evo-codesec:secret-scan`,多仓飞轮在 `evo-herdr:herdr-flywheel`。
 
 核心思想:**契约在代码,文档是投影;每层只答一个问题**。类型与导出描述形态,契约注释(`///`/docstring/TSDoc)写用法,测试锁行为,ADR 锁 why,REQ 锁需求,AGENTS.md 只当索引与合同。文档生成物勿手改、不另写第二份 API 真相;公开面漂移靠工具门禁(CI 必红),不靠自觉。过程留痕进 diary,研究档案进 research,事实断言标六态。
 
@@ -30,7 +30,6 @@ compatibility: 通用(不限语言/平台);提炼自 Rust workspace、Python 数
 | API 文档怎么生成 / 投影工具链 / 公开面漂移门禁 / llms 式检索面(CLI 旗标与库投影) | `references/base-projection.md` |
 | 写任何文档前(命名/标题/六态/门禁) | `references/base-writing-standards.md` |
 | 发一个版本(封版/tag/资产验收) | `references/flow-release.md` |
-| 给仓搭 CI/CD 编译打包流水线(detect/构建/Release/镜像) | `references/flow-build.md` |
 | 写日记或研究档案 / diary 一天一篇 / SNNN 编号 / 沉淀升 ADR | `references/flow-archive.md` |
 | 落地前预警 / 疑似踩了已知坑 | `references/exp-pitfalls.md` |
 | 经验往哪沉淀 / 踩坑何时升格 / 二犯配什么约束 | `references/exp-sedimentation.md` |
