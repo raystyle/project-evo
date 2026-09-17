@@ -1,6 +1,6 @@
 # evo-herdr
 
-项目进化多仓协作插件:两个 skill,`herdr-flywheel` 多仓 herdr 工位飞轮协作治理(派单、回执、断言、吸收四步协议,附命令面要点与治理操作坑,该协议唯一权威源)与 `herdr-review` 推送前评审闸门工作流(评审请求五件模板、F/G/CONFIRM 三态回执与轮次、发现核实与交叉复核、评审窗格检测带起)。
+项目进化多仓协作插件:两个 skill,`herdr-flywheel` 多仓 herdr 工位飞轮协作治理(派单、回执、断言、吸收四步协议加并行派单义务图,附命令面要点与治理操作坑,该协议唯一权威源)与 `herdr-review` 推送前评审闸门工作流(评审请求五件模板、F/G/CONFIRM 三态回执与轮次、发现核实与交叉复核、评审窗格检测带起)。
 
 状态:active。插件面客户端:Claude Code、Codex、Grok;纯 skills 面:Kimi 等手拷子集。
 

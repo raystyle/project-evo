@@ -14,6 +14,8 @@
 | `research/S005-git密钥隐私扫描skill选型.md` | 密钥扫描 skill 选型 | 改 secret-scan 规则或对照 gitleaks 前 |
 | `research/S006-secret-scan-AB对照.md` | secret-scan 对 code-kit scan 的 A/B 实跑 | 裁决规则面差异时 |
 | `research/S007-OfficeCLI-agent原生Office套件.md` | OfficeCLI 是什么、怎么给 agent 用、本机钉资产安装与烟测 | 选型或本机安装 Office 自动化 CLI 时 |
+| `research/S008-dev-evo标准外部对标.md` | agentskills 规范、AGENTS.md 生态、llms.txt 与 ADR 惯例对标,对照九条用后感定优先级 | 对表 skill 规范或定检索面积压时 |
+| `research/S009-多agent并行DAG协作模型核验.md` | 多 agent DAG 协作模型核验与飞轮对照分流 | 做并行派单设计或复核该模型时 |
 | `diary/2026-09-08-bh与reader使用过程.md` | 过程日记样例 | 写 diary 前对照格式 |
 | `../plugins/evo-adr/skills/doc-gov/SKILL.md` | 文档治理知识面本体(合同/ADR/REQ/投影/六态) | 写 AGENTS、立 ADR/REQ 时 |
 | `../plugins/evo-adr/skills/code-kit/SKILL.md` | 骨架与门禁工具箱命令面(init/check/scan/md-guard) | 初始化骨架、跑合规检查时 |
@@ -37,6 +39,6 @@
 | `../plugins/evo-codesec/skills/security-audit/SKILL.md` | 安全审计与漏洞审查(双模式、六阶段、覆盖账本;译自 Cloudflare security-audit-skill) | 安全审计/渗透测试/漏洞审查时 |
 | `../plugins/evo-research/skills/research/SKILL.md` | 资料检索管线命令面（gh/bh/aria2c/reader 工位复用） | 搜代码/论文/文章/下载大资产时 |
 | `../plugins/evo-research/skills/report/SKILL.md` | 研究成文与三件套(骨架、渲染、版式、信源) | 写研究报告或渲染 PDF 时 |
-| `../plugins/evo-herdr/skills/herdr-flywheel/SKILL.md` | 多仓 herdr 飞轮协作(派单/回执/断言/吸收;协议唯一权威源,ADR-0009) | 跨仓派单或收回执时 |
+| `../plugins/evo-herdr/skills/herdr-flywheel/SKILL.md` | 多仓 herdr 飞轮协作(派单/回执/断言/吸收加并行派单义务图;协议唯一权威源,ADR-0009) | 跨仓派单或收回执时 |
 | `../plugins/evo-herdr/skills/herdr-review/SKILL.md` | 推送前评审闸门(评审请求、F/G/CONFIRM 回执、轮次、窗格检测带起;ADR-0011) | 发评审请求或写对线回执时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |
