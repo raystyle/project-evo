@@ -2,24 +2,25 @@
 
 > 各型配方共用的契约节,型号无关。标准通用件:契约全部参数化,不含任何具体环境私有名。
 
-## 一、边界与产地
+## 一、边界与产地(三段式)
 
-- **本面只辖仓侧 GitHub CI/CD 自建流**:detect、编译、测试、打包、发布、自播五环一链全在本仓流水线内完成;CI 不可产的大件分发不属本面
-- **发布动作恒由流水线完成**:gh 直发加镜像播种都在 publish job 内;人工手挂 release 或手推镜像属过渡特例,标准明文禁为新形态
-- **产物零 commit 回仓**:产物只进 Artifact、Release 与镜像段,源码库不收二进制与离线包
+- **本地编译**:编译与打包在主开发机(交叉编译)与实机矩阵(mac 形在 mac 实机),工具链自控可复现;测试闸先行,版本一致性闸与解包冒烟在发布前过
+- **GitHub 产物发布**:gh CLI 直发 `--latest`(本地跑),产物进 Release;禁 draft,多发布工具各建 Release 是抢 tag 事故源
+- **CI/CD Action 自动播种**:Release published 事件触发 workflow,从 Release 拉资产 rclone 推镜像段,零上传红灯清点,dispatch 补推口带 tag 入参;CI 面不编译,测试岗(docs 门禁、投影门禁、测试矩阵)随仓裁
+- **发布动作零手工过渡形态**:手挂 release 或手推镜像属过渡特例,禁为新形态;CI 不可产的大件分发不属本面
+- **产物零 commit 回仓**:产物只进 Release 与镜像段,源码库不收二进制与离线包
 
-## 二、detect 与流水线形态
+## 二、detect 与产物形态
 
-- detect 清单驱动:go.mod、Cargo.toml、package.json、pyproject.toml 有则编,对应 job 缺清单静默跳过
-- 事件三态:PR 只 Artifact(评审下载用);main 走 Artifact;tag `v*` 加 Release 加镜像
-- publish 准入:至少一类打包成功且无任何一类 failure;测试过再打包是硬闸
-- 通道对比:Artifact 随 run 寿命短(约 14 天)且下载常需登录;Release 随仓长期且公开仓可匿名;镜像段自控寿命,绑域后可匿名 [经验]
+- detect 清单驱动:go.mod、Cargo.toml、package.json、pyproject.toml 有则编,无清单的纯文档仓走 manifest 形
+- 包形:单顶层目录 = 二进制加 README 加 LICENSE;win 形 zip 他形 tar.gz;逐包 `.sha256` 边车(sha256sum 原生格式)
+- 通道对比:Release 随仓长期且公开仓可匿名,是产物正源;镜像段自控寿命,绑域后可匿名,是下载腿与自升级源 [经验]
 
 ## 三、镜像推送恒 rclone(禁 aws-cli 形)
 
 - Secrets 恒 env 形四键 `R2_ACCESS_KEY_ID`、`R2_SECRET_ACCESS_KEY`、`R2_ENDPOINT`(S3 兼容端点)、`R2_BUCKET`;Token 仅授权目标桶 Object Read & Write,不用 Global Key
-- 推送形:`rclone copy <产物目录> :s3:$R2_BUCKET/<tool>/<版本>/ --s3-endpoint $R2_ENDPOINT --s3-access-key-id $R2_ACCESS_KEY_ID --s3-secret-access-key $R2_SECRET_ACCESS_KEY --s3-no-check-bucket --header-upload "Cache-Control: public, max-age=31536000, immutable"`;受限 token 无建桶权,故必带 no-check-bucket(env 形等价 `RCLONE_CONFIG_<remote>_NO_CHECK_BUCKET=true`);版本段对象 immutable,禁覆写
-- **双段制**:恒 `<tool>/<版本>/` 加 `<tool>/stable/` 两段;stable 是自更新滚动段,短缓存 `Cache-Control: max-age=60`,刷段用 `rclone sync ... --delete-excluded`(滚代清旧);禁 `releases/<tag>/` 形
+- 配置用 env-remote 形(命名 remote):`RCLONE_CONFIG_R2_TYPE: s3`、`RCLONE_CONFIG_R2_PROVIDER: Cloudflare`、`RCLONE_CONFIG_R2_ACCESS_KEY_ID`、`RCLONE_CONFIG_R2_SECRET_ACCESS_KEY`、`RCLONE_CONFIG_R2_ENDPOINT` 各映射同名 Secrets,加 `RCLONE_CONFIG_R2_NO_CHECK_BUCKET: "true"`(受限 token 无建桶权,预检 CreateBucket 会 403,必带);命令里用 `r2:${R2_BUCKET}/<段>/` 寻址。旗标形(`--s3-endpoint` 等)等价可用
+- **段制**:恒 `<tool>/<版本>/`(immutable,copy-only 不 sync,长缓存 `Cache-Control: public, max-age=31536000, immutable`)加 `<tool>/stable/`(自更新滚动段,短缓存 `max-age=60`,刷段 `rclone sync --delete-excluded` 滚代清旧)两段;有 dev 通道的仓加 `<tool>/dev/` 滚动段(main 推,sync 形同 stable);禁 `releases/<tag>/` 形
 - 对外下载走镜像域 `<mirror-host>/<tool>/<version>/<asset>`(桶绑自定义域后匿名可读)
 - 段内逐件 `.sha256` 边车(sha256sum 原生格式 `<hash>  <文件名>`),边车即镜像锚契约,下载腿与 digest 判新都以它为准(路由与消费面见 doc-gov 的 flow-release 第八节);聚合 `SHA256SUMS` 可作补充不替代
 

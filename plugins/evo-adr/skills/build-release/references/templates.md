@@ -1,122 +1,57 @@
 # 模板:可直接拷改的参数化空壳
 
-> 家规形态的参数化空壳,占位符一律尖括号形;拷进目标仓按型号拼装。仓名零出现。
+> 形态取自家族仓实测实践(git 历史在档),参数化去私有名;占位符一律尖括号形。标准三段式:**本地编译**(主开发机交叉加实机矩阵)到 **GitHub 产物发布**(gh release 直发)到 **CI/CD Action 自动播种 R2**。
 
-## 一、通用 workflow 骨架
-
-```yaml
-name: pack-release-r2
-on:
-  push:
-    branches: [main]
-    tags: ["v*"]
-  pull_request:
-  workflow_dispatch:
-
-permissions:
-  contents: write
-
-concurrency:
-  group: pack-${{ github.ref }}
-  cancel-in-progress: true
-
-jobs:
-  detect:
-    runs-on: ubuntu-latest
-    outputs:
-      has_go: ${{ steps.f.outputs.has_go }}
-      has_rust: ${{ steps.f.outputs.has_rust }}
-      has_npm: ${{ steps.f.outputs.has_npm }}
-      has_py: ${{ steps.f.outputs.has_py }}
-    steps:
-      - uses: actions/checkout@v4
-      - id: f
-        shell: bash
-        run: |
-          set -euo pipefail
-          for k in go:go.mod rust:Cargo.toml npm:package.json py:pyproject.toml; do
-            var="${k%%:*}"; f="${k#*:}"
-            echo "has_${var}=$([ -f "$f" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
-          done
-
-  build:
-    needs: detect
-    if: needs.detect.outputs.has_<型> == 'true'
-    runs-on: <按型>
-    steps:
-      - uses: actions/checkout@v4
-      # 按型拼第二节片段;测试闸必须在打包前
-      - run: <测试命令>
-      - run: <构建与打包到 out/>
-      - run: cd out && sha256sum ./* > SHA256SUMS && for f in ./*; do sha256sum "$f" > "$f.sha256"; done
-      - uses: actions/upload-artifact@v4
-        with:
-          name: <型>-assets
-          path: out/
-          if-no-files-found: error
-
-  publish:
-    needs: [detect, build]
-    if: |
-      always() &&
-      github.event_name != 'pull_request' &&
-      needs.build.result == 'success'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/download-artifact@v4
-        with: { path: collected }
-      - run: mkdir -p release-files && find collected -type f ! -name '*.zip' -exec cp -t release-files {} +
-      - name: gh release 直发(仅 tag)
-        if: startsWith(github.ref, 'refs/tags/')
-        run: gh release create "$GITHUB_REF_NAME" release-files/* --latest --title "<tool> $GITHUB_REF_NAME"
-        env: { GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}" }
-      - name: rclone 双段播种(仅 tag)
-        if: startsWith(github.ref, 'refs/tags/')
-        env:
-          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
-          R2_BUCKET: ${{ secrets.R2_BUCKET }}
-        run: |
-          set -euo pipefail
-          <拼第三节镜像步模板:版本段加 stable 滚动段>
-      - name: 零上传红灯
-        if: startsWith(github.ref, 'refs/tags/')
-        env:
-          R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
-          R2_BUCKET: ${{ secrets.R2_BUCKET }}
-        run: |
-          set -euo pipefail
-          n=$(rclone lsf :s3:$R2_BUCKET/<tool>/${GITHUB_REF_NAME#v}/ --s3-endpoint $R2_ENDPOINT \
-            --s3-access-key-id $R2_ACCESS_KEY_ID --s3-secret-access-key $R2_SECRET_ACCESS_KEY \
-            --s3-no-check-bucket | wc -l)
-          [ "$n" -gt 0 ] || { echo "::error::镜像版本段零对象"; exit 1; }
-          echo "mirror objects: $n"
-  # dispatch 补推口:publish 挂 workflow_dispatch 加 needs 链 always(),已含上方 if 形
-```
-
-## 二、各型构建片段
-
-go 形:
+## 一、本地编译与发布(命令面,主开发机)
 
 ```bash
-BIN=<bin>; mkdir -p out
+set -euo pipefail
+TAG="v<版本>"; VER="<版本>"
+# 1 版本一致性闸:tag 对载体 manifest(不一致即止)
+<载体版本读取命令,如 grep -m1 '^version = ' Cargo.toml>
+# 2 测试闸先行
+<测试命令,如 cargo test --locked>
+# 3 本地交叉编译(linux 本职加 win-gnu 交叉;mac 形在 mac 实机跑同款命令)
+<构建命令,见第二节各型片段>
+# 4 打包:单顶层目录 = 二进制加 README 加 LICENSE;win 形 zip 他形 tar.gz,逐包边车
+for triple in <目标列表>; do
+  d="<tool>-${TAG}-${triple}"; mkdir -p "dist/$d"
+  cp "<产物路径 ${triple}>" "dist/$d/"; cp README.md LICENSE* "dist/$d/"
+  if [ "<win 形判定 ${triple}>" = yes ]; then (cd dist && zip -q -r "$d.zip" "$d" && sha256sum "$d.zip" > "$d.zip.sha256")
+  else (cd dist && tar czf "$d.tar.gz" "$d" && sha256sum "$d.tar.gz" > "$d.tar.gz.sha256"); fi
+done
+# 5 解包冒烟:每包解出跑 --version 对 VER(交叉件在目标实机跑)
+<解包冒烟命令>
+# 6 GitHub 产物发布:gh 直发钉 latest,禁 draft
+gh release create "$TAG" dist/*.zip dist/*.tar.gz dist/*.sha256 --latest \
+  --title "<tool> $TAG" --notes "<正式版说明,含发现通道一句>"
+```
+
+dev 滚动版(随仓裁):`gh release upload dev <资产> --clobber` 挂 prerelease(首次 `gh release create dev --prerelease --target main`)。
+
+## 二、各型本地编译片段
+
+rust 形(本地交叉,三目标实证形):
+
+```bash
+# linux 本职
+cargo build --release --locked --target x86_64-unknown-linux-gnu
+# win-gnu 交叉(ubuntu/debian 装 mingw-w64;CRT 静态零 DLL)
+rustup target add x86_64-pc-windows-gnu
+cargo build --release --locked --target x86_64-pc-windows-gnu
+# mac arm64:在 mac 实机跑 cargo build --release --locked --target aarch64-apple-darwin
+# 扩岗(aarch64-linux 交叉、musl 纯静态)随仓裁
+```
+
+go 形(本地交叉六目标):
+
+```bash
+BIN=<bin>; mkdir -p dist
 for t in linux/amd64 linux/arm64 darwin/amd64 darwin/arm64 windows/amd64 windows/arm64; do
   os="${t%/*}"; arch="${t#*/}"; ext=""; [ "$os" = windows ] && ext=".exe"
   CGO_ENABLED=0 GOOS="$os" GOARCH="$arch" go build -trimpath -ldflags="-s -w" \
-    -o "out/${BIN}-${os}-${arch}${ext}" ${MAIN_PATH:-.}
+    -o "dist/${BIN}-${os}-${arch}${ext}" ${MAIN_PATH:-.}
 done
-```
-
-rust 形(matrix.target 五目标):
-
-```bash
-cargo test --release --locked --target ${{ matrix.target }}
-cargo build --release --locked --target ${{ matrix.target }}
-cp "target/${{ matrix.target }}/release/${BIN}${EXT}" "out/${BIN}-${{ matrix.target }}${EXT}"
 ```
 
 npm 形:
@@ -124,45 +59,94 @@ npm 形:
 ```bash
 [ -f package-lock.json ] && npm ci || npm install
 npm test --if-present && npm run build --if-present
-mkdir -p out && npm pack --pack-destination out
+mkdir -p dist && npm pack --pack-destination dist
 ```
 
 py 形:
 
 ```bash
-python -m pip install --upgrade pip build
-python -m build && mkdir -p out && cp dist/* out/
+python -m pip install --upgrade pip build && python -m build
+mkdir -p dist && cp <wheel 与 sdist> dist/
 ```
 
-native 形(自含静态):
+native 形(autotools/C++,自含静态):
 
 ```bash
-# 容器内自含构建,树内依赖闭包;跨宿主闸必配:
+# 自含构建,树内依赖闭包;静态断言正向两连(缺即红),跨宿主闸必配:
 <configure 与 make 自含形>
-ldd out/<bin> 2>/dev/null 1>&2; [ $? -ne 0 ] || file out/<bin> | grep -q 'dynamically linked' && { echo "::error::非静态"; exit 1; }
-docker run --rm -v "$PWD/out:/x" <异版本宿主镜像> /x/<bin> --version
+file <bin> | tee file.out | grep -q "statically linked" || { echo "非静态(file)"; exit 1; }
+ldd <bin> > ldd.out 2>&1 || true
+grep -q "not a dynamic executable" ldd.out || { echo "非静态(ldd)"; exit 1; }
+docker run --rm -v "$PWD/dist:/x" <异版本宿主镜像> /x/<bin> --version
 ```
 
-manifest 形(纯文档/插件仓):无 build job;publish 换为清单一致性测试与市场快照刷新,不推镜像。
+manifest 形(纯文档/插件仓):无编译无播种;发布形 = 清单三处一致与市场快照刷新。
 
-## 三、rclone 镜像步模板
+## 三、CI/CD Action 自动播种 workflow
 
-```bash
-set -euo pipefail
-VER="${GITHUB_REF_NAME#v}"
-COMMON=(--s3-endpoint "$R2_ENDPOINT" --s3-access-key-id "$R2_ACCESS_KEY_ID" \
-  --s3-secret-access-key "$R2_SECRET_ACCESS_KEY" --s3-no-check-bucket)
-# 版本段:immutable 长缓存头
-rclone copy release-files/ ":s3:$R2_BUCKET/<tool>/$VER/" "${COMMON[@]}" \
-  --header-upload "Cache-Control: public, max-age=31536000, immutable"
-# stable 滚动段:短缓存加滚代清旧
-rclone sync release-files/ ":s3:$R2_BUCKET/<tool>/stable/" "${COMMON[@]}" \
-  --header-upload "Cache-Control: public, max-age=60" --delete-excluded
+> 发布事件触发,从 Release 下载资产 rclone 推段;编译不在 CI,CI 只播种(附测试岗随仓裁)。
+
+```yaml
+name: r2-seed
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: '补推的 v* tag(从 Release 拉资产重灌)'
+        default: ''
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  seed:
+    if: ${{ !github.event.release.prerelease || inputs.tag != '' }}
+    runs-on: ubuntu-latest
+    env:
+      # env-remote 配置形:命名 remote r2:,四键走 Secrets,NO_CHECK_BUCKET 必带(受限 token 无建桶权)
+      RCLONE_CONFIG_R2_TYPE: s3
+      RCLONE_CONFIG_R2_PROVIDER: Cloudflare
+      RCLONE_CONFIG_R2_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+      RCLONE_CONFIG_R2_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+      RCLONE_CONFIG_R2_ENDPOINT: ${{ secrets.R2_ENDPOINT }}
+      RCLONE_CONFIG_R2_NO_CHECK_BUCKET: "true"
+      R2_BUCKET: ${{ secrets.R2_BUCKET }}
+    steps:
+      - name: 取资产
+        env: { GH_TOKEN: "${{ github.token }}" }
+        run: |
+          TAG="${{ github.event.release.tag_name || inputs.tag }}"
+          echo "TAG=$TAG" >> "$GITHUB_ENV"; echo "VER=${TAG#v}" >> "$GITHUB_ENV"
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" -D dist --clobber
+      - run: command -v rclone || (curl -fsSL https://rclone.org/install.sh | sudo bash)
+      - name: 灌段(版本段 immutable 加 stable 滚动)
+        run: |
+          set -euo pipefail
+          rclone copy dist/ "r2:${R2_BUCKET}/<tool>/${VER}/" \
+            --include "*.zip" --include "*.tar.gz" --include "*.sha256" \
+            --header-upload "Cache-Control: public, max-age=31536000, immutable" \
+            --checksum -v --stats-one-line
+          rclone sync dist/ "r2:${R2_BUCKET}/<tool>/stable/" \
+            --include "*.zip" --include "*.tar.gz" --include "*.sha256" \
+            --header-upload "Cache-Control: public, max-age=60" --delete-excluded
+      - name: 零上传红灯(清点版本段,零即红;确无资产仓型用显式豁免开关)
+        run: |
+          set -euo pipefail
+          n=$(rclone lsf "r2:${R2_BUCKET}/<tool>/${VER}/" | wc -l)
+          [ "$n" -gt 0 ] || { echo "::error::镜像版本段零对象"; exit 1; }
+          echo "mirror objects: $n"
+      - name: 对账回显
+        run: rclone lsl "r2:${R2_BUCKET}/<tool>/${VER}/"
+  # dev prerelease 滚动段(随仓裁):release.prerelease 形灌 <tool>/dev/ 段(sync delete-excluded)
+  # CI 测试岗随仓裁(docs 门禁、投影门禁、测试矩阵),编译面不在 CI
 ```
 
 ## 四、自升级契约核对清单
 
-- [ ] self update 双通道:自家 stable 段优先,GitHub release 404 自动回落
+- [ ] self update 双通道:自家镜像 stable 段优先,GitHub release 404 自动回落
 - [ ] digest 判新:升级器与发布器同 digest 判据,逐件对 `.sha256` 边车锚校验
 - [ ] dev 加 stable 双通道是否开放:随仓裁,写进仓内 AGENTS
 - [ ] 元数据回写:升级后回写安装管理器的工具级状态,或管理器以实值探活判,无旧版残留
