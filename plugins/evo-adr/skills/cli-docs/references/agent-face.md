@@ -1,6 +1,6 @@
 # 乙面:CLI agent 友好四件
 
-> 手册面、输出协议、默认帮助面、自省同源;实现模板在 templates.md 第二至六节。发现通道选型面见同插件 code-kit 的 tool-cli-agents。
+> 手册面、输出协议、默认帮助面、自省同源;实现模板在 templates.md 第二至五节。发现通道选型面见同插件 code-kit 的 tool-cli-agents。
 
 ## 一、--llms 手册面
 
@@ -68,7 +68,7 @@
 - **Global Options**:字典序,旗标列对齐,取值尖括号占位且枚举列全值;仅根生效的旗标只在根出
 - **Environment Variables**:逐条给 `set:` 值(脱敏,只露尾四位)与 `default:`
 - **描述单一真源**:所有描述文案与 schema 描述字段同源(校验层 describe 同款),禁双份手维护;描述风格 = 简短祈使短语
-- 帮助输出示例见 templates.md 第四节(双语言模板各带一份:叶形与组形);帮助与 `--llms` 同出命令树(第四节)
+- 帮助输出示例见 templates.md 第四节(双语言模板各带一份:叶形与组形);帮助与 `--llms` 同出命令树(见第四节自省)
 
 ## 四、自省:三面同源
 
