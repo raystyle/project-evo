@@ -10,7 +10,7 @@ trace: tests/test_project_evo.py
 
 ## Scenario
 
-总台立单(2026-09-17):CLI 项目需要仓无关双标准:甲面 README 标准(四标杆研究定稿,人类阅读优先)与乙面 agent 友好三件(--llms 手册、JSON 协议、自省)。归口裁定新立 skill(照 build-release 形),与 doc-gov、code-kit 的 tool-cli-agents 分工互引,私有名零出现。
+总台立单(2026-09-17):CLI 项目需要仓无关双标准:甲面 README 标准(四标杆研究定稿,人类阅读优先)与乙面 agent 友好三件起步,经三号补单定为四件(--llms 手册、旗标全家与 CTA 协议、默认帮助面、自省)。归口裁定新立 skill(照 build-release 形),与 doc-gov、code-kit 的 tool-cli-agents 分工互引,私有名零出现。
 
 ## Criteria
 

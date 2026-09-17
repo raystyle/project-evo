@@ -46,7 +46,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 | evo-adr | `code-kit` | 骨架与门禁工具箱:init/check/scan/md-guard 零依赖脚本、模板、PE-01 至 PE-12 诊断、md 禁字挡板;附测试分层、平台矩阵、三栈工程合同 | 初始化骨架、跑合规检查、建 Rust/TypeScript/Python 工程 |
 | evo-adr | `gh-issue` | 命令出错自动上报:定位目标仓、双通道去重、模板化正文(截断与脱敏)、gh issue create 自动发、三态回执 | 命令或 CLI 报错要给上游发 bug issue 时 |
 | evo-adr | `build-release` | 编译打包发布流水线指导:六型配方(go/rust/npm/py/native/manifest)、三段式(本地编译打包、gh 发布、Action 播种)、可拷改模板(本地命令面、播种 workflow、自升级核对清单) | 搭或改 CI/CD 流水线、发 Release、推镜像时 |
-| evo-adr | `cli-docs` | CLI 对外面双标准:README 四节骨架(ripgrep/fzf/bat/fd 标杆研究)加 agent 三件(--llms 手册、JSON 信封协议、自省三面同源) | 写 CLI README、配 --llms、定输出协议时 |
+| evo-adr | `cli-docs` | CLI 对外面双标准:README 四节骨架(ripgrep/fzf/bat/fd 标杆研究)加 agent 四件(--llms 手册、旗标全家与 CTA 协议、默认帮助面、自省) | 写 CLI README、配 --llms、定输出协议时 |
 | evo-codesec | `secret-scan` | 密钥与隐私深扫:工作区、git 全历史、GitHub alerts 与 code search;命中一律脱敏 | 查泄露、凭据轮换前体检 |
 | evo-codesec | `security-audit` | 安全审计与漏洞审查(译自 Cloudflare security-audit-skill,MIT):双模式、信任边界、覆盖账本、结构化报告 | 安全问题、渗透测试、漏洞研究 |
 | evo-research | `research` | 资料检索管线:gh/bh 发现、aria2c 获取、reader 研读;无头优先、HTTP 优先 | 找论文与文章、查 X 与 GitHub、下大文件、读电子书 |
