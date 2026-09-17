@@ -132,6 +132,27 @@ Suggested commands:
 
 必选旗标七件加可选扩展件全表见 agent-face 第二节;退出码 0/1/2;字段序保插入序。
 
+裸调用输出示例(无参进入,两形任一,exit 恒 0):
+
+```text
+<cli> <一句话定位>。
+命令清单:<cli> --llms;详情:<cli> --help
+```
+
+```text
+<cli>@<version> <一句话定位>
+Usage: <cli> <command>
+
+Commands:
+  get      <取详情>
+  list     <列表>
+  update   <自升级>
+
+Global Options:
+  --llms    agent 命令清单
+  --help    人读帮助
+```
+
 ## 四、双语言实现模板(TS 加 Rust)
 
 TypeScript(信封、类型化 CTA 与帮助渲染):

@@ -1,6 +1,6 @@
 # evo-adr
 
-项目进化文档治理插件:五个 skill,`doc-gov` 文档即代码治理知识(AGENTS 合同、ADR、REQ、投影纪律、六态)、`code-kit` 骨架与门禁工具(init/check/scan/md-guard/mdrules 零依赖脚本、模板、PE-01 至 PE-12 诊断、md 禁字挡板)、`gh-issue` 命令出错自动上报 GitHub issue(定位仓、双通道去重、模板正文、自动发单、三态回执)与 `build-release` 编译打包发布流水线指导(六型配方、公共契约、可拷改模板)与 `cli-docs` CLI 对外面双标准(README 四节骨架、agent 四件:--llms 手册、旗标全家与 CTA 协议、默认帮助面、自省)。
+项目进化文档治理插件:五个 skill,`doc-gov` 文档即代码治理知识(AGENTS 合同、ADR、REQ、投影纪律、六态)、`code-kit` 骨架与门禁工具(init/check/scan/md-guard/mdrules 零依赖脚本、模板、PE-01 至 PE-12 诊断、md 禁字挡板)、`gh-issue` 命令出错自动上报 GitHub issue(定位仓、双通道去重、模板正文、自动发单、三态回执)与 `build-release` 编译打包发布流水线指导(六型配方、公共契约、可拷改模板)与 `cli-docs` CLI 对外面双标准(README 四节骨架、agent 五件:--llms 手册、旗标全家与 CTA 协议、默认帮助面、自省、裸调用面)。
 
 状态:active。插件面客户端:Claude Code、Codex、Grok;纯 skills 面:Kimi 等手拷子集。
 

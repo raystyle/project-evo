@@ -30,7 +30,7 @@
 | `../plugins/evo-adr/skills/code-kit/references/env-platform.md` | 平台适配：shell 分平台、编码行尾、脚本载体、CI 三系统、接管验收 | 定平台矩阵/跨平台协作时 |
 | `../plugins/evo-adr/skills/doc-gov/references/flow-release.md` | 封版发布模式：三路门禁验收、封版件、tag 触发、发布验收 | 发版本时 |
 | `../plugins/evo-adr/skills/build-release/SKILL.md` | 编译打包发布流水线指导:六型配方、公共契约、可拷改模板 | 搭 CI/CD 流水线时 |
-| `../plugins/evo-adr/skills/cli-docs/SKILL.md` | CLI 对外面双标准:README 四节骨架与 agent 四件(--llms、协议、帮助面、自省) | 写 CLI README、配 agent 面时 |
+| `../plugins/evo-adr/skills/cli-docs/SKILL.md` | CLI 对外面双标准:README 四节骨架与 agent 五件(--llms、协议、帮助面、自省、裸调用) | 写 CLI README、配 agent 面时 |
 | `../plugins/evo-adr/skills/doc-gov/references/exp-pitfalls.md` | 已知误区十八条 | 落地前预警 / 踩坑后对照 |
 | `../plugins/evo-adr/skills/code-kit/verification/command-test-cases.md` | 规范检查命令（参数化 ProjectRoot） | 验证骨架合规时 |
 | `../plugins/evo-codesec/skills/secret-scan/SKILL.md` | 密钥与隐私扫描命令面 | 扫 git/GitHub 泄露时 |

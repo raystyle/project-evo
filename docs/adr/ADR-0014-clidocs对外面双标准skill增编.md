@@ -17,7 +17,7 @@ tags:
 
 ## Context
 
-总台立单(2026-09-17):CLI 项目需要两面仓无关标准:甲面 README 标准(研究 ripgrep、fzf、bat、fd 四业界标杆提炼,人类阅读优先,四节骨架为起点按研究定稿);乙面 agent 友好三件起步,经三号补单定为四件(--llms 手册面、旗标全家与类型化 CTA 协议、默认帮助面、自省三面同源)。归口裁定:新立 skill(照 build-release 形),与 doc-gov(文档体系治理,管仓内文档骨架)和 code-kit 的 tool-cli-agents(发现通道与 token 经济学设计面)分工互引不重述;私有名零出现,实现出处(hst 输出契约、omc 信封、四标杆 README)只留仓内 diary。
+总台立单(2026-09-17):CLI 项目需要两面仓无关标准:甲面 README 标准(研究 ripgrep、fzf、bat、fd 四业界标杆提炼,人类阅读优先,四节骨架为起点按研究定稿);乙面 agent 友好三件起步,经三号补单定为四件(--llms 手册面、旗标全家与类型化 CTA 协议、默认帮助面、自省三面同源、裸调用面)。归口裁定:新立 skill(照 build-release 形),与 doc-gov(文档体系治理,管仓内文档骨架)和 code-kit 的 tool-cli-agents(发现通道与 token 经济学设计面)分工互引不重述;私有名零出现,实现出处(hst 输出契约、omc 信封、四标杆 README)只留仓内 diary。
 
 ## Decision
 

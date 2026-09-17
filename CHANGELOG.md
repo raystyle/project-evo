@@ -11,6 +11,7 @@
 - **乙面 agent 三件起步**(references/agent-face.md,二号补单时点口径,三号补单定四件见末条;总台细则补单定为旗标七件加类型化 CTA,双语言参考 incur 形):一 --llms 手册面(旗标恒 --llms,裸 markdown 紧凑手册至多 120 行,--llms --json 机器形,活命令树渲染禁手维护,全派生或 curated 加漂移守卫两形,stdout 退出 0 禁交互);二 输出协议:旗标七件(--filter-output 键路径含数组索引、--format toon/json/yaml/md、--full-output 全信封、--help/-h、--llms、--json 简写互斥、--schema 三面 JSON Schema)加信封 ok/data|error/meta/commands;commands 即类型化 CTA(command,args,description),ok 与 error 回执都可携带,人读形渲染(初稿 Next: 块,终形 Suggested commands 见末条),错误 stderr 单行 JSON,退出码 0/1/2,字段序保插入序;三 自省(活命令树唯一真源,help 与手册与 schema 三面同源,漂移守卫锁全旗标覆盖,版本从载体注入)
 - 模板五节可拷改:README 骨架、手册骨架、信封与旗标七件、双语言实现模板(TS 加 Rust 各一份:信封结构加 ok/error 构造加 CTA 折算与 Suggested commands 渲染)、自省核对清单;tool-cli-agents 第二节加互引注
 - 同步面:双 manifest 与市场条目描述、守卫 SKILLS 十一 skill、pre-commit 第十一段、AGENTS 与根 README 与 docs 地图与 gates 计数、evo-adr README 五 skill 化、ADR-0014 与 REQ-006 与索引、ROADMAP、diary
+- 总台四号补单(裸调用面):增第五件——无参进入不弹交互不纯报错(导航事件非错误),紧凑形(一行定位加指 --llms 与 --help,agent 首荐)或全貌形(帮助体),退出码恒 0,管道模式显式分离;templates 补裸调用示例紧凑与全貌各一;乙面口径全量刷五件
 - 总台三号补单复入(默认帮助说明标准):乙面四件定形,新增默认帮助面(节序:头行 name@version、Usage synopsis、Arguments、Options、Examples、Global Options 字典序枚举全值默认后缀弃用前缀、Environment Variables 脱敏;描述与 schema 同源单一真源;组与叶双形);CTA 契约按参考实形(字符串或 command/args/options/description 折算、CLI 名自动前缀、Suggested commands 渲染、进信封 meta 人机同源);旗标全家(七件必选加可选扩展:llms-full、mcp、token 三件、update、version、config,裁剪显式);mcp 与 http api 裁为可选附录章(默认不做);双语言模板各带帮助输出示例一份(TS 叶形加 Rust 组形)
 
 ## [0.9.0] - 2026-09-17
