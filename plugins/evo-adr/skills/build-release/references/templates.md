@@ -22,8 +22,8 @@ for triple in <目标列表>; do
 done
 # 5 解包冒烟:每包解出跑 --version 对 VER(交叉件在目标实机跑)
 <解包冒烟命令>
-# 6 GitHub 产物发布:gh 直发钉 latest,禁 draft(npm 形发 *.tgz、py 形发 wheel 与 sdist,同链)
-gh release create "$TAG" dist/*.zip dist/*.tar.gz dist/*.sha256 --latest \
+# 6 GitHub 产物发布:gh 直发钉 latest,禁 draft(dist 全量上,npm 形 *.tgz、py 形 wheel 与 sdist 同链)
+gh release create "$TAG" dist/* --latest \
   --title "<tool> $TAG" --notes "<正式版说明,含发现通道一句>"
 ```
 
@@ -103,6 +103,7 @@ permissions:
 
 jobs:
   seed:
+    # 选装 dev 段(prerelease 滚动)时须同步放宽本 if 收 prerelease 事件
     if: ${{ !github.event.release.prerelease || inputs.tag != '' }}
     runs-on: ubuntu-latest
     env:
@@ -125,19 +126,20 @@ jobs:
       - name: 灌段(版本段 immutable 加 stable 滚动)
         run: |
           set -euo pipefail
-          rclone copy dist/ "r2:${R2_BUCKET}/<tool>/${VER}/" \
-            --include "*.zip" --include "*.tar.gz" --include "*.sha256" \
+          INC=(--include "*.zip" --include "*.tar.gz" --include "*.tgz" --include "*.whl" --include "*.sha256")
+          rclone copy dist/ "r2:${R2_BUCKET}/<tool>/${VER}/" "${INC[@]}" \
             --header-upload "Cache-Control: public, max-age=31536000, immutable" \
             --checksum -v --stats-one-line
-          rclone sync dist/ "r2:${R2_BUCKET}/<tool>/stable/" \
-            --include "*.zip" --include "*.tar.gz" --include "*.sha256" \
+          rclone sync dist/ "r2:${R2_BUCKET}/<tool>/stable/" "${INC[@]}" \
             --header-upload "Cache-Control: public, max-age=60" --delete-excluded
-      - name: 零上传红灯(清点版本段,零即红;确无资产仓型用显式豁免开关)
+      - name: 零上传红灯(版本段与 stable 段分别清点报数,任一零即红;确无资产仓型用显式豁免开关)
         run: |
           set -euo pipefail
-          n=$(rclone lsf "r2:${R2_BUCKET}/<tool>/${VER}/" | wc -l)
-          [ "$n" -gt 0 ] || { echo "::error::镜像版本段零对象"; exit 1; }
-          echo "mirror objects: $n"
+          nv=$(rclone lsf "r2:${R2_BUCKET}/<tool>/${VER}/" | wc -l)
+          ns=$(rclone lsf "r2:${R2_BUCKET}/<tool>/stable/" | wc -l)
+          [ "$nv" -gt 0 ] || { echo "::error::镜像版本段零对象"; exit 1; }
+          [ "$ns" -gt 0 ] || { echo "::error::stable 段零对象(漏滚)"; exit 1; }
+          echo "mirror objects: ver=$nv stable=$ns"
       - name: 对账回显
         run: rclone lsl "r2:${R2_BUCKET}/<tool>/${VER}/"
   # dev prerelease 滚动段(随仓裁):release.prerelease 形灌 <tool>/dev/ 段(sync delete-excluded)

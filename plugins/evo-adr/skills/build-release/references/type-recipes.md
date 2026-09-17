@@ -16,13 +16,13 @@
 - **构建矩阵(本地)**:三目标实证形:`x86_64-unknown-linux-gnu`(主开发机本职)、`x86_64-pc-windows-gnu`(主开发机 mingw 交叉出 PE,CRT 静态零 DLL 依赖)、`aarch64-apple-darwin`(mac 实机);扩岗(aarch64-linux 交叉、musl 纯静态)随仓裁
 - **测试闸**:`cargo test --locked` 先行(本地跑);交叉件运行时冒烟在目标实机
 - **打包与边车**:单顶层目录 = 二进制加 README 加 LICENSE,win 形 zip 他形 tar.gz,逐包 `.sha256`;交叉件运行时冒烟用专岗(下载 artifact 在原生 OS 跑)
-- **发布/播种**:公共契约第四节第三节(gh 直发加 rclone 段制)
+- **发布/播种**:公共契约第三节与第四节(gh 直发加 rclone 段制)
 - **自升级判据**:必答项;带 update 子命令的自研 CLI 适用双通道契约,库或 fork 形归安装管理方单通道
 - **元数据对齐**:回写对齐;载体唯一权威是 Cargo.toml(workspace 版集中处)
 
 ## npm 形(package.json)
 
-- **构建矩阵**:单 job,Node 22 级;`package-lock.json` 在则 `npm ci`
+- **构建矩阵(本地)**:Node 22 级;`package-lock.json` 在则 `npm ci`
 - **测试闸**:`npm test --if-present` 加 `npm run build --if-present`
 - **打包与边车**:`npm pack --pack-destination`,files/exports 控 tarball;workspace 全子包加 `--workspaces`;逐 tgz `.sha256`
 - **发布/播种**:公共契约第三节与第四节
@@ -32,7 +32,7 @@
 
 ## py 形(pyproject.toml)
 
-- **构建矩阵**:单 job,Python 3.12 级;纯 Python 用 `python -m build`
+- **构建矩阵(本地)**:Python 3.12 级;纯 Python 用 `python -m build`
 - **测试闸**:pytest 先行(有测试面时)
 - **打包与边车**:wheel 加 sdist 逐件 `.sha256`;C 扩展或多平台 wheel 换 cibuildwheel matrix
 - **发布/播种**:公共契约第三节与第四节
@@ -52,6 +52,7 @@
 
 ## manifest 形(纯文档/插件仓)
 
+- **构建矩阵与打包**:不适用(无二进制面)
 - **无编译无播种**:不产二进制,不进镜像段
 - **测试闸**:仓内规范与一致性门禁(测试、断链、禁字、清单守卫)
 - **发布形**:清单三处一致(manifest 双面加市场条目),版本一致性闸仍适用;tag 触发市场快照刷新;无镜像播种

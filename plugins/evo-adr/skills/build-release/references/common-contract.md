@@ -31,9 +31,9 @@
 
 ## 五、护栏三件
 
-1. **版本一致性闸加解包冒烟**:tag 对载体 manifest(Cargo.toml 或 package.json 或插件三清单)不一致 job 直接红;CI 内解包跑 `--version` 与 tag 逐字对
-2. **零上传红灯**:mirror job 推完清点对象,零对象即红(防上游 draft 窗或准入误判静默 skip);确无资产的仓型用显式豁免开关,不许默认静默
-3. **dispatch 补推口**:publish/mirror 挂 `workflow_dispatch`,needs 链 `if` 套 `always()` 让补推不依赖重跑全链
+1. **版本一致性闸加解包冒烟**:tag 对载体 manifest(Cargo.toml 或 package.json 或插件三清单)不一致即止红;发布前解包跑 `--version` 与 tag 逐字对(本地)
+2. **零上传红灯**:播种 workflow 灌完清点对象,版本段与 stable 段分别报数,零对象即红(防半失败:版本段有物而 stable 漏滚仍绿);确无资产的仓型用显式豁免开关,不许默认静默
+3. **dispatch 补推口**:播种 workflow 挂 `workflow_dispatch` 带 tag 入参,从 Release 拉资产重灌,不依赖重跑任何链
 
 ## 六、自升级与元数据对齐
 

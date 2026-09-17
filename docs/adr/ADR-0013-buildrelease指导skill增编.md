@@ -21,7 +21,7 @@ tags:
 
 ## Decision
 
-- evo-adr 增编第四 skill `build-release`(仓无关编译打包发布流水线指导:六型配方 go/rust/npm/py/native/manifest,每型七要素;公共契约节管仓侧全链自包、rclone 恒形与双段制、Release 直发、护栏三件、自升级与元数据对齐;references 含可拷改模板:通用 workflow 骨架、各型构建片段、rclone 镜像步、自升级核对清单);修订 ADR-0010 的九 skill 清单条款为十 skill,四插件形态与分域不变
+- evo-adr 增编第四 skill `build-release`(仓无关编译打包发布流水线指导:六型配方 go/rust/npm/py/native/manifest,每型七要素;三段式正源 本地编译和打包 到 GitHub 产物发布 到 CI/CD Action 自动播种;公共契约节管边界与产地、rclone 恒形与段制、Release 直发、护栏三件、自升级与元数据对齐;references 含可拷改模板:本地编译与发布命令面、各型片段、CI/CD 播种 workflow、自升级核对清单);修订 ADR-0010 的九 skill 清单条款为十 skill,四插件形态与分域不变
 - 类型路由制:按仓根清单形态分型给配方,先定型号再取七要素;公共契约型号无关,型号差异只写型差异
 - 通用性纪律入正文与模板:镜像域写 `<mirror-host>/<tool>/<version>/`,安装管理器元数据写「安装管理器的工具级状态」,Secrets 名保持通用 R2 族;仓名与私有基础设施名正文注脚示例模板默认值全禁,实证留档只进仓内 diary
 

@@ -7,9 +7,9 @@
 ### 新增（2026-09-17，第七十五批:build-release 流水线标准指导 skill 增编）
 
 - ohmycloud 总台派单(用户令),六轮追正定形:全仓编译打包发布流程标准落位 **仓无关指导 SKILL** `build-release`(evo-adr 第四 skill,ADR-0013 修订 ADR-0010 清单为十,REQ-005;herdr-flywheel 同形态先例:SKILL.md 加 references,任何仓可套用);起草期的 doc-gov references 草稿篇 flow-build.md 退役并入,doc-gov 三面回退 9 篇
-- **类型路由制**:「什么样的项目,怎么做」,六型配方(go 交叉六目标、rust matrix 五目标、npm pack 离线包、py wheel、native 自含静态加跨宿主容器闸、manifest 纯文档仓),每型七要素(构建矩阵、测试闸、打包与边车、发布、播种、自升级判据、元数据对齐);CI 不可产的大件分发不属本面,边界一句注记
-- **三段式正源(用户终裁)**:本地编译(主开发机交叉加实机矩阵,测试闸与版本闸与解包冒烟先行)到 GitHub 产物发布(gh release 直发 --latest 禁 draft)到 CI/CD Action 自动播种 R2(Release published 触发拉资产 rclone 推段,零上传红灯,dispatch 补推带 tag 入参;CI 面不编译,测试岗随仓裁);模板形态取自家族仓实测实践参数化去私有名(env-remote r2: 配置形、三目标矩阵、单顶层目录包形 win zip 他 tar.gz、逐包边车、段制三段)
-- **可拷改模板四件**(references/templates.md),形态取自家族仓实测工作流(git 历史在档)参数化去私有名:通用 workflow 骨架(docs-gate 加三岗 matrix 加交叉专岗冒烟加 dev/正式双通道 release 加 mirror 三段灌加零上传红灯)、各型构建片段、rclone 镜像步(env-remote 形 immutable 加滚动双头)、自升级契约核对清单
+- **类型路由制**:「什么样的项目,怎么做」,六型配方(go 交叉六目标、rust 本地三目标(主开发机交叉加 mac 实机)、npm pack 离线包、py wheel、native 自含静态加跨宿主容器闸、manifest 纯文档仓),每型七要素(构建矩阵、测试闸、打包与边车、发布、播种、自升级判据、元数据对齐);CI 不可产的大件分发不属本面,边界一句注记
+- **三段式正源(用户终裁)**:本地编译和打包(主开发机交叉加实机矩阵,npm pack 与 python -m build 本地出离线包,测试闸与版本闸与解包冒烟先行)到 GitHub 产物发布(gh release 直发 --latest 禁 draft)到 CI/CD Action 自动播种 R2(Release published 触发拉资产 rclone 推段,零上传红灯三段报数,dispatch 补推带 tag 入参;CI 面不编译不打包,测试岗随仓裁);模板形态取自家族仓实测实践参数化去私有名(env-remote r2: 配置形、三目标矩阵、单顶层目录包形 win zip 他 tar.gz、逐包边车、段制三段)
+- **可拷改模板**(references/templates.md 四节),形态取自家族仓实测工作流(git 历史在档)参数化去私有名:本地编译与发布命令面(版本闸、测试闸、交叉编译、包形与逐包边车、解包冒烟、gh 直发与 dev prerelease 滚动)、各型本地编译片段、CI/CD 播种 workflow(release published 触发、拉资产、env-remote r2:、版本段 immutable copy-only 加 stable sync delete-excluded、零上传红灯三段报数、dispatch 带 tag 入参)、自升级契约核对清单
 - **通用性终约束(最高优先)**:标准通用件,私有名称与私有信息零出现(正文、注脚、示例、模板默认值全禁);契约全部抽象参数化(镜像域 `<mirror-host>/<tool>/<version>/`、安装管理器元数据抽象化、Secrets 通用 R2 族);实证引一律不进 SKILL,留档仓内 diary
 - 同步面:双 manifest 与市场条目描述、守卫 SKILLS 十 skill、pre-commit 第十段、AGENTS 与根 README 与 docs 地图与 gates 计数、evo-adr README 四 skill 化、CHANGELOG、ROADMAP、diary
 
