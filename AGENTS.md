@@ -1,12 +1,12 @@
 # ProjectEvo 开发协作规则
 
 > 唯一权威源。`CLAUDE.md` 仅一行 `@AGENTS.md` 桥接,不重复维护。
-> 定位:项目治理插件市场仓(四插件十 skill 同属项目治理面,非业务工具面):evo-adr(文档治理:doc-gov 知识面、code-kit 工具面、gh-issue 错报上报、build-release 流水线标准)、evo-codesec(代码安全:secret-scan、security-audit,后者译自 Cloudflare security-audit-skill,MIT,skill 目录内附 LICENSE)、evo-research(研究检索:research、report)、evo-herdr(多仓协作:herdr-flywheel 飞轮协议、herdr-review 评审闸门),市场名 project-evo,客户端显示 `<插件>:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
+> 定位:项目治理插件市场仓(四插件十一 skill 同属项目治理面,非业务工具面):evo-adr(文档治理:doc-gov 知识面、code-kit 工具面、gh-issue 错报上报、build-release 流水线标准、cli-docs 对外面双标准)、evo-codesec(代码安全:secret-scan、security-audit,后者译自 Cloudflare security-audit-skill,MIT,skill 目录内附 LICENSE)、evo-research(研究检索:research、report)、evo-herdr(多仓协作:herdr-flywheel 飞轮协议、herdr-review 评审闸门),市场名 project-evo,客户端显示 `<插件>:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
 
 ## Commands
 
 - `uv run pytest` 全测试(脚本行为 + 清单一致性守卫 + 仓内禁字回归)
-- `uv run .tools/md-ref-scan.py plugins/<插件>/skills/<skill>` 断链扫描(四插件十 skill 各跑一次;pre-commit 自动)
+- `uv run .tools/md-ref-scan.py plugins/<插件>/skills/<skill>` 断链扫描(四插件十一 skill 各跑一次;pre-commit 自动)
 - `uv run plugins/evo-adr/skills/code-kit/scripts/check.py` 本仓骨架自检(PE-01 至 PE-12;下游仓 PE-11 历史档案豁免走 PEVO_CHECK_ALLOW,正则见 docs/guides/gates.md)
 - `uv run plugins/evo-adr/skills/code-kit/scripts/scan.py . --no-history` 禁字与密钥扫描(测试夹具与 A/B 用例的公开示例假密钥走 `PEVO_SCAN_ALLOW` 豁免:tests/test_project_evo.py 的 ghp_ 假 token 与 secret-scan ab 夹具及 docs/research/S006 的公开示例样值;标准命令与完整豁免正则见 docs/guides/gates.md)
 - 提交挡板:`git config core.hooksPath githooks`(md 禁字 + 断链,不过不进库)

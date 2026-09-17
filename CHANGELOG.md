@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 新增（2026-09-17，第七十七批:cli-docs 对外面双标准 skill 增编）
+
+- 总台立单(用户令):为 evo-adr 立仓无关通用 SKILL(照 build-release 形,私有名零出现,归口裁定新立并与 doc-gov、code-kit 的 tool-cli-agents 分工互引);ADR-0014 修订 ADR-0010 清单为十一 skill,REQ-006
+- **甲面 README 标准**(references/readme-standard.md):四业界标杆(ripgrep、fzf、bat、fd)README 实读研究,共性表提炼;四节主骨架定稿:项目介绍(徽章加定位加特性加演示加何时不用)、部署(全平台安装加升级加校验)、配置(配置文件样例加环境变量表)、使用(教程式渐进示例加集成配方加选项指 help 与手册);可选尾节排障开发许可;写法纪律(示例驱动、渐进、alert 提示块、配置给完整样例、全集不内联)与反面清单;README 骨架模板可拷改
+- **乙面 agent 三件**(references/agent-face.md):一 --llms 手册面(旗标恒 --llms,裸 markdown 紧凑手册至多 120 行,--llms --json 机器形,活命令树渲染禁手维护,全派生或 curated 加漂移守卫两形,stdout 退出 0 禁交互);二 JSON 协议(--format 族加 --json 简写互斥,信封 ok/data|error/meta/hints,hints 即 CTA,jsonl 逐行无信封,错误 stderr 单行 JSON,退出码 0/1/2 grep 语义,字段序保插入序,filter 后 fields 裁剪);三 自省(活命令树唯一真源,help 与手册与 schema 三面同源,漂移守卫锁全旗标覆盖,版本从载体注入)
+- 模板四节可拷改:README 骨架、手册骨架、信封 schema、自省核对清单;tool-cli-agents 第二节加互引注
+- 同步面:双 manifest 与市场条目描述、守卫 SKILLS 十一 skill、pre-commit 第十一段、AGENTS 与根 README 与 docs 地图与 gates 计数、evo-adr README 五 skill 化、ADR-0014 与 REQ-006 与索引、ROADMAP、diary
+
 暂无。
 
 ## [0.9.0] - 2026-09-17

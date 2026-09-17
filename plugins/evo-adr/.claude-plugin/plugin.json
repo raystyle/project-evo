@@ -1,7 +1,7 @@
 {
   "name": "evo-adr",
   "version": "0.3.0",
-  "description": "项目进化文档治理:doc-gov(文档体系治理知识:AGENTS 合同、ADR、REQ、投影纪律、六态)与 code-kit(骨架与门禁:init/check/scan 零依赖脚本、md 禁字挡板、模板)与 gh-issue(命令出错自动上报:定位仓、双通道去重、模板正文、gh issue create 自动发、三态回执)与 build-release(编译打包发布流水线指导:六型配方、公共契约、可拷改模板)",
+  "description": "项目进化文档治理:doc-gov(文档体系治理知识:AGENTS 合同、ADR、REQ、投影纪律、六态)与 code-kit(骨架与门禁:init/check/scan 零依赖脚本、md 禁字挡板、模板)与 gh-issue(命令出错自动上报:定位仓、双通道去重、模板正文、gh issue create 自动发、三态回执)与 build-release(编译打包发布流水线指导:六型配方、公共契约、可拷改模板)与 cli-docs(CLI 对外面双标准:README 四节骨架加 agent 三件手册面协议自省)",
   "author": {
     "name": "raystyle"
   },

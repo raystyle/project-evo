@@ -1,7 +1,7 @@
 {
   "name": "evo-adr",
   "version": "0.3.0",
-  "description": "项目进化文档治理:doc-gov(文档体系治理知识:AGENTS 合同、ADR、REQ、投影纪律、六态)与 code-kit(骨架与门禁:init/check/scan 零依赖脚本、md 禁字挡板、模板)与 gh-issue(命令出错自动上报:定位仓、双通道去重、模板正文、gh issue create 自动发、三态回执)与 build-release(编译打包发布流水线指导:六型配方、公共契约、可拷改模板)",
+  "description": "项目进化文档治理:doc-gov(文档体系治理知识:AGENTS 合同、ADR、REQ、投影纪律、六态)与 code-kit(骨架与门禁:init/check/scan 零依赖脚本、md 禁字挡板、模板)与 gh-issue(命令出错自动上报:定位仓、双通道去重、模板正文、gh issue create 自动发、三态回执)与 build-release(编译打包发布流水线指导:六型配方、公共契约、可拷改模板)与 cli-docs(CLI 对外面双标准:README 四节骨架加 agent 三件手册面协议自省)",
   "author": {
     "name": "raystyle"
   },
@@ -21,8 +21,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Evo ADR",
-    "shortDescription": "项目进化文档治理:文档体系知识(doc-gov)、骨架门禁工具(code-kit)、命令错报上报(gh-issue)与编译打包发布流水线指导(build-release)。",
-    "longDescription": "四个 skill:doc-gov 指导项目建立文档即代码体系(契约在代码、文档是投影:AGENTS 极简五节合同、ADR 架构决策记录、REQ 需求登记与 trace 回填、生成投影纪律与 agent 渐进检索面、三栈机制对照、diary 与 research 档案、六态事实标记);code-kit 承载骨架与门禁工具面(init/check/scan/md-guard/mdrules 零依赖脚本、文档骨架模板、PE-01 至 PE-12 合规诊断、md 禁字挡板);gh-issue 是命令出错自动上报工作流(定位目标仓、双通道去重、模板正文与截断脱敏、gh issue create 自动发、三态回执);build-release 是仓无关编译打包发布流水线指导(六型配方、公共契约、可拷改模板:workflow 骨架、rclone 双段镜像步、自升级核对清单)。",
+    "shortDescription": "项目进化文档治理:文档体系知识(doc-gov)、骨架门禁工具(code-kit)、命令错报上报(gh-issue)、流水线指导(build-release)与 CLI 对外面双标准(cli-docs)。",
+    "longDescription": "四个 skill:doc-gov 指导项目建立文档即代码体系(契约在代码、文档是投影:AGENTS 极简五节合同、ADR 架构决策记录、REQ 需求登记与 trace 回填、生成投影纪律与 agent 渐进检索面、三栈机制对照、diary 与 research 档案、六态事实标记);code-kit 承载骨架与门禁工具面(init/check/scan/md-guard/mdrules 零依赖脚本、文档骨架模板、PE-01 至 PE-12 合规诊断、md 禁字挡板);gh-issue 是命令出错自动上报工作流(定位目标仓、双通道去重、模板正文与截断脱敏、gh issue create 自动发、三态回执);build-release 是仓无关编译打包发布流水线指导(六型配方、公共契约、可拷改模板:本地命令面、播种 workflow、自升级核对清单);cli-docs 是 CLI 对外面双标准(README 四节骨架标杆研究定稿、agent 三件:--llms 手册面、JSON 信封协议、自省三面同源)。",
     "developerName": "raystyle",
     "category": "Productivity",
     "capabilities": [
@@ -33,7 +33,8 @@
       "用 evo-adr 的 code-kit 为这个项目初始化文档骨架。",
       "用 doc-gov 帮我立一条 ADR 记录这个决策。",
       "这条命令报错了,用 gh-issue 查重后给上游发个 issue。",
-      "用 build-release 给这个仓搭编译打包发布流水线。"
+      "用 build-release 给这个仓搭编译打包发布流水线。",
+      "用 cli-docs 给这个 CLI 重写 README 并配 --llms 手册。"
     ]
   }
 }

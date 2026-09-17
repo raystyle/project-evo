@@ -9,3 +9,4 @@
 | REQ-003 | implemented | must | herdr 评审闸门 skill 增编 | tests/test_project_evo.py |
 | REQ-004 | implemented | must | 命令出错自动上报 issue 的 gh-issue 增编 | tests/test_project_evo.py |
 | REQ-005 | implemented | must | build-release 流水线标准指导 skill 增编 | tests/test_project_evo.py |
+| REQ-006 | implemented | must | cli-docs 对外面双标准 skill 增编 | tests/test_project_evo.py |
