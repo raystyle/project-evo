@@ -17,8 +17,8 @@ compatibility: 仓无关标准件;乙面实现随栈(clap、argparse、commander
 | --- | --- |
 | 写或改 CLI 的 README(结构与写法) | `references/readme-standard.md` 加 `references/templates.md` 第一节 |
 | 给 CLI 配 --llms 手册面 | `references/agent-face.md` 第一节加 `references/templates.md` 第二节 |
-| 定输出格式族与 JSON 信封协议 | `references/agent-face.md` 第二节加 `references/templates.md` 第三节 |
-| 做命令自省与漂移守卫 | `references/agent-face.md` 第三节加 `references/templates.md` 第四节 |
+| 定旗标七件与信封协议(类型化 CTA) | `references/agent-face.md` 第二节加 `references/templates.md` 第三节与第四节双语言模板 |
+| 做命令自省与漂移守卫 | `references/agent-face.md` 第三节加 `references/templates.md` 第五节 |
 | 发现通道怎么选(--llms 与 mcp 与市场) | 同插件 code-kit 的 tool-cli-agents |
 
 ## 二、双面速览
@@ -28,7 +28,7 @@ compatibility: 仓无关标准件;乙面实现随栈(clap、argparse、commander
 **乙面 agent 三件**:
 
 1. `--llms` 手册面:裸出 markdown 紧凑手册至多 120 行,`--llms --json` 出机器形;活命令树渲染禁手维护
-2. JSON 协议:`--format` 族加 `--json` 简写,信封 `{ok, data|error, meta?, hints?}`,错误 stderr 单行 JSON,退出码 0/1/2 约定
+2. 输出协议:**旗标七件**(--filter-output、--format、--full-output、--help/-h、--llms、--json、--schema)加信封 `{ok, data|error, meta?, commands?}`;commands 即类型化 CTA(command,args,description),ok 与 error 回执都可携带,人读形渲染 Next: 块;错误 stderr 单行 JSON,退出码 0/1/2
 3. 自省:活命令树为唯一真源,help、手册、JSON 三面同源派生,漂移守卫锁全旗标覆盖
 
 细则与模板见 references。
