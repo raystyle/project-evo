@@ -103,90 +103,143 @@
 
 ## 输出契约
 
-<格式族与信封一行式;stderr 错误形>
+<旗标七件与信封一行式;stderr 错误形>
 
 ## 示例
 
 <三五个最小可拷示例>
 ```
 
-## 三、信封 schema 与旗标七件模板
+## 三、信封 schema 与旗标模板
 
 ```json
 // 成功:<tool> --json
-{ "ok": true, "data": <载荷>, "meta": { "command": "<命令>", "duration_ms": 0 },
-  "commands": [ { "command": "<tool>", "args": ["get", "1"], "description": "<下一步说明>" } ] }
-// 失败:stdout 无输出,stderr 单行
+{ "ok": true, "data": <载荷>,
+  "meta": { "command": "<命令>", "duration_ms": 0,
+    "cta": { "description": "Suggested commands:",
+             "commands": [ { "command": "<cli> get 1", "description": "<说明>" } ] } } }
+// 失败:stdout 无输出,stderr 单行(可携 cta 同形)
 { "code": "<错误码>", "message": "<人读信息>" }
 ```
 
-人读形 CTA(与上 commands 同源渲染,正文后):
+- 信封 `error` 字段定形:字符串(人读信息);错误码与结构化细节走 stderr 单行形,不混载
+- 人读 CTA(与 meta.cta 同源渲染,正文后):
 
 ```text
-Next:
-  <tool> get 1    <下一步说明>
+Suggested commands:
+  <cli> get 1 - <说明>
 ```
 
-| 旗标 | 约定 |
-| --- | --- |
-| `--filter-output <keys>` | 键路径过滤,支持嵌套与数组索引(`foo,bar.baz,a[0,3]`) |
-| `--format <fmt>` | `toon\|json\|yaml\|md`,toon 人机统一缺省 |
-| `--full-output` | 全信封 ok,data,meta |
-| `--help` / `-h` | 人读帮助 |
-| `--llms` | agent 可读命令清单 |
-| `--json` | `--format json` 简写,互斥 |
-| `--schema` | args、options、output 三面 JSON Schema |
-| 退出码 | 0 成功;1 业务未命中;2 用法与系统错误 |
-| 字段序 | 与人读行序一致(保插入序) |
+必选旗标七件加可选扩展件全表见 agent-face 第二节;退出码 0/1/2;字段序保插入序。
 
 ## 四、双语言实现模板(TS 加 Rust)
 
-TypeScript(信封与类型化 CTA):
+TypeScript(信封、类型化 CTA 与帮助渲染):
 
 ```typescript
-interface CommandSuggestion { command: string; args: string[]; description: string; }
-interface Envelope { ok: boolean; data?: unknown; error?: string; meta?: { command: string; duration_ms: number }; commands?: CommandSuggestion[]; }
+type Cta = string | { command: string; args?: Record<string, unknown>; options?: Record<string, unknown>; description?: string };
+interface CtaBlock { commands: Cta[]; description?: string }
+interface FormattedCta { command: string; description?: string }
 
-function ok(data: unknown, cta: CommandSuggestion[] = [], meta: { command: string; duration_ms: number }): Envelope {
-  return { ok: true, data, meta, ...(cta.length ? { commands: cta } : {}) };
+function formatCta(name: string, cta: Cta): FormattedCta { // CLI 名自动前缀,值折占位
+  if (typeof cta === "string") return { command: `${name} ${cta}` };
+  const prefix = cta.command === name || cta.command.startsWith(`${name} `) ? "" : `${name} `;
+  let cmd = `${prefix}${cta.command}`;
+  if (cta.args) for (const [k, v] of Object.entries(cta.args)) cmd += v === true ? ` <${k}>` : ` ${v}`;
+  if (cta.options) for (const [k, v] of Object.entries(cta.options)) cmd += v === true ? ` --${k} <${k}>` : ` --${k} ${v}`;
+  return { command: cmd, ...(cta.description ? { description: cta.description } : {}) };
 }
-function error(message: string, code = "error", cta: CommandSuggestion[] = []): string {
-  return JSON.stringify({ code, message, ...(cta.length ? { commands: cta } : {}) }); // stderr 单行
+function renderCta(block: { description: string; commands: FormattedCta[] }): string { // 人机同源
+  return [block.description, ...block.commands.map(c => `  ${c.command}${c.description ? ` - ${c.description}` : ""}`)].join("\n");
 }
-function renderNext(cta: CommandSuggestion[]): string { // 人读形,与 commands 同源
-  return cta.length ? "Next:\n" + cta.map(c => `  ${c.command} ${c.args.join(" ")}    ${c.description}`).join("\n") : "";
+function stderrError(code: string, message: string, cta?: CtaBlock, name = "<cli>") { // stderr 单行
+  const b = cta && cta.commands.length ? { description: cta.description ?? "Suggested commands:", commands: cta.commands.map(c => formatCta(name, c)) } : undefined;
+  process.stderr.write(JSON.stringify({ code, message, ...(b ? { cta: b } : {}) }) + "\n");
 }
+```
+
+帮助输出示例(叶形,renderHelp 产物):
+
+```text
+<cli>@<version> <一句话描述>
+Usage: <cli> get <id> [options]
+
+Arguments:
+  id    <资源标识>
+
+Options:
+  --format <toon|json|yaml|md>    输出格式(default: toon)
+  --json                          --format json 简写
+  [deprecated] --out              改用 --filter-output
+
+Examples:
+  <cli> get 1          # 取详情
+  <cli> get 1 --json   # 机器形
+
+Global Options:
+  --filter-output <keys>    键路径过滤
+  --help, -h                人读帮助
+  --schema                  三面 JSON Schema
+
+Environment Variables:
+  <CLI>_TOKEN
+    set: ****abcd
+    default: (unset)
 ```
 
 Rust(serde 形):
 
 ```rust
 #[derive(serde::Serialize)]
-struct CommandSuggestion { command: String, args: Vec<String>, description: String }
+struct FormattedCta { command: String, #[serde(skip_serializing_if = "Option::is_none")] description: Option<String> }
+
+#[derive(serde::Serialize)]
+struct CtaMeta { description: String, commands: Vec<FormattedCta> }
 
 #[derive(serde::Serialize)]
 struct Envelope {
     ok: bool,
     #[serde(skip_serializing_if = "Option::is_none")] data: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")] error: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")] meta: Option<Meta>,
-    #[serde(skip_serializing_if = "Vec::is_empty")] commands: Vec<CommandSuggestion>,
+    #[serde(skip_serializing_if = "Option::is_none")] error: Option<String>, // 人读信息;错误码走 stderr
+    meta: Meta,
 }
 
 #[derive(serde::Serialize)]
-struct Meta { command: String, duration_ms: u64 }
-
-fn ok(data: serde_json::Value, cta: Vec<CommandSuggestion>, command: &str, started: std::time::Instant) -> Envelope {
-    Envelope { ok: true, data: Some(data), error: None,
-        meta: Some(Meta { command: command.into(), duration_ms: started.elapsed().as_millis() as u64 }), commands: cta }
+struct Meta {
+    command: String,
+    duration_ms: u64,
+    #[serde(skip_serializing_if = "Option::is_none")] cta: Option<CtaMeta>,
 }
-// 错误走 stderr 单行;字段序 = 结构体声明序(serde 保插入序,与人读行序一致)
+
+fn format_cta(name: &str, cta: &str) -> FormattedCta { // 字符串形;结构形同 TS 折算规则
+    FormattedCta { command: format!("{name} {cta}"), description: None }
+}
+fn render_cta(b: &CtaMeta) -> String { // 人机同源:描述行加两空格缩进
+    let mut s = b.description.clone();
+    for c in &b.commands { s.push_str(&format!("\n  {}", c.command)); if let Some(d) = &c.description { s.push_str(&format!(" - {d}")); } }
+    s
+}
+fn stderr_error(code: &str, message: &str) { // stderr 单行 JSON
+    eprintln!("{}", serde_json::json!({ "code": code, "message": message }));
+}
+```
+
+帮助输出示例(组形,renderHelp 产物):
+
+```text
+<cli>@<version> <一句话描述>
+Usage: <cli> <command>
+
+Commands:
+  get      <取详情>
+  list     <列表>
+  update   <自升级>
 ```
 
 ## 五、自省与漂移守卫核对清单
 
-- [ ] `--llms` 从命令树渲染(全派生)或 curated 加漂移测试(curated 形守卫必配)
+- [ ] `--llms` 与 `--help` 从命令树渲染(全派生)或 curated 加漂移测试(curated 形守卫必配)
 - [ ] 集成测试遍历命令树:每个子命令与长旗标出现在 `--llms` 输出
-- [ ] 版本号从载体 manifest 注入,零手写
-- [ ] help、`--llms`、`--llms --json` 三面同源,无一面手维护
+- [ ] 版本号从载体 manifest 注入,零手写(帮助头行与手册同源)
+- [ ] help、`--llms`、`--schema` 三面同源,无一面手维护;描述文案与 schema describe 同源
 - [ ] `--llms` 至多 120 行,stdout 退出 0,无交互无分页
