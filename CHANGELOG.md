@@ -10,6 +10,7 @@
 - 采通稿七条:detect 清单驱动、测试过再打包、产物零 commit 回仓、PR 只走 Artifact、通道寿命与匿名下载对比表、故障排查表与安全清单、不发公共注册表(npm/PyPI/crates 禁 publish)
 - 守家规七条:R2 恒 rclone 禁 aws-cli 形(env 四键 Secrets 加 NO_CHECK_BUCKET 加版本段 immutable 头)、双段制 `<tool>/<版本>/` 加 `stable/`(max-age=60、sync delete-excluded)禁 releases/ 形、逐件 .sha256 边车为镜像锚(聚合仅补充)、Release 恒 gh CLI 直发 --latest 禁 draft(ark v1.3.0 Draft 代发实录)、版本一致性闸加 CI 解包冒烟、零上传红灯护栏(豁免开关形,ark draft 窗静默 skip 教训)、dispatch 补推口(always(),aria2 补推坑)
 - 追正核心条款「编译产地与播种分工」置第二节:总台 rclone(omc r2 命令)仅 chrome 级大件;其余仓小件 GitHub Actions 全链自包零总台手工(手挂 release 与手推镜像为过渡期特例禁新形态);CI 内 rclone 自播正道与总台 rclone 分表述勿混
+- 追正二「自升级与 ark 升级对齐」章(第八节,基准 flow-release 第八节在案形):有自升级能力的 CLI(ark 加 hst 实证)self update 双通道加 digest 判新加边车锚校验,发布器与升级器同判据,dev 加 stable 双通道随仓裁;静态件升级归安装管理方(小件归 ark catalog pin,chromium 归 browse 版本管理器走 chrome 桶);对齐判据五端终态同 digest,总台 dist fleet 与 ark 验收双面核
 - 实录新增两条:跨宿主构建闸(aria2 v1.37.2 OSSL 互踩与 24.04 容器冒烟、ldd 双流断言)、回执 digest 三方对账(gh api 自取,GitHub 加镜像加 catalog 逐字等);flow-release 衔接表加互引行
 
 暂无。

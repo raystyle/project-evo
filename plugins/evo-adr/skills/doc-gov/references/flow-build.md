@@ -72,12 +72,18 @@ flowchart LR
 2. **零上传红灯**:mirror job 推完清点对象,零对象即红(防上游 draft 窗或准入误判静默 skip);确无资产的仓型用显式豁免开关,不许默认静默 [实证: ark draft 窗静默 skip 教训]
 3. **dispatch 补推口**:publish/mirror 挂 `workflow_dispatch`,needs 链 `if` 套 `always()` 让补推不依赖重跑全链 [实证: aria2 发布窗补推坑]
 
-## 八、跨宿主构建闸与回执对账(实录新增)
+## 八、自升级与 ark 升级对齐
+
+- **有自升级能力的 CLI**:self update 双通道,自家 ohmygh stable 段优先,GitHub release 404 自动回落;digest 判新加 `.sha256` 边车锚校验;发布器与升级器同 digest 判据(三通道全貌见 flow-release 第八节,不重复)[实证: ark 与 hst 已各自跑通];dev 加 stable 双通道是否随仓开放由仓裁
+- **无自升级面的静态件**:升级归安装管理方;小件归 ark install/update 走 catalog pin,chromium 类大件归 browse 内嵌版本管理器走 chrome 桶(产地分工见第二节)
+- **对齐判据**:五端升级路径一致,ark update 或各仓 self update 终态同 digest;总台 dist fleet 与 ark 验收双面核 [实证: 2026-09-17 ark 收敛验收,五端探针三工具新 pin 全绿]
+
+## 九、跨宿主构建闸与回执对账(实录新增)
 
 - **跨宿主闸**:同一产物在不同构建宿主上冒烟(容器闸),防 glibc 与 openssl 互踩;ldd 静态断言双流重定向加 file 双断言 [实证: aria2 v1.37.2,OSSL legacy dlopen 拖宿主库 22.04 产物 24.04 SIGSEGV,五岗绿含 24.04 容器冒烟收口]
 - **回执对账**:发布回执 digest 一律 gh api 自取,GitHub 与镜像与 catalog 三方逐字等才闭环;对方陈述不作数(协议面见 evo-herdr:herdr-flywheel) [实证: 2026-09-17 三仓滚版 digest 三方对账]
 
-## 九、故障排查表
+## 十、故障排查表
 
 | 现象 | 处理 |
 | --- | --- |
@@ -88,16 +94,17 @@ flowchart LR
 | publish 被 skip | PR 故意跳;四类全 skip = 仓无清单;镜像零对象红灯看第七节 |
 | R2 AccessDenied | Token 权限面、桶名、endpoint 匹配;禁 Global Key |
 | Release 没文件或没置 latest | 核推的是 v* tag;gh CLI 加 --latest 直发,勿 draft(第六节) |
-| 产物异宿主崩溃 | 第八节跨宿主容器闸;ldd 双流断言 |
+| 升级态漂移 | 第八节对齐判据:五端终态同 digest,总台与 ark 双面核 |
+| 产物异宿主崩溃 | 第九节跨宿主容器闸;ldd 双流断言 |
 
-## 十、安全清单
+## 十一、安全清单
 
 - R2 Token 仅目标桶 Object Read & Write,定期轮换
 - Secret 只在 GitHub Secrets,文档与 YAML 只留占位
 - 产物不进源码库;公开仓 Release 资产视为公开,敏感工具走私有仓加私有桶
 - 下载侧核对 `.sha256` 边车;镜像锚以边车为唯一契约
 
-## 十一、与体系其它件的衔接
+## 十二、与体系其它件的衔接
 
 | 环节 | 依据 |
 | --- | --- |
