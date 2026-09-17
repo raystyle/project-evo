@@ -12,9 +12,9 @@
 
 ## 二、编译产地与播种分工(核心分工条款)
 
-- **总台 rclone(omc 的 r2 命令面)= 仅 chrome 级大件**:chromium 类舰队编译产物 CI 不可产(体量与工具链面超出 Runner),由总台实机编译后 rclone 推 chrome 桶;这是总台手工播种面的唯一保留域
+- **总台 rclone(omc 的 r2 命令面)= 仅 chrome 级大件**:chromium 类舰队编译产物 CI 不可产(体量与工具链面超出 Runner)[裁定],由总台实机编译后 rclone 推 chrome 桶;这是总台手工播种面的唯一保留域
 - **其余仓小件 = 本仓 GitHub Actions 全链自包**:detect 清单驱动的 CI 内编译,接测试、打包、gh release 直发、CI 内 rclone 推 ohmygh 段、发布,五环一链全在仓内流水线;**零总台手工**:总台手挂 release 或手推镜像属过渡期特例(ark v1.3.0 Draft 态代发即其尾例),标准明文禁为新形态
-- **两个 rclone 分表述,勿混**:「总台 rclone」是大件手工播种面(omc r2 命令,chrome 桶);「CI 内 rclone」是小件自播正道(第四节 env 四键 Secrets 形);同名工具,产地与权限面不同
+- **两个 rclone 分表述,勿混**:「总台 rclone」是大件手工播种面(omc r2 命令,chrome 桶);「CI 内 rclone」是小件自播正道(第五节 env 四键 Secrets 形);同名工具,产地与权限面不同
 
 ## 三、detect 清单驱动
 
@@ -46,7 +46,7 @@ flowchart LR
 
 - 事件三态:PR 只 Artifact;main 走 Artifact;tag `v*` 加 Release 加镜像
 - publish 准入:至少一类打包成功且无任何一类 failure;对应清单不存在则该 job 静默跳过
-- 通道对比:Artifact 随 run 寿命短(约 14 天)且下载常需登录;Release 随仓长期且公开仓可匿名;R2 段自控寿命,绑域后可匿名 [实证]
+- 通道对比:Artifact 随 run 寿命短(约 14 天)且下载常需登录;Release 随仓长期且公开仓可匿名;R2 段自控寿命,绑域后可匿名 [经验]
 
 | 通道 | 入口 | 寿命 | 匿名下载 |
 | --- | --- | --- | --- |
@@ -57,9 +57,9 @@ flowchart LR
 ## 五、镜像推送恒 rclone(禁 aws-cli 形)
 
 - **CI 内 rclone 自播正道**:Secrets 恒 env 形四键 `R2_ACCESS_KEY_ID`、`R2_SECRET_ACCESS_KEY`、`R2_ENDPOINT`(S3 兼容端点)、`R2_BUCKET`;Token 仅授权目标桶 Object Read & Write,不用 Global Key
-- 推送形:`NO_CHECK_BUCKET=true rclone copy <产物目录> :s3:$R2_BUCKET/<tool>/<版本>/ --s3-endpoint $R2_ENDPOINT --s3-access-key-id $R2_ACCESS_KEY_ID --s3-secret-access-key $R2_SECRET_ACCESS_KEY --header-upload "x-amz-meta-immutable: true"`;版本段对象 immutable,禁覆写
+- 推送形:`rclone copy <产物目录> :s3:$R2_BUCKET/<tool>/<版本>/ --s3-endpoint $R2_ENDPOINT --s3-access-key-id $R2_ACCESS_KEY_ID --s3-secret-access-key $R2_SECRET_ACCESS_KEY --s3-no-check-bucket --header-upload "Cache-Control: public, max-age=31536000, immutable"` [实证: ark seed.py 与 ohmycloud r2mint 与 aria2 及 browse release 工作流同形];受限 token 无建桶权,故必带 no-check-bucket(env 形等价 `RCLONE_CONFIG_<remote>_NO_CHECK_BUCKET=true`);版本段对象 immutable,禁覆写
 - **双段制**:恒 `<tool>/<版本>/` 加 `<tool>/stable/` 两段;stable 是自更新滚动段,短缓存 `Cache-Control: max-age=60`,刷段用 `rclone sync <产物目录> :s3:$R2_BUCKET/<tool>/stable/ ... --delete-excluded`(滚代清旧);禁通稿 `releases/<tag>/` 形
-- 段内逐件 `.sha256` 边车(sha256sum 原生格式 `<hash>  <文件名>`),边车即镜像锚契约,下载腿与 digest 判新都以它为准;聚合 `SHA256SUMS` 可作补充不替代 [实证: ark 与 hst 下载腿以边车锚跑通]
+- 段内逐件 `.sha256` 边车(sha256sum 原生格式 `<hash>  <文件名>`),边车即镜像锚契约,下载腿与 digest 判新都以它为准(路由与消费面见 flow-release 第八节);聚合 `SHA256SUMS` 可作补充不替代 [实证: ark 与 hst 下载腿以边车锚跑通]
 
 ## 六、Release 面
 
@@ -74,7 +74,7 @@ flowchart LR
 
 ## 八、自升级与 ark 升级对齐
 
-- **自升级能力归属**:自研仓(hst、ark、officecli、reader)恒带 self update;fork 族(aria2、herdr-mirror 等)可不带
+- **自升级能力归属**:自升级家族 = hst、ark、officecli、reader、browse 五自研仓,恒带 self update;fork 族(aria2、herdr-mirror 等)可不带。browse 双职责特注:自身 CLI 走双通道自升级,同时以内嵌版本管理器加 chromeInstall 集成管理 chrome 大件安装(安装管理面);chrome 大件的资源分发归 omc 接管(chrome 桶与推件归总台,AGENTS 例外条款在案,产地分工见第二节)
 - **有自升级能力的 CLI**:self update 双通道,自家 ohmygh stable 段优先,GitHub release 404 自动回落;digest 判新加 `.sha256` 边车锚校验;发布器与升级器同 digest 判据(三通道全貌见 flow-release 第八节,不重复)[实证: ark 与 hst 已各自跑通];dev 加 stable 双通道是否随仓开放由仓裁
 - **无自升级面的 fork 与静态件**:升级归安装管理方;小件与 fork 族归 ark install/update 单通道管(catalog pin 滚即升),chromium 类大件归 browse 内嵌版本管理器走 chrome 桶(产地分工见第二节);终态与自升级路径同 digest
 - **元数据对齐**:ark 工具级元数据 locked、installed、path 三态是全 fleet 共同真源;自升级器升级后须回写对齐 ark 元数据(或 ark 以 installed 探活实值判,不残留 locked 旧漂)
