@@ -53,4 +53,4 @@ uv run skills/report/scripts/render.py <报告.md> --check  # 编译门禁,不�
 ## 支持与发布
 
 - 支持:[raystyle/project-evo issues](https://github.com/raystyle/project-evo/issues)
-- 当前发布:0.2.0
+- 当前发布:0.3.0

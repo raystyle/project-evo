@@ -1,6 +1,6 @@
 [project]
 name = "project-evo"
-version = "0.8.0"
+version = "0.9.0"
 description = "项目进化:插件市场仓(本文件仅为仓内维护环境;skill 与脚本随 plugins/ 四插件分发)"
 requires-python = ">=3.12"
 dependencies = []

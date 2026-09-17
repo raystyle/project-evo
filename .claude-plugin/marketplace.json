@@ -12,28 +12,28 @@
       "name": "evo-adr",
       "source": "./plugins/evo-adr",
       "description": "项目进化文档治理:doc-gov(文档体系治理知识:AGENTS 合同、ADR、REQ、投影纪律、六态)与 code-kit(骨架与门禁:init/check/scan 零依赖脚本、md 禁字挡板、模板)与 gh-issue(命令出错自动上报:定位仓、双通道去重、模板正文、gh issue create 自动发、三态回执)与 build-release(编译打包发布流水线指导:六型配方、公共契约、可拷改模板)",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "category": "productivity"
     },
     {
       "name": "evo-codesec",
       "source": "./plugins/evo-codesec",
       "description": "项目进化代码安全:secret-scan(密钥与隐私深扫:工作区、git 全历史、GitHub alerts 与 code search)与 security-audit(安全审计与漏洞审查,译自 Cloudflare security-audit-skill,MIT)",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "category": "productivity"
     },
     {
       "name": "evo-research",
       "source": "./plugins/evo-research",
       "description": "项目进化研究检索:research(资料检索管线:gh/bh 发现、aria2c 获取、reader 研读)与 report(研究成文:报告骨架、md/pdf/docx 三件套、Typst 渲染、信源存档与登记)",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "category": "productivity"
     },
     {
       "name": "evo-herdr",
       "source": "./plugins/evo-herdr",
       "description": "项目进化多仓协作:herdr-flywheel(herdr 工位飞轮四步协议:派单、回执、断言、吸收)与 herdr-review(推送前评审闸门:评审请求、F/G/CONFIRM 回执、轮次至终审放行、评审窗格检测带起)",
-      "version": "0.2.0",
+      "version": "0.3.0",
       "category": "productivity"
     }
   ]
