@@ -13,6 +13,7 @@
 | 写日记 / 研究档案 / SNNN 编号 / 沉淀升 ADR | [flow-archive.md](flow-archive.md) |
 | 写任何文档前 | [base-writing-standards.md](base-writing-standards.md) |
 | 发一个版本 | [flow-release.md](flow-release.md) |
+| 给仓搭编译打包流水线(detect 到镜像) | [flow-build.md](flow-build.md) |
 | 落地前预警 / 踩坑对照 | [exp-pitfalls.md](exp-pitfalls.md) |
 
 ## 二、场景索引(按工作维度)
@@ -28,6 +29,7 @@
 ### 工作流与发布
 
 - [flow-release.md](flow-release.md) - 封版发布模式:前置裁定、三路全平台门禁、封版件、tag 触发、发布验收
+- [flow-build.md](flow-build.md) - 编译打包流水线:detect 清单驱动、测试先行、rclone 双段镜像、Release 直发、护栏三件与跨宿主闸
 - [flow-archive.md](flow-archive.md) - 日记与研究档案机制:diary 一天一篇与裁定留痕、research SNNN 编号六态索引、择要升 ADR、结构保留红线
 
 ### 经验
@@ -37,7 +39,7 @@
 
 骨架初始化、测试分层、平台适配与三栈工程合同见同插件 code-kit 的 references/。资料检索(gh / Google / Medium / X / reader / aria2c)见同市场 skill `evo-research:research`,研究成文见 `evo-research:report`。密钥深扫见 `evo-codesec:secret-scan`。多仓飞轮协作(herdr 派单、回执、断言、吸收)见 `evo-herdr:herdr-flywheel`(ADR-0009 起,原 flow-flywheel 参考篇已全量并入退役)。
 
-## 三、全量清单(9 篇)
+## 三、全量清单(10 篇)
 
 | 文件 | 主题 |
 | --- | --- |
@@ -47,6 +49,7 @@
 | base-projection.md | 生成投影与 agent 检索面 |
 | base-writing-standards.md | 写作规范与六态(知行合一) |
 | flow-release.md | 封版发布模式 |
+| flow-build.md | 编译打包流水线(detect 到镜像) |
 | flow-archive.md | 日记与研究档案机制(SNNN 与沉淀升 ADR) |
 | exp-pitfalls.md | 已知误区十八条 |
 | exp-sedimentation.md | 经验沉淀分治细则 |
