@@ -18,9 +18,7 @@
 - **可拷改模板**(references/templates.md 四节),形态取自家族仓实测工作流(git 历史在档)参数化去私有名:本地编译与发布命令面(版本闸、测试闸、交叉编译、包形与逐包边车、解包冒烟、gh 直发与 dev prerelease 滚动)、各型本地编译片段、CI/CD 播种 workflow(release published 触发、拉资产、env-remote r2:、版本段 immutable copy-only 加 stable sync delete-excluded、零上传红灯三段报数、dispatch 带 tag 入参)、自升级契约核对清单
 - **通用性终约束(最高优先)**:标准通用件,私有名称与私有信息零出现(正文、注脚、示例、模板默认值全禁);契约全部抽象参数化(镜像域 `<mirror-host>/<tool>/<version>/`、安装管理器元数据抽象化、Secrets 通用 R2 族);实证引一律不进 SKILL,留档仓内 diary
 - 同步面:双 manifest 与市场条目描述、守卫 SKILLS 十 skill、pre-commit 第十段、AGENTS 与根 README 与 docs 地图与 gates 计数、evo-adr README 四 skill 化、CHANGELOG、ROADMAP、diary
-- 总台追正两笔:补上游追新专节(fork 维护仓配方:upstream merge、冲突面纪律、版本 bump、回跑矩阵);CI 不可产大件边界与三段式措辞正位
-
-暂无。
+- 总台追正一笔:补上游追新专节(fork 维护仓配方:upstream merge、冲突面纪律、版本 bump、回跑矩阵)
 
 ## [0.8.0] - 2026-09-16
 
