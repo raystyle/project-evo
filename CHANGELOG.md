@@ -4,7 +4,9 @@
 
 ## [Unreleased]
 
-暂无。
+### 新增(2026-09-21,第八十批:评审闸门轮工位实踩吸收)
+
+- herdr-flywheel references/pitfalls.md 增两坑(三段式):一为管道吞门禁退出码(门禁接 tail/grep 后 `$?` 为末命令,红态假绿,曾致红提交直推远端只能 forward 修;修法为门禁裸跑或显式取 `${PIPESTATUS[0]}`,红态绝不进 commit 分支);二为评审格随 codex 退出被回收(/quit 后整格回收、pane ID 失效,旧格 cwd 可指向已删目录而屏面仍 Ready;修法为退出后 pane list 复查,重驻走右分新格加仓内 cwd)。实证标注留日期不留仓名,吸收即提炼。
 
 ## [0.10.0] - 2026-09-17
 

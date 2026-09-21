@@ -17,3 +17,5 @@
 |---|---|---|
 | checkout-index 假成功 | git checkout-index -f -a 对在场文件「强制重写」假成功,盘上 CRLF 原样不动;stat 缓存命中视为最新,-f 不真覆盖 | 清场再检出:git ls-files -z 加 xargs -0 rm -f 后 checkout-index -f -a |
 | 整片 M 而 diff 空 | 工作树按索引重写后整片 M 但 diff 全空,似内容漂移实未变;索引条目 stat 陈旧的 racily-clean 形 | git add -u 刷索引条目即愈;收工前验 diff --cached 为零 |
+| 管道吞门禁退出码 | 门禁命令接管道(tail/grep/head)后 `$?` 是末命令的,测试 FAILED 仍假绿;`&&` 链照走曾把红态提交直推远端,只能 forward 修 [实证: 2026-09-21 单仓评审轮两犯] | 门禁裸跑;要管道就显式取 `${PIPESTATUS[0]}` 或落盘 `CMD > f 2>&1; S=$?` 再按 S 分支,红态绝不进 commit 分支 |
+| 评审格随 codex 退出被回收 | 常驻评审格里的 codex /quit 后整格被回收(remain-on-exit 关),pane ID 失效;旧格 cwd 还可能指向已删除目录(仓改名遗留),屏面 Ready 但相对路径全断 [实证: 2026-09-21 旧评审格驻已删目录] | 退出后 pane list 复查再派单;重驻 = 右分新格(仓内 cwd)加 agent start,命名沿用 live 名;勿信旧编号旧 cwd |
