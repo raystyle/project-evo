@@ -33,7 +33,7 @@
       "name": "evo-herdr",
       "source": "./plugins/evo-herdr",
       "description": "项目进化多仓协作:herdr-flywheel(herdr 工位飞轮四步协议:派单、回执、断言、吸收;并行派单义务图)与 herdr-review(推送前评审闸门:评审请求、F/G/CONFIRM 回执、轮次至终审放行、评审窗格检测带起)",
-      "version": "0.4.0",
+      "version": "0.4.1",
       "category": "productivity"
     }
   ]
