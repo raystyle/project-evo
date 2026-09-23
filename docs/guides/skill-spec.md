@@ -15,7 +15,7 @@
 
 - `SKILL.md` ≤500 行;只留意图路由 + 体系速览;详细操作移 `references/`
 - 标准布局:`SKILL.md`(意图路由+速览) + `references/`(分类+扁平,前缀 base/flow/env/tool/exp 分组) + `verification/`(命令行为);无 evals 层(渐进知识库型 skill,不做用例评估)
-- 分层原则:references/ 每篇一主题自包含完整参考;实现代码唯一来源是插件内 `skills/<skill>/scripts/`(如 code-kit 五脚本、secret-scan、report 的 render.py,PEP 723 零依赖;禁字规则唯一权威在 code-kit 的 `mdrules.py`,check PE-11/scan/md-guard 三面同源)
+- 分层原则:references/ 每篇一主题自包含完整参考;实现代码唯一来源是插件内 `skills/<skill>/scripts/`(如 code-kit 五脚本、secret-scan 的 scan.py,PEP 723 零依赖;禁字规则唯一权威在 code-kit 的 `mdrules.py`,check PE-11/scan/md-guard 三面同源)
 
 ## 写作约束
 

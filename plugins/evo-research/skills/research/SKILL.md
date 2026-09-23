@@ -3,14 +3,14 @@ name: research
 description: >-
   资料检索管线:把发现、获取、研读做成一条可复用管线。发现用 gh 搜代码与仓库、bh google-search / medium-search 搜网页与文章、
   bh x-intel search 查 X 本地库;获取用 aria2c 下论文 PDF、官方种子文件与大资产;研读用 reader 抽 PDF/EPUB。
-  工位复用、HTTP 优先、研究优先无头。轻量结论落目标项目 docs/research/SNNN 标六态;正式报告成文走同插件 report。
+  工位复用、HTTP 优先、研究优先无头。轻量结论落目标项目 docs/research/SNNN 标六态。
   Use when 搜索论文、arxiv、google、medium、X/twitter、GitHub 代码、电子书、种子 torrent、aria2c 下载、调研、文献检索。
 compatibility: 需本机 PATH 上的 gh、reader、aria2c、bh(可选);全平台命令分发安装由宿主工具链 omc 与 ark 统一维护
 ---
 
 # research - 资料检索管线
 
-本文件只做**意图路由 + 管线速览**。命令细节在 `references/`。落盘两分:轻量结论写目标项目 `docs/research/SNNN` 并标六态;深度分析成正式报告(md/pdf/docx 三件套)走同插件 skill `report`。文档体系与骨架知识在 `evo-adr:doc-gov` 与 `evo-adr:code-kit`,本技能不替代。
+本文件只做**意图路由 + 管线速览**。命令细节在 `references/`。落盘两分:轻量结论写目标项目 `docs/research/SNNN` 并标六态;需要正式成文的深度分析按 doc-gov 投影纪律成文(ADR-0015 起本插件不再带 report skill)。文档体系与骨架知识在 `evo-adr:doc-gov` 与 `evo-adr:code-kit`,本技能不替代。
 
 ## 一、意图路由
 
@@ -23,7 +23,7 @@ compatibility: 需本机 PATH 上的 gh、reader、aria2c、bh(可选);全平台
 | 读 PDF / EPUB / 电子书 | `references/reader.md` |
 | 下论文、大文件、种子 | `references/aria2c.md` |
 | clone 外来仓深读 | `references/git.md` |
-| 检索结论写成正式报告 | 同插件 skill `evo-research:report` |
+| 检索结论需要正式成文 | 按 doc-gov 投影纪律成文落 `docs/research/`(本插件不替代) |
 
 ## 二、管线(发现到研读)
 
@@ -31,7 +31,7 @@ compatibility: 需本机 PATH 上的 gh、reader、aria2c、bh(可选);全平台
 发现  gh search / bh google-search / bh medium-search / bh x-intel search
 获取  aria2c(HTTP PDF、官方 .torrent);git clone 仅在要深读源码时
 研读  reader extract/search/query;扫描页加 --ocr
-落盘  轻量:目标项目 docs/research/SNNN 标六态;成文:同插件 report 出三件套
+落盘  轻量:目标项目 docs/research/SNNN 标六态;成文:按 doc-gov 投影纪律出 md
 ```
 
 硬规则(用户 2026-09-08 裁定,S001 实证;0.6.0 无头增补):

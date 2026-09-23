@@ -19,3 +19,12 @@
 | 整片 M 而 diff 空 | 工作树按索引重写后整片 M 但 diff 全空,似内容漂移实未变;索引条目 stat 陈旧的 racily-clean 形 | git add -u 刷索引条目即愈;收工前验 diff --cached 为零 |
 | 管道吞门禁退出码 | 门禁命令接管道(tail/grep/head)后 `$?` 是末命令的,测试 FAILED 仍假绿;`&&` 链照走曾把红态提交直推远端,只能 forward 修 [实证: 2026-09-21 单仓评审轮两犯] | 门禁裸跑;要管道就显式取 `${PIPESTATUS[0]}` 或落盘 `CMD > f 2>&1; S=$?` 再按 S 分支,红态绝不进 commit 分支 |
 | 评审格随 codex 退出被回收 | 常驻评审格里的 codex /quit 后整格被回收(remain-on-exit 关),pane ID 失效;旧格 cwd 还可能指向已删除目录(仓改名遗留),屏面 Ready 但相对路径全断 [实证: 2026-09-21 旧评审格驻已删目录] | 退出后 pane list 复查再派单;重驻 = 右分新格(仓内 cwd)加 agent start,命名沿用 live 名;勿信旧编号旧 cwd |
+| --wait 撞已决态即时返回 | agent prompt --wait 对已处 idle/done 的工位即时返回,JSON 里 revision 与标题不动,似派单未落地;个别首轮粘贴还会被吞(update banner 期) [实证: 2026-09-22 browse-codex-review 首单丢、omc 派单静默] | 判落地看屏不看返回:pane read 实证 Context/回执在长;丢单用最小回显探针验通道后重发;派发后轮询 agent list 甄别真开工,--wait 只当提交回执不当完成回执 |
+
+## 跨机器工位面
+
+| 坑 | 现象与根因 | 修法 |
+|---|---|---|
+| --machine 叠加 --session | `herdr --machine lan-ubuntu --session agents agent list` 报 cannot be combined;--machine 走保存 profile 里记的会话,launch 选项互斥 | 只写 `--machine <label> <子命令>`,会话名已在 profile 里 |
+| stalled 不等于没送到 | 跨机 agent prompt 报 agent_prompt_stalled,实读 pane 文本已送达且 agent 正常回执;CLI 观察窗短,慢热 agent 未在窗内起态 [实证: 2026-09-23 OfficeCLI 归属周知轮 lan-ubuntu] | 报 stalled 先 `herdr --machine X agent read` 实读确认送达与回执,确认前不重发防重复派单 |
+| pane 编号不跨机唯一 | 远程机器自有工位编号体系,与本机 w1A/w1C 等并存;凭本机经验猜远程 pane 会投错 | 每台机器各跑 agent list 实查,pane ID 从该机 JSON 响应取 |

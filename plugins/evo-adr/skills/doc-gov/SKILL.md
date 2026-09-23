@@ -14,7 +14,7 @@ compatibility: 通用(不限语言/平台);提炼自 Rust workspace、Python 数
 
 # doc-gov - evo-adr 文档即代码治理知识
 
-**渐进知识库型 skill**:本文件只做两件事,**意图路由**(你要做的事 到 该查哪篇参考)与**体系速览**(一层概览);完整知识在 `references/` 分类扁平目录(前缀 base/flow/exp 分组,9 篇自包含),按「rg 定位文件 + mq 提取结构」渐进检索,不要求一次读完。骨架安装与门禁工具(脚本、模板、PE 诊断)在同插件 `code-kit`,编译打包发布流水线在同插件 `build-release`;资料检索在同市场 `evo-research:research`,研究成文在 `evo-research:report`,密钥深扫在 `evo-codesec:secret-scan`,多仓飞轮在 `evo-herdr:herdr-flywheel`。
+**渐进知识库型 skill**:本文件只做两件事,**意图路由**(你要做的事 到 该查哪篇参考)与**体系速览**(一层概览);完整知识在 `references/` 分类扁平目录(前缀 base/flow/exp 分组,9 篇自包含),按「rg 定位文件 + mq 提取结构」渐进检索,不要求一次读完。骨架安装与门禁工具(脚本、模板、PE 诊断)在同插件 `code-kit`,编译打包发布流水线在同插件 `build-release`;资料检索在同市场 `evo-research:research`(正式成文按本 skill 投影纪律出 md,ADR-0015 起 evo-research 不再带 report skill),密钥深扫在 `evo-codesec:secret-scan`,多仓飞轮在 `evo-herdr:herdr-flywheel`。
 
 核心思想:**契约在代码,文档是投影;每层只答一个问题**。类型与导出描述形态,契约注释(`///`/docstring/TSDoc)写用法,测试锁行为,ADR 锁 why,REQ 锁需求,AGENTS.md 只当索引与合同。文档生成物勿手改、不另写第二份 API 真相;公开面漂移靠工具门禁(CI 必红),不靠自觉。过程留痕进 diary,研究档案进 research,事实断言标六态。
 
@@ -36,7 +36,7 @@ compatibility: 通用(不限语言/平台);提炼自 Rust workspace、Python 数
 | 新项目初始化骨架 / 旧项目迁移 / PE-01 至 PE-12 诊断 / md 禁字门禁 | 同插件 skill `evo-adr:code-kit`(脚本与模板在那边) |
 | 建项目脚本工具 / 建三栈工程 / 测试分层 / 平台矩阵 | 同插件 skill `evo-adr:code-kit`(base-init、flow-testing、env-platform、tool-* 四类在那边) |
 | 搜论文/Google/Medium/X/GitHub/电子书/种子下载 | 同市场 skill `evo-research:research` |
-| 把研究成果写成正式报告(md/pdf/docx 三件套) | 同市场 skill `evo-research:report` |
+| 检索结论需要正式成文 | 按本 skill 投影纪律成文落 docs/research/(ADR-0015 起 evo-research 不再带 report skill) |
 | 扫 git/GitHub 密钥密码隐私泄露 | 同市场 skill `evo-codesec:secret-scan`(浅密钥与 md 禁字门禁在 code-kit 的 scan) |
 | 多仓飞轮协作 / 派单回执 / conclusion 自取 / 端点测试支撑 | 同市场 skill `evo-herdr:herdr-flywheel`(协议唯一权威源,ADR-0009) |
 

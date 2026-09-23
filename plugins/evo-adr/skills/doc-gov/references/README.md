@@ -35,7 +35,7 @@
 - [exp-pitfalls.md](exp-pitfalls.md) - 已知误区十八条(ADR/REQ 混淆、手改投影、静默假设、双份漂移、豁免退出、索引底稿、批改塌行、口径返工、环境想当然、CHANGELOG 流水、AGENTS 膨胀、supersede 单边指等)
 - [exp-sedimentation.md](exp-sedimentation.md) - 经验沉淀分治:成功/错误两条链、实证与经验循环复利、产生时机与检索路径、二犯升格工作流与集成约束四形态(agent hook/uv 脚本门禁/git 钩子/回归测试)
 
-骨架初始化、测试分层、平台适配与三栈工程合同见同插件 code-kit 的 references/。资料检索(gh / Google / Medium / X / reader / aria2c)见同市场 skill `evo-research:research`,研究成文见 `evo-research:report`。密钥深扫见 `evo-codesec:secret-scan`。多仓飞轮协作(herdr 派单、回执、断言、吸收)见 `evo-herdr:herdr-flywheel`(ADR-0009 起,原 flow-flywheel 参考篇已全量并入退役)。
+骨架初始化、测试分层、平台适配与三栈工程合同见同插件 code-kit 的 references/。资料检索(gh / Google / Medium / X / reader / aria2c)见同市场 skill `evo-research:research`,正式成文按本 skill 投影纪律出 md(ADR-0015 起 evo-research 不再带 report skill)。密钥深扫见 `evo-codesec:secret-scan`。多仓飞轮协作(herdr 派单、回执、断言、吸收)见 `evo-herdr:herdr-flywheel`(ADR-0009 起,原 flow-flywheel 参考篇已全量并入退役)。
 
 ## 三、全量清单(9 篇)
 

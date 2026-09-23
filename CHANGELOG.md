@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更(2026-09-23,第八十一批:report skill 移除加跨机器工位交流法)
+
+- 用户立单:移除 `report` 研究成文 skill(ADR-0015,REQ-007),四插件十一 skill 收敛为十 skill。`plugins/evo-research/skills/report/` 全目录移除;成文路由归 doc-gov 投影纪律出 md
+- 同步面全改:守卫 SKILLS 清单与 report 断言段删除、docstring 计数十一改十;双 manifest 与市场条目描述去 report 化(codex 面 interface 与 keywords 同步);pre-commit 断链段去 report;gates 计数;根 README 意图表与定位行、docs 地图去 report 行;evo-research README 单 skill 化;research 与 doc-gov(SKILL 与 flow-archive 与 references 索引)互引路由改指投影纪律;AGENTS 合同计数与阶段行;manifest 版本线不动(批次级变更不升版)
+- **herdr-flywheel 跨机器工位交流法**:SKILL.md 新节「跨机器工位」五条纪律(机器面实查、--machine 命令路由且不可叠加其它 launch 选项、派单前双查、跨机周知双侧留回执、stalled 误报处置);references/pitfalls.md 新「跨机器工位面」三坑加收尾补 --wait 撞已决态一坑;SKILL 触发词与参考行同步 [实证: 2026-09-23 OfficeCLI 维护归属周知轮 lan-ubuntu,本地十四工位加远程 lan-ubuntu 双侧回执齐]
+
 ### 新增(2026-09-21,第八十批:评审闸门轮工位实踩吸收)
 
 - herdr-flywheel references/pitfalls.md 增两坑(三段式):一为管道吞门禁退出码(门禁接 tail/grep 后 `$?` 为末命令,红态假绿,曾致红提交直推远端只能 forward 修;修法为门禁裸跑或显式取 `${PIPESTATUS[0]}`,红态绝不进 commit 分支);二为评审格随 codex 退出被回收(/quit 后整格回收、pane ID 失效,旧格 cwd 可指向已删目录而屏面仍 Ready;修法为退出后 pane list 复查,重驻走右分新格加仓内 cwd)。实证标注留日期不留仓名,吸收即提炼。

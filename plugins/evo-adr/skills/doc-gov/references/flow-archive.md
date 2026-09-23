@@ -12,7 +12,7 @@
 
 - 编号 `SNNN` 落 docs/research,编号退役不复用;README 索引登记(编号、链接、主题、状态、日期)
 - 研究结论必须标六态;结论被工程采用后择要升 ADR(证据变决策),全文留档
-- 无真实研究的仓 research 暂空合法(PE-09 SKIP);发现/获取/研读管线见同市场 skill `evo-research:research`,正式报告成文见 `evo-research:report`
+- 无真实研究的仓 research 暂空合法(PE-09 SKIP);发现/获取/研读管线见同市场 skill `evo-research:research`,正式成文按 doc-gov 投影纪律出 md(ADR-0015 起 evo-research 不再带 report skill)
 
 ## 与旧体系的承接
 

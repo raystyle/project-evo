@@ -21,7 +21,7 @@ SCRIPTS = PLUGINS["evo-adr"] / "skills" / "code-kit" / "scripts"
 SKILLS = {
     "evo-adr": ["build-release", "cli-docs", "code-kit", "doc-gov", "gh-issue"],
     "evo-codesec": ["secret-scan", "security-audit"],
-    "evo-research": ["report", "research"],
+    "evo-research": ["research"],
     "evo-herdr": ["herdr-flywheel", "herdr-review"],
 }
 
@@ -264,7 +264,7 @@ def test_check_json_skip_counts_via_allow(tmp_path: Path):
 
 def test_marketplace_catalog_consistency():
     """清单守卫:市场名 project-evo 收四插件、双清单一致、每插件双 manifest 与市场版本同步、
-    四插件同版、十一 skill 分属正确与命令面在位(ADR-0010 四插件形态,ADR-0011 至 ADR-0014 逐枚扩编)。"""
+    四插件同版、十 skill 分属正确与命令面在位(ADR-0010 四插件形态,ADR-0011 至 ADR-0014 逐枚扩编,ADR-0015 收敛为十)。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     codex_mkt = json.loads((REPO / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
     assert claude_mkt["name"] == codex_mkt["name"] == "project-evo", "市场名须为 project-evo"
@@ -310,10 +310,6 @@ def test_marketplace_catalog_consistency():
     audit = PLUGINS["evo-codesec"] / "skills" / "security-audit"
     assert (audit / "scripts" / "validate-findings.cjs").is_file()
     assert (audit / "scripts" / "report-schema.json").is_file()
-    report = PLUGINS["evo-research"] / "skills" / "report"
-    assert (report / "scripts" / "render.py").is_file(), "report 缺 render.py"
-    assert (report / "assets" / "templates" / "report.md").is_file()
-    assert (report / "assets" / "templates" / "report.typ").is_file()
     for c in ("init.md", "check.md", "scan.md"):
         assert (PLUGINS["evo-adr"] / "commands" / c).is_file(), f"evo-adr 斜杠命令缺失: {c}"
     assert (PLUGINS["evo-codesec"] / "commands" / "secret-scan-cli.md").is_file(), "evo-codesec 缺 secret-scan-cli"

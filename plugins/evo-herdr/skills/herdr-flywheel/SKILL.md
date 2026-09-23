@@ -6,7 +6,7 @@ description: >-
   反馈吸收分流、工位带起顺序与治理操作坑、并行派单义务图纪律。本 skill 是该协议唯一权威源;
   herdr 命令语法的活权威是本机直跑 herdr --skill。
   Use when 跨仓派发治理任务、收 herdr 工位回执、做总台轮次协调、多工位并行派单时;触发词 herdr、
-  飞轮、派单、回执、工位、多仓治理、并行派单、义务图。
+  飞轮、派单、回执、工位、多仓治理、并行派单、义务图、跨机器工位、--machine。
 compatibility: 需 herdr 管理的工位会话(HERDR_ENV=1);各工位侧仓自带门禁
 ---
 
@@ -21,6 +21,16 @@ compatibility: 需 herdr 管理的工位会话(HERDR_ENV=1);各工位侧仓自�
 - **带起顺序 = hst init --yolo 先于 agent 驻场**:会话许可模式在驻场时定格,后落盘的 yolo 不被追认,全会话停在旧审批态致阻塞 [实证: 2026-09-16 八工位驻场先于 yolo 落盘,全会话审批阻塞];可提 hst doctor 增加「会话活模式与盘上 yolo 一致性」检测项
 - idle 与 done 皆可派;blocked 是等人裁,问用户不代答;working 可插队,回执甄别见派单节
 - 勿关非自建工位(workspace、tab、pane、session)
+
+## 跨机器工位
+
+远程机器是 herdr 的一等公民,工位可以驻在别的机器上;总台经保存的 SSH profile 直接路由命令,不需要自己 ssh 过去 [实证: 2026-09-23 OfficeCLI 维护归属周知轮 lan-ubuntu]。
+
+- **机器面实查**:`herdr machine list` 取 label、ssh target 与会话名;远程机器跑自己独立的 herdr server(可有多会话,如 `agents`),工位 pane ID 只在所属机器会话内唯一,跨机派单地址 = 机器 label 加该机 agent list 实查的 pane ID
+- **命令路由**:`herdr --machine <label-or-id> <agent|pane 子命令>` 把 list/prompt/read/get 原样路由到远程机器,四步协议不变;`--machine` 走保存 profile 的会话,**不可再叠加 `--session` 等其它 launch 选项**(报 cannot be combined,勿试)
+- **派单前双查**:归属轮或跨机协作轮开工前,本机 `herdr agent list` 与 `herdr --machine X agent list` 各跑一次,两侧工位清册都从 JSON 响应取,不假设编号全局唯一、不凭旧档
+- **跨机周知**:维护归属、标准变更这类全 fleet 周知,收件人 = 本机全部在职工位加每台远程机器的工位,双侧都要留回执;给远程工位的 prompt 必须自包含其够不到的路径(如远程机器上的仓库路径要写清在哪台机、怎么到达)
+- **stalled 误报处置**:跨机 prompt 可能报 `agent_prompt_stalled`(CLI 观察窗内未见 working/blocked 态),文本往往已送达且 agent 正常回执;处置 = `herdr --machine X agent read` 实读 pane 确认送达与回执,确认前不重发,防重复派单
 
 ## 四步协议
 
@@ -66,6 +76,6 @@ compatibility: 需 herdr 管理的工位会话(HERDR_ENV=1);各工位侧仓自�
 
 ## 参考
 
-- references/pitfalls.md:治理操作坑实录(send-text 草稿、工位编号漂移、checkout-index 假成功、racily-clean 整片 M、备用屏读不全、yolo 带起时序),按现象、根因、修法三段收录
+- references/pitfalls.md:治理操作坑实录(send-text 草稿、工位编号漂移、checkout-index 假成功、racily-clean 整片 M、备用屏读不全、yolo 带起时序、跨机器 stalled 误报与编号不全局唯一),按现象、根因、修法三段收录
 - references/parallel.md:并行派单与义务图操作细化(台账五字段、条件归约派单写法、租约改派、任务与尝试记账、重评估三选一、瓶颈三判、四步协议映射)
 - 推送前评审闸门(评审请求、F/G/CONFIRM 回执、轮次至终审放行、评审窗格检测带起)是飞轮协议的评审特化,见同插件 skill `evo-herdr:herdr-review`(ADR-0011)
