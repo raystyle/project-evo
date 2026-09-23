@@ -28,3 +28,5 @@
 | --machine 叠加 --session | `herdr --machine lan-ubuntu --session agents agent list` 报 cannot be combined;--machine 走保存 profile 里记的会话,launch 选项互斥 | 只写 `--machine <label> <子命令>`,会话名已在 profile 里 |
 | stalled 不等于没送到 | 跨机 agent prompt 报 agent_prompt_stalled,实读 pane 文本已送达且 agent 正常回执;CLI 观察窗短,慢热 agent 未在窗内起态 [实证: 2026-09-23 OfficeCLI 归属周知轮 lan-ubuntu] | 报 stalled 先 `herdr --machine X agent read` 实读确认送达与回执,确认前不重发防重复派单 |
 | pane 编号不跨机唯一 | 远程机器自有工位编号体系,与本机 w1A/w1C 等并存;凭本机经验猜远程 pane 会投错 | 每台机器各跑 agent list 实查,pane ID 从该机 JSON 响应取 |
+| 新工位开错形(两连错) | 先 pane split 右分格、再 tab create,均非工位单元;根因 = 原语层级未锚(评审格形与 tab 形先入为主),「工位 = workspace」缺带起配方 [实证: 2026-09-23 lan-ubuntu OfficeCLI 工位,用户两纠后 w7 归位] | 新工位恒走 workspace create 三步配方(SKILL 原语表);split = 评审格专用形,tab = 同工位多上下文,二者勿当工位开 |
+| 远程机器全原语自成一套 | 跨机 workspace/pane 编号与本机并存互不相干(w6 在 lan-ubuntu 与本机 w1A 无关联),远程根格命名同为 p1 | 跨机操作恒 --machine 前缀;结构问询按机各查(workspace/tab/pane list 皆可路由),语义按原语表跨机一致解读 |

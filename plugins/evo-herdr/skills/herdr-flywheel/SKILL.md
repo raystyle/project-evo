@@ -16,6 +16,24 @@ compatibility: 需 herdr 管理的工位会话(HERDR_ENV=1);各工位侧仓自�
 
 ## 工位形态与带起
 
+### 原语四级(每台机器同名同义;编号只在机内唯一,跨机不通用)
+
+| 原语 | herdr 单元 | 舰队语义 | 误用黑名单 |
+| --- | --- | --- | --- |
+| 机器 | machine(label 加独立 server) | 远程一等公民,workspace/tab/pane 全套自成一套 | 假设 pane 编号跨机唯一 |
+| 工作台(工位) | workspace(w 号) | **一仓一台**(仓工位)或一任务一台(临时会话);用户惯称「窗台」 | 新工位误开 split pane 或 tab [实证: 2026-09-23 lan-ubuntu OfficeCLI 工位两连错形后归位] |
+| TAB 页 | tab(t 号) | 同工位内多上下文页,舰队罕用 | 新工位 = 开新 tab(错形) |
+| 窗格 | pane(p 号) | agent 驻留位;工位主格 = workspace 根格;右分格 = 评审格专用形(见 herdr-review) | 评审格形态当成工位 |
+
+### 新工位带起配方(本机三步;跨机各步前置 `--machine <label>`,仓先在该机备好)
+
+```bash
+herdr workspace create --cwd <仓路径>                 # 返回 workspace 与 root_pane(如 w7:p1)
+herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即派单地址(编号会漂,名不漂)
+# 仓内 cwd 首启弹目录信任屏:pane read 实证后替答(裁定归用户;本 fleet 仓默认可信);
+# claude 2.x 随后再弹外部导入问屏,按需选答。零信任屏复启 = 该 cwd 信任已录。
+```
+
 - 每仓一个 herdr 工位,总台自成工位;派单地址 = pane ID,从 herdr agent list 的 JSON 响应取,不猜不背;live 唯一的 agent 名亦可作地址
 - **工位编号会漂移**:合同与旧档写的编号不可信,派单前必 herdr agent list 实查 [实证: 2026-09-16 合同写法与实况两轮不符]
 - **带起顺序 = hst init --yolo 先于 agent 驻场**:会话许可模式在驻场时定格,后落盘的 yolo 不被追认,全会话停在旧审批态致阻塞 [实证: 2026-09-16 八工位驻场先于 yolo 落盘,全会话审批阻塞];可提 hst doctor 增加「会话活模式与盘上 yolo 一致性」检测项
