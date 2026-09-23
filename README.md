@@ -49,7 +49,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 | evo-adr | `cli-docs` | CLI 对外面双标准:README 四节骨架(ripgrep/fzf/bat/fd 标杆研究)加 agent 五件(--llms 手册、旗标全家与 CTA 协议、默认帮助面、自省、裸调用面) | 写 CLI README、配 --llms、定输出协议时 |
 | evo-codesec | `secret-scan` | 密钥与隐私深扫:工作区、git 全历史、GitHub alerts 与 code search;命中一律脱敏 | 查泄露、凭据轮换前体检 |
 | evo-codesec | `security-audit` | 安全审计与漏洞审查(译自 Cloudflare security-audit-skill,MIT):双模式、信任边界、覆盖账本、结构化报告 | 安全问题、渗透测试、漏洞研究 |
-| evo-research | `research` | 资料检索管线:gh/bh 发现、aria2c 获取、reader 研读;无头优先、HTTP 优先 | 找论文与文章、查 X 与 GitHub、下大文件、读电子书 |
+| evo-research | `research` | 资料检索管线:gh/browse 发现、aria2c 获取、reader 研读;先确认浏览器态、不动宿主机浏览器、HTTP 优先 | 找论文与文章、查 X 与 GitHub、下大文件、读电子书 |
 | evo-herdr | `herdr-flywheel` | 多仓 herdr 工位飞轮四步协议:派单、回执、断言、吸收;并行派单义务图 | 跨仓派发治理任务、总台轮次协调、多工位并行派单 |
 | evo-herdr | `herdr-review` | 推送前评审闸门:评审请求五件模板、F/G/CONFIRM 三态回执、轮次至终审放行、评审窗格检测带起 | 发评审请求、写对线回执、带起 codex 评审格 |
 

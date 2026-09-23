@@ -1,12 +1,12 @@
 # evo-research
 
-项目进化研究检索插件:单 skill,`research` 资料检索管线(gh/bh 发现、aria2c 获取、reader 研读,无头优先与 HTTP 优先;轻量结论落目标项目 `docs/research/SNNN` 标六态)。
+项目进化研究检索插件:单 skill,`research` 资料检索管线(gh 发现、browse 驾浏览器搜索与抓取、aria2c 获取、reader 研读,先确认浏览器态、不动宿主机浏览器、HTTP 优先;轻量结论落目标项目 `docs/research/SNNN` 标六态)。
 
 状态:active。插件面客户端:Claude Code、Codex、Grok;纯 skills 面:Kimi 等手拷子集。
 
 ## 前置
 
-- research 需本机 PATH 上的 gh、reader、aria2c、bh(可选;全平台命令分发安装由宿主工具链 omc 与 ark 统一维护)
+- research 需本机 PATH 上的 gh、reader、aria2c、browse(可选;全平台命令分发安装由宿主工具链 omc 与 ark 统一维护)
 - 脚本为零依赖 PEP 723 标准 Python(>=3.12)
 
 ## 安装

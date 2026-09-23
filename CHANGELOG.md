@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更(2026-09-23,第八十二批:evo-research 的 bh 命令面改 browse)
+
+- 用户立单(2026-09-23):research skill 的浏览器面从 `bh`(browser-harness)整体切换为 `browse`(browse_rs 0.21.0);用户同期裁定使用口径:**先 `browse status` 确认浏览器状态,不动宿主机浏览器**
+- web.md 重写为 browse 指南:Google 零浏览器腿加 `--new-tab` 浏览器腿(2026-09-23 实证零浏览器腿退化只回 redirect 占位页,浏览器腿 `goto` 加 `pageEval` 抽 `a h3` 得五条标题加 URL);Medium 走 `?format=json`/RSS/GraphQL 且搜索转 Google `site:medium.com`;X 本地库通道随 bh 退役改走 Google `site:x.com` 加公开帖锚点;`browse fetch` 升级腿(正文稀薄换新引擎)立为宿主机附着态禁手
+- SKILL.md 硬规则换口径:先确认浏览器态、不动宿主机浏览器(不 up/down 默认实例、不附着用户 Chrome)、研究优先隔离态(BROWSE_NAME 加 `--headless --isolated`,本机无 Chrome 如实报缺)、HTTP 优先;最小命令面与意图路由表同步;x.md/pipeline.md/evo-research README/双 manifest/市场条目/根 README/docs 地图/AGENTS 外部命令清单齐改
+- 坑入实证:`browse fetch` 升级腿杀宿主机引擎 47312 换 20208(2026-09-23 实踩,用户裁定入硬规则)
+
 ### 变更(2026-09-23,第八十一批:report skill 移除加跨机器工位交流法)
 
 - 用户立单:移除 `report` 研究成文 skill(ADR-0015,REQ-007),四插件十一 skill 收敛为十 skill。`plugins/evo-research/skills/report/` 全目录移除;成文路由归 doc-gov 投影纪律出 md

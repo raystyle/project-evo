@@ -1,11 +1,11 @@
 ---
 name: research
 description: >-
-  资料检索管线:把发现、获取、研读做成一条可复用管线。发现用 gh 搜代码与仓库、bh google-search / medium-search 搜网页与文章、
-  bh x-intel search 查 X 本地库;获取用 aria2c 下论文 PDF、官方种子文件与大资产;研读用 reader 抽 PDF/EPUB。
-  工位复用、HTTP 优先、研究优先无头。轻量结论落目标项目 docs/research/SNNN 标六态。
+  资料检索管线:把发现、获取、研读做成一条可复用管线。发现用 gh 搜代码与仓库、browse 驾浏览器搜
+  Google 与 Medium、site: 检索查 X;获取用 aria2c 下论文 PDF、官方种子文件与大资产;研读用 reader 抽 PDF/EPUB。
+  先确认浏览器态、不动宿主机浏览器、HTTP 优先、研究优先隔离态。轻量结论落目标项目 docs/research/SNNN 标六态。
   Use when 搜索论文、arxiv、google、medium、X/twitter、GitHub 代码、电子书、种子 torrent、aria2c 下载、调研、文献检索。
-compatibility: 需本机 PATH 上的 gh、reader、aria2c、bh(可选);全平台命令分发安装由宿主工具链 omc 与 ark 统一维护
+compatibility: 需本机 PATH 上的 gh、reader、aria2c、browse(可选;全平台命令分发安装由宿主工具链 omc 与 ark 统一维护)
 ---
 
 # research - 资料检索管线
@@ -19,7 +19,7 @@ compatibility: 需本机 PATH 上的 gh、reader、aria2c、bh(可选);全平台
 | 整条调研怎么串 | `references/pipeline.md` |
 | 搜 GitHub 代码/仓库 | `references/gh.md` |
 | 搜 Google / Medium、抓网页 | `references/web.md` |
-| 查 X 帖(本地收割库) | `references/x.md` |
+| 查 X 帖(Google site: 与公开帖锚点) | `references/x.md` |
 | 读 PDF / EPUB / 电子书 | `references/reader.md` |
 | 下论文、大文件、种子 | `references/aria2c.md` |
 | clone 外来仓深读 | `references/git.md` |
@@ -28,38 +28,31 @@ compatibility: 需本机 PATH 上的 gh、reader、aria2c、bh(可选);全平台
 ## 二、管线(发现到研读)
 
 ```text
-发现  gh search / bh google-search / bh medium-search / bh x-intel search
+发现  gh search / browse Google 腿 / aria2c arxiv API
 获取  aria2c(HTTP PDF、官方 .torrent);git clone 仅在要深读源码时
 研读  reader extract/search/query;扫描页加 --ocr
 落盘  轻量:目标项目 docs/research/SNNN 标六态;成文:按 doc-gov 投影纪律出 md
 ```
 
-硬规则(用户 2026-09-08 裁定,S001 实证;0.6.0 无头增补):
+硬规则(用户 2026-09-23 裁定,替代 2026-09-08 bh 时代口径;S001 仅作历史):
 
-- **研究优先无头**:`bh engine start` 自起隔离 Chrome(`--headless=new`,临时 profile,用完 `bh engine stop`)。不弹 Allow,不碰用户浏览器。[实证: 2026-09-08 engine start/fetch --engine/stop]
-- **用户 Chrome 才工位复用**:已附着时钉 1 到 2 个 tab,`switch_tab`,禁止 `--new-tab` / 为自愈 `bh --restart`
-- **HTTP 优先**:能直链就 `aria2c` 或 `bh web-fetch`;要 JS 且不碰用户面时用 `--engine`
-- **X 不是现场 SERP**:`bh x-intel search` 查本地库;`bh x-search` 会被当成 JS 片段
+- **先确认浏览器态**:任何浏览动作前 `browse status`,看 daemon 宿主、引擎来源(attached/managed-spawn/isolated-spawn)与活动 tab;跨宿主告警看清再动。[实证: 2026-09-23 status 显示 daemon 在 windows/AI-LAB、引擎 managed-spawn]
+- **不动宿主机浏览器**(用户 2026-09-23 裁定):不 `browse up/down` 默认实例,不附着用户 Chrome 做写操作;浏览器腿只读导航加 `--new-tab`。[实证: 2026-09-23 fetch 升级腿杀宿主机引擎 47312 换 20208,用户裁定入硬规则]
+- **研究优先隔离态**:必须起引擎时 `BROWSE_NAME=<名> browse up --headless --isolated`(隔离 profile 退出即删,命名实例派生端口 9900-9999);本机无 Chrome 如实报缺,不用宿主机引擎顶上。[实证: 2026-09-23 命名实例 up,Linux 侧报「找不到 chrome」]
+- **HTTP 优先**:能直链就 `aria2c` 或 curl;`browse fetch` 是 HTTP 直取优先但正文稀薄会升级引擎腿(换引擎),宿主机引擎在用时禁手,改走 curl/aria2c。[实证: 2026-09-23]
+- **X 无本地库通道**:`bh x-intel` 本地收割库随 bh 退役;X 检索走 Google `site:x.com` 加公开帖锚点,x.com 登录墙不绕。[实证: 2026-09-23 web.md 重写]
 - **种子只下官方种子文件或 metadata**,ISO 等大体量须用户明确要求再下
-- 登录墙停下问用户,不代点 Chrome Allow
+- 登录墙停下问用户,不代点同意/允许
 
 ## 三、最小命令面
 
 ```powershell
 gh search repos "pdf extraction rust" --limit 10 --json fullName,stargazersCount,updatedAt
 gh search code "<kw>" --repo <o/r> --json path,repository,sha,url
-bh engine start
-bh web-fetch "https://example.org/" --text --engine
-bh engine stop
-bh google-search "site:arxiv.org <题>" --top 5
-bh google-search pluck gs_search
-bh medium-search "<题>" --top 5
-bh medium-search pluck ms_search
-bh x-intel search "<kw>" --limit 5
-bh x-intel search --stats
+browse status                                          # 先确认浏览器态(硬规则 1)
+browse fetch 'https://www.google.com/search?q=site:arxiv.org+<题>&hl=en&gl=us&num=10'
+browse --new-tab 'goto("https://www.google.com/search?q=<题>&hl=en&gl=us&num=10", {waitIdle: true}); return await pageEval("JSON.stringify(Array.from(document.querySelectorAll(\"a h3\")).slice(0,5).map(h => ({t: h.innerText, u: h.closest(\"a\").href})))")'
 aria2c -x 8 -s 8 -c -d <dir> -o <name>.pdf "https://arxiv.org/pdf/<id>"
-aria2c -x 8 -s 8 -c -d <dir> -o name.torrent "https://releases.ubuntu.com/.../*.iso.torrent"
-aria2c -S <file>.torrent
 reader extract <pdf> --pages 1-2
 ```
 

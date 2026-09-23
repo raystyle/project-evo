@@ -1,150 +1,95 @@
-# browser-harness - 浏览器直控操作指南
+# browse - 浏览器驾驶 CLI 操作指南
 
-> 定位：**搜索引擎与网页抓取**。现役入口是 `bh`（https://github.com/raystyle/browser-harness，0.6.0，含无头 `engine`）。普通 HTTP 能拿到的页面用 fetch/aria2c，不必开浏览器。
+> 定位:**搜索引擎与网页抓取**。现役入口是 `browse`(browse_rs,0.21.0,给 agent 的浏览器驾驶 CLI,方言片段驱动 clean-chrome,常驻 daemon 跨命令存活)。普通 HTTP 能拿到的页面用 curl/aria2c/`browse fetch`,不必开浏览器腿。
 
-## 零、搜索与抓取（首要场景）
+## 零、硬规则(用户 2026-09-23 裁定)
 
-```python
-# 搜索引擎(真实浏览器会话,复用各自 tab)
-google_search("rust web framework", limit=5)     # -> [{title, url}, ...]
-bing_search("rust web framework", limit=5)
-```
+1. **先确认浏览器状态**:任何浏览动作前 `browse status`(或 `--json`),看 daemon 宿主、引擎来源(origin 枚举 attached/managed-spawn/isolated-spawn)与活动 tab;跨宿主(CLI 与 daemon 不同机)会有显式告警,看清再动。
+2. **不动宿主机浏览器**:不 `browse up/down` 默认实例(会重启或下线用户正在用的引擎),不附着用户 Chrome 做写操作。宿主机引擎在用时,任何会"换新引擎"的面都禁手。
+3. **`browse fetch` 升级腿禁手边界**:正文空、墙词、少于 20 词三条件会升级引擎腿,升级即换新引擎,宿主机附着态下这会杀掉用户浏览器 [实证: 2026-09-23 fetch example.org,引擎 47312 被杀换 20208]。宿主机引擎在用时,正文抓取改走 curl/aria2c;必须 browse 抓取时先确认引擎是 isolated-spawn 或征得用户同意。
+4. **研究优先隔离态**:必须起引擎时用 `BROWSE_NAME=<名> browse up --headless --isolated`(隔离 profile 退出即删,命名实例派生端口 9900-9999 不碰默认实例);本机无 Chrome 时报「找不到 chrome」,不要用宿主机的引擎顶上 [实证: 2026-09-23 命名实例 up,Linux 侧无 Chrome 如实报缺]。
+5. **只读导航开新 tab**:宿主机引擎上做浏览器腿,用 `browse --new-tab '<片段>'`,只读求值,导航前看清 status 的活动 tab。
 
-```powershell
-# 网页正文抓取(命令行)
-browser-harness web-fetch "https://example.com/article"           # markdown
-browser-harness web-fetch "https://example.com/a" --text --json   # 纯文本/全元数据
-browser-harness web-fetch "https://x.com/home" --browser          # 需会话/JS 的页面
-```
+## 一、搜索(Google)
 
-搜索引擎被 bot 墙、结果要 JS 渲染、或页面要登录态时，它取代 WebSearch/WebFetch/curl。
-
-## 零点五、脚本 helper 面（源码实证）
-
-管道脚本预导入的函数面（实证自 `浏览器工具仓\src\browser_harness\helpers.py` def 清单，2026-09-03):
-
-| 类别 | 函数 |
-| --- | --- |
-| 导航/标签 | `new_tab` `goto_url` `wait_for_load` `wait_for_render` `list_tabs` `current_tab` `switch_tab` `activate_tab` `ensure_real_tab` |
-| 页面读写 | `page_info` `js` `cdp` `click_at_xy` `capture_screenshot` |
-| 抓取/搜索 | `extract_url_content` `extract_page_content` `web_fetch` `google_search` `bing_search` `http_get`(agent_helpers) |
-| 工程桥 | `run_app`（子命令桥） `setup_browser_apps` `start_recording`/`stop_recording` |
-
-## 一、健康检查与连接模型
-
-```powershell
-browser-harness doctor --json    # daemon.alive / daemon.browser_ready / chrome_running
-browser-harness browsers         # 实例列表(agent/user 标记、tab 绑定)
-browser-harness current          # 当前 attach 的目标
-```
-
-- 默认 daemon 钉在**隔离 agent Chrome**（端口 9223，标题带马形标记），永不碰用户自己的 Chrome [实证： 2026-09-03 browsers 输出确认隔离]；0.6.10 起支持**任务级浏览器隔离**（每任务独立浏览器 + `Browser.close` 优雅关闭） [实证: 上游 CHANGELOG]
-- agent Chrome 未起时 `ensure_daemon` 自动拉起；**冷启动首条命令可能超时**，等 `browser_ready: true` 后重试即成功 [实证： 2026-09-03 实测]
-
-## 二、脚本模式（管道喂 Python)
-
-```powershell
-# Windows / 已装 pwsh 的平台:here-string
-@'
-info = new_tab("https://example.com")   # 任务首个导航用 new_tab
-wait_for_load()
-print(page_info())
-print(js("document.querySelector('h1').innerText"))
-'@ | browser-harness
-```
+零浏览器腿(HTTP 直取,2026-09-21 基线可用):
 
 ```bash
-# Linux / macOS:heredoc
-browser-harness <<'EOF'
-info = new_tab("https://example.com")
-wait_for_load()
-print(page_info())
-EOF
+browse fetch 'https://www.google.com/search?q=rust+cdp&hl=en&gl=us&num=50'
 ```
 
-[实证： bh SKILL 双形态约定]
+- 参数:`hl=en&gl=us` 钉英文美区;`num=50` 拉条数;`site:` 与 `-` 运算符照常
+- **退化留痕**:2026-09-23 本网络实测零浏览器腿只回 redirect 占位页("Please click here..."),拿不到结果;遇此走浏览器腿
+- 注意 fetch 的升级腿边界(硬规则 3):正文稀薄也可能触发升级,宿主机引擎在用时别用这条腿赌
 
-- helpers 预导入；后续导航用 `goto_url`，不要每次 `new_tab`
-- 一任务一工作 tab；先 `list_tabs()`/`switch_tab()` 复用，不开重复 tab
-- **工位复用是硬规则**（用户 2026-09-08 裁定）：全程钉 1 到 2 个已有 tab，禁止为每次搜索或抓取再开新 tab。Chrome Allow 按 WebSocket 连接弹，新开附着等于再授权。细则见第七节（TS `bh`）与 S001
+浏览器腿(实证 2026-09-23,5 条标题加 URL):
 
-## 三、元素定位与点击（标准工作流）
-
-**优先无障碍树，不优先截图**：
-
-```python
-nodes = cdp("Accessibility.getFullAXTree")["nodes"]   # 过滤后再打印,数千节点
-# role/name 取值要归一化(value 可能是 dict 套 dict)
-m = cdp("DOM.getBoxModel", backendNodeId=n["backendDOMNodeId"])["model"]["content"]
-x, y = sum(m[0::2])/4, sum(m[1::2])/4                 # 盒中心,viewport 坐标
-click_at_xy(x, y)
+```bash
+browse --new-tab 'goto("https://www.google.com/search?q=<q>&hl=en&gl=us&num=10", {waitIdle: true}); return await pageEval("JSON.stringify(Array.from(document.querySelectorAll(\"a h3\")).slice(0,5).map(h => ({t: h.innerText, u: h.closest(\"a\").href})))")'
 ```
 
-点击后必须用 `page_info()`/`js(...)` 定向验证效果。
+- 翻页免点击:URL 改 `&start=10`、`&start=20`
+- EU 类出口可能先弹 consent 同意墙:让用户点一次再继续
+- 高频自动化会触 429/验证码:批量检索降频,别硬闯
+- 站点知识下钻:`browse workspace site google`(fetch/goto 回执自动点名 domain_skills)
 
-## 四、内容提取与截图
+## 二、Medium
 
-```python
-extract_page_content(markdown=True)                 # 当前 tab 正文(defuddle 引擎)
-extract_url_content(url, markdown=True)             # 纯 HTTP
-extract_url_content(url, markdown=True, use_browser=True)  # 需会话/JS 的页面
-capture_screenshot()                                # 返回 PNG 路径(非 base64)
+只读任务恒先 HTTP 通道;medium.com search 页 403/坏 JSON,**搜索走 Google `site:medium.com`**。
+
+```bash
+browse fetch 'https://medium.com/@karpathy/software-2-0-a64152b37c35?format=json'
 ```
 
-命令行等价：`browser-harness web-fetch <url> [--text|--json|--browser|--current]`。
+- 2026-09-21 实测:回执 403 但正文仍是完整 JSON(别当失败),剥 XSSI 前缀 `])}while(1);</x>` 再解析
+- 关键字段:`payload.value`(title/firstPublishedAt/uniqueSlug)、`virtuals`(totalClapCount/readingTime/wordCount)、正文 `content.bodyModel.paragraphs`
+- RSS:profile/publication 的 `/feed` 拉最近文章;GraphQL `POST /_/graphql` 免认证(post(id:)/user(username:)),POST 走 pageEval 同源 fetch 或门外 curl
+- 站点知识:`browse workspace site medium`
 
-## 五、坑（全部本机踩过）
+## 三、X(无本地库通道)
 
-| 症状 | 根因 | 处理 | 状态 |
-| --- | --- | --- | --- |
-| 首条命令 `_IPCResponseTimeout` | agent Chrome 冷启动中 | 查 doctor，`browser_ready: true` 后重试一次；0.6.10 起三档超时可配（`BH_IPC_TIMEOUT` 普通往返 5s / `BH_NAVIGATE_TIMEOUT` 导航 30s / `BH_SCREENSHOT_TIMEOUT` 60s），导航按三态事件判定（成功/失败/unknown 如实上报，绝不把「还没回来」伪装成「拿不到」） | [实证： 2026-09-03;Issue #3 于上游 0.6.10 修复] |
-| `web-fetch` 子命令输出经 PowerShell 管道中文塌码 | stdout 编码链坏 | 管道脚本模式写 UTF-8 文件再读，不走子命令 stdout 管道 | [实证： 2026-09-04 两踩] |
-| 隐藏 tab 上 `click_at_xy` 无效果 | 后台 tab 渲染暂停 | `activate_tab(current_tab())` 后重试同一点击 | [实证： 2026-09-03] |
-| `Runtime.evaluate` 超时 | 页面正在跳转 | 属正常瞬态；稍后重读 `page_info()` | [实证： 2026-09-03] |
-| AX 树 role/name 取不到 | 字段是 property object，嵌套随版本变 | 用归一化函数逐层取 value | [实证： 2026-09-03] |
+`bh x-intel` 的本地收割库随 bh 退役,browse 无等价物。**X 检索改走 Google `site:x.com`**;x.com 现场登录墙不绕(要凭据让用户自己输)。
 
-## 六、生态位
+公开帖与 Article 卡片恢复的锚点清点(匿名可渲染帖子本体):
 
-- 发现单入口：`browser-harness --llms` 紧凑索引 [实证： 2026-09-03]
-- 长驻监控（X 抓推等）走 rmux 会话（`browser-harness rmux ...`），不占前台
-- Chrome 144+ 首连可能有「允许远程调试」弹窗：提示用户点 Allow，勿轮询重试
-
-## 七、bh（现役：0.6.0，含无头引擎）
-
-> 仓 https://github.com/raystyle/browser-harness 现为 TypeScript `bh`。本机 0.6.0 [实证: 2026-09-08 `bh --version` + `bh engine start/status/stop`]。旧 Python `browser-harness` 本机 PATH 已不在；不要再当现役入口。
-
-两条浏览器面，研究任务优先无头：
-
-| 面 | 命令 | 何时用 |
-| --- | --- | --- |
-| 无头引擎 | `bh engine start` 后 `bh web-fetch <url> --engine`；或 `BH_NAME=engine bh '<js>'` | 不碰用户 Chrome、不要 Allow、临时 profile 用完即杀 |
-| 用户 Chrome | `bh doctor` 后复用 1 到 2 个 tab | 要登录态、或用户已经开着搜索页 |
-
-```powershell
-bh engine start                 # 自起 --headless=new，临时 user-data-dir，port 0
-bh engine status                # running + pid + port + daemon 版本
-bh web-fetch "https://example.org/" --text --engine
-bh engine stop                  # 杀进程树并删临时目录
-# 需要某站登录态再:
-bh engine start --cookies example.org
+```bash
+browse --new-tab 'goto("https://x.com/<handle>/status/<id>", {waitIdle: true}); return await pageEval("JSON.stringify(Array.from(document.querySelectorAll(\"article a\")).map(a => ({text: (a.innerText || \"\").trim(), href: a.href})).filter(x => x.href))")'
 ```
 
-无头实证：`bh engine start` 得 pid 与 `ws://127.0.0.1:<port>/devtools/browser/...`；`web-fetch --engine` 抽出 Example Domain；`bh engine stop` 后 status 为 not started。[实证: 2026-09-08]
+- Article 卡内文匿名跳登录是常态,不是帖子私有的证据;跨发兜底见 `browse workspace site x`(LinkedIn 外链解 `url` 参数拿规范页)
+- 一手源 = status 页与作者自控规范页;恢复不出就如实引公开 status 并标注正文不可达
 
-用户 Chrome 面仍守工位复用（S001）：只 `switch_tab`，禁止 `--new-tab` / 为自愈 `bh --restart`。引擎面不要去 switch 用户 tab。
+## 四、网页正文抓取
 
-```powershell
-bh google-search "<q>" --top 5
-bh google-search pluck gs_search
-bh medium-search "<q>" --top 5
-bh medium-search pluck ms_search
-bh web-fetch "<url>" --text           # HTTP 优先
-bh web-fetch "<url>" --text --engine  # JS/墙且不碰用户浏览器
+```bash
+browse fetch <url>              # 一次性只读,HTTP 直取优先
+browse fetch <url> --markdown   # markdown 形
 ```
 
-## 八、复验命令
+- 回执 `{via, title, text, upgradedFrom}`:`via: http` 零浏览器成本;`upgradedFrom` 非空即走了引擎腿(硬规则 3 的边界)
+- 能 curl/aria2c 拿到的不要走 fetch:宿主机引擎在用时,fetch 是 last resort 且先 status
 
-```powershell
-browser-harness --version
-browser-harness doctor --json     # browser_ready 应为 true(Chrome 在跑时)
+## 五、引擎生命周期(默认不动,要动先问)
+
+```bash
+browse status [--json]   # daemon/引擎/实例/活动 tab 概览,引擎来源语义面
+browse up --headless --isolated   # 隔离态引擎(须本机有 Chrome;默认实例不要 up/down)
+browse down              # 退 daemon;只终结自己 spawn 的引擎
+```
+
+- 形态记忆是 daemon 进程态:最近一次 up 的意图生效,重启回环境缺省
+- 附着优先是发现序默认:裸 `browse '<片段>'` 可能附着到用户 Chrome(硬规则 2),研究任务不走这条默认路
+
+## 六、账本与生态
+
+- `browse --llms [--full|--json]`:agent 手册直出,机制细节唯一权威
+- `browse snippets list/show`:片段库,先查库再写新片段
+- `browse workspace list/site/page`:站点与页面机制知识(google/medium/x/github 域段)
+- `browse issue new --acceptance <验收>`:缺陷开单(账本只增;先 --dry-run)
+
+## 七、复验命令
+
+```bash
+browse --version      # 0.21.0
+browse status --json  # 引擎来源与宿主上下文
 ```

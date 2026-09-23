@@ -20,7 +20,7 @@
 - 四插件各持双 manifest(Claude/Codex 面)字段同步改;四插件同版本线,市场条目与双 manifest 版本三处一致(守卫测试断言)
 - 不可逆技术选择先立 `docs/adr/`;新需求先立 `docs/requirements/REQ` 再实现
 - 新写与改写 SKILL.md 命令块实证准入:写进去的命令当会真跑过(ADR-0010 构造纪律)
-- skill 依赖的外部命令(gh、bh、reader、aria2c、typst 等)全平台分发安装由宿主工具链 omc 与 ark 统一维护:skill 只认 PATH(或等价显式指定),不内置安装路径
+- skill 依赖的外部命令(gh、browse、reader、aria2c 等)全平台分发安装由宿主工具链 omc 与 ark 统一维护:skill 只认 PATH(或等价显式指定),不内置安装路径
 
 ## Must not
 

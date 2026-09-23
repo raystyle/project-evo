@@ -25,7 +25,7 @@
     {
       "name": "evo-research",
       "source": "./plugins/evo-research",
-      "description": "项目进化研究检索:research(资料检索管线:gh/bh 发现、aria2c 获取、reader 研读)",
+      "description": "项目进化研究检索:research(资料检索管线:gh/browse 发现、aria2c 获取、reader 研读)",
       "version": "0.4.0",
       "category": "productivity"
     },

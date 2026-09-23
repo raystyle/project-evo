@@ -1,7 +1,7 @@
 {
   "name": "evo-research",
   "version": "0.4.0",
-  "description": "项目进化研究检索:research(资料检索管线:gh/bh 发现、aria2c 获取、reader 研读)",
+  "description": "项目进化研究检索:research(资料检索管线:gh/browse 发现、aria2c 获取、reader 研读)",
   "author": {
     "name": "raystyle"
   },
@@ -20,7 +20,7 @@
   "interface": {
     "displayName": "Evo Research",
     "shortDescription": "项目进化研究检索:资料检索管线(research)。",
-    "longDescription": "research 把资料检索做成可复用管线(gh 搜代码与仓库、bh 搜 Google/Medium/X、aria2c 取论文 PDF 与大资产、reader 研读,无头优先与 HTTP 优先硬规则;轻量结论落目标项目 docs/research/SNNN 标六态)。",
+    "longDescription": "research 把资料检索做成可复用管线(gh 搜代码与仓库、browse 驾浏览器搜 Google/Medium 与抓网页、aria2c 取论文 PDF 与大资产、reader 研读;先确认浏览器态、不动宿主机浏览器、HTTP 优先与隔离态硬规则;轻量结论落目标项目 docs/research/SNNN 标六态)。",
     "developerName": "raystyle",
     "category": "Productivity",
     "capabilities": [
