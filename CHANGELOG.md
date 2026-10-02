@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 变更(2026-10-02,第八十六批:herdr-review 对话状态门控与事件驱动收件)
+
+- 用户立单(2026-10-02):herdr-review 的对话状态判断方式参考飞轮第八十五批同款改进(状态门控、事件驱动、超时兜底)
+- **panes.md 对话配方升级**:第二节 4 从「prompt 加 read」两步升四步(agent get 状态门控五路分派、prompt --wait 提交与等待同一请求、agent wait 收束事件兜底(插队单与补等形)、read 备读回执);已有格分派行补 unknown 走 explain;篇头实证注收敛为无年代形(用户令:skill 内容不带历史轨迹)
+- **SKILL 命令面与路由**:命令块加 agent get 门控与 agent wait 收件两形(本会话实跑准入,沿飞轮实证记录);正文补「对话状态门控与事件驱动收执同 herdr-flywheel 四步协议口径」衔接句;意图路由加「判评审格忙闲、等评审收束回执」行;frontmatter 涵盖句与触发词同步
+- **receipt.md 收件纪律挂机制**:「评审会话 idle 才收件」升为「收件以收束事件为准,wait 返回后再 read(idle 与 done 皆可收;blocked 问用户;超时处置同飞轮回执节)」
+- 同步面:双 manifest 与市场条目 description 三处逐字同(herdr-review 括号加对话状态门控与事件驱动收件)、codex 长描述、evo-herdr README、docs 地图 herdr-review 行;版本线四插件 0.4.2 齐 0.4.3
+
 ### 变更(2026-10-02,第八十五批:herdr 飞轮跨工作台状态门控与事件驱动收执)
 
 - 用户立单(2026-10-02):飞轮方法没判 agent 状态做事件驱动;裁定跨工作台对话 = 状态判断、事件驱动、超时兜底(与 tmux 无关,是 herdr 的 agent 状态判断)

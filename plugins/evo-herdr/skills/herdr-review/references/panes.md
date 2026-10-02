@@ -1,6 +1,6 @@
 # 评审窗格
 
-> 评审会话的挂位、命名、查看与对话检索。命令均 2026-09-16 本机实证;herdr 命令语法活权威是本机直跑 `herdr --skill`。
+> 评审会话的挂位、命名、查看与对话检索。命令均本机实证;herdr 命令语法活权威是本机直跑 `herdr --skill`。
 
 ## 一、挂位与命名
 
@@ -27,14 +27,16 @@ herdr pane read <新格id> --lines 15        # 实证「Do you trust the content
 herdr pane send-keys <新格id> enter        # 选 1 Yes 继续(替答前须用户已裁定信任该仓)
 herdr pane read <新格id> --lines 12        # 复读确认 Ready 面板就绪
 
-# 4 有格(或建完)直接对话:prompt 派评审单,read 收回执(细则见 herdr-flywheel)
-herdr agent prompt <评审格名> "<评审请求>" --wait --timeout 300000
+# 4 有格(或建完)直接对话:先判态再派单,提交与等待同一请求,收束后备读回执(细则见 herdr-flywheel)
+herdr agent get <评审格名>                  # 状态门控:idle/done 直派;working 排队候位或插队;blocked 问用户;unknown 走 explain
+herdr agent prompt <评审格名> "<评审请求>" --wait --timeout 300000   # 提交与等待同一请求,自带活动闸门
+herdr agent wait <评审格名> --until idle --until done --until blocked --timeout 300000   # 插队单与补等的收束事件等待
 herdr agent read <评审格名> --source recent-unwrapped --lines 200
 ```
 
 - 顺序纪律:yolo 先于驻场(用户级 codex yolo 已在位即可直接起;新机先走 herdr-flywheel 带起节);yolo 与信任可用 `hst doctor` 只读复核 [实证: 2026-09-16 codex 线 yolo 加 trust.project 双 ok]
 - 信任屏纪律:仓内 cwd 首启必弹目录信任屏,替答 Yes 即信任裁定,归用户:本仓与自建仓默认可信直接替答,陌生仓先问(blocked 同源纪律);home cwd 形态不触发此屏 [实证: 2026-09-16 evo-codex-review 仓内首启,agent start 返回 interactive_ready:true 而信任屏仍在屏]
-- 已有可用格(状态 idle 或 done)跳过 2、3 直接 4;working 可插队但回执按 commit sha 甄别,blocked 问用户
+- 已有可用格(状态 idle 或 done)跳过 2、3 直接 4;working 可插队但回执按 commit sha 甄别,blocked 问用户;unknown 不判死,`agent explain` 排查后才用(状态语义与处置同 herdr-flywheel 派单节)
 
 ## 三、查看
 
