@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 变更(2026-10-02,第八十四批:cli-docs 四样板对照轻吸收)
+
+- 用户立单(2026-10-02):登记 gh、cloudflare/cf、wevm/incur、gakonst/incur-rs 四样板仓,对照研究学习改进 cli-docs;gh api 源码直读加文档站抓取,关键断言五项本机二道抽查;用户裁定轻吸收档加 evo-adr 升版,并令 skill 内容不带历史轨迹
+- **S010 研究档案**:四仓文档实践对照。结论:命令参考单源生成四仓共识;incur 双实现与乙面旗标七件、CTA、信封、退出码零漂移;上游新长 skills 分发基建与 OpenAPI 投影;gh 外挂实战卡 SKILL.md 补 agent 面;cf 为超大规模命令空间的 agent 发现答案。对照分流:等价四桶不重复吸收、真新增七处、留档五件;六态标注,信源点名止于档案面
+- **轻吸收(agent-face 七处,五件框架与 ADR-0014 与 REQ-006 不动,正文零历史轨迹)**:--llms 机器形 manifest 版本串、错误对象可选 retryable、破坏性命令非交互路径、对外契约即接口、示例单一真源、附录升第三席 mcp 与 http api 与 skill 分发(含 openapi 同图派生);SKILL.md 附录行同步一笔
+- 同步面:research 登记、docs 地图、diary
+- **版本载体:四插件版本线 0.4.0 齐平 0.4.1**(双 manifest 加市场条目);顺手追正:第八十三批升版漏改 evo-herdr codex manifest 且只升一家违反四插件同版本线断言,主库守卫红灯,本批补齐并四线齐平 [实证: 2026-10-02 追正前 pytest 1 failed,追正后 26 passed]
+
 ### 变更(2026-09-23,第八十二批:evo-research 的 bh 命令面改 browse)
 
 - 用户立单(2026-09-23):research skill 的浏览器面从 `bh`(browser-harness)整体切换为 `browse`(browse_rs 0.21.0);用户同期裁定使用口径:**先 `browse status` 确认浏览器状态,不动宿主机浏览器**

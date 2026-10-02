@@ -13,3 +13,4 @@
 | S007 | [S007-OfficeCLI-agent原生Office套件.md](S007-OfficeCLI-agent原生Office套件.md) | iOfficeAI/OfficeCLI：agent 用的 docx/xlsx/pptx CLI，本机 v1.0.148 烟测；成果曾沉淀为 office-pro skill，2026-09-15 移除 | 已完成 2026-09-08 |
 | S008 | [S008-dev-evo标准外部对标.md](S008-dev-evo标准外部对标.md) | agentskills spec、AGENTS.md 生态、llms.txt 与 ADR 惯例对标,对照九条用后感定优先级 | 已完成 2026-09-16 |
 | S009 | [S009-多agent并行DAG协作模型核验.md](S009-多agent并行DAG协作模型核验.md) | Prove2Me 多 agent DAG 协作模型核验,五纪律吸收进 herdr-flywheel | 已完成 2026-09-17 |
+| S010 | [S010-clidocs四样板对照.md](S010-clidocs四样板对照.md) | cli-docs 四样板对照(gh、cf、incur 双实现),七处轻吸收进 agent-face | 已完成 2026-10-02 |

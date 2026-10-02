@@ -16,6 +16,7 @@
 | `research/S007-OfficeCLI-agent原生Office套件.md` | OfficeCLI 是什么、怎么给 agent 用、本机钉资产安装与烟测 | 选型或本机安装 Office 自动化 CLI 时 |
 | `research/S008-dev-evo标准外部对标.md` | agentskills 规范、AGENTS.md 生态、llms.txt 与 ADR 惯例对标,对照九条用后感定优先级 | 对表 skill 规范或定检索面积压时 |
 | `research/S009-多agent并行DAG协作模型核验.md` | 多 agent DAG 协作模型核验与飞轮对照分流 | 做并行派单设计或复核该模型时 |
+| `research/S010-clidocs四样板对照.md` | cli-docs 四样板对照与吸收分流(gh、cf、incur 双实现) | 改 cli-docs 标准或复核上游口径时 |
 | `diary/2026-09-08-bh与reader使用过程.md` | 过程日记样例 | 写 diary 前对照格式 |
 | `../plugins/evo-adr/skills/doc-gov/SKILL.md` | 文档治理知识面本体(合同/ADR/REQ/投影/六态) | 写 AGENTS、立 ADR/REQ 时 |
 | `../plugins/evo-adr/skills/code-kit/SKILL.md` | 骨架与门禁工具箱命令面(init/check/scan/md-guard) | 初始化骨架、跑合规检查时 |

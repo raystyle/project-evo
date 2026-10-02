@@ -35,6 +35,6 @@ compatibility: 仓无关标准件;乙面实现随栈(clap、argparse、commander
 4. 自省:活命令树为唯一真源,help、手册、JSON 三面同源派生,漂移守卫锁全旗标覆盖
 5. **裸调用面**:无参进入不弹交互不纯报错,紧凑形(一行定位加指 --llms 与 --help,agent 首荐)或全貌形(帮助体),exit 恒 0,管道模式显式分离
 
-可选附录:mcp 与 http api 两面为可选件非必选(默认不做),独立章承载
+可选附录:mcp、http api、skill 分发三面为可选件非必选(默认不做),独立章承载
 
 细则与模板见 references。
