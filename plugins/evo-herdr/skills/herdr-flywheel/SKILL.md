@@ -2,11 +2,11 @@
 name: herdr-flywheel
 description: >-
   多仓 herdr 飞轮协作治理:一个总台协调多个单仓工位,派单、回执、断言、吸收四步循环,
-  并行轮按义务图运转。涵盖 herdr agent prompt 原子派单、agent read 收回执、独立复核断言、
-  反馈吸收分流、工位带起顺序与治理操作坑、并行派单义务图纪律。本 skill 是该协议唯一权威源;
-  herdr 命令语法的活权威是本机直跑 herdr --skill。
+  并行轮按义务图运转。涵盖 herdr agent prompt 原子派单、agent get 状态门控、agent wait 事件驱动收执、
+  agent read 收回执、独立复核断言、反馈吸收分流、工位带起顺序与治理操作坑、并行派单义务图纪律。
+  本 skill 是该协议唯一权威源;herdr 命令语法的活权威是本机直跑 herdr --skill。
   Use when 跨仓派发治理任务、收 herdr 工位回执、做总台轮次协调、多工位并行派单时;触发词 herdr、
-  飞轮、派单、回执、工位、多仓治理、并行派单、义务图、跨机器工位、--machine。
+  飞轮、派单、回执、工位、多仓治理、并行派单、义务图、跨机器工位、--machine、状态门控、事件驱动、agent wait。
 compatibility: 需 herdr 管理的工位会话(HERDR_ENV=1);各工位侧仓自带门禁
 ---
 
@@ -37,7 +37,7 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 - 每仓一个 herdr 工位,总台自成工位;派单地址 = pane ID,从 herdr agent list 的 JSON 响应取,不猜不背;live 唯一的 agent 名亦可作地址
 - **工位编号会漂移**:合同与旧档写的编号不可信,派单前必 herdr agent list 实查 [实证: 2026-09-16 合同写法与实况两轮不符]
 - **带起顺序 = hst init --yolo 先于 agent 驻场**:会话许可模式在驻场时定格,后落盘的 yolo 不被追认,全会话停在旧审批态致阻塞 [实证: 2026-09-16 八工位驻场先于 yolo 落盘,全会话审批阻塞];可提 hst doctor 增加「会话活模式与盘上 yolo 一致性」检测项
-- idle 与 done 皆可派;blocked 是等人裁,问用户不代答;working 可插队,回执甄别见派单节
+- idle 与 done 皆可派,差别仅 seen 标记(pane 与 agent focus 标 seen,agent read 不标);blocked 是等人裁,问用户不代答;working 可插队,回执甄别见派单节;unknown 不判死,`herdr agent explain <工位>` 看检测规则与证据后处置;状态优先来自集成上报,无上报退回屏幕检测
 - 勿关非自建工位(workspace、tab、pane、session)
 
 ## 跨机器工位
@@ -45,7 +45,7 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 远程机器是 herdr 的一等公民,工位可以驻在别的机器上;总台经保存的 SSH profile 直接路由命令,不需要自己 ssh 过去 [实证: 2026-09-23 OfficeCLI 维护归属周知轮 lan-ubuntu]。
 
 - **机器面实查**:`herdr machine list` 取 label、ssh target 与会话名;远程机器跑自己独立的 herdr server(可有多会话,如 `agents`),工位 pane ID 只在所属机器会话内唯一,跨机派单地址 = 机器 label 加该机 agent list 实查的 pane ID
-- **命令路由**:`herdr --machine <label-or-id> <agent|pane 子命令>` 把 list/prompt/read/get 原样路由到远程机器,四步协议不变;`--machine` 走保存 profile 的会话,**不可再叠加 `--session` 等其它 launch 选项**(报 cannot be combined,勿试)
+- **命令路由**:`herdr --machine <label-or-id> <agent|pane 子命令>` 把 list/prompt/read/get/wait 原样路由到远程机器,四步协议与状态门控同形跨机;`--machine` 走保存 profile 的会话,**不可再叠加 `--session` 等其它 launch 选项**(报 cannot be combined,勿试)
 - **派单前双查**:归属轮或跨机协作轮开工前,本机 `herdr agent list` 与 `herdr --machine X agent list` 各跑一次,两侧工位清册都从 JSON 响应取,不假设编号全局唯一、不凭旧档
 - **跨机周知**:维护归属、标准变更这类全 fleet 周知,收件人 = 本机全部在职工位加每台远程机器的工位,双侧都要留回执;给远程工位的 prompt 必须自包含其够不到的路径(如远程机器上的仓库路径要写清在哪台机、怎么到达)
 - **stalled 误报处置**:跨机 prompt 可能报 `agent_prompt_stalled`(CLI 观察窗内未见 working/blocked 态),文本往往已送达且 agent 正常回执;处置 = `herdr --machine X agent read` 实读 pane 确认送达与回执,确认前不重发,防重复派单
@@ -55,13 +55,18 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 ### 派单
 
 - **prompt 自包含**:任务清单逐件可判(过/缺/不适用)加标准权威路径加回执格式;接收方没有派发方的上下文
-- 正式派单恒走 `herdr agent prompt <pane> "<任务>" --wait --timeout <毫秒>`:原子提交文本加编码 Enter,--wait 等首个 settle 态(idle、done、blocked);对 blocked 工位拒收(agent_blocked),先查 UI 问用户再动
+- **状态门控先行**:派单前 `herdr agent get <工位>`(跨机 `herdr --machine <label> agent get`)判 agent_status:idle 与 done 直派;working 不硬注入,先 `herdr agent wait <工位> --until idle --until done --until blocked --timeout <租约余量毫秒>` 排队候位或走插队条;blocked 被拒收(agent_blocked)属常态,查 UI 问用户再动;unknown 不派,`herdr agent explain <工位>` 排查检测态
+- 正式派单恒走 `herdr agent prompt <pane> "<任务>" --wait --timeout <毫秒>`:原子提交文本加编码 Enter,**提交与等待同一请求**(避开先 prompt 后 wait 的空窗);--wait 自带活动闸门,非 working 态提交后 5 秒内未见 working 或 blocked 活动即 `agent_prompt_stalled`,见到活动后才等收束态(默认 idle、done、blocked);提交时对方已在 working,其在跑轮收束即可满足等待,插队完成甄别见插队条;对 blocked 工位拒收(agent_blocked),先查 UI 问用户再动;超时与 stalled 都不证未送达 [经验: 2026-10-02 官方 Agent automation 与 Socket API 语义,首跑回填]
+- **开工探针**:甄别真开工用 `herdr agent wait <工位> --until working --timeout <毫秒>`,已在跑立即返回;turn 短于探针启动则探针必超时,失败不证任务失败、不证上一句未送达;本地热工位秒级即可,冷启动与远程放宽(活动闸门窗为 5 秒级)
 - pane send-text 仅草稿不提交,不用作派单通道
 - 插队向 working 工位发单可以,但回执以 commit sha 加 diff 范围甄别,防混入在跑轮次
 - 纯讨论轮(不改仓不提交)用于标准征求意见,结论按吸收即提炼回标准文本,不点名来源仓
 
 ### 回执
 
+- **事件驱动收执**:正式派单的 --wait 已含收束等待(见派单节);插队单与补等走独立 `herdr agent wait <工位> --until idle --until done --until blocked --timeout <毫秒>` 阻塞等收束事件(现态已命中即返不空等;`--until` 逐态重复给旗标、或关系,逗号串无效;不要审批提前收束就只给 `--until idle --until done`;prompt 上的 --until 须搭配 --wait),返回即 `herdr agent read` 收回执,不靠人工记挂与轮询清册
+- **超时兜底**:wait 必带 timeout(省略即无限期;超时是调用方租约,不改写 agent 状态);超时与服务器错误 JSON 走 stderr、退出码 1(语法错误退出码 2),成功时当前 agent 在 `.result.agent`;处置 = 看 error.code 加 `agent get` 判现态加 `agent read` 实读判送达,确认送达前不重发(超时不证未送达,重投可能跑两遍;与 stalled 处置同源);timeout 不超租约余量,连续超时即失联判据成立,按租约改派走(references/parallel.md);wait 钉住解析时的窗格占用者,窗格中途移走以 `agent_not_running` 结束,改用新 pane_id 或 agent 名重等 [经验: 2026-10-02 官方口径,首跑回填]
+- **审批与提问面**:等审批用 `herdr agent wait <工位> --until blocked --timeout <毫秒>`,`agent read` 实读界面后 send-keys 送键处置或问用户,不代答
 - `herdr agent read <pane> --source recent-unwrapped --lines <N>` 收回执;长响应在备用屏读不全时,兜底请对方落临时 md 文件回路径再直读(仅兜底,初版派单不预设文件回执)
 - **对方陈述不作数**:commit sha 自取 git log、门禁自跑取退出码(落盘直跑,不接吞退出码管道)、CI 自取 gh run conclusion
 - 断言带原文证据:说某文本「仍是旧口径」必须引读到的行,grep 反证优先于口头回执 [实证: 六仓轮中一次旧文误报被 grep 反证]
@@ -83,14 +88,14 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 
 - **台账只记还欠什么**:并行轮总台账记义务与验收判据,不记谁在干;工位每轮收尾重读台账取最新态,不依据开工时的旧图工作,防过期依赖
 - **条件归约先接线**:上层义务不等下层完工,先交「只要 A、B 成立则 G 成立」的条件断言;连接正确性与子结果正确性分开验收,上下层真并行。推论:父件无缺不等于依赖闭包无缺,工位局部过门禁不等于全图义务清账,并行轮收尾按闭包清点
-- **租约与改派**:工位会话死掉不等于任务作废;约定时限内无心跳即失联改派他位。已交证据与失败记录落仓不落工位,工位消失账不丢
+- **租约与改派**:工位会话死掉不等于任务作废;约定时限内无心跳即失联改派他位,时限即收执 wait 的 timeout 上限,连续超时加无回执无 commit 判据成立。已交证据与失败记录落仓不落工位,工位消失账不丢
 - **依赖变化必重评估**:上游义务变更后,依赖它的下游断言要么附兼容证据复用、要么重跑、要么作废;禁止只改台账链接沿用旧断言
 - **扩容前先判瓶颈**:并行度受依赖关键路径封顶;加工位前先判瓶颈是独立任务不够、验证资源不够、还是接口频繁变化致返工,三类对策不同;产量数据(agent 数、提交数、token 数)不是完成证据
 - **任务与尝试分开记**:同一义务允许多工位多路线并行攻坚,不靠禁并行避冲突;完成归属以验收判据甄别,先过验收者记账,后到者不覆盖已成立的完成态
 
 ## 命令面要点
 
-活权威 = 本机直跑 `herdr --skill`,安装版二进制是语法权威,不凭记忆写命令。常用面:herdr agent list 实查工位;herdr agent prompt 派单;herdr agent read 收回执;herdr agent get 查态;herdr agent send-keys 发逻辑键(esc、ctrl+c)。ID 与状态一律从 JSON 响应取,不从侧栏顺序或示例推导。
+活权威 = 本机直跑 `herdr --skill`,安装版二进制是语法权威,不凭记忆写命令。常用面:herdr agent list 实查工位;herdr agent get 查态;herdr agent prompt 派单;herdr agent wait 等状态事件(--until 逐态重复旗标加 --timeout 兜底);herdr agent read 收回执;herdr agent send-keys 发逻辑键(esc、ctrl+c)。普通进程与文本事件不走生命周期,用 `herdr pane wait-output <pane> --match <文本> --timeout <毫秒>`(或 `--regex`,即时搜最近约 80 行展开快照,已有文本也命中)。ID 与状态一律从 JSON 响应取,不从侧栏顺序或示例推导。
 
 ## 参考
 

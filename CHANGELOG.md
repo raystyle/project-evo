@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+### 变更(2026-10-02,第八十五批:herdr 飞轮跨工作台状态门控与事件驱动收执)
+
+- 用户立单(2026-10-02):飞轮方法没判 agent 状态做事件驱动;裁定跨工作台对话 = 状态判断、事件驱动、超时兜底(与 tmux 无关,是 herdr 的 agent 状态判断)
+- **SKILL 四步协议升级**:派单步加状态门控前置(`herdr agent get` 判 agent_status:idle 与 done 直派,working 先 `agent wait --until idle --until done --until blocked --timeout <租约余量>` 排队候位或插队,blocked 问用户,unknown 走 `agent explain` 排查);回执步加事件驱动收执主通道(`agent wait` 等 settle 事件后 `agent read` 收回执,插队单与补等走独立 wait,替代人工记挂与轮询清册)与超时兜底纪律(必带 timeout 禁裸等,超时 exit 1 加 timeout 错误 JSON,处置 = get 判现态加 read 判送达,确认前不重发,连续超时即失联判据走改派)
+- **机制挂接**:跨机器节命令路由补 wait 同形跨机;并行租约纪律挂机制(时限即收执 wait 超时上限,心跳判据 = 连续超时加无回执无 commit,parallel.md 租约节与映射表同步);pitfalls「--wait 撞已决态」修法句升级(派发后轮询 agent list 甄别真开工改 `agent get` 判 working)
+- **实证准入(ADR-0010,本机 herdr 0.9.1 实跑后写入)**:agent get 五态与 state_change_seq、agent wait 现态电平命中即返 exit 0、超时形 exit 1 加 `{"error":{"code":"timeout"}}`、`--until` 重复旗标形(逗号串报 invalid agent status)、working 电平命中、agent explain 出 rule 加 evidence、`--machine` 路由
+- **官方语义追正(用户令,原批内)**:语义以官方 Agent automation 与 Socket API 为准(X 编排经验只标坑)。prompt --wait = 提交与等待同一请求避空窗,自带 5 秒活动闸门(agent_prompt_stalled),已 working 工位在跑轮收束即满足;开工探针形(`wait --until working`,已在跑即返,探针超时不证未送达);错误通道口径(stderr、超时与服务器错退出码 1、语法错 2、成功在 .result.agent);wait 钉解析时占用者与 `agent_not_running` 处置;审批等待形(`--until blocked` 加 read 加 send-keys);普通进程走 `pane wait-output` 即时搜快照(不走生命周期);idle 与 done 差别仅 seen(focus 标、read 不标);状态优先集成上报、无上报退屏幕检测。新增命令形已本机实跑(`--until idle --until done` 双收束、`pane wait-output` 命中与超时两路径),纯语义断言标 [经验] 待首跑回填
+- 同步面:frontmatter 触发词加状态门控与事件驱动与 agent wait;双 manifest 与市场条目 description 三处逐字同;evo-herdr README 与 docs 地图;版本线四插件 0.4.1 齐 0.4.2,顺手刷四插件 README「当前发布」行存量漂移(第八十三批起停 0.4.0)
+
 ### 变更(2026-10-02,第八十四批:cli-docs 四样板对照轻吸收)
 
 - 用户立单(2026-10-02):登记 gh、cloudflare/cf、wevm/incur、gakonst/incur-rs 四样板仓,对照研究学习改进 cli-docs;gh api 源码直读加文档站抓取,关键断言五项本机二道抽查;用户裁定轻吸收档加 evo-adr 升版,并令 skill 内容不带历史轨迹
