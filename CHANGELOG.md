@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更(2026-10-07,第九十二批:跨机器 machine 原语语义补强)
+
+- 用户立单(2026-10-07):跨仓之外再研究跨机器,herdr 现有 machine 原语;按活权威 `herdr --skill`(本机 0.9.1)直读补强
+- herdr-flywheel 跨机器工位节补六面:ID 与 live 名都 scoped 单机(同名 agent 可并存两机)、TUI 选机不重定命令向(无 --machine 恒走本地语境)、selector 语义(enabled profile ID 或唯一 label,非任意 SSH 主机名;--machine 不与 --session 加 --remote 组合;add 默认远端默认会话)、转发前提与边界(双侧支持 machine API 转发、远端 server 已在跑且 API 兼容;不装不起不重启不回落;本地配置、会话管理、安装命令、交互附着不转发;远端 worktree 路径绝对或 ~ 起)、连接失败不证未应用(重试前查远端实态)、machine list 是 profile 清册非 pane 清单
+- 同步面:REQ-013、AGENTS 阶段行;六态标注 [实证: herdr 0.9.1 --skill 直读]
+
 ### 变更(2026-10-07,第九十一批:herdr 双模式定形)
 
 - 用户立单(2026-10-07):herdr 应是两个 skill:开发模式(已包含 review 窗格)与跨仓模式(不同仓库 agent 工作台对话交流);ADR-0019 与 REQ-012 落地

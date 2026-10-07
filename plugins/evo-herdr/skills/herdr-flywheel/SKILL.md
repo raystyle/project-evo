@@ -46,12 +46,16 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 
 ## 跨机器工位
 
-远程机器是 herdr 的一等公民,工位可以驻在别的机器上;总台经保存的 SSH profile 直接路由命令,不需要自己 ssh 过去 [实证: 2026-09-23 OfficeCLI 维护归属周知轮 lan-ubuntu]。
+远程机器是 herdr 的一等公民(machine 原语),工位可以驻在别的机器上;总台经保存的 SSH profile 直接路由命令,不需要自己 ssh 过去 [实证: 2026-09-23 OfficeCLI 维护归属周知轮 lan-ubuntu]。
 
-- **机器面实查**:`herdr machine list` 取 label、ssh target 与会话名;远程机器跑自己独立的 herdr server(可有多会话,如 `agents`),工位 pane ID 只在所属机器会话内唯一,跨机派单地址 = 机器 label 加该机 agent list 实查的 pane ID
-- **命令路由**:`herdr --machine <label-or-id> <agent|pane 子命令>` 把 list/prompt/read/get/wait 原样路由到远程机器,四步协议与状态门控同形跨机;`--machine` 走保存 profile 的会话,**不可再叠加 `--session` 等其它 launch 选项**(报 cannot be combined,勿试)
+- **机器面实查**:`herdr machine list` 取 label、ssh target 与会话名(它是连接 profile 清册,不是跨机 pane 清单,`--json` 供脚本取);profile 的增删启停仅在用户明令时做,删 profile 只断客户端不断远端会话
+- **ID 与名都 scoped 单机**:两台保存机可各有 `w1:p1` 或同名 agent;跨机派单地址 = 机器 label 加**该机** agent list 实查的 pane ID,继承的本地 ID 与 `--current` 不识别远程 pane [实证: herdr 0.9.1 --skill 直读]
+- **TUI 选机不重定命令向**:TUI 里选了机器,不改变 pane 内命令的目标;无 `--machine` 前缀的 herdr 命令恒走继承的本地 session 与 socket 语境,别被 TUI 选择态误导 [实证: herdr 0.9.1 --skill 直读]
+- **命令路由**:`herdr --machine <label-or-id> <agent|pane 子命令>` 把 list/prompt/read/get/wait 原样路由到远程机器,四步协议与状态门控同形跨机;selector 必须是 enabled 保存 profile 的 ID 或唯一(大小写敏感)label,不是任意 SSH 主机名;**不与 `--session`、`--remote` 组合**(报 cannot be combined,勿试);add 默认接远端默认会话,显式 `--remote-session` 才覆盖
+- **转发前提与边界**:双侧安装都要支持 machine API 转发,远端 server 必须已在跑且 API 兼容;转发不安装、不起、不重启远端 server,不回落本地;本地配置、会话管理、安装命令、交互附着不转发;跨机 workspace 的远端 worktree 路径必须绝对或 `~` 起,插件链接路径必须绝对 [实证: herdr 0.9.1 --skill 直读]
 - **派单前双查**:归属轮或跨机协作轮开工前,本机 `herdr agent list` 与 `herdr --machine X agent list` 各跑一次,两侧工位清册都从 JSON 响应取,不假设编号全局唯一、不凭旧档
 - **跨机周知**:维护归属、标准变更这类全 fleet 周知,收件人 = 本机全部在职工位加每台远程机器的工位,双侧都要留回执;给远程工位的 prompt 必须自包含其够不到的路径(如远程机器上的仓库路径要写清在哪台机、怎么到达)
+- **失败不证未应用**:跨机连接失败不证变更未落远端(同 prompt 超时族),重试前先查远端实态;setup 遇不兼容 server 先问用户,默认 No,不经同意不批准替换 [实证: herdr 0.9.1 --skill 直读]
 - **stalled 误报处置**:跨机 prompt 可能报 `agent_prompt_stalled`(CLI 观察窗内未见 working/blocked 态),文本往往已送达且 agent 正常回执;处置 = `herdr --machine X agent read` 实读 pane 确认送达与回执,确认前不重发,防重复派单
 
 ## 四步协议
