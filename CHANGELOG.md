@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 变更(2026-10-07,第九十批:herdr 委派与窗格布局轻吸收)
+
+- 用户立单(2026-10-07,两单):吸收蒸馏 herdr-dispatch 任务分发编排改进 herdr skill,评估 grok、kimi、codex 委派与窗格布局是否开发集成 py 脚本;吸收 PI 智能体五窗格开发布局(用户裁定:五窗格仅 PI 开发模式,通用四窗格足够,自省位可由 codex 替代)
+- **S011 档案**:herdr-dispatch 对照分流(编排三分工、lane 模型、状态台账、探针契约、身份核验、多 agent 启动特化);kimi 委派上游无参照待专项研究;py 脚本评估结论 = 不开发(纯 skill 加内联探针够用、沉淀铁律未触发、活权威 herdr --skill、与纯知识加 hook 解耦方向相反)
+- **S012 档案**:窗格布局定式对照(通用四窗格:主开发、研究、review、自省回归;PI 五窗格:pi 自省加副窗实战验收;双闸门收批、先推后审、会话纪律、重载铁律、TUI 就绪探测)
+- **herdr-flywheel 吸收**:新增「窗格布局定式与双闸门」与「任务分发 lane 模型」两节;新篇 references/lane-dispatch.md(lane 结构、状态台账与探针契约、身份核验、codex 与 grok 启动特化、发布纪律);pitfalls.md 增三坑(agent 名回收复用、done 假象多源、TUI 未就绪悬输入框);frontmatter 触发词加窗格布局、lane、worktree、codex、grok、kimi
+- 同步面:docs 地图加 S011 与 S012 行、REQ-011、ROADMAP(py 脚本重评估条件记待定行);等价桶不吸收项(JSON 判据、勿动非自建、租约防重发等,与既有口径同源互证)
+
 ### 变更(2026-10-07,第八十九批:doc-gov 三合一与 evo-doc 改名,skill 与 hook 解耦)
 
 - 用户立单(2026-10-07,整理重构批五令):doc-gov 加 code-kit 加 cli-docs 三 skill 合一为 doc-gov;evo-adr 改名 evo-doc;插件内 skill 与 hook 解耦;code-kit 工具面只带 md-guard 的 hook(init/check/scan 与模板移本仓 .tools,斜杠命令删除);知识面收敛:文档结构只有 ADR(需求决策)与 COE(三层聚合和双向链接图)两种形态,补项目日记(ADR 之外增强),留 Agent 友好 CLI 架构标准,其余复杂面不需要(ADR-0018,REQ-010)

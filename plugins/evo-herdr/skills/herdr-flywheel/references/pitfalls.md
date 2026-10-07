@@ -8,6 +8,9 @@
 |---|---|---|
 | send-text 不是派单 | pane send-text 仅投草稿不提交,agent 不开始轮次 | 正式派单恒走 herdr agent prompt(原子文本加编码 Enter) |
 | 工位编号漂移 | 合同或旧档写的编号与实况不符,凭记忆派单投错工位 | 派单前必 herdr agent list 实查,pane ID 从 JSON 响应取 |
+| agent 名被回收复用 | 工位名随退出即释放,后来者(另一 run 或用户手起)可复用同名,凭名 steer 投错对象 | steer 前对 session id:herdr agent get 与台账记录比对,不一致停手诊断 |
+| done 假象多源 | agent_status 读 done 与提示被吞、冻结、modal 误分类同形;goal 型轮次间隙也读 done | done 不作完成判据;以验收判据(diff、测试、commit sha)与盘上记录对账 |
+| TUI 未就绪悬输入框 | 新会话 agent 未就绪时 send-text 悬在输入框不生效 | 先 pane wait-output 等就绪标志(banner 类锚文本)再派;普通脚本 send-text 加 send-keys enter 两步起 |
 | 备用屏读不全 | agent 跑在终端备用屏,加大 --lines 也读不到出屏行(出屏行不进宿主回滚缓冲) | 兜底:请对方把完整回执落临时 md 文件回路径,直读文件 |
 | yolo 后落不追认 | agent 驻场在先、hst init --yolo 落盘在后,会话许可模式定格旧态,全会话审批阻塞 | 带起顺序恒 hst init --yolo 先于 agent 驻场;可提 hst doctor 加「会话活模式与盘上 yolo 一致性」检测项 |
 

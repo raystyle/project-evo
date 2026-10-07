@@ -14,3 +14,4 @@
 | REQ-008 | implemented | must | gh-issue 与 build-release 与 evo-research 移除,四插件收敛三插件七 skill | tests/test_project_evo.py |
 | REQ-009 | implemented | must | evo-codesec 插件下线与 md-guard 挡板限仓内 md | tests/test_project_evo.py |
 | REQ-010 | implemented | must | 三 skill 合一为 doc-gov,evo-adr 改名 evo-doc,skill 与 hook 解耦 | tests/test_project_evo.py |
+| REQ-011 | implemented | must | herdr 委派与窗格布局轻吸收(lane 分发、四窗格定式、py 脚本评估) | tests/test_project_evo.py |
