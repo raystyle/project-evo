@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+## [0.11.1] - 2026-10-08
+
+### 变更(2026-10-08,第九十七批:内容分发版本载体 0.5.1)
+
+- 用户立单(2026-10-08):更新安装。批 95 两坑落在 herdr-flywheel 插件面而版本未升(违反批 83 起内容分发版本载体纪律,版本不变消费者缓存不刷),本批补正:两插件版本线 0.5.0 齐 **0.5.1**(evo-herdr 载 pitfalls 两坑,evo-herdr 与 evo-doc 同版本线齐平),tag v0.11.1 加 Release
+- 携带内容:第九十五批(pitfalls 冷启动竞态吞派单加 prompt --wait 提交即返)、第九十六批(fleet-exec 重评估,仓面非插件面)
+- 升级:`/plugin marketplace update project-evo` 后 `/plugin update evo-doc@project-evo` 与 `/plugin update evo-herdr@project-evo`;Codex 同形
+
 ### 变更(2026-10-08,第九十六批:herdr 集成 py 脚本重评估,总台运维面翻转)
 
 - 用户立单(2026-10-08):重评估批 90 待定行。触发审计:S011 原写触发(lane 探针/扫描循环手拼二犯)未 fired(lane 无实跑);但 v0.11.0 舰队清理与安装轮中普通进程通道(send-text 加 enter 加 wait-output 收标加 read 回执)手拼十余次、四种任务形,仓级沉淀铁律在总台运维面成立(REQ-015)

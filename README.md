@@ -34,7 +34,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 
 - 市场源与协议:HTTPS 与 SSH git URL 都收;GitHub 简写默认协议相反,Claude Code 走 SSH(`CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1` 切 HTTPS),Codex 走 HTTPS;Grok 另收本地路径与 `@ref`、`#subdir`
 - 私有仓认证:标准 git 凭据(credential helper 或 ssh-agent),与终端 git 行为一致
-- 钉版:Claude Code `raystyle/project-evo@v0.11.0`(或 URL 尾 `#v0.11.0`);Codex `--ref v0.11.0`(下一封版 v0.12.0 后同理)
+- 钉版:Claude Code `raystyle/project-evo@v0.11.1`(或 URL 尾 `#v0.11.1`);Codex `--ref v0.11.1`(下一封版 v0.12.0 后同理)
 - md 禁字挡板:装 evo-doc 后编辑仓内 markdown 触发 PostToolUse 提醒(四类禁字,仓外 md 不管;规则唯一权威是插件级 `scripts/mdrules.py`,与 skill 解耦)
 - 扫描豁免:本仓 `.tools/scan.py` 的误报走环境变量 `PEVO_SCAN_ALLOW`(分号分隔正则,匹配 文件:行)
 
