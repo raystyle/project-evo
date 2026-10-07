@@ -57,6 +57,7 @@
 | 封版 v0.10.0 | 已完成 | 2026-09-17 第七十七至七十八批合并发布:cli-docs 对外面双标准 skill(ADR-0014 十一 skill)与 Prove2Me DAG 协作模型吸收进飞轮;四插件 0.3.0 升 0.4.0;tag v0.10.0 加 Release;五端铺开随封版走 |
 | 守卫断言扩展与机检盲区 | 待定 | 2026-09-16 评审批(codex):守卫未断言「市场描述 == manifest 描述」与 references/README.md 存在(security-audit 索引已补,守卫断言仍缺)与插件 README「当前发布」行对齐 manifest 版本(两轮封版靠人工核;第七十八批双 manifest 漂移再实证此缺口,靠纪律补位);md-ref-scan 只认首个 root 实参(多根静默忽略,现靠逐次调用规避);跨 skill 散文式指针(无 .md 后缀)与节号引用(如「triple-output 第五节」)不在机检范围(快核轮实抓节号悬挂一处);PE-10 标题括号扫描面不含 plugins/,插件面存量同形标题 109 处(第七十八批评审 G3 记档) |
 | gh-issue 与 build-release 与 evo-research 移除 | 已完成 | 2026-10-07 第八十七批:四插件十 skill 收敛三插件七 skill;evo-adr 收敛 doc-gov/code-kit/cli-docs,evo-research 整插件下线(破坏性,消费者卸载);ADR-0016 与 REQ-008 落地;版本线 0.4.3 不动待整理重构批统一打版 |
+| evo-codesec 插件下线与 md 挡板限仓内 | 已完成 | 2026-10-07 第八十八批:evo-codesec 整插件移除(secret-scan 与 security-audit 双 skill,破坏性,消费者卸载),test_secret_scan.py 退役;md-guard hook 辖域限仓内 md(md 五面核实已只认 .md);ADR-0017 与 REQ-009 落地;市场收敛两插件五 skill,版本线 0.4.3 不动待整理重构批统一打版 |
 
 ## 阶段三：延伸（进行中）
 

@@ -4,7 +4,7 @@
     "name": "raystyle"
   },
   "metadata": {
-    "description": "项目进化:三插件七 skill(文档治理 evo-adr、代码安全 evo-codesec、多仓协作 evo-herdr)",
+    "description": "项目进化:两插件五 skill(文档治理 evo-adr、多仓协作 evo-herdr)",
     "pluginRoot": "./plugins"
   },
   "plugins": [
@@ -12,13 +12,6 @@
       "name": "evo-adr",
       "source": "./plugins/evo-adr",
       "description": "项目进化文档治理:doc-gov(文档体系治理知识:AGENTS 合同、ADR、REQ、投影纪律、六态)与 code-kit(骨架与门禁:init/check/scan 零依赖脚本、md 禁字挡板、模板)与 cli-docs(CLI 对外面双标准:README 四节骨架加 agent 五件手册面协议帮助面自省裸调用面)",
-      "version": "0.4.3",
-      "category": "productivity"
-    },
-    {
-      "name": "evo-codesec",
-      "source": "./plugins/evo-codesec",
-      "description": "项目进化代码安全:secret-scan(密钥与隐私深扫:工作区、git 全历史、GitHub alerts 与 code search)与 security-audit(安全审计与漏洞审查,译自 Cloudflare security-audit-skill,MIT)",
       "version": "0.4.3",
       "category": "productivity"
     },

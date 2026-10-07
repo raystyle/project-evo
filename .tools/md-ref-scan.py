@@ -20,7 +20,7 @@ SKIP = {
     "CLAUDE.md", "README.md", "SKILL.md", "AGENTS.md", "CHANGELOG.md",
     "ROADMAP.md", "template.md", "notes.md", "A.md", "a.md", "b.md", "2.md",
     "api.md", "API.md", "0000-template.md",
-    # security-audit 运行时产物名(审计输出文件,非仓内静态文件)
+    # 报告类产物名兜底(审计/报告输出文件,非仓内静态文件)
     "REPORT.md", "FINDINGS-DETAIL.md", "NEEDS-VALIDATION.md",
     "architecture.md", "FILE.md",
 }

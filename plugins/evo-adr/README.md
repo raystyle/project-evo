@@ -56,7 +56,7 @@ uv run skills/code-kit/scripts/scan.py [目标项目] --no-history
 
 ## 架构
 
-三个 skill 都是渐进知识库:SKILL.md 只做意图路由与速览,完整知识在各自 `references/`(分类扁平,rg 定位渐进检索)。可执行面在 `skills/code-kit/scripts/`(规则唯一权威 `mdrules.py`,check 的 PE-12 与 scan、md-guard 三面同源),模板在 `skills/code-kit/assets/templates/`。PostToolUse hook(`hooks/hooks.json`)对编辑中的 markdown 做四类禁字会话内提醒。
+三个 skill 都是渐进知识库:SKILL.md 只做意图路由与速览,完整知识在各自 `references/`(分类扁平,rg 定位渐进检索)。可执行面在 `skills/code-kit/scripts/`(规则唯一权威 `mdrules.py`,check 的 PE-12 与 scan、md-guard 三面同源),模板在 `skills/code-kit/assets/templates/`。PostToolUse hook(`hooks/hooks.json`)对仓内编辑中的 markdown 做四类禁字会话内提醒(仓外 md 不在辖域)。
 
 ## 敏感产物
 

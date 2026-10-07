@@ -1,6 +1,6 @@
 # docs 地图
 
-> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、diary 留过程痕、research 存研究档案;skill 知识库在 `plugins/<插件>/skills/` 下(三插件七 skill)。
+> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、diary 留过程痕、research 存研究档案;skill 知识库在 `plugins/<插件>/skills/` 下(两插件五 skill)。
 
 | 文档 | 讲什么 | 何时看 |
 |------|--------|--------|
@@ -11,8 +11,8 @@
 | `requirements/README.md` | 本仓需求登记索引（REQ-NNN） | 立需求或查验收判据时 |
 | `research/README.md` | 本仓研究登记 | 找 S 文档时 |
 | `research/S001-bh与reader使用过程技巧.md` | bh 工位复用与 reader 电子书阅读过程 | 再用搜索抓取或读电子书前 |
-| `research/S005-git密钥隐私扫描skill选型.md` | 密钥扫描 skill 选型 | 改 secret-scan 规则或对照 gitleaks 前 |
-| `research/S006-secret-scan-AB对照.md` | secret-scan 对 code-kit scan 的 A/B 实跑 | 裁决规则面差异时 |
+| `research/S005-git密钥隐私扫描skill选型.md` | 密钥扫描 skill 选型(档案) | 查选型沿革或对照 gitleaks 前 |
+| `research/S006-secret-scan-AB对照.md` | secret-scan 对 code-kit scan 的 A/B 实跑(档案) | 裁决 code-kit scan 规则面差异时 |
 | `research/S007-OfficeCLI-agent原生Office套件.md` | OfficeCLI 是什么、怎么给 agent 用、本机钉资产安装与烟测 | 选型或本机安装 Office 自动化 CLI 时 |
 | `research/S008-dev-evo标准外部对标.md` | agentskills 规范、AGENTS.md 生态、llms.txt 与 ADR 惯例对标,对照九条用后感定优先级 | 对表 skill 规范或定检索面积压时 |
 | `research/S009-多agent并行DAG协作模型核验.md` | 多 agent DAG 协作模型核验与飞轮对照分流 | 做并行派单设计或复核该模型时 |
@@ -34,8 +34,6 @@
 | `../plugins/evo-adr/skills/cli-docs/SKILL.md` | CLI 对外面双标准:README 四节骨架与 agent 五件(--llms、协议、帮助面、自省、裸调用) | 写 CLI README、配 agent 面时 |
 | `../plugins/evo-adr/skills/doc-gov/references/exp-pitfalls.md` | 已知误区十八条 | 落地前预警 / 踩坑后对照 |
 | `../plugins/evo-adr/skills/code-kit/verification/command-test-cases.md` | 规范检查命令（参数化 ProjectRoot） | 验证骨架合规时 |
-| `../plugins/evo-codesec/skills/secret-scan/SKILL.md` | 密钥与隐私扫描命令面 | 扫 git/GitHub 泄露时 |
-| `../plugins/evo-codesec/skills/security-audit/SKILL.md` | 安全审计与漏洞审查(双模式、六阶段、覆盖账本;译自 Cloudflare security-audit-skill) | 安全审计/渗透测试/漏洞审查时 |
 | `../plugins/evo-herdr/skills/herdr-flywheel/SKILL.md` | 多仓 herdr 飞轮协作(派单/回执/断言/吸收,状态门控与事件驱动收执,并行派单义务图;协议唯一权威源,ADR-0009) | 跨仓派单或收回执时 |
 | `../plugins/evo-herdr/skills/herdr-review/SKILL.md` | 推送前评审闸门(评审请求、F/G/CONFIRM 回执、轮次、窗格检测带起、对话状态门控收件;ADR-0011) | 发评审请求或写对线回执时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |

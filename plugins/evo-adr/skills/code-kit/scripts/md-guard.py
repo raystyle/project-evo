@@ -6,7 +6,8 @@
 
 两种入口:
 - Claude Code PostToolUse hook:stdin 收工具事件 JSON,取 tool_input.file_path,
-  是 .md 则检四类禁字;有违规 exit 2(stderr 回传 agent 提醒修正),干净 exit 0
+  是 .md 且(事件带 cwd 时)位于 cwd 项目内才检四类禁字(仓外 md 不管);
+  有违规 exit 2(stderr 回传 agent 提醒修正),干净 exit 0
 - git pre-commit:--staged 检查暂存区 .md;有违规 exit 1 挡提交
 
 载荷宽容:tool_input 不是对象(Codex 的 apply_patch 面是字符串 patch 文本)或整条事件
@@ -66,6 +67,12 @@ def main(argv: list[str]) -> int:
     p = Path(fp) if fp else None
     if not p or p.suffix.lower() != ".md" or not p.exists():
         return 0
+    cwd = event.get("cwd") or ""
+    if cwd:
+        try:
+            p.resolve().relative_to(Path(cwd).resolve())
+        except (ValueError, OSError):
+            return 0  # 仓外 md(如意向笔记、plan 文件)不在挡板辖域
     bad = check_file(p)
     if bad:
         print(f"md 禁字提醒(集成约束):{p.name} 有 {len(bad)} 行含四类禁字,请按写作规范修正:",

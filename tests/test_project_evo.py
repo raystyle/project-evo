@@ -15,12 +15,11 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-PLUGIN_NAMES = ("evo-adr", "evo-codesec", "evo-herdr")
+PLUGIN_NAMES = ("evo-adr", "evo-herdr")
 PLUGINS = {n: REPO / "plugins" / n for n in PLUGIN_NAMES}
 SCRIPTS = PLUGINS["evo-adr"] / "skills" / "code-kit" / "scripts"
 SKILLS = {
     "evo-adr": ["cli-docs", "code-kit", "doc-gov"],
-    "evo-codesec": ["secret-scan", "security-audit"],
     "evo-herdr": ["herdr-flywheel", "herdr-review"],
 }
 
@@ -262,15 +261,15 @@ def test_check_json_skip_counts_via_allow(tmp_path: Path):
 
 
 def test_marketplace_catalog_consistency():
-    """清单守卫:市场名 project-evo 收三插件、双清单一致、每插件双 manifest 与市场版本同步、
-    三插件同版、七 skill 分属正确与命令面在位(ADR-0010 四插件形态,ADR-0011 至 ADR-0014 逐枚扩编,ADR-0015 收敛为十,ADR-0016 收敛为三插件七 skill)。"""
+    """清单守卫:市场名 project-evo 收两插件、双清单一致、每插件双 manifest 与市场版本同步、
+    两插件同版、五 skill 分属正确与命令面在位(ADR-0010 四插件形态,ADR-0011 至 ADR-0014 逐枚扩编,ADR-0015 至 ADR-0017 逐批收敛为两插件五 skill)。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     codex_mkt = json.loads((REPO / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
     assert claude_mkt["name"] == codex_mkt["name"] == "project-evo", "市场名须为 project-evo"
 
     names_c = {p["name"] for p in claude_mkt["plugins"]}
     names_x = {p["name"] for p in codex_mkt["plugins"]}
-    assert names_c == names_x == set(PLUGIN_NAMES), f"市场恰收三插件(ADR-0010,ADR-0016): {names_c}"
+    assert names_c == names_x == set(PLUGIN_NAMES), f"市场恰收两插件(ADR-0010,ADR-0017): {names_c}"
     for p in claude_mkt["plugins"]:
         assert (REPO / p["source"].removeprefix("./")).is_dir(), f"Claude source 不可达: {p['source']}"
     for p in codex_mkt["plugins"]:
@@ -298,20 +297,14 @@ def test_marketplace_catalog_consistency():
             assert declared == sname, f"frontmatter name({declared}) 须与目录名({sname})一致"
             assert (skills / sname / "references").is_dir(), f"参考目录缺失: {sname}"
 
-    assert len(versions) == 1, f"三插件同版本线(ADR-0010): {versions}"
+    assert len(versions) == 1, f"两插件同版本线(ADR-0010): {versions}"
 
     kit = PLUGINS["evo-adr"] / "skills" / "code-kit"
     assert (kit / "assets" / "templates").is_dir(), "code-kit 缺模板目录"
     for s in ("init.py", "check.py", "scan.py", "mdrules.py", "md-guard.py"):
         assert (kit / "scripts" / s).is_file(), f"脚本缺失: {s}"
-    secret = PLUGINS["evo-codesec"] / "skills" / "secret-scan"
-    assert (secret / "scripts" / "scan.py").is_file() and (secret / "scripts" / "ab.py").is_file()
-    audit = PLUGINS["evo-codesec"] / "skills" / "security-audit"
-    assert (audit / "scripts" / "validate-findings.cjs").is_file()
-    assert (audit / "scripts" / "report-schema.json").is_file()
     for c in ("init.md", "check.md", "scan.md"):
         assert (PLUGINS["evo-adr"] / "commands" / c).is_file(), f"evo-adr 斜杠命令缺失: {c}"
-    assert (PLUGINS["evo-codesec"] / "commands" / "secret-scan-cli.md").is_file(), "evo-codesec 缺 secret-scan-cli"
     json.loads((PLUGINS["evo-adr"] / "hooks" / "hooks.json").read_text(encoding="utf-8")), "hooks.json 须为合法 JSON"
 
 
@@ -350,6 +343,18 @@ def test_md_guard_hook_flags_forbidden_chars(tmp_path: Path):
     clean.write_text("干净一行\n", encoding="utf-8")
     ok_payload = json.dumps({"hook_event_name": "PostToolUse", "tool_input": {"file_path": str(clean)}})
     assert _run_md_guard(ok_payload).returncode == 0
+
+
+def test_md_guard_hook_scopes_to_event_cwd(tmp_path: Path):
+    """挡板辖域限仓内(ADR-0017 同批裁定):事件带 cwd 且 file_path 在其外时放行,在内照检。"""
+    bad = tmp_path / "bad.md"
+    bad.write_text("带箭头 → 的一行\n", encoding="utf-8")
+    outside = json.dumps({"hook_event_name": "PostToolUse", "cwd": str(tmp_path / "repo"),
+                          "tool_input": {"file_path": str(bad)}})
+    assert _run_md_guard(outside).returncode == 0, "仓外 md 不在挡板辖域,应放行"
+    inside = json.dumps({"hook_event_name": "PostToolUse", "cwd": str(tmp_path),
+                         "tool_input": {"file_path": str(bad)}})
+    assert _run_md_guard(inside).returncode == 2, "仓内 md 照检"
 
 
 def test_plugin_hooks_use_braced_plugin_root():

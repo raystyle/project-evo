@@ -59,11 +59,11 @@ uv run <skill>/scripts/scan.py <目标项目>                 # 工作区+git �
 uv run <skill>/scripts/scan.py <目标项目> --no-history    # 只扫工作区
 ```
 
-处置口径:HIGH(密钥疑似入库)先轮换凭据再清史;md 禁字按告警逐行修正;已知误报走目标项目环境变量 `PEVO_SCAN_ALLOW`(分号分隔正则,匹配 文件:行),不改规则。git 全历史与 GitHub 面深扫在同市场 `evo-codesec:secret-scan`。
+处置口径:HIGH(密钥疑似入库)先轮换凭据再清史;md 禁字按告警逐行修正;已知误报走目标项目环境变量 `PEVO_SCAN_ALLOW`(分号分隔正则,匹配 文件:行),不改规则。
 
 ### md-guard:会话内禁字挡板
 
-`md-guard.py` 由插件 hook(`hooks/hooks.json`)与宿主仓 `.claude/settings.json` 调用,编辑 markdown 时提醒四类禁字(Unicode 箭头、破折号/连接号、emoji 与装饰符、智能引号与全角字母数字);规则唯一权威 `scripts/mdrules.py`,与 check 的 PE-11、scan 三面同源,围栏内整行豁免。box-drawing 手拼伪流程图是 AGENTS 的写法禁令,不在机检四类内。
+`md-guard.py` 由插件 hook(`hooks/hooks.json`)与宿主仓 `.claude/settings.json` 调用,编辑仓内 markdown 时提醒四类禁字(Unicode 箭头、破折号/连接号、emoji 与装饰符、智能引号与全角字母数字);hook 面事件带 cwd 时辖域限 cwd 项目内(仓外 md 不管),无 cwd 载荷照检;规则唯一权威 `scripts/mdrules.py`,与 check 的 PE-11、scan 三面同源,围栏内整行豁免。box-drawing 手拼伪流程图是 AGENTS 的写法禁令,不在机检四类内。
 
 ## 三、骨架与模板
 

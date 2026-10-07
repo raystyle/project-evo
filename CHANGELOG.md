@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 移除(2026-10-07,第八十八批:evo-codesec 插件下线与 md 挡板限仓内)
+
+- 用户立单(2026-10-07,同日两令):先移除 evo-codesec 的 secret-scan 密钥深扫 skill,再下线 evo-codesec 整插件(security-audit 一并移除,ADR-0017,REQ-009),三插件七 skill 收敛两插件五 skill(evo-adr 三 skill、evo-herdr 两 skill);版本线 0.4.3 不动,统一打版仍留待整理重构批
+- 删除面:`plugins/evo-codesec/` 整插件(secret-scan 与 security-audit 双 skill、双 manifest、README、secret-scan-cli 斜杠命令);tests/test_secret_scan.py 整文件退役;浅扫(工作区加 git 全历史加敏感文件)仍在 code-kit scan,失去面为 GitHub alerts 与 code search、裸克隆深历史与 PII 加 Cloudflare 译本安全审计,node 运行时依赖面随退
+- 同步面:双市场清单去 evo-codesec 条目;守卫 PLUGIN_NAMES/SKILLS 与断言、pre-commit 断链段余五;doc-gov 与 code-kit 互引改指 code-kit scan;gates 豁免正则与 AGENTS 豁免注去 secret-scan 夹具;计数刷齐「两插件五 skill」
+- **md 挡板限仓内 md(用户令:md 插件与扫描只针对仓内 md 文档)**:核实 md 规则五面(hook、--staged、scan、PE-11、md-ref-scan)已全部只认 .md 无需改;md-guard hook 面事件带 cwd 时 file_path 须在 cwd 项目内才检(仓外 md 如意向 plan 放行),无 cwd 载荷保持宽容不回退,--staged 面不变;新增 cwd 辖域用例
+- 市场破坏性变更通告:evo-codesec 已装消费者执行 `/plugin uninstall evo-codesec@project-evo`,缓存目录可整删(正式通告随后续打版批)
+
 ### 移除(2026-10-07,第八十七批:gh-issue 与 build-release 与 evo-research 移除)
 
 - 用户立单(2026-10-07):移除 evo-adr 的 gh-issue 与 build-release 两 skill,下线 evo-research 整插件(唯一 skill research),四插件十 skill 收敛为三插件七 skill(ADR-0016,REQ-008);版本线 0.4.3 不动,统一打版留待整理重构批(用户裁定)
