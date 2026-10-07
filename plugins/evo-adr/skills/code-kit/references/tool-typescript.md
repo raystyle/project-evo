@@ -1,6 +1,6 @@
 # TypeScript/Node 项目工程
 
-> 本文件 = Node/TS 仓怎么建、怎么验（运行时、tsc、测试、依赖、打包、文档即代码面）；与 tool-project.md（Python `.tools`）分栈；出仓选型纪律自含在本篇(先问标准库与平台原生)。浏览器检索见 `evo-research:research`；agent 脚本 workspace 见 tool-cli-agents.md。
+> 本文件 = Node/TS 仓怎么建、怎么验（运行时、tsc、测试、依赖、打包、文档即代码面）；与 tool-project.md（Python `.tools`）分栈；出仓选型纪律自含在本篇(先问标准库与平台原生)。agent 脚本 workspace 见 tool-cli-agents.md。
 
 ## 一、运行时合同
 

@@ -9,7 +9,7 @@ compatibility: 仓无关标准件;乙面实现随栈(clap、argparse、commander
 
 # cli-docs - CLI 对外面双标准:README 与 agent 面
 
-> 仓无关标准件:人类面(README)与 agent 面(手册、协议、帮助面、自省、裸调用)各一套可拷改配方。发现通道与 token 经济学设计面在同插件 code-kit 的 tool-cli-agents(互引不重述),编译打包发布流水线在 build-release。正文与模板零私有名,实现出处只在仓内 diary 留档。
+> 仓无关标准件:人类面(README)与 agent 面(手册、协议、帮助面、自省、裸调用)各一套可拷改配方。发现通道与 token 经济学设计面在同插件 code-kit 的 tool-cli-agents(互引不重述)。正文与模板零私有名,实现出处只在仓内 diary 留档。
 
 ## 一、意图路由
 

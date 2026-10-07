@@ -11,3 +11,4 @@
 | REQ-005 | implemented | must | build-release 流水线标准指导 skill 增编 | tests/test_project_evo.py |
 | REQ-006 | implemented | must | cli-docs 对外面双标准 skill 增编 | tests/test_project_evo.py |
 | REQ-007 | implemented | must | report skill 移除,evo-research 收敛为单 skill | tests/test_project_evo.py |
+| REQ-008 | implemented | must | gh-issue 与 build-release 与 evo-research 移除,四插件收敛三插件七 skill | tests/test_project_evo.py |

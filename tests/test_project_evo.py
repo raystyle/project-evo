@@ -15,13 +15,12 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-PLUGIN_NAMES = ("evo-adr", "evo-codesec", "evo-research", "evo-herdr")
+PLUGIN_NAMES = ("evo-adr", "evo-codesec", "evo-herdr")
 PLUGINS = {n: REPO / "plugins" / n for n in PLUGIN_NAMES}
 SCRIPTS = PLUGINS["evo-adr"] / "skills" / "code-kit" / "scripts"
 SKILLS = {
-    "evo-adr": ["build-release", "cli-docs", "code-kit", "doc-gov", "gh-issue"],
+    "evo-adr": ["cli-docs", "code-kit", "doc-gov"],
     "evo-codesec": ["secret-scan", "security-audit"],
-    "evo-research": ["research"],
     "evo-herdr": ["herdr-flywheel", "herdr-review"],
 }
 
@@ -263,15 +262,15 @@ def test_check_json_skip_counts_via_allow(tmp_path: Path):
 
 
 def test_marketplace_catalog_consistency():
-    """清单守卫:市场名 project-evo 收四插件、双清单一致、每插件双 manifest 与市场版本同步、
-    四插件同版、十 skill 分属正确与命令面在位(ADR-0010 四插件形态,ADR-0011 至 ADR-0014 逐枚扩编,ADR-0015 收敛为十)。"""
+    """清单守卫:市场名 project-evo 收三插件、双清单一致、每插件双 manifest 与市场版本同步、
+    三插件同版、七 skill 分属正确与命令面在位(ADR-0010 四插件形态,ADR-0011 至 ADR-0014 逐枚扩编,ADR-0015 收敛为十,ADR-0016 收敛为三插件七 skill)。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     codex_mkt = json.loads((REPO / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
     assert claude_mkt["name"] == codex_mkt["name"] == "project-evo", "市场名须为 project-evo"
 
     names_c = {p["name"] for p in claude_mkt["plugins"]}
     names_x = {p["name"] for p in codex_mkt["plugins"]}
-    assert names_c == names_x == set(PLUGIN_NAMES), f"市场恰收四插件(ADR-0010): {names_c}"
+    assert names_c == names_x == set(PLUGIN_NAMES), f"市场恰收三插件(ADR-0010,ADR-0016): {names_c}"
     for p in claude_mkt["plugins"]:
         assert (REPO / p["source"].removeprefix("./")).is_dir(), f"Claude source 不可达: {p['source']}"
     for p in codex_mkt["plugins"]:
@@ -299,7 +298,7 @@ def test_marketplace_catalog_consistency():
             assert declared == sname, f"frontmatter name({declared}) 须与目录名({sname})一致"
             assert (skills / sname / "references").is_dir(), f"参考目录缺失: {sname}"
 
-    assert len(versions) == 1, f"四插件同版本线(ADR-0010): {versions}"
+    assert len(versions) == 1, f"三插件同版本线(ADR-0010): {versions}"
 
     kit = PLUGINS["evo-adr"] / "skills" / "code-kit"
     assert (kit / "assets" / "templates").is_dir(), "code-kit 缺模板目录"

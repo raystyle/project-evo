@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 移除(2026-10-07,第八十七批:gh-issue 与 build-release 与 evo-research 移除)
+
+- 用户立单(2026-10-07):移除 evo-adr 的 gh-issue 与 build-release 两 skill,下线 evo-research 整插件(唯一 skill research),四插件十 skill 收敛为三插件七 skill(ADR-0016,REQ-008);版本线 0.4.3 不动,统一打版留待整理重构批(用户裁定)
+- 同步面全改:双市场清单(evo-research 条目删除、evo-adr 描述去两句)与 evo-adr 双 manifest(codex 面 interface 与 defaultPrompt 同步);守卫测试 PLUGIN_NAMES/SKILLS 与计数;幸存 skill 互引(doc-gov SKILL 与 flow-release 与 flow-archive 与 references 索引、cli-docs、code-kit 三 references)不留死链;pre-commit 断链段余七;AGENTS 与根 README 与 docs 地图与 gates 计数刷齐(顺手修 AGENTS Commands 与 docs 地图两处既有「十一 skill」漂移)
+- 用户令:readme 类文档不带历史轨迹描述(根 README 迁移段叙事收敛为现行指引,evo-research 卸载通告只落本 CHANGELOG,与 skill 正文零历史轨迹同口径)
+- 顺手修复:CI smoke test.yml 悬空 report 行(第八十一批漏改,现状即红)删除;ROADMAP moot 的「report 渲染字体族参数化」待定行删除;根 README 外部命令清单清 bh/typst/aria2c 陈货
+- 市场破坏性变更通告:evo-research 已装消费者执行 `/plugin uninstall evo-research@project-evo`,缓存目录可整删(正式通告随后续打版批)
+
 ### 变更(2026-10-02,第八十六批:herdr-review 对话状态门控与事件驱动收件)
 
 - 用户立单(2026-10-02):herdr-review 的对话状态判断方式参考飞轮第八十五批同款改进(状态门控、事件驱动、超时兜底)
