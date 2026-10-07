@@ -12,14 +12,14 @@
       "name": "evo-doc",
       "source": "./plugins/evo-doc",
       "description": "项目进化文档治理:doc-gov(文档框架治理知识:ADR 需求决策、COE 三层聚合与双向链接图、项目日记三形态,加 Agent 友好 CLI 架构标准)",
-      "version": "0.4.3",
+      "version": "0.5.0",
       "category": "productivity"
     },
     {
       "name": "evo-herdr",
       "source": "./plugins/evo-herdr",
       "description": "项目进化多仓协作:herdr-dev(开发模式:通用四窗格与 PI 五窗格布局定式、评审闸门加自省验收双闸门、任务分发 lane)与 herdr-flywheel(跨仓模式:四步协议派单回执断言吸收、状态门控与事件驱动收执、跨机器工位与并行义务图)",
-      "version": "0.4.3",
+      "version": "0.5.0",
       "category": "productivity"
     }
   ]

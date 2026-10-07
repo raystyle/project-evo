@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+## [0.11.0] - 2026-10-07
+
+### 变更(2026-10-07,第九十四批:封版 v0.11.0)
+
+- 用户立单(2026-10-07):封版。两插件版本线 0.4.3 齐 **0.5.0**(evo-doc 与 evo-herdr 双 manifest 加市场条目加两插件 README 当前发布行);tag v0.11.0 加 GitHub Release;README 钉版行刷 v0.11.0
+- **本版破坏性变更通告**:evo-research、evo-codesec、evo-adr 三插件下线(ADR-0016/0017/0018),已装者卸载(`/plugin uninstall evo-adr@project-evo` 等三件)后按需装 `evo-doc@project-evo`;evo-adr 改名 evo-doc,herdr-review 并入 herdr-dev(ADR-0019);装 evo-doc 即得插件级 md 禁字挡板(限仓内 md)
+- 升级:`/plugin marketplace update project-evo` 后 `/plugin update evo-herdr@project-evo`、`/plugin install evo-doc@project-evo`;旧缓存目录(`cache/project-evo/` 下 evo-adr、evo-research、evo-codesec 与 0.4.x 版本目录)可整删
+
 ### 变更(2026-10-07,第九十三批:挂接面回归测试补强)
 
 - 用户立单(2026-10-07):大批挪移后没有回归测试。核实缺口在挂接面(脚本行为与清单一致性已有用例),REQ-014 补三用例

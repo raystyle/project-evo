@@ -48,4 +48,4 @@ skill 是渐进知识库:SKILL.md 只做意图路由与形态速览,完整知识
 ## 支持与发布
 
 - 支持:[raystyle/project-evo issues](https://github.com/raystyle/project-evo/issues)
-- 当前发布:0.4.3
+- 当前发布:0.5.0

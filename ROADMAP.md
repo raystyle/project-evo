@@ -62,6 +62,7 @@
 | herdr 委派与窗格布局轻吸收 | 已完成 | 2026-10-07 第九十批:S011(herdr-dispatch 对照,py 脚本评估结论不开发)加 S012(四窗格通用定式与 PI 五窗格特化,用户裁定);herdr-flywheel 增布局定式与双闸门节、任务分发 lane 模型节、references/lane-dispatch.md、pitfalls 三坑;REQ-011 落地 |
 | herdr 双模式定形 | 已完成 | 2026-10-07 第九十一批:herdr-review 并入重组为 herdr-dev 开发模式(布局定式、评审闸门、自省验收、lane 分发,references 五篇);herdr-flywheel 收敛跨仓模式(多仓工作台对话交流);ADR-0019 与 REQ-012 落地;版本线 0.4.3 不动待打版批 |
 | 挂接面回归测试补强 | 已完成 | 2026-10-07 第九十三批:hooks.json 与 settings.json 挂接路径、pre-commit 断链段对 SKILLS 一致性、CI 引用存在性三用例(REQ-014);套件 25 绿 |
+| 封版 v0.11.0 | 已完成 | 2026-10-07 第九十四批:第八十七至九十三批合并发布(两插件三 skill 形态、版本线 0.4.3 齐 0.5.0);tag v0.11.0 加 GitHub Release;破坏性通告三插件卸载与 evo-doc 换装 |
 | herdr 集成 py 脚本重评估 | 待定 | 2026-10-07 第九十批裁定暂不开发(纯 skill 加内联探针够用,上游实证);重评估触发条件:探针或扫描循环手拼二犯、state 台账复杂到单行不可读;kimi 委派驱动无上游参照,待专项研究 kimi CLI 非交互能力后再定 |
 
 ## 阶段三：延伸（进行中）
