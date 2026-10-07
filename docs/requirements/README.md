@@ -17,3 +17,4 @@
 | REQ-011 | implemented | must | herdr 委派与窗格布局轻吸收(lane 分发、四窗格定式、py 脚本评估) | tests/test_project_evo.py |
 | REQ-012 | implemented | must | herdr 双模式定形:herdr-dev 开发模式含 review 窗格,herdr-flywheel 跨仓模式 | tests/test_project_evo.py |
 | REQ-013 | implemented | must | herdr-flywheel 跨机器 machine 原语语义补强 | tests/test_project_evo.py |
+| REQ-014 | implemented | must | 挪移后挂接面回归测试补强 | tests/test_project_evo.py |

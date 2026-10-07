@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 变更(2026-10-07,第九十三批:挂接面回归测试补强)
+
+- 用户立单(2026-10-07):大批挪移后没有回归测试。核实缺口在挂接面(脚本行为与清单一致性已有用例),REQ-014 补三用例
+- **test_hook_wiring_points_to_plugin_scripts**:hooks.json 双面命令须含插件级 `scripts/md-guard.py` 路径(花括号 token 守卫不锁路径,解耦回退不红);仓 settings.json hook 须指 plugins/evo-doc/scripts/md-guard.py 加 $CLAUDE_PROJECT_DIR 前缀(批 89 挪移期间该 hook 断过,当时无红灯)
+- **test_pre_commit_matches_current_skills**:pre-commit 断链段恰等于当前 SKILLS 展开清单且引用目录存在(批 81 删 skill 后 CI 悬空漏改同类)
+- **test_ci_workflow_refs_exist**:test.yml 引用的仓内 .py 与 .json 路径存在性全查
+- 全套 25 用例绿(pytest 22 加 3)
+
 ### 变更(2026-10-07,第九十二批:跨机器 machine 原语语义补强)
 
 - 用户立单(2026-10-07):跨仓之外再研究跨机器,herdr 现有 machine 原语;按活权威 `herdr --skill`(本机 0.9.1)直读补强

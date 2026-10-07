@@ -10,6 +10,7 @@ from __future__ import annotations
 import importlib.util
 import json
 import os
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -375,3 +376,53 @@ def test_plugin_hooks_use_braced_plugin_root():
             assert cmd, f"hooks.json 缺 {field}"
             assert "${CLAUDE_PLUGIN_ROOT}" in cmd, f"{field} 须用花括号形态(Codex 只替换 ${{VAR}})"
             assert "$env:" not in cmd, f"{field} 禁 PowerShell 语法:Windows 走 cmd.exe /C"
+
+
+def test_hook_wiring_points_to_plugin_scripts():
+    """挂接回归:hooks.json 与仓 settings.json 须指插件级 scripts/md-guard.py(ADR-0018 解耦不回退)。
+
+    仓 settings.json 的 hook 在批 89 挪移期间断过(指旧 skills/code-kit 路径 spawn 报错),
+    此类挂接漂移当时无回归红灯,本用例补上。
+    """
+    hooks = json.loads((PLUGINS["evo-doc"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+    cmds = [h[k].replace("\\", "/")
+            for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]
+            for k in ("command", "commandWindows") if h.get(k)]
+    assert cmds, "hooks.json 须有 PostToolUse 处理器"
+    for c in cmds:
+        assert "${CLAUDE_PLUGIN_ROOT}/scripts/md-guard.py" in c, \
+            f"hooks.json 须指插件级 scripts/md-guard.py(skill 与 hook 解耦): {c}"
+    settings = json.loads((REPO / ".claude" / "settings.json").read_text(encoding="utf-8"))
+    scmds = [h.get("command", "") for g in settings["hooks"]["PostToolUse"] for h in g["hooks"]]
+    assert scmds, "仓 settings.json 须有 PostToolUse 挡板"
+    for c in scmds:
+        assert "plugins/evo-doc/scripts/md-guard.py" in c, \
+            f"仓 settings.json hook 须指 plugins/evo-doc/scripts/md-guard.py: {c}"
+        assert "$CLAUDE_PROJECT_DIR" in c, f"仓 hook 须用 $CLAUDE_PROJECT_DIR 前缀: {c}"
+
+
+def test_pre_commit_matches_current_skills():
+    """提交挡板回归:pre-commit 的断链段恰覆盖当前 SKILLS,引用路径全部存在。
+
+    历史:批 81 删 skill 后 CI 悬空引用漏改而红;本用例让清单与挡板漂移当场红灯。
+    """
+    text = (REPO / "githooks" / "pre-commit").read_text(encoding="utf-8")
+    guard_ref = "plugins/evo-doc/scripts/md-guard.py"
+    assert guard_ref in text, f"pre-commit 须挂 {guard_ref}"
+    assert (REPO / guard_ref).is_file(), f"pre-commit 挂的挡板不存在: {guard_ref}"
+    targets = sorted(re.findall(r"md-ref-scan\.py (\S+)", text))
+    expected = sorted(f"plugins/{p}/skills/{s}" for p, ss in SKILLS.items() for s in ss)
+    assert targets == expected, f"断链段与 SKILLS 漂移:挡板 {targets} 对清单 {expected}"
+    for t in targets:
+        assert (REPO / t).is_dir(), f"断链段引用的 skill 目录不存在: {t}"
+
+
+def test_ci_workflow_refs_exist():
+    """CI 挂接回归:test.yml 里引用的仓内 .py 与 .json 路径全部存在(悬空即红)。"""
+    text = (REPO / ".github" / "workflows" / "test.yml").read_text(encoding="utf-8")
+    refs = set(re.findall(r"([\w./\\-]+\.(?:py|json))", text))
+    internal = {r.replace("\\", "/") for r in refs
+                if r.startswith((".tools/", "plugins/", ".claude-plugin/", ".agents/"))}
+    assert internal, "test.yml 应引用仓内脚本或清单(未解析到,检查正则)"
+    missing = sorted(r for r in internal if not (REPO / r).exists())
+    assert not missing, f"CI 引用悬空: {missing}"
