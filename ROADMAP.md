@@ -60,6 +60,7 @@
 | evo-codesec 插件下线与 md 挡板限仓内 | 已完成 | 2026-10-07 第八十八批:evo-codesec 整插件移除(secret-scan 与 security-audit 双 skill,破坏性,消费者卸载),test_secret_scan.py 退役;md-guard hook 辖域限仓内 md(md 五面核实已只认 .md);ADR-0017 与 REQ-009 落地;市场收敛两插件五 skill,版本线 0.4.3 不动待整理重构批统一打版 |
 | doc-gov 三合一与 evo-doc 改名 | 已完成 | 2026-10-07 第八十九批:三 skill 合一为 doc-gov(知识面收敛 ADR 加 COE 加项目日记三形态与 Agent 友好 CLI 架构标准,references 20 篇收敛 7 篇,base-diary 与 base-coe 新写);evo-adr 改名 evo-doc(破坏性,卸旧装新);skill 与 hook 解耦(md-guard 加 mdrules 上插件级 scripts);init/check/scan 与模板移本仓 .tools;ADR-0018 与 REQ-010 落地;市场收敛两插件三 skill,版本线 0.4.3 不动待打版批 |
 | herdr 委派与窗格布局轻吸收 | 已完成 | 2026-10-07 第九十批:S011(herdr-dispatch 对照,py 脚本评估结论不开发)加 S012(四窗格通用定式与 PI 五窗格特化,用户裁定);herdr-flywheel 增布局定式与双闸门节、任务分发 lane 模型节、references/lane-dispatch.md、pitfalls 三坑;REQ-011 落地 |
+| herdr 双模式定形 | 已完成 | 2026-10-07 第九十一批:herdr-review 并入重组为 herdr-dev 开发模式(布局定式、评审闸门、自省验收、lane 分发,references 五篇);herdr-flywheel 收敛跨仓模式(多仓工作台对话交流);ADR-0019 与 REQ-012 落地;版本线 0.4.3 不动待打版批 |
 | herdr 集成 py 脚本重评估 | 待定 | 2026-10-07 第九十批裁定暂不开发(纯 skill 加内联探针够用,上游实证);重评估触发条件:探针或扫描循环手拼二犯、state 台账复杂到单行不可读;kimi 委派驱动无上游参照,待专项研究 kimi CLI 非交互能力后再定 |
 
 ## 阶段三：延伸（进行中）

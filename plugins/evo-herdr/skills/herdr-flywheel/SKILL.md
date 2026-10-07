@@ -1,22 +1,21 @@
 ---
 name: herdr-flywheel
 description: >-
-  多仓 herdr 飞轮协作治理:一个总台协调多个单仓工位,派单、回执、断言、吸收四步循环,
-  并行轮按义务图运转。涵盖 herdr agent prompt 原子派单、agent get 状态门控、agent wait 事件驱动收执、
-  agent read 收回执、独立复核断言、反馈吸收分流、工位带起顺序与治理操作坑、并行派单义务图纪律、
-  窗格布局定式(通用四窗格:主开发、研究、评审、自省回归;PI 模式五窗格加实战验收)、
-  多 agent 委派(codex、grok、kimi)与任务分发 lane 模型(worktree 分支加总台独占发布)。
-  本 skill 是该协议唯一权威源;herdr 命令语法的活权威是本机直跑 herdr --skill。
-  Use when 跨仓派发治理任务、收 herdr 工位回执、做总台轮次协调、多工位并行派单、
-  派发实现任务给 codex 加 grok 加 kimi 等 agent 并行产出、定开发窗格布局时;触发词 herdr、
-  飞轮、派单、回执、工位、多仓治理、并行派单、义务图、跨机器工位、--machine、状态门控、事件驱动、
-  agent wait、窗格布局、四窗格、五窗格、lane、worktree、任务分发、codex 委派、grok、kimi。
+  herdr 跨仓模式:不同仓库的 agent 工作台对话交流与治理协作。一个总台协调多个单仓工位,
+  派单、回执、断言、吸收四步循环,并行轮按义务图运转。涵盖 herdr agent prompt 原子派单、
+  agent get 状态门控、agent wait 事件驱动收执、agent read 收回执、独立复核断言、反馈吸收分流、
+  工位带起顺序与多 agent kind、跨机器工位路由、并行派单义务图纪律、治理操作坑。
+  本 skill 是该协议唯一权威源;herdr 命令语法的活权威是本机直跑 herdr --skill;
+  开发模式(窗格布局、评审闸门、自省验收、lane 任务分发)在同插件 herdr-dev。
+  Use when 跨仓派发治理任务、收 herdr 工位回执、做总台轮次协调、多工位并行派单时;触发词 herdr、
+  飞轮、跨仓、派单、回执、工位、多仓治理、并行派单、义务图、跨机器工位、--machine、状态门控、
+  事件驱动、agent wait、codex、grok、kimi。
 compatibility: 需 herdr 管理的工位会话(HERDR_ENV=1);各工位侧仓自带门禁
 ---
 
-# herdr 飞轮多仓协作
+# herdr 飞轮跨仓协作
 
-> 一个总台协调多个单仓 herdr 工位(仓加 workspace 加 pane 加常驻 agent 会话),派单、回执、断言、吸收四步循环。沉淀自 2026-09-16 六仓四轮实证(对齐、标准态、终态、扩编与讨论)与后续实践轮。
+> 跨仓模式:一个总台协调多个单仓 herdr 工位(仓加 workspace 加 pane 加常驻 agent 会话)对话交流与治理协作,派单、回执、断言、吸收四步循环。沉淀自 2026-09-16 六仓四轮实证(对齐、标准态、终态、扩编与讨论)与后续实践轮。开发模式(窗格布局、评审闸门、自省验收、lane 任务分发)在同插件 herdr-dev。
 
 ## 工位形态与带起
 
@@ -27,7 +26,7 @@ compatibility: 需 herdr 管理的工位会话(HERDR_ENV=1);各工位侧仓自�
 | 机器 | machine(label 加独立 server) | 远程一等公民,workspace/tab/pane 全套自成一套 | 假设 pane 编号跨机唯一 |
 | 工作台(工位) | workspace(w 号) | **一仓一台**(仓工位)或一任务一台(临时会话);用户惯称「窗台」 | 新工位误开 split pane 或 tab [实证: 2026-09-23 lan-ubuntu OfficeCLI 工位两连错形后归位] |
 | TAB 页 | tab(t 号) | 同工位内多上下文页,舰队罕用 | 新工位 = 开新 tab(错形) |
-| 窗格 | pane(p 号) | agent 驻留位;工位主格 = workspace 根格;右分格 = 评审格专用形(见 herdr-review) | 评审格形态当成工位 |
+| 窗格 | pane(p 号) | agent 驻留位;工位主格 = workspace 根格;右分格 = 评审格专用形(开发模式布局见 herdr-dev) | 评审格形态当成工位 |
 
 ### 新工位带起配方(本机三步;跨机各步前置 `--machine <label>`,仓先在该机备好)
 
@@ -39,7 +38,7 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 ```
 
 - 每仓一个 herdr 工位,总台自成工位;派单地址 = pane ID,从 herdr agent list 的 JSON 响应取,不猜不背;live 唯一的 agent 名亦可作地址
-- **多 agent kind 工位**:`--kind` 随委派对象定(codex、grok、kimi 等);pane 内先跑 `<cli> --version` 探真解析(command -v 会踩版本管理 shim 假解析);启动特化与环境预检见 references/lane-dispatch.md
+- **多 agent kind 工位**:`--kind` 随委派对象定(codex、grok、kimi 等);pane 内先跑 `<cli> --version` 探真解析(command -v 会踩版本管理 shim 假解析);启动特化与环境预检见同插件 herdr-dev 的 lane-dispatch 篇
 - **工位编号会漂移**:合同与旧档写的编号不可信,派单前必 herdr agent list 实查 [实证: 2026-09-16 合同写法与实况两轮不符]
 - **带起顺序 = hst init --yolo 先于 agent 驻场**:会话许可模式在驻场时定格,后落盘的 yolo 不被追认,全会话停在旧审批态致阻塞 [实证: 2026-09-16 八工位驻场先于 yolo 落盘,全会话审批阻塞];可提 hst doctor 增加「会话活模式与盘上 yolo 一致性」检测项
 - idle 与 done 皆可派,差别仅 seen 标记(pane 与 agent focus 标 seen,agent read 不标);blocked 是等人裁,问用户不代答;working 可插队,回执甄别见派单节;unknown 不判死,`herdr agent explain <工位>` 看检测规则与证据后处置;状态优先来自集成上报,无上报退回屏幕检测
@@ -54,24 +53,6 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 - **派单前双查**:归属轮或跨机协作轮开工前,本机 `herdr agent list` 与 `herdr --machine X agent list` 各跑一次,两侧工位清册都从 JSON 响应取,不假设编号全局唯一、不凭旧档
 - **跨机周知**:维护归属、标准变更这类全 fleet 周知,收件人 = 本机全部在职工位加每台远程机器的工位,双侧都要留回执;给远程工位的 prompt 必须自包含其够不到的路径(如远程机器上的仓库路径要写清在哪台机、怎么到达)
 - **stalled 误报处置**:跨机 prompt 可能报 `agent_prompt_stalled`(CLI 观察窗内未见 working/blocked 态),文本往往已送达且 agent 正常回执;处置 = `herdr --machine X agent read` 实读 pane 确认送达与回执,确认前不重发,防重复派单
-
-## 窗格布局定式与双闸门
-
-**通用四窗格(主窗同 tab 四格)**:主开发格(总台,主编程及调度)、研究格(grok 等)、review 格(kimi、grok 等,评审闸门口径见 herdr-review)、自省回归格(codex 清单式实测,逐项 过/缺 加证据)。**PI 智能体开发模式特化五窗格**:自省位用被测产品自身,另开副窗实战验收格(长跑解题,与自省格是两个独立会话);通用项目四窗格足够,自省位可由 codex 替代 [经验: 双仓实践提炼,用户裁定 2026-10-07]。
-
-- **双闸门收批**:review CONFIRM 加自省验收全过,双绿才收;有 F 或缺,修后重推复审循环到零
-- **先推后审**:评审只认已推送的树,派评审前 commit 加 push
-- **自省与实战会话纪律**:自省格上下文近满(约八成)重启会话再派;实战格保持长会话,近满让自动压缩接管(压缩表现本身就是被测面),压缩后失能才重启并记档
-- **重载铁律**:项目代码落地后自省与实战两格必重启会话重载(旧进程等于旧码),派验收前确认格上跑的是当前 HEAD
-- **TUI 就绪探测**:新会话先 pane wait-output 等就绪标志再派;普通进程脚本 send-text 加 send-keys enter 两步起
-
-## 任务分发 lane 模型
-
-一次分发多个实现任务给多 agent 并行产出(分支加 PR 收尾)时,lane = 每 task 一 git worktree 加独立分支加独立工位;四步协议与状态门控同形,细则见 references/lane-dispatch.md。核心三条:
-
-- **lane 恒禁发布**:lane 不 push、不 merge、不开 PR;发布是总台验收后的独占动作,只做可加可逆的事
-- **状态台账唯一真相**:run 级 state 文件原子写(.tmp 加 mv),每轮 sweep 开头重读(抗会话压缩);探针按契约报六字段(session、turn_state、used_pct、compactions、mtime、probe),缺字段报 null 不猜;盘上记录优先,屏幕是回退
-- **身份核验**:agent 名退出即释放可被复用,steer 前对 session id;done 态与吞单、冻结、轮次间隙同形,完成以验收判据为准;lane 求助铃先答后催
 
 ## 四步协议
 
@@ -124,5 +105,4 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 
 - references/pitfalls.md:治理操作坑实录(send-text 草稿、工位编号漂移、checkout-index 假成功、racily-clean 整片 M、备用屏读不全、yolo 带起时序、跨机器 stalled 误报与编号不全局唯一),按现象、根因、修法三段收录
 - references/parallel.md:并行派单与义务图操作细化(台账五字段、条件归约派单写法、租约改派、任务与尝试记账、重评估三选一、瓶颈三判、四步协议映射)
-- references/lane-dispatch.md:任务分发 lane 细则(worktree 分支结构、状态台账与探针契约、身份核验、codex 与 grok 启动特化、发布预检与降级)
-- 推送前评审闸门(评审请求、F/G/CONFIRM 回执、轮次至终审放行、评审窗格检测带起)是飞轮协议的评审特化,见同插件 skill `evo-herdr:herdr-review`(ADR-0011)
+- 开发模式(窗格布局定式、评审闸门、自省验收、lane 任务分发)是跨仓协议的开发特化,见同插件 skill `evo-herdr:herdr-dev`(ADR-0011 起,ADR-0019 双模式定形)

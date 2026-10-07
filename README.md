@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件三 skill:`evo-doc`(文档治理:doc-gov)、`evo-herdr`(多仓协作:herdr-flywheel、herdr-review)。客户端显示 `<插件>:<skill>`。
+> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件三 skill:`evo-doc`(文档治理:doc-gov)、`evo-herdr`(双模式协作:herdr-dev 开发模式、herdr-flywheel 跨仓模式)。客户端显示 `<插件>:<skill>`。
 
 ## 安装
 
@@ -43,8 +43,8 @@ Kimi          重新拷 plugins/<插件>/skills/*
 | 插件 | skill | 做什么 | 何时用 |
 |------|-------|--------|--------|
 | evo-doc | `doc-gov` | 文档框架治理知识:ADR(需求决策:ADR 与 REQ)、COE(三层聚合与双向链接图)、项目日记三类文档形态;Agent 友好 CLI 架构标准(--llms 手册、CTA 协议、帮助面、自省、裸调用面、发现通道) | 立 ADR/REQ、写项目日记、建 COE 知识库操作台、配 CLI agent 面 |
-| evo-herdr | `herdr-flywheel` | 多仓 herdr 工位飞轮四步协议:派单、回执、断言、吸收;并行派单义务图 | 跨仓派发治理任务、总台轮次协调、多工位并行派单 |
-| evo-herdr | `herdr-review` | 推送前评审闸门:评审请求五件模板、F/G/CONFIRM 三态回执、轮次至终审放行、评审窗格检测带起 | 发评审请求、写对线回执、带起 codex 评审格 |
+| evo-herdr | `herdr-dev` | 开发模式:通用四窗格与 PI 五窗格布局定式(主开发、研究、review、自省回归;PI 加实战验收);评审闸门加自省验收双闸门;任务分发 lane(worktree 分支加总台独占发布) | 定开发窗格布局、发评审请求、终审放行、自省验收、多 agent 任务分发 |
+| evo-herdr | `herdr-flywheel` | 跨仓模式:不同仓库 agent 工作台对话交流,四步协议派单、回执、断言、吸收;跨机器工位、并行派单义务图 | 跨仓派发治理任务、总台轮次协调、多工位并行派单 |
 
 装 evo-doc 即得 md 禁字挡板(插件级 hook,与 skill 解耦);本仓自用骨架工具(init/check/scan 与模板)在仓根 `.tools/`,不随插件分发。
 

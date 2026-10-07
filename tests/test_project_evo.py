@@ -21,7 +21,7 @@ SCRIPTS = REPO / ".tools"
 GUARD = PLUGINS["evo-doc"] / "scripts" / "md-guard.py"
 SKILLS = {
     "evo-doc": ["doc-gov"],
-    "evo-herdr": ["herdr-flywheel", "herdr-review"],
+    "evo-herdr": ["herdr-dev", "herdr-flywheel"],
 }
 
 

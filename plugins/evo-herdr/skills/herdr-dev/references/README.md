@@ -1,6 +1,6 @@
-# herdr-review 参考知识体系(渐进索引)
+# herdr-dev 参考知识体系(渐进索引)
 
-> 四篇自包含:评审请求、回执与轮次、发现核实、评审窗格。工作流主线见 `../SKILL.md`;派单协议面在同插件 herdr-flywheel。
+> 五篇自包含:评审请求、回执与轮次、发现核实、窗格、lane 任务分发。工作流主线见 `../SKILL.md`;派单与收件基础协议在同插件 herdr-flywheel。
 
 | 我要… | 看哪篇 |
 | --- | --- |
@@ -8,6 +8,7 @@
 | 写回执、修订回执、快核 | [receipt.md](receipt.md) |
 | 核实发现、分级处置、二轮复核、多 agent 交叉 | [findings.md](findings.md) |
 | 评审窗格挂位、命名、查看、对话检索 | [panes.md](panes.md) |
+| lane 任务分发(worktree、状态台账、探针、发布) | [lane-dispatch.md](lane-dispatch.md) |
 
 ## 检索方法
 

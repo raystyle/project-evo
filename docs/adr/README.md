@@ -22,3 +22,4 @@
 | ADR-0016 | accepted | gh-issue 与 build-release 与 evo-research 移除,四插件收敛三插件七 skill | |
 | ADR-0017 | accepted | evo-codesec 插件下线,市场收敛两插件五 skill | |
 | ADR-0018 | accepted | 三 skill 合一为 doc-gov,evo-adr 改名 evo-doc,skill 与 hook 解耦 | |
+| ADR-0019 | accepted | herdr 双模式定形:开发模式 herdr-dev 含 review 窗格,跨仓模式 herdr-flywheel | |

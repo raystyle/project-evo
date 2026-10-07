@@ -30,6 +30,6 @@
 | `../plugins/evo-doc/skills/doc-gov/references/tool-cli-agents.md` | agent-native CLI 设计(发现通道、token 经济学、脚本 workspace) | 造或改 agent 友好 CLI 时 |
 | `../.tools/README.md` | 本仓自用脚本工具登记(md-ref-scan、init、check、scan) | 跑仓门禁或维护骨架模板时 |
 | `../.tools/verification/command-test-cases.md` | check 的等价 PowerShell 用例集(参数化 ProjectRoot) | 验证骨架合规时 |
-| `../plugins/evo-herdr/skills/herdr-flywheel/SKILL.md` | 多仓 herdr 飞轮协作(派单/回执/断言/吸收,状态门控与事件驱动收执,并行派单义务图;协议唯一权威源,ADR-0009) | 跨仓派单或收回执时 |
-| `../plugins/evo-herdr/skills/herdr-review/SKILL.md` | 推送前评审闸门(评审请求、F/G/CONFIRM 回执、轮次、窗格检测带起、对话状态门控收件;ADR-0011) | 发评审请求或写对线回执时 |
+| `../plugins/evo-herdr/skills/herdr-dev/SKILL.md` | 开发模式:窗格布局定式(通用四窗格与 PI 五窗格)、评审闸门加自省验收双闸门、任务分发 lane;ADR-0011 起,ADR-0019 双模式定形 | 定开发布局、发评审请求或写对线回执时 |
+| `../plugins/evo-herdr/skills/herdr-flywheel/SKILL.md` | 跨仓模式:多仓 herdr 协作(派单/回执/断言/吸收,状态门控与事件驱动收执,跨机器工位,并行派单义务图;协议唯一权威源,ADR-0009) | 跨仓派单或收回执时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |

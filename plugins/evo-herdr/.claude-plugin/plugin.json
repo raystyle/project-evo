@@ -1,7 +1,7 @@
 {
   "name": "evo-herdr",
   "version": "0.4.3",
-  "description": "项目进化多仓协作:herdr-flywheel(herdr 工位飞轮四步协议:派单、回执、断言、吸收;状态门控与事件驱动收执;并行派单义务图)与 herdr-review(推送前评审闸门:评审请求、F/G/CONFIRM 回执、轮次至终审放行、评审窗格检测带起、对话状态门控与事件驱动收件)",
+  "description": "项目进化多仓协作:herdr-dev(开发模式:通用四窗格与 PI 五窗格布局定式、评审闸门加自省验收双闸门、任务分发 lane)与 herdr-flywheel(跨仓模式:四步协议派单回执断言吸收、状态门控与事件驱动收执、跨机器工位与并行义务图)",
   "author": {
     "name": "raystyle"
   },

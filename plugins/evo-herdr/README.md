@@ -1,6 +1,6 @@
 # evo-herdr
 
-项目进化多仓协作插件:两个 skill,`herdr-flywheel` 多仓 herdr 工位飞轮协作治理(派单、回执、断言、吸收四步协议,状态门控与事件驱动收执,并行派单义务图,附命令面要点与治理操作坑,该协议唯一权威源)与 `herdr-review` 推送前评审闸门工作流(评审请求五件模板、F/G/CONFIRM 三态回执与轮次、发现核实与交叉复核、评审窗格检测带起、对话状态门控与事件驱动收件)。
+项目进化多仓协作插件:两个 skill 双模式。`herdr-dev` 开发模式(通用四窗格与 PI 五窗格布局定式、评审闸门加自省验收双闸门、先推后审与会话纪律、任务分发 lane 模型)与 `herdr-flywheel` 跨仓模式(不同仓库 agent 工作台对话交流:派单、回执、断言、吸收四步协议,状态门控与事件驱动收执,跨机器工位,并行派单义务图,附命令面要点与治理操作坑,该协议唯一权威源)。
 
 状态:active。插件面客户端:Claude Code、Codex、Grok;纯 skills 面:Kimi 等手拷子集。
 
@@ -35,7 +35,7 @@ Kimi(无市场):把 `skills/` 下两个 skill 目录一并拷至 `~/.kimi/skills
 
 ## 用法
 
-安装插件后按意图路由自动触发,客户端显示为 `evo-herdr:herdr-flywheel` / `evo-herdr:herdr-review`。协议、命令面与坑见两个 skill 的 SKILL.md 与 references。
+安装插件后按意图路由自动触发,客户端显示为 `evo-herdr:herdr-dev` / `evo-herdr:herdr-flywheel`。协议、命令面与坑见两个 skill 的 SKILL.md 与 references。
 
 示例提示词:「给 ark_rs 工位派这轮治理单」「收一下各工位回执并做独立断言」「检测工位右侧有没有评审格,没有就建一个起 codex,然后发这份 review 请求」。
 

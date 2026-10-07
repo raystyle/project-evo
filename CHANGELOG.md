@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更(2026-10-07,第九十一批:herdr 双模式定形)
+
+- 用户立单(2026-10-07):herdr 应是两个 skill:开发模式(已包含 review 窗格)与跨仓模式(不同仓库 agent 工作台对话交流);ADR-0019 与 REQ-012 落地
+- **herdr-dev 开发模式**:herdr-review 整目录改名重组,SKILL 重写四主线(窗格布局定式:通用四窗格与 PI 五窗格;评审闸门:请求到放行与两规模;自省验收:清单式实测;任务分发 lane 模型),references 收五篇(request、receipt、findings、panes、lane-dispatch 移入)
+- **herdr-flywheel 跨仓模式**:去布局与 lane 两节,收敛为不同仓库 agent 工作台对话交流(工位形态与多 kind 带起、跨机器工位、四步协议、并行义务图、命令面与坑),开发面内容指针到 herdr-dev
+- 同步面:双 manifest 与市场条目双模式化(codex interface 与 defaultPrompt 同步)、守卫 SKILLS、pre-commit 断链段、AGENTS 定位与阶段行、根 README 表、docs 地图;版本线 0.4.3 不动待打版批
+
 ### 变更(2026-10-07,第九十批:herdr 委派与窗格布局轻吸收)
 
 - 用户立单(2026-10-07,两单):吸收蒸馏 herdr-dispatch 任务分发编排改进 herdr skill,评估 grok、kimi、codex 委派与窗格布局是否开发集成 py 脚本;吸收 PI 智能体五窗格开发布局(用户裁定:五窗格仅 PI 开发模式,通用四窗格足够,自省位可由 codex 替代)
