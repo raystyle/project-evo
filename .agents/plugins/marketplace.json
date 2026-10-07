@@ -5,10 +5,10 @@
   },
   "plugins": [
     {
-      "name": "evo-adr",
+      "name": "evo-doc",
       "source": {
         "source": "local",
-        "path": "./plugins/evo-adr"
+        "path": "./plugins/evo-doc"
       },
       "policy": {
         "installation": "AVAILABLE",

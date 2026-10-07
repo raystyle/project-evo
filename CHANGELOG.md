@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 变更(2026-10-07,第八十九批:doc-gov 三合一与 evo-doc 改名,skill 与 hook 解耦)
+
+- 用户立单(2026-10-07,整理重构批五令):doc-gov 加 code-kit 加 cli-docs 三 skill 合一为 doc-gov;evo-adr 改名 evo-doc;插件内 skill 与 hook 解耦;code-kit 工具面只带 md-guard 的 hook(init/check/scan 与模板移本仓 .tools,斜杠命令删除);知识面收敛:文档结构只有 ADR(需求决策)与 COE(三层聚合和双向链接图)两种形态,补项目日记(ADR 之外增强),留 Agent 友好 CLI 架构标准,其余复杂面不需要(ADR-0018,REQ-010)
+- **结构挪移**:`plugins/evo-adr` 改名 `plugins/evo-doc`;md-guard.py 与 mdrules.py 上移插件级 `scripts/`(hooks.json 与仓 settings.json 指新路径,skill 目录纯知识);init/check/scan 移 `.tools/`(check 与 scan 经插件路径 import mdrules,三面同源单源);骨架模板移 `.tools/templates/`;verification 用例移 `.tools/verification/`;commands/ 斜杠命令三件删除
+- **知识面收敛(references 20 篇收敛 7 篇)**:留 base-adr、base-req、agent-face、tool-cli-agents、templates;新写 base-diary(项目日记形态:一天一篇活轨迹、裁定与坑留痕、择要升格、ADR 之外的增强面)与 base-coe(COE 形态:sources 加 knowledge 加 operations 三层单向支撑、[[双链]]与 _index 图、指挥总纲路由、建仓五步,双 COE 操作台仓实践提炼);移除投影纪律、三栈工程合同、测试分层、封版流程、经验篇、平台矩阵等 15 篇(git 历史可恢复)
+- 同步面:双市场清单与 evo-doc 双 manifest 同笔单 skill 化;守卫测试(PLUGIN_NAMES/SKILLS/工具断言/md-guard 与 mdrules 路径)与 test_repo_md_clean、CI smoke、pre-commit、gates、AGENTS、根 README、docs 地图、.tools/README 全刷齐「两插件三 skill」;SKILL 意图路由与形态速览按三形态重写
+- 市场破坏性变更通告:evo-adr 改名 evo-doc,已装者卸载 `/plugin uninstall evo-adr@project-evo` 后装 `evo-doc@project-evo`;版本线 0.4.3 不动,统一打版随后批
+
 ### 移除(2026-10-07,第八十八批:evo-codesec 插件下线与 md 挡板限仓内)
 
 - 用户立单(2026-10-07,同日两令):先移除 evo-codesec 的 secret-scan 密钥深扫 skill,再下线 evo-codesec 整插件(security-audit 一并移除,ADR-0017,REQ-009),三插件七 skill 收敛两插件五 skill(evo-adr 三 skill、evo-herdr 两 skill);版本线 0.4.3 不动,统一打版仍留待整理重构批

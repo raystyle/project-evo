@@ -13,3 +13,4 @@
 | REQ-007 | implemented | must | report skill 移除,evo-research 收敛为单 skill | tests/test_project_evo.py |
 | REQ-008 | implemented | must | gh-issue 与 build-release 与 evo-research 移除,四插件收敛三插件七 skill | tests/test_project_evo.py |
 | REQ-009 | implemented | must | evo-codesec 插件下线与 md-guard 挡板限仓内 md | tests/test_project_evo.py |
+| REQ-010 | implemented | must | 三 skill 合一为 doc-gov,evo-adr 改名 evo-doc,skill 与 hook 解耦 | tests/test_project_evo.py |

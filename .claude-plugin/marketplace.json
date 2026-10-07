@@ -4,14 +4,14 @@
     "name": "raystyle"
   },
   "metadata": {
-    "description": "项目进化:两插件五 skill(文档治理 evo-adr、多仓协作 evo-herdr)",
+    "description": "项目进化:两插件三 skill(文档治理 evo-doc、多仓协作 evo-herdr)",
     "pluginRoot": "./plugins"
   },
   "plugins": [
     {
-      "name": "evo-adr",
-      "source": "./plugins/evo-adr",
-      "description": "项目进化文档治理:doc-gov(文档体系治理知识:AGENTS 合同、ADR、REQ、投影纪律、六态)与 code-kit(骨架与门禁:init/check/scan 零依赖脚本、md 禁字挡板、模板)与 cli-docs(CLI 对外面双标准:README 四节骨架加 agent 五件手册面协议帮助面自省裸调用面)",
+      "name": "evo-doc",
+      "source": "./plugins/evo-doc",
+      "description": "项目进化文档治理:doc-gov(文档框架治理知识:ADR 需求决策、COE 三层聚合与双向链接图、项目日记三形态,加 Agent 友好 CLI 架构标准)",
       "version": "0.4.3",
       "category": "productivity"
     },

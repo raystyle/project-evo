@@ -1,6 +1,6 @@
 """project-evo 脚本与插件面测试。
 
-脚本为 PEP 723 零依赖形态,从 plugins/ 树按文件路径加载(无安装态包,单源无副本)。
+脚本为 PEP 723 零依赖形态,仓自用工具从 .tools/ 加载、md-guard 从插件级 scripts/ 加载(无安装态包,单源无副本)。
 覆盖:init 幂等、check 抓违(PE-01/PE-11/围栏感知)、scan 历史泄漏与 md 告警、
 退出码、市场清单与双 manifest 一致性守卫(改一面须同步另一面)。
 """
@@ -15,11 +15,12 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-PLUGIN_NAMES = ("evo-adr", "evo-herdr")
+PLUGIN_NAMES = ("evo-doc", "evo-herdr")
 PLUGINS = {n: REPO / "plugins" / n for n in PLUGIN_NAMES}
-SCRIPTS = PLUGINS["evo-adr"] / "skills" / "code-kit" / "scripts"
+SCRIPTS = REPO / ".tools"
+GUARD = PLUGINS["evo-doc"] / "scripts" / "md-guard.py"
 SKILLS = {
-    "evo-adr": ["cli-docs", "code-kit", "doc-gov"],
+    "evo-doc": ["doc-gov"],
     "evo-herdr": ["herdr-flywheel", "herdr-review"],
 }
 
@@ -262,14 +263,14 @@ def test_check_json_skip_counts_via_allow(tmp_path: Path):
 
 def test_marketplace_catalog_consistency():
     """清单守卫:市场名 project-evo 收两插件、双清单一致、每插件双 manifest 与市场版本同步、
-    两插件同版、五 skill 分属正确与命令面在位(ADR-0010 四插件形态,ADR-0011 至 ADR-0014 逐枚扩编,ADR-0015 至 ADR-0017 逐批收敛为两插件五 skill)。"""
+    两插件同版、三 skill 分属正确与 hook 面在位(ADR-0010 四插件形态,ADR-0011 至 ADR-0017 逐批收敛,ADR-0018 三合一改名 evo-doc 收敛为两插件三 skill)。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     codex_mkt = json.loads((REPO / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
     assert claude_mkt["name"] == codex_mkt["name"] == "project-evo", "市场名须为 project-evo"
 
     names_c = {p["name"] for p in claude_mkt["plugins"]}
     names_x = {p["name"] for p in codex_mkt["plugins"]}
-    assert names_c == names_x == set(PLUGIN_NAMES), f"市场恰收两插件(ADR-0010,ADR-0017): {names_c}"
+    assert names_c == names_x == set(PLUGIN_NAMES), f"市场恰收两插件(ADR-0010,ADR-0018): {names_c}"
     for p in claude_mkt["plugins"]:
         assert (REPO / p["source"].removeprefix("./")).is_dir(), f"Claude source 不可达: {p['source']}"
     for p in codex_mkt["plugins"]:
@@ -299,19 +300,20 @@ def test_marketplace_catalog_consistency():
 
     assert len(versions) == 1, f"两插件同版本线(ADR-0010): {versions}"
 
-    kit = PLUGINS["evo-adr"] / "skills" / "code-kit"
-    assert (kit / "assets" / "templates").is_dir(), "code-kit 缺模板目录"
-    for s in ("init.py", "check.py", "scan.py", "mdrules.py", "md-guard.py"):
-        assert (kit / "scripts" / s).is_file(), f"脚本缺失: {s}"
-    for c in ("init.md", "check.md", "scan.md"):
-        assert (PLUGINS["evo-adr"] / "commands" / c).is_file(), f"evo-adr 斜杠命令缺失: {c}"
-    json.loads((PLUGINS["evo-adr"] / "hooks" / "hooks.json").read_text(encoding="utf-8")), "hooks.json 须为合法 JSON"
+    tools = REPO / ".tools"
+    for s in ("init.py", "check.py", "scan.py", "md-ref-scan.py"):
+        assert (tools / s).is_file(), f"仓工具缺失: {s}"
+    assert (tools / "templates").is_dir(), ".tools 缺骨架模板目录"
+    plugin_scripts = PLUGINS["evo-doc"] / "scripts"
+    for s in ("md-guard.py", "mdrules.py"):
+        assert (plugin_scripts / s).is_file(), f"插件级脚本缺失(hook 与 skill 解耦): {s}"
+    json.loads((PLUGINS["evo-doc"] / "hooks" / "hooks.json").read_text(encoding="utf-8")), "hooks.json 须为合法 JSON"
 
 
 def _run_md_guard(payload: str) -> subprocess.CompletedProcess:
     env = {**os.environ, "PYTHONIOENCODING": "utf-8"}
     return subprocess.run(
-        [sys.executable, str(SCRIPTS / "md-guard.py")],
+        [sys.executable, str(GUARD)],
         input=payload, capture_output=True, text=True, encoding="utf-8",
         errors="replace", env=env,
     )
@@ -364,7 +366,7 @@ def test_plugin_hooks_use_braced_plugin_root():
     且在 Windows 用 cmd.exe /C 执行(command_runner.rs: COMSPEC 兜底 cmd.exe /C)。
     故裸 $VAR 与 PowerShell 的 $env: 在 Windows 面都不展开,脚本路径必失效。
     """
-    hooks = json.loads((PLUGINS["evo-adr"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+    hooks = json.loads((PLUGINS["evo-doc"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
     handlers = [h for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]]
     assert handlers, "hooks.json 须有 PostToolUse 处理器"
     for h in handlers:

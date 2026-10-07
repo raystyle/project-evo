@@ -1,0 +1,37 @@
+{
+  "name": "evo-doc",
+  "version": "0.4.3",
+  "description": "项目进化文档治理:doc-gov(文档框架治理知识:ADR 需求决策、COE 三层聚合与双向链接图、项目日记三形态,加 Agent 友好 CLI 架构标准)",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/evo-doc",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "skill",
+    "documentation",
+    "adr",
+    "requirements",
+    "markdown",
+    "llm"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Evo Doc",
+    "shortDescription": "项目进化文档治理:doc-gov 文档框架治理知识(ADR、COE、项目日记三形态加 Agent 友好 CLI 架构标准)。",
+    "longDescription": "单 skill:doc-gov 指导项目的 ADR(需求决策:ADR 与 REQ 状态机与 trace 回填)、COE(三层聚合:sources 依据、knowledge 结论、operations 手册单向支撑;[[双链]]与 _index 图双向检索)、项目日记(一天一篇活轨迹,裁定与坑留痕,择要升格)三类文档形态,与 Agent 友好 CLI 架构标准(--llms 手册面、旗标全家与类型化 CTA 协议、默认帮助面、活命令树自省、裸调用面、发现通道与 token 经济学)。插件级 PostToolUse hook 提供 md 禁字挡板(与 skill 解耦,规则唯一权威 scripts/mdrules.py)。",
+    "developerName": "raystyle",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "用 doc-gov 给这个项目立 ADR 与 REQ 需求决策体系。",
+      "用 doc-gov 建一个 COE 知识库操作台(三层聚合加双向链接图)。",
+      "用 doc-gov 给这个 CLI 配 --llms 手册与 agent 友好输出协议。"
+    ]
+  }
+}
