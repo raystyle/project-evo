@@ -426,3 +426,17 @@ def test_ci_workflow_refs_exist():
     assert internal, "test.yml 应引用仓内脚本或清单(未解析到,检查正则)"
     missing = sorted(r for r in internal if not (REPO / r).exists())
     assert not missing, f"CI 引用悬空: {missing}"
+
+
+def test_fleet_exec_tool():
+    """fleet-exec 薄封装:--help 可跑,--machine 前缀组装正确(活权威命令逐条透传,不藏语义)。"""
+    r = subprocess.run([sys.executable, str(SCRIPTS / "fleet-exec.py"), "--help"],
+                       capture_output=True, text=True, encoding="utf-8", errors="replace")
+    assert r.returncode == 0, r.stdout + r.stderr
+    assert "--machine" in r.stdout and "--marker" in r.stdout
+    spec = importlib.util.spec_from_file_location("pevo_fleet", SCRIPTS / "fleet-exec.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    assert mod.build_cmd(["pane", "list"], None) == ["herdr", "pane", "list"]
+    assert mod.build_cmd(["agent", "list"], "lan-mac") == \
+        ["herdr", "--machine", "lan-mac", "agent", "list"]

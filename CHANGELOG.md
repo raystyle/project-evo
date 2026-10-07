@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更(2026-10-08,第九十六批:herdr 集成 py 脚本重评估,总台运维面翻转)
+
+- 用户立单(2026-10-08):重评估批 90 待定行。触发审计:S011 原写触发(lane 探针/扫描循环手拼二犯)未 fired(lane 无实跑);但 v0.11.0 舰队清理与安装轮中普通进程通道(send-text 加 enter 加 wait-output 收标加 read 回执)手拼十余次、四种任务形,仓级沉淀铁律在总台运维面成立(REQ-015)
+- **结论部分翻转**:新增本仓 `.tools/fleet-exec.py` 运维薄封装(参数 machine 加 pane 加 cmd 加 marker,四步通道逐条回显 herdr 命令,活权威语义不藏;未收标不证失败仍打印实读);实证准入 = pi-server shell 格端到端实跑(收标命中,回执含 hostname,exit 0);test_fleet_exec_tool 入套件,.tools/README 登记
+- **不动面**:herdr 插件面维持纯知识(ADR-0018);lane 探针与扫描循环的触发条件保留(lane 实跑二犯再议);kimi 委派驱动仍待专项研究;ROADMAP 待定行翻转为已完成
+
 ### 新增(2026-10-08,第九十五批:pitfalls 两坑吸收回写)
 
 - 吸收单(pve-harness 总台实踩,2026-10-07/08 双工位评审轮,herdr 会话内):herdr-flywheel references/pitfalls.md 派单与回执面收两坑
