@@ -11,6 +11,8 @@
 | agent 名被回收复用 | 工位名随退出即释放,后来者(另一 run 或用户手起)可复用同名,凭名 steer 投错对象 | steer 前对 session id:herdr agent get 与台账记录比对,不一致停手诊断 |
 | done 假象多源 | agent_status 读 done 与提示被吞、冻结、modal 误分类同形;goal 型轮次间隙也读 done | done 不作完成判据;以验收判据(diff、测试、commit sha)与盘上记录对账 |
 | TUI 未就绪悬输入框 | 新会话 agent 未就绪时 send-text 悬在输入框不生效 | 先 pane wait-output 等就绪标志(banner 类锚文本)再派;普通脚本 send-text 加 send-keys enter 两步起 |
+| 冷启动竞态吞派单 | agent start 返回成功(idle、interactive_ready)后立即 agent prompt 派单,双工位(grok 与 kimi)齐报 agent_prompt_stalled(5 秒活动窗无 working);实读 pane 见欢迎屏仍占屏、输入框空、context 0%,文本未送达。根因 = 检测就绪不等于 CLI 输入面就绪,欢迎屏渲染期键入被吞 [实证: 2026-10-07/08 pve-harness 评审轮双工位] | 驻场后先实读 pane 见 CLI 输入框稳态再派单;stalled 后必实读 pane 判送达,确认输入框空且无在跑轮才重发(防重复派单);确认后重发即中 |
+| prompt --wait 提交即返 | 带 --wait 提交后立即成功返回 agent_prompted,agent_status 仍 idle,未等 working 与收束。根因 [推断] = 收束判定的现态命中与轮次启动竞态:提交后首查落在 idle 窗即命中收束返回;对照实证:0.9.1 热会话未复现(探针 2.6 秒正常等收束,终态 done),冷启动慢起 agent 高危 | 刚提交的单不依赖 prompt --wait 收束,改两段式:先 wait --until working 开工探针(短超时,短轮漏 working 属正常),再 wait --until idle/done/blocked 独立收束;超时均不证未送达 |
 | 备用屏读不全 | agent 跑在终端备用屏,加大 --lines 也读不到出屏行(出屏行不进宿主回滚缓冲) | 兜底:请对方把完整回执落临时 md 文件回路径,直读文件 |
 | yolo 后落不追认 | agent 驻场在先、hst init --yolo 落盘在后,会话许可模式定格旧态,全会话审批阻塞 | 带起顺序恒 hst init --yolo 先于 agent 驻场;可提 hst doctor 加「会话活模式与盘上 yolo 一致性」检测项 |
 
