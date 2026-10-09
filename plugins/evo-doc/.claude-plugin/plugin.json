@@ -1,7 +1,7 @@
 {
   "name": "evo-doc",
-  "version": "0.5.1",
-  "description": "项目进化文档治理:doc-gov(文档框架治理知识:ADR 需求决策、COE 三层聚合与双向链接图、项目日记三形态,加 Agent 友好 CLI 架构标准)",
+  "version": "0.5.2",
+  "description": "项目进化文档治理:doc-gov(文档框架治理知识:ADR 需求决策、COE 三层聚合与双向链接图、项目日记与研究档案四形态,加 Agent 友好 CLI 架构标准与项目工具链范式)",
   "author": {
     "name": "raystyle"
   },

@@ -1,6 +1,6 @@
 # doc-gov 参考索引
 
-> 渐进索引:一、快速路由;二、全量清单(7 篇);三、检索方法。目录与文件名以 rg 检索为先,进文件先抽 h2 目录再定点读。
+> 渐进索引:一、快速路由;二、全量清单(9 篇);三、检索方法。目录与文件名以 rg 检索为先,进文件先抽 h2 目录再定点读。
 
 ## 一、快速路由
 
@@ -9,10 +9,12 @@
 | 立决策 / 写 ADR / 立需求 / 写 REQ | base-adr.md、base-req.md |
 | 写项目日记 / 过程留痕与升格 | base-diary.md |
 | 建 COE 知识库 / 三层与双链图 | base-coe.md |
+| 立研究档案 / S 编号一题一篇与对照分流 | base-research.md |
+| 建项目工具链 / uv 与 PEP 723、门禁与发布 | tool-project-kit.md |
 | CLI agent 面(手册、协议、帮助面、自省、裸调用) | agent-face.md、templates.md |
 | agent CLI 发现通道与脚本 workspace | tool-cli-agents.md |
 
-## 二、全量清单(7 篇)
+## 二、全量清单(9 篇)
 
 | 文件 | 主题 |
 | --- | --- |
@@ -20,8 +22,10 @@
 | base-req.md | REQ 需求登记(状态机、trace 回填、索引) |
 | base-diary.md | 项目日记(一天一篇活轨迹、裁定与坑留痕、择要升格) |
 | base-coe.md | COE 形态(三层聚合、双向链接图、指挥总纲路由、建仓五步) |
+| base-research.md | 研究档案(S 编号一题一篇、信源与六态结论、对照分流、择要升格) |
 | agent-face.md | Agent 友好 CLI 五件(--llms 手册面、类型化 CTA 协议、默认帮助面、自省、裸调用面) |
 | tool-cli-agents.md | agent-native CLI 设计(发现通道选型、token 经济学、任务脚本 workspace) |
+| tool-project-kit.md | 项目工具链范式(工具归档、PEP 723 零依赖 uv 直跑、门禁三态与提交挡板、发布三段式) |
 | templates.md | CLI 双面可拷模板(README 骨架、--llms 手册、信封 schema、TS 与 Rust 实现、自省守卫清单) |
 
 ## 三、检索方法

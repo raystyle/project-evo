@@ -19,13 +19,16 @@
 | `research/S010-clidocs四样板对照.md` | CLI 对外面标准四样板对照与吸收分流(gh、cf、incur 双实现;档案) | 复核 agent-face 与 templates 口径时 |
 | `research/S011-herdr-dispatch对照.md` | herdr 任务分发编排对照分流(lane 模型、探针契约、py 脚本评估结论;档案) | 改 lane-dispatch 标准或复核委派口径时 |
 | `research/S012-五窗格开发布局对照.md` | 窗格布局定式对照(通用四窗格与 PI 五窗格、双闸门、会话纪律;档案) | 改布局定式或自省验收口径时 |
+| `research/S013-研究形态与工具链范式对照.md` | 研究形态与工具链范式对照分流(三仓研究形态、十仓工具链扫描;档案) | 复核四形态与工具范式口径时 |
 | `diary/2026-09-08-bh与reader使用过程.md` | 过程日记样例 | 写 diary 前对照格式 |
 | `../plugins/evo-doc/skills/doc-gov/SKILL.md` | 文档框架治理知识本体(意图路由与形态速览) | 使用/修改 skill 前 |
-| `../plugins/evo-doc/skills/doc-gov/references/README.md` | 参考索引(7 篇全量与快速路由) | 找治理参考时先看 |
+| `../plugins/evo-doc/skills/doc-gov/references/README.md` | 参考索引(9 篇全量与快速路由) | 找治理参考时先看 |
 | `../plugins/evo-doc/skills/doc-gov/references/base-adr.md` | ADR 模板、状态机、supersede 流 | 立 ADR 时 |
 | `../plugins/evo-doc/skills/doc-gov/references/base-req.md` | REQ 状态机与 trace 回填 | 立需求时 |
 | `../plugins/evo-doc/skills/doc-gov/references/base-diary.md` | 项目日记形态(一天一篇活轨迹、择要升格) | 写项目日记时 |
 | `../plugins/evo-doc/skills/doc-gov/references/base-coe.md` | COE 形态(三层聚合、双向链接图、建仓五步) | 建 COE 知识库操作台时 |
+| `../plugins/evo-doc/skills/doc-gov/references/base-research.md` | 研究档案形态(S 编号一题一篇、六态结论、对照分流) | 立研究档案时 |
+| `../plugins/evo-doc/skills/doc-gov/references/tool-project-kit.md` | 项目工具链范式(工具归档、PEP 723 零依赖 uv 直跑、门禁与发布) | 建项目工具骨架时 |
 | `../plugins/evo-doc/skills/doc-gov/references/agent-face.md` | Agent 友好 CLI 五件(手册面、CTA 协议、帮助面、自省、裸调用) | 配 CLI agent 面时 |
 | `../plugins/evo-doc/skills/doc-gov/references/tool-cli-agents.md` | agent-native CLI 设计(发现通道、token 经济学、脚本 workspace) | 造或改 agent 友好 CLI 时 |
 | `../.tools/README.md` | 本仓自用脚本工具登记(md-ref-scan、init、check、scan) | 跑仓门禁或维护骨架模板时 |

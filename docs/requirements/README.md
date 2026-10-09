@@ -19,3 +19,4 @@
 | REQ-013 | implemented | must | herdr-flywheel 跨机器 machine 原语语义补强 | tests/test_project_evo.py |
 | REQ-014 | implemented | must | 挪移后挂接面回归测试补强 | tests/test_project_evo.py |
 | REQ-015 | implemented | must | herdr 集成 py 脚本重评估:总台运维面翻转建 fleet-exec,lane 与插件面维持零脚本 | tests/test_project_evo.py |
+| REQ-016 | implemented | must | doc-gov 研究形态与工具链范式 | tests/test_project_evo.py |

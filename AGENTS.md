@@ -1,7 +1,7 @@
 # ProjectEvo 开发协作规则
 
 > 唯一权威源。`CLAUDE.md` 仅一行 `@AGENTS.md` 桥接,不重复维护。
-> 定位:项目治理插件市场仓(两插件三 skill 同属项目治理面,非业务工具面):evo-doc(文档治理:doc-gov 文档框架知识,ADR 需求决策、COE 三层聚合与双向链接图、项目日记三形态,加 Agent 友好 CLI 架构标准;插件级 md 禁字 hook 与 skill 解耦)、evo-herdr(双模式协作:herdr-dev 开发模式含 review 窗格、herdr-flywheel 跨仓模式),市场名 project-evo,客户端显示 `<插件>:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
+> 定位:项目治理插件市场仓(两插件三 skill 同属项目治理面,非业务工具面):evo-doc(文档治理:doc-gov 文档框架知识,ADR 需求决策、COE 三层聚合与双向链接图、项目日记与研究档案四形态,加 Agent 友好 CLI 架构标准与项目工具链范式;插件级 md 禁字 hook 与 skill 解耦)、evo-herdr(双模式协作:herdr-dev 开发模式含 review 窗格、herdr-flywheel 跨仓模式),市场名 project-evo,客户端显示 `<插件>:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
 
 ## Commands
 

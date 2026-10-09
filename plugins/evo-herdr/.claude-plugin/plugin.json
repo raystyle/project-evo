@@ -1,6 +1,6 @@
 {
   "name": "evo-herdr",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "项目进化多仓协作:herdr-dev(开发模式:通用四窗格与 PI 五窗格布局定式、评审闸门加自省验收双闸门、任务分发 lane)与 herdr-flywheel(跨仓模式:四步协议派单回执断言吸收、状态门控与事件驱动收执、跨机器工位与并行义务图)",
   "author": {
     "name": "raystyle"
