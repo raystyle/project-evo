@@ -1,6 +1,6 @@
 {
   "name": "evo-doc",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "项目进化文档治理:doc-gov(ADR 与 REQ 需求决策、代码 doc 注释与文档即代码、研究档案、项目工具链范式)与 native-design(Agent 原生友好开发:--llms 手册面、类型化 CTA 协议、命令自省、发现通道与 token 经济学)",
   "author": {
     "name": "raystyle"

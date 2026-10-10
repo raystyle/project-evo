@@ -1,6 +1,6 @@
 {
   "name": "evo-herdr",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "项目进化多仓协作:herdr-orch(主开发台:通用四窗格与 PI 五窗格布局定式、评审闸门加自省验收双闸门、任务分发 lane)与 herdr-flywheel(跨仓库跨项目跨机器交流:四步协议派单回执断言吸收、状态门控与事件驱动收执、产物契约与状态档三件套、并行义务图)",
   "author": {
     "name": "raystyle"
