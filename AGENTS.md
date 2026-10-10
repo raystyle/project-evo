@@ -1,7 +1,7 @@
 # ProjectEvo 开发协作规则
 
 > 唯一权威源。`CLAUDE.md` 仅一行 `@AGENTS.md` 桥接,不重复维护。
-> 定位:项目治理插件市场仓(三插件五 skill 同属项目治理面,非业务工具面):evo-doc(文档治理与原生设计:doc-gov 需求决策与代码契约注释与文档即代码、native-design Agent 原生友好开发;插件级 md 禁字 hook 与 skill 解耦)、evo-herdr(双模式协作:herdr-orch 主开发台初始角色邻居窗格配合工作、herdr-flywheel 跨仓库跨项目跨机器交流;两 skill 通用原则 = herdr 态是检测信号,md 文件是状态与产物)、evo-skills(技能自进化:distil-skill 三层聚合与项目级标准 skill 产生迭代),市场名 project-evo,客户端显示 `<插件>:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
+> 定位:项目治理插件市场仓(三插件五 skill 同属项目治理面,非业务工具面):evo-doc(文档治理与原生设计:doc-gov 需求决策与代码契约注释与文档即代码、native-design Agent 原生友好开发;插件级 md 禁字 hook 与 skill 解耦)、evo-herdr(双模式协作:herdr-orch 主开发台初始角色邻居窗格配合工作、herdr-flywheel 跨仓库跨项目跨机器交流;两 skill 通用原则 = herdr 态是检测信号,md 文件是状态与产物)、evo-distil(技能自进化:distil-skill 三层聚合与项目级标准 skill 产生迭代),市场名 project-evo,客户端显示 `<插件>:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
 
 ## Commands
 
@@ -26,7 +26,7 @@
 
 - 禁止 emoji;流程图用 mermaid,禁止 box-drawing 手拼伪流程图
 - frontmatter 禁 `version`/`argument-hint` 等非官方字段
-- 生成物手改、双份并行维护(单一权威源:skill 只在 `plugins/<插件>/skills/` 下,插件共三个:evo-doc、evo-herdr、evo-skills)
+- 生成物手改、双份并行维护(单一权威源:skill 只在 `plugins/<插件>/skills/` 下,插件共三个:evo-doc、evo-herdr、evo-distil)
 - 中文 md 用 PowerShell 管道批量改写(塌行/截断,用编辑工具逐处改)
 
 ## Read first

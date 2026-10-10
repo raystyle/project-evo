@@ -1,6 +1,6 @@
 # evo-doc
 
-项目进化文档治理插件:两个 skill。`doc-gov` 文档框架治理知识(ADR 与 REQ 需求决策、代码 doc 注释契约、文档即代码、研究档案、项目工具链范式)与 `native-design` Agent 原生友好开发指导(--llms 手册面、类型化 CTA 协议、命令自省、发现通道与 token 经济学)。插件级 PostToolUse hook 提供 md 禁字挡板(四类禁字,辖域限仓内 md,规则唯一权威 `scripts/mdrules.py`,与 skill 解耦)。三层聚合与技能自进化在同市场插件 evo-skills。
+项目进化文档治理插件:两个 skill。`doc-gov` 文档框架治理知识(ADR 与 REQ 需求决策、代码 doc 注释契约、文档即代码、研究档案、项目工具链范式)与 `native-design` Agent 原生友好开发指导(--llms 手册面、类型化 CTA 协议、命令自省、发现通道与 token 经济学)。插件级 PostToolUse hook 提供 md 禁字挡板(四类禁字,辖域限仓内 md,规则唯一权威 `scripts/mdrules.py`,与 skill 解耦)。三层聚合与技能自进化在同市场插件 evo-distil。
 
 状态:active。插件面客户端:Claude Code、Codex、Grok;纯 skills 面:Kimi 等手拷子集。
 

@@ -1,4 +1,4 @@
-# evo-skills
+# evo-distil
 
 项目进化技能自进化插件:单 skill `distil-skill`。项目把自己的执行经验变成可持续迭代的项目级标准 skill 集:三层聚合(sources = 带时间的历史轨迹总结、knowledge = 带版本的双向链接关联结构化知识、operations = 产物为 Claude Code 与 Codex 双端支持的标准项目级 SKILL),四步环(执行产痕、蒸馏模式、一案提案、合取闸门),no_action 合法出口,知识层永不回滚、标准层拒绝即回滚,生成维护环默认无头边界内跑、接受与发布停在人裁。
 
@@ -15,7 +15,7 @@ Claude Code:
 
 ```text
 /plugin marketplace add raystyle/project-evo
-/plugin install evo-skills@project-evo
+/plugin install evo-distil@project-evo
 ```
 
 Codex:
@@ -28,14 +28,14 @@ Grok:
 
 ```bash
 grok plugin marketplace add raystyle/project-evo
-grok plugin install evo-skills@project-evo --trust
+grok plugin install evo-distil@project-evo --trust
 ```
 
 Kimi(无市场):把 `skills/distil-skill/` 拷至 `~/.kimi/skills/`。
 
 ## 用法
 
-安装插件后按意图路由自动触发,客户端显示为 `evo-skills:distil-skill`。
+安装插件后按意图路由自动触发,客户端显示为 `evo-distil:distil-skill`。
 
 示例提示词:「用 distil-skill 把这轮项目执行轨迹蒸馏成模式页,并提一案标准 skill 变更」「用 distil-skill 给这个项目建三层聚合与双端标准项目级技能集」。
 

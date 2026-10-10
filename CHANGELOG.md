@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 变更(2026-10-11,第一百零六批:evo-skills 更名 evo-distil)
+
+- 用户令:插件 evo-skills 更名 **evo-distil**(目录 git mv 保史、双 manifest name、双市场清单、AGENTS 与双 README 与 docs 地图、doc-gov 互引五处、测试清单与 pre-commit 路径全同步);**破坏性**:下次封版起消费者卸 evo-skills 装 evo-distil,客户端显示改 `evo-distil:distil-skill`
+- 顺修:evo-doc codex 面 longDescription 里已过时的 live hook 描述句改为 pre-commit 挡板口径(批 105 残句)
+
 ### 移除(2026-10-10,第一百零五批:live 禁字 hook 裁撤)
 
 - 用户令:删除 evo-doc 的 live md 禁字门禁 hook;插件 hooks/hooks.json 与仓 .claude/settings.json 两处 PostToolUse 注册撤除(当日实时拦编辑四犯、下游仓自有豁免面三度误拦,成本大于价值);md-guard.py 脚本保留(githooks pre-commit --staged 挡板仍用),禁字纪律不丢(挡板加 check.py PE-11)

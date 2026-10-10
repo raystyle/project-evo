@@ -17,7 +17,7 @@ description: >-
 compatibility: 通用;跑环需项目 git 与既有门禁;双端执行面需 claude 或 codex CLI(命令面活权威是本机 --help 实查)
 ---
 
-# distil-skill - evo-skills 项目技能自进化
+# distil-skill - evo-distil 项目技能自进化
 
 **渐进知识库型 skill**:本文件只做意图路由与环速览,完整机制在 `references/` 五篇,按需定点读,不要求一次读完。
 

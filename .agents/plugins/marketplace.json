@@ -29,10 +29,10 @@
       "category": "Productivity"
     },
     {
-      "name": "evo-skills",
+      "name": "evo-distil",
       "source": {
         "source": "local",
-        "path": "./plugins/evo-skills"
+        "path": "./plugins/evo-distil"
       },
       "policy": {
         "installation": "AVAILABLE",
