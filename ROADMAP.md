@@ -68,6 +68,7 @@
 | 封版 v0.12.0 | 已完成 | 2026-10-10 第九十九至一百批:herdr-flywheel 产物契约三件套 brief/state/receipt 与盘上稳态信号分治(REQ-017,邻居窗格回归实测);三插件五 skill 版图(ADR-0020):evo-skills 立项 distil-skill 技能自进化(三层聚合加合取闸门,S014 wikiskill 对照)、doc-gov 三向拆分(native-design 抽离)、herdr-dev 更名 herdr-orch;版本载体齐 0.6.0;tag v0.12.0 加 GitHub Release;业界对照评估与四端无头模式研究吸收(wiki-03/04) |
 | 四仓三层聚合标准合流 | 已完成 | 2026-10-10 第一百零一批:ADR-0021(sources 唯一出处层、git 边界三选一含单仓纪律形、归档统一字母表八元组、doc-gov 工件归层、operations 两类与加载视图、闸门证据形态扩、supersede 否证流、CoALA 映射、业界负对照排除);distil-skill 与 doc-gov 文本随 22 项修订清单落地;三实践仓施工单回执断言收口(ai-ccoe 正名五动作加 R1 至 R3 小修、browse_rs 三层从零建加首技能 gate-verdict 人裁入集与触发对实证、pve-harness 归档统一加 Python 代码即文档;其间会话中断盘上续派一次,租约纪律实证);REQ-019 与 S015 落地;check PE-02/03 扩双形;终态判据六条全仓验收过;版本线 0.6.0 不动待封版批 |
 | md-guard 按仓豁免配置 | 待定 | 2026-10-10 pve-harness 施工报备:插件 md-guard 钩子对下游仓自有豁免路径与 external 第三方原文三度误拦;钩子豁免按仓配置机制待立(积压) |
+| ark_rs 入列与四仓终验齐 | 已完成 | 2026-10-10 第一百零二至一百零三批:ark_rs(Rust 工具链仓)入列第四实践仓,distil-04 反馈断言过,六项吸收(既有仓迁移形、门禁清单成文、退役编号注记、根检索面守卫、ignore 划界、双层裁定账);con-04 加 A1 终验过(首技能 ark-catalog-addition 受裁入集,触发对隔离实证并揭出触发面过宽,收窄复测环回流 gate.md;pitfalls 增总台 JSON 键名二犯条);四实践仓治理终态齐 |
 
 ## 阶段三：延伸（进行中）
 
