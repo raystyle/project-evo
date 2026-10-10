@@ -89,16 +89,20 @@ def check(root: Path) -> tuple[list[tuple[str, str, str, list[str]]], bool]:
             f"缺节: {', '.join(miss)}" if miss else "四硬节齐备,缺可选环境节")
         r.append(("PE-01", "FAIL" if miss else "PASS", note, []))
 
-    # PE-02 docs/adr 目录与索引
-    ok2 = (root / "docs" / "adr").is_dir() and (root / "docs" / "adr" / "README.md").is_file()
+    # PE-02 ADR 目录与索引(纯 doc-gov 形 docs/adr,或三层聚合形 knowledge/adr;层根仓根或 docs/ 二选一)
+    ok2 = ((root / "docs" / "adr").is_dir() and (root / "docs" / "adr" / "README.md").is_file()) or \
+        (root / "knowledge" / "adr").is_dir() or \
+        (root / "docs" / "knowledge" / "adr").is_dir()
     r.append(("PE-02", "PASS" if ok2 else "FAIL",
-              "docs/adr 目录与 README 索引在位" if ok2 else "缺 docs/adr 目录或其 README.md", []))
+              "ADR 目录与索引在位(docs/adr 或 knowledge/adr 形)" if ok2 else "缺 ADR 目录(docs/adr 或 knowledge/adr 形)", []))
 
-    # PE-03 docs/requirements 目录与索引
-    ok3 = (root / "docs" / "requirements").is_dir() and \
-        (root / "docs" / "requirements" / "README.md").is_file()
+    # PE-03 REQ 目录与索引(纯 doc-gov 形 docs/requirements,或三层聚合形 knowledge/req;层根仓根或 docs/ 二选一)
+    ok3 = ((root / "docs" / "requirements").is_dir() and \
+        (root / "docs" / "requirements" / "README.md").is_file()) or \
+        (root / "knowledge" / "req").is_dir() or \
+        (root / "docs" / "knowledge" / "req").is_dir()
     r.append(("PE-03", "PASS" if ok3 else "FAIL",
-              "docs/requirements 目录与 README 索引在位" if ok3 else "缺 docs/requirements 目录或其 README.md", []))
+              "REQ 目录与索引在位(docs/requirements 或 knowledge/req 形)" if ok3 else "缺 REQ 目录(docs/requirements 或 knowledge/req 形)", []))
 
     # PE-04 CLAUDE.md 单行桥接(存在才查)
     claude = root / "CLAUDE.md"

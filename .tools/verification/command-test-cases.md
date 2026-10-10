@@ -19,12 +19,12 @@ Set-Location $ProjectRoot
 Select-String -Path AGENTS.md -Pattern "^## Must$" -Quiet
 # 预期: True
 
-# [PE-02] docs/adr 目录与 README 索引在位
-(Test-Path "docs\adr") -and (Test-Path "docs\adr\README.md")
+# [PE-02] ADR 目录与索引在位(纯 doc-gov 形,或三层聚合形仓根/docs 二选一层根)
+((Test-Path "docs\adr") -and (Test-Path "docs\adr\README.md")) -or (Test-Path "knowledge\adr") -or (Test-Path "docs\knowledge\adr")
 # 预期: True
 
-# [PE-03] docs/requirements 目录与 README 索引在位
-(Test-Path "docs\requirements") -and (Test-Path "docs\requirements\README.md")
+# [PE-03] REQ 目录与索引在位(纯 doc-gov 形,或三层聚合形仓根/docs 二选一层根)
+((Test-Path "docs\requirements") -and (Test-Path "docs\requirements\README.md")) -or (Test-Path "knowledge\req") -or (Test-Path "docs\knowledge\req")
 # 预期: True
 
 # [PE-04] CLAUDE.md 一行桥接(存在才查)
