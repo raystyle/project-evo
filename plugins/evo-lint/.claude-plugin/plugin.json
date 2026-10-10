@@ -1,0 +1,22 @@
+{
+  "name": "evo-lint",
+  "version": "0.7.0",
+  "description": "项目静态检查报错:lint 五面——skill markdown、agents markdown、claude markdown、Rust、Python、TypeScript 的静检命令、判据与门禁接线;md 禁字与断链与结构、cargo fmt 与 clippy、ruff 含 docstring、tsc 与 eslint;门禁三态退出码与提交挡板纪律",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/evo-lint",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "skill",
+    "lint",
+    "static-analysis",
+    "gates",
+    "markdown",
+    "rust",
+    "python",
+    "typescript"
+  ]
+}

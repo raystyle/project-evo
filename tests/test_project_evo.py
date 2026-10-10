@@ -16,14 +16,16 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-PLUGIN_NAMES = ("evo-doc", "evo-herdr", "evo-distil")
+PLUGIN_NAMES = ("evo-doc", "evo-herdr", "evo-distil", "evo-lint")
 PLUGINS = {n: REPO / "plugins" / n for n in PLUGIN_NAMES}
 SCRIPTS = REPO / ".tools"
 GUARD = PLUGINS["evo-doc"] / "scripts" / "md-guard.py"
+LINT_HOOK = PLUGINS["evo-lint"] / "scripts" / "lint-hook.py"
 SKILLS = {
     "evo-doc": ["doc-gov", "doc-cli"],
     "evo-herdr": ["herdr-orch", "herdr-flywheel"],
     "evo-distil": ["distil-skill"],
+    "evo-lint": ["lint"],
 }
 
 
@@ -359,6 +361,60 @@ def test_md_guard_hook_scopes_to_event_cwd(tmp_path: Path):
     inside = json.dumps({"hook_event_name": "PostToolUse", "cwd": str(tmp_path),
                          "tool_input": {"file_path": str(bad)}})
     assert _run_md_guard(inside).returncode == 2, "仓内 md 照检"
+
+
+def _run_lint_hook(payload: str) -> subprocess.CompletedProcess:
+    env = {**os.environ, "PYTHONIOENCODING": "utf-8"}
+    return subprocess.run(
+        [sys.executable, str(LINT_HOOK)],
+        input=payload, capture_output=True, text=True, encoding="utf-8",
+        errors="replace", env=env,
+    )
+
+
+def test_lint_hook_tolerates_alien_payload():
+    """evo-lint hook 载荷宽容:Codex apply_patch 形(有 tool_input 无 file_path)与非对象整体均放行 0。"""
+    codex_shape = json.dumps({
+        "hook_event_name": "PostToolUse",
+        "tool_name": "apply_patch",
+        "tool_input": {"command": "*** Begin Patch\n*** Update File: note.md\n+x\n*** End Patch\n"},
+    })
+    assert _run_lint_hook(codex_shape).returncode == 0
+    assert _run_lint_hook(json.dumps({"tool_name": "Edit", "tool_input": {}})).returncode == 0
+    assert _run_lint_hook("not json at all").returncode == 0
+
+
+def test_lint_hook_flags_md_forbidden(tmp_path: Path):
+    """evo-lint hook md 面:禁字与超限退出码 2 加 stderr 报错信息;净文件放行 0。"""
+    bad = tmp_path / "AGENTS.md"
+    bad.write_text("# 合同\n\n正文 —— 有破折号\n", encoding="utf-8")
+    r = _run_lint_hook(json.dumps({
+        "hook_event_name": "PostToolUse", "tool_name": "Write",
+        "tool_input": {"file_path": str(bad)},
+    }))
+    assert r.returncode == 2, "禁字须 exit 2 回传报错"
+    assert "禁字" in (r.stderr or "")
+
+    good = tmp_path / "AGENTS.md"
+    good.write_text("# 合同\n\n正文无禁字\n", encoding="utf-8")
+    r2 = _run_lint_hook(json.dumps({
+        "hook_event_name": "PostToolUse", "tool_name": "Write",
+        "tool_input": {"file_path": str(good)},
+    }))
+    assert r2.returncode == 0
+
+
+def test_evo_lint_hooks_use_braced_plugin_root():
+    """hook 命令须花括号 ${CLAUDE_PLUGIN_ROOT} 加 commandWindows 双形(Codex 只替换花括号,Windows 走 cmd.exe /C)。"""
+    hooks = json.loads((PLUGINS["evo-lint"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+    handlers = [h for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]]
+    assert handlers, "evo-lint hooks.json 须有 PostToolUse 处理器"
+    for h in handlers:
+        for field in ("command", "commandWindows"):
+            cmd = h.get(field)
+            assert cmd, f"hooks.json 缺 {field}"
+            assert "${CLAUDE_PLUGIN_ROOT}" in cmd, f"{field} 须用花括号形态(Codex 只替换 ${{VAR}})"
+            assert "$env:" not in cmd, f"{field} 禁 PowerShell 语法:Windows 走 cmd.exe /C"
 
 
 def test_live_md_hook_stays_removed():

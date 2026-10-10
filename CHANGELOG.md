@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 新增(2026-10-11,第一百零八批:evo-lint 插件立项)
+
+- 用户令:增第四插件 **evo-lint**(项目静态检查报错),单 skill lint 五面:skill markdown 格式标准(frontmatter 官方字段、name 同目录名、description 形态与上限、行数上限、断链)、agents 与 claude markdown 长度限制(缺省 200 与 50 行,环境变量可裁)与结构合同与禁字、rs(cargo fmt 与 clippy 与 missing_docs)、py(ruff 含 D 系)、ts(tsc 与 eslint);references 三篇(md-faces、lang-checks、hook-face)
+- **写后自动静检 hook**(用户裁):PostToolUse 按 .md/.rs/.py/.ts 后缀分派快检查,报错信息回传(退出码 2 加 stderr 逐条);Claude Code 直查、Codex apply_patch 宽容放行靠 pre-commit 兜底,hooks.json 花括号变量加 commandWindows 双形;工具缺位放行,重检查进门禁与 CI
+- 市场登记双清单、AGENTS 与双 README 与 docs 地图四插件六 skill 同步;测试三件(hook 载荷宽容、md 报错回传、花括号形态)加清单一致性;pre-commit 断链段扩六 skill;版本线同 0.7.0 入列
+
 ### 变更(2026-10-11,第一百零七批:native-design 更名 doc-cli)
 
 - 用户令:evo-doc 内 skill native-design 更名 **doc-cli**(目录 git mv 保史、frontmatter name、AGENTS 与根与插件 README、docs 地图、doc-gov 意图路由与索引互引、双 manifest 与市场描述、测试清单、pre-commit 路径全同步);**破坏性**:下次封版起客户端显示改 `evo-doc:doc-cli`,旧触发词失效

@@ -1,0 +1,38 @@
+{
+  "name": "evo-lint",
+  "version": "0.7.0",
+  "description": "项目静态检查报错:lint 五面——skill markdown、agents markdown、claude markdown、Rust、Python、TypeScript 的静检命令、判据与门禁接线;md 禁字与断链与结构、cargo fmt 与 clippy、ruff 含 docstring、tsc 与 eslint;门禁三态退出码与提交挡板纪律",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/evo-lint",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "skill",
+    "lint",
+    "static-analysis",
+    "gates",
+    "markdown",
+    "rust",
+    "python",
+    "typescript"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Evo Lint",
+    "shortDescription": "项目静态检查报错:md 三面(skill、agents、claude)加 rs 加 py 加 ts 的静检命令、判据与门禁接线。",
+    "longDescription": "单 skill:lint 指导项目把静态检查配成可判定的报错面。五面:skill markdown(frontmatter 官方字段、name 同目录名、description 做什么加何时用、references 断链)、agents 与 claude markdown(结构合同、单行桥接、md 禁字四类)、Rust(cargo fmt --check、clippy -D warnings、missing_docs deny)、Python(ruff,含 D 系 docstring 纪律与按仓 ignore 裁剪)、TypeScript(tsc --noEmit,eslint 随仓配置)。纪律:门禁三态退出码、判定不接吞退出码管道、提交挡板 pre-commit 挂接、报错逐条修不豁免凑绿。",
+    "developerName": "raystyle",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Bash"
+    ],
+    "defaultPrompt": [
+      "用 lint 给这个项目配五面静态检查门禁并挂 pre-commit。",
+      "用 lint 排查这批 md 禁字与 clippy 红的报错并逐条修。"
+    ]
+  }
+}

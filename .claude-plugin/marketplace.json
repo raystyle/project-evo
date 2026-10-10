@@ -3,9 +3,9 @@
   "owner": {
     "name": "raystyle"
   },
-  "description": "项目进化:三插件五 skill(文档治理与原生设计 evo-doc、多仓协作 evo-herdr、技能自进化 evo-distil)",
+  "description": "项目进化:四插件六 skill(文档治理与原生设计 evo-doc、多仓协作 evo-herdr、技能自进化 evo-distil、静态检查报错 evo-lint)",
   "metadata": {
-    "description": "项目进化:三插件五 skill(文档治理与原生设计 evo-doc、多仓协作 evo-herdr、技能自进化 evo-distil)"
+    "description": "项目进化:四插件六 skill(文档治理与原生设计 evo-doc、多仓协作 evo-herdr、技能自进化 evo-distil、静态检查报错 evo-lint)"
   },
   "plugins": [
     {
@@ -28,6 +28,12 @@
       "description": "项目进化多仓协作:herdr-orch(主开发台:通用四窗格与 PI 五窗格布局定式、评审闸门加自省验收双闸门、任务分发 lane)与 herdr-flywheel(跨仓库跨项目跨机器交流:四步协议派单回执断言吸收、状态门控与事件驱动收执、产物契约与状态档三件套、并行义务图)",
       "version": "0.7.0",
       "category": "productivity"
+    },
+    {
+      "name": "evo-lint",
+      "source": "./plugins/evo-lint",
+      "description": "项目静态检查报错:lint 五面(skill markdown 格式标准、agents 与 claude markdown 长度限制与禁字断链、rs cargo fmt 与 clippy、py ruff 含 docstring、ts tsc 与 eslint),门禁三态退出码与提交挡板纪律",
+      "version": "0.7.0"
     }
   ]
 }
