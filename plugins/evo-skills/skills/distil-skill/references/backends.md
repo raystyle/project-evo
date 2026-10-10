@@ -4,7 +4,7 @@
 
 ## 项目级加载
 
-- **Claude Code**:项目级技能目录 `.claude/skills/<名>/SKILL.md`,随仓走、团队共享;标准集以它为挂接面
+- **Claude Code**:项目级技能目录 `.claude/skills/<名>/SKILL.md`,随仓走、团队共享;标准集以它为挂接面;仓内 `.claude/` 整体 ignore 的存量仓,先以忽略登记划界(仅放行 `.claude/skills/`)再挂接
 - **Codex**:项目 `.codex-plugin/plugin.json` 的 `skills: ./skills/` 挂接项目技能目录(本插件仓即此形态),或经 `$CODEX_HOME/skills` 符号链接用户级挂接;项目仓持有唯一权威源,符号链接只是视图
 - 两端同读一份标准 SKILL.md(agentskills 官方 spec 形态),不分发第二份;frontmatter 只留官方字段,双端才都认
 
