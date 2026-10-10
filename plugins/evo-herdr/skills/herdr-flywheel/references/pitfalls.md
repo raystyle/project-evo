@@ -16,6 +16,7 @@
 | prompt --wait 提交即返 | 带 --wait 提交后立即成功返回 agent_prompted,agent_status 仍 idle,未等 working 与收束。根因 [推断] = 收束判定的现态命中与轮次启动竞态:提交后首查落在 idle 窗即命中收束返回;对照实证:0.9.1 热会话未复现(探针 2.6 秒正常等收束,终态 done),冷启动慢起 agent 高危 | 刚提交的单不依赖 prompt --wait 收束,改两段式:先 wait --until working 开工探针(短超时,短轮漏 working 属正常),再 wait --until idle/done/blocked 独立收束;超时均不证未送达 |
 | 备用屏读不全 | agent 跑在终端备用屏,加大 --lines 也读不到出屏行(出屏行不进宿主回滚缓冲) | 兜底请对方落临时 md 文件回路径再直读;任务、委托、同步型已恒文件回执(artifacts.md 产物契约),此坑面收窄到讨论型 |
 | yolo 后落不追认 | agent 驻场在先、hst init --yolo 落盘在后,会话许可模式定格旧态,全会话审批阻塞 | 带起顺序恒 hst init --yolo 先于 agent 驻场;可提 hst doctor 加「会话活模式与盘上 yolo 一致性」检测项 |
+| JSON 键名 status 误取 | 管道后处理取 `['status']` 抛 KeyError,`&&` 链短路在 herdr 之前,派单未发而调用方只见退出码 1,易误判为 herdr 故障;herdr JSON 响应键是 `agent_status` [实证: 2026-10-10 两同形犯,browse_rs 与 ark_rs 的 A1 派单各一次,二犯升格] | 管道取键恒 `agent_status`;门控检查与派单分两条命令发,不 `&&` 串联,单点失败可辨;KeyError 即未送达,修正键名重发即可,无重复派单风险 |
 
 ## 仓级统一操作面
 

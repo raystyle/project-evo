@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 新增(2026-10-10,第一百零三批:四仓终验齐与触发对收窄环回流)
+
+- ark_rs con-04 加 A1 人裁收口终验过(六件全过;首技能 ark-catalog-addition 受裁入集,触发对三例隔离环境实证);四实践仓治理终态齐
+- 回流两笔:gate.md 触发对补初测误触发收窄复测环(第四仓首环判例:近失负例揭出触发面过宽,收窄 description 与 When NOT to Apply 复测转绿);herdr-flywheel pitfalls 增 JSON 键名 status 误取条(总台管道二犯升格,键名 agent_status,门控与派单分开发)
+
 ### 新增(2026-10-10,第一百零二批:ark_rs 入列与既有仓迁移形吸收)
 
 - ark_rs 入列第四实践仓(Rust 工具链仓,ark-rs 工位 w36:p1);distil-04 反馈单回执断言过(五坑三提案三优标回流候选,四件全过)
