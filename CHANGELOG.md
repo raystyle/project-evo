@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 移除(2026-10-10,第一百零五批:live 禁字 hook 裁撤)
+
+- 用户令:删除 evo-doc 的 live md 禁字门禁 hook;插件 hooks/hooks.json 与仓 .claude/settings.json 两处 PostToolUse 注册撤除(当日实时拦编辑四犯、下游仓自有豁免面三度误拦,成本大于价值);md-guard.py 脚本保留(githooks pre-commit --staged 挡板仍用),禁字纪律不丢(挡板加 check.py PE-11)
+- 测试翻转:test_hook_wiring 挂接回归改 test_live_md_hook_stays_removed(裁撤不回潮守卫);md-guard 脚本行为用例保留
+- ROADMAP「md-guard 按仓豁免配置」积压项随 live hook 消失而失效,收口
+
 ### 新增(2026-10-10,第一百零四批:clean-chrome 入列与迁移引用面吸收)
 
 - clean-chrome 入列第五实践仓;distil-05 反馈单回执断言过(六坑四提案两优标回流,四件全过,门禁实跑 PASS 12)

@@ -308,8 +308,8 @@ def test_marketplace_catalog_consistency():
     assert (tools / "templates").is_dir(), ".tools 缺骨架模板目录"
     plugin_scripts = PLUGINS["evo-doc"] / "scripts"
     for s in ("md-guard.py", "mdrules.py"):
-        assert (plugin_scripts / s).is_file(), f"插件级脚本缺失(hook 与 skill 解耦): {s}"
-    json.loads((PLUGINS["evo-doc"] / "hooks" / "hooks.json").read_text(encoding="utf-8")), "hooks.json 须为合法 JSON"
+        assert (plugin_scripts / s).is_file(), f"插件级脚本缺失(pre-commit 挡板用,live hook 已撤): {s}"
+    assert not (PLUGINS["evo-doc"] / "hooks" / "hooks.json").exists(), "live PostToolUse 禁字 hook 已裁撤(批 105),不得回潮"
 
 
 def _run_md_guard(payload: str) -> subprocess.CompletedProcess:
@@ -361,45 +361,17 @@ def test_md_guard_hook_scopes_to_event_cwd(tmp_path: Path):
     assert _run_md_guard(inside).returncode == 2, "仓内 md 照检"
 
 
-def test_plugin_hooks_use_braced_plugin_root():
-    """hook 命令须写 ${CLAUDE_PLUGIN_ROOT}。
+def test_live_md_hook_stays_removed():
+    """批 105 裁撤:live PostToolUse 禁字 hook(插件 hooks.json 与仓 settings.json)不得回潮。
 
-    Codex 只替换花括号形态(codex-rs/hooks/src/engine/discovery.rs: fold replace "${key}"),
-    且在 Windows 用 cmd.exe /C 执行(command_runner.rs: COMSPEC 兜底 cmd.exe /C)。
-    故裸 $VAR 与 PowerShell 的 $env: 在 Windows 面都不展开,脚本路径必失效。
+    历史:hook 实时拦编辑当日四犯(本仓三笔破折号加一笔标题括号),下游仓自有豁免面三度误拦;
+    裁撤后禁字纪律由 githooks pre-commit 的 --staged 挡板与 check.py PE-11 承担,
+    脚本本体保留。此用例守住裁撤不回潮(原 REQ-014 挂接回归用例的翻转形)。
     """
-    hooks = json.loads((PLUGINS["evo-doc"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
-    handlers = [h for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]]
-    assert handlers, "hooks.json 须有 PostToolUse 处理器"
-    for h in handlers:
-        for field in ("command", "commandWindows"):
-            cmd = h.get(field)
-            assert cmd, f"hooks.json 缺 {field}"
-            assert "${CLAUDE_PLUGIN_ROOT}" in cmd, f"{field} 须用花括号形态(Codex 只替换 ${{VAR}})"
-            assert "$env:" not in cmd, f"{field} 禁 PowerShell 语法:Windows 走 cmd.exe /C"
-
-
-def test_hook_wiring_points_to_plugin_scripts():
-    """挂接回归:hooks.json 与仓 settings.json 须指插件级 scripts/md-guard.py(ADR-0018 解耦不回退)。
-
-    仓 settings.json 的 hook 在批 89 挪移期间断过(指旧 skills/code-kit 路径 spawn 报错),
-    此类挂接漂移当时无回归红灯,本用例补上。
-    """
-    hooks = json.loads((PLUGINS["evo-doc"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
-    cmds = [h[k].replace("\\", "/")
-            for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]
-            for k in ("command", "commandWindows") if h.get(k)]
-    assert cmds, "hooks.json 须有 PostToolUse 处理器"
-    for c in cmds:
-        assert "${CLAUDE_PLUGIN_ROOT}/scripts/md-guard.py" in c, \
-            f"hooks.json 须指插件级 scripts/md-guard.py(skill 与 hook 解耦): {c}"
+    assert not (PLUGINS["evo-doc"] / "hooks").exists(), "插件 live hook 目录不得回潮(批 105 裁撤)"
     settings = json.loads((REPO / ".claude" / "settings.json").read_text(encoding="utf-8"))
-    scmds = [h.get("command", "") for g in settings["hooks"]["PostToolUse"] for h in g["hooks"]]
-    assert scmds, "仓 settings.json 须有 PostToolUse 挡板"
-    for c in scmds:
-        assert "plugins/evo-doc/scripts/md-guard.py" in c, \
-            f"仓 settings.json hook 须指 plugins/evo-doc/scripts/md-guard.py: {c}"
-        assert "$CLAUDE_PROJECT_DIR" in c, f"仓 hook 须用 $CLAUDE_PROJECT_DIR 前缀: {c}"
+    assert not settings.get("hooks", {}).get("PostToolUse"), \
+        "仓 settings.json 不得回挂 live PostToolUse 禁字挡板(批 105 裁撤)"
 
 
 def test_pre_commit_matches_current_skills():
