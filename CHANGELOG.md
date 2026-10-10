@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+## [0.12.0] - 2026-10-10
+
+**本版破坏性变更通告**:herdr-dev 更名 herdr-orch(功能不变),doc-gov 知识面重划(COE 三层聚合与日记轨迹迁 `evo-skills:distil-skill`,agent 原生面迁 `evo-doc:native-design`),旧触发词失效。已装 evo-doc 与 evo-herdr 者逐插件 update 至 0.6.0;新插件 evo-skills 按需安装(`evo-skills@project-evo`);Kimi 手拷者删旧 skill 目录(含 herdr-dev)重拷三插件五 skill;各端旧版本缓存目录(0.5.x)可整目录删除。
+
 ### 新增(2026-10-10,第一百批:三插件五 skill 版图与 distil-skill 技能自进化)
 
 - 用户立单(2026-10-10):与 grok 邻格对照研究 wikiskill(走产物契约协议研究轮 wiki-01,S014)后,把 doc-gov 的三层聚合剥离,立第三插件 evo-skills 承载新技能 distil-skill:项目基于自身执行经验自动产生并迭代项目级标准 skill,支持 Claude Code 与 Codex 双端。裁定三层定义:**sources = 带时间的历史轨迹总结,knowledge = 带版本的双向链接关联结构化知识,operations = 产物为双端支持的标准项目级 SKILL**;合取闸门(门禁无回归、点名义务翻转、知识链接成立)替均值闸,no_action 合法出口,知识层永不回滚、标准层拒绝即回滚

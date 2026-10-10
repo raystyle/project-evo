@@ -1,10 +1,10 @@
 # ProjectEvo
 
-> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件三 skill:`evo-doc`(文档治理:doc-gov)、`evo-herdr`(双模式协作:herdr-dev 开发模式、herdr-flywheel 跨仓模式)。客户端显示 `<插件>:<skill>`。
+> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,三插件五 skill:`evo-doc`(文档治理与原生设计:doc-gov、native-design)、`evo-herdr`(双模式协作:herdr-orch 主开发台、herdr-flywheel 跨仓库跨项目跨机器交流)、`evo-skills`(技能自进化:distil-skill)。客户端显示 `<插件>:<skill>`。
 
 ## 安装
 
-市场名 `project-evo`,源 `raystyle/project-evo`;按域装插件,两插件同版本线(ADR-0010)。
+市场名 `project-evo`,源 `raystyle/project-evo`;按域装插件,三插件同版本线(ADR-0010)。
 
 | 客户端 | 命令 |
 |--------|------|
@@ -17,7 +17,7 @@
 
 ## 升级
 
-升级 = 刷新市场快照再更新插件;插件按 manifest 版本号归位缓存,版本号不变则不刷新。两插件同版本线,升级时逐插件 update。
+升级 = 刷新市场快照再更新插件;插件按 manifest 版本号归位缓存,版本号不变则不刷新。三插件同版本线,升级时逐插件 update。
 
 ```text
 Claude Code   /plugin marketplace update project-evo   /plugin update <插件>@project-evo     (重启会话生效)
@@ -34,7 +34,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 
 - 市场源与协议:HTTPS 与 SSH git URL 都收;GitHub 简写默认协议相反,Claude Code 走 SSH(`CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1` 切 HTTPS),Codex 走 HTTPS;Grok 另收本地路径与 `@ref`、`#subdir`
 - 私有仓认证:标准 git 凭据(credential helper 或 ssh-agent),与终端 git 行为一致
-- 钉版:Claude Code `raystyle/project-evo@v0.11.1`(或 URL 尾 `#v0.11.1`);Codex `--ref v0.11.1`(下一封版 v0.12.0 后同理)
+- 钉版:Claude Code `raystyle/project-evo@v0.12.0`(或 URL 尾 `#v0.12.0`);Codex `--ref v0.12.0`(下一封版 v0.13.0 后同理)
 - md 禁字挡板:装 evo-doc 后编辑仓内 markdown 触发 PostToolUse 提醒(四类禁字,仓外 md 不管;规则唯一权威是插件级 `scripts/mdrules.py`,与 skill 解耦)
 - 扫描豁免:本仓 `.tools/scan.py` 的误报走环境变量 `PEVO_SCAN_ALLOW`(分号分隔正则,匹配 文件:行)
 
@@ -42,9 +42,11 @@ Kimi          重新拷 plugins/<插件>/skills/*
 
 | 插件 | skill | 做什么 | 何时用 |
 |------|-------|--------|--------|
-| evo-doc | `doc-gov` | 文档框架治理知识:ADR(需求决策:ADR 与 REQ)、COE(三层聚合与双向链接图)、项目日记、研究档案四类文档形态;Agent 友好 CLI 架构标准(--llms 手册、CTA 协议、帮助面、自省、裸调用面、发现通道)与项目工具链范式 | 立 ADR/REQ、写项目日记、立研究档案、建 COE 知识库操作台、建项目工具链、配 CLI agent 面 |
-| evo-herdr | `herdr-dev` | 开发模式:通用四窗格与 PI 五窗格布局定式(主开发、研究、review、自省回归;PI 加实战验收);评审闸门加自省验收双闸门;任务分发 lane(worktree 分支加总台独占发布) | 定开发窗格布局、发评审请求、终审放行、自省验收、多 agent 任务分发 |
-| evo-herdr | `herdr-flywheel` | 跨仓模式:不同仓库 agent 工作台对话交流,四步协议派单、回执、断言、吸收;跨机器工位、并行派单义务图 | 跨仓派发治理任务、总台轮次协调、多工位并行派单 |
+| evo-doc | `doc-gov` | 文档框架治理知识:ADR 与 REQ 需求决策、代码 doc 注释契约、文档即代码(单一权威源与投影守卫)、研究档案、项目工具链范式 | 立 ADR/REQ、立代码契约注释与文档即代码守卫、立研究档案、建项目工具链 |
+| evo-doc | `native-design` | Agent 原生友好开发:--llms 手册面、类型化 CTA 输出协议、默认帮助面、命令自省与漂移守卫、裸调用面、发现通道与 token 经济学 | 配 CLI agent 面、为 agent 时代设计命令与工具面 |
+| evo-herdr | `herdr-orch` | 主开发台初始各工作角色邻居窗格并开始配合工作:通用四窗格与 PI 五窗格布局定式(主开发、研究、review、自省回归;PI 加实战验收);评审闸门加自省验收双闸门;任务分发 lane | 定主开发台布局、初始邻居窗格开工、发评审请求、终审放行、自省验收、多 agent 任务分发 |
+| evo-herdr | `herdr-flywheel` | 跨仓库跨项目跨机器交流:四步协议派单、回执、断言、吸收;产物契约与状态档(herdr 态是检测信号,md 文件是状态与产物)、跨机器工位、并行派单义务图 | 跨仓派发治理任务、总台轮次协调、多工位并行派单 |
+| evo-skills | `distil-skill` | 技能自进化:三层聚合(sources 带时间轨迹总结、knowledge 带版本双链知识、operations 双端标准项目级 SKILL),四步环(蒸馏、一案提案、合取闸门、no_action) | 把项目执行经验沉淀成 skill、迭代项目标准技能集、建三层聚合知识库 |
 
 装 evo-doc 即得 md 禁字挡板(插件级 hook,与 skill 解耦);本仓自用骨架工具(init/check/scan 与模板)在仓根 `.tools/`,不随插件分发。
 
