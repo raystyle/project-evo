@@ -2,9 +2,9 @@
 name: distil-skill
 description: >-
   项目技能自进化:把项目自身执行经验蒸馏成模式,经一案提案与合取闸门,持续产生并迭代
-  Claude Code 与 Codex 双端支持的标准项目级 SKILL。三层聚合:sources 层收带时间的历史轨迹
-  总结(执行痕迹按时间收束、资格过滤),knowledge 层收带版本、双向链接关联的结构化知识
-  (模式页必带 trace 引文、防重提页只读),operations 层产物即项目级标准 skill(agentskills
+  Claude Code 与 Codex 双端支持的标准项目级 SKILL。三层聚合:sources 层收唯一出处件(自产
+  轨迹、自产证据、外档留底;资格过滤),knowledge 层收带版本、双向链接关联的结构化知识
+  (模式页必带 trace 引文、防重提页只读),operations 层收标准 skill 与 how-to 手册(agentskills
   官方 spec 形态,过闸才进)。四步环:执行产痕、蒸馏模式、一案提案(create/patch/no_action
   三选一)、合取闸门(既有门禁无回归、点名失败义务翻转、标准页链到有 sources 的知识页)。
   知识层永不回滚,标准层拒绝即回滚,no_action 是合法出口;无人值守接受停待审;双端项目级
@@ -21,7 +21,7 @@ compatibility: 通用;跑环需项目 git 与既有门禁;双端执行面需 cla
 
 **渐进知识库型 skill**:本文件只做意图路由与环速览,完整机制在 `references/` 五篇,按需定点读,不要求一次读完。
 
-核心思想:**项目技能集是被治理的活资产**。执行经验先落带时间的历史轨迹总结(sources),蒸馏成带版本、双向链接的结构化知识(knowledge),一案提案过合取闸门才进标准 skill 集(operations);知识层永不回滚,标准层拒绝即回滚;证据不足走 no_action,不硬造产出。
+核心思想:**项目技能集是被治理的活资产**。执行经验先落唯一出处件(sources:自产轨迹、自产证据、外档留底),蒸馏成带版本、双向链接的结构化知识(knowledge),一案提案过合取闸门才进标准面(operations:标准 skill 与 how-to 手册);知识层永不回滚,标准层拒绝即回滚;证据不足走 no_action,不硬造产出。
 
 ## 一、意图路由
 
@@ -56,7 +56,8 @@ flowchart LR
 
 ## 三、硬规则(速览)
 
-- 标准面只收过闸产物;knowledge 可读但不进技能安装路径,蒸馏文本不是标准 skill
+- 标准面收标准 skill 与 how-to 手册两类,过闸才进;技能安装路径是加载视图,常驻面只有 frontmatter 的 name 与 description,knowledge 不进安装路径
+- sources 是唯一出处层,证据分级靠 relation 两根词(derived_from、cited_source);否证走 supersede 不原地改写;执行回合不整层注入 knowledge
 - 模式页无 trace 引文标 unverified,不得当提案依据;防重提页只由闸门追加,蒸馏角色只读
 - 零工具调用、空输出的回合不进样本也不进分母;单次随机会话不得当分数
 - 无人值守只批蒸馏与提案;接受停在待审提案,人不裁不发布

@@ -24,3 +24,4 @@
 | ADR-0018 | accepted | 三 skill 合一为 doc-gov,evo-adr 改名 evo-doc,skill 与 hook 解耦 | |
 | ADR-0019 | accepted | herdr 双模式定形:开发模式 herdr-dev 含 review 窗格,跨仓模式 herdr-flywheel | |
 | ADR-0020 | accepted | 三插件五 skill 版图:evo-skills 立项 distil-skill,doc-gov 三向拆分,herdr-dev 更名 herdr-orch | 0019 更名 |
+| ADR-0021 | accepted | 三层聚合统一基底与归档字母表:四仓标准合流,sources 唯一出处层,git 三选一 | |

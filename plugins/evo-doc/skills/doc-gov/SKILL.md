@@ -31,7 +31,7 @@ description: >-
 | 写代码 doc 注释 / 契约注释 / 文档即代码 / 投影守卫 | `references/base-code-doc.md` |
 | 立研究档案 / S 编号一题一篇 / 对照分流与六态结论 | `references/base-research.md` |
 | 建项目工具链 / uv 与 PEP 723 形态 / 门禁挂接与发布面 | `references/tool-project-kit.md` |
-| 三层聚合与技能自进化 / 轨迹总结 / 模式页 / 标准 skill | 同市场技能 `evo-skills:distil-skill`(唯一权威源) |
+| 三层聚合与技能自进化 / 轨迹总结 / 模式页 / 标准 skill / 归档统一字母表与本面工件归层 | 同市场技能 `evo-skills:distil-skill`(唯一权威源) |
 | Agent 原生友好开发 / --llms 手册 / CTA 协议 / 自省 | 同插件 skill `evo-doc:native-design` |
 | 多仓飞轮协作 / 派单回执 | 同市场技能 `evo-herdr:herdr-flywheel` |
 
@@ -63,7 +63,7 @@ stateDiagram-v2
     implemented --> [*]
 ```
 
-编号接当前最大号;退役不复用。ADR 正文三段 Context/Decision/Consequences;REQ 正文 Scenario/Criteria;各自 README 索引表必登记。
+编号接当前最大号;退役不复用。ADR 正文三段 Context/Decision/Consequences;REQ 正文 Scenario/Criteria;各自 README 索引表必登记。三层聚合仓中:ADR/REQ 即 knowledge 层页型(knowledge/adr、knowledge/req),ADR 保持 Nygard 三段,不换 MADR 全模板(归档字母表见 distil-skill layers)。
 
 ### 代码 doc 注释与文档即代码
 
@@ -71,7 +71,7 @@ stateDiagram-v2
 
 ### 研究档案(纯项目记录)
 
-`SNNN-主题.md` 一题一篇,文件名即标题,编号退役不复用;篇首引块记信源与快照、关联编号、用户裁定;正文分背景、过程、结果、关键结论(逐条六态)、参考,对照类加对照分流(等价不吸收、真新增吸收、留档)。
+`SNNN-主题.md` 一题一篇,文件名即标题,编号退役不复用;篇首引块记信源与快照、关联编号、用户裁定;正文分背景、过程、结果、关键结论(逐条六态)、参考,对照类加对照分流(等价不吸收、真新增吸收、留档)。三层聚合仓中:结论页在 knowledge/research,信源原档留 sources/external,编号跨层贯通;纯 doc-gov 仓形态不变(形态跟项目形态走)。
 
 ### 项目工具链范式
 

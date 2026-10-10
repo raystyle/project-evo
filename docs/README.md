@@ -35,5 +35,5 @@
 | `../.tools/verification/command-test-cases.md` | check 的等价 PowerShell 用例集(参数化 ProjectRoot) | 验证骨架合规时 |
 | `../plugins/evo-herdr/skills/herdr-orch/SKILL.md` | 主开发台:初始角色邻居窗格并配合工作(通用四窗格与 PI 五窗格布局定式)、评审闸门加自省验收双闸门、任务分发 lane;ADR-0011 起,ADR-0019 双模式定形 | 定开发布局、发评审请求或写对线回执时 |
 | `../plugins/evo-herdr/skills/herdr-flywheel/SKILL.md` | 跨仓库跨项目跨机器交流(派单/回执/断言/吸收,状态门控与事件驱动收执,产物契约与状态档三件套、盘上稳态与干预信号分治,跨机器工位,并行派单义务图;协议唯一权威源,ADR-0009) | 跨仓派单、收回执或落产物契约验收对账时 |
-| `../plugins/evo-skills/skills/distil-skill/SKILL.md` | 技能自进化:三层聚合(sources 带时间轨迹总结、knowledge 带版本双链知识、operations 双端标准项目级 SKILL),四步环蒸馏提案与合取闸门 | 把项目经验沉淀成 skill、迭代标准技能集时 |
+| `../plugins/evo-skills/skills/distil-skill/SKILL.md` | 技能自进化:三层聚合(sources 唯一出处层、knowledge 带版本双链知识、operations 标准技能与 how-to 手册,git 边界三选一,归档统一字母表),四步环蒸馏提案与合取闸门 | 把项目经验沉淀成 skill、迭代标准技能集时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |

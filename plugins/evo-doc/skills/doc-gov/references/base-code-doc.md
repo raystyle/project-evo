@@ -16,3 +16,14 @@
 - **投影可再生成**:手改投影即漂移;守卫进门禁(文档断链扫描、CLI 手册与帮助面漂移守卫,见 tool-project-kit.md 门禁面)
 - **生成优于维护**:可从代码生成的面(命令树、配置表、schema)一律生成,禁手维护第二份
 - 门禁挂接:投影检查红态不进提交(与工具链范式的提交挡板同挂接点)
+
+## 代码即文档三语言形态
+
+共性四要素:权威源在代码、投影是生成物禁手改、漂移守卫进门禁、agent 入口面;可执行行为契约为加强件(must 与 must-not 断言进测试,不绿即红):
+
+| 要素 | Rust | TypeScript | Python |
+| --- | --- | --- | --- |
+| 权威源 | rustdoc `///` 加 missing_docs deny | 类型系统(.d.ts,类型即契约) | docstring 加 ruff D 系门禁 |
+| 投影 | API 投影按 crate(cargo aidoc 形),禁手改 | 类型契约投影 md(自 .d.ts 生成),禁手改 | CLI 仓:注册表三面同源(help 与 --llms 与 --schema 单源渲染);通用仓:pdoc 或零依赖投影器 |
+| 漂移守卫 | 投影 --check --strict 加契约测试 | drift 测试守恒 | 投影 --check 退出码进门禁 |
+| agent 入口 | 投影目录 llms.txt | llms 渐进检索面 | 投影随产 llms 面 |

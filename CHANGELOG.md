@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 新增(2026-10-10,第一百零一批:四仓三层聚合标准合流)
+
+- 用户立单(2026-10-10,八条裁定递进):sources 与 doc-gov 统一、四仓一致修成一个标准、优标实践回流改标准、ai-ccoe 目录正名、归档统一、doc-gov 对齐 Rust 治理、代码即文档三语言、三层项目级自持;经三实践仓反馈轮(distil-01/02/03,16 坑 10 提案断言吻合)、讨论轮(三仓全可进定稿,13 处改法采纳)、grok-01 业界对照轮(八例信源可回查,WikiSkill 排序:分叉第一、agentskills 触发面第二、Voyager 负对照第三),草案 v2 冻结(条文 13、修订清单 22、终态判据 6)
+- **ADR-0021** 立档:sources 扩为唯一出处层(三类出处分根收口,relation 两根词资格判据,否证走 supersede);git 边界三选一(分仓、分目录分 git、单仓纪律形两操作件,排除记忆库内嵌技能形);归档统一字母表八元组(ADR/REQ/R/G/M/P/S/diary 定死归层,Diataxis 判据 G 只收 how-to);doc-gov 工件归层与互指;operations 收标准技能与 how-to 手册两类,技能安装路径是加载视图(常驻面仅 name 与 description);闸门证据形态扩(门禁集轮首点名、hook 拦截入证据、隔离轮判据、触发对,不引 pass rate);取样窗口非保留期;CoALA 映射注;业界负对照排除五项
+- **distil-skill 文本改**:layers.md 重构(唯一出处层、CoALA 映射、frontmatter 样例块与 relation 词表含 supersedes、operations 标准面层含页头闸门记录段与回指、工件包拆层、加载视图、git 协议两层时点拆明、建仓五步挂三选一与字母表);loop.md(台账归一、取样窗口与保留期互指、单会话换帽);gate.md(门禁集轮首点名、证据形态扩含 hook 证据与隔离轮判据与触发对、标准面与 .claude 本机态混居边界);SKILL.md 核心思想与硬规则速览同步
+- **doc-gov 文本改**:SKILL 意图路由挂归档字母表互指,ADR/REQ 节归层句(knowledge 页型,不换 MADR 全模板),研究档案节归层句(页在 knowledge/research、原档 sources/external);base-adr 补录指引(date 取原始裁定日);base-code-doc 新增代码即文档三语言形态表(Rust aidoc 形、TS 类型契约投影加行为契约、Python docstring 加 ruff D 加三面同源投影)
+- **三仓施工单**(con-01/02/03):ai-ccoe 正名五动作已交(@019542f,graph 103/121,ADR-0006;断言五过一打回后重证);browse_rs 三层从零建与 pve-harness 归档统一加 Python 代码即文档在飞;REQ-019 登记,S015 研究档案落档
+
 ## [0.12.0] - 2026-10-10
 
 **本版破坏性变更通告**:herdr-dev 更名 herdr-orch(功能不变),doc-gov 知识面重划(COE 三层聚合与日记轨迹迁 `evo-skills:distil-skill`,agent 原生面迁 `evo-doc:native-design`),旧触发词失效。已装 evo-doc 与 evo-herdr 者逐插件 update 至 0.6.0;新插件 evo-skills 按需安装(`evo-skills@project-evo`);Kimi 手拷者删旧 skill 目录(含 herdr-dev)重拷三插件五 skill;各端旧版本缓存目录(0.5.x)可整目录删除。
