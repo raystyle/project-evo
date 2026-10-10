@@ -66,6 +66,8 @@
 | herdr 集成 py 脚本重评估 | 已完成 | 2026-10-08 第九十六批(REQ-015):部分翻转;S011 原写触发(lane 探针/扫描)未 fired,但舰队运维轮普通进程通道手拼十余次,沉淀铁律在总台面成立,建本仓 .tools/fleet-exec.py 运维薄封装(逐条回显 herdr 命令);插件面维持纯知识(ADR-0018 不动);lane 实跑二犯再议插件面与更重脚本;kimi 委派驱动仍待专项研究 |
 | 封版 v0.11.2 | 已完成 | 2026-10-09 第九十八批:doc-gov 四形态定形(增研究档案 base-research)与项目工具链范式(tool-project-kit),references 7 至 9 篇,裁定形态跟项目形态走只有合适的没有硬性;REQ-016 与 S013 落地;版本载体 0.5.1 齐 0.5.2;tag v0.11.2 加 GitHub Release |
 | 封版 v0.12.0 | 已完成 | 2026-10-10 第九十九至一百批:herdr-flywheel 产物契约三件套 brief/state/receipt 与盘上稳态信号分治(REQ-017,邻居窗格回归实测);三插件五 skill 版图(ADR-0020):evo-skills 立项 distil-skill 技能自进化(三层聚合加合取闸门,S014 wikiskill 对照)、doc-gov 三向拆分(native-design 抽离)、herdr-dev 更名 herdr-orch;版本载体齐 0.6.0;tag v0.12.0 加 GitHub Release;业界对照评估与四端无头模式研究吸收(wiki-03/04) |
+| 四仓三层聚合标准合流 | 已完成 | 2026-10-10 第一百零一批:ADR-0021(sources 唯一出处层、git 边界三选一含单仓纪律形、归档统一字母表八元组、doc-gov 工件归层、operations 两类与加载视图、闸门证据形态扩、supersede 否证流、CoALA 映射、业界负对照排除);distil-skill 与 doc-gov 文本随 22 项修订清单落地;三实践仓施工单回执断言收口(ai-ccoe 正名五动作加 R1 至 R3 小修、browse_rs 三层从零建加首技能 gate-verdict 人裁入集与触发对实证、pve-harness 归档统一加 Python 代码即文档;其间会话中断盘上续派一次,租约纪律实证);REQ-019 与 S015 落地;check PE-02/03 扩双形;终态判据六条全仓验收过;版本线 0.6.0 不动待封版批 |
+| md-guard 按仓豁免配置 | 待定 | 2026-10-10 pve-harness 施工报备:插件 md-guard 钩子对下游仓自有豁免路径与 external 第三方原文三度误拦;钩子豁免按仓配置机制待立(积压) |
 
 ## 阶段三：延伸（进行中）
 

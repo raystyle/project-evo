@@ -22,4 +22,4 @@
 | REQ-016 | implemented | must | doc-gov 研究形态与工具链范式 | tests/test_project_evo.py |
 | REQ-017 | implemented | must | herdr 飞轮产物契约与共享文件 | tests/test_project_evo.py |
 | REQ-018 | implemented | must | 三插件五 skill 版图与 distil-skill 技能自进化 | tests/test_project_evo.py |
-| REQ-019 | draft | must | 四仓三层聚合标准合流与两 skill 终态 | tests/test_project_evo.py |
+| REQ-019 | implemented | must | 四仓三层聚合标准合流与两 skill 终态 | tests/test_project_evo.py |
