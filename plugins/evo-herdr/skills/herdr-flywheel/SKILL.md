@@ -1,21 +1,23 @@
 ---
 name: herdr-flywheel
 description: >-
-  herdr 跨仓模式:不同仓库的 agent 工作台对话交流与治理协作。一个总台协调多个单仓工位,
+  herdr 跨仓模式:跨仓库、跨项目、跨机器的 agent 工作台交流与治理协作。一个总台协调多个单仓工位,
   派单、回执、断言、吸收四步循环,并行轮按义务图运转。涵盖 herdr agent prompt 原子派单、
   agent get 状态门控、agent wait 事件驱动收执、agent read 收回执、独立复核断言、反馈吸收分流、
-  工位带起顺序与多 agent kind、跨机器工位路由、并行派单义务图纪律、治理操作坑。
-  本 skill 是该协议唯一权威源;herdr 命令语法的活权威是本机直跑 herdr --skill;
-  开发模式(窗格布局、评审闸门、自省验收、lane 任务分发)在同插件 herdr-dev。
-  Use when 跨仓派发治理任务、收 herdr 工位回执、做总台轮次协调、多工位并行派单时;触发词 herdr、
-  飞轮、跨仓、派单、回执、工位、多仓治理、并行派单、义务图、跨机器工位、--machine、状态门控、
-  事件驱动、agent wait、codex、grok、kimi。
+  产物契约与状态档(统一标准路径三件套:发起笺 brief、状态档 state、产物笺 receipt,盘上稳态
+  加 herdr 干预信号分治)、工位带起顺序与多 agent kind、跨机器工位路由、并行派单义务图纪律、
+  治理操作坑。本 skill 是该协议唯一权威源;herdr 命令语法的活权威是本机直跑 herdr --skill;
+  开发模式(窗格布局、评审闸门、自省验收、lane 任务分发)在同插件 herdr-orch。
+  Use when 跨仓派发治理任务、收 herdr 工位回执、做总台轮次协调、多工位并行派单、跨窗格发起
+  任务或委托或同步、落产物契约与验收对账时;触发词 herdr、飞轮、跨仓、派单、回执、工位、
+  多仓治理、并行派单、义务图、跨机器工位、--machine、状态门控、事件驱动、agent wait、
+  产物契约、状态档、发起笺、brief、产物笺、receipt、验收对账、共享文件、codex、grok、kimi。
 compatibility: 需 herdr 管理的工位会话(HERDR_ENV=1);各工位侧仓自带门禁
 ---
 
 # herdr 飞轮跨仓协作
 
-> 跨仓模式:一个总台协调多个单仓 herdr 工位(仓加 workspace 加 pane 加常驻 agent 会话)对话交流与治理协作,派单、回执、断言、吸收四步循环。沉淀自 2026-09-16 六仓四轮实证(对齐、标准态、终态、扩编与讨论)与后续实践轮。开发模式(窗格布局、评审闸门、自省验收、lane 任务分发)在同插件 herdr-dev。
+> 跨仓模式:一个总台协调多个单仓 herdr 工位(仓加 workspace 加 pane 加常驻 agent 会话)跨仓库、跨项目、跨机器交流与治理协作,派单、回执、断言、吸收四步循环。沉淀自 2026-09-16 六仓四轮实证(对齐、标准态、终态、扩编与讨论)与后续实践轮。主开发台面(窗格布局、评审闸门、自省验收、lane 任务分发)在同插件 herdr-orch。
 
 ## 工位形态与带起
 
@@ -26,22 +28,22 @@ compatibility: 需 herdr 管理的工位会话(HERDR_ENV=1);各工位侧仓自�
 | 机器 | machine(label 加独立 server) | 远程一等公民,workspace/tab/pane 全套自成一套 | 假设 pane 编号跨机唯一 |
 | 工作台(工位) | workspace(w 号) | **一仓一台**(仓工位)或一任务一台(临时会话);用户惯称「窗台」 | 新工位误开 split pane 或 tab [实证: 2026-09-23 lan-ubuntu OfficeCLI 工位两连错形后归位] |
 | TAB 页 | tab(t 号) | 同工位内多上下文页,舰队罕用 | 新工位 = 开新 tab(错形) |
-| 窗格 | pane(p 号) | agent 驻留位;工位主格 = workspace 根格;右分格 = 评审格专用形(开发模式布局见 herdr-dev) | 评审格形态当成工位 |
+| 窗格 | pane(p 号) | agent 驻留位;工位主格 = workspace 根格;右分格 = 评审格专用形(主开发台布局见 herdr-orch) | 评审格形态当成工位 |
 
 ### 新工位带起配方(本机三步;跨机各步前置 `--machine <label>`,仓先在该机备好)
 
 ```bash
 herdr workspace create --cwd <仓路径>                 # 返回 workspace 与 root_pane(如 w7:p1)
 herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即派单地址(编号会漂,名不漂)
-# 仓内 cwd 首启弹目录信任屏:pane read 实证后替答(裁定归用户;本 fleet 仓默认可信);
+# 仓内 cwd 首启弹目录信任或确认选择屏(claude、grok 等形态):pane read 实证后替答(裁定归用户;本 fleet 仓默认可信);
 # claude 2.x 随后再弹外部导入问屏,按需选答。零信任屏复启 = 该 cwd 信任已录。
 ```
 
 - 每仓一个 herdr 工位,总台自成工位;派单地址 = pane ID,从 herdr agent list 的 JSON 响应取,不猜不背;live 唯一的 agent 名亦可作地址
-- **多 agent kind 工位**:`--kind` 随委派对象定(codex、grok、kimi 等);pane 内先跑 `<cli> --version` 探真解析(command -v 会踩版本管理 shim 假解析);启动特化与环境预检见同插件 herdr-dev 的 lane-dispatch 篇
+- **多 agent kind 工位**:`--kind` 随委派对象定(codex、grok、kimi 等);pane 内先跑 `<cli> --version` 探真解析(command -v 会踩版本管理 shim 假解析);启动特化与环境预检见 ../herdr-orch/references/lane-dispatch.md
 - **工位编号会漂移**:合同与旧档写的编号不可信,派单前必 herdr agent list 实查 [实证: 2026-09-16 合同写法与实况两轮不符]
 - **带起顺序 = hst init --yolo 先于 agent 驻场**:会话许可模式在驻场时定格,后落盘的 yolo 不被追认,全会话停在旧审批态致阻塞 [实证: 2026-09-16 八工位驻场先于 yolo 落盘,全会话审批阻塞];可提 hst doctor 增加「会话活模式与盘上 yolo 一致性」检测项
-- idle 与 done 皆可派,差别仅 seen 标记(pane 与 agent focus 标 seen,agent read 不标);blocked 是等人裁,问用户不代答;working 可插队,回执甄别见派单节;unknown 不判死,`herdr agent explain <工位>` 看检测规则与证据后处置;状态优先来自集成上报,无上报退回屏幕检测
+- idle 与 done 皆可派,差别仅 seen 标记(pane 与 agent focus 标 seen,agent read 不标);blocked 是等人裁,问用户不代答;working 可插队,回执甄别见派单节;unknown 不判死,`herdr agent explain <工位>` 看检测规则与证据后处置;状态优先来自集成上报,无上报退回屏幕检测;这些实时态只作派单门控与干预信号,完成与在办判定用盘上状态档(交流分型与产物契约节)
 - 勿关非自建工位(workspace、tab、pane、session)
 
 ## 跨机器工位
@@ -58,11 +60,19 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 - **失败不证未应用**:跨机连接失败不证变更未落远端(同 prompt 超时族),重试前先查远端实态;setup 遇不兼容 server 先问用户,默认 No,不经同意不批准替换 [实证: herdr 0.9.1 --skill 直读]
 - **stalled 误报处置**:跨机 prompt 可能报 `agent_prompt_stalled`(CLI 观察窗内未见 working/blocked 态),文本往往已送达且 agent 正常回执;处置 = `herdr --machine X agent read` 实读 pane 确认送达与回执,确认前不重发,防重复派单
 
+## 交流分型与产物契约
+
+- **交流先分型**:任务型(要产出、有验收判据)、委托型(核查评审调研、要结论回执)、同步型(周知通报、要留痕确认)三型文件化;讨论型(征求意见、不落仓)不文件化,屏读加吸收
+- **三件套落统一标准路径**:系统临时目录 `herdr-flywheel/<轮次>/` 下,每笔交流一个单号三件:`<单号>-brief.md`(发起笺,发起方写,验收基准)加 `<单号>-state.md`(状态档,接收方自写)加 `<单号>-receipt.md`(产物笺,逐件对账);发起方不限总台,任何窗格 agent 都可发起任务、委托、同步 [实证: 2026-10-10 邻居窗格 flywheel-01 委托轮全链走通,三检查点与逐件对账齐]
+- **盘上稳态,herdr 信号**:所有状态与产物由 agent 自己写盘产生确定稳态;herdr 生命周期态(idle、working、blocked、done)只是实时干预信号,不进验收判据(判读矩阵见 references/artifacts.md)
+- 路径、模板、状态档检查点、跨机细则与官方口径分野见 references/artifacts.md
+
 ## 四步协议
 
 ### 派单
 
 - **prompt 自包含**:任务清单逐件可判(过/缺/不适用)加标准权威路径加回执格式;接收方没有派发方的上下文
+- **契约先行**:任务、委托、同步三型派单先落发起笺 brief 到共享目录再发单,prompt 全文仍自包含,文末附 brief 与 state 路径,指令接收方按检查点自写状态档、回执逐件对账(模板与路径见 references/artifacts.md)
 - **状态门控先行**:派单前 `herdr agent get <工位>`(跨机 `herdr --machine <label> agent get`)判 agent_status:idle 与 done 直派;working 不硬注入,先 `herdr agent wait <工位> --until idle --until done --until blocked --timeout <租约余量毫秒>` 排队候位或走插队条;blocked 被拒收(agent_blocked)属常态,查 UI 问用户再动;unknown 不派,`herdr agent explain <工位>` 排查检测态
 - 正式派单恒走 `herdr agent prompt <pane> "<任务>" --wait --timeout <毫秒>`:原子提交文本加编码 Enter,**提交与等待同一请求**(避开先 prompt 后 wait 的空窗);--wait 自带活动闸门,非 working 态提交后 5 秒内未见 working 或 blocked 活动即 `agent_prompt_stalled`,见到活动后才等收束态(默认 idle、done、blocked);提交时对方已在 working,其在跑轮收束即可满足等待,插队完成甄别见插队条;对 blocked 工位拒收(agent_blocked),先查 UI 问用户再动;超时与 stalled 都不证未送达 [经验: 2026-10-02 官方 Agent automation 与 Socket API 语义,首跑回填]
 - **开工探针**:甄别真开工用 `herdr agent wait <工位> --until working --timeout <毫秒>`,已在跑立即返回;turn 短于探针启动则探针必超时,失败不证任务失败、不证上一句未送达;本地热工位秒级即可,冷启动与远程放宽(活动闸门窗为 5 秒级)
@@ -75,7 +85,7 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 - **事件驱动收执**:正式派单的 --wait 已含收束等待(见派单节);插队单与补等走独立 `herdr agent wait <工位> --until idle --until done --until blocked --timeout <毫秒>` 阻塞等收束事件(现态已命中即返不空等;`--until` 逐态重复给旗标、或关系,逗号串无效;不要审批提前收束就只给 `--until idle --until done`;prompt 上的 --until 须搭配 --wait),返回即 `herdr agent read` 收回执,不靠人工记挂与轮询清册
 - **超时兜底**:wait 必带 timeout(省略即无限期;超时是调用方租约,不改写 agent 状态);超时与服务器错误 JSON 走 stderr、退出码 1(语法错误退出码 2),成功时当前 agent 在 `.result.agent`;处置 = 看 error.code 加 `agent get` 判现态加 `agent read` 实读判送达,确认送达前不重发(超时不证未送达,重投可能跑两遍;与 stalled 处置同源);timeout 不超租约余量,连续超时即失联判据成立,按租约改派走(references/parallel.md);wait 钉住解析时的窗格占用者,窗格中途移走以 `agent_not_running` 结束,改用新 pane_id 或 agent 名重等 [经验: 2026-10-02 官方口径,首跑回填]
 - **审批与提问面**:等审批用 `herdr agent wait <工位> --until blocked --timeout <毫秒>`,`agent read` 实读界面后 send-keys 送键处置或问用户,不代答
-- `herdr agent read <pane> --source recent-unwrapped --lines <N>` 收回执;长响应在备用屏读不全时,兜底请对方落临时 md 文件回路径再直读(仅兜底,初版派单不预设文件回执)
+- **三型恒文件回执**:任务、委托、同步型回执落共享目录 `<单号>-receipt.md`,会话只回路径加一句摘要,发起方直读文件断言;讨论型与短确认仍 `herdr agent read <pane> --source recent-unwrapped --lines <N>` 屏读;长响应备用屏读不全的兜底保留,坑面收窄到讨论型(官方 herdr 口径是仅兜底不预设文件回执,本协议三型有意升格,分野见 references/artifacts.md)
 - **对方陈述不作数**:commit sha 自取 git log、门禁自跑取退出码(落盘直跑,不接吞退出码管道)、CI 自取 gh run conclusion
 - 断言带原文证据:说某文本「仍是旧口径」必须引读到的行,grep 反证优先于口头回执 [实证: 六仓轮中一次旧文误报被 grep 反证]
 - 零改动回执合法,不强制造提交;不适用面一句裁定留痕即可
@@ -83,11 +93,14 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 ### 断言
 
 - 总台对回执逐项独立复核:工位自证加总台实查对账(如行尾统一轮:工位自证三项,总台独立复核吻合)
+- **对账以 brief 为基准**:断言逐件对照发起笺核 receipt,盘上是权威、会话是信道;receipt 件号不齐或与笺上判据错位即打回重证
+- **完成判定用稳态不用信号**:herdr 态与状态档交叉判读(干预矩阵见 references/artifacts.md);done 不作完成判据,已交以状态档加 receipt 对账为准
 - 复核不过打回重证,不采信口头补述
 
 ### 吸收
 
 - 每轮回执中的标准反馈当场分流:文案缺口直改、机制缺口进 ROADMAP 积压、不可逆裁定立 ADR
+- 轮次收尾共享档择要吸收进仓(证据与标准文本),临时目录不承诺长存
 - 工位实踩提炼成纪律条目回写本 skill(references/pitfalls.md),复利即在此
 
 ## 并行派单与义务图
@@ -108,5 +121,6 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 ## 参考
 
 - references/pitfalls.md:治理操作坑实录(send-text 草稿、工位编号漂移、checkout-index 假成功、racily-clean 整片 M、备用屏读不全、yolo 带起时序、跨机器 stalled 误报与编号不全局唯一),按现象、根因、修法三段收录
+- references/artifacts.md:产物契约与状态档细则(统一标准路径、交流分型、三件套 brief/state/receipt 模板、状态档检查点、herdr 信号乘盘上稳态干预矩阵、跨机细则、与官方仅兜底口径的分野)
 - references/parallel.md:并行派单与义务图操作细化(台账五字段、条件归约派单写法、租约改派、任务与尝试记账、重评估三选一、瓶颈三判、四步协议映射)
-- 开发模式(窗格布局定式、评审闸门、自省验收、lane 任务分发)是跨仓协议的开发特化,见同插件 skill `evo-herdr:herdr-dev`(ADR-0011 起,ADR-0019 双模式定形)
+- 主开发台面(窗格布局定式、评审闸门、自省验收、lane 任务分发)是本协议的单工位开发特化,见同插件 skill `evo-herdr:herdr-orch`(ADR-0011 起,ADR-0019 双模式定形,第一百批更名收敛)

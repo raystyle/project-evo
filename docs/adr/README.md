@@ -23,3 +23,4 @@
 | ADR-0017 | accepted | evo-codesec 插件下线,市场收敛两插件五 skill | |
 | ADR-0018 | accepted | 三 skill 合一为 doc-gov,evo-adr 改名 evo-doc,skill 与 hook 解耦 | |
 | ADR-0019 | accepted | herdr 双模式定形:开发模式 herdr-dev 含 review 窗格,跨仓模式 herdr-flywheel | |
+| ADR-0020 | accepted | 三插件五 skill 版图:evo-skills 立项 distil-skill,doc-gov 三向拆分,herdr-dev 更名 herdr-orch | 0019 更名 |

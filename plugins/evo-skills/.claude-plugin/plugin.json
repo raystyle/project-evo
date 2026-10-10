@@ -1,0 +1,19 @@
+{
+  "name": "evo-skills",
+  "version": "0.6.0",
+  "description": "项目进化技能自进化:distil-skill 三层聚合(sources 带时间的历史轨迹总结、knowledge 带版本的双向链接关联结构化知识、operations 为 Claude Code 与 Codex 双端支持的标准项目级 SKILL);痕迹蒸馏、一案提案、合取闸门与 no_action 合法出口",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/evo-skills",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "skill",
+    "self-evolution",
+    "distillation",
+    "knowledge",
+    "llm"
+  ]
+}

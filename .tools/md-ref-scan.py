@@ -23,8 +23,10 @@ SKIP = {
     # 报告类产物名兜底(审计/报告输出文件,非仓内静态文件)
     "REPORT.md", "FINDINGS-DETAIL.md", "NEEDS-VALIDATION.md",
     "architecture.md", "FILE.md",
+    # herdr-flywheel 产物契约三件套示意名(<单号>-brief/state/receipt.md 落临时目录)
+    "-brief.md", "-state.md", "-receipt.md",
 }
-REF = re.compile(r"((?:[A-Za-z0-9_\-]+[/\\])*[A-Za-z0-9_\-]+\.md)")
+REF = re.compile(r"((?:\.\./|(?:[A-Za-z0-9_\-]+[/\\]))*[A-Za-z0-9_\-]+\.md)")
 
 
 def scan(root: Path) -> list[str]:

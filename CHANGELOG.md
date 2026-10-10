@@ -4,6 +4,24 @@
 
 ## [Unreleased]
 
+### 新增(2026-10-10,第一百批:三插件五 skill 版图与 distil-skill 技能自进化)
+
+- 用户立单(2026-10-10):与 grok 邻格对照研究 wikiskill(走产物契约协议研究轮 wiki-01,S014)后,把 doc-gov 的三层聚合剥离,立第三插件 evo-skills 承载新技能 distil-skill:项目基于自身执行经验自动产生并迭代项目级标准 skill,支持 Claude Code 与 Codex 双端。裁定三层定义:**sources = 带时间的历史轨迹总结,knowledge = 带版本的双向链接关联结构化知识,operations = 产物为双端支持的标准项目级 SKILL**;合取闸门(门禁无回归、点名义务翻转、知识链接成立)替均值闸,no_action 合法出口,知识层永不回滚、标准层拒绝即回滚
+- **evo-skills 插件**落地(双 manifest、README、四端安装面);distil-skill 含 SKILL 与 references 五篇(layers、trajectories、loop、gate、backends);双端命令面以本机 --help 实查为准(实证 claude 与 codex 参数面)
+- **doc-gov 三向拆分**:base-coe 删(知识升级进 distil-skill layers)、base-diary 迁为 trajectories(日记即轨迹总结,归 sources 层)、agent-face 与 tool-cli-agents 与 templates 三篇迁入新 skill **native-design**(evo-doc 第二 skill);doc-gov 聚焦 ADR/REQ、代码 doc 注释契约(新立 base-code-doc)、文档即代码、研究档案、工具链范式,references 9 篇收 5 篇
+- **herdr-dev 更名 herdr-orch**(定位:主开发台初始各工作角色邻居窗格并开始配合工作,功能不变),herdr-flywheel 收准跨仓库跨项目跨机器交流;两 skill 通用原则入条文:herdr 态是检测信号,md 文件是状态与产物
+- **评审与吸收**:wiki-02 评审轮(grok)三处建议全收(SKILL 篇数计数、layers 知识页 FIX 收口、backends 未实证旗标删改);wiki-03 全库业界对照评估轮(agentskills spec、Anthropic 写作实践、双市场惯例、agents.md、MADR、Diátaxis;必改二:Codex defaultPrompt 废名与 AGENTS Must 两插件残句;应改三:正斜杠路径、diary 地图归位、跨 skill 相对引用可达,md-ref-scan 扩 ../ 解析;可选四含补 evo-skills README 与市场顶层 description);蒸馏环最小实测走通(确认选择屏坑蒸馏成 pitfalls 条目,合取闸门核验)
+- **无头模式三档与四端**:有人值守、无头边界内、全开 yolo(仅外部隔离环境)入 backends;wiki-04 四端研究轮(claude、codex、grok、kimi)给出各端无头边界内推荐形逐旗标实查;kimi 无沙箱无对等档,`-p` 按全开处置;生成维护 SKILL 的环默认无头边界内,接受与发布停人裁
+- ADR-0020 立档登记;S014 研究档案落档登记;REQ-018 登记;测试清单与 pre-commit 扩三插件五 skill;版本线统一 **0.6.0**(三插件双 manifest、双市场清单、三 README)
+
+### 新增(2026-10-10,第九十九批:herdr-flywheel 产物契约与共享文件)
+
+- 用户立单(2026-10-10):跨窗格飞轮对话产物落临时目录统一标准路径 md 文件共享,任务与委托型交流由提示词生成文件产物、验收按文件对账达成一致;裁定**发起方不限总台**(任何窗格 agent 可发起委托与同步)与**盘上稳态加 herdr 干预信号分治**(状态与产物由 agent 自己写盘,herdr 生命周期态只作干预检查信号,不是稳态)
+- SKILL.md 落「交流分型与产物契约」节(任务、委托、同步三型文件化,讨论型不文件化;三件套 brief/state/receipt;门控用信号、判定用稳态),派单、回执、断言、吸收四节同步条文,description 触发词补产物契约面
+- references 落 artifacts.md(统一标准路径、交流分型判据、三件套模板、状态档四检查点、干预矩阵、跨机细则、与官方仅兜底口径的分野;2 篇至 3 篇);pitfalls 两坑修法(done 假象、备用屏读不全)与 parallel 条件归约挂接同步;md-ref-scan 示意名跳过表补三件套名
+- 邻居窗格回归实测全链走通(flywheel-01 委托轮:brief 原子写、kimi 验证工位三检查点状态档、receipt 逐件对账带行号证据、会话只回路径加摘要;prompt --wait 提交即返场景实证信号与稳态分治)
+- 版本载体 0.5.2 升 **0.5.3**(两插件同线齐平;批 97 内容分发版本载体纪律),双 manifest 加市场清单加两插件 README 一致;REQ-017 登记;门禁全绿(pytest 26 用例、md-ref-scan、check、scan)
+
 ## [0.11.2] - 2026-10-09
 
 ### 新增(2026-10-09,第九十八批:doc-gov 四形态定形与工具链范式)

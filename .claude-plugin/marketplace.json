@@ -3,23 +3,30 @@
   "owner": {
     "name": "raystyle"
   },
+  "description": "项目进化:三插件五 skill(文档治理与原生设计 evo-doc、多仓协作 evo-herdr、技能自进化 evo-skills)",
   "metadata": {
-    "description": "项目进化:两插件三 skill(文档治理 evo-doc、多仓协作 evo-herdr)",
-    "pluginRoot": "./plugins"
+    "description": "项目进化:三插件五 skill(文档治理与原生设计 evo-doc、多仓协作 evo-herdr、技能自进化 evo-skills)"
   },
   "plugins": [
     {
       "name": "evo-doc",
       "source": "./plugins/evo-doc",
-      "description": "项目进化文档治理:doc-gov(文档框架治理知识:ADR 需求决策、COE 三层聚合与双向链接图、项目日记与研究档案四形态,加 Agent 友好 CLI 架构标准与项目工具链范式)",
-      "version": "0.5.2",
+      "description": "项目进化文档治理:doc-gov(ADR 与 REQ 需求决策、代码 doc 注释与文档即代码、研究档案、项目工具链范式)与 native-design(Agent 原生友好开发:--llms 手册面、类型化 CTA 协议、命令自省、发现通道与 token 经济学)",
+      "version": "0.6.0",
+      "category": "productivity"
+    },
+    {
+      "name": "evo-skills",
+      "source": "./plugins/evo-skills",
+      "description": "项目进化技能自进化:distil-skill 三层聚合(sources 带时间的历史轨迹总结、knowledge 带版本的双向链接关联结构化知识、operations 为 Claude Code 与 Codex 双端支持的标准项目级 SKILL);痕迹蒸馏、一案提案、合取闸门与 no_action 合法出口",
+      "version": "0.6.0",
       "category": "productivity"
     },
     {
       "name": "evo-herdr",
       "source": "./plugins/evo-herdr",
-      "description": "项目进化多仓协作:herdr-dev(开发模式:通用四窗格与 PI 五窗格布局定式、评审闸门加自省验收双闸门、任务分发 lane)与 herdr-flywheel(跨仓模式:四步协议派单回执断言吸收、状态门控与事件驱动收执、跨机器工位与并行义务图)",
-      "version": "0.5.2",
+      "description": "项目进化多仓协作:herdr-orch(主开发台:通用四窗格与 PI 五窗格布局定式、评审闸门加自省验收双闸门、任务分发 lane)与 herdr-flywheel(跨仓库跨项目跨机器交流:四步协议派单回执断言吸收、状态门控与事件驱动收执、产物契约与状态档三件套、并行义务图)",
+      "version": "0.6.0",
       "category": "productivity"
     }
   ]

@@ -1,7 +1,7 @@
 {
   "name": "evo-doc",
-  "version": "0.5.2",
-  "description": "项目进化文档治理:doc-gov(文档框架治理知识:ADR 需求决策、COE 三层聚合与双向链接图、项目日记与研究档案四形态,加 Agent 友好 CLI 架构标准与项目工具链范式)",
+  "version": "0.6.0",
+  "description": "项目进化文档治理:doc-gov(ADR 与 REQ 需求决策、代码 doc 注释与文档即代码、研究档案、项目工具链范式)与 native-design(Agent 原生友好开发:--llms 手册面、类型化 CTA 协议、命令自省、发现通道与 token 经济学)",
   "author": {
     "name": "raystyle"
   },
@@ -20,8 +20,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Evo Doc",
-    "shortDescription": "项目进化文档治理:doc-gov 文档框架治理知识(ADR、COE、项目日记、研究档案四形态,加 Agent 友好 CLI 架构标准与项目工具链范式)。",
-    "longDescription": "单 skill:doc-gov 指导项目的 ADR(需求决策:ADR 与 REQ 状态机与 trace 回填)、COE(三层聚合:sources 依据、knowledge 结论、operations 手册单向支撑;[[双链]]与 _index 图双向检索)、项目日记(一天一篇活轨迹,裁定与坑留痕,择要升格)、研究档案(S 编号一题一篇,信源与过程证据,六态结论与对照分流)四类文档形态,与 Agent 友好 CLI 架构标准(--llms 手册面、旗标全家与类型化 CTA 协议、默认帮助面、活命令树自省、裸调用面、发现通道与 token 经济学)及项目工具链范式(工具归档、PEP 723 零依赖 uv 直跑、门禁三态与提交挡板、发布三段式)。插件级 PostToolUse hook 提供 md 禁字挡板(与 skill 解耦,规则唯一权威 scripts/mdrules.py)。",
+    "shortDescription": "项目进化文档治理:doc-gov(ADR 与 REQ 需求决策、代码 doc 注释与文档即代码、研究档案、工具链范式)与 native-design(Agent 原生友好开发)。",
+    "longDescription": "两个 skill:doc-gov 是文档框架治理知识库(ADR 架构决策与 REQ 需求登记状态机、代码 doc 注释契约(改公开项同步注释与测试,what 进注释 why 进 ADR)、文档即代码(单一权威源,README 手册与 --llms 面皆投影,可再生成不手改,漂移守卫进门禁)、研究档案(S 编号一题一篇,六态结论与对照分流)、项目工具链范式(工具归档、PEP 723 零依赖 uv 直跑、门禁三态与提交挡板、发布三段式));native-design 是 Agent 原生友好开发指导(--llms 紧凑手册面、旗标全家与类型化 CTA 输出协议、默认帮助面节序、活命令树三面同源自省、裸调用面、发现通道选型与 token 经济学、任务脚本 workspace、双面可拷模板)。三层聚合与技能自进化见市场插件 evo-skills。插件级 PostToolUse hook 提供 md 禁字挡板(与 skill 解耦,规则唯一权威 scripts/mdrules.py)。",
     "developerName": "raystyle",
     "category": "Productivity",
     "capabilities": [
@@ -30,8 +30,8 @@
     ],
     "defaultPrompt": [
       "用 doc-gov 给这个项目立 ADR 与 REQ 需求决策体系。",
-      "用 doc-gov 建一个 COE 知识库操作台(三层聚合加双向链接图)。",
-      "用 doc-gov 给这个 CLI 配 --llms 手册与 agent 友好输出协议。"
+      "用 native-design 给这个 CLI 配 --llms 手册与 agent 友好输出协议。",
+      "用 doc-gov 给这个项目立代码契约注释与文档即代码守卫。"
     ]
   }
 }

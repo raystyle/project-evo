@@ -16,13 +16,14 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-PLUGIN_NAMES = ("evo-doc", "evo-herdr")
+PLUGIN_NAMES = ("evo-doc", "evo-herdr", "evo-skills")
 PLUGINS = {n: REPO / "plugins" / n for n in PLUGIN_NAMES}
 SCRIPTS = REPO / ".tools"
 GUARD = PLUGINS["evo-doc"] / "scripts" / "md-guard.py"
 SKILLS = {
-    "evo-doc": ["doc-gov"],
-    "evo-herdr": ["herdr-dev", "herdr-flywheel"],
+    "evo-doc": ["doc-gov", "native-design"],
+    "evo-herdr": ["herdr-orch", "herdr-flywheel"],
+    "evo-skills": ["distil-skill"],
 }
 
 

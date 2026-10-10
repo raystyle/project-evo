@@ -6,3 +6,4 @@
 | --- | --- |
 | 派单面与总台统一操作的踩坑对照与修法 | [pitfalls.md](pitfalls.md) |
 | 并行轮按义务图运转的操作细化 | [parallel.md](parallel.md) |
+| 落产物契约、状态档与三件套模板,查干预矩阵 | [artifacts.md](artifacts.md) |
