@@ -21,7 +21,7 @@ PLUGINS = {n: REPO / "plugins" / n for n in PLUGIN_NAMES}
 SCRIPTS = REPO / ".tools"
 GUARD = PLUGINS["evo-doc"] / "scripts" / "md-guard.py"
 SKILLS = {
-    "evo-doc": ["doc-gov", "native-design"],
+    "evo-doc": ["doc-gov", "doc-cli"],
     "evo-herdr": ["herdr-orch", "herdr-flywheel"],
     "evo-distil": ["distil-skill"],
 }

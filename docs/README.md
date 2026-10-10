@@ -28,9 +28,9 @@
 | `../plugins/evo-doc/skills/doc-gov/references/base-code-doc.md` | 代码 doc 注释契约与文档即代码(单一权威源、投影再生成) | 立代码契约注释或投影守卫时 |
 | `../plugins/evo-doc/skills/doc-gov/references/base-research.md` | 研究档案形态(S 编号一题一篇、六态结论、对照分流) | 立研究档案时 |
 | `../plugins/evo-doc/skills/doc-gov/references/tool-project-kit.md` | 项目工具链范式(工具归档、PEP 723 零依赖 uv 直跑、门禁与发布) | 建项目工具骨架时 |
-| `../plugins/evo-doc/skills/native-design/SKILL.md` | Agent 原生友好开发指导(五件速览与意图路由) | 造或改 agent 友好 CLI 时 |
-| `../plugins/evo-doc/skills/native-design/references/agent-face.md` | Agent 友好 CLI 五件(手册面、CTA 协议、帮助面、自省、裸调用) | 配 CLI agent 面时 |
-| `../plugins/evo-doc/skills/native-design/references/tool-cli-agents.md` | agent-native CLI 设计(发现通道、token 经济学、脚本 workspace) | 定发现通道与 token 面时 |
+| `../plugins/evo-doc/skills/doc-cli/SKILL.md` | Agent 原生友好开发指导(五件速览与意图路由) | 造或改 agent 友好 CLI 时 |
+| `../plugins/evo-doc/skills/doc-cli/references/agent-face.md` | Agent 友好 CLI 五件(手册面、CTA 协议、帮助面、自省、裸调用) | 配 CLI agent 面时 |
+| `../plugins/evo-doc/skills/doc-cli/references/tool-cli-agents.md` | agent-native CLI 设计(发现通道、token 经济学、脚本 workspace) | 定发现通道与 token 面时 |
 | `../.tools/README.md` | 本仓自用脚本工具登记(md-ref-scan、init、check、scan) | 跑仓门禁或维护骨架模板时 |
 | `../.tools/verification/command-test-cases.md` | check 的等价 PowerShell 用例集(参数化 ProjectRoot) | 验证骨架合规时 |
 | `../plugins/evo-herdr/skills/herdr-orch/SKILL.md` | 主开发台:初始角色邻居窗格并配合工作(通用四窗格与 PI 五窗格布局定式)、评审闸门加自省验收双闸门、任务分发 lane;ADR-0011 起,ADR-0019 双模式定形 | 定开发布局、发评审请求或写对线回执时 |

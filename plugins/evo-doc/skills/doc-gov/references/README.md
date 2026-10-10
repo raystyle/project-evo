@@ -29,4 +29,4 @@ rg -n "关键词" references/README.md        # 索引定位
 rg -n "关键词" references/                 # 全文直搜
 ```
 
-跨插件分流:三层聚合与技能自进化(轨迹总结、模式页、标准 skill)见 `evo-distil:distil-skill`;Agent 原生友好开发(--llms 手册、CTA 协议、自省)见同插件 `native-design`;多仓飞轮协作见 `evo-herdr:herdr-flywheel`。
+跨插件分流:三层聚合与技能自进化(轨迹总结、模式页、标准 skill)见 `evo-distil:distil-skill`;Agent 原生友好开发(--llms 手册、CTA 协议、自省)见同插件 `doc-cli`;多仓飞轮协作见 `evo-herdr:herdr-flywheel`。

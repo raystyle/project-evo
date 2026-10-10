@@ -32,7 +32,7 @@ description: >-
 | 立研究档案 / S 编号一题一篇 / 对照分流与六态结论 | `references/base-research.md` |
 | 建项目工具链 / uv 与 PEP 723 形态 / 门禁挂接与发布面 | `references/tool-project-kit.md` |
 | 三层聚合与技能自进化 / 轨迹总结 / 模式页 / 标准 skill / 归档统一字母表与本面工件归层 | 同市场技能 `evo-distil:distil-skill`(唯一权威源) |
-| Agent 原生友好开发 / --llms 手册 / CTA 协议 / 自省 | 同插件 skill `evo-doc:native-design` |
+| Agent 原生友好开发 / --llms 手册 / CTA 协议 / 自省 | 同插件 skill `evo-doc:doc-cli` |
 | 多仓飞轮协作 / 派单回执 | 同市场技能 `evo-herdr:herdr-flywheel` |
 
 ## 二、知识库检索(rg 定位 + 结构提取)

@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### 变更(2026-10-11,第一百零七批:native-design 更名 doc-cli)
+
+- 用户令:evo-doc 内 skill native-design 更名 **doc-cli**(目录 git mv 保史、frontmatter name、AGENTS 与根与插件 README、docs 地图、doc-gov 意图路由与索引互引、双 manifest 与市场描述、测试清单、pre-commit 路径全同步);**破坏性**:下次封版起客户端显示改 `evo-doc:doc-cli`,旧触发词失效
+
 ### 变更(2026-10-11,第一百零六批:evo-skills 更名 evo-distil)
 
 - 用户令:插件 evo-skills 更名 **evo-distil**(目录 git mv 保史、双 manifest name、双市场清单、AGENTS 与双 README 与 docs 地图、doc-gov 互引五处、测试清单与 pre-commit 路径全同步);**破坏性**:下次封版起消费者卸 evo-skills 装 evo-distil,客户端显示改 `evo-distil:distil-skill`
