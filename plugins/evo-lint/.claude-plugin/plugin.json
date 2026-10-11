@@ -1,7 +1,7 @@
 {
   "name": "evo-lint",
   "version": "0.7.0",
-  "description": "项目静态检查报错:lint 五面——skill markdown、agents markdown、claude markdown、Rust、Python、TypeScript 的静检命令、判据与门禁接线;md 禁字与断链与结构、cargo fmt 与 clippy、ruff 含 docstring、tsc 与 eslint;门禁三态退出码与提交挡板纪律",
+  "description": "项目静态检查与结构标准:lint 五面静检加 struct 类型化结构(init 脚手架与声明式结构 lint,四类型模板);门禁三态退出码与提交挡板纪律同辖:skill markdown、agents markdown、claude markdown、Rust、Python、TypeScript 的静检命令、判据与门禁接线;md 禁字与断链与结构、cargo fmt 与 clippy、ruff 含 docstring、tsc 与 eslint;门禁三态退出码与提交挡板纪律",
   "author": {
     "name": "raystyle"
   },

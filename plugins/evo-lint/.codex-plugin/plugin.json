@@ -1,7 +1,7 @@
 {
   "name": "evo-lint",
   "version": "0.7.0",
-  "description": "项目静态检查报错:lint 五面——skill markdown、agents markdown、claude markdown、Rust、Python、TypeScript 的静检命令、判据与门禁接线;md 禁字与断链与结构、cargo fmt 与 clippy、ruff 含 docstring、tsc 与 eslint;门禁三态退出码与提交挡板纪律",
+  "description": "项目静态检查与结构标准:lint 五面静检加 struct 类型化结构(init 脚手架与声明式结构 lint,四类型模板);门禁三态退出码与提交挡板纪律同辖:skill markdown、agents markdown、claude markdown、Rust、Python、TypeScript 的静检命令、判据与门禁接线;md 禁字与断链与结构、cargo fmt 与 clippy、ruff 含 docstring、tsc 与 eslint;门禁三态退出码与提交挡板纪律",
   "author": {
     "name": "raystyle"
   },
@@ -22,8 +22,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Evo Lint",
-    "shortDescription": "项目静态检查报错:md 三面(skill、agents、claude)加 rs 加 py 加 ts 的静检命令、判据与门禁接线。",
-    "longDescription": "单 skill:lint 指导项目把静态检查配成可判定的报错面。五面:skill markdown(frontmatter 官方字段、name 同目录名、description 做什么加何时用、references 断链)、agents 与 claude markdown(结构合同、单行桥接、md 禁字四类)、Rust(cargo fmt --check、clippy -D warnings、missing_docs deny)、Python(ruff,含 D 系 docstring 纪律与按仓 ignore 裁剪)、TypeScript(tsc --noEmit,eslint 随仓配置)。纪律:门禁三态退出码、判定不接吞退出码管道、提交挡板 pre-commit 挂接、报错逐条修不豁免凑绿。",
+    "shortDescription": "项目静态检查与结构标准(lint 五面加 struct 四类型模板):md 三面(skill、agents、claude)加 rs 加 py 加 ts 的静检命令、判据与门禁接线。",
+    "longDescription": "两 skill:lint 指导项目把静态检查配成可判定的报错面;struct 按项目类型(TS CLI、知识三层聚合、worker 服务、Python 工具)做标准结构初始脚手架与声明式结构检查(ls-lint 同族规则件,豁免带因由登记)。五面:skill markdown(frontmatter 官方字段、name 同目录名、description 做什么加何时用、references 断链)、agents 与 claude markdown(结构合同、单行桥接、md 禁字四类)、Rust(cargo fmt --check、clippy -D warnings、missing_docs deny)、Python(ruff,含 D 系 docstring 纪律与按仓 ignore 裁剪)、TypeScript(tsc --noEmit,eslint 随仓配置)。纪律:门禁三态退出码、判定不接吞退出码管道、提交挡板 pre-commit 挂接、报错逐条修不豁免凑绿。",
     "developerName": "raystyle",
     "category": "Productivity",
     "capabilities": [

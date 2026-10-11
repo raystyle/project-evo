@@ -1,0 +1,23 @@
+# struct 规则件:TS CLI 仓(判例源:ai-ccoe 实形 2026-10-11)
+[meta]
+type = "ts-cli"
+
+[required]
+paths = ["AGENTS.md", "CLAUDE.md", "README.md", "CHANGELOG.md", "package.json", "tsconfig.json", "src/", "tests/", "sources/", "knowledge/", "operations/"]
+
+[generated]
+paths = ["llms.txt", "contracts.md"]
+note = "头须带生成声明(生成器名加禁手改)"
+
+[excluded]
+paths = ["dist/", "node_modules/", "target/", ".claude/settings.local.json"]
+
+[config-root]
+paths = ["tsconfig.json", "package.json", "pnpm-workspace.yaml", "vitest.config.ts"]
+note = "一工具一件居仓根,不收 config/"
+
+[optional]
+"apps/" = "可部署子工程:自持 package.json,workspace packages 收编"
+"crates/" = "Rust 子工程:构建输出归 workspace target/"
+"tools/" = "仓级脚本:Python 与 shell"
+"knowledge/ledger/" = "两账本(distill-log、skill-impact)入子目录,防流水当概念"

@@ -1,0 +1,21 @@
+# struct 规则件:Python 工具仓(判例源:pve-harness 实形 2026-10-11)
+[meta]
+type = "python-tool"
+
+[required]
+paths = ["AGENTS.md", "CLAUDE.md", "README.md", "CHANGELOG.md", "pyproject.toml", "src/", "tests/"]
+
+[generated]
+paths = ["docs/llms.txt"]
+note = "注册表三面同源渲染,--check 漂移守卫进门禁"
+
+[excluded]
+paths = ["__pycache__/", ".venv/", "dist/", "*.egg-info/", ".claude/settings.local.json"]
+
+[config-root]
+paths = ["pyproject.toml", "uv.lock"]
+note = "pyproject 一件收 ruff(select 含 D 系按仓裁)与 pytest"
+
+[optional]
+".tools/" = "PEP 723 零依赖脚本,uv 直跑"
+"docs/" = "三层聚合或 doc-gov 面,按仓"

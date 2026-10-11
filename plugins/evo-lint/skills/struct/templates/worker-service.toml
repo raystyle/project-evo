@@ -1,0 +1,21 @@
+# struct 规则件:worker 服务仓(判例:可独立部署子工程形态)
+[meta]
+type = "worker-service"
+
+[required]
+paths = ["AGENTS.md", "README.md", "CHANGELOG.md", "package.json", "src/", "tests/"]
+
+[generated]
+paths = []
+note = "部署清单产物如有,头带生成声明"
+
+[excluded]
+paths = ["node_modules/", "dist/", ".claude/settings.local.json", ".env"]
+
+[config-root]
+paths = ["package.json", ".env.example"]
+note = "环境样例在仓,真密钥禁入(scan 门禁辖)"
+
+[optional]
+"apps/" = "作为大仓子工程时的成员位(自持清单,workspace 收编)"
+"docs/adr/" = "简面治理:adr 加 req 加 diary 即可,不必全三层"

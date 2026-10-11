@@ -3,7 +3,7 @@
   "owner": {
     "name": "raystyle"
   },
-  "description": "项目进化:四插件六 skill(文档治理与原生设计 evo-doc、多仓协作 evo-herdr、技能自进化 evo-distil、静态检查报错 evo-lint)",
+  "description": "项目进化:四插件六 skill(文档治理与原生设计 evo-doc、多仓协作 evo-herdr、技能自进化 evo-distil、静态检查与结构标准 evo-lint)",
   "metadata": {
     "description": "项目进化:四插件六 skill(文档治理与原生设计 evo-doc、多仓协作 evo-herdr、技能自进化 evo-distil、静态检查报错 evo-lint)"
   },
@@ -32,7 +32,7 @@
     {
       "name": "evo-lint",
       "source": "./plugins/evo-lint",
-      "description": "项目静态检查报错:lint 五面(skill markdown 格式标准、agents 与 claude markdown 长度限制与禁字断链、rs cargo fmt 与 clippy、py ruff 含 docstring、ts tsc 与 eslint),门禁三态退出码与提交挡板纪律",
+      "description": "项目静态检查与结构标准:lint 五面静检加 struct 类型化结构(init 与声明式 check,四类型模板),门禁三态退出码与提交挡板纪律",
       "version": "0.7.0"
     }
   ]

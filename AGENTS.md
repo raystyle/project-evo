@@ -1,7 +1,7 @@
 # ProjectEvo 开发协作规则
 
 > 唯一权威源。`CLAUDE.md` 仅一行 `@AGENTS.md` 桥接,不重复维护。
-> 定位:项目治理插件市场仓(四插件六 skill 同属项目治理面,非业务工具面):evo-doc(文档治理与原生设计:doc-gov 需求决策与代码契约注释与文档即代码、doc-cli Agent 原生友好开发;插件级 md 禁字 hook 与 skill 解耦)、evo-herdr(双模式协作:herdr-orch 主开发台初始角色邻居窗格配合工作、herdr-flywheel 跨仓库跨项目跨机器交流;两 skill 通用原则 = herdr 态是检测信号,md 文件是状态与产物)、evo-distil(技能自进化:distil-skill 三层聚合与项目级标准 skill 产生迭代)、evo-lint(静态检查报错:lint 五面 skill markdown 格式标准、agents 与 claude markdown 长度限制、rs、py、ts;写后自动静检 hook 双端),市场名 project-evo,客户端显示 `<插件>:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
+> 定位:项目治理插件市场仓(四插件六 skill 同属项目治理面,非业务工具面):evo-doc(文档治理与原生设计:doc-gov 需求决策与代码契约注释与文档即代码、doc-cli Agent 原生友好开发;插件级 md 禁字 hook 与 skill 解耦)、evo-herdr(双模式协作:herdr-orch 主开发台初始角色邻居窗格配合工作、herdr-flywheel 跨仓库跨项目跨机器交流;两 skill 通用原则 = herdr 态是检测信号,md 文件是状态与产物)、evo-distil(技能自进化:distil-skill 三层聚合与项目级标准 skill 产生迭代)、evo-lint(静态检查与结构标准:lint 五面静检加 struct 类型化结构脚手架与声明式检查;写后自动静检 hook 双端),市场名 project-evo,客户端显示 `<插件>:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
 
 ## Commands
 

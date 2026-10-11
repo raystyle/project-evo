@@ -25,7 +25,7 @@ SKILLS = {
     "evo-doc": ["doc-gov", "doc-cli"],
     "evo-herdr": ["herdr-orch", "herdr-flywheel"],
     "evo-distil": ["distil-skill"],
-    "evo-lint": ["lint"],
+    "evo-lint": ["lint", "struct"],
 }
 
 

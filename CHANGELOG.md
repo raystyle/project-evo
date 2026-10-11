@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 新增(2026-10-11,第一百一十批:struct 类型化结构标准技能,用户立项 evo-03)
+
+- evo-lint 第二 skill **struct**(客户端 evo-lint:struct):四类型标准结构卡(TS CLI 仓、知识三层聚合仓、worker 服务仓、Python 工具仓;数据源四仓实形加当日结构研究)加 templates/ 声明式 toml 规则件四张(meta、required、generated、excluded、config-root、optional 六节)
+- 双面:init 脚手架(既有件不动缺件补位,三层类型联动建仓五步)加 check 结构 lint(ls-lint 同族;本地覆盖 .struct-lint.toml,豁免须带因由登记);存量仓不自动施工,出差距清单走该仓蒸馏环(判例:今日五仓)
+- 触发用例集 evals 件随技能入库(evo-02 纪律首批适用,五条三类);ADR-0022(挂 evo-lint、声明式自研不引依赖、豁免机制)与 REQ-020 立档;双 manifest、市场、README、AGENTS、docs 地图、测试清单(SKILLS 两 skill)、pre-commit(七 skill 断链段)全同步
+- 门禁全绿:pytest 28、check 12/12、scan 干净、断链 0
+
 ### 新增(2026-10-11,第一百零九批:研究对照七条采纳落地,evo-01 加 discuss-01 四方共识)
 
 - 上游:研究格七条对照(evo-01 分判,零重复对账)加讨论轮共识定案形;采纳六项施工:doc-gov 补按路径加载与 hook 执法句(根文件短路由、领域禁则就近路径规则、硬边界 hook 失败退出);gate.md 谓词 2 升触发用例集(3 至 5 条盖应触发加近失加含糊边界,references/evals.md 随技能入库,两方各跑,隔离会话序贯加含糊独立,fail 映射三行进合取三条不立第四谓词,二值不打均值,采样留判例)加记忆与技能写入边界句(步骤写常驻记忆即绕闸记违规);doc-cli 补 llms.txt 目录索引形(llmstxt.org 规范,索引优先于全文拼接)加 MCP 分流纪律(只暴露活查询,防第二套无闸门通道);layers.md 补 evals.md 允许位加 version 纪律定案(顶层恒禁,字节拷贝分发形豁免 metadata.version 登记在册,比对义务上游代或哈希二选一,校验器豁免形认一键顶层即红)
