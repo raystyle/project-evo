@@ -16,16 +16,18 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-PLUGIN_NAMES = ("evo-doc", "evo-herdr", "evo-distil", "evo-lint")
+PLUGIN_NAMES = ("evo-doc", "evo-herdr", "evo-distil", "evo-lint", "evo-agent")
 PLUGINS = {n: REPO / "plugins" / n for n in PLUGIN_NAMES}
 SCRIPTS = REPO / ".tools"
 GUARD = PLUGINS["evo-doc"] / "scripts" / "md-guard.py"
 LINT_HOOK = PLUGINS["evo-lint"] / "scripts" / "lint-hook.py"
+CONFIG_LINT = PLUGINS["evo-agent"] / "skills" / "agent-doctor" / "scripts" / "config-lint.py"
 SKILLS = {
     "evo-doc": ["doc-gov", "doc-cli"],
     "evo-herdr": ["herdr-orch", "herdr-flywheel", "s5"],
     "evo-distil": ["distil-skill"],
     "evo-lint": ["lint", "struct"],
+    "evo-agent": ["agent-doctor"],
 }
 
 
@@ -469,3 +471,85 @@ def test_fleet_exec_tool():
     assert mod.build_cmd(["pane", "list"], None) == ["herdr", "pane", "list"]
     assert mod.build_cmd(["agent", "list"], "lan-mac") == \
         ["herdr", "--machine", "lan-mac", "agent", "list"]
+
+
+def _config_home(tmp_path: Path, *, bad: bool = True) -> Path:
+    """agent-doctor 配置面夹具:bad 形四端各埋错与治理项,good 形零错零警。"""
+    home = tmp_path / "home"
+    (home / ".claude").mkdir(parents=True)
+    if bad:
+        (home / ".claude" / "settings.json").write_text(json.dumps({
+            "enabledPlugins": {"ghost@project-evo": True},
+            "env": {"ANTHROPIC_AUTH_TOKEN": "plaintext-not-a-real-secret",
+                    "ANTHROPIC_BASE_URL": "http://gw.invalid:1"},
+            "statusLine": {"type": "command", "command": '"/nope/hst" render'},
+            "unknownTop": 1,
+        }, ensure_ascii=False), encoding="utf-8")
+        (home / ".codex").mkdir()
+        (home / ".codex" / "config.toml").write_text(
+            'model = "x"\n[mcp_servers.bad]\nargs = ["a"]\n', encoding="utf-8")
+        (home / ".grok").mkdir()
+        (home / ".grok" / "config.toml").write_text(
+            '[plugins]\nenabled = ["ghost"]\n', encoding="utf-8")
+        (home / ".kimi-code").mkdir()
+        (home / ".kimi-code" / "config.toml").write_text(
+            '[[hooks]]\ncommand = \'bash "/nope/kimi-hook.sh" x\'\nevent = "Stop"\ntimeout = 10\n',
+            encoding="utf-8")
+        (home / ".kimi" / "skills" / "orphan").mkdir(parents=True)
+    else:
+        cache = home / ".claude" / "plugins" / "cache" / "project-evo" / "evo-doc"
+        cache.mkdir(parents=True)
+        (home / ".claude" / "settings.json").write_text(json.dumps(
+            {"enabledPlugins": {"evo-doc@project-evo": True}}), encoding="utf-8")
+        skill = home / ".kimi" / "skills" / "doc-gov"
+        skill.mkdir(parents=True)
+        (skill / "SKILL.md").write_text("---\nname: doc-gov\n---\n正文\n", encoding="utf-8")
+    return home
+
+
+def _load_config_lint(name: str):
+    spec = importlib.util.spec_from_file_location(name, CONFIG_LINT)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+def test_config_lint_catches_all_four_faces(tmp_path: Path):
+    """agent-doctor 配置面:四端坏配置逐面报,判据分档对账(悬空引用走 advisory 的文档容忍态)。"""
+    mod = _load_config_lint("pevo_config_lint")
+    home = _config_home(tmp_path)
+    findings, notes = mod.run(home, home / ".claude" / "settings.json",
+                              home / ".codex" / "config.toml",
+                              home / ".grok" / "config.toml",
+                              home / ".kimi-code" / "config.toml",
+                              home / ".kimi" / "skills", None)
+    errors = [f for f in findings if f[0] == "error"]
+    assert {f[1] for f in errors} == {"claude", "codex", "grok", "kimi"}
+    msgs = " ".join(f[3] for f in findings)
+    for needle in ("悬空引用", "明文凭据", "绝对路径不存在", "command 须为字符串",
+                   "缺 SKILL.md", "网关键组不齐"):
+        assert needle in msgs, f"缺报错: {needle}"
+    assert notes == []
+
+
+def test_config_lint_clean_home_passes(tmp_path: Path):
+    """agent-doctor 配置面:好配置零错零警(白名单内字段不报,豁免变量未用)。"""
+    mod = _load_config_lint("pevo_config_lint")
+    home = _config_home(tmp_path, bad=False)
+    findings, _ = mod.run(home, home / ".claude" / "settings.json",
+                          home / ".codex" / "config.toml",
+                          home / ".grok" / "config.toml",
+                          home / ".kimi-code" / "config.toml",
+                          home / ".kimi" / "skills", None)
+    assert findings == []
+
+
+def test_config_lint_allow_env_and_exit_code(tmp_path: Path, monkeypatch, capsys):
+    """agent-doctor 配置面:豁免变量压 advisory;main 有 error 退出码 1,汇总行数对账。"""
+    monkeypatch.setenv("PEVO_CONFIG_LINT_ALLOW", "unknownTop")
+    mod = _load_config_lint("pevo_config_lint_main")
+    home = _config_home(tmp_path)
+    assert mod.main(["--home", str(home)]) == 1
+    out = capsys.readouterr().out
+    assert "共 5 错 3 警" in out
+    assert "unknownTop" not in out

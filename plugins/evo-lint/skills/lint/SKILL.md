@@ -37,14 +37,14 @@ description: >-
 | py | `ruff check .`(select 按仓裁剪,E/F/W/I/B/UP 起步,D 系为 docstring 纪律) | 退出码 0 |
 | ts | `tsc --noEmit`;eslint 随仓配置 | 退出码 0 |
 
-## 三、hook 面(写后自动静检,速览)
+## 三、hook 面:写后自动静检
 
 - 插件带 PostToolUse hook:Edit/Write/MultiEdit 落盘后按后缀自动静检(.md 禁字与长度、.py ruff、.rs rustfmt、.ts eslint),报错信息回传给 agent 逐条修
 - **快检查通道**:秒级为界,重检查(clippy 全量、tsc 全量、断链全树)进门禁与 CI;工具缺位放行(分发归 omc 与 ark,只认 PATH)
 - 双端:Claude Code 直查;Codex 的 apply_patch 载荷无 file_path 宽容放行,靠 pre-commit 兜底
 - 限额可裁:AGENTS/CLAUDE/SKILL 行数上限走环境变量(见 references/hook-face.md)
 
-## 四、纪律(速览)
+## 四、纪律速览
 
 - **退出码三态**:0 过、非 0 败、缺工具按仓裁定(装或记不适用);判定命令一律 `cmd > log 2>&1; echo $?` 形,禁尾管吞红
 - **提交挡板**:pre-commit 挂静态检查,红不进库;门禁清单固定成文于 AGENTS 或 README(命令原文加退出码口径)

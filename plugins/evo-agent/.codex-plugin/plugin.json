@@ -1,0 +1,41 @@
+{
+  "name": "evo-agent",
+  "version": "0.8.0",
+  "description": "agent 客户端环境诊断与修复:四端(claude、codex、grok、kimi)配置诊断(config-lint:悬空引用、明文凭据、路径缺失、枚举非法、卸载配置残留、kimi skills 形态与漂移;判据两级 error 与 advisory,只报不改)、hook 诊断修复(hst doctor 的 hooks.form 与 trust.hooks 诊断、hst init 幂等修复、codex trusted_hash 时效、kimi 双 OS 形)、goal 与 loop 状态(hst goal 项目级 set/show/clear/heal;loop 归 Claude Code 原生 CronCreate 与 ScheduleWakeup 与 durable 件)。定位 = 增强 hst doctor:编排补面,不改 hst 源",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/evo-agent",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "doctor",
+    "config",
+    "hooks",
+    "goal",
+    "loop",
+    "diagnostics",
+    "claude",
+    "codex",
+    "grok",
+    "kimi"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Evo Agent",
+    "shortDescription": "agent 客户端环境诊断与修复:四端(claude、codex、grok、kimi)配置诊断、hook 诊断修复、goal 与 loop 状态,增强 hst doctor 编排补面。",
+    "longDescription": "单 skill agent-doctor 三面:配置面 config-lint 脚本静检四端配置(悬空引用、明文凭据、绝对路径缺失、枚举非法、卸载配置残留、kimi skills 形态与漂移对账;判据两级,只报不改,PEVO_CONFIG_LINT_ALLOW 豁免);hook 面(hst doctor 的 hooks.form 与 trust.hooks 诊断、hst init 幂等修复、codex trusted_hash 时效、kimi 双 OS 形);goal 与 loop 状态面(hst goal 项目级 set/show/clear/heal 与缺省态;loop 归 Claude Code 原生 CronCreate 与 ScheduleWakeup 与 durable 件)。纪律:双源诊断(hst doctor 运行时加 config-lint 静态度)、修复走幂等重部署与逐条手修、hst 只认 PATH 不改其源。",
+    "developerName": "raystyle",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Bash"
+    ],
+    "defaultPrompt": [
+      "用 agent-doctor 的 config-lint 给本机四端 agent 配置做一次体检并逐条修。",
+      "用 agent-doctor 诊断修复本机 hook(hst doctor 加 trusted_hash)。",
+      "用 agent-doctor 查看项目 goal 与 loop 定时任务状态。"
+    ]
+  }
+}

@@ -4,7 +4,14 @@
 
 ## [Unreleased]
 
-暂无。
+### 新增 2026-10-12 第一百一十三批:第五插件 evo-agent 与 agent-doctor 技能,用户令三轮收敛
+
+- 第五插件 **evo-agent** 单 skill **agent-doctor**(客户端 evo-agent:agent-doctor):四端 agent 客户端环境诊断修复,四面 = 配置诊断修复、hook 诊断修复、goal 与 loop 状态、overcast 网关诊断(候实装框架,现状配置端 lan-mac 钉组形);定位 = 增强 hst doctor 编排补面,hst 只认 PATH 不改其源
+- 载体 `skills/agent-doctor/scripts/config-lint.py`(PEP 723 零依赖):四端面(claude settings 两件、codex 与 grok 的 config.toml、kimi config.toml 加 skills 安装面),判据两级 error 与 advisory,只报不改,`--json` 机读,`--kimi-source` 漂移对账,网关键组配对检查;判据分档依据研究档 cfg-01 官方对照:claude 悬空引用是文档容忍态降 advisory、defaultMode 枚举取 doctor 2.1.296 实测集、用户面明文凭证是文档允许形态降 advisory(项目面升 error)、不做闭合白名单(schema 落后索引 45 键)
+- error 族:解析失败、枚举非法、绝对路径缺失(kimi 双 OS 形只查当前 OS)、高置信秘密形态(PEM、AWS 键、sk- 令牌)、grok plugins.enabled 悬空(本机判例:卸载不回写配置残留四名)、kimi SKILL.md 形态与漂移;advisory 族:claude enabledPlugins 悬空、用户面明文凭据、未知字段、codex plugins 配置残留候选(wsl 判例三条)、网关键组不齐
+- 参考 四篇:config-face(判据表加修复手册加权威入口)、hooks-face(hst doctor 诊断加 hst init 幂等修复加 codex trusted_hash 加 kimi 双 OS 形)、goal-loop(hst goal 四命令与缺省态;loop 归 Claude Code 原生 CronCreate 与 ScheduleWakeup 域,hst loop 已退役)、gateway-face(overcast 三层:配置对齐、连通性、hst diagnose 活性,端点实装后回填);研究格 cfg-01 已收执吸收,cfg-02(网关先例与定时域权威)并行在跑
+- 版图五插件九 skill 全同步:双 manifest、双市场清单、插件 README、AGENTS 与根 README、docs 地图、ADR-0023 与 REQ-021 立档、pre-commit 断链段、CI 清单;evo-lint 面上无痕(六面试作全回撤,存量带括号标题三处触及即修);config-lint 行为测试(四端坏配置夹具逐面报、好配置零错零警、豁免与网关配对)加清单守卫;门禁全绿推远端
+
 
 ## [0.13.1] - 2026-10-11
 

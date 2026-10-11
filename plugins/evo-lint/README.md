@@ -6,7 +6,7 @@
 
 第二 skill **struct**:类型化项目结构标准:四类型模板卡(TS CLI 仓、知识三层聚合仓、worker 服务仓、Python 工具仓,templates/ 声明式 toml 规则件),init 面(既有件不动缺件补位)加 check 面(声明式比对,豁免带因由本地覆盖);ADR-0022 与 REQ-020 在册。
 
-## hook 面(写后自动静检)
+## hook 面:写后自动静检
 
 插件带 PostToolUse hook:Edit/Write 落盘后按后缀(.md/.rs/.py/.ts)自动静检,报错信息回传(Claude Code 直查;Codex apply_patch 宽容放行靠 pre-commit 兜底,花括号变量形态双端兼容)。只做秒级快检查,重检查进门禁与 CI;行数限额可裁(环境变量)。
 

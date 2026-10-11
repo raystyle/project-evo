@@ -24,3 +24,4 @@
 | REQ-018 | implemented | must | 三插件五 skill 版图与 distil-skill 技能自进化 | tests/test_project_evo.py |
 | REQ-019 | implemented | must | 四仓三层聚合标准合流与两 skill 终态 | tests/test_project_evo.py |
 | REQ-020 | implemented | must | 类型化项目结构标准:struct 技能(init 与 check 双面) | tests/test_project_evo.py |
+| REQ-021 | implemented | must | 第五插件 evo-agent:agent-doctor 四端环境诊断修复 | tests/test_project_evo.py |

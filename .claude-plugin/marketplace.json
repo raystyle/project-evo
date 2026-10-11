@@ -3,9 +3,9 @@
   "owner": {
     "name": "raystyle"
   },
-  "description": "项目进化:四插件八 skill(文档治理与原生设计 evo-doc、多仓协作三 skill evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint)",
+  "description": "项目进化:五插件九 skill(文档治理与原生设计 evo-doc、多仓协作三 skill evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint、agent 环境诊断修复 evo-agent)",
   "metadata": {
-    "description": "项目进化:四插件八 skill(文档治理与原生设计 evo-doc、多仓协作三 skill evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint)"
+    "description": "项目进化:五插件九 skill(文档治理与原生设计 evo-doc、多仓协作三 skill evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint、agent 环境诊断修复 evo-agent)"
   },
   "plugins": [
     {
@@ -34,6 +34,13 @@
       "source": "./plugins/evo-lint",
       "description": "项目静态检查与结构标准:lint 五面静检加 struct 类型化结构(init 与声明式 check,四类型模板),门禁三态退出码与提交挡板纪律",
       "version": "0.8.0"
+    },
+    {
+      "name": "evo-agent",
+      "source": "./plugins/evo-agent",
+      "description": "agent 客户端环境诊断与修复:四端(claude、codex、grok、kimi)配置诊断(config-lint 悬空引用与明文凭据与路径缺失与枚举非法,判据两级只报不改)、hook 诊断修复(hst doctor 诊断加 hst init 幂等修复加 codex trusted_hash)、goal 与 loop 状态、overcast 网关诊断候实装;增强 hst doctor 编排补面",
+      "version": "0.8.0",
+      "category": "productivity"
     }
   ]
 }
