@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+暂无。
+
+## [0.13.1] - 2026-10-11
+
+**本版破坏性变更通告**:插件 evo-skills 更名 **evo-distil**、skill native-design 更名 **doc-cli**(旧触发词失效),已装者卸 evo-skills 装 evo-distil,evo-doc 逐插件 update;新插件 **evo-lint** 按需安装(lint 五面静检加写后 hook、struct 类型化结构);evo-herdr 新增第三 skill s5(跨机共享内容,候 s5 首版实测定稿)。live md 禁字 PostToolUse hook 已裁撤(批 105,pre-commit 挡板保留)。版本载体齐 0.8.0。
+
 ### 新增(2026-10-11,第一百一十二批:core-02 三方合成吸收,Python uv 范式)
 
 - struct python-tool 卡与 types.md Python 仓卡增补:骨架树细节(uv.lock 提交加 --locked、.python-version 钉版、PEP 735 依赖组、lib/commands/types 结构位、任务入口 uv run 不引多运行器)加依赖锁纪律与八条反面清单
