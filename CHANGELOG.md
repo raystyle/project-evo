@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 修复 2026-10-12 第一百一十四批:lint-hook 辖域限仓内,用户点报
+
+- 后缀静检 hook 漏了辖域判定,越界检仓外 md(判例:同日拦 `~/.claude` 记忆文件);补事件 cwd 辖域(ADR-0017 同批裁定,与 md-guard 同律):事件带 cwd 且 file_path 在其外时放行,在内照检;realpath 双侧归一,跨盘符 ValueError 放行
+- 回归测试 test_lint_hook_scopes_to_event_cwd(仓外放行、仓内照检两态);已装缓存面同版本不自动刷新,修复随下次封版版本线滚动生效
+
 ### 新增 2026-10-12 第一百一十三批:第五插件 evo-agent 与 agent-doctor 技能,用户令三轮收敛
 
 - 第五插件 **evo-agent** 单 skill **agent-doctor**(客户端 evo-agent:agent-doctor):四端 agent 客户端环境诊断修复,四面 = 配置诊断修复、hook 诊断修复、goal 与 loop 状态、overcast 网关诊断(候实装框架,现状配置端 lan-mac 钉组形);定位 = 增强 hst doctor 编排补面,hst 只认 PATH 不改其源

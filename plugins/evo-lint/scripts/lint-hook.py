@@ -69,6 +69,15 @@ def main() -> int:
     path = ti.get("file_path") or ti.get("filePath") or ""
     if not path or not os.path.isfile(path):
         return 0
+    # 辖域限仓内(ADR-0017 同批裁定,与 md-guard 同律):事件带 cwd 且 file_path 在其外时放行
+    cwd = payload.get("cwd")
+    if cwd:
+        try:
+            rp, rc = os.path.realpath(path), os.path.realpath(cwd)
+            if os.path.commonpath([rp, rc]) != rc:
+                return 0
+        except ValueError:
+            return 0
     ext = os.path.splitext(path)[1].lower()
     errs: list[str] = []
     if ext == ".md":

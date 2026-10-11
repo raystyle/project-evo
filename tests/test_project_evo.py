@@ -553,3 +553,15 @@ def test_config_lint_allow_env_and_exit_code(tmp_path: Path, monkeypatch, capsys
     out = capsys.readouterr().out
     assert "共 5 错 3 警" in out
     assert "unknownTop" not in out
+
+
+def test_lint_hook_scopes_to_event_cwd(tmp_path: Path):
+    """后缀静检辖域限仓内(ADR-0017 同批裁定,与 md-guard 同律):仓外 md 放行,仓内照检。"""
+    bad = tmp_path / "bad.md"
+    bad.write_text("带禁字——的一行\n", encoding="utf-8")
+    outside = json.dumps({"hook_event_name": "PostToolUse", "cwd": str(tmp_path / "repo"),
+                          "tool_input": {"file_path": str(bad)}})
+    assert _run_lint_hook(outside).returncode == 0, "仓外 md 不在静检辖域,应放行"
+    inside = json.dumps({"hook_event_name": "PostToolUse", "cwd": str(tmp_path),
+                         "tool_input": {"file_path": str(bad)}})
+    assert _run_lint_hook(inside).returncode == 2, "仓内 md 照检"
