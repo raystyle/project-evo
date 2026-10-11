@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 新增(2026-10-11,第一百一十一批:s5 跨机共享内容技能,用户令 evo-04)
+
+- evo-herdr 第三 skill **s5**(客户端 evo-herdr:s5,协同域归一:orch 台面、flywheel 信号、s5 内容):agent 跨机共享内容,文件道(S3 形 put/get/ls/del)加流道(S2 形 append/tail)双道选型三问判据,零感知凭据三不纪律,与 herdr 分工律(信号走 herdr 内容走 s5),跨机轮次三件套与研究档轨迹流键空间规范(rounds/、research/、streams/)
+- 全套候 s5 首版实测定稿标注(命令面按 s5-01 立项设计,实测后回填);evals 触发用例集五条三类同步立
+- 双 manifest 重写三 skill 描述、市场清单、插件 README、AGENTS、根 README 表、docs 地图、测试清单(evo-herdr 三 skill)、pre-commit(八 skill 断链段)全同步;门禁全绿推远端
+
 ### 新增(2026-10-11,第一百一十批:struct 类型化结构标准技能,用户立项 evo-03)
 
 - evo-lint 第二 skill **struct**(客户端 evo-lint:struct):四类型标准结构卡(TS CLI 仓、知识三层聚合仓、worker 服务仓、Python 工具仓;数据源四仓实形加当日结构研究)加 templates/ 声明式 toml 规则件四张(meta、required、generated、excluded、config-root、optional 六节)

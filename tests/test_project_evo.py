@@ -23,7 +23,7 @@ GUARD = PLUGINS["evo-doc"] / "scripts" / "md-guard.py"
 LINT_HOOK = PLUGINS["evo-lint"] / "scripts" / "lint-hook.py"
 SKILLS = {
     "evo-doc": ["doc-gov", "doc-cli"],
-    "evo-herdr": ["herdr-orch", "herdr-flywheel"],
+    "evo-herdr": ["herdr-orch", "herdr-flywheel", "s5"],
     "evo-distil": ["distil-skill"],
     "evo-lint": ["lint", "struct"],
 }

@@ -25,7 +25,7 @@
     {
       "name": "evo-herdr",
       "source": "./plugins/evo-herdr",
-      "description": "项目进化多仓协作:herdr-orch(主开发台:通用四窗格与 PI 五窗格布局定式、评审闸门加自省验收双闸门、任务分发 lane)与 herdr-flywheel(跨仓库跨项目跨机器交流:四步协议派单回执断言吸收、状态门控与事件驱动收执、产物契约与状态档三件套、并行义务图)",
+      "description": "项目进化多仓协作三 skill:herdr-orch 主开发台、herdr-flywheel 跨仓飞轮与产物契约三件套、s5 跨机共享内容(对象道加流道,零感知凭据)",
       "version": "0.7.0",
       "category": "productivity"
     },
