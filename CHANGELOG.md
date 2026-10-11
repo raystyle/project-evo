@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 新增(2026-10-11,第一百零九批:研究对照七条采纳落地,evo-01 加 discuss-01 四方共识)
+
+- 上游:研究格七条对照(evo-01 分判,零重复对账)加讨论轮共识定案形;采纳六项施工:doc-gov 补按路径加载与 hook 执法句(根文件短路由、领域禁则就近路径规则、硬边界 hook 失败退出);gate.md 谓词 2 升触发用例集(3 至 5 条盖应触发加近失加含糊边界,references/evals.md 随技能入库,两方各跑,隔离会话序贯加含糊独立,fail 映射三行进合取三条不立第四谓词,二值不打均值,采样留判例)加记忆与技能写入边界句(步骤写常驻记忆即绕闸记违规);doc-cli 补 llms.txt 目录索引形(llmstxt.org 规范,索引优先于全文拼接)加 MCP 分流纪律(只暴露活查询,防第二套无闸门通道);layers.md 补 evals.md 允许位加 version 纪律定案(顶层恒禁,字节拷贝分发形豁免 metadata.version 登记在册,比对义务上游代或哈希二选一,校验器豁免形认一键顶层即红)
+- 领走判定与回流候选在 evo-01 回执在册(条 6 机检 ai-ccoe 先自落试跑成熟回流 evo-lint,共识 2)
+
 ### 新增(2026-10-11,第一百零八批:evo-lint 插件立项)
 
 - 用户令:增第四插件 **evo-lint**(项目静态检查报错),单 skill lint 五面:skill markdown 格式标准(frontmatter 官方字段、name 同目录名、description 形态与上限、行数上限、断链)、agents 与 claude markdown 长度限制(缺省 200 与 50 行,环境变量可裁)与结构合同与禁字、rs(cargo fmt 与 clippy 与 missing_docs)、py(ruff 含 D 系)、ts(tsc 与 eslint);references 三篇(md-faces、lang-checks、hook-face)

@@ -45,7 +45,8 @@ links:
 - 收两类候选,皆过闸:**标准 skill**(双端支持的标准项目级 SKILL.md:frontmatter 只留官方字段,禁 version 等非官方字段;正文含 When to Apply 与 When NOT to Apply(不适用面是防「一个失败模式写成通用技能」的槽)与步骤;不点名外部仓库)与 **how-to 标准手册**(挂知识底座链);reference 与 explanation 归 knowledge,教材类不进标准层(Diátaxis 判据)
 - **页头闸门记录段**:过闸产物页头自记三证据(门禁当轮实跑无回归、翻转的点名义务、链到带 sources 的知识页)加一行回指(正文指回促成它的模式页),出处与过闸证据就地可见,不依赖翻 commit 消息与流水
 - **工件包拆层**:how-to 手册(挂知识底座链)留本层;纯工件(配置、sql、conf 等交付工件)归 sources 证据面,不混装
-- **加载视图**:operations 层根(如 docs/operations)收两类;技能安装路径(.claude/skills 等)是技能子集的加载视图(符号链接或投影加同步守卫),手册不进安装路径,不分发第二份;常驻面只有 frontmatter 的 name 与 description,正文与 references 按需加载(渐进披露三级)
+- **加载视图**:operations 层根(如 docs/operations)收两类;技能安装路径(.claude/skills 等)是技能子集的加载视图(符号链接或投影加同步守卫),手册不进安装路径,不分发第二份;常驻面只有 frontmatter 的 name 与 description,正文与 references 按需加载(渐进披露三级);触发用例集随技能入库(evals 件(references 目录,3 至 5 条,过闸产物,渐进披露第三级)
+- **version 纪律**:顶层 version 恒禁(agentskills spec 官方字段面);仅「跟踪上游已接受代」的字节拷贝分发形可写 spec 官方 metadata.version 且登记在册,比对义务为上游代或哈希二选一(只比版本串会漏字节改而标签不改);仓内标准技能不写(唯一权威源加视图守卫加版本线三件套已覆盖);校验器仅豁免形认 metadata.version,顶层 version 一键即红
 - **git 协议,两层时点拆明**:operations 候选先落未提交工作区,接受才 commit,拒绝即 reset 或路径级 restore 回基线;knowledge 蒸馏完即提交,先于提案与闸门,拒绝不回收;「独立 git」语义由 git 边界或纪律承担,保证点同为 knowledge 永不随标准集回滚(边界三选一见建仓五步)
 - 执行回合不整层注入 knowledge:执行者读知识层实证降效,知识面经标准页回指按需读
 - 唯一权威源在项目仓;双端按各自项目级面加载(见 backends.md),不分发第二份
