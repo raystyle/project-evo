@@ -143,8 +143,13 @@ def check_claude(path: Path, home: Path, out: list) -> None:
             level = "advisory" if is_user_file else "error"
             hint = "宜走 apiKeyHelper 或环境注入" if is_user_file else "项目文件会进库,凭证必须移出"
             out.append((level, face, str(path), f"env 明文凭据: {k} 值落在配置文件,{hint}"))
-    # 网关键组配对(overcast 诊断配置对齐层):钉组形 BASE_URL 配了则鉴权与模型映射宜齐
-    if isinstance(env.get("ANTHROPIC_BASE_URL"), str) and env["ANTHROPIC_BASE_URL"]:
+    # 网关键组配对(overcast 诊断配置对齐层,cfg-02 官方拼接规范)
+    gw = env.get("ANTHROPIC_BASE_URL")
+    if isinstance(gw, str) and gw:
+        if gw.rstrip("/") != gw:
+            out.append(("advisory", face, str(path), "网关 base 带尾斜杠: 官方形是源站无尾斜杠"))
+        if gw.rstrip("/").endswith("/v1"):
+            out.append(("error", face, str(path), "网关 base 以 /v1 结尾: 客户端会拼出 /v1/v1/messages"))
         if not any(isinstance(env.get(k), str) and env[k] for k in ("ANTHROPIC_AUTH_TOKEN", "ANTHROPIC_API_KEY")):
             out.append(("advisory", face, str(path), "网关键组不齐: ANTHROPIC_BASE_URL 配了但鉴权键缺"))
         if not any(k.startswith("ANTHROPIC_DEFAULT_") and k.endswith("_MODEL") for k in env):

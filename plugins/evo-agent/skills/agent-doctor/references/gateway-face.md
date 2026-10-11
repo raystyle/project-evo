@@ -1,42 +1,89 @@
 # 网关诊断面:overcast API 网关
 
-> 候实装框架:overcast 网关配置在即(现状配置端 = lan-mac 工作台),本页先立诊断三层与判据位,端点路径与鉴权形态待 overcast 实装后回填定稿(沿 s5 候首版实测标注先例)。hst 的 `diagnose` 子命令是活性权威:打真网关烧最小 token,与 doctor 的零网络体检分家。
+> overcast 候实装:其 health 与 models 路径保持不知,实装后套用本页同一张三层表,不把别家网关的路径抄到 overcast 名下。现状配置端 = lan-mac 工作台(钉组形)。判据来源:研究档 cfg-02(2026-10-12,官方文档加三网关源码对照)加 hst 手册面;`hst diagnose` 是活性层活权威(打真网关烧最小 token,与 doctor 的零网络体检分家)。
 
 ## 现状两形
 
-两形都合法:
+- **settings 钉组形**(lan-mac 工作台现形):env 钉 `ANTHROPIC_BASE_URL` + 凭证(`ANTHROPIC_AUTH_TOKEN` 走 Bearer 或 `ANTHROPIC_API_KEY` 走 x-api-key 或 apiKeyHelper)加三档 `ANTHROPIC_DEFAULT_OPUS/SONNET/HAIKU_MODEL`(另有第四档 FABLE 与 `ANTHROPIC_MODEL`)
+- **环境注入形**(wsl 总台现形):settings 零 ANTHROPIC_*,接入走会话环境
 
-- **settings 钉组形**(lan-mac 工作台现形):用户 settings.json 的 env 钉 `ANTHROPIC_BASE_URL` + `ANTHROPIC_AUTH_TOKEN` + `ANTHROPIC_DEFAULT_HAIKU/SONNET/OPUS_MODEL` 模型映射
-- **环境注入形**(wsl 总台现形):settings 零 ANTHROPIC_*,接入走会话环境(vault env 注入)
+## 官方拼接规范
 
-诊断面覆盖两形:钉组形查配置内一致性,注入形查环境变量到位。
+- base 是**源站,不含 `/v1`、无尾斜杠**:Claude Code 自己接 `/v1/messages`(推理)、`/v1/messages/count_tokens`、`GET /v1/models?limit=1000`(发现,缺省超时 3 秒,重定向当失败);base 以 `/v1` 结尾会拼出 `/v1/v1/messages`(config-lint error)
+- 头种:Bearer 用 `ANTHROPIC_AUTH_TOKEN`,x-api-key 用 `ANTHROPIC_API_KEY`,apiKeyHelper 两头都送;`anthropic-beta` 与 `anthropic-version` 须原样转发
+- 只设 base 不设网关凭证 = 订阅穿网关模式(文档形态,advisory)
+- 官方验证请求(回包 `{"id":"msg_` 开头即通;401 换头种再试):
+
+```bash
+curl -sS -w '\n%{http_code}\n' -X POST "$ANTHROPIC_BASE_URL/v1/messages" \
+  -H "Authorization: Bearer $ANTHROPIC_AUTH_TOKEN" \
+  -H "anthropic-version: 2023-06-01" -H "content-type: application/json" \
+  -d '{"model": "<模型id>", "max_tokens": 1, "messages": [{"role": "user", "content": "."}]}'
+```
 
 ## 诊断三层
 
-1. **配置对齐层**(agent-doctor config-lint 已查):
-   - 钉组形键组配对:BASE_URL 配了而 AUTH_TOKEN 缺、模型映射键组不齐 -> advisory(网关键组不齐)
-   - token 明文落用户面 -> advisory(提示迁 apiKeyHelper 或 vault env);落项目面 -> error
-2. **连通性层**(手跑):
-   ```bash
-   curl -sS -o /dev/null -w '%{http_code} %{time_total}s\n' "$ANTHROPIC_BASE_URL/health"   # 端点候实装定稿
-   ```
-   - 判读:超时 = 网关不在或路由错;401/403 = token 失效或权限;5xx = 网关侧
-3. **活性层**(hst 活权威):
-   ```bash
-   hst diagnose    # 打真网关烧最小 token;与 doctor 零网络体检分家
-   ```
+层序固定:配置对齐(零网络)到连通性(可达与鉴权,正文控制在 max_tokens 1 或一次 models)到活性(最小真实补全,烧 token);上层已判定的不放到下层再烧一次。`hst doctor` 不入三层(119 条 finding 全是宿主面)。
+
+### 配置对齐层
+
+| 判据 | 档 |
+| --- | --- |
+| 意图走网关而 BASE_URL 缺失或为空 | error |
+| base 以 `/v1` 结尾(config-lint 已查) | error |
+| base 仅有尾斜杠 | advisory |
+| 只设 base 无任一凭证(订阅穿网关) | advisory |
+| 三档 pin 与 ANTHROPIC_MODEL 全空且未对照过 models | advisory;网关名与缺省不一致仍不钉 | error |
+| 项目 `.claude/settings.json` env 含凭证变量或 CUSTOM_HEADERS 带 Authorization 与 x-api-key | error;用户面同形 | advisory |
+
+### 连通性层
+
+| 判据 | 档 |
+| --- | --- |
+| TCP/TLS 失败、拒连、证书错(证书对照 connect 页 `NODE_EXTRA_CA_CERTS`) | error |
+| 进程探针非 200(探针位见下表,无鉴权) | error |
+| 期望 JSON 的路径回 text/html 且 200(one-api 控制台回退形) | error |
+| 官方验证 POST 回 401(换头种再判)或 one-api 形 403 令牌无权该模型 | error |
+| `/v1/v1/messages` 形 404(配置层漏网时) | error |
+| 发现超时或被重定向(慢网关设 `CLAUDE_CODE_GATEWAY_MODEL_DISCOVERY_TIMEOUT_MS`) | advisory(选择器回退缓存) |
+| `/fast` 网络错而推理正常(该检查直打 api.anthropic.com) | advisory,不当网关宕机 |
+
+### 活性层
+
+| 判据 | 档 |
+| --- | --- |
+| 钉住的模型 id 不在网关权威 models 列表,或补全回不存在 | error |
+| LiteLLM `GET /health`(Bearer 真请求)unhealthy_endpoints 出现某模型而 liveliness 仍 200 | 该模型 error,进程算过 |
+| `hst diagnose cache`(缺省测 `/v1/models` 全量别名,探测错误退 1) | 退出码 1 即 error |
+| 列表多出客户端不用的 id;目录短暂缺条目而补全仍成功 | advisory |
+
+## 端点惯例对照
+
+overcast 定稿前的参照:
+
+| 网关 | 进程探针(无鉴权) | models | 推理 | 鉴权 |
+| --- | --- | --- | --- | --- |
+| LiteLLM | `GET /health/liveliness`(200 `I'm alive!`);`GET /health/readiness`(db connected) | `GET /v1/models` | `POST /v1/messages`(另有 `/anthropic` 透传) | Bearer(`GET /health` 本身要鉴权且打真请求,归活性层) |
+| new-api | `GET /api/status` | `GET /v1/models` | `POST /v1/messages` | Bearer |
+| one-api | `GET /api/status` | `GET /v1/models` | 无 `/v1/messages`(relay 表只有 chat/completions) | Authorization,令牌可带 `-渠道id` 后缀钉渠道 |
+
+## agent 侧四类错形
+
+1. 键组不齐:base 配了凭证缺或头种不对(401)
+2. token 失效:401 或 one-api 形 403(令牌无权该模型)
+3. 模型映射漂移:发现列表与钉住别名不一致;新模型名未路由回 404;内建 id 须在网关 model_list 有同名
+4. base 尾斜杠与路径拼接:`/v1` 双拼、SDK 侧二次拼后缀(LiteLLM SDK 未关 `LITELLM_ANTHROPIC_DISABLE_URL_SUFFIX` 时)、one-api 非 `/v1` 非 `/api` 路径回 HTML 200
 
 ## 修法
 
-- 键组不齐:补齐缺键或整组迁注入形,不留半组
-- 401/403:轮换 token(先轮换再清史,禁扩豁免消红)再更新注入源
-- 模型映射漂移:对照网关侧模型清单对齐三档映射
+- base 修成源站形(无 `/v1` 无尾斜杠);头种与网关说明对齐
+- 401/403:先轮换 token 再清史,禁扩豁免消红
+- 漂移:对照 `GET /v1/models` 对齐三档 pin;部分后台子调用无视覆盖,覆盖名与内建 id 要同时路由
 
 ## 回填位
 
-overcast 实装后定稿:
+- [ ] overcast health 与 models 端点及鉴权形态(实装后填,套三层表)
+- [ ] overcast 模型清单拉取与 hst diagnose 配套参数
+- [ ] 四端网关配置对齐基线(钉组形标准键组)
 
-- [ ] health 端点路径与鉴权头形态
-- [ ] 模型清单拉取命令
-- [ ] hst diagnose 与 overcast 的配套参数(若有)
-- [ ] 四端网关配置对齐基线(base_url 与 token 与模型映射的端内标准形)
+权威:llm-gateway-connect 与 llm-gateway-protocol 与 llm-gateway-rollout 与 model-config(code.claude.com/docs);LiteLLM docs/proxy/health 与 client_setup/claude_code;new-api 与 one-api 仓 router 源码。

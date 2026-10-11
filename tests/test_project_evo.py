@@ -481,7 +481,7 @@ def _config_home(tmp_path: Path, *, bad: bool = True) -> Path:
         (home / ".claude" / "settings.json").write_text(json.dumps({
             "enabledPlugins": {"ghost@project-evo": True},
             "env": {"ANTHROPIC_AUTH_TOKEN": "plaintext-not-a-real-secret",
-                    "ANTHROPIC_BASE_URL": "http://gw.invalid:1"},
+                    "ANTHROPIC_BASE_URL": "http://gw.invalid:1/v1"},
             "statusLine": {"type": "command", "command": '"/nope/hst" render'},
             "unknownTop": 1,
         }, ensure_ascii=False), encoding="utf-8")
@@ -527,7 +527,7 @@ def test_config_lint_catches_all_four_faces(tmp_path: Path):
     assert {f[1] for f in errors} == {"claude", "codex", "grok", "kimi"}
     msgs = " ".join(f[3] for f in findings)
     for needle in ("悬空引用", "明文凭据", "绝对路径不存在", "command 须为字符串",
-                   "缺 SKILL.md", "网关键组不齐"):
+                   "缺 SKILL.md", "网关键组不齐", "/v1 结尾"):
         assert needle in msgs, f"缺报错: {needle}"
     assert notes == []
 
@@ -551,7 +551,7 @@ def test_config_lint_allow_env_and_exit_code(tmp_path: Path, monkeypatch, capsys
     home = _config_home(tmp_path)
     assert mod.main(["--home", str(home)]) == 1
     out = capsys.readouterr().out
-    assert "共 5 错 3 警" in out
+    assert "共 6 错 3 警" in out
     assert "unknownTop" not in out
 
 

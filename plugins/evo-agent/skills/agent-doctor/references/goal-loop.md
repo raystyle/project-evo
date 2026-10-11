@@ -18,13 +18,14 @@ hst goal heal          # 自愈唤醒扫描(goal-01):须在 herdr 会话格内�
 
 ## loop 面
 
-> Claude Code 原生域:会话内 cron(CronCreate/CronList/CronDelete)、durable 件(`~/.claude/scheduled_tasks.json`,跨会话存活)、动态自调度(ScheduleWakeup,-dynamic 变体)。hst 无 loop 面,别去 hst 找。
+> Claude Code 原生域(hst loop 已退役 2026-10-11)。三套调度分立:云 Routines(机器可关,最短 1 小时)、Desktop 定时任务(本机开着即可,最短 1 分钟)、会话内 /loop(本机加会话都开着,最短 1 分钟);错过的触发不补跑。权威三页:scheduled-tasks、tools-reference、agent-sdk/typescript(code.claude.com/docs)。
 
-- 查看现状:会话内 `CronList`;盘上读 durable 件(无件 = 无跨会话任务)
-- 会话内任务随会话死;durable 任务跨会话,改用 CronDelete 清
-- 动态 loop(ScheduleWakeup)状态在会话内,盘上无痕;判定看会话输出与 `/loop` 状态
-- recurring 任务 7 天自动到期(末次触达后清),长期任务要续期登记
-- 诊断问题三连:任务没火 = 会话是否 idle(任务只在空闲时入队)+ durable 是否落盘 + cron 表达式本地时区对不对
+- **创建**:`/loop 间隔 提示词` = 固定 cron;`/loop` 只给提示词 = Claude 自选延迟(1 分钟至 1 小时,工具 ScheduleWakeup);裸 `/loop` 读项目或用户 `.claude/` 目录下的 loop 提示件(超 25000 字节截断)。直接要求时用 CronCreate/CronList/CronDelete(8 字符 id),一会话至多 50 条,秒取整到分钟,本地时区
+- **触发条件**:只在运行且空闲时触发;关终端或会话退出即停;长请求占点时空闲后只补一次;`CLAUDE_CODE_DISABLE_CRON=1` 全关
+- **到期**:重复任务 7 天到期再触发一次后自删;要更长取消重建或改 Routines/Desktop
+- **durable 落盘**:`durable: true` 请求写 `.claude/scheduled_tasks.json` 跨重启;以输出 `durable` 字段为准(true 落盘,false 仅会话);CronList 两类同列;`--resume/--continue` 恢复未过期任务(自节奏 loop 不恢复);符号链接 `.claude` 报错,拷到别的 worktree 能列出不会跑
+- **ScheduleWakeup**:自节奏每轮末调,delaySeconds 夹 60 至 3600;`stop: true` 终止(须 v2.1.202+);待触发项出现在 Stop hook 输入 `session_crons`;既未重排也未 stop 约 20 分钟兜底再排一次,仍不排即结束;Esc 只清自节奏不清固定间隔
+- **诊断三连**:任务没火 = 会话 idle 否 + durable 落盘否 + 本地时区 cron 对否
 
 ## 与诊断面的合流
 

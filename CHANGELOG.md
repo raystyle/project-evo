@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 新增 2026-10-12 第一百一十六批:cfg-02 研究吸收,网关面定稿与 loop 域权威化
+
+- gateway-face 定稿回填:官方拼接规范(base 源站形无 /v1 无尾斜杠、头种 Bearer 与 x-api-key、官方验证 curl、models 发现与超时重定向语义)、三层判据表(配置对齐 error 与 advisory 分档、连通性、活性)、三网关端点惯例对照(LiteLLM liveliness 与 readiness、new-api 与 one-api /api/status、one-api 无 /v1/messages 与 HTML 控制台回退)、agent 侧四类错形(键组不齐、token 失效、映射漂移、路径双拼);overcast 路径保持不知,实装后套同一三层表
+- config-lint 补两条官方形硬判据:base 以 /v1 结尾 error(会拼出 /v1/v1/messages)、base 尾斜杠 advisory;测试对账升 6 错
+- goal-loop 的 loop 面权威化(cfg-02 件 2):三套调度域分立(Routines、Desktop、会话内)、idle 才触发与关停即止、7 天到期再触发一次自删、durable 落盘语义(输出 durable 字段为准、resume 恢复边界、符号链接报错)、ScheduleWakeup 夹 60 至 3600 加 stop 语义加 20 分钟兜底、25000 字节 loop.md 截断与 50 条上限
+- 研究格 cfg-02 回执收执吸收(四件全过:网关先例、定时域权威、hst --llms 手册面实测 119 条 finding 全 ok、三层分判表);轮闭
+
 ### 变更 2026-10-12 第一百一十五批:evo-lint 两 skill 更名 md-lint 与 ls-lint,用户令
 
 - skill `lint` 更名 **md-lint**、`struct` 更名 **ls-lint**(客户端显示 `evo-lint:md-lint` 与 `evo-lint:ls-lint`;目录名与 frontmatter name 同步,旧触发词 struct 保留为泛词、lint 保留为动词触发)
