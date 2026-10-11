@@ -32,7 +32,7 @@
     {
       "name": "evo-lint",
       "source": "./plugins/evo-lint",
-      "description": "项目静态检查与结构标准:lint 五面静检加 struct 类型化结构(init 与声明式 check,四类型模板),门禁三态退出码与提交挡板纪律",
+      "description": "项目静态检查与结构标准:md-lint 五面静检加 ls-lint 类型化结构(init 与声明式 check,四类型模板),门禁三态退出码与提交挡板纪律",
       "version": "0.8.0"
     },
     {

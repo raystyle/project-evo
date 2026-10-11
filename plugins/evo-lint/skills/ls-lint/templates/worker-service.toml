@@ -1,4 +1,4 @@
-# struct 规则件:worker 服务仓(判例:可独立部署子工程形态)
+# ls-lint 规则件:worker 服务仓(判例:可独立部署子工程形态)
 [meta]
 type = "worker-service"
 

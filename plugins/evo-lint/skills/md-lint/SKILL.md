@@ -1,5 +1,5 @@
 ---
-name: lint
+name: md-lint
 description: >-
   项目静态检查报错:skill markdown、agents markdown、claude markdown、Rust、Python、TypeScript
   五面静检的命令、判据与门禁接线。md 面(skill 格式标准:frontmatter 官方字段、name 同目录名、
@@ -8,11 +8,11 @@ description: >-
   (ruff 含 D 系 docstring 纪律与按仓 ignore 裁剪)、ts 面(tsc --noEmit 加 eslint 随仓配置);
   门禁三态退出码与提交挡板 pre-commit 挂接。
   Use when 给项目配静态检查门禁、排查 md 或代码静检报错、把 lint 挂进 pre-commit 或 CI、
-  修禁字断链 clippy ruff tsc 红时;触发词 lint、静态检查、静态分析、禁字、断链、clippy、
+  修禁字断链 clippy ruff tsc 红时;触发词 md-lint、lint、静态检查、静态分析、禁字、断链、clippy、
   ruff、tsc、eslint、fmt、missing_docs、docstring 检查、门禁、退出码、pre-commit、md-guard。
 ---
 
-# lint - evo-lint 项目静态检查报错
+# md-lint - evo-lint 项目静态检查报错
 
 **渐进知识库型 skill**:本文件只做意图路由与纪律速览,五面细则在 `references/` 两篇,按需定点读。
 

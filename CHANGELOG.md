@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-12 第一百一十五批:evo-lint 两 skill 更名 md-lint 与 ls-lint,用户令
+
+- skill `lint` 更名 **md-lint**、`struct` 更名 **ls-lint**(客户端显示 `evo-lint:md-lint` 与 `evo-lint:ls-lint`;目录名与 frontmatter name 同步,旧触发词 struct 保留为泛词、lint 保留为动词触发)
+- 本地覆盖件 `.struct-lint.toml` 同步更名 **`.ls-lint.toml`**(rules.md 与模板头注释同步);ADR-0022 与 REQ-020 为历史档保留原名在册
+- 双 manifest、双市场清单、插件 README、AGENTS、根 README、docs 地图、pre-commit 断链段、测试清单全同步;门禁全绿(32 测试、check 12、scan 干净、断链 0)
+- kimi 安装面五端当场重镜像(旧 lint 与 struct 目录退场);claude/codex/grok 缓存面随下次封版版本线滚动
+
 ### 修复 2026-10-12 第一百一十四批:lint-hook 辖域限仓内,用户点报
 
 - 后缀静检 hook 漏了辖域判定,越界检仓外 md(判例:同日拦 `~/.claude` 记忆文件);补事件 cwd 辖域(ADR-0017 同批裁定,与 md-guard 同律):事件带 cwd 且 file_path 在其外时放行,在内照检;realpath 双侧归一,跨盘符 ValueError 放行

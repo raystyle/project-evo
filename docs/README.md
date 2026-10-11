@@ -37,7 +37,7 @@
 | `../plugins/evo-herdr/skills/herdr-flywheel/SKILL.md` | 跨仓库跨项目跨机器交流(派单/回执/断言/吸收,状态门控与事件驱动收执,产物契约与状态档三件套、盘上稳态与干预信号分治,跨机器工位,并行派单义务图;协议唯一权威源,ADR-0009) | 跨仓派单、收回执或落产物契约验收对账时 |
 | `../plugins/evo-herdr/skills/s5/SKILL.md` | 跨机共享内容:对象道与流道双道、零感知凭据、飞轮三件套跨机路径规范 | 跨机共享轮次档工件、轨迹流事件流时 |
 | `../plugins/evo-distil/skills/distil-skill/SKILL.md` | 技能自进化:三层聚合(sources 唯一出处层、knowledge 带版本双链知识、operations 标准技能与 how-to 手册,git 边界三选一,归档统一字母表),四步环蒸馏提案与合取闸门 | 把项目经验沉淀成 skill、迭代标准技能集时 |
-| `../plugins/evo-lint/skills/lint/SKILL.md` | 静态检查报错:md 三面(skill 格式标准、agents 与 claude 长度限制、禁字断链)加 rs 加 py 加 ts,写后自动静检 hook 双端 | 配静态检查门禁、修静检红时 |
-| `../plugins/evo-lint/skills/struct/SKILL.md` | 类型化项目结构标准:四类型模板卡与声明式规则件,init 脚手架加结构 check | 新仓脚手架、存量仓结构 lint 时 |
+| `../plugins/evo-lint/skills/md-lint/SKILL.md` | 静态检查报错:md 三面(skill 格式标准、agents 与 claude 长度限制、禁字断链)加 rs 加 py 加 ts,写后自动静检 hook 双端 | 配静态检查门禁、修静检红时 |
+| `../plugins/evo-lint/skills/ls-lint/SKILL.md` | 类型化项目结构标准:四类型模板卡与声明式规则件,init 脚手架加结构 check | 新仓脚手架、存量仓结构 lint 时 |
 | `../plugins/evo-agent/skills/agent-doctor/SKILL.md` | agent 客户端环境诊断修复:四端配置诊断(config-lint)、hook 诊断修复、goal 与 loop 状态、overcast 网关诊断候实装 | 四端配置体检、修 hook、查 goal 与 loop 时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |

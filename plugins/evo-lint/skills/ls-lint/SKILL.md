@@ -1,16 +1,16 @@
 ---
-name: struct
+name: ls-lint
 description: >-
   类型化项目结构标准:按项目类型(TS CLI 仓、知识三层聚合仓、worker 服务仓、Python 工具仓)
   的最佳标准结构做初始脚手架与结构检查。init 面:按类型模板补位建仓(既有件不动,缺件补齐,
   目录树加必备件加生成物位加配置根件位);check 面:声明式规则比对(ls-lint 同族,toml 规则件
   随技能入库),每仓豁免与本地覆盖登记在册。
   Use when 新仓脚手架、给存量仓做结构 lint、查目录错层(生成物入源码树、配置错位、子工程
-  未成员化)、定某类型项目的标准结构时;触发词 struct、结构、脚手架、scaffold、init、结构
+  未成员化)、定某类型项目的标准结构时;触发词 ls-lint、struct、结构、脚手架、scaffold、init、结构
   检查、ls-lint、目录树、必备件、生成物位、配置根件、workspace 布局、类型模板。
 ---
 
-# struct - evo-lint 类型化项目结构标准
+# ls-lint - evo-lint 类型化项目结构标准
 
 > 闸门记录(轮 1,2026-10-11,用户立项令 evo-03):门禁当轮实跑无回归(pytest 28、check 12/12、scan 干净、六加一 skill 断链 0);点名义务「项目结构标准只有本仓单形 init,无类型面无声明式规则」从缺翻转为有(ADR-0022、REQ-020);本页链 knowledge 无(标准源仓),链依据 = ADR-0022 与四仓实形判例。促成本技能的依据:同日结构研究档与四仓终态。evals 触发用例集见 [references/evals.md](references/evals.md)。
 

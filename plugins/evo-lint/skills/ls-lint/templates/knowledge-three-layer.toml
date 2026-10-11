@@ -1,4 +1,4 @@
-# struct 规则件:知识三层聚合仓(v2 标准,判例:browse_rs、pve-harness、ark_rs、clean-chrome)
+# ls-lint 规则件:知识三层聚合仓(v2 标准,判例:browse_rs、pve-harness、ark_rs、clean-chrome)
 [meta]
 type = "knowledge-three-layer"
 
