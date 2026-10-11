@@ -198,3 +198,7 @@ incurs 方法：vendored 上游 TS 实现为**行为 oracle**，其 1062 条测�
 | Rust | clap derive 加命令图派生（incur-rs 模型:`#[derive(Incur)]` 一处定义,schema/llms/补全/MCP 全派生） | 自研或引库,弃用与输出策略注记进 derive meta |
 | TypeScript | Zod 加 Cli 命令图（incur 模型） | 同上 |
 | Python | argparse 加 pydantic | 信封先例可移植:hst(Rust) 的 `--format kv/json/jsonl` 与 stderr 单行 JSON 错误是跨栈同构样板;Python 面补 `--llms` 清单即达标 |
+
+## 九、结构律:命令层薄、纯函数域厚
+
+命令层(commands)只做 IO 编排与闸门,一域一文件;纯函数域(lib:输出、旗标、错误、dryrun、运输)可测,pytest 与 CI 因此轻;进程 spawn 集中一处不散落(core-02 三方合成律 3)。

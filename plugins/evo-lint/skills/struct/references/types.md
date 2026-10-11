@@ -49,3 +49,5 @@ src/<包名>/   tests/   .tools/(PEP 723 零依赖脚本,uv 直跑)   docs/(三�
 ```
 
 要点:ruff D 系 docstring 纪律进门禁(D415 全角句尾坑在册);投影面走注册表三面同源判例(help 加 --llms 加 --schema 单源渲染)加 --check 漂移守卫。
+
+依赖与锁纪律(core-02 三方合成):uv.lock 提交禁手改,CI 走 uv sync --locked(锁过期即红);改依赖只走 uv add,禁 uv pip install 改 .venv;不平行提交 requirements.txt;pytest 与 ruff 与 ty 进 [dependency-groups].dev(PEP 735),不进 extras。结构反面(八条摘要):双锁并存、裸 uv sync 进 CI、dev-dependencies 残留、pytest 进 extras、black 加 isort 加 mypy 与 ruff 加 ty 叠两套、手写 llms.txt 或注册表双维护、单包上 workspace、任务运行器三套并存。

@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 新增(2026-10-11,第一百一十二批:core-02 三方合成吸收,Python uv 范式)
+
+- struct python-tool 卡与 types.md Python 仓卡增补:骨架树细节(uv.lock 提交加 --locked、.python-version 钉版、PEP 735 依赖组、lib/commands/types 结构位、任务入口 uv run 不引多运行器)加依赖锁纪律与八条反面清单
+- doc-cli 两句:结构律「命令层薄、纯函数域厚、进程 spawn 集中」(tool-cli-agents 新九节)加总律「发现面当测试面养」(agent-face);律 1 注册表单源、律 2 投影四要素、律 5 配置根件、agent 面与技能生态节、守卫清单节均已在册引用即可;不立新 Python 范式页(struct 卡即载体,单一权威源)
+
 ### 新增(2026-10-11,第一百一十一批:s5 跨机共享内容技能,用户令 evo-04)
 
 - evo-herdr 第三 skill **s5**(客户端 evo-herdr:s5,协同域归一:orch 台面、flywheel 信号、s5 内容):agent 跨机共享内容,文件道(S3 形 put/get/ls/del)加流道(S2 形 append/tail)双道选型三问判据,零感知凭据三不纪律,与 herdr 分工律(信号走 herdr 内容走 s5),跨机轮次三件套与研究档轨迹流键空间规范(rounds/、research/、streams/)

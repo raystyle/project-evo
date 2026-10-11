@@ -3,7 +3,7 @@
 type = "python-tool"
 
 [required]
-paths = ["AGENTS.md", "CLAUDE.md", "README.md", "CHANGELOG.md", "pyproject.toml", "src/", "tests/"]
+paths = ["AGENTS.md", "CLAUDE.md", "README.md", "CHANGELOG.md", "pyproject.toml", "uv.lock", ".python-version", "src/", "tests/"]
 
 [generated]
 paths = ["docs/llms.txt"]
@@ -14,8 +14,10 @@ paths = ["__pycache__/", ".venv/", "dist/", "*.egg-info/", ".claude/settings.loc
 
 [config-root]
 paths = ["pyproject.toml", "uv.lock"]
-note = "pyproject 一件收 ruff(select 含 D 系按仓裁)与 pytest"
+note = "pyproject 一件收 ruff 与 pytest 与 ty;依赖组走 [dependency-groups].dev(PEP 735),不用弃用的 tool.uv.dev-dependencies;version 唯一权威在此,投影渲染注入"
 
 [optional]
 ".tools/" = "PEP 723 零依赖脚本,uv 直跑"
-"docs/" = "三层聚合或 doc-gov 面,按仓"
+"docs/" = "三层聚合或 docs 面,按仓"
+"src/<pkg>/{commands,lib,types}" = "结构律:commands 薄编排一域一文件,lib 纯函数域,types 契约真源;进程 spawn 集中一处"
+"任务入口" = "uv run 加 AGENTS 命令,单包不引 just 与 Taskfile 与 Makefile 并存"
