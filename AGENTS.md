@@ -39,7 +39,7 @@
 ## 环境
 
 - 平台:Windows + PowerShell 7(禁 powershell.exe 5.1 与 cmd);uv 运行时,脚本 PEP 723 零依赖(>=3.12);WSL 到宿主恒走 127.0.0.1 回环加 interop 直调,不走宿主 mesh IP;验收运维脚本载体统一 pwsh
-- 当前阶段:v0.14.0 已封版(2026-10-12,第一百一十三至一百二十一批:第五插件 evo-agent 与 agent-doctor 与 agent-s5、md-lint 与 ls-lint 更名、四批评审修订与 G 项清理,版本载体 0.9.0);已封版沿革与批次史见 CHANGELOG 与 ROADMAP,不在本文件续写
+- 当前阶段:v0.15.0 已封版(2026-10-12,第一百二十三至一百三十一批:herdr-flywheel 升格 evo-agent:agent-rloop、s5 归一 agent-s5、s5 信道翻转与窗格登记簿、zh-lint 受控中文、channels 判据,版本载体 0.10.0);已封版沿革与批次史见 CHANGELOG 与 ROADMAP,不在本文件续写
 - 部署:Claude Code `/plugin marketplace add raystyle/project-evo` 后按插件装(如 `/plugin install evo-doc@project-evo`);Codex `codex plugin marketplace add raystyle/project-evo`;Grok `grok plugin install <插件>@project-evo --trust`;Kimi 无市场,拷 `plugins/*/skills/*` 至 `~/.kimi/skills`
 - 工作根:`~/repos/ProjectEvo`(WSL 独立 VHDX 挂载 /mnt/wsl/repos 快捷 ~/repos;2026-09-16 迁移,旧位 /mnt/d/ProjectEvo 过渡后裁)
 - 项目状态与待办见 `ROADMAP.md`,不在本文件维护
