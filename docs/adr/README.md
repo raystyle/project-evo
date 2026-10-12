@@ -27,3 +27,4 @@
 | ADR-0021 | accepted | 三层聚合统一基底与归档字母表:四仓标准合流,sources 唯一出处层,git 三选一 | |
 | ADR-0022 | accepted | 类型化项目结构标准:struct 技能挂 evo-lint,声明式自研规则,四类型模板库(2026-10-12 更名 ls-lint) | |
 | ADR-0023 | accepted | 第五插件 evo-agent:agent-doctor 四端环境诊断修复,判据两级,增强 hst doctor 编排 | |
+| ADR-0024 | accepted | herdr:s5 删除并入 agent-s5,s5 归一为全 agent 共享看板与实时流 | |

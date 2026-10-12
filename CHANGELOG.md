@@ -4,6 +4,25 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-12 第一百二十五批:批 124 合并保真修复,rev-codex 快核 6F
+
+- F1/F2 键空间与纪律保真:naming.md 跨机轮次与研究档键空间节按原 herdr:s5 fleet.md 语义原样重写(rounds 三件套文件名形与发起接收断言三方同步律、research 与 artifacts 带仓名层、streams 分 diary 与 events、流不替代 diary、环 1000 条与 32KB 设计值、同机不上 s5、临时键用毕 del、键空间变更走 REQ);双道三问补 backend 形(garage 与 streamstore,候实测定稿)
+- F3:evals 五条三类随迁入 agent-s5/references/evals.md(参考索引同步加行);SKILL 双道行补「候 s5 首版实测定稿,实测偏差以本机 s5 --help 为准回填」标态
+- F4:四处「十 skill」陈旧清零(AGENTS 断链行、docs/README、gates.md、tests docstring)
+- F5:批 123 与批 124 的 CHANGELOG 条目补落(先前锚点失配静默跳过,本批改锚定批 122 标题插入)
+- F6:ADR-0024 立档(herdr:s5 并入 agent-s5 的版图裁定)加索引行
+- G 采纳:计数守卫扩总量连写形(任意中文数字插件计数与插件-skill 组合计数须等于实际值);G 不采纳记档:codex 缓存部署漂移属封版滚动既议(版本线不变不刷新),不手清缓存
+
+### 变更 2026-10-12 第一百二十四批:herdr:s5 删除并入 agent-s5,用户裁定
+
+- **本版破坏性变更预告**:技能 evo-herdr:s5(批 111 立)删除,调用名失效;s5 技能面归一为 **evo-agent:agent-s5**,定位 = 所有 agent 共享的看板与实时流,从简(用户令「不要太复杂」);版图回到五插件九 skill
+- agent-s5 吸收:定位句与标题改「全局看板与实时流」,herdr:s5 的协议场景触发词收编(上云、三件套上云、轮次档、跨机研究档、对象道、流道、轨迹流、S3、S2、garage、streamstore),分工句简化为「herdr 管信号与消息,共享内容一律走本 skill」
+- naming.md 增跨机轮次与研究档键空间节;evo-herdr 收两 skill(orch、flywheel),双 manifest 与 README、AGENTS、根 README、双市场清单、docs 地图、pre-commit、测试清单全同步;flywheel 与 orch 零交叉引用净删无断链;REQ-023 立档;kimi 五端旧 s5 目录退场重镜像
+
+### 变更 2026-10-12 第一百二十三批:herdr:s5 触发词去重叠,用户裁定
+
+- 两 s5 系技能触发词分治:s5 裸词与命令动词(put、get、append、tail、streams)归 evo-agent:agent-s5 独占;evo-herdr:s5 换协议场景触发词「上云」(独占动作 = 三件套上云),连带轮次档、跨机研究档、对象道、流道、轨迹流、garage、streamstore 场景词;description 内交叉引用改述不引裸词,消除路由模糊(该分治后被批 124 归一并取代,留档)
+
 ### 变更 2026-10-12 第一百二十二批:CHANGELOG 存量带括号标题 lint 债清理,总台令
 
 - 存量 38 处带括号标题(含全半角混用形)按 md 标题禁括号口径去括号改写,语义原样保留:全尾包裹形剥括号接空格,尾注组形转逗号续写;lint-hook check_md 实证 CHANGELOG 零发现

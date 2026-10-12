@@ -21,7 +21,7 @@ description: >-
 - **活权威 = `s5 --llms`**(手册面,每台实查;命令与参数随版本演进,本 skill 不抄命令表)
 - 装位(舰队惯例注记,本机以 `command -v s5` 实查为准):win 的 `D:\ohmyenv\s5\s5.exe`、linux 的 `~/.local/bin/s5`;skill 只认 PATH(或等价显式路径);本机缺位时如实报「本机无 s5」(判例:2026-10-12 总台 wsl 缺位),安装与分发归宿主工具链 omc 与 ark,不代装不猜命令
 - **零感知凭据**:钥由 config 层吃,命令面零凭据参数;agent 永不接触钥,禁把钥写进命令行、频道消息、看板文件或文档
-- 双道:文件道 S3 形(`put`、`get`、`ls`、`del`,对象交换)、流道 S2 形(`append`、`tail`、`streams`,记录流)
+- 双道:文件道 S3 形(`put`、`get`、`ls`、`del`,对象交换)、流道 S2 形(`append`、`tail`、`streams`,记录流)(对象道后端 garage、流道 streamstore;候 s5 首版实测定稿,实测偏差以本机 `s5 --help` 为准回填)
 
 ## 二、看板与频道命名约定
 

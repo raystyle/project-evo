@@ -37,17 +37,22 @@
 
 ## 双道选型三问
 
+对象道后端 garage(path-style),流道 streamstore 记录(候 s5 首版实测定稿)。
+
+
 1. 要的是**文件**(有版本、要取回、给后续用)还是**消息**(一句话、流过去就完)?文件走看板,消息走频道
 2. 读者是**指定的对端**(要回执、要对账)还是**谁在谁捞**?指定对端走 herdr 派单与产物契约,广播走频道
 3. 内容是**轮次档或研究档**(三件套、研究笺、轨迹流)?走下节 rounds 与 research 与 streams 键空间,不进 board/ 与 channel/
 
 ## 跨机轮次与研究档键空间
 
-飞轮轮次与研究所用(键空间约定,细读以当轮 brief 为准):
+键空间规范(源 herdr:s5 批 124 并入,语义原样):
 
-- `rounds/<日期-主题>/`:跨机轮次总档,三件套(brief、state、receipt)整份 put,对端 get 取回
-- `research/<编号>/`:跨仓研究档交换
-- `streams/<流名>/`:轨迹流与事件流(append 追加、tail 尾随)
+- `rounds/<YYYY-MM-DD>-<主题短名>/<单号>-{brief,state,receipt}.md`:跨机轮次三件套;发起方写 brief 后 put 上键(prompt 给远端键,接收方 get 回本地轮次目录),接收方 state 与 receipt 先写本地、每检查点后 put 同步远端(同键覆盖终态形),断言方 get 回执对账
+- `research/<仓名>/<S 编号或档名>`:跨仓研究档交换(收方入自己 sources/external,verbatim 留底);`artifacts/<仓名>/<工件路径形>`:工件包
+- `streams/<仓名>/diary` 与 `streams/<仓名>/events`:轨迹流与事件流(append 追加、tail 尾随);流不替代 diary 文件(日终 diary 篇是权威,流是跨机实时面,蒸馏进 diary 时标 derived_from);环 1000 条与单条 32KB 量级为设计值(候实测回填),超限走对象道分片
+
+协同律:同机轮次走本地共享目录不上 s5;一次性跨机传文件 = 临时键加消息道告键加用毕 del(传输即弃);键空间规范变更走本仓 REQ,不私改
 
 ## 判例簿
 

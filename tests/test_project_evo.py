@@ -269,7 +269,7 @@ def test_check_json_skip_counts_via_allow(tmp_path: Path):
 
 def test_marketplace_catalog_consistency():
     """清单守卫:市场名 project-evo 收五插件、双清单一致、每插件双 manifest 与市场版本同步、
-    五插件同版、十 skill 分属正确与 hook 面在位(ADR-0010 起逐批演进至五插件,批 113 增 evo-agent、批 117 增 agent-s5)。"""
+    五插件同版、九 skill 分属正确与 hook 面在位(ADR-0010 起逐批演进至五插件,批 113 增 evo-agent、批 117 增 agent-s5)。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     codex_mkt = json.loads((REPO / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
     assert claude_mkt["name"] == codex_mkt["name"] == "project-evo", "市场名须为 project-evo"
@@ -621,25 +621,27 @@ def test_live_surfaces_count_matches_reality():
 
 
 def test_no_stale_plugin_counts_in_live_surfaces():
-    """活面陈旧插件计数全树守卫:旧计数连写(插件计数与插件-skill 组合计数)在非档案活面零残留。
-
-    拼接式模式串避免守卫自咬;序数「第几插件」放行;「三 skill」单用是 herdr 合法表述,只查与插件连写形。
-    """
-    pat = re.compile("(?<!第)(" + "|".join(c + "插" + "件" for c in "三四两") +
-                     "|(?<!第)[三四两]插件[零一二三四五六七八九十]+ skill)")
+    """活面插件计数全树守卫:任意中文数字插件计数须等于实际插件数(序数第几插件放行)。"""
+    import re as _re
+    pat = _re.compile("[一二三四五六七八九十]{1,3}插件")
     skip_dirs = {".git", ".venv", ".pytest_cache", "__pycache__",
                  "adr", "requirements", "diary", "research"}
     suffixes = {".md", ".toml", ".py", ".json", ".sh", ".yml", ".yaml"}
+    want = _cn(len(PLUGIN_NAMES)) + "插件"
     hits = []
     for p in REPO.rglob("*"):
         if p.suffix not in suffixes or any(d in p.parts or d in p.name for d in skip_dirs):
             continue
         if p.name in ("CHANGELOG.md", "ROADMAP.md") or not p.is_file():
             continue
-        m = pat.search(p.read_text(encoding="utf-8", errors="replace"))
-        if m:
-            hits.append(f"{p.relative_to(REPO)}: {m.group()}")
-    assert not hits, f"陈旧插件计数残留: {hits}"
+        text = p.read_text(encoding="utf-8", errors="replace")
+        for m in pat.finditer(text):
+            before = text[max(0, m.start() - 1)]
+            if before == "第":
+                continue
+            if m.group() != want:
+                hits.append(f"{p.relative_to(REPO)}: {m.group()}")
+    assert not hits, f"陈旧插件计数残留(应全为 {want}): {hits}"
 
 
 def test_config_lint_codex_enum_shape_and_safe_guard(tmp_path: Path):

@@ -6,7 +6,7 @@
 ## Commands
 
 - `uv run pytest` 全测试(脚本行为 + 清单一致性守卫 + 仓内禁字回归)
-- `uv run .tools/md-ref-scan.py plugins/<插件>/skills/<skill>` 断链扫描(五插件十 skill 各跑一次;pre-commit 自动)
+- `uv run .tools/md-ref-scan.py plugins/<插件>/skills/<skill>` 断链扫描(五插件九 skill 各跑一次;pre-commit 自动)
 - `uv run .tools/check.py` 本仓骨架自检(PE-01 至 PE-12;下游仓 PE-11 历史档案豁免走 PEVO_CHECK_ALLOW,正则见 docs/guides/gates.md)
 - `uv run .tools/scan.py . --no-history` 禁字与密钥扫描(测试夹具与研究档案的公开示例假密钥走 `PEVO_SCAN_ALLOW` 豁免:tests/test_project_evo.py 的 ghp_ 假 token 与 docs/research/S006 的公开示例样值;标准命令与完整豁免正则见 docs/guides/gates.md)
 - 提交挡板:`git config core.hooksPath githooks`(md 禁字 + 断链,不过不进库)

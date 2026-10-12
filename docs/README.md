@@ -1,6 +1,6 @@
 # docs 地图
 
-> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、research 存研究档案;过程轨迹(日记)继续落 diary/,形态权威已迁 `../plugins/evo-distil/skills/distil-skill/references/trajectories.md`;skill 知识库在 `plugins/<插件>/skills/` 下(五插件十 skill)。
+> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、research 存研究档案;过程轨迹(日记)继续落 diary/,形态权威已迁 `../plugins/evo-distil/skills/distil-skill/references/trajectories.md`;skill 知识库在 `plugins/<插件>/skills/` 下(五插件九 skill)。
 
 | 文档 | 讲什么 | 何时看 |
 |------|--------|--------|
