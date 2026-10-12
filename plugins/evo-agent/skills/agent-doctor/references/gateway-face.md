@@ -1,17 +1,20 @@
 # 网关诊断面:overcast API 网关
 
-> overcast 候实装:其 health 与 models 路径保持不知,实装后套用本页同一张三层表,不把别家网关的路径抄到 overcast 名下。现状配置端 = lan-mac 工作台(钉组形)。判据来源:研究档 cfg-02(2026-10-12,官方文档加三网关源码对照)加 hst 手册面;`hst diagnose` 是活性层活权威(打真网关烧最小 token,与 doctor 的零网络体检分家)。
+> overcast 部分实测定稿中:models 与推理面已实测(2026-10-12,见回填位),无鉴权 health 探针仍未知名,回填位保留;别家网关路径仅作参照,不写在 overcast 名下。判据来源:研究档 cfg-02(2026-10-12,官方文档加三网关源码对照)加 hst 手册面加总台实战实证(2026-10-12);`hst diagnose` 是活性层活权威(打真网关烧最小 token,与 doctor 的零网络体检分家)。
 
 ## 现状两形
 
-- **settings 钉组形**(lan-mac 工作台现形):env 钉 `ANTHROPIC_BASE_URL` + 凭证(`ANTHROPIC_AUTH_TOKEN` 走 Bearer 或 `ANTHROPIC_API_KEY` 走 x-api-key 或 apiKeyHelper)加三档 `ANTHROPIC_DEFAULT_OPUS/SONNET/HAIKU_MODEL`(另有第四档 FABLE 与 `ANTHROPIC_MODEL`)
-- **环境注入形**(wsl 总台现形):settings 零 ANTHROPIC_*,接入走会话环境
+- **settings 钉组形**:env 钉 `ANTHROPIC_BASE_URL` + 凭证(`ANTHROPIC_AUTH_TOKEN` 走 Bearer 或 `ANTHROPIC_API_KEY` 走 x-api-key 或 apiKeyHelper)加三档 `ANTHROPIC_DEFAULT_OPUS/SONNET/HAIKU_MODEL`(另有第四档 FABLE 与 `ANTHROPIC_MODEL`)
+- **环境注入形**:settings 零 ANTHROPIC_*,接入走会话环境
+
+> 部署面 [实证: 2026-10-12]:钉组形已部署 lan-mac(发起端)、win 面、local-wsl 面(总台镜像到 wsl);环境注入形仍为其余接入的合法形态
 
 ## 官方拼接规范
 
 - base 是**源站,不含 `/v1`、无尾斜杠**:Claude Code 自己接 `/v1/messages`(推理)、`/v1/messages/count_tokens`、`GET /v1/models?limit=1000`(发现,缺省超时 3 秒,重定向当失败);base 以 `/v1` 结尾会拼出 `/v1/v1/messages`(config-lint error)
 - 头种:Bearer 用 `ANTHROPIC_AUTH_TOKEN`,x-api-key 用 `ANTHROPIC_API_KEY`,apiKeyHelper 两头都送;`anthropic-beta` 与 `anthropic-version` 须原样转发
 - 只设 base 不设网关凭证 = 订阅穿网关模式(文档形态,advisory)
+- **模型名 `[1m]` 后缀剥离** [用户口径加实证: 2026-10-12]:Claude Code 客户端发网关前剥离模型名 `[1m]` 后缀(1M 上下文标记),网关 models 列表只有剥离形;raw curl 带 `[1m]` 直打回 400 unknown provider **不代表配置错**(实证:zp-cc-glm53[1m] 直打 400,剥离形 zp-cc-glm53 打 200);手测验证一律用剥离形
 - 官方验证请求(回包 `{"id":"msg_` 开头即通;401 换头种再试):
 
 ```bash
@@ -52,7 +55,7 @@ curl -sS -w '\n%{http_code}\n' -X POST "$ANTHROPIC_BASE_URL/v1/messages" \
 
 | 判据 | 档 |
 | --- | --- |
-| 钉住的模型 id 不在网关权威 models 列表,或补全回不存在 | error |
+| 钉住的模型 id 不在网关权威 models 列表,或补全回不存在(**先剥 `[1m]` 后缀再比对**,带后缀形不在列表不是漂移) | error |
 | LiteLLM `GET /health`(Bearer 真请求)unhealthy_endpoints 出现某模型而 liveliness 仍 200 | 该模型 error,进程算过 |
 | `hst diagnose cache`(缺省测 `/v1/models` 全量别名,探测错误退 1) | 退出码 1 即 error |
 | 列表多出客户端不用的 id;目录短暂缺条目而补全仍成功 | advisory |
@@ -71,7 +74,7 @@ overcast 定稿前的参照:
 
 1. 键组不齐:base 配了凭证缺或头种不对(401)
 2. token 失效:401 或 one-api 形 403(令牌无权该模型)
-3. 模型映射漂移:发现列表与钉住别名不一致;新模型名未路由回 404;内建 id 须在网关 model_list 有同名
+3. 模型映射漂移:发现列表与钉住别名不一致(剥 `[1m]` 后比对,见拼接规范节);新模型名未路由回 404;内建 id 须在网关 model_list 有同名
 4. base 尾斜杠与路径拼接:`/v1` 双拼、SDK 侧二次拼后缀(LiteLLM SDK 未关 `LITELLM_ANTHROPIC_DISABLE_URL_SUFFIX` 时)、one-api 非 `/v1` 非 `/api` 路径回 HTML 200
 
 ## 修法
@@ -82,8 +85,15 @@ overcast 定稿前的参照:
 
 ## 回填位
 
-- [ ] overcast health 与 models 端点及鉴权形态(实装后填,套三层表)
-- [ ] overcast 模型清单拉取与 hst diagnose 配套参数
+- [x] overcast models 端点 [实证: 2026-10-12]:`GET /v1/models?limit=1000`,Bearer,200 JSON 六模型
+- [x] overcast 推理端点 [实证: 2026-10-12]:`POST /v1/messages`(anthropic 形,Bearer;别名 zp-cc-glm53 路由,回包 model=glm-5.3)
+- [ ] overcast 无鉴权 health 探针(未知名,实装后填)
+- [ ] hst diagnose 与 overcast 的配套参数
 - [ ] 四端网关配置对齐基线(钉组形标准键组)
+
+## 命名族注记
+
+- `zp-cc-*` = Claude Code 专用别名族 [用户口径: 2026-10-12]
+- `zp-cx-*` 族归属待证:models 列表 owned_by 标 glm 与 xai,勿写死 [待证]
 
 权威:llm-gateway-connect 与 llm-gateway-protocol 与 llm-gateway-rollout 与 model-config(code.claude.com/docs);LiteLLM docs/proxy/health 与 client_setup/claude_code;new-api 与 one-api 仓 router 源码。

@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-12 第一百二十六批:agent-doctor 网关面 [1m] 剥离事实与 overcast 实测回填,总台优化单
+
+- **[1m] 后缀剥离事实入判据**(用户口径加实证:Claude Code 发网关前剥模型名 [1m] 标记,网关 models 列表只有剥离形;raw curl 带后缀 400 unknown provider 不代表配置错,实证 zp-cc-glm53[1m] 400 与剥离形 200):拼接规范节立条,活性层「钉住 id 不在 models 列表」改先剥后缀再比对,错形三注剥后比对,手测验证一律用剥离形
+- overcast 回填位两项落实测:models = GET /v1/models?limit=1000(Bearer,200 JSON 六模型),推理 = POST /v1/messages(anthropic 形,Bearer,别名 zp-cc-glm53 回包 model=glm-5.3);health 无鉴权探针仍未知名保留
+- 现状两形更新:钉组形 2026-10-12 已部署 lan-mac(发起)、win 面、local-wsl 面(总台镜像)
+- 命名族注记:zp-cc-* = Claude Code 专用别名族(用户口径);zp-cx-* 归属待证(owned_by 标 glm 与 xai,勿写死)
+
 ### 变更 2026-10-12 第一百二十五批:批 124 合并保真修复,rev-codex 快核 6F
 
 - F1/F2 键空间与纪律保真:naming.md 跨机轮次与研究档键空间节按原 herdr:s5 fleet.md 语义原样重写(rounds 三件套文件名形与发起接收断言三方同步律、research 与 artifacts 带仓名层、streams 分 diary 与 events、流不替代 diary、环 1000 条与 32KB 设计值、同机不上 s5、临时键用毕 del、键空间变更走 REQ);双道三问补 backend 形(garage 与 streamstore,候实测定稿)
