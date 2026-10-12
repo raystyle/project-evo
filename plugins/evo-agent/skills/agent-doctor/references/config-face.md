@@ -8,6 +8,7 @@
 uv run <技能根>/scripts/config-lint.py [--claude P] [--codex P] [--grok P] [--kimi-config P] [--kimi P] [--kimi-source P] [--json]
 ```
 
+- 单面异常走内部异常兜底转 error(`_safe`),不吞其余面的发现
 - 缺省路径:`~/.claude/settings.json`(连同 `settings.local.json`)、`~/.codex/config.toml`、`~/.grok/config.toml`、`~/.kimi-code/config.toml`、`~/.kimi/skills`;文件不在即跳过该面(note 行,不算错)
 - `--claude` 指向非用户面文件(如仓内 `.claude/settings.json`)时,凭证判据升 error(会进库的文件)
 - 退出码:0 无 error(advisory 不挡)、1 有 error;`--json` 出机读形
@@ -18,6 +19,7 @@ uv run <技能根>/scripts/config-lint.py [--claude P] [--codex P] [--grok P] [-
 | 面 | 检查 | 判据 | 修法 |
 | --- | --- | --- | --- |
 | claude | JSON 解析 | 两 settings 文件可解析;顶层是对象 | 修语法 |
+| 全端 | 形态非法 | 各键取值类型不符(env 与 enabledPlugins 与 permissions 与 hooks 须对象、hooks 数组表、枚举须字符串)报形态非法 error,不崩溃 | 修形态 |
 | claude | defaultMode 非法值 | 限 doctor 2.1.296 实测枚举:`default`/`acceptEdits`/`auto`/`plan`/`bypassPermissions`/`dontAsk` | 改合法值 |
 | claude | 命令绝对路径缺失 | hooks 与 statusLine 命令的绝对路径 token(引号段含空格可解)须存在 | 修路径或改 PATH 相对 |
 | claude | 项目面明文凭据 | 非用户面文件的 env 键族 `*TOKEN`/`*API_KEY`/`*SECRET`/`*PASSWORD`/`*KEY`(词边界)/`*CREDENTIAL`/`*BEARER` 大小写不敏感持字面量(`${VAR}`、`$VAR`、`%VAR%`、`$env:VAR` 占位形放行) | 凭证移出会进库文件 |

@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 修复 2026-10-12 第一百二十批:评审三轮收尾批(纯文案与守卫,不动行为)
+
+- F3r 余账六处计数位清零:docs/README 四插件六 skill 刷五插件十 skill、pyproject 与 evo-lint README 版本线句刷五插件、tests 三处 docstring 与断言消息刷五插件;gates.md 实证注记去计数连写(时为四端后扩五)
+- F2r 判据表回填:config-face 增「形态非法」error 行与单面异常兜底说明;agent-doctor SKILL 速览行补「坏形态报形态非法、单面异常兜底不吞其余面」
+- 补断言:codex 枚举不可哈希形态测试(类型守卫先于 _safe 兜底命中);活面陈旧插件计数全树守卫(三、两、四插件在非档案活面零残留,序数「第几插件」形放行,守卫首跑自抓两处漏网并清)
+- 门禁:37 测试绿、scan 干净、check 12/12(评审方前三轮独立复跑四门禁与我方一致)
+
 ### 修复 2026-10-12 第一百一十九批:评审二轮修订(rev-codex 复核 3F 顺手 2G)
 
 - **F1r**:codex 面 `_safe` 兜底挂上(上轮缩进锚点未命中静默跳过);三处枚举值不可哈希形态(defaultMode、approval_policy、sandbox_mode 非字符串)防御报形态非法

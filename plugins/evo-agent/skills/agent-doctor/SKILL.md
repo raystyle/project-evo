@@ -32,7 +32,7 @@ description: >-
 
 | 面 | 主命令 | 判据 |
 | --- | --- | --- |
-| 配置诊断 | `uv run <技能根>/scripts/config-lint.py`(四端缺省路径;`--json` 机读;`--kimi-source` 漂移对账;`--claude` 指项目面文件则凭证升 error) | error 0;advisory 不挡 |
+| 配置诊断 | `uv run <技能根>/scripts/config-lint.py`(四端缺省路径;`--json` 机读;`--kimi-source` 漂移对账;`--claude` 指项目面文件则凭证升 error;坏形态报形态非法、单面异常兜底不吞其余面) | error 0;advisory 不挡 |
 | 运行时诊断 | `hst doctor`(yolo、trust、binary、state、登录态、hook 形态、状态栏) | 逐 agent 逐 check 过 |
 | hook 修复 | `hst init`(幂等:hook 注册、shim 落位、状态栏)、`hst hook init`、`hst hook verify` | 重部署后再 doctor 全过 |
 | goal 状态 | `hst goal show / set / clear / heal` | show 出 present 与 rounds;heal 风暴闸在册 |

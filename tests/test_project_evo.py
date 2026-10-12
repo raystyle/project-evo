@@ -268,7 +268,7 @@ def test_check_json_skip_counts_via_allow(tmp_path: Path):
 
 
 def test_marketplace_catalog_consistency():
-    """清单守卫:市场名 project-evo 收两插件、双清单一致、每插件双 manifest 与市场版本同步、
+    """清单守卫:市场名 project-evo 收五插件、双清单一致、每插件双 manifest 与市场版本同步、
     五插件同版、十 skill 分属正确与 hook 面在位(ADR-0010 起逐批演进至五插件,批 113 增 evo-agent、批 117 增 agent-s5)。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     codex_mkt = json.loads((REPO / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
@@ -276,7 +276,7 @@ def test_marketplace_catalog_consistency():
 
     names_c = {p["name"] for p in claude_mkt["plugins"]}
     names_x = {p["name"] for p in codex_mkt["plugins"]}
-    assert names_c == names_x == set(PLUGIN_NAMES), f"市场恰收两插件(ADR-0010,ADR-0018): {names_c}"
+    assert names_c == names_x == set(PLUGIN_NAMES), f"市场恰收五插件(ADR-0010 起): {names_c}"
     for p in claude_mkt["plugins"]:
         assert (REPO / p["source"].removeprefix("./")).is_dir(), f"Claude source 不可达: {p['source']}"
     for p in codex_mkt["plugins"]:
@@ -304,7 +304,7 @@ def test_marketplace_catalog_consistency():
             assert declared == sname, f"frontmatter name({declared}) 须与目录名({sname})一致"
             assert (skills / sname / "references").is_dir(), f"参考目录缺失: {sname}"
 
-    assert len(versions) == 1, f"两插件同版本线(ADR-0010): {versions}"
+    assert len(versions) == 1, f"五插件同版本线(ADR-0010): {versions}"
 
     tools = REPO / ".tools"
     for s in ("init.py", "check.py", "scan.py", "md-ref-scan.py"):
@@ -607,3 +607,35 @@ def test_live_surfaces_count_matches_reality():
     text_r = (REPO / "README.md").read_text(encoding="utf-8")
     assert f"{cn[len(PLUGIN_NAMES)]}插件" in text_a and f"{cn[len(PLUGIN_NAMES)]}插件" in text_r
     assert f"{cn[total]} skill" in text_a and f"{cn[total]} skill" in text_r
+
+
+def test_config_lint_codex_enum_shape_and_safe_guard(tmp_path: Path):
+    """review 三轮补断言:codex 枚举不可哈希形态不崩(_safe 与类型守卫真在仓内)。"""
+    mod = _load_config_lint("pevo_config_lint_enum")
+    home = _config_home(tmp_path)
+    (home / ".codex" / "config.toml").write_text(
+        'approval_policy = [1]\nsandbox_mode = ["x"]\n', encoding="utf-8")
+    findings, _ = mod.run(home, home / ".claude" / "settings.json",
+                          home / ".codex" / "config.toml",
+                          home / ".grok" / "config.toml",
+                          home / ".kimi-code" / "config.toml",
+                          home / ".kimi" / "skills", None)
+    errs = [f for f in findings if f[0] == "error"]
+    assert any("形态非法" in f[3] and "approval_policy" in f[3] for f in errs)
+    assert any("形态非法" in f[3] and "sandbox_mode" in f[3] for f in errs)
+    assert not any("内部异常兜底" in f[3] for f in errs), "类型守卫应先于 _safe 兜底命中"
+
+
+def test_no_stale_plugin_counts_in_live_surfaces():
+    """活面陈旧插件计数全树守卫(review F3r 类):三/两/四插件在非档案活面零残留(第几插件序数形放行)。"""
+    pat = re.compile(r"(?<!第)(三插件|两插件|四插件)")
+    me = Path(__file__).resolve()
+    live = [p for p in REPO.rglob("*")
+            if p.resolve() != me
+            and p.suffix in (".md", ".toml", ".py") and ".git" not in p.parts
+            and not any(d in p.parts for d in
+                        ("adr", "requirements", "diary", "research", "__pycache__"))
+            and p.name != "CHANGELOG.md" and p.name != "ROADMAP.md"]
+    hits = [f"{p.relative_to(REPO)}: {m.group()}" for p in live
+            if p.is_file() and (m := pat.search(p.read_text(encoding="utf-8", errors="replace")))]
+    assert not hits, f"陈旧插件计数残留: {hits}"
