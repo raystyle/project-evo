@@ -6,8 +6,9 @@ description: >-
   零感知凭据(密钥收配置层,命令面零凭据参数);与 herdr 分工:herdr 管信号与消息,s5 管共享
   内容。候 s5 首版实测定稿。
   Use when 跨机器共享轮次档与工件、跨仓研究档交换、追加或尾随轨迹流与事件流、给远端工位递
-  内容时;触发词 s5、共享内容、跨机共享、对象道、流道、put、get、append、tail、三件套上云、
-  轮次档共享、garage、streamstore、S3、S2。
+  内容时;触发词 上云、三件套上云、轮次档、跨机研究档、跨机共享、对象道、流道、轨迹流、
+  garage、streamstore、S3、S2。s5 裸词与命令动词及日常看板频道读写触发归 evo-agent:
+  agent-s5,本 skill 只接跨机轮次协议场景。
 ---
 
 # s5 - evo-herdr 跨机共享内容
