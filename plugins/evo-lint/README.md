@@ -17,4 +17,4 @@
 - Grok:`grok plugin install evo-lint@project-evo --trust`
 - Kimi:无市场,拷 `plugins/evo-lint/skills/*` 至 `~/.kimi/skills`
 
-当前发布:0.10.0。版本线随市场五插件同线(ADR-0021 族版本纪律)。
+当前发布:0.10.1。版本线随市场五插件同线(ADR-0021 族版本纪律)。

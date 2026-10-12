@@ -1,6 +1,6 @@
 {
   "name": "evo-agent",
-  "version": "0.10.0",
+  "version": "0.10.1",
   "description": "agent 客户端环境与共享三 skill:agent-doctor(四端配置诊断修复 config-lint 判据两级、hook 诊断修复 hst doctor 与 init 与 trusted_hash、goal 与 loop 状态、overcast 网关诊断候实装;增强 hst doctor 编排补面)、agent-s5(全局看板与实时流:零感知凭据、board 与 channel 与 rounds 键空间)、agent-rloop(目标驱动多角色循环进化任务:hst goal 防停、s5 信道、义务图)",
   "author": {
     "name": "raystyle"

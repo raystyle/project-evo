@@ -4,6 +4,10 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-12 第一百三十二批:evo-lint hook 段名英文化,总台令
+
+- hook statusMessage「evo-lint 后缀静检」改「evo-lint file-check」(herdr/hst 状态栏段名纯英文裁定,hst 面另单;statusrender 拼接形 evo-lint-{title});lint-hook.py 头注同步;版本线 0.10.0 进 0.10.1(五插件双 manifest、市场清单、五插件 README 当前发行行);守卫测试补段名纯英断言(test_evo_lint_hook_status_message_english)
+
 ### 新增 2026-10-12 第一百三十一批:evo-lint 第三技能 zh-lint 简明技术中文静检,用户令
 
 - **zh-lint**(客户端 evo-lint:zh-lint):受控中文写技术文档与 AI 解释性回答,目标 = 读者读一遍就不会读错;判据源 = 简明技术中文规范 0.2(六节四十条 + 词表三张表,上游仓为活权威,CC-BY 4.0)

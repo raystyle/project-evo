@@ -419,6 +419,19 @@ def test_evo_lint_hooks_use_braced_plugin_root():
             assert "$env:" not in cmd, f"{field} 禁 PowerShell 语法:Windows 走 cmd.exe /C"
 
 
+def test_evo_lint_hook_status_message_english():
+    """hook 段名纯英文裁定(herdr/hst 状态栏段名英文化同批):statusMessage 形为 evo-lint 加空格加英文短形,
+    statusrender 拼接形 evo-lint-{title};标题段限小写字母数字连字符,防中文名回潮。"""
+    hooks = json.loads((PLUGINS["evo-lint"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+    handlers = [h for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]]
+    for h in handlers:
+        msg = h.get("statusMessage", "")
+        assert msg.startswith("evo-lint "), f"statusMessage 须带插件前缀: {msg}"
+        title = msg.removeprefix("evo-lint ")
+        assert re.fullmatch(r"[a-z0-9-]+", title), \
+            f"hook 段名须纯英文短形(statusrender 拼接 evo-lint-{{title}}): {msg}"
+
+
 def test_live_md_hook_stays_removed():
     """批 105 裁撤:live PostToolUse 禁字 hook(插件 hooks.json 与仓 settings.json)不得回潮。
 

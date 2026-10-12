@@ -2,7 +2,7 @@
 # requires-python = ">=3.12"
 # dependencies = []
 # ///
-# evo-lint 后缀静检 hook:Edit/Write/MultiEdit 落盘后按后缀自动静检,报错信息回传(exit 2)。
+# evo-lint file-check hook(后缀静检):Edit/Write/MultiEdit 落盘后按后缀自动静检,报错信息回传(exit 2)。段名纯英文裁定(statusrender 拼接形 evo-lint-{title})。
 # 纪律:只做快检查(秒级),重检查(clippy/tsc 全量)进门禁与 CI;工具缺位放行(分发归 omc/ark,只认 PATH)。
 import json
 import os
