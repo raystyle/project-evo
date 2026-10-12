@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,五插件九 skill:`evo-doc`(文档治理与原生设计:doc-gov、doc-cli)、`evo-herdr`(协作三 skill:herdr-orch 主开发台、herdr-flywheel 跨仓飞轮、s5 跨机共享内容)、`evo-distil`(技能自进化:distil-skill)、`evo-lint`(静态检查与结构标准:md-lint 五面、ls-lint 类型模板与写后 hook)、`evo-agent`(agent 环境诊断修复:agent-doctor 配置与 hook 与 goal 和 loop 与网关)。客户端显示 `<插件>:<skill>`。
+> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,五插件十 skill:`evo-doc`(文档治理与原生设计:doc-gov、doc-cli)、`evo-herdr`(协作三 skill:herdr-orch 主开发台、herdr-flywheel 跨仓飞轮、s5 跨机共享内容)、`evo-distil`(技能自进化:distil-skill)、`evo-lint`(静态检查与结构标准:md-lint 五面、ls-lint 类型模板与写后 hook)、`evo-agent`(agent 环境与共享:agent-doctor 配置与 hook 与 goal 和 loop 与网关、agent-s5 看板与频道)。客户端显示 `<插件>:<skill>`。
 
 ## 安装
 

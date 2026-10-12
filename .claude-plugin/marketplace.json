@@ -3,9 +3,9 @@
   "owner": {
     "name": "raystyle"
   },
-  "description": "项目进化:五插件九 skill(文档治理与原生设计 evo-doc、多仓协作三 skill evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint、agent 环境诊断修复 evo-agent)",
+  "description": "项目进化:五插件十 skill(文档治理与原生设计 evo-doc、多仓协作三 skill evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint、agent 环境诊断修复与共享 agent-s5 的 evo-agent)",
   "metadata": {
-    "description": "项目进化:五插件九 skill(文档治理与原生设计 evo-doc、多仓协作三 skill evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint、agent 环境诊断修复 evo-agent)"
+    "description": "项目进化:五插件十 skill(文档治理与原生设计 evo-doc、多仓协作三 skill evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint、agent 环境诊断修复与共享 agent-s5 的 evo-agent)"
   },
   "plugins": [
     {

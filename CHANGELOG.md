@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 新增 2026-10-12 第一百一十七批:evo-agent 第二技能 agent-s5,总台用户令插队
+
+- **agent-s5**(客户端 evo-agent:agent-s5):工作台 agent 的 s5 全局看板与频道操作面,让所有装了插件族的 agent 都会 s5;文件道(S3 形 put/get/ls/del)当全局文件看板、流道(S2 形 append/tail/streams)当全局流消息频道
+- 三节:命令面与活权威(`s5 --llms` 实查不抄命令表;装位 win 的 D:\ohmyenv\s5\s5.exe 与 linux 的 ~/.local/bin/s5;零感知凭据,钥由 config 层吃 agent 永不接触;本机缺位如实报,分发归 omc 与 ark)、命名约定速览、读写规约与消息礼仪(append 落消息 tail 取阅、写者拥有、del 不越权、频道不做请求应答)
+- references/naming.md:看板 `board/<工作台>/<主题>/<文件名>` 与频道 `channel/<频道>` 键空间表、跨台规约、双道选型三问、判例簿;与 evo-herdr:s5 分工句(轮次三件套与研究档走 herdr:s5 协议,本 skill 管通用日常读写)
+- REQ-022 立档;版图五插件十 skill 全同步(双 manifest、双市场清单、插件 README、AGENTS、根 README、docs 地图、pre-commit 十 skill 断链段、测试清单守卫);门禁全绿加 kimi 五端镜像(市场面随下次封版滚动)
+
 ### 新增 2026-10-12 第一百一十六批:cfg-02 研究吸收,网关面定稿与 loop 域权威化
 
 - gateway-face 定稿回填:官方拼接规范(base 源站形无 /v1 无尾斜杠、头种 Bearer 与 x-api-key、官方验证 curl、models 发现与超时重定向语义)、三层判据表(配置对齐 error 与 advisory 分档、连通性、活性)、三网关端点惯例对照(LiteLLM liveliness 与 readiness、new-api 与 one-api /api/status、one-api 无 /v1/messages 与 HTML 控制台回退)、agent 侧四类错形(键组不齐、token 失效、映射漂移、路径双拼);overcast 路径保持不知,实装后套同一三层表

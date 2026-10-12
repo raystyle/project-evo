@@ -40,4 +40,5 @@
 | `../plugins/evo-lint/skills/md-lint/SKILL.md` | 静态检查报错:md 三面(skill 格式标准、agents 与 claude 长度限制、禁字断链)加 rs 加 py 加 ts,写后自动静检 hook 双端 | 配静态检查门禁、修静检红时 |
 | `../plugins/evo-lint/skills/ls-lint/SKILL.md` | 类型化项目结构标准:四类型模板卡与声明式规则件,init 脚手架加结构 check | 新仓脚手架、存量仓结构 lint 时 |
 | `../plugins/evo-agent/skills/agent-doctor/SKILL.md` | agent 客户端环境诊断修复:四端配置诊断(config-lint)、hook 诊断修复、goal 与 loop 状态、overcast 网关诊断候实装 | 四端配置体检、修 hook、查 goal 与 loop 时 |
+| `../plugins/evo-agent/skills/agent-s5/SKILL.md` | s5 全局看板与频道操作面:文件道加流道、命名约定、读写规约与消息礼仪 | 跨台放取共享文件、频道播报取阅时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |
