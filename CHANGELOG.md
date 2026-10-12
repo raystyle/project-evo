@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+暂无。
+
+## [0.14.0] - 2026-10-12
+
+版本载体齐 0.9.0。本版无破坏性变更:第五插件 evo-agent(agent-doctor 与 agent-s5 两 skill)新增,md-lint 与 ls-lint 更名(旧名仅在历史档),lint-hook 辖域修复与 config-lint 判据族随线生效;已装者逐插件 update 即可。
+
 ### 修复 2026-10-12 第一百二十一批:评审 G 项记档清理批(封版前顺手,总台令)
 
 - G-120-1/4:计数守卫重写(排 .venv 与 .pytest_cache、后缀扩 json 与 sh 与 yml、纳入插件-skill 连写组合计数、「三 skill」单用为 herdr 合法表述放行)
