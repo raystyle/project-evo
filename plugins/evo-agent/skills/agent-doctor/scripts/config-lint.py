@@ -17,8 +17,8 @@ import sys
 import tomllib
 from pathlib import Path
 
-SECRET_KEY = re.compile(r"(TOKEN|API_KEY|SECRET|PASSWORD)$")
-PLACEHOLDER = re.compile(r"^\$\{[^}]*\}$")
+SECRET_KEY = re.compile(r"(TOKEN|API_KEY|SECRET|PASSWORD|KEY|CREDENTIAL|BEARER)$", re.IGNORECASE)
+PLACEHOLDER = re.compile(r"^\$\{[^}]*\}$|^\$[A-Za-z_][A-Za-z0-9_]*$|^%[A-Za-z_][A-Za-z0-9_]*%$")
 # 高置信秘密形态:PEM 私钥块、AWS 访问键、sk- 长令牌(只对高置信升 error,URL 与模型名不误伤)
 SECRET_VALUE = [
     re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
@@ -127,8 +127,24 @@ def check_claude(path: Path, home: Path, out: list) -> None:
     for k in data:
         if k not in CLAUDE_FIELDS and k not in allow:
             out.append(("advisory", face, str(path), f"未知顶层字段: {k}"))
+    env = data.get("env", {})
+    if not isinstance(env, dict):
+        out.append(("error", face, str(path), f"env 形态非法: 须为对象,实为 {type(env).__name__}"))
+        env = {}
+    plugins_map = data.get("enabledPlugins", {})
+    if not isinstance(plugins_map, dict):
+        out.append(("error", face, str(path), f"enabledPlugins 形态非法: 须为对象,实为 {type(plugins_map).__name__}"))
+        plugins_map = {}
+    perms = data.get("permissions", {})
+    if not isinstance(perms, dict):
+        out.append(("error", face, str(path), f"permissions 形态非法: 须为对象,实为 {type(perms).__name__}"))
+        perms = {}
+    hooks_map = data.get("hooks", {})
+    if not isinstance(hooks_map, dict):
+        out.append(("error", face, str(path), f"hooks 形态非法: 须为对象,实为 {type(hooks_map).__name__}"))
+        hooks_map = {}
     # 悬空引用是文档容忍态(项目文件指向未装插件为稳态),报 advisory(cfg-01 件 1)
-    for key, on in data.get("enabledPlugins", {}).items():
+    for key, on in plugins_map.items():
         if not isinstance(key, str) or "@" not in key or not on:
             continue
         name, _, mkt = key.partition("@")
@@ -136,8 +152,6 @@ def check_claude(path: Path, home: Path, out: list) -> None:
             else home / ".claude" / "plugins" / "cache" / mkt / name
         if not cand.is_dir():
             out.append(("advisory", face, str(path), f"enabledPlugins 悬空引用: {key} 不在 {cand}"))
-    # 用户面明文凭证是文档允许形态(网关页),提示迁移;会进库的项目面才 error
-    env = data.get("env", {})
     for k, v in env.items():
         if isinstance(v, str) and v and SECRET_KEY.search(k) and not PLACEHOLDER.match(v):
             level = "advisory" if is_user_file else "error"
@@ -150,15 +164,17 @@ def check_claude(path: Path, home: Path, out: list) -> None:
             out.append(("advisory", face, str(path), "网关 base 带尾斜杠: 官方形是源站无尾斜杠"))
         if gw.rstrip("/").endswith("/v1"):
             out.append(("error", face, str(path), "网关 base 以 /v1 结尾: 客户端会拼出 /v1/v1/messages"))
-        if not any(isinstance(env.get(k), str) and env[k] for k in ("ANTHROPIC_AUTH_TOKEN", "ANTHROPIC_API_KEY")):
+        helper = data.get("apiKeyHelper")
+        has_cred = any(isinstance(env.get(k), str) and env[k] for k in ("ANTHROPIC_AUTH_TOKEN", "ANTHROPIC_API_KEY")) or (isinstance(helper, str) and bool(helper))
+        if not has_cred:
             out.append(("advisory", face, str(path), "网关键组不齐: ANTHROPIC_BASE_URL 配了但鉴权键缺"))
         if not any(k.startswith("ANTHROPIC_DEFAULT_") and k.endswith("_MODEL") for k in env):
             out.append(("advisory", face, str(path), "网关键组不齐: 无 ANTHROPIC_DEFAULT_*_MODEL 模型映射"))
-    mode = data.get("permissions", {}).get("defaultMode")
+    mode = perms.get("defaultMode")
     if mode is not None and mode not in CLAUDE_MODES and mode not in allow:
         out.append(("error", face, str(path), f"permissions.defaultMode 非法值: {mode}"))
     cmds = [data.get("statusLine", {}).get("command", "")]
-    for entries in data.get("hooks", {}).values():
+    for entries in hooks_map.values():
         if not isinstance(entries, list):
             continue
         for ent in entries:
@@ -189,7 +205,11 @@ def check_codex(path: Path, home: Path, out: list) -> None:
         if k not in CODEX_KEYS and k not in allow:
             out.append(("advisory", face, str(path), f"未知顶层键: {k}"))
     _scan_secret_values(face, str(path), data, out)
-    for name, tbl in data.get("mcp_servers", {}).items():
+    mcp = data.get("mcp_servers", {})
+    if not isinstance(mcp, dict):
+        out.append(("error", face, str(path), f"mcp_servers 形态非法: 须为表,实为 {type(mcp).__name__}"))
+        mcp = {}
+    for name, tbl in mcp.items():
         if not isinstance(tbl, dict) or not isinstance(tbl.get("command"), str):
             out.append(("error", face, str(path), f"mcp_servers.{name} 形态非法: command 须为字符串"))
         elif "args" in tbl and not (isinstance(tbl["args"], list) and all(isinstance(a, str) for a in tbl["args"])):
@@ -202,7 +222,9 @@ def check_codex(path: Path, home: Path, out: list) -> None:
         out.append(("error", face, str(path), f"sandbox_mode 非法值: {sb}"))
     # 配置残留候选:plugins 键指向的插件在 cache 无目录(卸载不清配置,判例 2026-10-12 wsl)
     plugins = data.get("plugins", {})
-    if isinstance(plugins, dict):
+    if not isinstance(plugins, dict):
+        out.append(("error", face, str(path), f"plugins 形态非法: 须为表,实为 {type(plugins).__name__}"))
+    else:
         for key in plugins:
             if not isinstance(key, str) or "@" not in key:
                 continue
@@ -228,7 +250,14 @@ def check_grok(path: Path, home: Path, out: list) -> None:
             plugins = d / "plugins"
             if plugins.is_dir():
                 installed |= {p.name for p in plugins.iterdir() if p.is_dir()}
-    for name in data.get("plugins", {}).get("enabled", []):
+    plugins = data.get("plugins", {})
+    enabled = plugins.get("enabled", []) if isinstance(plugins, dict) else []
+    if not isinstance(plugins, dict):
+        out.append(("error", face, str(path), f"plugins 形态非法: 须为表,实为 {type(plugins).__name__}"))
+    if not isinstance(enabled, list):
+        out.append(("error", face, str(path), "plugins.enabled 形态非法: 须为数组"))
+        enabled = []
+    for name in enabled:
         if name not in installed:
             out.append(("error", face, str(path), f"plugins.enabled 悬空引用: {name} 不在 {cache}"))
     cmd = data.get("ui", {}).get("status_line", {}).get("command", "")
@@ -246,12 +275,18 @@ def check_kimi_config(path: Path, out: list) -> None:
         if k not in KIMI_KEYS and k not in allow:
             out.append(("advisory", face, str(path), f"未知顶层键: {k}"))
     _scan_secret_values(face, str(path), data, out)
-    for name, tbl in data.get("providers", {}).items():
+    providers = data.get("providers", {})
+    if not isinstance(providers, dict):
+        out.append(("error", face, str(path), f"providers 形态非法: 须为表,实为 {type(providers).__name__}"))
+        providers = {}
+    for name, tbl in providers.items():
         if isinstance(tbl, dict) and isinstance(tbl.get("api_key"), str) and tbl["api_key"]:
             out.append(("error", face, str(path), f"providers.{name}.api_key 明文非空: 凭证应走 oauth/环境"))
     hooks = data.get("hooks", [])
-    if isinstance(hooks, list):
-        for h in hooks:
+    if not isinstance(hooks, list):
+        out.append(("error", face, str(path), f"hooks 形态非法: 须为数组表,实为 {type(hooks).__name__}"))
+        hooks = []
+    for h in hooks:
             if isinstance(h, dict) and isinstance(h.get("command"), str):
                 # kimi 配置按设计共存双 OS 形,只查当前 OS 形路径(hst init 双形部署)
                 check_cmd_paths(face, str(path), h["command"], out, current_os_only=True)
@@ -295,9 +330,16 @@ def run(home: Path, claude: Path, codex: Path, grok: Path, kimi_config: Path, ki
         kimi_source: Path | None) -> tuple[list, list[str]]:
     out: list = []
     notes: list[str] = []
+
+    def _safe(fn, *args):
+        try:
+            fn(*args)
+        except Exception as e:  # 形态兜底:单面异常转 error,不吞其余面
+            out.append(("error", "agent-doctor", "config-lint", f"内部异常兜底: {type(e).__name__}: {e}"))
+
     for p in (claude, claude.with_name("settings.local.json")):
         if p.is_file():
-            check_claude(p, home, out)
+            _safe(check_claude, p, home, out)
     if not claude.is_file():
         notes.append(f"claude 面跳过: 无 {claude}")
     if codex.is_file():
@@ -305,15 +347,15 @@ def run(home: Path, claude: Path, codex: Path, grok: Path, kimi_config: Path, ki
     else:
         notes.append(f"codex 面跳过: 无 {codex}")
     if grok.is_file():
-        check_grok(grok, home, out)
+        _safe(check_grok, grok, home, out)
     else:
         notes.append(f"grok 面跳过: 无 {grok}")
     if kimi_config.is_file():
-        check_kimi_config(kimi_config, out)
+        _safe(check_kimi_config, kimi_config, out)
     else:
         notes.append(f"kimi 配置面跳过: 无 {kimi_config}")
     if kimi.is_dir():
-        check_kimi_skills(kimi, out, kimi_source)
+        _safe(check_kimi_skills, kimi, out, kimi_source)
     else:
         notes.append(f"kimi skills 面跳过: 无 {kimi}")
     return out, notes

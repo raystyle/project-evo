@@ -4,7 +4,7 @@
 
 ## 安装
 
-市场名 `project-evo`,源 `raystyle/project-evo`;按域装插件,三插件同版本线(ADR-0010)。
+市场名 `project-evo`,源 `raystyle/project-evo`;按域装插件,五插件同版本线(ADR-0010)。
 
 | 客户端 | 命令 |
 |--------|------|
@@ -17,7 +17,7 @@
 
 ## 升级
 
-升级 = 刷新市场快照再更新插件;插件按 manifest 版本号归位缓存,版本号不变则不刷新。三插件同版本线,升级时逐插件 update。
+升级 = 刷新市场快照再更新插件;插件按 manifest 版本号归位缓存,版本号不变则不刷新。五插件同版本线,升级时逐插件 update。
 
 ```text
 Claude Code   /plugin marketplace update project-evo   /plugin update <插件>@project-evo     (重启会话生效)

@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+### 修复 2026-10-12 第一百一十八批:四批评审修订批(rev-codex 快核,3F 9G 1 大面 CONFIRM)
+
+- **F1 形态防御(重)**:config-lint 五处坏形态直崩(env 非对象、enabledPlugins 数组、permissions 与 hooks 非对象、grok plugins 非表、codex mcp_servers 数组表)修为逐面类型守卫报「形态非法」error;run() 加 _safe 兜底,单面异常不吞其余面
+- **F2 凭证键族(中)**:SECRET_KEY 扩族加大小写不敏感(TOKEN、API_KEY、SECRET、PASSWORD、KEY、CREDENTIAL、BEARER,re.I),占位符放宽 ${VAR}、$VAR、%VAR% 形
+- **F3 活面陈旧计数(轻,前批欠账)**:AGENTS 断链段与 Must 的「三插件」刷五插件、当前阶段 v0.12.0 刷 v0.13.1、根 README 三处与钉版段刷五插件与 v0.13.1、测试 docstring 刷十 skill
+- G1 顺手:apiKeyHelper 非空即算有凭证(按自家手册修完不再留警);G3 顺手:gateway-face 项目面凭证口径统一并标注 CUSTOM_HEADERS 为人工判据;G8 顺手:ADR-0022 索引行加更名尾注;G9 顺手:gateway-face 去具体 finding 条数并收 hst diagnose agents 一行
+- G2 占位符文档化、G4 漂移对账口径、G5 豁免未命中留痕、G6 lint-hook 与 md-guard 异常对齐、G7「限仓内」措辞改「cwd 子树内」:记档后批
+- 新守卫:形态防御与键族两测试 + 活面计数守卫(AGENTS 与根 README 的 N 插件 M skill 须等于 SKILLS 实际值);评审方独立复跑四门禁与我已验面一致,批 114 辖域、批 115 更名、三方自洽、批 116 网关面四点 CONFIRM
+
 ### 新增 2026-10-12 第一百一十七批:evo-agent 第二技能 agent-s5,总台用户令插队
 
 - **agent-s5**(客户端 evo-agent:agent-s5):工作台 agent 的 s5 全局看板与频道操作面,让所有装了插件族的 agent 都会 s5;文件道(S3 形 put/get/ls/del)当全局文件看板、流道(S2 形 append/tail/streams)当全局流消息频道

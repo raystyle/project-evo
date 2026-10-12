@@ -269,7 +269,7 @@ def test_check_json_skip_counts_via_allow(tmp_path: Path):
 
 def test_marketplace_catalog_consistency():
     """清单守卫:市场名 project-evo 收两插件、双清单一致、每插件双 manifest 与市场版本同步、
-    两插件同版、三 skill 分属正确与 hook 面在位(ADR-0010 四插件形态,ADR-0011 至 ADR-0017 逐批收敛,ADR-0018 三合一改名 evo-doc 收敛为两插件三 skill)。"""
+    五插件同版、十 skill 分属正确与 hook 面在位(ADR-0010 起逐批演进至五插件,批 113 增 evo-agent、批 117 增 agent-s5)。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     codex_mkt = json.loads((REPO / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
     assert claude_mkt["name"] == codex_mkt["name"] == "project-evo", "市场名须为 project-evo"
@@ -565,3 +565,45 @@ def test_lint_hook_scopes_to_event_cwd(tmp_path: Path):
     inside = json.dumps({"hook_event_name": "PostToolUse", "cwd": str(tmp_path),
                          "tool_input": {"file_path": str(bad)}})
     assert _run_lint_hook(inside).returncode == 2, "仓内 md 照检"
+
+
+def test_config_lint_survives_malformed_shapes(tmp_path: Path):
+    """config-lint 形态防御(review F1):坏形态出 error 不崩,其余面发现不丢。"""
+    mod = _load_config_lint("pevo_config_lint_shape")
+    home = _config_home(tmp_path)
+    (home / ".claude" / "settings.json").write_text(
+        '{"env": "oops", "enabledPlugins": [], "permissions": "plan", "hooks": []}', encoding="utf-8")
+    findings, notes = mod.run(home, home / ".claude" / "settings.json",
+                              home / ".codex" / "config.toml",
+                              home / ".grok" / "config.toml",
+                              home / ".kimi-code" / "config.toml",
+                              home / ".kimi" / "skills", None)
+    errs = [f for f in findings if f[0] == "error"]
+    assert any("形态非法" in f[3] for f in errs), "坏形态应报形态非法而非崩溃"
+    assert {f[1] for f in errs} == {"claude", "codex", "grok", "kimi"}, "单面坏形态不吞其余面"
+
+
+def test_config_lint_secret_family_case(tmp_path: Path):
+    """凭证键族扩容与大小写(review F2):小写 token 与 _KEY 族命中,占位符形放行。"""
+    mod = _load_config_lint("pevo_config_lint_sec")
+    home = _config_home(tmp_path, bad=False)
+    (home / ".claude" / "settings.json").write_text(json.dumps(
+        {"env": {"anthropic_auth_token": "x", "MY_SERVICE_KEY": "y", "OK_TOKEN": "$MY_TOKEN"}}),
+        encoding="utf-8")
+    findings, _ = mod.run(home, home / ".claude" / "settings.json",
+                          home / ".codex" / "config.toml",
+                          home / ".grok" / "config.toml",
+                          home / ".kimi-code" / "config.toml",
+                          home / ".kimi" / "skills", None)
+    hits = [f for f in findings if "明文凭据" in f[3]]
+    assert len(hits) == 2, f"小写与 _KEY 族应命中、$VAR 占位放行,实得 {[f[3] for f in hits]}"
+
+
+def test_live_surfaces_count_matches_reality():
+    """活面计数守卫(review F3/G8):AGENTS 与根 README 的插件与 skill 计数等于 SKILLS 实际值。"""
+    total = sum(len(v) for v in SKILLS.values())
+    cn = {1: "一", 2: "二", 3: "三", 4: "四", 5: "五", 6: "六", 7: "七", 8: "八", 9: "九", 10: "十"}
+    text_a = (REPO / "AGENTS.md").read_text(encoding="utf-8")
+    text_r = (REPO / "README.md").read_text(encoding="utf-8")
+    assert f"{cn[len(PLUGIN_NAMES)]}插件" in text_a and f"{cn[len(PLUGIN_NAMES)]}插件" in text_r
+    assert f"{cn[total]} skill" in text_a and f"{cn[total]} skill" in text_r

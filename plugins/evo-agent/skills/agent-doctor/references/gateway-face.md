@@ -23,7 +23,7 @@ curl -sS -w '\n%{http_code}\n' -X POST "$ANTHROPIC_BASE_URL/v1/messages" \
 
 ## 诊断三层
 
-层序固定:配置对齐(零网络)到连通性(可达与鉴权,正文控制在 max_tokens 1 或一次 models)到活性(最小真实补全,烧 token);上层已判定的不放到下层再烧一次。`hst doctor` 不入三层(119 条 finding 全是宿主面)。
+层序固定:配置对齐(零网络)到连通性(可达与鉴权,正文控制在 max_tokens 1 或一次 models)到活性(最小真实补全,烧 token);上层已判定的不放到下层再烧一次。`hst doctor` 不入三层(findings 全是宿主面,判例 2026-10-12 实测);`hst diagnose agents`(配置指向、别名在册核对、key 活性)横跨配置对齐与活性两层,活跑 schema 待证,允许活跑时指向错误为 error。
 
 ### 配置对齐层
 
@@ -34,7 +34,7 @@ curl -sS -w '\n%{http_code}\n' -X POST "$ANTHROPIC_BASE_URL/v1/messages" \
 | base 仅有尾斜杠 | advisory |
 | 只设 base 无任一凭证(订阅穿网关) | advisory |
 | 三档 pin 与 ANTHROPIC_MODEL 全空且未对照过 models | advisory;网关名与缺省不一致仍不钉 | error |
-| 项目 `.claude/settings.json` env 含凭证变量或 CUSTOM_HEADERS 带 Authorization 与 x-api-key | error;用户面同形 | advisory |
+| 项目 `.claude/settings.json` env 含凭证变量(error,`${VAR}` 引用形放行;config-lint 已查)或 CUSTOM_HEADERS 带 Authorization 与 x-api-key(人工判据,config-lint 未实现) | error;用户面同形 | advisory |
 
 ### 连通性层
 

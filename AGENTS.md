@@ -6,7 +6,7 @@
 ## Commands
 
 - `uv run pytest` 全测试(脚本行为 + 清单一致性守卫 + 仓内禁字回归)
-- `uv run .tools/md-ref-scan.py plugins/<插件>/skills/<skill>` 断链扫描(三插件五 skill 各跑一次;pre-commit 自动)
+- `uv run .tools/md-ref-scan.py plugins/<插件>/skills/<skill>` 断链扫描(五插件十 skill 各跑一次;pre-commit 自动)
 - `uv run .tools/check.py` 本仓骨架自检(PE-01 至 PE-12;下游仓 PE-11 历史档案豁免走 PEVO_CHECK_ALLOW,正则见 docs/guides/gates.md)
 - `uv run .tools/scan.py . --no-history` 禁字与密钥扫描(测试夹具与研究档案的公开示例假密钥走 `PEVO_SCAN_ALLOW` 豁免:tests/test_project_evo.py 的 ghp_ 假 token 与 docs/research/S006 的公开示例样值;标准命令与完整豁免正则见 docs/guides/gates.md)
 - 提交挡板:`git config core.hooksPath githooks`(md 禁字 + 断链,不过不进库)
@@ -17,7 +17,7 @@
 - 变更完整性:只改 skill 不同步 SKILL 索引/references/CHANGELOG = 变更不完整
 - 事实性断言标六态;操作前先查 references/ 索引,禁止凭记忆重写删减版
 - 吸收即提炼:外部信源与家族实践进库只留最准确精练的可复用表达;成品不点名外部仓库
-- 三插件各持双 manifest(Claude/Codex 面)字段同步改;三插件同版本线,Claude 市场条目与各插件双 manifest 版本一致(守卫测试断言;Codex 市场清单无 version 字段)
+- 五插件各持双 manifest(Claude/Codex 面)字段同步改;五插件同版本线,Claude 市场条目与各插件双 manifest 版本一致(守卫测试断言;Codex 市场清单无 version 字段)
 - 不可逆技术选择先立 `docs/adr/`;新需求先立 `docs/requirements/REQ` 再实现
 - 新写与改写 SKILL.md 命令块实证准入:写进去的命令当会真跑过(ADR-0010 构造纪律)
 - skill 依赖的外部命令(gh、reader 等)全平台分发安装由宿主工具链 omc 与 ark 统一维护:skill 只认 PATH(或等价显式指定),不内置安装路径
@@ -39,7 +39,7 @@
 ## 环境
 
 - 平台:Windows + PowerShell 7(禁 powershell.exe 5.1 与 cmd);uv 运行时,脚本 PEP 723 零依赖(>=3.12);WSL 到宿主恒走 127.0.0.1 回环加 interop 直调,不走宿主 mesh IP;验收运维脚本载体统一 pwsh
-- 当前阶段:v0.12.0 已封版(2026-10-10,第九十九至一百批:产物契约三件套、三插件五 skill 版图与 distil-skill,版本载体 0.6.0);已封版沿革与批次史见 CHANGELOG 与 ROADMAP,不在本文件续写
+- 当前阶段:v0.13.1 已封版(2026-10-11,第一百零四至一百一十二批:产物契约三件套、evo-lint 插件与 struct 与 s5、版本载体 0.8.0);已封版沿革与批次史见 CHANGELOG 与 ROADMAP,不在本文件续写
 - 部署:Claude Code `/plugin marketplace add raystyle/project-evo` 后按插件装(如 `/plugin install evo-doc@project-evo`);Codex `codex plugin marketplace add raystyle/project-evo`;Grok `grok plugin install <插件>@project-evo --trust`;Kimi 无市场,拷 `plugins/*/skills/*` 至 `~/.kimi/skills`
 - 工作根:`~/repos/ProjectEvo`(WSL 独立 VHDX 挂载 /mnt/wsl/repos 快捷 ~/repos;2026-09-16 迁移,旧位 /mnt/d/ProjectEvo 过渡后裁)
 - 项目状态与待办见 `ROADMAP.md`,不在本文件维护
