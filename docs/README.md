@@ -41,4 +41,5 @@
 | `../plugins/evo-lint/skills/zh-lint/SKILL.md` | 简明技术中文静检:禁用词、选词表、句长机检与改写指导(STC 受控中文) | 写改中文技术文档、AI 解释面要无歧义时 |
 | `../plugins/evo-agent/skills/agent-doctor/SKILL.md` | agent 客户端环境诊断修复:四端配置诊断(config-lint)、hook 诊断修复、goal 与 loop 状态、overcast 网关诊断候实装 | 四端配置体检、修 hook、查 goal 与 loop 时 |
 | `../plugins/evo-agent/skills/agent-s5/SKILL.md` | s5 全局看板与频道操作面:文件道加流道、命名约定、读写规约与消息礼仪 | 跨台放取共享文件、频道播报取阅时 |
+| `../plugins/evo-agent/skills/agent-prim/SKILL.md` | 舰队互操作五原语:agents/shares/streams/tasks/pipes 三段式、裸名全局寻址、投递门控与拒投代记、IM 映射与回执惯例 | 跨机找格读屏发提示、传文件交回执、跨机设 goal、开实时管道时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |

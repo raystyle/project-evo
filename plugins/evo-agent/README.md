@@ -1,6 +1,6 @@
 # evo-agent
 
-> project-evo 治理插件市场第五插件:agent 客户端环境诊断与修复。市场 `raystyle/project-evo`,客户端显示 `evo-agent:agent-doctor` 与 `evo-agent:agent-s5`。
+> project-evo 治理插件市场第五插件:agent 客户端环境与共享能力。市场 `raystyle/project-evo`,客户端显示 `evo-agent:agent-doctor`、`evo-agent:agent-s5`、`evo-agent:agent-rloop`、`evo-agent:agent-prim`。
 
 第一 skill **agent-doctor** 三面:
 
@@ -11,6 +11,10 @@
 定位 = **增强 hst doctor**:hst doctor 管运行时诊断(yolo、trust、binary、state、登录态、hook 形态、状态栏),本 skill 补静态度判据与修复手册与 goal/loop 面;hst 只认 PATH,不改其源。判例源:2026-10-12 五端插件清扫病灶族加研究档 cfg-01 官方文档对照。ADR-0023 与 REQ-021 在册。
 
 第二 skill **agent-s5**:工作台 agent 的 s5 全局看板与频道操作面:文件道(S3 形 put/get/ls/del)当全局文件看板,流道(S2 形 append/tail/streams)当全局流消息频道;命令面活权威 `s5 --llms`(装位为舰队惯例注记(win 与 linux 各一位,本机以 command -v s5 实查为准),零感知凭据,agent 永不接触钥);看板 `board/<工作台>/<主题>/` 与频道 `channel/<频道>` 命名约定、跨台读写规约(写者拥有、del 不越权、append-only、tail 取阅不回写);与 herdr 分工:herdr 管信号与消息,共享内容一律走本 skill(含飞轮轮次三件套上云,rounds 与 research 与 streams 键空间随并入)。REQ-022 在册,批 124 并入 herdr:s5。
+
+第三 skill **agent-rloop**:目标驱动的多角色循环进化任务:herdr 定窗格角色后钉 hst goal,按轮派单回执断言吸收,循环到达成或显式停机;防停双层与停机条件入协议,状态在盘上三件套。REQ-023 在册(批 128 迁入,原 herdr-flywheel)。
+
+第四 skill **agent-prim**:舰队互操作五原语操作面:五命令 agents/shares/streams/tasks/pipes 三段式(VIEW 全局可视、OPERATE 只动资源、DELIVER 定向传递带门控),裸名全局寻址与命名纪律,投递门控(working/blocked 拒投、--force 留审计、拒投代记 room/deferred 补收),信封三行形取用行纪律,IM 映射(流即房间、DELIVER 即 @、dm/ 与 room/ 前缀、agents view 即 presence)与回执走 streams append fleet;契约单一真源 = ai-ccoe 仓 plugins/CONTRACT.md(对齐 v2.3),本 skill 只路由不复述;与 agent-s5 分工 = s5 是引擎命令面,五原语是骑在其上的协议面。REQ-025 在册。
 
 ## 安装
 

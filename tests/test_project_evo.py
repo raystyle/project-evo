@@ -27,7 +27,7 @@ SKILLS = {
     "evo-herdr": ["herdr-orch"],
     "evo-distil": ["distil-skill"],
     "evo-lint": ["md-lint", "ls-lint", "zh-lint"],
-    "evo-agent": ["agent-doctor", "agent-s5", "agent-rloop"],
+    "evo-agent": ["agent-doctor", "agent-s5", "agent-rloop", "agent-prim"],
 }
 
 

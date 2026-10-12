@@ -28,3 +28,4 @@
 | REQ-022 | implemented | must | evo-agent 第二技能 agent-s5:全局看板与频道操作面 | tests/test_project_evo.py |
 | REQ-023 | implemented | must | herdr:s5 删除并入 agent-s5,s5 归一为全 agent 共享看板与实时流 | tests/test_project_evo.py |
 | REQ-024 | implemented | must | evo-lint 第三技能 zh-lint:简明技术中文静检 | tests/test_project_evo.py |
+| REQ-025 | implemented | must | evo-agent 第四技能 agent-prim:舰队互操作五原语操作面 | tests/test_project_evo.py |

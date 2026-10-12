@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 新增 2026-10-13 第一百三十三批:evo-agent 第四技能 agent-prim 五原语,总台令
+
+- **agent-prim**(客户端 evo-agent:agent-prim):舰队互操作五原语操作面;五命令 agents/shares/streams/tasks/pipes 三段式(VIEW 全局可视、OPERATE 只动资源、DELIVER 定向传递带门控),裸名全局寻址与命名纪律,投递门控(working/blocked 拒投、--force 留审计、拒投代记 room/deferred 补收),信封三行形取用行纪律,IM 映射(流即房间、DELIVER 即 @、dm/ 与 room/ 前缀、agents view 即 presence)与回执走 streams append fleet
+- 契约单一真源 = ai-ccoe 仓 plugins/CONTRACT.md,skill 只路由不复述;版本对齐 v2.3(2026-10-12 契约化批),本机实装 v2.0.0 差异面六态标注(--json、--llms、幂等 id、v 字段、presence 声明、pipes 跨机 view、tasks prev 未落,references/commands.md 差异表)
+- SKILL.md 意图路由 + references 四篇(commands、addressing、deliver-gate、collab)加索引;与 agent-s5 分工定形(s5 引擎命令面,五原语协议面)
+- md-ref-scan SKIP 增 CONTRACT.md(舰队契约外指针);版图全同步(五插件十一 skill):测试 SKILLS 守卫、pre-commit 断链段、AGENTS(含修正插件数既笔「共四个」)、根 README、docs 地图、evo-agent README(含补 rloop 段既漏)、REQ 索引;REQ-025 立档
+- 回执走 streams append fleet(自吃狗粮);批 132 回执机名误书以新行更正
+
 ### 变更 2026-10-12 第一百三十二批:evo-lint hook 段名英文化,总台令
 
 - hook statusMessage「evo-lint 后缀静检」改「evo-lint file-check」(herdr/hst 状态栏段名纯英文裁定,hst 面另单;statusrender 拼接形 evo-lint-{title});lint-hook.py 头注同步;版本线 0.10.0 进 0.10.1(五插件双 manifest、市场清单、五插件 README 当前发行行);守卫测试补段名纯英断言(test_evo_lint_hook_status_message_english)

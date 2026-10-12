@@ -25,6 +25,8 @@ SKIP = {
     "architecture.md", "FILE.md",
     # herdr-flywheel 产物契约三件套示意名(<单号>-brief/state/receipt.md 落临时目录)
     "-brief.md", "-state.md", "-receipt.md",
+    # 舰队契约外指针(五原语契约真源在 ai-ccoe 仓 plugins/,本仓只路由不复述)
+    "CONTRACT.md",
 }
 REF = re.compile(r"((?:\.\./|(?:[A-Za-z0-9_\-]+[/\\]))*[A-Za-z0-9_\-]+\.md)")
 
