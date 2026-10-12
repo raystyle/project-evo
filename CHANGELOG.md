@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+### 修复 2026-10-12 第一百二十一批:评审 G 项记档清理批(封版前顺手,总台令)
+
+- G-120-1/4:计数守卫重写(排 .venv 与 .pytest_cache、后缀扩 json 与 sh 与 yml、纳入插件-skill 连写组合计数、「三 skill」单用为 herdr 合法表述放行)
+- G-120-2:守卫自免改拼接式模式串(不再整文件排除 tests),cn 映射换通用中文数字换算(不再 KeyError 隐患)
+- G5:PEVO_CONFIG_LINT_ALLOW 未命中留痕(对齐 check.py SKIP 判例,`豁免未命中: x` note 行)
+- G4:kimi 漂移对账口径收窄(目录级 skill 名集对账,文件级漂移不含);G6:lint-hook 异常集对齐 md-guard(ValueError 加 OSError);G7:措辞「辖域限仓内」改「辖域限事件 cwd 子树内」;G-118-3:config-lint kimi hooks 循环缩进归位;G-120-3:形态非法行 hooks 并列拆句
+- G2 与 G3 已随批 118/119 落(占位四形文档化、口径统一),本批复核结案;G-118-4 并入 G-120-1 落
+- 门禁:37 测试绿、本机 config-lint 0 错 0 警且豁免留痕实证
+
 ### 修复 2026-10-12 第一百二十批:评审三轮收尾批(纯文案与守卫,不动行为)
 
 - F3r 余账六处计数位清零:docs/README 四插件六 skill 刷五插件十 skill、pyproject 与 evo-lint README 版本线句刷五插件、tests 三处 docstring 与断言消息刷五插件;gates.md 实证注记去计数连写(时为四端后扩五)

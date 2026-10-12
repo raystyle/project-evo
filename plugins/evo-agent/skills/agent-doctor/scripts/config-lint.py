@@ -55,8 +55,15 @@ KIMI_KEYS = {
 }
 
 
+_CONSUMED_ALLOW: set[str] = set()
+
+
 def _extra_allow() -> set[str]:
     return {x for x in os.environ.get("PEVO_CONFIG_LINT_ALLOW", "").split(";") if x}
+
+
+def _mark_allow(item: str) -> None:
+    _CONSUMED_ALLOW.add(item)
 
 
 def _on_win() -> bool:
@@ -125,7 +132,9 @@ def check_claude(path: Path, home: Path, out: list) -> None:
         return
     allow = _extra_allow()
     for k in data:
-        if k not in CLAUDE_FIELDS and k not in allow:
+        if k in allow:
+            _mark_allow(k)
+        elif k not in CLAUDE_FIELDS:
             out.append(("advisory", face, str(path), f"未知顶层字段: {k}"))
     env = data.get("env", {})
     if not isinstance(env, dict):
@@ -173,7 +182,9 @@ def check_claude(path: Path, home: Path, out: list) -> None:
     mode = perms.get("defaultMode")
     if mode is not None and not isinstance(mode, str):
         out.append(("error", face, str(path), f"defaultMode 形态非法: 须为字符串,实为 {type(mode).__name__}"))
-    elif mode is not None and mode not in CLAUDE_MODES and mode not in allow:
+    elif mode is not None and mode in allow:
+        _mark_allow(mode)
+    elif mode is not None and mode not in CLAUDE_MODES:
         out.append(("error", face, str(path), f"permissions.defaultMode 非法值: {mode}"))
     cmds = [data.get("statusLine", {}).get("command", "")]
     for entries in hooks_map.values():
@@ -204,7 +215,9 @@ def check_codex(path: Path, home: Path, out: list) -> None:
         return
     allow = _extra_allow()
     for k in data:
-        if k not in CODEX_KEYS and k not in allow:
+        if k in allow:
+            _mark_allow(k)
+        elif k not in CODEX_KEYS:
             out.append(("advisory", face, str(path), f"未知顶层键: {k}"))
     _scan_secret_values(face, str(path), data, out)
     mcp = data.get("mcp_servers", {})
@@ -219,12 +232,16 @@ def check_codex(path: Path, home: Path, out: list) -> None:
     pol = data.get("approval_policy")
     if pol is not None and not isinstance(pol, str):
         out.append(("error", face, str(path), f"approval_policy 形态非法: 须为字符串,实为 {type(pol).__name__}"))
-    elif pol is not None and pol not in CODEX_APPROVAL and pol not in allow:
+    elif pol is not None and pol in allow:
+        _mark_allow(pol)
+    elif pol is not None and pol not in CODEX_APPROVAL:
         out.append(("error", face, str(path), f"approval_policy 非法值: {pol}"))
     sb = data.get("sandbox_mode")
     if sb is not None and not isinstance(sb, str):
         out.append(("error", face, str(path), f"sandbox_mode 形态非法: 须为字符串,实为 {type(sb).__name__}"))
-    elif sb is not None and sb not in CODEX_SANDBOX and sb not in allow:
+    elif sb is not None and sb in allow:
+        _mark_allow(sb)
+    elif sb is not None and sb not in CODEX_SANDBOX:
         out.append(("error", face, str(path), f"sandbox_mode 非法值: {sb}"))
     # 配置残留候选:plugins 键指向的插件在 cache 无目录(卸载不清配置,判例 2026-10-12 wsl)
     plugins = data.get("plugins", {})
@@ -246,7 +263,9 @@ def check_grok(path: Path, home: Path, out: list) -> None:
         return
     allow = _extra_allow()
     for k in data:
-        if k not in GROK_SECTIONS and k not in allow:
+        if k in allow:
+            _mark_allow(k)
+        elif k not in GROK_SECTIONS:
             out.append(("advisory", face, str(path), f"未知节: {k}"))
     _scan_secret_values(face, str(path), data, out)
     cache = home / ".grok" / "marketplace-cache"
@@ -278,7 +297,9 @@ def check_kimi_config(path: Path, out: list) -> None:
         return
     allow = _extra_allow()
     for k in data:
-        if k not in KIMI_KEYS and k not in allow:
+        if k in allow:
+            _mark_allow(k)
+        elif k not in KIMI_KEYS:
             out.append(("advisory", face, str(path), f"未知顶层键: {k}"))
     _scan_secret_values(face, str(path), data, out)
     providers = data.get("providers", {})
@@ -293,9 +314,9 @@ def check_kimi_config(path: Path, out: list) -> None:
         out.append(("error", face, str(path), f"hooks 形态非法: 须为数组表,实为 {type(hooks).__name__}"))
         hooks = []
     for h in hooks:
-            if isinstance(h, dict) and isinstance(h.get("command"), str):
-                # kimi 配置按设计共存双 OS 形,只查当前 OS 形路径(hst init 双形部署)
-                check_cmd_paths(face, str(path), h["command"], out, current_os_only=True)
+        if isinstance(h, dict) and isinstance(h.get("command"), str):
+            # kimi 配置按设计共存双 OS 形,只查当前 OS 形路径(hst init 双形部署)
+            check_cmd_paths(face, str(path), h["command"], out, current_os_only=True)
 
 
 def _skill_name(skill_md: Path) -> str | None:
@@ -390,6 +411,8 @@ def main(argv: list[str] | None = None) -> int:
     )
     errors = [f for f in findings if f[0] == "error"]
     advisories = [f for f in findings if f[0] == "advisory"]
+    unconsumed = sorted(_extra_allow() - _CONSUMED_ALLOW)
+    notes += [f"豁免未命中: {x}" for x in unconsumed]
     if args.json:
         print(json.dumps({
             "errors": [{"face": f, "file": w, "msg": m} for _, f, w, m in errors],

@@ -19,7 +19,7 @@ uv run <技能根>/scripts/config-lint.py [--claude P] [--codex P] [--grok P] [-
 | 面 | 检查 | 判据 | 修法 |
 | --- | --- | --- | --- |
 | claude | JSON 解析 | 两 settings 文件可解析;顶层是对象 | 修语法 |
-| 全端 | 形态非法 | 各键取值类型不符(env 与 enabledPlugins 与 permissions 与 hooks 须对象、hooks 数组表、枚举须字符串)报形态非法 error,不崩溃 | 修形态 |
+| 全端 | 形态非法 | 各键取值类型不符报形态非法 error,不崩溃:claude 的 env、enabledPlugins、permissions、hooks 须对象;kimi 的 hooks 须数组表;枚举键须字符串 | 修形态 |
 | claude | defaultMode 非法值 | 限 doctor 2.1.296 实测枚举:`default`/`acceptEdits`/`auto`/`plan`/`bypassPermissions`/`dontAsk` | 改合法值 |
 | claude | 命令绝对路径缺失 | hooks 与 statusLine 命令的绝对路径 token(引号段含空格可解)须存在 | 修路径或改 PATH 相对 |
 | claude | 项目面明文凭据 | 非用户面文件的 env 键族 `*TOKEN`/`*API_KEY`/`*SECRET`/`*PASSWORD`/`*KEY`(词边界)/`*CREDENTIAL`/`*BEARER` 大小写不敏感持字面量(`${VAR}`、`$VAR`、`%VAR%`、`$env:VAR` 占位形放行) | 凭证移出会进库文件 |
@@ -34,7 +34,7 @@ uv run <技能根>/scripts/config-lint.py [--claude P] [--codex P] [--grok P] [-
 | kimi | providers api_key 明文非空 | 凭证应走 oauth 或环境注入 | 改 oauth |
 | kimi | 高置信秘密形态 | 同 codex 行 | 同上 |
 | kimi | SKILL.md 形态 | 每 skill 目录有 SKILL.md 且 frontmatter name 同目录名 | 重拷该 skill |
-| kimi | 漂移对账 | 给 `--kimi-source` 时安装面与源完全一致 | 按源重镜像 |
+| kimi | 漂移对账 | 给 `--kimi-source` 时安装面与源目录级一致(skill 名集对账;文件级漂移不含,须哈希对账另立) | 按源重镜像 |
 
 ## advisory 判据族
 
