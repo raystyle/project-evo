@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 新增 2026-10-12 第一百三十一批:evo-lint 第三技能 zh-lint 简明技术中文静检,用户令
+
+- **zh-lint**(客户端 evo-lint:zh-lint):受控中文写技术文档与 AI 解释性回答,目标 = 读者读一遍就不会读错;判据源 = 简明技术中文规范 0.2(六节四十条 + 词表三张表,上游仓为活权威,CC-BY 4.0)
+- 工具 `scripts/zh-lint.py`(PEP 723 零依赖):内置先验核(无条件禁用词与选词,不 vendor 全表)+ `--wordlist` 外接上游词表三张表(自动检查列、编号项内条件)+ 句长机检(操作句 30 描述句 40,汉字 1 英文词数字串 1 行内代码 1 标点不计);只报不改,行内代码不参检;沿 ADR-0022 自研不引依赖判例
+- SKILL(适用面、写前分类、六节必须条速览、模式与 md-lint 分工)+ references/stc-rules.md(四十条蒸馏带判例)+ 索引;权威入口指上游规范与词表
+- REQ-024 立档;版图五插件十 skill 全同步(双 manifest、市场清单、AGENTS、根 README、docs 地图、pre-commit 十一段断链、测试清单与行为测试)
+- 同轮:ai-ccoe 与 hst_rs 双工位同步轮 sync-01 闭环(周知 v0.14.0 版图与信道翻转;自查旧技能名引用:ai-ccoe 零引用、hst_rs 零活引用且 REQ-047 知会闭环确认,双回执落档)
+
 ### 新增 2026-10-12 第一百三十批:dev-01 吸收,channels 危险旗标判据入 agent-doctor
 
 - **机制结论**(dev-01,官方文档加本机 2.1.296 二进制实证):`--dangerously-load-development-channels` 为隐藏 CLI 旗标,加载研究预览 channel 服务器(MCP 入站推送)绕过批准允许名单,仅限本地 channel 开发;启动确认框无跳过法;与更新通道、实验 env、disableSideloadFlags 名单均无关;`-p` 与 Agent SDK 忽略;组织关闸 = `channelsEnabled` 保持未设置

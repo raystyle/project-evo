@@ -3,9 +3,9 @@
   "owner": {
     "name": "raystyle"
   },
-  "description": "项目进化:五插件九 skill(文档治理与原生设计 evo-doc、主开发台 evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint、agent 环境与共享三 skill evo-agent)",
+  "description": "项目进化:五插件十 skill(文档治理与原生设计 evo-doc、主开发台 evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint、agent 环境与共享三 skill evo-agent)",
   "metadata": {
-    "description": "项目进化:五插件九 skill(文档治理与原生设计 evo-doc、主开发台 evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint、agent 环境与共享三 skill evo-agent)"
+    "description": "项目进化:五插件十 skill(文档治理与原生设计 evo-doc、主开发台 evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint、agent 环境与共享三 skill evo-agent)"
   },
   "plugins": [
     {
@@ -32,7 +32,7 @@
     {
       "name": "evo-lint",
       "source": "./plugins/evo-lint",
-      "description": "项目静态检查与结构标准:md-lint 五面静检加 ls-lint 类型化结构(init 与声明式 check,四类型模板),门禁三态退出码与提交挡板纪律",
+      "description": "项目静态检查与结构标准:md-lint 五面静检、ls-lint 类型化结构、zh-lint 简明技术中文静检(禁用词选词句长),门禁三态退出码与提交挡板纪律",
       "version": "0.9.0"
     },
     {
