@@ -10,7 +10,7 @@
 
 定位 = **增强 hst doctor**:hst doctor 管运行时诊断(yolo、trust、binary、state、登录态、hook 形态、状态栏),本 skill 补静态度判据与修复手册与 goal/loop 面;hst 只认 PATH,不改其源。判例源:2026-10-12 五端插件清扫病灶族加研究档 cfg-01 官方文档对照。ADR-0023 与 REQ-021 在册。
 
-第二 skill **agent-s5**:工作台 agent 的 s5 全局看板与频道操作面:文件道(S3 形 put/get/ls/del)当全局文件看板,流道(S2 形 append/tail/streams)当全局流消息频道;命令面活权威 `s5 --llms`(装位 win 的 `D:\ohmyenv\s5\s5.exe`、linux 的 `~/.local/bin/s5`,零感知凭据,agent 永不接触钥);看板 `board/<工作台>/<主题>/` 与频道 `channel/<频道>` 命名约定、跨台读写规约(写者拥有、del 不越权、append-only、tail 取阅不回写);与 evo-herdr:s5 分工(那管跨机治理轮次协议,本 skill 管通用日常读写)。REQ-022 在册。
+第二 skill **agent-s5**:工作台 agent 的 s5 全局看板与频道操作面:文件道(S3 形 put/get/ls/del)当全局文件看板,流道(S2 形 append/tail/streams)当全局流消息频道;命令面活权威 `s5 --llms`(装位为舰队惯例注记(win 与 linux 各一位,本机以 command -v s5 实查为准),零感知凭据,agent 永不接触钥);看板 `board/<工作台>/<主题>/` 与频道 `channel/<频道>` 命名约定、跨台读写规约(写者拥有、del 不越权、append-only、tail 取阅不回写);与 evo-herdr:s5 分工(那管跨机治理轮次协议,本 skill 管通用日常读写)。REQ-022 在册。
 
 ## 安装
 

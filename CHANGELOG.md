@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 修复 2026-10-12 第一百一十九批:评审二轮修订(rev-codex 复核 3F 顺手 2G)
+
+- **F1r**:codex 面 `_safe` 兜底挂上(上轮缩进锚点未命中静默跳过);三处枚举值不可哈希形态(defaultMode、approval_policy、sandbox_mode 非字符串)防御报形态非法
+- **F2r**:键族判据回填 config-face error 表(词边界、大小写不敏感、四占位形)
+- **F3r**:余账陈旧计数清零:根 README 钉版行刷 v0.13.1、gates.md 断链行刷五插件十 skill、AGENTS 当前阶段行 struct 补今名注记
+- G-118-1 顺手:键族词边界(`MONKEY` 不再误命中,`_KEY` 分隔形仍命中);G-118-2 顺手:`$env:VAR` 占位形放行;G-118-6:s5 装位改「舰队惯例注记,本机 command -v s5 实查为准」并记 wsl 缺位判例;G-118-3 缩进与 G-118-4 守卫覆盖面记档后批
+- 门禁:35 测试绿、scan 干净、断链 0、本机 config-lint 0 错 0 警
+
 ### 修复 2026-10-12 第一百一十八批:四批评审修订批(rev-codex 快核,3F 9G 1 大面 CONFIRM)
 
 - **F1 形态防御(重)**:config-lint 五处坏形态直崩(env 非对象、enabledPlugins 数组、permissions 与 hooks 非对象、grok plugins 非表、codex mcp_servers 数组表)修为逐面类型守卫报「形态非法」error;run() 加 _safe 兜底,单面异常不吞其余面

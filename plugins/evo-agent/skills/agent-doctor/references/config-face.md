@@ -20,7 +20,7 @@ uv run <技能根>/scripts/config-lint.py [--claude P] [--codex P] [--grok P] [-
 | claude | JSON 解析 | 两 settings 文件可解析;顶层是对象 | 修语法 |
 | claude | defaultMode 非法值 | 限 doctor 2.1.296 实测枚举:`default`/`acceptEdits`/`auto`/`plan`/`bypassPermissions`/`dontAsk` | 改合法值 |
 | claude | 命令绝对路径缺失 | hooks 与 statusLine 命令的绝对路径 token(引号段含空格可解)须存在 | 修路径或改 PATH 相对 |
-| claude | 项目面明文凭据 | 非用户面文件的 env 键族 `*TOKEN`/`*API_KEY`/`*SECRET`/`*PASSWORD` 持字面量(`${VAR}` 放行) | 凭证移出会进库文件 |
+| claude | 项目面明文凭据 | 非用户面文件的 env 键族 `*TOKEN`/`*API_KEY`/`*SECRET`/`*PASSWORD`/`*KEY`(词边界)/`*CREDENTIAL`/`*BEARER` 大小写不敏感持字面量(`${VAR}`、`$VAR`、`%VAR%`、`$env:VAR` 占位形放行) | 凭证移出会进库文件 |
 | codex | TOML 解析 | config.toml 可解析 | 修语法 |
 | codex | mcp_servers 形态 | 每服务 command 字符串、args 字符串列表 | 修形态 |
 | codex | 枚举非法 | approval_policy 与 sandbox_mode 限官方值集 | 改合法值 |

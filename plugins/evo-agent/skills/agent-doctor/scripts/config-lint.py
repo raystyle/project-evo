@@ -17,8 +17,8 @@ import sys
 import tomllib
 from pathlib import Path
 
-SECRET_KEY = re.compile(r"(TOKEN|API_KEY|SECRET|PASSWORD|KEY|CREDENTIAL|BEARER)$", re.IGNORECASE)
-PLACEHOLDER = re.compile(r"^\$\{[^}]*\}$|^\$[A-Za-z_][A-Za-z0-9_]*$|^%[A-Za-z_][A-Za-z0-9_]*%$")
+SECRET_KEY = re.compile(r"(TOKEN|API_KEY|SECRET|PASSWORD|CREDENTIAL|BEARER|(?<![A-Za-z0-9])KEY)$", re.IGNORECASE)
+PLACEHOLDER = re.compile(r"^\$\{[^}]*\}$|^\$[A-Za-z_][A-Za-z0-9_]*$|^%[A-Za-z_][A-Za-z0-9_]*$|^\$env:[A-Za-z_][A-Za-z0-9_]*$")
 # 高置信秘密形态:PEM 私钥块、AWS 访问键、sk- 长令牌(只对高置信升 error,URL 与模型名不误伤)
 SECRET_VALUE = [
     re.compile(r"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
@@ -171,7 +171,9 @@ def check_claude(path: Path, home: Path, out: list) -> None:
         if not any(k.startswith("ANTHROPIC_DEFAULT_") and k.endswith("_MODEL") for k in env):
             out.append(("advisory", face, str(path), "网关键组不齐: 无 ANTHROPIC_DEFAULT_*_MODEL 模型映射"))
     mode = perms.get("defaultMode")
-    if mode is not None and mode not in CLAUDE_MODES and mode not in allow:
+    if mode is not None and not isinstance(mode, str):
+        out.append(("error", face, str(path), f"defaultMode 形态非法: 须为字符串,实为 {type(mode).__name__}"))
+    elif mode is not None and mode not in CLAUDE_MODES and mode not in allow:
         out.append(("error", face, str(path), f"permissions.defaultMode 非法值: {mode}"))
     cmds = [data.get("statusLine", {}).get("command", "")]
     for entries in hooks_map.values():
@@ -215,10 +217,14 @@ def check_codex(path: Path, home: Path, out: list) -> None:
         elif "args" in tbl and not (isinstance(tbl["args"], list) and all(isinstance(a, str) for a in tbl["args"])):
             out.append(("error", face, str(path), f"mcp_servers.{name} 形态非法: args 须为字符串列表"))
     pol = data.get("approval_policy")
-    if pol is not None and pol not in CODEX_APPROVAL and pol not in allow:
+    if pol is not None and not isinstance(pol, str):
+        out.append(("error", face, str(path), f"approval_policy 形态非法: 须为字符串,实为 {type(pol).__name__}"))
+    elif pol is not None and pol not in CODEX_APPROVAL and pol not in allow:
         out.append(("error", face, str(path), f"approval_policy 非法值: {pol}"))
     sb = data.get("sandbox_mode")
-    if sb is not None and sb not in CODEX_SANDBOX and sb not in allow:
+    if sb is not None and not isinstance(sb, str):
+        out.append(("error", face, str(path), f"sandbox_mode 形态非法: 须为字符串,实为 {type(sb).__name__}"))
+    elif sb is not None and sb not in CODEX_SANDBOX and sb not in allow:
         out.append(("error", face, str(path), f"sandbox_mode 非法值: {sb}"))
     # 配置残留候选:plugins 键指向的插件在 cache 无目录(卸载不清配置,判例 2026-10-12 wsl)
     plugins = data.get("plugins", {})
@@ -343,7 +349,7 @@ def run(home: Path, claude: Path, codex: Path, grok: Path, kimi_config: Path, ki
     if not claude.is_file():
         notes.append(f"claude 面跳过: 无 {claude}")
     if codex.is_file():
-        check_codex(codex, home, out)
+        _safe(check_codex, codex, home, out)
     else:
         notes.append(f"codex 面跳过: 无 {codex}")
     if grok.is_file():
