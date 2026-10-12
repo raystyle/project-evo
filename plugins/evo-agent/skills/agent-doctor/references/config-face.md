@@ -34,6 +34,8 @@ uv run <技能根>/scripts/config-lint.py [--claude P] [--codex P] [--grok P] [-
 | kimi | providers api_key 明文非空 | 凭证应走 oauth 或环境注入 | 改 oauth |
 | kimi | 高置信秘密形态 | 同 codex 行 | 同上 |
 | kimi | SKILL.md 形态 | 每 skill 目录有 SKILL.md 且 frontmatter name 同目录名 | 重拷该 skill |
+| 全端 | 启动参数面:危险旗标持久化 | `--dangerously-load-development-channels` 出现在 shell rc、别名、herdr 或 hst 启动参数、脚本、skill 启动块、settings 的 env 或 hooks 命令即 error(dev-01 判据:该旗标加载不在允许名单上的 channel MCP 入站注入,仅限人在场的一次性本地 channel 开发,不持久化不无人值守;config-lint 现只扫配置文件不扫 argv,本条为手跑判据) | 移出持久面,改当场手敲 |
+| 全端 | 危险叠用 | 舰队格或无人值守启动里,上旗标与 bypassPermissions 或 --dangerously-skip-permissions 或 yolo 叠用即 error(开发通道可注入未审核 MCP 消息且 permission relay 可代批工具调用,再叠权限旁路) | 拆开,二选一 |
 | kimi | 漂移对账 | 给 `--kimi-source` 时安装面与源目录级一致(skill 名集对账;文件级漂移不含,须哈希对账另立) | 按源重镜像 |
 
 ## advisory 判据族
@@ -48,6 +50,10 @@ uv run <技能根>/scripts/config-lint.py [--claude P] [--codex P] [--grok P] [-
 | grok | 未知节 | 白名单先验,随版本演进 |
 | kimi | 未知顶层键 | 同上 |
 | 策略偏好 | 不判 | bypassPermissions、permission_mode 取值属用户裁量;`auto` 与 `bypassPermissions` 自 v2.1.257 起项目与本地文件不生效,可另提示 scope 不生效,不判非法 |
+
+## channels 机制速览
+
+`--dangerously-load-development-channels <servers...>`(隐藏旗标,不在 --help):加载研究预览 channel 服务器(MCP 入站推送,如 webhook、Telegram 桥)绕过批准允许名单,仅限本地 channel 开发,启动弹确认框且无跳过法(无 env、无 --yes);值形 `plugin:<名>@<市场>` 或 `server:<名>`;组织关闸靠 `channelsEnabled` 保持未设置(`disableSideloadFlags` 不含此旗标);`-p` 与 Agent SDK 忽略它。权威:code.claude.com/docs 的 channels 与 channels-reference 两页(dev-01 研究档,2026-10-12)。
 
 ## 权威入口
 
