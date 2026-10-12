@@ -618,6 +618,7 @@ def test_live_surfaces_count_matches_reality():
     text_r = (REPO / "README.md").read_text(encoding="utf-8")
     assert f"{_cn(len(PLUGIN_NAMES))}插件" in text_a and f"{_cn(len(PLUGIN_NAMES))}插件" in text_r
     assert f"{_cn(total)} skill" in text_a and f"{_cn(total)} skill" in text_r
+    assert f"{_cn(len(PLUGIN_NAMES))}插件{_cn(total)} skill" in text_a, "组合总量形须在位且正确"
 
 
 def test_no_stale_plugin_counts_in_live_surfaces():
