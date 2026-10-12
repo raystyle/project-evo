@@ -4,12 +4,13 @@ description: >-
   herdr 跨仓模式:跨仓库、跨项目、跨机器的 agent 工作台交流与治理协作。一个总台协调多个单仓工位,
   派单、回执、断言、吸收四步循环,并行轮按义务图运转。涵盖 herdr agent prompt 原子派单、
   agent get 状态门控、agent wait 事件驱动收执、agent read 收回执、独立复核断言、反馈吸收分流、
-  产物契约与状态档(统一标准路径三件套:发起笺 brief、状态档 state、产物笺 receipt,盘上稳态
-  加 herdr 干预信号分治)、工位带起顺序与多 agent kind、跨机器工位路由、并行派单义务图纪律、
+  产物契约与状态档(三件套 brief、state、receipt,盘上稳态加 herdr 干预信号分治;消息与产物传递
+  内置 s5:任务发布 put 上键、结果 get 文本或 tail 实时流取回、herdr 消息只递键指针,命令面归
+  evo-agent:agent-s5)、工位带起顺序与多 agent kind、跨机器工位路由、并行派单义务图纪律、
   治理操作坑。本 skill 是该协议唯一权威源;herdr 命令语法的活权威是本机直跑 herdr --skill;
   开发模式(窗格布局、评审闸门、自省验收、lane 任务分发)在同插件 herdr-orch。
   Use when 跨仓派发治理任务、收 herdr 工位回执、做总台轮次协调、多工位并行派单、跨窗格发起
-  任务或委托或同步、落产物契约与验收对账时;触发词 herdr、飞轮、跨仓、派单、回执、工位、
+  任务或委托或同步、落产物契约与验收对账时;触发词 herdr、飞轮、跨仓、派单、回执、工位、任务上云、键指针、实时流取回、
   多仓治理、并行派单、义务图、跨机器工位、--machine、状态门控、事件驱动、agent wait、
   产物契约、状态档、发起笺、brief、产物笺、receipt、验收对账、共享文件、codex、grok、kimi。
 compatibility: 需 herdr 管理的工位会话(HERDR_ENV=1);各工位侧仓自带门禁
@@ -56,14 +57,14 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 - **命令路由**:`herdr --machine <label-or-id> <agent|pane 子命令>` 把 list/prompt/read/get/wait 原样路由到远程机器,四步协议与状态门控同形跨机;selector 必须是 enabled 保存 profile 的 ID 或唯一(大小写敏感)label,不是任意 SSH 主机名;**不与 `--session`、`--remote` 组合**(报 cannot be combined,勿试);add 默认接远端默认会话,显式 `--remote-session` 才覆盖
 - **转发前提与边界**:双侧安装都要支持 machine API 转发,远端 server 必须已在跑且 API 兼容;转发不安装、不起、不重启远端 server,不回落本地;本地配置、会话管理、安装命令、交互附着不转发;跨机 workspace 的远端 worktree 路径必须绝对或 `~` 起,插件链接路径必须绝对 [实证: herdr 0.9.1 --skill 直读]
 - **派单前双查**:归属轮或跨机协作轮开工前,本机 `herdr agent list` 与 `herdr --machine X agent list` 各跑一次,两侧工位清册都从 JSON 响应取,不假设编号全局唯一、不凭旧档
-- **跨机周知**:维护归属、标准变更这类全 fleet 周知,收件人 = 本机全部在职工位加每台远程机器的工位,双侧都要留回执;给远程工位的 prompt 必须自包含其够不到的路径(如远程机器上的仓库路径要写清在哪台机、怎么到达)
+- **跨机周知**:维护归属、标准变更这类全 fleet 周知,收件人 = 本机全部在职工位加每台远程机器的工位,双侧都要留回执;给远程工位的任务与周知走 s5 键(prompt 只递指针);笺内写清远程机器路径在哪台机、怎么到达(接收方够不到的路径不留笺外)
 - **失败不证未应用**:跨机连接失败不证变更未落远端(同 prompt 超时族),重试前先查远端实态;setup 遇不兼容 server 先问用户,默认 No,不经同意不批准替换 [实证: herdr 0.9.1 --skill 直读]
 - **stalled 误报处置**:跨机 prompt 可能报 `agent_prompt_stalled`(CLI 观察窗内未见 working/blocked 态),文本往往已送达且 agent 正常回执;处置 = `herdr --machine X agent read` 实读 pane 确认送达与回执,确认前不重发,防重复派单
 
 ## 交流分型与产物契约
 
 - **交流先分型**:任务型(要产出、有验收判据)、委托型(核查评审调研、要结论回执)、同步型(周知通报、要留痕确认)三型文件化;讨论型(征求意见、不落仓)不文件化,屏读加吸收
-- **三件套落统一标准路径**:系统临时目录 `herdr-flywheel/<轮次>/` 下,每笔交流一个单号三件:`<单号>-brief.md`(发起笺,发起方写,验收基准)加 `<单号>-state.md`(状态档,接收方自写)加 `<单号>-receipt.md`(产物笺,逐件对账);发起方不限总台,任何窗格 agent 都可发起任务、委托、同步 [实证: 2026-10-10 邻居窗格 flywheel-01 委托轮全链走通,三检查点与逐件对账齐]
+- **三件套落统一标准路径**:本地底稿位 = 系统临时目录 `herdr-flywheel/<轮次>/`(写作面),传递信道走 s5 键空间(rounds 形,见 references/artifacts.md 跨机细则);每笔交流一个单号三件:`<单号>-brief.md`(发起笺,发起方写,验收基准)加 `<单号>-state.md`(状态档,接收方自写)加 `<单号>-receipt.md`(产物笺,逐件对账);发起方不限总台,任何窗格 agent 都可发起任务、委托、同步 [实证: 2026-10-10 邻居窗格 flywheel-01 委托轮全链走通,三检查点与逐件对账齐]
 - **盘上稳态,herdr 信号**:所有状态与产物由 agent 自己写盘产生确定稳态;herdr 生命周期态(idle、working、blocked、done)只是实时干预信号,不进验收判据(判读矩阵见 references/artifacts.md)
 - 路径、模板、状态档检查点、跨机细则与官方口径分野见 references/artifacts.md
 
@@ -71,8 +72,8 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 
 ### 派单
 
-- **prompt 自包含**:任务清单逐件可判(过/缺/不适用)加标准权威路径加回执格式;接收方没有派发方的上下文
-- **契约先行**:任务、委托、同步三型派单先落发起笺 brief 到共享目录再发单,prompt 全文仍自包含,文末附 brief 与 state 路径,指令接收方按检查点自写状态档、回执逐件对账(模板与路径见 references/artifacts.md)
+- **任务发布走 s5,消息递指针**:任务清单逐件可判(过/缺/不适用)加标准权威路径加回执格式,落 brief 后 put 上键(rounds/<日期-主题>/<单号>-brief 形,见 agent-s5 naming);herdr prompt 只递单号、键与一句接单指令(get 键、按笺执行、按检查点回写),不再内联全文;笺本身自包含(接收方没有派发方上下文);本机无 s5 二进制时退回 prompt 全文内联并记注(兜底形)
+- **契约先行**:任务、委托、同步三型派单先落发起笺 brief、put 上键再发单,prompt 附键与本地底稿路径,指令接收方按检查点自写状态档、回执逐件对账(模板与路径见 references/artifacts.md)
 - **状态门控先行**:派单前 `herdr agent get <工位>`(跨机 `herdr --machine <label> agent get`)判 agent_status:idle 与 done 直派;working 不硬注入,先 `herdr agent wait <工位> --until idle --until done --until blocked --timeout <租约余量毫秒>` 排队候位或走插队条;blocked 被拒收(agent_blocked)属常态,查 UI 问用户再动;unknown 不派,`herdr agent explain <工位>` 排查检测态
 - 正式派单恒走 `herdr agent prompt <pane> "<任务>" --wait --timeout <毫秒>`:原子提交文本加编码 Enter,**提交与等待同一请求**(避开先 prompt 后 wait 的空窗);--wait 自带活动闸门,非 working 态提交后 5 秒内未见 working 或 blocked 活动即 `agent_prompt_stalled`,见到活动后才等收束态(默认 idle、done、blocked);提交时对方已在 working,其在跑轮收束即可满足等待,插队完成甄别见插队条;对 blocked 工位拒收(agent_blocked),先查 UI 问用户再动;超时与 stalled 都不证未送达 [经验: 2026-10-02 官方 Agent automation 与 Socket API 语义,首跑回填]
 - **开工探针**:甄别真开工用 `herdr agent wait <工位> --until working --timeout <毫秒>`,已在跑立即返回;turn 短于探针启动则探针必超时,失败不证任务失败、不证上一句未送达;本地热工位秒级即可,冷启动与远程放宽(活动闸门窗为 5 秒级)
@@ -85,7 +86,8 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 - **事件驱动收执**:正式派单的 --wait 已含收束等待(见派单节);插队单与补等走独立 `herdr agent wait <工位> --until idle --until done --until blocked --timeout <毫秒>` 阻塞等收束事件(现态已命中即返不空等;`--until` 逐态重复给旗标、或关系,逗号串无效;不要审批提前收束就只给 `--until idle --until done`;prompt 上的 --until 须搭配 --wait),返回即 `herdr agent read` 收回执,不靠人工记挂与轮询清册
 - **超时兜底**:wait 必带 timeout(省略即无限期;超时是调用方租约,不改写 agent 状态);超时与服务器错误 JSON 走 stderr、退出码 1(语法错误退出码 2),成功时当前 agent 在 `.result.agent`;处置 = 看 error.code 加 `agent get` 判现态加 `agent read` 实读判送达,确认送达前不重发(超时不证未送达,重投可能跑两遍;与 stalled 处置同源);timeout 不超租约余量,连续超时即失联判据成立,按租约改派走(references/parallel.md);wait 钉住解析时的窗格占用者,窗格中途移走以 `agent_not_running` 结束,改用新 pane_id 或 agent 名重等 [经验: 2026-10-02 官方口径,首跑回填]
 - **审批与提问面**:等审批用 `herdr agent wait <工位> --until blocked --timeout <毫秒>`,`agent read` 实读界面后 send-keys 送键处置或问用户,不代答
-- **三型恒文件回执**:任务、委托、同步型回执落共享目录 `<单号>-receipt.md`,会话只回路径加一句摘要,发起方直读文件断言;讨论型与短确认仍 `herdr agent read <pane> --source recent-unwrapped --lines <N>` 屏读;长响应备用屏读不全的兜底保留,坑面收窄到讨论型(官方 herdr 口径是仅兜底不预设文件回执,本协议三型有意升格,分野见 references/artifacts.md)
+- **三型恒文件回执**:任务、委托、同步型回执落键与本地底稿 `<单号>-receipt.md`,会话只回键或路径加一句摘要;
+- **结果获取走 s5**:文本结果 get receipt 键逐件对账;实时进展走流(接收方把进度要点 append 到轮次流,发起方 tail 取最近态);`herdr agent read` 屏读收窄到讨论型与兜底;讨论型与短确认仍 `herdr agent read <pane> --source recent-unwrapped --lines <N>` 屏读;长响应备用屏读不全的兜底保留,坑面收窄到讨论型(官方 herdr 口径是仅兜底不预设文件回执,本协议三型有意升格,分野见 references/artifacts.md)
 - **对方陈述不作数**:commit sha 自取 git log、门禁自跑取退出码(落盘直跑,不接吞退出码管道)、CI 自取 gh run conclusion
 - 断言带原文证据:说某文本「仍是旧口径」必须引读到的行,grep 反证优先于口头回执 [实证: 六仓轮中一次旧文误报被 grep 反证]
 - 零改动回执合法,不强制造提交;不适用面一句裁定留痕即可
@@ -93,7 +95,7 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 ### 断言
 
 - 总台对回执逐项独立复核:工位自证加总台实查对账(如行尾统一轮:工位自证三项,总台独立复核吻合)
-- **对账以 brief 为基准**:断言逐件对照发起笺核 receipt,盘上是权威、会话是信道;receipt 件号不齐或与笺上判据错位即打回重证
+- **对账以 brief 为基准**:断言逐件对照发起笺核 receipt,盘上是权威、s5 是信道、会话只递指针;receipt 件号不齐或与笺上判据错位即打回重证
 - **完成判定用稳态不用信号**:herdr 态与状态档交叉判读(干预矩阵见 references/artifacts.md);done 不作完成判据,已交以状态档加 receipt 对账为准
 - 复核不过打回重证,不采信口头补述
 

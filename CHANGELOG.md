@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-12 第一百二十七批:herdr 飞轮与编排消息信道翻转内置 s5,用户令
+
+- **协议变更通告**:herdr-flywheel 与 herdr-orch 的消息与产物传递不再走本地文档与 prompt 内联,内置 s5(命令面 evo-agent:agent-s5):派单 = 任务内容落 brief 后 put 上键(rounds 键空间),herdr prompt 只递单号、键与一句接单指令;结果获取 = get receipt 键(文本结果)或 tail 轮次流(实时进展);三件套仍为 md 文件稳态,本地临时目录降为底稿写作面
+- 跨机细则同步翻转:跨机派单与周知走 s5 键(prompt 递指针),prompt 全文内联降为本机无 s5 二进制时的兜底形(记注);对账判据句改「盘上是权威、s5 是信道、会话只递指针」
+- 通用原则句(orch 与 flywheel 同步):md 文件是状态与产物,消息与产物传递内置 s5(发布上键、结果文本或实时流取回);agent-s5 分工句对应更新(herdr 管信号与调度,传递面归 agent-s5)
+- 双 manifest、市场清单、AGENTS 全同步;触发词补任务上云、键指针、实时流取回
+
 ### 变更 2026-10-12 第一百二十六批:agent-doctor 网关面 [1m] 剥离事实与 overcast 实测回填,总台优化单
 
 - **[1m] 后缀剥离事实入判据**(用户口径加实证:Claude Code 发网关前剥模型名 [1m] 标记,网关 models 列表只有剥离形;raw curl 带后缀 400 unknown provider 不代表配置错,实证 zp-cc-glm53[1m] 400 与剥离形 200):拼接规范节立条,活性层「钉住 id 不在 models 列表」改先剥后缀再比对,错形三注剥后比对,手测验证一律用剥离形

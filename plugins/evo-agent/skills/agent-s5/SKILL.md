@@ -35,4 +35,4 @@ description: >-
 - **看板写者拥有**:哪台放上哪台管版本,改 = 同 key 重 put 覆盖;跨台只读取用,不并发编辑他人对象;`del` 只清自己工作台前缀下的对象
 - **频道 append-only**:人人可发;消息一行一事,带端名前缀(如 `[wsl] ...`);消费 = `tail` 取阅,取阅不回写、不 re-put
 - 频道不做请求-应答与派单(那是 herdr 域,见 evo-herdr:herdr-flywheel);只做播报、周知、留痕;大内容走看板文件,频道里放 key 引用
-- 与 herdr 分工:herdr 管信号与消息,共享内容一律走本 skill;飞轮轮次三件套上云走 rounds 键空间,轨迹流走 streams 键空间(见 references/naming.md)
+- 与 herdr 分工:herdr 管信号与调度;消息与产物的传递内置走本 skill:飞轮派单发布任务(rounds 键)、总台取结果(get 回执文本或 tail 实时流)、herdr prompt 只递键指针(键空间见 references/naming.md)

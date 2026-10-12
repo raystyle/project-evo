@@ -4,7 +4,7 @@
 
 ## 统一标准路径
 
-- 根 = 系统临时目录下固定名 `herdr-flywheel/`:bash 侧 `${TMPDIR:-/tmp}/herdr-flywheel/`;pwsh 侧 Windows 用 `$env:TEMP\herdr-flywheel\`,Linux 的 pwsh 无 TEMP 变量,回退 `/tmp` 与 bash 同 [实证: 2026-10-10 本机 /usr/bin/pwsh 实查]
+- 根 = 系统临时目录下固定名 `herdr-flywheel/`(本地底稿与写作面;跨工位传递信道走 s5 键空间,见文末跨机细则):bash 侧 `${TMPDIR:-/tmp}/herdr-flywheel/`;pwsh 侧 Windows 用 `$env:TEMP\herdr-flywheel\`,Linux 的 pwsh 无 TEMP 变量,回退 `/tmp` 与 bash 同 [实证: 2026-10-10 本机 /usr/bin/pwsh 实查]
 - 每轮(轮次)一子目录,名 = 日期加主题短名(如 `2026-10-10-归属周知`),子目录即本轮交流总档;同机各窗格共享文件系统,路径直读直写,跨机面见文末
 - 每笔交流一个单号(发起方自定短标识加两位序号,如 `fleet-01`),三件套如下;并行轮各笔各自成套,无共享文件冲突
 
@@ -70,11 +70,11 @@ herdr 生命周期态(idle、working、blocked、done)是实时干预信号,不�
 - 笺头:单号、接收方、时点、brief 路径
 - 逐件对账表:件号、三态(过、缺、不适用)、证据(commit sha、门禁退出码、文件行号引文);证据自取自跑,对方陈述不作数(沿 SKILL 回执节)
 - 未尽事项与偏离说明;产物本体过大不内联,receipt 记产物路径与验收结论
-- 会话回复只发 receipt 路径加一句摘要;全文在盘上,屏读是回退
+- 会话回复只发 receipt 键或路径加一句摘要;文本走 s5 get,屏读是回退
 
 ## 跨机细则
 
-- 盘上文件只在本机可直读:跨机派单时 brief 全文随 prompt 内联(沿 SKILL 跨机周知:prompt 自包含够不到的路径),receipt 全文随回执内联,本机文件只作底稿与对账锚
+- **传递信道 = s5 键空间**(rounds/<YYYY-MM-DD>-<主题短名>/<单号>-{brief,state,receipt}.md 形,见 agent-s5 naming):发起方写 brief 后 put 上键,prompt 只递键;接收方 get 到本地轮次目录落底稿,再走三件套纪律;state 与 receipt 每检查点 put 同步(同键覆盖终态形);实时进展 append 轮次流、发起方 tail 取;本机无 s5 二进制时退回 prompt 全文内联并记注(兜底形)
 - 跨机周知(同步型)双侧都留回执:各收件工位在自己机器各写各的 receipt,发起方以回执文本对账
 
 ## 与官方 herdr 口径的分野
