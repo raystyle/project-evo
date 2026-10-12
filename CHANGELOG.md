@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 新增 2026-10-13 第一百三十四批:zh-lint 汇报面吸收,用户令
+
+- **汇报面**(references/reporting.md 新页):ASD-STE100 中文家族实践蒸馏(一案提案 patch 形,否 create 因同域拆分伤意图路由);结构律(结论先行)、状态词十词表(已完成到未确认)、验证状态(方法与命令与输出摘要,六态的回复形)、询问律(选项编号)、语言律增量(情态词只必须不得可以、禁缓冲开头与比喻成语)、五模板(进度、结果、排查结论、请求决定、多项总结)、发前自检八问
+- SKILL.md 适用面加工汇报与回执、新增汇报面速览节;description 补触发词(汇报、回执、结论先行、状态词、已验证、未验证、选项、模板);顺手修正标题半角括号漏网(批 131 遗留)
+- zh-lint.py 机检面不动(情态近义词与缓冲开头入先验核属工具行为变更,候另批);REQ-026 立档
+
 ### 新增 2026-10-13 第一百三十三批:evo-agent 第四技能 agent-prim 五原语,总台令
 
 - **agent-prim**(客户端 evo-agent:agent-prim):舰队互操作五原语操作面;五命令 agents/shares/streams/tasks/pipes 三段式(VIEW 全局可视、OPERATE 只动资源、DELIVER 定向传递带门控),裸名全局寻址与命名纪律,投递门控(working/blocked 拒投、--force 留审计、拒投代记 room/deferred 补收),信封三行形取用行纪律,IM 映射(流即房间、DELIVER 即 @、dm/ 与 room/ 前缀、agents view 即 presence)与回执走 streams append fleet
