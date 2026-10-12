@@ -4,13 +4,17 @@
 
 ## [Unreleased]
 
-暂无。
+### 变更 2026-10-12 第一百二十二批:CHANGELOG 存量带括号标题 lint 债清理,总台令
+
+- 存量 38 处带括号标题(含全半角混用形)按 md 标题禁括号口径去括号改写,语义原样保留:全尾包裹形剥括号接空格,尾注组形转逗号续写;lint-hook check_md 实证 CHANGELOG 零发现
+- 此前批次标题规则与挡板只拦增量不拦存量,本批清完历史面,后续任何 CHANGELOG 编辑不再触发存量噪音
+
 
 ## [0.14.0] - 2026-10-12
 
 版本载体齐 0.9.0。本版无破坏性变更:第五插件 evo-agent(agent-doctor 与 agent-s5 两 skill)新增,md-lint 与 ls-lint 更名(旧名仅在历史档),lint-hook 辖域修复与 config-lint 判据族随线生效;已装者逐插件 update 即可。
 
-### 修复 2026-10-12 第一百二十一批:评审 G 项记档清理批(封版前顺手,总台令)
+### 修复 2026-10-12 第一百二十一批:评审 G 项记档清理批 封版前顺手,总台令
 
 - G-120-1/4:计数守卫重写(排 .venv 与 .pytest_cache、后缀扩 json 与 sh 与 yml、纳入插件-skill 连写组合计数、「三 skill」单用为 herdr 合法表述放行)
 - G-120-2:守卫自免改拼接式模式串(不再整文件排除 tests),cn 映射换通用中文数字换算(不再 KeyError 隐患)
@@ -19,14 +23,14 @@
 - G2 与 G3 已随批 118/119 落(占位四形文档化、口径统一),本批复核结案;G-118-4 并入 G-120-1 落
 - 门禁:37 测试绿、本机 config-lint 0 错 0 警且豁免留痕实证
 
-### 修复 2026-10-12 第一百二十批:评审三轮收尾批(纯文案与守卫,不动行为)
+### 修复 2026-10-12 第一百二十批:评审三轮收尾批 纯文案与守卫,不动行为
 
 - F3r 余账六处计数位清零:docs/README 四插件六 skill 刷五插件十 skill、pyproject 与 evo-lint README 版本线句刷五插件、tests 三处 docstring 与断言消息刷五插件;gates.md 实证注记去计数连写(时为四端后扩五)
 - F2r 判据表回填:config-face 增「形态非法」error 行与单面异常兜底说明;agent-doctor SKILL 速览行补「坏形态报形态非法、单面异常兜底不吞其余面」
 - 补断言:codex 枚举不可哈希形态测试(类型守卫先于 _safe 兜底命中);活面陈旧插件计数全树守卫(三、两、四插件在非档案活面零残留,序数「第几插件」形放行,守卫首跑自抓两处漏网并清)
 - 门禁:37 测试绿、scan 干净、check 12/12(评审方前三轮独立复跑四门禁与我方一致)
 
-### 修复 2026-10-12 第一百一十九批:评审二轮修订(rev-codex 复核 3F 顺手 2G)
+### 修复 2026-10-12 第一百一十九批:评审二轮修订 rev-codex 复核 3F 顺手 2G
 
 - **F1r**:codex 面 `_safe` 兜底挂上(上轮缩进锚点未命中静默跳过);三处枚举值不可哈希形态(defaultMode、approval_policy、sandbox_mode 非字符串)防御报形态非法
 - **F2r**:键族判据回填 config-face error 表(词边界、大小写不敏感、四占位形)
@@ -34,7 +38,7 @@
 - G-118-1 顺手:键族词边界(`MONKEY` 不再误命中,`_KEY` 分隔形仍命中);G-118-2 顺手:`$env:VAR` 占位形放行;G-118-6:s5 装位改「舰队惯例注记,本机 command -v s5 实查为准」并记 wsl 缺位判例;G-118-3 缩进与 G-118-4 守卫覆盖面记档后批
 - 门禁:35 测试绿、scan 干净、断链 0、本机 config-lint 0 错 0 警
 
-### 修复 2026-10-12 第一百一十八批:四批评审修订批(rev-codex 快核,3F 9G 1 大面 CONFIRM)
+### 修复 2026-10-12 第一百一十八批:四批评审修订批 rev-codex 快核,3F 9G 1 大面 CONFIRM
 
 - **F1 形态防御(重)**:config-lint 五处坏形态直崩(env 非对象、enabledPlugins 数组、permissions 与 hooks 非对象、grok plugins 非表、codex mcp_servers 数组表)修为逐面类型守卫报「形态非法」error;run() 加 _safe 兜底,单面异常不吞其余面
 - **F2 凭证键族(中)**:SECRET_KEY 扩族加大小写不敏感(TOKEN、API_KEY、SECRET、PASSWORD、KEY、CREDENTIAL、BEARER,re.I),占位符放宽 ${VAR}、$VAR、%VAR% 形
@@ -82,51 +86,51 @@
 
 **本版破坏性变更通告**:插件 evo-skills 更名 **evo-distil**、skill native-design 更名 **doc-cli**(旧触发词失效),已装者卸 evo-skills 装 evo-distil,evo-doc 逐插件 update;新插件 **evo-lint** 按需安装(lint 五面静检加写后 hook、struct 类型化结构);evo-herdr 新增第三 skill s5(跨机共享内容,候 s5 首版实测定稿)。live md 禁字 PostToolUse hook 已裁撤(批 105,pre-commit 挡板保留)。版本载体齐 0.8.0。
 
-### 新增(2026-10-11,第一百一十二批:core-02 三方合成吸收,Python uv 范式)
+### 新增 2026-10-11,第一百一十二批:core-02 三方合成吸收,Python uv 范式
 
 - struct python-tool 卡与 types.md Python 仓卡增补:骨架树细节(uv.lock 提交加 --locked、.python-version 钉版、PEP 735 依赖组、lib/commands/types 结构位、任务入口 uv run 不引多运行器)加依赖锁纪律与八条反面清单
 - doc-cli 两句:结构律「命令层薄、纯函数域厚、进程 spawn 集中」(tool-cli-agents 新九节)加总律「发现面当测试面养」(agent-face);律 1 注册表单源、律 2 投影四要素、律 5 配置根件、agent 面与技能生态节、守卫清单节均已在册引用即可;不立新 Python 范式页(struct 卡即载体,单一权威源)
 
-### 新增(2026-10-11,第一百一十一批:s5 跨机共享内容技能,用户令 evo-04)
+### 新增 2026-10-11,第一百一十一批:s5 跨机共享内容技能,用户令 evo-04
 
 - evo-herdr 第三 skill **s5**(客户端 evo-herdr:s5,协同域归一:orch 台面、flywheel 信号、s5 内容):agent 跨机共享内容,文件道(S3 形 put/get/ls/del)加流道(S2 形 append/tail)双道选型三问判据,零感知凭据三不纪律,与 herdr 分工律(信号走 herdr 内容走 s5),跨机轮次三件套与研究档轨迹流键空间规范(rounds/、research/、streams/)
 - 全套候 s5 首版实测定稿标注(命令面按 s5-01 立项设计,实测后回填);evals 触发用例集五条三类同步立
 - 双 manifest 重写三 skill 描述、市场清单、插件 README、AGENTS、根 README 表、docs 地图、测试清单(evo-herdr 三 skill)、pre-commit(八 skill 断链段)全同步;门禁全绿推远端
 
-### 新增(2026-10-11,第一百一十批:struct 类型化结构标准技能,用户立项 evo-03)
+### 新增 2026-10-11,第一百一十批:struct 类型化结构标准技能,用户立项 evo-03
 
 - evo-lint 第二 skill **struct**(客户端 evo-lint:struct):四类型标准结构卡(TS CLI 仓、知识三层聚合仓、worker 服务仓、Python 工具仓;数据源四仓实形加当日结构研究)加 templates/ 声明式 toml 规则件四张(meta、required、generated、excluded、config-root、optional 六节)
 - 双面:init 脚手架(既有件不动缺件补位,三层类型联动建仓五步)加 check 结构 lint(ls-lint 同族;本地覆盖 .struct-lint.toml,豁免须带因由登记);存量仓不自动施工,出差距清单走该仓蒸馏环(判例:今日五仓)
 - 触发用例集 evals 件随技能入库(evo-02 纪律首批适用,五条三类);ADR-0022(挂 evo-lint、声明式自研不引依赖、豁免机制)与 REQ-020 立档;双 manifest、市场、README、AGENTS、docs 地图、测试清单(SKILLS 两 skill)、pre-commit(七 skill 断链段)全同步
 - 门禁全绿:pytest 28、check 12/12、scan 干净、断链 0
 
-### 新增(2026-10-11,第一百零九批:研究对照七条采纳落地,evo-01 加 discuss-01 四方共识)
+### 新增 2026-10-11,第一百零九批:研究对照七条采纳落地,evo-01 加 discuss-01 四方共识
 
 - 上游:研究格七条对照(evo-01 分判,零重复对账)加讨论轮共识定案形;采纳六项施工:doc-gov 补按路径加载与 hook 执法句(根文件短路由、领域禁则就近路径规则、硬边界 hook 失败退出);gate.md 谓词 2 升触发用例集(3 至 5 条盖应触发加近失加含糊边界,references/evals.md 随技能入库,两方各跑,隔离会话序贯加含糊独立,fail 映射三行进合取三条不立第四谓词,二值不打均值,采样留判例)加记忆与技能写入边界句(步骤写常驻记忆即绕闸记违规);doc-cli 补 llms.txt 目录索引形(llmstxt.org 规范,索引优先于全文拼接)加 MCP 分流纪律(只暴露活查询,防第二套无闸门通道);layers.md 补 evals.md 允许位加 version 纪律定案(顶层恒禁,字节拷贝分发形豁免 metadata.version 登记在册,比对义务上游代或哈希二选一,校验器豁免形认一键顶层即红)
 - 领走判定与回流候选在 evo-01 回执在册(条 6 机检 ai-ccoe 先自落试跑成熟回流 evo-lint,共识 2)
 
-### 新增(2026-10-11,第一百零八批:evo-lint 插件立项)
+### 新增 2026-10-11,第一百零八批:evo-lint 插件立项
 
 - 用户令:增第四插件 **evo-lint**(项目静态检查报错),单 skill lint 五面:skill markdown 格式标准(frontmatter 官方字段、name 同目录名、description 形态与上限、行数上限、断链)、agents 与 claude markdown 长度限制(缺省 200 与 50 行,环境变量可裁)与结构合同与禁字、rs(cargo fmt 与 clippy 与 missing_docs)、py(ruff 含 D 系)、ts(tsc 与 eslint);references 三篇(md-faces、lang-checks、hook-face)
 - **写后自动静检 hook**(用户裁):PostToolUse 按 .md/.rs/.py/.ts 后缀分派快检查,报错信息回传(退出码 2 加 stderr 逐条);Claude Code 直查、Codex apply_patch 宽容放行靠 pre-commit 兜底,hooks.json 花括号变量加 commandWindows 双形;工具缺位放行,重检查进门禁与 CI
 - 市场登记双清单、AGENTS 与双 README 与 docs 地图四插件六 skill 同步;测试三件(hook 载荷宽容、md 报错回传、花括号形态)加清单一致性;pre-commit 断链段扩六 skill;版本线同 0.7.0 入列
 
-### 变更(2026-10-11,第一百零七批:native-design 更名 doc-cli)
+### 变更 2026-10-11,第一百零七批:native-design 更名 doc-cli
 
 - 用户令:evo-doc 内 skill native-design 更名 **doc-cli**(目录 git mv 保史、frontmatter name、AGENTS 与根与插件 README、docs 地图、doc-gov 意图路由与索引互引、双 manifest 与市场描述、测试清单、pre-commit 路径全同步);**破坏性**:下次封版起客户端显示改 `evo-doc:doc-cli`,旧触发词失效
 
-### 变更(2026-10-11,第一百零六批:evo-skills 更名 evo-distil)
+### 变更 2026-10-11,第一百零六批:evo-skills 更名 evo-distil
 
 - 用户令:插件 evo-skills 更名 **evo-distil**(目录 git mv 保史、双 manifest name、双市场清单、AGENTS 与双 README 与 docs 地图、doc-gov 互引五处、测试清单与 pre-commit 路径全同步);**破坏性**:下次封版起消费者卸 evo-skills 装 evo-distil,客户端显示改 `evo-distil:distil-skill`
 - 顺修:evo-doc codex 面 longDescription 里已过时的 live hook 描述句改为 pre-commit 挡板口径(批 105 残句)
 
-### 移除(2026-10-10,第一百零五批:live 禁字 hook 裁撤)
+### 移除 2026-10-10,第一百零五批:live 禁字 hook 裁撤
 
 - 用户令:删除 evo-doc 的 live md 禁字门禁 hook;插件 hooks/hooks.json 与仓 .claude/settings.json 两处 PostToolUse 注册撤除(当日实时拦编辑四犯、下游仓自有豁免面三度误拦,成本大于价值);md-guard.py 脚本保留(githooks pre-commit --staged 挡板仍用),禁字纪律不丢(挡板加 check.py PE-11)
 - 测试翻转:test_hook_wiring 挂接回归改 test_live_md_hook_stays_removed(裁撤不回潮守卫);md-guard 脚本行为用例保留
 - ROADMAP「md-guard 按仓豁免配置」积压项随 live hook 消失而失效,收口
 
-### 新增(2026-10-10,第一百零四批:clean-chrome 入列与迁移引用面吸收)
+### 新增 2026-10-10,第一百零四批:clean-chrome 入列与迁移引用面吸收
 
 - clean-chrome 入列第五实践仓;distil-05 反馈单回执断言过(六坑四提案两优标回流,四件全过,门禁实跑 PASS 12)
 - 吸收六项:layers.md 迁移引用面清单(入口合同、地图、门禁断言、裁定红线,rg 清零为验)、字母表跨仓前缀撞义按语义归族、模式页约束升格附则(坑二犯起配机器约束进门禁,优标回流)、资格指针内联实证最小范本(优标回流);gate.md 重门禁不适用例扩列(整树/多平台编译、跨仓验收门,代理面满足);trajectories.md 存量日记旧形豁免句
@@ -136,18 +140,18 @@
 
 **本版无破坏性变更**:三插件五 skill 内容增强与下游布局适配,已装各端逐插件 update 至 0.7.0 即可;md 禁字与骨架门禁面不变。
 
-### 新增(2026-10-10,第一百零三批:四仓终验齐与触发对收窄环回流)
+### 新增 2026-10-10,第一百零三批:四仓终验齐与触发对收窄环回流
 
 - ark_rs con-04 加 A1 人裁收口终验过(六件全过;首技能 ark-catalog-addition 受裁入集,触发对三例隔离环境实证);四实践仓治理终态齐
 - 回流两笔:gate.md 触发对补初测误触发收窄复测环(第四仓首环判例:近失负例揭出触发面过宽,收窄 description 与 When NOT to Apply 复测转绿);herdr-flywheel pitfalls 增 JSON 键名 status 误取条(总台管道二犯升格,键名 agent_status,门控与派单分开发)
 
-### 新增(2026-10-10,第一百零二批:ark_rs 入列与既有仓迁移形吸收)
+### 新增 2026-10-10,第一百零二批:ark_rs 入列与既有仓迁移形吸收
 
 - ark_rs 入列第四实践仓(Rust 工具链仓,ark-rs 工位 w36:p1);distil-04 反馈单回执断言过(五坑三提案三优标回流候选,四件全过)
 - 吸收六项:layers.md 建仓五步补既有仓迁移形(映射注记、git mv 保史、判例指针、首轮豁免援引、ignore 划界)、字母表补退役编号留档注记句;gate.md 谓词 1 补门禁清单固定成文句(优标回流);base-code-doc 补根检索面漂移守卫句;backends.md 补 .claude 整体 ignore 划界句;trajectories.md 补双层裁定账口径(冻结索引账加 ADR 分治,优标回流)
 - con-04 施工单派发(归档统一加三层建,走 pve 判例路径:requirements 改 req、guide 升 G 入 operations、proven 启用、防重提与流水空态、首轮蒸馏试点)
 
-### 新增(2026-10-10,第一百零一批:四仓三层聚合标准合流)
+### 新增 2026-10-10,第一百零一批:四仓三层聚合标准合流
 
 - 用户立单(2026-10-10,八条裁定递进):sources 与 doc-gov 统一、四仓一致修成一个标准、优标实践回流改标准、ai-ccoe 目录正名、归档统一、doc-gov 对齐 Rust 治理、代码即文档三语言、三层项目级自持;经三实践仓反馈轮(distil-01/02/03,16 坑 10 提案断言吻合)、讨论轮(三仓全可进定稿,13 处改法采纳)、grok-01 业界对照轮(八例信源可回查,WikiSkill 排序:分叉第一、agentskills 触发面第二、Voyager 负对照第三),草案 v2 冻结(条文 13、修订清单 22、终态判据 6)
 - **ADR-0021** 立档:sources 扩为唯一出处层(三类出处分根收口,relation 两根词资格判据,否证走 supersede);git 边界三选一(分仓、分目录分 git、单仓纪律形两操作件,排除记忆库内嵌技能形);归档统一字母表八元组(ADR/REQ/R/G/M/P/S/diary 定死归层,Diataxis 判据 G 只收 how-to);doc-gov 工件归层与互指;operations 收标准技能与 how-to 手册两类,技能安装路径是加载视图(常驻面仅 name 与 description);闸门证据形态扩(门禁集轮首点名、hook 拦截入证据、隔离轮判据、触发对,不引 pass rate);取样窗口非保留期;CoALA 映射注;业界负对照排除五项
@@ -159,7 +163,7 @@
 
 **本版破坏性变更通告**:herdr-dev 更名 herdr-orch(功能不变),doc-gov 知识面重划(COE 三层聚合与日记轨迹迁 `evo-skills:distil-skill`,agent 原生面迁 `evo-doc:native-design`),旧触发词失效。已装 evo-doc 与 evo-herdr 者逐插件 update 至 0.6.0;新插件 evo-skills 按需安装(`evo-skills@project-evo`);Kimi 手拷者删旧 skill 目录(含 herdr-dev)重拷三插件五 skill;各端旧版本缓存目录(0.5.x)可整目录删除。
 
-### 新增(2026-10-10,第一百批:三插件五 skill 版图与 distil-skill 技能自进化)
+### 新增 2026-10-10,第一百批:三插件五 skill 版图与 distil-skill 技能自进化
 
 - 用户立单(2026-10-10):与 grok 邻格对照研究 wikiskill(走产物契约协议研究轮 wiki-01,S014)后,把 doc-gov 的三层聚合剥离,立第三插件 evo-skills 承载新技能 distil-skill:项目基于自身执行经验自动产生并迭代项目级标准 skill,支持 Claude Code 与 Codex 双端。裁定三层定义:**sources = 带时间的历史轨迹总结,knowledge = 带版本的双向链接关联结构化知识,operations = 产物为双端支持的标准项目级 SKILL**;合取闸门(门禁无回归、点名义务翻转、知识链接成立)替均值闸,no_action 合法出口,知识层永不回滚、标准层拒绝即回滚
 - **evo-skills 插件**落地(双 manifest、README、四端安装面);distil-skill 含 SKILL 与 references 五篇(layers、trajectories、loop、gate、backends);双端命令面以本机 --help 实查为准(实证 claude 与 codex 参数面)
@@ -169,7 +173,7 @@
 - **无头模式三档与四端**:有人值守、无头边界内、全开 yolo(仅外部隔离环境)入 backends;wiki-04 四端研究轮(claude、codex、grok、kimi)给出各端无头边界内推荐形逐旗标实查;kimi 无沙箱无对等档,`-p` 按全开处置;生成维护 SKILL 的环默认无头边界内,接受与发布停人裁
 - ADR-0020 立档登记;S014 研究档案落档登记;REQ-018 登记;测试清单与 pre-commit 扩三插件五 skill;版本线统一 **0.6.0**(三插件双 manifest、双市场清单、三 README)
 
-### 新增(2026-10-10,第九十九批:herdr-flywheel 产物契约与共享文件)
+### 新增 2026-10-10,第九十九批:herdr-flywheel 产物契约与共享文件
 
 - 用户立单(2026-10-10):跨窗格飞轮对话产物落临时目录统一标准路径 md 文件共享,任务与委托型交流由提示词生成文件产物、验收按文件对账达成一致;裁定**发起方不限总台**(任何窗格 agent 可发起委托与同步)与**盘上稳态加 herdr 干预信号分治**(状态与产物由 agent 自己写盘,herdr 生命周期态只作干预检查信号,不是稳态)
 - SKILL.md 落「交流分型与产物契约」节(任务、委托、同步三型文件化,讨论型不文件化;三件套 brief/state/receipt;门控用信号、判定用稳态),派单、回执、断言、吸收四节同步条文,description 触发词补产物契约面
@@ -179,7 +183,7 @@
 
 ## [0.11.2] - 2026-10-09
 
-### 新增(2026-10-09,第九十八批:doc-gov 四形态定形与工具链范式)
+### 新增 2026-10-09,第九十八批:doc-gov 四形态定形与工具链范式
 
 - 用户立单(2026-10-09):doc-gov 增「纯项目记录」研究档案形态(参考两家族仓实践),定形四文档形态(COE 三层聚合双链、项目日记、研究、ADR);另扫本机各仓 uv 与 python 工具形态形成标准范式入知识库;裁定**不同项目用不同文档结构治理,只有合适的、没有硬性**(形态是选型菜单,核心思想句同步)
 - **S013 档案**:三仓研究形态公因式(S 编号一题一篇、引块元信息、六态结论、对照分流、编号互链不超链)与十仓工具链范式核心,信源点名止于档案;顺带修索引漂移:S011 与 S012 补登 research README
@@ -188,19 +192,19 @@
 
 ## [0.11.1] - 2026-10-08
 
-### 变更(2026-10-08,第九十七批:内容分发版本载体 0.5.1)
+### 变更 2026-10-08,第九十七批:内容分发版本载体 0.5.1
 
 - 用户立单(2026-10-08):更新安装。批 95 两坑落在 herdr-flywheel 插件面而版本未升(违反批 83 起内容分发版本载体纪律,版本不变消费者缓存不刷),本批补正:两插件版本线 0.5.0 齐 **0.5.1**(evo-herdr 载 pitfalls 两坑,evo-herdr 与 evo-doc 同版本线齐平),tag v0.11.1 加 Release
 - 携带内容:第九十五批(pitfalls 冷启动竞态吞派单加 prompt --wait 提交即返)、第九十六批(fleet-exec 重评估,仓面非插件面)
 - 升级:`/plugin marketplace update project-evo` 后 `/plugin update evo-doc@project-evo` 与 `/plugin update evo-herdr@project-evo`;Codex 同形
 
-### 变更(2026-10-08,第九十六批:herdr 集成 py 脚本重评估,总台运维面翻转)
+### 变更 2026-10-08,第九十六批:herdr 集成 py 脚本重评估,总台运维面翻转
 
 - 用户立单(2026-10-08):重评估批 90 待定行。触发审计:S011 原写触发(lane 探针/扫描循环手拼二犯)未 fired(lane 无实跑);但 v0.11.0 舰队清理与安装轮中普通进程通道(send-text 加 enter 加 wait-output 收标加 read 回执)手拼十余次、四种任务形,仓级沉淀铁律在总台运维面成立(REQ-015)
 - **结论部分翻转**:新增本仓 `.tools/fleet-exec.py` 运维薄封装(参数 machine 加 pane 加 cmd 加 marker,四步通道逐条回显 herdr 命令,活权威语义不藏;未收标不证失败仍打印实读);实证准入 = pi-server shell 格端到端实跑(收标命中,回执含 hostname,exit 0);test_fleet_exec_tool 入套件,.tools/README 登记
 - **不动面**:herdr 插件面维持纯知识(ADR-0018);lane 探针与扫描循环的触发条件保留(lane 实跑二犯再议);kimi 委派驱动仍待专项研究;ROADMAP 待定行翻转为已完成
 
-### 新增(2026-10-08,第九十五批:pitfalls 两坑吸收回写)
+### 新增 2026-10-08,第九十五批:pitfalls 两坑吸收回写
 
 - 吸收单(pve-harness 总台实踩,2026-10-07/08 双工位评审轮,herdr 会话内):herdr-flywheel references/pitfalls.md 派单与回执面收两坑
 - **冷启动竞态吞派单**:agent start 检测就绪不等于 CLI 输入面就绪,欢迎屏渲染期键入被吞(双工位 grok 与 kimi 齐报 stalled,实读欢迎屏占屏输入框空);修法 = 驻场后实读稳态再派,stalled 后实读判送达、确认空且无在跑轮才重发
@@ -208,13 +212,13 @@
 
 ## [0.11.0] - 2026-10-07
 
-### 变更(2026-10-07,第九十四批:封版 v0.11.0)
+### 变更 2026-10-07,第九十四批:封版 v0.11.0
 
 - 用户立单(2026-10-07):封版。两插件版本线 0.4.3 齐 **0.5.0**(evo-doc 与 evo-herdr 双 manifest 加市场条目加两插件 README 当前发布行);tag v0.11.0 加 GitHub Release;README 钉版行刷 v0.11.0
 - **本版破坏性变更通告**:evo-research、evo-codesec、evo-adr 三插件下线(ADR-0016/0017/0018),已装者卸载(`/plugin uninstall evo-adr@project-evo` 等三件)后按需装 `evo-doc@project-evo`;evo-adr 改名 evo-doc,herdr-review 并入 herdr-dev(ADR-0019);装 evo-doc 即得插件级 md 禁字挡板(限仓内 md)
 - 升级:`/plugin marketplace update project-evo` 后 `/plugin update evo-herdr@project-evo`、`/plugin install evo-doc@project-evo`;旧缓存目录(`cache/project-evo/` 下 evo-adr、evo-research、evo-codesec 与 0.4.x 版本目录)可整删
 
-### 变更(2026-10-07,第九十三批:挂接面回归测试补强)
+### 变更 2026-10-07,第九十三批:挂接面回归测试补强
 
 - 用户立单(2026-10-07):大批挪移后没有回归测试。核实缺口在挂接面(脚本行为与清单一致性已有用例),REQ-014 补三用例
 - **test_hook_wiring_points_to_plugin_scripts**:hooks.json 双面命令须含插件级 `scripts/md-guard.py` 路径(花括号 token 守卫不锁路径,解耦回退不红);仓 settings.json hook 须指 plugins/evo-doc/scripts/md-guard.py 加 $CLAUDE_PROJECT_DIR 前缀(批 89 挪移期间该 hook 断过,当时无红灯)
@@ -222,20 +226,20 @@
 - **test_ci_workflow_refs_exist**:test.yml 引用的仓内 .py 与 .json 路径存在性全查
 - 全套 25 用例绿(pytest 22 加 3)
 
-### 变更(2026-10-07,第九十二批:跨机器 machine 原语语义补强)
+### 变更 2026-10-07,第九十二批:跨机器 machine 原语语义补强
 
 - 用户立单(2026-10-07):跨仓之外再研究跨机器,herdr 现有 machine 原语;按活权威 `herdr --skill`(本机 0.9.1)直读补强
 - herdr-flywheel 跨机器工位节补六面:ID 与 live 名都 scoped 单机(同名 agent 可并存两机)、TUI 选机不重定命令向(无 --machine 恒走本地语境)、selector 语义(enabled profile ID 或唯一 label,非任意 SSH 主机名;--machine 不与 --session 加 --remote 组合;add 默认远端默认会话)、转发前提与边界(双侧支持 machine API 转发、远端 server 已在跑且 API 兼容;不装不起不重启不回落;本地配置、会话管理、安装命令、交互附着不转发;远端 worktree 路径绝对或 ~ 起)、连接失败不证未应用(重试前查远端实态)、machine list 是 profile 清册非 pane 清单
 - 同步面:REQ-013、AGENTS 阶段行;六态标注 [实证: herdr 0.9.1 --skill 直读]
 
-### 变更(2026-10-07,第九十一批:herdr 双模式定形)
+### 变更 2026-10-07,第九十一批:herdr 双模式定形
 
 - 用户立单(2026-10-07):herdr 应是两个 skill:开发模式(已包含 review 窗格)与跨仓模式(不同仓库 agent 工作台对话交流);ADR-0019 与 REQ-012 落地
 - **herdr-dev 开发模式**:herdr-review 整目录改名重组,SKILL 重写四主线(窗格布局定式:通用四窗格与 PI 五窗格;评审闸门:请求到放行与两规模;自省验收:清单式实测;任务分发 lane 模型),references 收五篇(request、receipt、findings、panes、lane-dispatch 移入)
 - **herdr-flywheel 跨仓模式**:去布局与 lane 两节,收敛为不同仓库 agent 工作台对话交流(工位形态与多 kind 带起、跨机器工位、四步协议、并行义务图、命令面与坑),开发面内容指针到 herdr-dev
 - 同步面:双 manifest 与市场条目双模式化(codex interface 与 defaultPrompt 同步)、守卫 SKILLS、pre-commit 断链段、AGENTS 定位与阶段行、根 README 表、docs 地图;版本线 0.4.3 不动待打版批
 
-### 变更(2026-10-07,第九十批:herdr 委派与窗格布局轻吸收)
+### 变更 2026-10-07,第九十批:herdr 委派与窗格布局轻吸收
 
 - 用户立单(2026-10-07,两单):吸收蒸馏 herdr-dispatch 任务分发编排改进 herdr skill,评估 grok、kimi、codex 委派与窗格布局是否开发集成 py 脚本;吸收 PI 智能体五窗格开发布局(用户裁定:五窗格仅 PI 开发模式,通用四窗格足够,自省位可由 codex 替代)
 - **S011 档案**:herdr-dispatch 对照分流(编排三分工、lane 模型、状态台账、探针契约、身份核验、多 agent 启动特化);kimi 委派上游无参照待专项研究;py 脚本评估结论 = 不开发(纯 skill 加内联探针够用、沉淀铁律未触发、活权威 herdr --skill、与纯知识加 hook 解耦方向相反)
@@ -243,7 +247,7 @@
 - **herdr-flywheel 吸收**:新增「窗格布局定式与双闸门」与「任务分发 lane 模型」两节;新篇 references/lane-dispatch.md(lane 结构、状态台账与探针契约、身份核验、codex 与 grok 启动特化、发布纪律);pitfalls.md 增三坑(agent 名回收复用、done 假象多源、TUI 未就绪悬输入框);frontmatter 触发词加窗格布局、lane、worktree、codex、grok、kimi
 - 同步面:docs 地图加 S011 与 S012 行、REQ-011、ROADMAP(py 脚本重评估条件记待定行);等价桶不吸收项(JSON 判据、勿动非自建、租约防重发等,与既有口径同源互证)
 
-### 变更(2026-10-07,第八十九批:doc-gov 三合一与 evo-doc 改名,skill 与 hook 解耦)
+### 变更 2026-10-07,第八十九批:doc-gov 三合一与 evo-doc 改名,skill 与 hook 解耦
 
 - 用户立单(2026-10-07,整理重构批五令):doc-gov 加 code-kit 加 cli-docs 三 skill 合一为 doc-gov;evo-adr 改名 evo-doc;插件内 skill 与 hook 解耦;code-kit 工具面只带 md-guard 的 hook(init/check/scan 与模板移本仓 .tools,斜杠命令删除);知识面收敛:文档结构只有 ADR(需求决策)与 COE(三层聚合和双向链接图)两种形态,补项目日记(ADR 之外增强),留 Agent 友好 CLI 架构标准,其余复杂面不需要(ADR-0018,REQ-010)
 - **结构挪移**:`plugins/evo-adr` 改名 `plugins/evo-doc`;md-guard.py 与 mdrules.py 上移插件级 `scripts/`(hooks.json 与仓 settings.json 指新路径,skill 目录纯知识);init/check/scan 移 `.tools/`(check 与 scan 经插件路径 import mdrules,三面同源单源);骨架模板移 `.tools/templates/`;verification 用例移 `.tools/verification/`;commands/ 斜杠命令三件删除
@@ -251,7 +255,7 @@
 - 同步面:双市场清单与 evo-doc 双 manifest 同笔单 skill 化;守卫测试(PLUGIN_NAMES/SKILLS/工具断言/md-guard 与 mdrules 路径)与 test_repo_md_clean、CI smoke、pre-commit、gates、AGENTS、根 README、docs 地图、.tools/README 全刷齐「两插件三 skill」;SKILL 意图路由与形态速览按三形态重写
 - 市场破坏性变更通告:evo-adr 改名 evo-doc,已装者卸载 `/plugin uninstall evo-adr@project-evo` 后装 `evo-doc@project-evo`;版本线 0.4.3 不动,统一打版随后批
 
-### 移除(2026-10-07,第八十八批:evo-codesec 插件下线与 md 挡板限仓内)
+### 移除 2026-10-07,第八十八批:evo-codesec 插件下线与 md 挡板限仓内
 
 - 用户立单(2026-10-07,同日两令):先移除 evo-codesec 的 secret-scan 密钥深扫 skill,再下线 evo-codesec 整插件(security-audit 一并移除,ADR-0017,REQ-009),三插件七 skill 收敛两插件五 skill(evo-adr 三 skill、evo-herdr 两 skill);版本线 0.4.3 不动,统一打版仍留待整理重构批
 - 删除面:`plugins/evo-codesec/` 整插件(secret-scan 与 security-audit 双 skill、双 manifest、README、secret-scan-cli 斜杠命令);tests/test_secret_scan.py 整文件退役;浅扫(工作区加 git 全历史加敏感文件)仍在 code-kit scan,失去面为 GitHub alerts 与 code search、裸克隆深历史与 PII 加 Cloudflare 译本安全审计,node 运行时依赖面随退
@@ -259,7 +263,7 @@
 - **md 挡板限仓内 md(用户令:md 插件与扫描只针对仓内 md 文档)**:核实 md 规则五面(hook、--staged、scan、PE-11、md-ref-scan)已全部只认 .md 无需改;md-guard hook 面事件带 cwd 时 file_path 须在 cwd 项目内才检(仓外 md 如意向 plan 放行),无 cwd 载荷保持宽容不回退,--staged 面不变;新增 cwd 辖域用例
 - 市场破坏性变更通告:evo-codesec 已装消费者执行 `/plugin uninstall evo-codesec@project-evo`,缓存目录可整删(正式通告随后续打版批)
 
-### 移除(2026-10-07,第八十七批:gh-issue 与 build-release 与 evo-research 移除)
+### 移除 2026-10-07,第八十七批:gh-issue 与 build-release 与 evo-research 移除
 
 - 用户立单(2026-10-07):移除 evo-adr 的 gh-issue 与 build-release 两 skill,下线 evo-research 整插件(唯一 skill research),四插件十 skill 收敛为三插件七 skill(ADR-0016,REQ-008);版本线 0.4.3 不动,统一打版留待整理重构批(用户裁定)
 - 同步面全改:双市场清单(evo-research 条目删除、evo-adr 描述去两句)与 evo-adr 双 manifest(codex 面 interface 与 defaultPrompt 同步);守卫测试 PLUGIN_NAMES/SKILLS 与计数;幸存 skill 互引(doc-gov SKILL 与 flow-release 与 flow-archive 与 references 索引、cli-docs、code-kit 三 references)不留死链;pre-commit 断链段余七;AGENTS 与根 README 与 docs 地图与 gates 计数刷齐(顺手修 AGENTS Commands 与 docs 地图两处既有「十一 skill」漂移)
@@ -267,7 +271,7 @@
 - 顺手修复:CI smoke test.yml 悬空 report 行(第八十一批漏改,现状即红)删除;ROADMAP moot 的「report 渲染字体族参数化」待定行删除;根 README 外部命令清单清 bh/typst/aria2c 陈货
 - 市场破坏性变更通告:evo-research 已装消费者执行 `/plugin uninstall evo-research@project-evo`,缓存目录可整删(正式通告随后续打版批)
 
-### 变更(2026-10-02,第八十六批:herdr-review 对话状态门控与事件驱动收件)
+### 变更 2026-10-02,第八十六批:herdr-review 对话状态门控与事件驱动收件
 
 - 用户立单(2026-10-02):herdr-review 的对话状态判断方式参考飞轮第八十五批同款改进(状态门控、事件驱动、超时兜底)
 - **panes.md 对话配方升级**:第二节 4 从「prompt 加 read」两步升四步(agent get 状态门控五路分派、prompt --wait 提交与等待同一请求、agent wait 收束事件兜底(插队单与补等形)、read 备读回执);已有格分派行补 unknown 走 explain;篇头实证注收敛为无年代形(用户令:skill 内容不带历史轨迹)
@@ -275,7 +279,7 @@
 - **receipt.md 收件纪律挂机制**:「评审会话 idle 才收件」升为「收件以收束事件为准,wait 返回后再 read(idle 与 done 皆可收;blocked 问用户;超时处置同飞轮回执节)」
 - 同步面:双 manifest 与市场条目 description 三处逐字同(herdr-review 括号加对话状态门控与事件驱动收件)、codex 长描述、evo-herdr README、docs 地图 herdr-review 行;版本线四插件 0.4.2 齐 0.4.3
 
-### 变更(2026-10-02,第八十五批:herdr 飞轮跨工作台状态门控与事件驱动收执)
+### 变更 2026-10-02,第八十五批:herdr 飞轮跨工作台状态门控与事件驱动收执
 
 - 用户立单(2026-10-02):飞轮方法没判 agent 状态做事件驱动;裁定跨工作台对话 = 状态判断、事件驱动、超时兜底(与 tmux 无关,是 herdr 的 agent 状态判断)
 - **SKILL 四步协议升级**:派单步加状态门控前置(`herdr agent get` 判 agent_status:idle 与 done 直派,working 先 `agent wait --until idle --until done --until blocked --timeout <租约余量>` 排队候位或插队,blocked 问用户,unknown 走 `agent explain` 排查);回执步加事件驱动收执主通道(`agent wait` 等 settle 事件后 `agent read` 收回执,插队单与补等走独立 wait,替代人工记挂与轮询清册)与超时兜底纪律(必带 timeout 禁裸等,超时 exit 1 加 timeout 错误 JSON,处置 = get 判现态加 read 判送达,确认前不重发,连续超时即失联判据走改派)
@@ -284,7 +288,7 @@
 - **官方语义追正(用户令,原批内)**:语义以官方 Agent automation 与 Socket API 为准(X 编排经验只标坑)。prompt --wait = 提交与等待同一请求避空窗,自带 5 秒活动闸门(agent_prompt_stalled),已 working 工位在跑轮收束即满足;开工探针形(`wait --until working`,已在跑即返,探针超时不证未送达);错误通道口径(stderr、超时与服务器错退出码 1、语法错 2、成功在 .result.agent);wait 钉解析时占用者与 `agent_not_running` 处置;审批等待形(`--until blocked` 加 read 加 send-keys);普通进程走 `pane wait-output` 即时搜快照(不走生命周期);idle 与 done 差别仅 seen(focus 标、read 不标);状态优先集成上报、无上报退屏幕检测。新增命令形已本机实跑(`--until idle --until done` 双收束、`pane wait-output` 命中与超时两路径),纯语义断言标 [经验] 待首跑回填
 - 同步面:frontmatter 触发词加状态门控与事件驱动与 agent wait;双 manifest 与市场条目 description 三处逐字同;evo-herdr README 与 docs 地图;版本线四插件 0.4.1 齐 0.4.2,顺手刷四插件 README「当前发布」行存量漂移(第八十三批起停 0.4.0)
 
-### 变更(2026-10-02,第八十四批:cli-docs 四样板对照轻吸收)
+### 变更 2026-10-02,第八十四批:cli-docs 四样板对照轻吸收
 
 - 用户立单(2026-10-02):登记 gh、cloudflare/cf、wevm/incur、gakonst/incur-rs 四样板仓,对照研究学习改进 cli-docs;gh api 源码直读加文档站抓取,关键断言五项本机二道抽查;用户裁定轻吸收档加 evo-adr 升版,并令 skill 内容不带历史轨迹
 - **S010 研究档案**:四仓文档实践对照。结论:命令参考单源生成四仓共识;incur 双实现与乙面旗标七件、CTA、信封、退出码零漂移;上游新长 skills 分发基建与 OpenAPI 投影;gh 外挂实战卡 SKILL.md 补 agent 面;cf 为超大规模命令空间的 agent 发现答案。对照分流:等价四桶不重复吸收、真新增七处、留档五件;六态标注,信源点名止于档案面
@@ -292,20 +296,20 @@
 - 同步面:research 登记、docs 地图、diary
 - **版本载体:四插件版本线 0.4.0 齐平 0.4.1**(双 manifest 加市场条目);顺手追正:第八十三批升版漏改 evo-herdr codex manifest 且只升一家违反四插件同版本线断言,主库守卫红灯,本批补齐并四线齐平 [实证: 2026-10-02 追正前 pytest 1 failed,追正后 26 passed]
 
-### 变更(2026-09-23,第八十二批:evo-research 的 bh 命令面改 browse)
+### 变更 2026-09-23,第八十二批:evo-research 的 bh 命令面改 browse
 
 - 用户立单(2026-09-23):research skill 的浏览器面从 `bh`(browser-harness)整体切换为 `browse`(browse_rs 0.21.0);用户同期裁定使用口径:**先 `browse status` 确认浏览器状态,不动宿主机浏览器**
 - web.md 重写为 browse 指南:Google 零浏览器腿加 `--new-tab` 浏览器腿(2026-09-23 实证零浏览器腿退化只回 redirect 占位页,浏览器腿 `goto` 加 `pageEval` 抽 `a h3` 得五条标题加 URL);Medium 走 `?format=json`/RSS/GraphQL 且搜索转 Google `site:medium.com`;X 本地库通道随 bh 退役改走 Google `site:x.com` 加公开帖锚点;`browse fetch` 升级腿(正文稀薄换新引擎)立为宿主机附着态禁手
 - SKILL.md 硬规则换口径:先确认浏览器态、不动宿主机浏览器(不 up/down 默认实例、不附着用户 Chrome)、研究优先隔离态(BROWSE_NAME 加 `--headless --isolated`,本机无 Chrome 如实报缺)、HTTP 优先;最小命令面与意图路由表同步;x.md/pipeline.md/evo-research README/双 manifest/市场条目/根 README/docs 地图/AGENTS 外部命令清单齐改
 - 坑入实证:`browse fetch` 升级腿杀宿主机引擎 47312 换 20208(2026-09-23 实踩,用户裁定入硬规则)
 
-### 变更(2026-09-23,第八十一批:report skill 移除加跨机器工位交流法)
+### 变更 2026-09-23,第八十一批:report skill 移除加跨机器工位交流法
 
 - 用户立单:移除 `report` 研究成文 skill(ADR-0015,REQ-007),四插件十一 skill 收敛为十 skill。`plugins/evo-research/skills/report/` 全目录移除;成文路由归 doc-gov 投影纪律出 md
 - 同步面全改:守卫 SKILLS 清单与 report 断言段删除、docstring 计数十一改十;双 manifest 与市场条目描述去 report 化(codex 面 interface 与 keywords 同步);pre-commit 断链段去 report;gates 计数;根 README 意图表与定位行、docs 地图去 report 行;evo-research README 单 skill 化;research 与 doc-gov(SKILL 与 flow-archive 与 references 索引)互引路由改指投影纪律;AGENTS 合同计数与阶段行;manifest 版本线不动(批次级变更不升版)
 - **herdr-flywheel 跨机器工位交流法**:SKILL.md 新节「跨机器工位」五条纪律(机器面实查、--machine 命令路由且不可叠加其它 launch 选项、派单前双查、跨机周知双侧留回执、stalled 误报处置);references/pitfalls.md 新「跨机器工位面」三坑加收尾补 --wait 撞已决态一坑;SKILL 触发词与参考行同步 [实证: 2026-09-23 OfficeCLI 维护归属周知轮 lan-ubuntu,本地十四工位加远程 lan-ubuntu 双侧回执齐]
 
-### 新增(2026-09-21,第八十批:评审闸门轮工位实踩吸收)
+### 新增 2026-09-21,第八十批:评审闸门轮工位实踩吸收
 
 - herdr-flywheel references/pitfalls.md 增两坑(三段式):一为管道吞门禁退出码(门禁接 tail/grep 后 `$?` 为末命令,红态假绿,曾致红提交直推远端只能 forward 修;修法为门禁裸跑或显式取 `${PIPESTATUS[0]}`,红态绝不进 commit 分支);二为评审格随 codex 退出被回收(/quit 后整格回收、pane ID 失效,旧格 cwd 可指向已删目录而屏面仍 Ready;修法为退出后 pane list 复查,重驻走右分新格加仓内 cwd)。实证标注留日期不留仓名,吸收即提炼。
 
@@ -957,12 +961,12 @@
 - `skills/project-evo/evals/evals.json`:skill 质量评估用例 4 条
 - 仓库层：AGENTS.md（唯一权威源）、CLAUDE.md（一行桥接）、README.md、ROADMAP.md、.gitignore、docs/README.md（文档地图）
 
-### 变更（2026-09-03)
+### 变更 2026-09-03
 
 - skill 由单文件 `SKILL.md` 重构为 skill 规范仓 三层布局（SKILL.md 概览 + references/howto 详参 + verification/evals 两类评估）
 - skill 命名 `project-docs` 到 `project-evo`（项目进化），description 增加进化闭环触发词
 - proven 语义修正：明确为**完全成功的 plan 方案归档**（立项建方案、完成回填），非里程碑/成果列表 [经验： 用户裁定]
 
-### 移除（2026-09-03)
+### 移除 2026-09-03
 
 - 撤回用户级安装副本（`~/.claude/skills/project-evo`）与项目内 `.claude/skills/` 副本；源码唯一位置改为 `skills/project-evo/`
