@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 新增 2026-10-12 第一百三十批:dev-01 吸收,channels 危险旗标判据入 agent-doctor
+
+- **机制结论**(dev-01,官方文档加本机 2.1.296 二进制实证):`--dangerously-load-development-channels` 为隐藏 CLI 旗标,加载研究预览 channel 服务器(MCP 入站推送)绕过批准允许名单,仅限本地 channel 开发;启动确认框无跳过法;与更新通道、实验 env、disableSideloadFlags 名单均无关;`-p` 与 Agent SDK 忽略;组织关闸 = `channelsEnabled` 保持未设置
+- config-face error 族新增两行:**启动参数面**(该旗标出现在 rc、别名、herdr/hst 启动参数、脚本、skill 启动块、settings env 或 hooks 命令即 error;config-lint 现不扫 argv,标手跑判据)与**危险叠用**(舰队格或无人值守启动里与 bypassPermissions 或 --dangerously-skip-permissions 或 yolo 叠用即 error);策略偏好不判原则保持,叠用为例外;未知字段 advisory 面不动(它不是 settings 键)
+- channels 机制速览节入 config-face(值形、八道注册门摘要、组织关闸口径,权威指向 channels 两页);舰队落点:五端都不开
+
 ### 新增 2026-10-12 第一百二十九批:rloop-02 吸收,s5 窗格登记簿与防漂移时序,总台令追补研究
 
 - **窗格登记簿**落 agent-s5:`board/<工作台>/panes/registry` 一机一册、角色为行键、九字段表(role、machine、workspace_id、pane_id、agent_kind、agent_name、session_id、task_id、heartbeat);只由总台 sweep 覆盖写(整份 put,防多格互冲),与 herdr report-* 互补(那管实时身份,册管角色意图)
