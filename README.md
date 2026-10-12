@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,五插件九 skill:`evo-doc`(文档治理与原生设计:doc-gov、doc-cli)、`evo-herdr`(协作两 skill:herdr-orch 主开发台、herdr-flywheel 跨仓飞轮)、`evo-distil`(技能自进化:distil-skill)、`evo-lint`(静态检查与结构标准:md-lint 五面、ls-lint 类型模板与写后 hook)、`evo-agent`(agent 环境与共享:agent-doctor 配置与 hook 与 goal 和 loop 与网关、agent-s5 共享看板与实时流)。客户端显示 `<插件>:<skill>`。
+> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,五插件九 skill:`evo-doc`(文档治理与原生设计:doc-gov、doc-cli)、`evo-herdr`(主开发台:herdr-orch 窗格布局与工位带起)、`evo-distil`(技能自进化:distil-skill)、`evo-lint`(静态检查与结构标准:md-lint 五面、ls-lint 类型模板与写后 hook)、`evo-agent`(agent 环境与共享三 skill:agent-doctor 配置与 hook 与 goal 和 loop 与网关、agent-s5 共享看板与实时流、agent-rloop 目标循环)。客户端显示 `<插件>:<skill>`。
 
 ## 安装
 
@@ -45,7 +45,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 | evo-doc | `doc-gov` | 文档框架治理知识:ADR 与 REQ 需求决策、代码 doc 注释契约、文档即代码(单一权威源与投影守卫)、研究档案、项目工具链范式 | 立 ADR/REQ、立代码契约注释与文档即代码守卫、立研究档案、建项目工具链 |
 | evo-doc | `doc-cli` | Agent 原生友好开发:--llms 手册面、类型化 CTA 输出协议、默认帮助面、命令自省与漂移守卫、裸调用面、发现通道与 token 经济学 | 配 CLI agent 面、为 agent 时代设计命令与工具面 |
 | evo-herdr | `herdr-orch` | 主开发台初始各工作角色邻居窗格并开始配合工作:通用四窗格与 PI 五窗格布局定式(主开发、研究、review、自省回归;PI 加实战验收);评审闸门加自省验收双闸门;任务分发 lane | 定主开发台布局、初始邻居窗格开工、发评审请求、终审放行、自省验收、多 agent 任务分发 |
-| evo-herdr | `herdr-flywheel` | 跨仓库跨项目跨机器交流:四步协议派单、回执、断言、吸收;产物契约与状态档(herdr 态是检测信号,md 文件是状态与产物)、跨机器工位、并行派单义务图 | 跨仓派发治理任务、总台轮次协调、多工位并行派单 |
+| evo-agent | `agent-rloop` | 目标驱动多角色循环进化:herdr 定窗格角色后 hst goal 防停,按轮派单回执断言吸收,义务图并行,s5 信道 | 给一组窗格角色立目标开循环、多工位并行义务图对账时 |
 | evo-distil | `distil-skill` | 技能自进化:三层聚合(sources 带时间轨迹总结、knowledge 带版本双链知识、operations 双端标准项目级 SKILL),四步环(蒸馏、一案提案、合取闸门、no_action) | 把项目执行经验沉淀成 skill、迭代项目标准技能集、建三层聚合知识库 |
 
 装 evo-doc 即得 md 禁字挡板(插件级 hook,与 skill 解耦);本仓自用骨架工具(init/check/scan 与模板)在仓根 `.tools/`,不随插件分发。

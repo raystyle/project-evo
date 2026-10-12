@@ -13,14 +13,14 @@ description: >-
   触发词 主开发台、邻居窗格、角色工作台、tab 工作台、orch、开发模式、四窗格、五窗格、窗格
   布局、review、评审、评审请求、F/G/CONFIRM、对线回执、终审放行、自省、验收、lane、
   worktree、任务分发、codex、grok、kimi、先推后审。
-compatibility: 需 herdr 管理的开发窗格(常驻 agent 会话);跨仓库、跨项目、跨机器的交流协议见同插件 herdr-flywheel(全平台命令分发由宿主工具链 omc 与 ark 统一维护)
+compatibility: 需 herdr 管理的开发窗格(常驻 agent 会话);目标循环与跨仓派单协议见 evo-agent:agent-rloop(全平台命令分发由宿主工具链 omc 与 ark 统一维护)
 ---
 
 # herdr-orch - 主开发台:角色邻居窗格协同与双闸门
 
-> 主开发台初始各工作角色的邻居窗格与 tab 工作台并开始配合工作:布局定式(通用四窗格、PI 模式五窗格)、评审闸门加自省验收双闸门、任务分发 lane。跨仓库、跨项目、跨机器的派单回执断言吸收协议唯一权威源在同插件 `herdr-flywheel`;本 skill 是单工位开发面特化,不复述派单命令细节。
+> 主开发台初始各工作角色的邻居窗格与 tab 工作台并开始配合工作:布局定式(通用四窗格、PI 模式五窗格)、评审闸门加自省验收双闸门、任务分发 lane。跨仓库、跨项目、跨机器的目标循环协议(派单回执断言吸收)唯一权威源在 `evo-agent:agent-rloop`;本 skill 是单工位开发面特化,不复述派单命令细节。工位带起与跨机器路由归本 skill(references/workstations.md)。
 
-**跨窗格交流原则(两 skill 通用)**:herdr 生命周期态(idle、working、blocked、done)只是检测与干预信号,不是稳态;状态与产物一律由 agent 自己写统一标准路径的 md 文件(三件套 brief、state、receipt),盘上是稳态、s5 是信道、会话只递指针(任务发布与结果获取内置 s5:put 上键、get 文本或 tail 实时流,命令面归 evo-agent:agent-s5);门控用信号、判定用稳态。细则唯一权威源在同插件 herdr-flywheel 的产物契约篇(../herdr-flywheel/references/artifacts.md)。
+**跨窗格交流原则**:herdr 生命周期态(idle、working、blocked、done)只是检测与干预信号,不是稳态;状态与产物一律由 agent 自己写统一标准路径的 md 文件(三件套 brief、state、receipt),盘上是稳态、s5 是信道、会话只递指针(任务发布与结果获取内置 s5:put 上键、get 文本或 tail 实时流,命令面归 evo-agent:agent-s5);门控用信号、判定用稳态。细则唯一权威源在 evo-agent:agent-rloop 的轮次契约篇。
 
 ## 一、窗格布局定式
 
@@ -80,4 +80,5 @@ compatibility: 需 herdr 管理的开发窗格(常驻 agent 会话);跨仓库、
 | 核实评审发现 / 分级处置 / 交叉复核 | `references/findings.md` |
 | review 格检测右侧、无格建格、查看与对话历史检索 | `references/panes.md` |
 | lane 任务分发(worktree、台账、探针、发布) | `references/lane-dispatch.md` |
-| 派单/收件/断言/吸收基础协议与坑 | 同插件 skill `evo-herdr:herdr-flywheel`(跨仓模式,唯一权威源,活权威 `herdr --skill`) |
+| 工位带起、跨机器路由、信号命令速查、驻场坑 | `references/workstations.md` |
+| 目标循环与派单/收件/断言/吸收协议与坑 | `evo-agent:agent-rloop`(唯一权威源,活权威 `herdr --skill`) |

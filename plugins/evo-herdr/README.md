@@ -1,6 +1,6 @@
 # evo-herdr
 
-项目进化多仓协作插件:两个 skill 双模式。`herdr-orch` 主开发台(初始各工作角色邻居窗格并开始配合工作:通用四窗格与 PI 五窗格布局定式、评审闸门加自省验收双闸门、先推后审与会话纪律、任务分发 lane 模型)与 `herdr-flywheel` 跨仓库跨项目跨机器交流(派单、回执、断言、吸收四步协议,状态门控与事件驱动收执,产物契约与状态档统一标准路径三件套 brief/state/receipt 且盘上稳态与 herdr 干预信号分治,跨机器工位,并行派单义务图,附命令面要点与治理操作坑,该协议唯一权威源)。两 skill 通用原则:herdr 生命周期态只是检测信号,md 文件才是状态与产物。
+项目进化主开发台插件。单 skill **herdr-orch**:主开发台工作流(通用四窗格与 PI 五窗格布局定式、评审闸门加自省验收双闸门、先推后审与会话纪律、任务分发 lane 模型)加工位面(工位形态与带起配方、跨机器路由、信号命令速查、驻场坑,references/workstations.md)。目标循环与跨仓派单协议(派单、回执、断言、吸收、义务图)在同市场 `evo-agent:agent-rloop`(批 128 由原第二 skill herdr-flywheel 升格迁出)。通用原则:herdr 生命周期态只是检测信号,md 文件才是状态与产物,消息与产物传递内置 s5。
 
 状态:active。插件面客户端:Claude Code、Codex、Grok;纯 skills 面:Kimi 等手拷子集。
 
@@ -31,13 +31,13 @@ grok plugin marketplace add raystyle/project-evo
 grok plugin install evo-herdr@project-evo --trust
 ```
 
-Kimi(无市场):把 `skills/` 下两个 skill 目录一并拷至 `~/.kimi/skills/`。
+Kimi(无市场):把 `skills/` 下 skill 目录拷至 `~/.kimi/skills/`。
 
 ## 用法
 
-安装插件后按意图路由自动触发,客户端显示为 `evo-herdr:herdr-orch` / `evo-herdr:herdr-flywheel`。协议、命令面与坑见两个 skill 的 SKILL.md 与 references。
+安装插件后按意图路由自动触发,客户端显示为 `evo-herdr:herdr-orch`。协议、命令面与坑见 SKILL.md 与 references;目标循环协议见 evo-agent:agent-rloop。
 
-示例提示词:「给 ark_rs 工位派这轮治理单」「收一下各工位回执并做独立断言」「检测工位右侧有没有评审格,没有就建一个起 codex,然后发这份 review 请求」。
+示例提示词:「检测工位右侧有没有评审格,没有就建一个起 codex 然后发这份 review 请求」「把 lan-ubuntu 上的工位带起来」。
 
 ## 支持与发布
 

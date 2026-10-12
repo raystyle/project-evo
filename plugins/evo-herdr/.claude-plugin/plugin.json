@@ -1,7 +1,7 @@
 {
   "name": "evo-herdr",
   "version": "0.9.0",
-  "description": "项目进化多仓协作两 skill:herdr-orch(主开发台窗格布局与评审闸门加自省验收加 lane 分发)、herdr-flywheel(跨仓库跨项目跨机器派单回执断言吸收,产物契约三件套;消息与产物传递内置 s5:任务发布 put 上键、结果 get 文本或 tail 实时流取回、herdr 消息只递键指针);s5 技能面 = evo-agent:agent-s5",
+  "description": "项目进化主开发台:herdr-orch(窗格布局定式、评审闸门与自省验收双闸门、lane 任务分发、工位带起与跨机器路由、信号命令速查);目标循环协议(派单回执断言吸收、义务图)在 evo-agent:agent-rloop",
   "author": {
     "name": "raystyle"
   },

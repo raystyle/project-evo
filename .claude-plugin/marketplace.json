@@ -3,9 +3,9 @@
   "owner": {
     "name": "raystyle"
   },
-  "description": "项目进化:五插件九 skill(文档治理与原生设计 evo-doc、多仓协作两 skill evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint、agent 环境诊断修复与共享 agent-s5 的 evo-agent)",
+  "description": "项目进化:五插件九 skill(文档治理与原生设计 evo-doc、主开发台 evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint、agent 环境与共享三 skill evo-agent)",
   "metadata": {
-    "description": "项目进化:五插件九 skill(文档治理与原生设计 evo-doc、多仓协作两 skill evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint、agent 环境诊断修复与共享 agent-s5 的 evo-agent)"
+    "description": "项目进化:五插件九 skill(文档治理与原生设计 evo-doc、主开发台 evo-herdr、技能自进化 evo-distil、静态检查与结构标准两 skill evo-lint、agent 环境与共享三 skill evo-agent)"
   },
   "plugins": [
     {
@@ -25,7 +25,7 @@
     {
       "name": "evo-herdr",
       "source": "./plugins/evo-herdr",
-      "description": "项目进化多仓协作两 skill:herdr-orch 主开发台、herdr-flywheel 跨仓飞轮(产物契约三件套;消息与产物传递内置 s5,任务发布上键加结果文本或实时流取回);s5 技能面 = evo-agent:agent-s5",
+      "description": "项目进化主开发台 herdr-orch:窗格布局定式、评审闸门与自省验收双闸门、lane 任务分发、工位带起与跨机器路由;目标循环协议在 evo-agent:agent-rloop",
       "version": "0.9.0",
       "category": "productivity"
     },
@@ -38,7 +38,7 @@
     {
       "name": "evo-agent",
       "source": "./plugins/evo-agent",
-      "description": "agent 客户端环境诊断与修复:四端(claude、codex、grok、kimi)配置诊断(config-lint 悬空引用与明文凭据与路径缺失与枚举非法,判据两级只报不改)、hook 诊断修复(hst doctor 诊断加 hst init 幂等修复加 codex trusted_hash)、goal 与 loop 状态、overcast 网关诊断候实装;增强 hst doctor 编排补面",
+      "description": "agent 客户端环境与共享三 skill:agent-doctor 四端配置诊断修复(config-lint 判据两级)与 hook 诊断修复(hst doctor 与 init 与 trusted_hash)与 goal 和 loop 状态与 overcast 网关诊断;agent-s5 全局看板与实时流(零感知凭据,board 与 channel 与 rounds 键空间);agent-rloop 目标驱动多角色循环进化任务(hst goal 防停、义务图、s5 信道)",
       "version": "0.9.0",
       "category": "productivity"
     }

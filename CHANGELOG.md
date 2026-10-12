@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-12 第一百二十八批:herdr-flywheel 升格迁出为 evo-agent:agent-rloop,用户令
+
+- **本版破坏性变更预告**:技能 evo-herdr:herdr-flywheel 删除,调用名失效,升格迁出为 **evo-agent:agent-rloop**(目标驱动的多角色循环进化任务);evo-herdr 收单 skill herdr-orch;版图五插件九 skill 不变(doc 2 加 herdr 1 加 distil 1 加 lint 2 加 agent 3)
+- agent-rloop 定形(rloop-01 研究吸收):herdr 定多窗格角色后钉一个 hst goal,按轮派单回执断言吸收循环到达成或显式停机;防停双层(轮内 Stop 提醒、轮外 goal heal 静默窗唤醒,候 hst REQ-047 发布批 goal 腿扩四事件双挂);停机条件入协议(达成 clear、人裁 blocked 不 heal、风暴闸、角色数与轮深上限,缺省不无限转);核心判据六条(一项目一 goal、总台委派默认、Stop 主时钟、状态在盘上等)
+- 迁移映射(rloop-01 件 1):轮次协议本体(分型、三件套、检查点、干预矩阵、四步、吸收、义务图、派单回执坑)随迁 agent-rloop(SKILL 加 rounds.md 加 parallel.md);工位带起、跨机器路由、信号命令速查、驻场与仓级坑归并 herdr-orch(新增 references/workstations.md);s5 命令面留 agent-s5;flywheel 目录删除
+- 指针全翻:orch 路由与 panes/lane/receipt、doc-gov 路由、agent-s5 分工句、fleet-exec 注记;通用原则句落 orch(单 skill 形);AGENTS、根 README、双市场清单、双 manifest 双插件、docs 地图、pre-commit、测试清单全同步;agent-doctor 补 hst REQ-047 候发布注记(goal 腿四事件双挂知会)
+
 ### 变更 2026-10-12 第一百二十七批:herdr 飞轮与编排消息信道翻转内置 s5,用户令
 
 - **协议变更通告**:herdr-flywheel 与 herdr-orch 的消息与产物传递不再走本地文档与 prompt 内联,内置 s5(命令面 evo-agent:agent-s5):派单 = 任务内容落 brief 后 put 上键(rounds 键空间),herdr prompt 只递单号、键与一句接单指令;结果获取 = get receipt 键(文本结果)或 tail 轮次流(实时进展);三件套仍为 md 文件稳态,本地临时目录降为底稿写作面

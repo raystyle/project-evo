@@ -28,7 +28,7 @@ hst hook verify     # hook 层无头验收
 ## 形态判读
 
 - herdr 态 hook:herdr-agent-state(claude SessionStart、kimi 全事件)与 hst-state/token 并存,herdr 态是检测信号(见 evo-herdr:herdr-orch)
-- goal hook 双挂:claude Stop 事件与 state 腿双挂(hst goal 的 rounds 计数与提醒注入)
+- goal hook 双挂:claude Stop 事件与 state 腿双挂(hst goal 的 rounds 计数与提醒注入);候 REQ-047 发布批扩四事件双挂(加 SessionEnd 加 Notification 加 PermissionRequest)[知会: 2026-10-12]
 - token 腿(hst-token,secretguard):block 级 exit 2 拦截密钥外泄;state 腿只写盘不扫密钥
 
 ## 纪律

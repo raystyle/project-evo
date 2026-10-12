@@ -12,6 +12,7 @@ hst goal heal          # 自愈唤醒扫描(goal-01):须在 herdr 会话格内�
 ```
 
 - 提醒机制:claude Stop 事件每轮提醒(rounds 计数落盘、自然停一轮 decision block、stop_hook_active 防环放行)
+- 候发布注记 [知会: 2026-10-12 hst_rs REQ-047]:goal 腿注册面将从 Stop 单挂扩四事件双挂(加 SessionEnd 加 Notification 加 PermissionRequest),装机位随下一发布批生效;落定后本页刷齐
 - 同源显示:状态栏 goal 段与 show 同源;doctor 的 goal check 报 stop goal-hook registered 与 project goal 有无
 - 缺省默认态:`goal.present=false` 是合法稳态,不是病;要不要设 goal 属人裁
 - heal 纪律:goal 在册而格位停摆未被 Stop 唤醒过 15 分钟静默窗才唤醒(经 herdr agent prompt 附用法);working 与 blocked 等人裁态豁免;连续 3 次唤醒无 rounds 增长即风暴闸转人工

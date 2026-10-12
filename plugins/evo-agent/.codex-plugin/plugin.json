@@ -1,7 +1,7 @@
 {
   "name": "evo-agent",
   "version": "0.9.0",
-  "description": "agent 客户端环境诊断修复与全局共享:四端(claude、codex、grok、kimi)配置诊断(config-lint:悬空引用、明文凭据、路径缺失、枚举非法、卸载配置残留、kimi skills 形态与漂移;判据两级 error 与 advisory,只报不改)、hook 诊断修复(hst doctor 的 hooks.form 与 trust.hooks 诊断、hst init 幂等修复、codex trusted_hash 时效、kimi 双 OS 形)、goal 与 loop 状态(hst goal 项目级 set/show/clear/heal;loop 归 Claude Code 原生 CronCreate 与 ScheduleWakeup 与 durable 件)、agent-s5 全局看板与频道(S3 文件道 put/get/ls/del 加 S2 流道 append/tail/streams,命名约定与消息礼仪,零感知凭据)。定位 = 增强 hst doctor:编排补面,不改 hst 源",
+  "description": "agent 客户端环境与共享三 skill:agent-doctor(四端配置诊断修复 config-lint 判据两级、hook 诊断修复 hst doctor 与 init 与 trusted_hash、goal 与 loop 状态、overcast 网关诊断候实装;增强 hst doctor 编排补面)、agent-s5(全局看板与实时流:零感知凭据、board 与 channel 与 rounds 键空间)、agent-rloop(目标驱动多角色循环进化任务:hst goal 防停、s5 信道、义务图)",
   "author": {
     "name": "raystyle"
   },
@@ -24,8 +24,8 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Evo Agent",
-    "shortDescription": "agent 客户端环境诊断修复与全局共享:四端配置诊断、hook 诊断修复、goal 与 loop 状态、agent-s5 全局看板与频道,增强 hst doctor 编排补面。",
-    "longDescription": "两 skill:agent-doctor 三面(配置面 config-lint 静检四端配置,判据两级只报不改,PEVO_CONFIG_LINT_ALLOW 豁免;hook 面 hst doctor 诊断加 hst init 幂等修复加 codex trusted_hash 加 kimi 双 OS 形;goal 与 loop 状态面 hst goal 与 Claude Code 原生定时域)加 agent-s5(全局文件看板 S3 道与全局流消息频道 S2 道:命令面活权威 s5 --llms、零感知凭据、board 与 channel 命名约定、跨台读写规约与消息礼仪 append 落消息 tail 取阅)。纪律:双源诊断、修复走幂等重部署与逐条手修、hst 与 s5 只认 PATH 不改其源。",
+    "shortDescription": "agent 客户端环境与共享三 skill:agent-doctor 四端诊断修复、agent-s5 全局看板与实时流、agent-rloop 目标驱动多角色循环。",
+    "longDescription": "三 skill:agent-doctor 三面(配置面 config-lint 静检四端配置,判据两级只报不改;hook 面 hst doctor 诊断加 hst init 幂等修复加 codex trusted_hash 加 kimi 双 OS 形;goal 与 loop 状态面 hst goal 与 Claude Code 原生定时域)加 agent-s5(全局文件看板 S3 道与全局流消息频道 S2 道:命令面活权威 s5 --llms、零感知凭据、board 与 channel 与 rounds 键空间、跨台读写规约与消息礼仪)加 agent-rloop(目标驱动的多角色循环进化任务:herdr 定窗格角色后钉一个 hst goal,按轮派单回执断言吸收,防停双层(Stop 提醒加 goal heal),停机条件入协议缺省不无限转,多角色协同走 s5 信道,并行轮按义务图运转)。纪律:双源诊断、修复走幂等重部署、hst 与 s5 只认 PATH 不改其源、状态在盘上不在模型上下文。",
     "developerName": "raystyle",
     "category": "Productivity",
     "capabilities": [
@@ -34,9 +34,9 @@
     ],
     "defaultPrompt": [
       "用 agent-doctor 的 config-lint 给本机四端 agent 配置做一次体检并逐条修。",
-      "用 agent-doctor 诊断修复本机 hook(hst doctor 加 trusted_hash)。",
-      "用 agent-doctor 查看项目 goal 与 loop 定时任务状态。",
-      "用 agent-s5 把这份报告放上全局看板并在频道播一条消息。"
+      "用 agent-s5 把这份报告放上全局看板并在频道播一条消息。",
+      "用 agent-rloop 给这组窗格角色立目标开一轮循环并防停。",
+      "用 agent-doctor 查看项目 goal 与 loop 定时任务状态。"
     ]
   }
 }

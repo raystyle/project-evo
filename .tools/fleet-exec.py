@@ -9,7 +9,7 @@
 
 本机省 --machine。逐条回显所执行的 herdr 命令(活权威语义不藏,可审计);回执为 pane read 正文;
 退出码 0 收标命中 / 1 未收标或通道失败(仍打印 pane 实读供判送达) / 2 参数错。
-通道纪律对照 herdr-flywheel pitfalls:stalled 与未收标都不证未送达,重发前必实读;TUI 未就绪期键入会被吞。
+通道纪律对照 agent-rloop rounds 坑表:stalled 与未收标都不证未送达,重发前必实读;TUI 未就绪期键入会被吞。
 """
 
 from __future__ import annotations

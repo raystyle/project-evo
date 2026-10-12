@@ -27,16 +27,16 @@ herdr pane read <新格id> --lines 15        # 实证「Do you trust the content
 herdr pane send-keys <新格id> enter        # 选 1 Yes 继续(替答前须用户已裁定信任该仓)
 herdr pane read <新格id> --lines 12        # 复读确认 Ready 面板就绪
 
-# 4 有格(或建完)直接对话:先判态再派单,提交与等待同一请求,收束后备读回执(细则见 herdr-flywheel)
+# 4 有格(或建完)直接对话:先判态再派单,提交与等待同一请求,收束后备读回执(细则见 evo-agent:agent-rloop)
 herdr agent get <评审格名>                  # 状态门控:idle/done 直派;working 排队候位或插队;blocked 问用户;unknown 走 explain
 herdr agent prompt <评审格名> "<评审请求>" --wait --timeout 300000   # 提交与等待同一请求,自带活动闸门
 herdr agent wait <评审格名> --until idle --until done --until blocked --timeout 300000   # 插队单与补等的收束事件等待
 herdr agent read <评审格名> --source recent-unwrapped --lines 200
 ```
 
-- 顺序纪律:yolo 先于驻场(用户级 codex yolo 已在位即可直接起;新机先走 herdr-flywheel 带起节);yolo 与信任可用 `hst doctor` 只读复核 [实证: 2026-09-16 codex 线 yolo 加 trust.project 双 ok]
+- 顺序纪律:yolo 先于驻场(用户级 codex yolo 已在位即可直接起;新机先走本篇 workstations 带起节);yolo 与信任可用 `hst doctor` 只读复核 [实证: 2026-09-16 codex 线 yolo 加 trust.project 双 ok]
 - 信任屏纪律:仓内 cwd 首启必弹目录信任屏,替答 Yes 即信任裁定,归用户:本仓与自建仓默认可信直接替答,陌生仓先问(blocked 同源纪律);home cwd 形态不触发此屏 [实证: 2026-09-16 evo-codex-review 仓内首启,agent start 返回 interactive_ready:true 而信任屏仍在屏]
-- 已有可用格(状态 idle 或 done)跳过 2、3 直接 4;working 可插队但回执按 commit sha 甄别,blocked 问用户;unknown 不判死,`agent explain` 排查后才用(状态语义与处置同 herdr-flywheel 派单节)
+- 已有可用格(状态 idle 或 done)跳过 2、3 直接 4;working 可插队但回执按 commit sha 甄别,blocked 问用户;unknown 不判死,`agent explain` 排查后才用(状态语义与处置同 evo-agent:agent-rloop 派单节)
 
 ## 三、查看
 
@@ -45,7 +45,7 @@ herdr agent list                       # 评审格全景(名、pane_id、agent_s
 herdr pane list                        # 全窗格布局与同 tab 关系
 herdr pane read <pane_id>              # 直接看某窗格当前输出
 herdr pane layout                      # 窗格几何
-herdr agent read <pane_id>             # 评审格输出(收件面,细则见 herdr-flywheel)
+herdr agent read <pane_id>             # 评审格输出(收件面,细则见 evo-agent:agent-rloop)
 ```
 
 - pane 标题即任务线索(实证:「评审 hst_rs 未推 main 的七笔提交」),扫 agent list 就知评审格在忙什么
@@ -65,7 +65,7 @@ hst trace file <文件> --project <仓路径>                  # 单文件轨迹
 
 ## 五、坑
 
-- 带起顺序纪律(yolo 先于驻场)见本篇第二节;派单等待与收件坑见 herdr-flywheel 的 SKILL 与 pitfalls
+- 带起顺序纪律(yolo 先于驻场)见本篇第二节;派单等待与收件坑见 evo-agent:agent-rloop 的 SKILL 与 pitfalls
 - 新评审会话首启可能弹 hooks 审查屏(`7 hooks need review` / `Press t to trust all`):先 trust(t)再 Esc 回工作区,未处理的审查屏会吞派单 [实证: hst_rs settle 白名单实录]
 - 仓内 cwd 驻场信任屏假阳:agent start 报 idle 加 interactive_ready 不代表过信任屏,必 pane read 实证再替答(处理序见第二节 3a,替答纪律同 blocked 问用户)[实证: 2026-09-16 evo-codex-review]
 - 评审会话长对话跑久了 scrollback 会涨,读不全时长响应兜底请对方落临时 md 文件回路径(见 flywheel 回执节)
