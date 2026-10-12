@@ -24,7 +24,7 @@ LINT_HOOK = PLUGINS["evo-lint"] / "scripts" / "lint-hook.py"
 CONFIG_LINT = PLUGINS["evo-agent"] / "skills" / "agent-doctor" / "scripts" / "config-lint.py"
 SKILLS = {
     "evo-doc": ["doc-gov", "doc-cli"],
-    "evo-herdr": ["herdr-orch", "herdr-flywheel", "s5"],
+    "evo-herdr": ["herdr-orch", "herdr-flywheel"],
     "evo-distil": ["distil-skill"],
     "evo-lint": ["md-lint", "ls-lint"],
     "evo-agent": ["agent-doctor", "agent-s5"],

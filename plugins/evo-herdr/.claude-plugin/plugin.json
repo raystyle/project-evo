@@ -1,7 +1,7 @@
 {
   "name": "evo-herdr",
   "version": "0.9.0",
-  "description": "项目进化多仓协作三 skill:herdr-orch(主开发台窗格布局与评审闸门加自省验收加 lane 分发)、herdr-flywheel(跨仓库跨项目跨机器派单回执断言吸收,产物契约三件套)、s5(agent 跨机共享内容:对象道与流道双道、零感知凭据、跨机轮次档路径规范,候首版实测定稿)",
+  "description": "项目进化多仓协作两 skill:herdr-orch(主开发台窗格布局与评审闸门加自省验收加 lane 分发)、herdr-flywheel(跨仓库跨项目跨机器派单回执断言吸收,产物契约三件套);s5 共享内容技能已并入 evo-agent:agent-s5(批 124)",
   "author": {
     "name": "raystyle"
   },
