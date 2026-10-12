@@ -22,7 +22,7 @@ herdr agent start <工位名> --kind claude --pane <root_pane>   # 工位名即�
 
 - 每仓一个 herdr 工位,总台自成工位;派单地址 = pane ID,从 herdr agent list 的 JSON 响应取,不猜不背;live 唯一的 agent 名亦可作地址
 - **多 agent kind 工位**:`--kind` 随委派对象定(codex、grok、kimi 等);pane 内先跑 `<cli> --version` 探真解析;启动特化见 lane-dispatch.md
-- **工位编号会漂移**:合同与旧档写的编号不可信,派单前必 herdr agent list 实查 [实证: 2026-09-16 两轮不符]
+- **工位编号会漂移**:合同与旧档写的编号不可信,派单前必 herdr agent list 实查 [实证: 2026-09-16 两轮不符];关闭的 pane ID 不复用,活清单缺号打不中任何人;`--machine` 下 `--current` 解析为远端当前格,不带本地调用方
 - **带起顺序 = hst init --yolo 先于 agent 驻场**:会话许可模式在驻场时定格,后落盘的 yolo 不被追认 [实证: 2026-09-16 八工位审批阻塞]
 - idle 与 done 皆可派(差别仅 seen 标记);blocked 等人裁不代答;working 可插队(甄别见 agent-rloop);unknown 不判死,`herdr agent explain` 后处置;实时态只作门控与干预信号,完成判定用盘上稳态
 - 勿关非自建工位(workspace、tab、pane、session)

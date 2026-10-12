@@ -27,7 +27,7 @@ description: >-
 
 键空间与判例详见 `references/naming.md`,速览:
 
-- 看板:`board/<工作台>/<主题>/<文件名>`(工作台名 = 舰队端名:如 wsl、lan-mac)
+- 看板:`board/<工作台>/<主题>/<文件名>`(工作台名 = 舰队端名:如 wsl、lan-mac);窗格登记簿 `board/<工作台>/panes/registry`(角色到格的持久名册,总台 sweep 单写,时序见 references/naming.md)
 - 频道:`channel/<频道>`(全局 kebab 短名,开新频道前 `ls` 查重)
 
 ## 三、读写规约与消息礼仪

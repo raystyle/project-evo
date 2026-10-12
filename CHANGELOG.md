@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 新增 2026-10-12 第一百二十九批:rloop-02 吸收,s5 窗格登记簿与防漂移时序,总台令追补研究
+
+- **窗格登记簿**落 agent-s5:`board/<工作台>/panes/registry` 一机一册、角色为行键、九字段表(role、machine、workspace_id、pane_id、agent_kind、agent_name、session_id、task_id、heartbeat);只由总台 sweep 覆盖写(整份 put,防多格互冲),与 herdr report-* 互补(那管实时身份,册管角色意图)
+- **防漂移五步时序**(注册、查询、核验、漂移恢复、收单)进 naming 与 agent-rloop 派单纪律:按角色取行不按记的 pane 号;核 session(焦点格不参与);缺号或 session 不对重找(同 session 优先、次唯一 name、再次同 workspace 唯一 kind;多个对不上停手候裁);跨机先 --machine 再 list(--current 在远端解析为远端当前格);yolo-heal 重启后强制重写册
+- 漂移四成因实证吸收(编号关闭不复用致缺号、agent 名释放复用、--current 与继承 ID 不指远程、TUI 焦点不改命令向);herdr-orch 身份核验升级为「登记册加 list」双源,workstations 补缺号与远端 --current 语义,lane 台账注明不覆盖无名格与缺号
+- herdr 与 s5 结合律定形(rloop-02 件 3):herdr 管信号与窗格控制、s5 管内容与登记、hst goal 管目标;防混道(凭证与审批与 pane 控制绝不进 s5,登记簿正文与回执全文绝不进 prompt);REQ-047 四事件与 sweeper 维持候发布口径
+
 ### 变更 2026-10-12 第一百二十八批:herdr-flywheel 升格迁出为 evo-agent:agent-rloop,用户令
 
 - **本版破坏性变更预告**:技能 evo-herdr:herdr-flywheel 删除,调用名失效,升格迁出为 **evo-agent:agent-rloop**(目标驱动的多角色循环进化任务);evo-herdr 收单 skill herdr-orch;版图五插件九 skill 不变(doc 2 加 herdr 1 加 distil 1 加 lint 2 加 agent 3)

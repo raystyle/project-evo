@@ -43,6 +43,24 @@
 2. 读者是**指定的对端**(要回执、要对账)还是**谁在谁捞**?指定对端走 herdr 派单与产物契约,广播走频道
 3. 内容是**轮次档或研究档**(三件套、研究笺、轨迹流)?走下节 rounds 与 research 与 streams 键空间,不进 board/ 与 channel/
 
+## 窗格登记簿
+
+`board/<工作台>/panes/registry`(rloop-02 设计):一机一文件,一行一角色,角色名为行键;**只由总台 sweep 覆盖写**(整份 put,各格不自注册防互冲);agent 侧实时身份仍走 herdr 的 report-* 上报,册是「角色应打哪格」的持久意图,list 是实况。
+
+| 字段 | 取值 |
+| --- | --- |
+| role | 稳定角色名(研究、review、自省、主开发) |
+| machine | 舰队端名,与键的工作台一致 |
+| workspace_id | 如 w3Q(布局值,会漂) |
+| pane_id | 活值,如 w3Q:p2 |
+| agent_kind | claude、grok、codex、kimi |
+| agent_name | 有则记,无则空 |
+| session_id | agent_session 值,无则空 |
+| task_id | 当前单号,空 = 在岗无单 |
+| heartbeat | 上次 sweep 写册时间 |
+
+读写时序(五步):注册(角色带起后 sweep 读 list 落册)、查询(派单前按 role 取行,不按记的 pane 号)、核验(list 或 get 对 session;焦点格不参与;册上 session 空则只核 kind)、漂移恢复(缺号或 session 不对即重找:同 session 优先、次唯一 name、再次同 workspace 唯一 kind;多个对不上停手候裁;跨机先 --machine 再 list,不用本地 --current)、收单(清 task_id;格没了删行)。
+
 ## 跨机轮次与研究档键空间
 
 键空间规范(源 herdr:s5 批 124 并入,语义原样):

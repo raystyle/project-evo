@@ -25,6 +25,7 @@ compatibility: 需 herdr 管理的工位会话(HERDR_ENV=1)与各工位侧仓自
 
 - 窗格布局(谁在哪个格、什么 kind)不重写,见 `evo-herdr:herdr-orch` 第一节;本 skill 只加一张**角色卡**:格、kind、本轮义务、验收句,落本轮笺内
 - 角色数与轮深设上限(沿 AutoGPT 硬顶思路):开工前在笺里写明上限数字,超限拒绝不跑;未定前不开循环
+- **派单地址走登记簿**:派单前读 `board/<工作台>/panes/registry` 按角色取行,再 herdr agent list 核 session 一致才发;缺号或 session 不对走漂移恢复(重找优先序:同 session、唯一 name、同 workspace 唯一 kind;多个对不上停手候裁);焦点格与 HERDR_PANE_ID 可以不同,不按焦点派单;pane 编号关闭后不复用,记在脑子里的编号不可信;跨机先 --machine 再 list,--current 在远端解析为远端当前格(五步时序见 evo-agent:agent-s5 naming)
 - 工位带起、跨机器路由、信号命令速查归 `evo-herdr:herdr-orch` 的工位面篇
 
 ## 二、目标与防停
@@ -35,6 +36,7 @@ goal 动词活权威 = `hst goal --help`;诊断条文(判病)在 `evo-agent:agen
 2. **轮内防停**:Claude Code Stop 事件 goal 提醒注入,目标未满 decision block 再来一轮;`stop_hook_active` 防环放行
 3. **轮外防停**:格位掉进 idle 且 Stop 没拉回来,`hst goal heal`(可先 `--dry-run`;15 分钟静默窗,working 与 blocked 豁免,连续 3 次唤醒无 rounds 增长风暴闸转人工)
 4. **收循环**:`hst goal clear`(达成、人裁停、或风暴闸后)
+5. yolo-heal 重启 agent 后 session 换新,必走登记簿漂移恢复把新 session 写回册,否则下一单仍打旧 session
 5. 候 hst 发布批:goal 腿注册面扩四事件双挂(Stop 加 SessionEnd 加 Notification 加 PermissionRequest,REQ-047,2026-10-12 落地候推),Stop 后即时循环检测防 idle;落定前防停判据以 `hst goal heal --help` 为准
 
 ## 三、循环轮次协议(派单、回执、断言、吸收)

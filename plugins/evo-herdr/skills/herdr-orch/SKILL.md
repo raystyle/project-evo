@@ -68,7 +68,7 @@ compatibility: 需 herdr 管理的开发窗格(常驻 agent 会话);目标循环
 
 - **lane 恒禁发布**:lane 不 push、不 merge、不开 PR;发布是总台验收后的独占动作,只做可加可逆的事
 - **状态台账唯一真相**:run 级 state 文件原子写(.tmp 加 mv),每轮 sweep 开头重读(抗会话压缩);探针按契约报六字段(session、turn_state、used_pct、compactions、mtime、probe),缺字段报 null 不猜;盘上记录优先,屏幕是回退
-- **身份核验**:agent 名退出即释放可被复用,steer 前对 session id;done 态与吞单、冻结、轮次间隙同形,完成以验收判据为准;lane 求助铃先答后催
+- **身份核验**:派单地址来自窗格登记簿加 agent list 实况,不来自焦点格(焦点格与 HERDR_PANE_ID 可不同);先读 `board/<工作台>/panes/registry` 按角色取行,再 list 核 session,不一致走漂移恢复不硬发;agent 名退出即释放可被复用,steer 前对 session id;done 态与吞单、冻结、轮次间隙同形,完成以验收判据为准;lane 求助铃先答后催
 
 ## 五、意图路由
 
