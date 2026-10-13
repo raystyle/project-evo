@@ -3,16 +3,16 @@
   "owner": {
     "name": "raystyle"
   },
-  "description": "项目治理插件市场,两插件九 skill:dev(开发治理面:doc-gov、dev-cli、dev-lint)与 evo(agent 操作面:agents、shares、streams、tasks、pipes、distil;五原语 = 舰队互操作代理操作唯一面)",
+  "description": "项目治理插件市场,两插件十 skill:dev(开发治理面:doc-gov、dev-cli、dev-lint、zh-lint)与 evo(agent 操作面:agents、shares、streams、tasks、pipes、distil;五原语 = 舰队互操作代理操作唯一面)",
   "metadata": {
-    "description": "项目治理插件市场,两插件九 skill:dev(开发治理面:doc-gov、dev-cli、dev-lint)与 evo(agent 操作面:agents、shares、streams、tasks、pipes、distil;五原语 = 舰队互操作代理操作唯一面)"
+    "description": "项目治理插件市场,两插件十 skill:dev(开发治理面:doc-gov、dev-cli、dev-lint、zh-lint)与 evo(agent 操作面:agents、shares、streams、tasks、pipes、distil;五原语 = 舰队互操作代理操作唯一面)"
   },
   "plugins": [
     {
       "name": "dev",
       "source": "./plugins/dev",
-      "description": "开发治理面插件,三 skill:doc-gov(ADR 与 REQ 需求决策、文档即代码)、dev-cli(Agent 原生友好开发)、dev-lint(静态检查三合一:md 五面、语言三面、结构面、中文面与门禁接线);含写后静检 hook 与提交挡板脚本",
-      "version": "0.14.0",
+      "description": "开发治理面插件,四 skill:doc-gov(ADR 与 REQ 需求决策、文档即代码)、dev-cli(Agent 原生友好开发)、dev-lint(静态检查:md 五面、语言三面、结构面与门禁接线)、zh-lint(简明技术中文 STC 静检与汇报面);含写后静检 hook 与提交挡板脚本",
+      "version": "0.14.1",
       "category": "productivity"
     },
     {

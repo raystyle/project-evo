@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-13 第一百四十四批:拆中文面 zh-lint 复独立,用户裁定
+
+- **裁定落形**(REQ-035;grok 评审 2 触发竞争论获采纳):zh-lint 复独立 skill 归 dev,SKILL 与 references 索引自 git 史恢复(分工行随新形:dev-lint 管格式禁字断链结构,zh-lint 管语言清晰度),stc-rules 与 reporting 复原名,scripts/zh-lint.py 随迁回
+- dev-lint 瘦身:description 与路由与速览去中文面(约 711 字跨域触发竞争解除),触发词去 zh 域,六篇 references,zh-lint.py 指路姊妹 skill
+- 守卫与路由面随形:SKILLS(dev 四 skill)、pre-commit(十目标)、双 manifest 与市场清单、AGENTS 与根 README 与 docs 地图与 dev README(两插件十 skill);ADR-0025 补裁定;dev 独立升 0.14.1(evo 0.14.1 不动)
+- 四门禁全绿 + fleet 回执 + 知会 grok 评审闭环;市场 tag v0.16.0 候打(裁后即备)
+
 ### 变更 2026-10-13 第一百四十三批:from 判例收编(grok 回信信道实弹)
 
 - **判例**:grok 评审回信暴露 from=<host> 用 hostname 而非在册机标签,同机回信 hostname 形不可解析(本机 lan-ubuntu 对在册标签 local,`agents to lan-ubuntu:w8:p1` not_found),按名回信(evo-grok-4)成;同 cwd 多格时 caller_addr 首命中可能误指他格(w8:p4 的信写 w8:p1),以名为准 [实证:双向实弹]

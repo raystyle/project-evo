@@ -8,5 +8,3 @@
 | 四类型标准结构卡 | [ls-types.md](ls-types.md) |
 | 结构 init 与 check:声明式规则件与豁免 | [ls-rules.md](ls-rules.md) |
 | 结构判定触发用例集 | [ls-evals.md](ls-evals.md) |
-| 简明技术中文四十条与判例 | [zh-stc-rules.md](zh-stc-rules.md) |
-| 汇报面:结构律、状态词、五模板 | [zh-reporting.md](zh-reporting.md) |
