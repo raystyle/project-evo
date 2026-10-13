@@ -1,6 +1,6 @@
 {
   "name": "evo",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "description": "agent 操作面插件,六 skill:agents(消息域原语与五原语共享面:to 投递、id 三产生式、命名标准、门控 v2、信封 v2、status 四态)、shares(文件域)、streams(流域)、tasks(持久任务域)、pipes(实时字节域)、distil(技能自进化三层聚合)",
   "author": {
     "name": "raystyle"

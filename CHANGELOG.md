@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-13 第一百四十三批:from 判例收编(grok 回信信道实弹)
+
+- **判例**:grok 评审回信暴露 from=<host> 用 hostname 而非在册机标签,同机回信 hostname 形不可解析(本机 lan-ubuntu 对在册标签 local,`agents to lan-ubuntu:w8:p1` not_found),按名回信(evo-grok-4)成;同 cwd 多格时 caller_addr 首命中可能误指他格(w8:p4 的信写 w8:p1),以名为准 [实证:双向实弹]
+- addressing.md from 核验节与 commands.md 差异表各落一行;evo 独立升 0.14.1(dev 不动,独立 semver 首例);报总台 prim 侧:from= 建议改用注册标签或同机 local
+- 命名标准活例:evo-grok-4(工作台-类型-编号)自起名并按名寻址成
+
 ### 变更 2026-10-13 第一百四十二批:grok 业界先例评审吸收,总台令（收口与独立 semver 与命名细节）
 
 - **评审来源**:邻居 grok(w8:p4)对照业界先例(Claude Code 插件市场、VS Code 扩展、npm scope 与 changesets、oh-my-zsh)六条;全文 /tmp/grok-evo-review.md;**裁定落五条,一条 hold**(拆 dev-lint 中文面与用户明令 lint 三合一相抵,候用户裁)

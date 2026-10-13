@@ -35,4 +35,4 @@ Grok:`grok plugin install evo@project-evo --trust`
 
 Kimi:无市场,拷 `plugins/evo/skills/*` 至 `~/.kimi/skills`
 
-当前发布:0.13.1。
+当前发布:0.14.1(独立 semver,dev 独立号)。

@@ -56,5 +56,6 @@
 | 裸 pane id = usage | 偏离:名字解析同时命中 pane_id,勿依赖此偏离 |
 | --help = 手册加节序展开 | --help 与 --llms 同面(无节序展开) |
 | layout 动词(契约八节) | 挂账:herdr 0.9.3 无 layout 子命令(preview 面,候 herdr 后续版) |
+| from=<host> 可直接回投 | host 用 hostname;与在册机标签不合时同册不可解析,按名回信(判例见 addressing.md) |
 
 - 用前实查:`command -v agents` 等五命令在不在、`<命令> --llms` 看手册面;差异面如实报,不猜不代装(分发归宿主工具链 omc 与 ark)
