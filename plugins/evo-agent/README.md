@@ -14,7 +14,7 @@
 
 第三 skill **agent-rloop**:目标驱动的多角色循环进化任务:herdr 定窗格角色后钉 hst goal,按轮派单回执断言吸收,循环到达成或显式停机;防停双层与停机条件入协议,状态在盘上三件套。REQ-023 在册(批 128 迁入,原 herdr-flywheel)。
 
-第四 skill **agent-prim**:舰队互操作五原语操作面:五命令 agents/shares/streams/tasks/pipes 三段式(VIEW 全局可视、OPERATE 只动资源、DELIVER 定向传递带门控),裸名全局寻址与命名纪律,投递门控(working/blocked 拒投、--force 留审计、拒投代记 room/deferred 补收),信封三行形取用行纪律,IM 映射(流即房间、DELIVER 即 @、dm/ 与 room/ 前缀、agents view 即 presence)与回执走 streams append fleet;契约单一真源 = ai-ccoe 仓 plugins/CONTRACT.md(对齐 v2.3),本 skill 只路由不复述;与 agent-s5 分工 = s5 是引擎命令面,五原语是骑在其上的协议面。REQ-025 在册。
+第四 skill **agent-prim**:舰队互操作五原语操作面:五命令 agents/shares/streams/tasks/pipes 同构文法(全局旗标加动词加位置参数,投递动词统一 `to`),id 三产生式(裸名全局寻址、机:名或格、local: 前缀),隐式路由 local 与 --machine 零感知各端一致,投递门控(working/blocked 拒投、--force 强投、拒投代记 room/deferred 补收)与 status 四态信封(delivered/engine_fail/deferred/stalled),信封三行形取用行纪律,IM 映射(流即房间、DELIVER 即 @、dm/ 与 room/ 前缀、agents view 即 presence)与回执走 streams append fleet;契约单一真源 = ai-ccoe 仓 plugins/CONTRACT.md(对齐 v3:五节加五a/b/c/d;本机实装 prim 3.0.0a1 差异表随 skill),本 skill 只路由不复述;与 agent-s5 分工 = s5 是引擎命令面,五原语是骑在其上的协议面。REQ-025 与 REQ-027 在册。
 
 ## 安装
 
@@ -23,4 +23,4 @@
 - Grok:`grok plugin install evo-agent@project-evo --trust`
 - Kimi:无市场,拷 `plugins/evo-agent/skills/*` 至 `~/.kimi/skills`
 
-当前发布:0.10.1。版本线随市场五插件同线(ADR-0021 族版本纪律)。
+当前发布:0.11.0。版本线随市场五插件同线(ADR-0021 族版本纪律)。

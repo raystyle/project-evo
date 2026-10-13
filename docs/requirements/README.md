@@ -29,3 +29,5 @@
 | REQ-023 | implemented | must | herdr:s5 删除并入 agent-s5,s5 归一为全 agent 共享看板与实时流 | tests/test_project_evo.py |
 | REQ-024 | implemented | must | evo-lint 第三技能 zh-lint:简明技术中文静检 | tests/test_project_evo.py |
 | REQ-025 | implemented | must | evo-agent 第四技能 agent-prim:舰队互操作五原语操作面 | tests/test_project_evo.py |
+| REQ-026 | implemented | must | zh-lint 汇报面吸收(结构律与状态词与验证状态与五模板) | tests/test_project_evo.py |
+| REQ-027 | implemented | must | agent-prim 升格 prim v3 契约对齐(to 统一投递与 id 三产生式与 status 四态) | tests/test_project_evo.py |

@@ -1,31 +1,47 @@
-# DELIVER 门控、代记与信封
+# DELIVER 门控、代记、状态信封
 
-> 蒸馏自契约一、四、五a、六节。DELIVER = 定向传递;三道保险 = 门控、代记、审计。
+> 蒸馏自契约一、四、五a、五b、五c、六节。DELIVER = 定向传递(动词统一 `to`);三道保险 = 门控、代记、审计;回调 = status 四态信封。
 
 ## 门控判据
 
-- 投前查目标格 agent_status:working/blocked 拒投(exit 1,gate_refused);idle/done/unknown 放行
+- 投前查目标格 agent_status:working/blocked 拒投(exit 1);idle/done/unknown 放行
 - 用户令(2026-10-12):消息传递要判窗口状态,防打断在干活或被卡的格
-- `--force` 强投:过门控直投,并追记审计(见下);位置恒在尾参
-- 例外:**agents prompt 裸走门控但无信封无代记无审计**(自由文,最轻形);其余四域 DELIVER 全套
+- `--force` 跳门控强投;任意参数位识别(v3 文法),不占尾参位
+- 例外:agents 域 `to` 裸走门控但无信封无代记无审计(自由文,最轻形);其余四域 DELIVER 全套
 
-## --force 审计
+## status 四态信封（v2.8 纪律:错误要暴露,状态要回调）
+
+`--json` 时 DELIVER 的 data 恒带 `status`,四态:
+
+| status | 判定 | 说明 |
+| --- | --- | --- |
+| `delivered` | 投出且 15s 内目标转 working | 真开吃才叫送达 |
+| `deferred` | 门控拒投,已代记 | 退出码仍 1;stdout 仍出 `"ok":true` 信封,判定看退出码与 status,勿单信 ok [实证] |
+| `stalled` | 写入但 15s 未转 working | 收编 herdr agent_prompt_stalled/timeout |
+| `engine_fail` | 引擎写败 | data 带 `engine_error`(引擎 stderr 摘要,原文不吞不裁透传) |
+
+- 退出码不变(0/1/2);状态分型走 data.status,不新码
+- 实现形:`herdr agent prompt <格> <文本> --wait --until working --timeout 15000`,返回码与 stderr 关键词归四态 [实证:包源直读]
+
+## --force 审计（契约面）
 
 - 每次 force 强投追记 `room/force-audit` 流:src、目标、域、id;不记正文
 - 查审计:`streams view room/force-audit`
+- [实证] 3.0.0a1 未落(python 形;shell 形曾落);强投前自问必要性
 
 ## 拒投代记与补收
 
-- 拒投时原文意图以 OPERATE 记入 `room/deferred/<收方名>` 流(字段行加 `mode=deferred`),退出码仍 1,CTA 注明代记流名
-- 收方补收:`streams view room/deferred/<自己的名字>`
+- 拒投时意图以 OPERATE 记入 `room/deferred/` 流,退出码仍 1,CTA 注明代记
+- 收方补收:`streams view room/deferred/<落点>`;**落点键两形并存**:v3 python 形用目标格 pane id(`room/deferred/w8:p1` 形),shell 形旧流按收方名(`room/deferred/hst_rs` 形),两边都看 [实证:两形流俱在册]
+- shares 域拒投:文件已上架、代记注明键与待达,人不丢件
+- streams 域拒投:**不写流不保原文**,代记只记流名与待递;要留消息改走 `streams append`(OPERATE 无门控)或 `--force` 重发 [实证]
 - 消息不静默丢失:拒投不等于没发,意图在代记流里等你
-- [实证] v2.0.0 实装:streams、shares、tasks、pipes 四域 DELIVER 均落代记;agents prompt 拒投即退不代记
 
-## 幂等 id 与版本字段（契约 v2.3 面）
+## 幂等 id 与版本字段（契约面,v3.0a1 未落）
 
 - 字段行尾可选 `id=<一次传递的标识>`:重发沿用同 id,收方按见过即弃
 - 字段行尾可选 `v=1`(缺省 1):新字段只加行尾;主版本收方不识 = 不执行取用行(记 engine_fail)
-- [实证] 两字段 v2.0.0 实装未落;重发防重靠收方自觉比对 seq 与正文
+- [实证] 两字段未落;重发防重靠收方自觉比对 seq 与正文
 
 ## 信封三行形（逐字稳定）
 
@@ -36,6 +52,6 @@ src=<host>:<pane> <域字段...>
 ```
 
 - 人话行可自由;字段行与取用行禁改写(自然语言信封的失败处 = 对方改写取用命令)
-- 五域字段:shares = key/name;streams = stream;tasks = cwd;pipes = addr;agents prompt 无模板
+- 五域字段:shares = key/name;streams = stream;tasks = cwd;pipes = addr;agents to 无模板
 - 第三行前缀一律 `取用:`(读尾、验证、连接等旧前缀全部收编)
 - 收方动作:执行取用行;失败时回信给 src(先核验,见 addressing.md)

@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-13 第一百三十五批:agent-prim 升格 prim v3 契约对齐,总台令（发版批）
+
+- **agent-prim 升格**(REQ-027;总台令原名 prim-ops,按仓命名律落位既有 agent-prim 免双份并行维护):契约真源演进至五节加五a/b/c/d(v3.0 蓝图),本机实装 prim 3.0.0a1(python 形 uv 工具)实查对齐;SKILL.md 重铸 = 五域路由、文法与全局七旗标、id 三产生式与例、投递语义(to 统一、--force、门控 deferred、status 四态信封 delivered/engine_fail/deferred/stalled)、隐式路由(local 与 --machine 零感知各端一致)、常见坑六条(裸格须 local: 前缀、streams 尾读 100 行限读、门控拒投走 streams append 记流、斜杠流名 cursor 崩、hst task 正名、pipes 铸造中)
+- references 四篇同步:commands.md v3 动词面与输出契约与 3.0.0a1 实装差异表十三行(实证面:pipes 铸造中、ws/mode 族未落、VIEW --json 未落、代记键 pane 形、streams 代记不含原文、force 审计未落、斜杠流名 view cursor 崩等)、addressing.md id 三产生式与隐式路由、deliver-gate.md status 四态与代记两形、collab.md hst task 正名;索引随改;实证准入:所写命令形经本机实测或包源直读标 [实证](自探针:门控 deferred 路径打本机 working 格零扰他格)
+- 版本线 0.10.1 进 0.11.0(五插件双 manifest、市场清单、五插件 README 发行行);顺手修批 133 遗漏(市场清单描述十 skill 进十一、evo-lint 两进三、evo-agent 三进四)与批 134 遗漏(REQ 索引缺 REQ-026 行);根 README 与 docs 地图 agent-prim 行随改(to 投递与 status 四态、goal 域正名 task);部署道建议候总台核
+- 顺手报总台:prim 3.0.0a1 斜杠流名 view 尾段 cursor 写崩(子目录不建,数据行已全打印退 1 加栈,room/deferred 补收面受累)、--llms 手册列 ws 族动词超出 case 分支(漂移守卫未挂),建议随 prim 下一版收口
+
 ### 新增 2026-10-13 第一百三十四批:zh-lint 汇报面吸收,用户令
 
 - **汇报面**(references/reporting.md 新页):ASD-STE100 中文家族实践蒸馏(一案提案 patch 形,否 create 因同域拆分伤意图路由);结构律(结论先行)、状态词十词表(已完成到未确认)、验证状态(方法与命令与输出摘要,六态的回复形)、询问律(选项编号)、语言律增量(情态词只必须不得可以、禁缓冲开头与比喻成语)、五模板(进度、结果、排查结论、请求决定、多项总结)、发前自检八问
