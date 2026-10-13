@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-13 第一百三十六批:agent-prim R0 三反射收编,总台令
+
+- **反射节重铸**(REQ-028;R0 修件 = ai-ccoe main 5f7b48c):SKILL.md 四节改投递与收件反射三律(投递只看 status 与 CTA、收件 agents read 自带忙候与超时、拒投自动代记 deferred);门控 v2 入律 = TUI 实况检测替代状态字段,四家 TUI 判标族(claude/codex/grok/kimi 实测文案),操作对话框拒投、空 TUI 可投、busy 排队不拦,保守清单误拒优于误投
+- R0 四件随收:read 隐式收件(忙则内候 5s 轮询到闲/完成或超时,默认 90s,`--timeout` 调,超时出 status timeout-working 内容仍全量附上 exit 0)、agents to 拒投代记补齐(含原文截 80 字)、agents 域动词面补齐(start/ws/shell/dev/split/tab/zoom/keys/trust/sync,layout 与 mode 契约面挂账)、pipes 域铸齐(view/open/close/to,win OpenProcess 活性探测);streams view 接 -n/--lines(批 135 报件之一已收)
+- references 同步:commands.md(agents 收件面与工位动词、pipes 铸齐、差异表收缩至 R0 后残余十一行)、deliver-gate.md(门控 v2 判据、代记全域、read 收件信封与 DELIVER 四态分立)、collab.md(-n 调量);description 与 evo-agent README 随改;常见坑重排(streams 拒投不含原文、busy 误区两坑新入,pipes 铸造中坑撤)
+- 实证准入:本机 uv 工具重装自 ai-ccoe main 5f7b48c 后实测(read working 格 timeout-working 信封与闲格 idle 信封双态、streams -n、pipes view exit 0、斜杠流名 cursor 崩复测仍在报在案);版本线 0.11.0 进 0.11.1(五插件双 manifest、市场清单、五插件 README 发行行);首稿呈总台,R1 攻击单候
+
 ### 变更 2026-10-13 第一百三十五批:agent-prim 升格 prim v3 契约对齐,总台令（发版批）
 
 - **agent-prim 升格**(REQ-027;总台令原名 prim-ops,按仓命名律落位既有 agent-prim 免双份并行维护):契约真源演进至五节加五a/b/c/d(v3.0 蓝图),本机实装 prim 3.0.0a1(python 形 uv 工具)实查对齐;SKILL.md 重铸 = 五域路由、文法与全局七旗标、id 三产生式与例、投递语义(to 统一、--force、门控 deferred、status 四态信封 delivered/engine_fail/deferred/stalled)、隐式路由(local 与 --machine 零感知各端一致)、常见坑六条(裸格须 local: 前缀、streams 尾读 100 行限读、门控拒投走 streams append 记流、斜杠流名 cursor 崩、hst task 正名、pipes 铸造中)

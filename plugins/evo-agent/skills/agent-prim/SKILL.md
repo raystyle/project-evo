@@ -4,15 +4,17 @@ description: >-
   舰队互操作五原语操作面(prim v3):五命令 agents/shares/streams/tasks/pipes,文法 =
   全局旗标加动词加位置参数,投递动词统一 to;id 三产生式(裸名全局寻址、机:名或格、
   local: 前缀,裸 pane id 非法);隐式路由 local 与 --machine 零感知,任何端点同一文法;
-  DELIVER 门控(working/blocked 拒投、--force 强投、拒投代记 room/deferred 补收)与
+  投递与收件三反射(投递只看 status 与 CTA、收件 agents read 自带忙候与超时、拒投自动
+  代记 deferred 补收);门控 v2 = TUI 实况判标族(操作对话框拒投,busy 排队不拦);
   status 四态信封(delivered/engine_fail/deferred/stalled);协作惯例(流即房间、
   DELIVER 即 @、dm/ 与 room/ 前缀、agents view 即 presence、回执走 streams append
   fleet、--from/--resume 回放)。契约单一真源 = ai-ccoe 仓 plugins/CONTRACT.md,本 skill
   只路由不复述;与 agent-s5 分工 = s5 是引擎命令面,五原语是骑在其上的协议面。
-  Use when 要跨机找格读屏发提示、把文件交给指定 agent、往流交回执或播报、设别的格所在项目的
-  持久任务、开实时管道时;触发词 agent-prim、五原语、原语、prim、agents、shares、streams、
-  tasks、pipes、to、投递、门控、拒投、deferred、代记、force、强投、四态、信封、status、
-  隐式路由、machine、房间、room、dm、presence、取用行、回执、回放、cursor、from、resume、
+  Use when 要跨机找格读屏发提示、读队友格等回话、把文件交给指定 agent、往流交回执或
+  播报、设别的格所在项目的持久任务、开实时管道时;触发词 agent-prim、五原语、原语、
+  prim、agents、shares、streams、tasks、pipes、to、投递、门控、拒投、deferred、代记、
+  force、强投、四态、信封、status、收件、忙候、timeout-working、判标、隐式路由、
+  machine、房间、room、dm、presence、取用行、回执、回放、cursor、from、resume、
   舰队互操作。
 ---
 
@@ -20,13 +22,13 @@ description: >-
 
 **定位**:舰队(多机多格 agent)互操作协议的操作面。五命令各管一域,同构文法;DELIVER 自带门控与代记,消息不静默丢失。契约唯一真源 = ai-ccoe 仓 `plugins/CONTRACT.md`,本 skill 蒸馏速览加路由,不复述契约全文;契约演进以真源为准,本 skill 随批对齐。
 
-**版本对齐**:契约五节加五a/b/c/d(2026-10-13 参数规范批,v3.0 蓝图);本机实装 prim 3.0.0a1(python 形,uv 工具 `prim`) [实证:2026-10-13 lan-ubuntu 实查包元数据与五命令 --llms]。实装未达面(pipes 铸造中、ws 族未落、VIEW --json 未落等)见 `references/commands.md` 差异表,用前实查。
+**版本对齐**:契约五节加五a/b/c/d(2026-10-13 参数规范批,v3.0 蓝图);本机实装 prim 3.0.0a1 R0 修件后实态(2026-10-13:门控 v2 四家 TUI 判标族、read 隐式收件、agents to 拒投代记、动词面与 pipes 域补齐;ai-ccoe main 5f7b48c) [实证:本机 uv 工具重装自仓源,五命令 --llms 与行为实测]。残余差异面(force 审计、VIEW --json、斜杠流名 cursor 崩等)见 `references/commands.md` 差异表,用前实查。
 
 ## 一、五域路由（何时用哪条）
 
 | 我要… | 用哪条 |
 | --- | --- |
-| 给某格发一句话、读某格屏幕、按键、查在网机器、herdr agent 动词 | `agents` |
+| 给某格发一句话、读某格屏幕等回话(自带忙候)、按键、查在网机器、工位管理(start/ws/shell/dev) | `agents` |
 | 把文件交给指定 agent(自动上架加知会取用键) | `shares` |
 | 播报、留痕、交回执、房间消息(append 落流,tail 取阅) | `streams` |
 | 设别的格所在项目的持久任务(跨机 hst task,事件入流) | `tasks` |
@@ -44,7 +46,7 @@ description: >-
 
 - 全局七旗标任意槽:`--help -h --llms --json --format --full-output --filter-output --schema`;`--` 逃生口;未知词 usage 退 2,禁静默吞
 - 投递动词统一 `to`(v3.0 收口;`prompt` 在 agents 域为 to 别名);`--force` 任意参数位识别
-- 保留动词首词命中即非目标:view read keys list mode put get append set open close to prompt machines ws shell dev split layout tab zoom trust sync
+- 保留动词首词命中即非目标:view read keys list put get append set open close to prompt machines start ws shell dev split tab zoom trust sync
 - 逐命令动词表、输出契约与错误码表见 `references/commands.md`
 
 ## 三、id 三产生式（目标文法）
@@ -59,12 +61,19 @@ description: >-
 - 机不占位置参数;机标签合法性 = 在册机表,查表用 `agents machines`
 - 解析算法、多名命中、命名纪律、src 核验见 `references/addressing.md`
 
-## 四、投递语义（to 统一）
+## 四、投递与收件反射（三律）
 
-- **门控**:投前查目标格状态;working/blocked 拒投(exit 1,CTA 指路);idle/done/unknown 放行
-- **--force**:跳门控强投(契约面追记 `room/force-audit` 审计流;实装未落见差异表)
-- **拒投代记**:拒投时意图代记入 `room/deferred/` 流,退出码仍 1;收方补收看 `references/deliver-gate.md`
-- **status 四态信封**:`--json` 的 data 恒带 `status`:
+| 反射 | 律 |
+| --- | --- |
+| 投递 | 只看退出码与 `data.status` 与 CTA;门控判标全隐藏命令内,调用方零感知 |
+| 收件 | `agents read <id>` 自带等待:目标忙则内候到闲或完成(默认 90s,`--timeout` 调),status 随信封出 |
+| 拒投 | 自动代记 `deferred`(全域含 agents to);勿手补投,补收看 `room/deferred/` 流 |
+
+- **门控 v2 = TUI 实况检测**:不看状态字段,读格可见内容对四家 TUI 判标族(claude/codex/grok/kimi 实测文案);有操作对话框(信任屏/权限屏/模式选择)即拒,空 TUI 可投,**busy 排队不拦**(各家 TUI 自带消息排队);保守清单,误拒优于误投 [实证:包源直读]
+- **read 收件面**:忙候到闲/完成或超时;超时未闲出 `status:"timeout-working"`(内容仍全量附上,exit 0);无内容才 engine_fail 加 CTA `--timeout 加长重试` [实证:本机 working 格与闲格双实测]
+- **拒投自动代记**:拒投时意图自动记入 `room/deferred/<目标格>` 流,退出码仍 1;agents 域代记含原文截 80 字,streams 域只记意图不含原文(要留原文走 `streams append`,见六坑)
+- **--force**:跳门控强投(契约面追记 `room/force-audit` 审计;实装未落见差异表,强投前自问必要性)
+- **status 四态信封**(DELIVER 的 `--json` data 恒带 `status`):
 
 | status | 义 | data 伴生 |
 | --- | --- | --- |
@@ -87,11 +96,11 @@ description: >-
 | 坑 | 正确姿势 |
 | --- | --- |
 | 裸格直写格 id(如 `to w8:p1`) | 首冒号先当机标签解析,报「机器不在册」;无名格必须 `local:<格>` 或 `<机>:<格>` |
-| `streams view` 只见最近一段 | 默认尾读最近 100 行(s5 tail -n 100);全量回放 `--from 0`,续读 `--resume` |
-| 门控拒投后以为消息已进流 | `streams to` 拒投时不写流不保原文;要留消息改走 `streams append`(OPERATE 无门控)记流 |
-| 斜杠流名 view 退出码 1 | v3.0a1 cursor 写入崩但数据行已全打印;读 stdout 即得,净退出码走 s5 tail [实证] |
+| `streams view` 只见最近一段 | 默认尾读最近 100 行(s5 tail -n 100);`-n`/`--lines` 调量,全量回放 `--from 0`,续读 `--resume` |
+| streams 拒投后找消息原文 | 代记通知自动落 `room/deferred/` 但不含消息体、消息也不进流;要留原文改走 `streams append`(OPERATE 无门控)记流 |
+| 目标 working 就不敢投 | 门控 v2 busy 排队不拦,只拒操作对话框;要等人回话用 `agents read` 忙候语义 |
+| 斜杠流名 view 退出码 1 | cursor 写入崩但数据行已全打印;读 stdout 即得,净退出码走 s5 tail [实证:R0 后复测仍在] |
 | tasks 面沿用 goal 旧名 | hst 已正名 task;取用行 = `hst task show`,旧 goal 面仅作回退 |
-| `pipes` 直接用 | v3.0a1 此域铸造中(die usage);实时字节面暂走旧道并报给总台 [实证] |
 
 ## 七、协作惯例（速览,IM 映射）
 

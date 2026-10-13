@@ -31,3 +31,4 @@
 | REQ-025 | implemented | must | evo-agent 第四技能 agent-prim:舰队互操作五原语操作面 | tests/test_project_evo.py |
 | REQ-026 | implemented | must | zh-lint 汇报面吸收(结构律与状态词与验证状态与五模板) | tests/test_project_evo.py |
 | REQ-027 | implemented | must | agent-prim 升格 prim v3 契约对齐(to 统一投递与 id 三产生式与 status 四态) | tests/test_project_evo.py |
+| REQ-028 | implemented | must | agent-prim R0 三反射收编(门控 v2 与 read 隐式收件与拒投代记) | tests/test_project_evo.py |

@@ -1,6 +1,6 @@
 {
   "name": "evo-lint",
-  "version": "0.11.0",
+  "version": "0.11.1",
   "description": "项目静态检查与结构标准:md-lint 五面静检、ls-lint 类型化结构(init 脚手架与声明式 check,四类型模板)、zh-lint 简明技术中文静检(禁用词、选词表、句长,受控中文写技术文档);门禁三态退出码与提交挡板纪律",
   "author": {
     "name": "raystyle"
