@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-13 第一百三十九批:R2 复核收编（起名校验与取用行降级）,总台令
+
+- **R2 两件实测过**(REQ-031;ai-ccoe main 6bb8a6b,本机重装后):起名校验 = `agents start` 非标准名 stderr 提示不拦截(正则 = 台标签-类型(-编号 可选),类型族 claude/codex/grok/kimi/pi)[实证:非标准名实测出提示];取用行降级 = cwd 无格匹配时 caller_addr 退化告警 [实证:/tmp 直调] 加取用行自动降级指 agents view 定位(总台来信取用行即在飞活证)
+- addressing.md:命名标准节标已收编契约八,新增起名校验 bullet;from 核验节取用行降级 bullet 重写(告警加降级形判例);坑簿 hostname 行闭注(PRIM_HOST_LABEL=lan-win 已配 win 用户环境变量,旧投递属进程内 env 未续一次性,新会话起生效)
+- commands.md agents 工位管理 bullet 补起名校验指引;版本线 0.12.1 进 0.12.2;四门禁全绿 + 回信总台与 fleet 回执
+
 ### 变更 2026-10-13 第一百三十八批:agent-prim 信封 v2 对齐与 agent 命名标准,总台令（与 R1 批合轮）
 
 - **信封 v2 收编**(REQ-030;ai-ccoe main fb701a7+41ca290,pydantic 真源 prim/src/prim/msg.py):deliver-gate.md 信封节重写 = 人话行 @收方、字段行 `from=<host>:<pane> to=<id> 域字段 v=1`(from/to 恒在,v 恒带,收方 parse_fieldline 机读,旧形 src= 收旧拒);addressing.md src 核验改 from 核验加 host-only 判例;『开吃/候/强投』俚语清零(delivered 义 = 目标开始处理);差异表幂等行拆(v=1 已落,幂等 id 与 tasks prev 未落)
