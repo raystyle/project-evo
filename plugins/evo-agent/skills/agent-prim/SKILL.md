@@ -5,18 +5,20 @@ description: >-
   退役为引擎):五命令 agents/shares/streams/tasks/pipes,文法 = 全局旗标加动词加位置
   参数,投递动词统一 to;id 三产生式(裸名全局寻址、机:名或格、local: 前缀,裸 pane
   id 非法);隐式路由 local 与 --machine 零感知,任何端点同一文法;投递与收件三反射
-  (投递只看 status 与 CTA、收件 agents read 自带忙候与超时、拒投自动代记 deferred
-  补收);门控 v2 = TUI 实况判标族(操作对话框拒投,busy 排队不拦);status 四态信封
-  (delivered/engine_fail/deferred/stalled);协作惯例(流即房间、DELIVER 即 @、dm/
+  (投递只看 status 与 CTA『下一步』、收件 agents read 自带忙候与超时、拒投自动代记
+  deferred 补收);门控 v2 = TUI 实况尾窗判标族(操作对话框拒投,busy 排队不拦);
+  status 四态信封(delivered/engine_fail/deferred/stalled)与信封 v2 三行形(人话行
+  @收方、字段行 from/to 恒在带 v、取用行);协作惯例(流即房间、DELIVER 即 @、dm/
   与 room/ 前缀、agents view 即 presence、mode 自声明、回执走 streams append fleet、
   --from/--resume 回放)。契约单一真源 = ai-ccoe 仓 plugins/CONTRACT.md,本 skill 只
   路由不复述;与 agent-s5 分工 = s5 是引擎命令面,五原语是骑在其上的协议面。
-  Use when 要跨机找格读屏发提示、读队友格等回话、把文件交给指定 agent、往流交回执或
-  播报、设别的格所在项目的持久任务、开实时管道、开工作台起格调布局时;触发词
-  agent-prim、五原语、原语、prim、agents、shares、streams、tasks、pipes、to、投递、
-  门控、拒投、deferred、代记、force、强投、四态、信封、status、收件、忙候、
-  timeout-working、判标、mode、presence、隐式路由、machine、房间、room、dm、取用行、
-  回执、回放、cursor、from、resume、舰队互操作、唯一操作面。
+  Use when 要告诉或委派某 agent 干活、找格读屏等回话、把文件共享给指定 agent、往流
+  交回执或广播、设别的格所在项目的持久任务、开实时管道让对方实时发、开工作台或 tab
+  调窗格邻居布局时;触发词 agent-prim、五原语、prim、告诉、委派、让干、找格、读屏、
+  窗格、邻居、tab、工作台、table、agents、shares、streams、tasks、pipes、to、投递、
+  派单、门控、拒投、deferred、代记、补收、force、四态、信封、status、收件、忙候、
+  mode、流、回执、房间、广播、共享、给文件、管道、实时发、持久任务、隐式路由、
+  取用行、回放、舰队互操作、唯一操作面。
 ---
 
 # agent-prim - evo-agent 舰队互操作五原语
@@ -60,7 +62,7 @@ description: >-
 
 - 裸 pane id 非法:无冒号只按名查;含冒号先当机标签解析。**无名格必须 `local:<格>` 或 `<机>:<格>` 显式形**
 - 机不占位置参数;机标签合法性 = 在册机表,查表用 `agents machines`
-- 解析算法、多名命中、命名纪律、src 核验见 `references/addressing.md`
+- 解析算法、多名命中、命名标准、from 核验见 `references/addressing.md`
 
 ## 四、投递与收件反射（三律）
 
@@ -70,7 +72,7 @@ description: >-
 | 收件 | `agents read <id>` 自带等待:目标忙则内候到闲或完成(默认 90s,`--timeout` 调),status 随信封出 |
 | 拒投 | 自动代记 `deferred`(全域含 agents to);勿手补投,补收看 `room/deferred/` 流 |
 
-- **门控 v2 = TUI 实况检测**:不看状态字段,读格可见内容对四家 TUI 判标族(claude/codex/grok/kimi 实测文案);有操作对话框(信任屏/权限屏/模式选择)即拒,空 TUI 可投,**busy 排队不拦**(各家 TUI 自带消息排队);保守清单,误拒优于误投 [实证:包源直读]
+- **门控 v2 = TUI 实况尾窗检测**:不看状态字段,读格可见内容**尾 12 行**(对话框按钮与页脚区)对四家 TUI 判标族(claude/codex/grok/kimi 实测文案)匹配;正文里的文档引用(如信任屏教学文)不误判;有操作对话框(信任屏/权限屏/模式选择)即拒,空 TUI 可投,**busy 排队不拦**;保守清单,误拒优于误投 [实证:包源直读,evo 实弹案尾窗后 delivered]
 - **read 收件面**:忙候到闲/完成或超时;超时未闲出 `status:"timeout-working"`(内容仍全量附上,exit 0);无内容才 engine_fail 加 CTA `--timeout 加长重试` [实证:本机 working 格与闲格双实测]
 - **拒投自动代记**:拒投时意图自动记入 `room/deferred/<目标格>` 流,退出码仍 1;agents 域代记含原文截 80 字,streams 域只记意图不含原文(要留原文走 `streams append`,见六坑)
 - **--force**:跳门控强投(契约面追记 `room/force-audit` 审计;实装未落见差异表,强投前自问必要性)
@@ -78,13 +80,13 @@ description: >-
 
 | status | 义 | data 伴生 |
 | --- | --- | --- |
-| `delivered` | 已投出且目标 agent 开吃(等到 working,15s 窗口) | target 与域字段 |
+| `delivered` | 已投出且目标开始处理(等到 working,15s 窗口) | target 与域字段 |
 | `engine_fail` | 引擎写败,引擎 stderr 不吞不裁 | `engine_error` 摘要 |
 | `deferred` | 门控拒投,已代记 | target 与代记落点 |
-| `stalled` | 写入但 15s 未开吃 | target |
+| `stalled` | 写入但 15s 未开始处理 | target |
 
-- 判成败先看退出码(0/1/2),再看 `data.status`;拒投时信封仍 `"ok":true`,勿单信 ok 字段 [实证]
-- 信封三行形(字段行与取用行逐字稳定)与幂等 id、v 字段见 `references/deliver-gate.md`
+- 判成败先看退出码(0/1/2),再看 `data.status` 与 CTA;拒投时信封仍 `"ok":true`,勿单信 ok 字段 [实证];CTA 专业标准 = 『下一步:』前缀(俚语清零)
+- **信封 v2 三行形**(字段行与取用行逐字稳定,pydantic 真源 prim/src/prim/msg.py)与幂等 id 见 `references/deliver-gate.md`
 
 ## 五、隐式路由（各端一致）
 

@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-13 第一百三十八批:agent-prim 信封 v2 对齐与 agent 命名标准,总台令（与 R1 批合轮）
+
+- **信封 v2 收编**(REQ-030;ai-ccoe main fb701a7+41ca290,pydantic 真源 prim/src/prim/msg.py):deliver-gate.md 信封节重写 = 人话行 @收方、字段行 `from=<host>:<pane> to=<id> 域字段 v=1`(from/to 恒在,v 恒带,收方 parse_fieldline 机读,旧形 src= 收旧拒);addressing.md src 核验改 from 核验加 host-only 判例;『开吃/候/强投』俚语清零(delivered 义 = 目标开始处理);差异表幂等行拆(v=1 已落,幂等 id 与 tasks prev 未落)
+- **门控尾窗与 CTA 标准化**:门控判据补尾 12 行窗(对话框按钮与页脚区,正文文档引用如信任屏教学文不误判;evo 实弹案 = working 格读 skill 文档整屏扫描假阳性,尾窗后 delivered);CTA 通则补专业标准(『下一步:』前缀与 target= 键值形)
+- **触发词自然语化**(fleet seq 44 全单):SKILL description 重写,意图词路由五原语(告诉、委派、让干、找格、读屏、窗格、邻居、tab、工作台、table 走 agents;流、回执、房间、广播走 streams;共享、给文件走 shares;管道、实时发走 pipes;持久任务走 tasks)
+- **agent 命名标准(用户三令:名字不乱取,标准形定案,同步总台)**:addressing.md 命名纪律升命名标准,标准形 = `<工作台标签>-<agent类型>-<编号>`;台标签 = 仓别名(agents ws 以仓为单位),类型 = TUI 家族,**编号 = 工作台窗格位序号,名与格一一对应**;工作台默认至多四窗格田字布局顺时针开(TL-TR-BR-BL 即 1 至 4),第五格起自动开新 tab 编号续增;一格一名结构性全局唯一,存量名兼容在役新起一律标准形;AI-LAB 取用行断点(from 无格段,agents to AI-LAB not_found 实测)与机标签不合(AI-LAB 裸 hostname 对在册名 lan-win)入判例与报件
+- 实证:本机重装 prim 后本地渲染信封 v2 与 parse_fieldline 双向过;版本线 0.12.0 进 0.12.1;四门禁全绿 + 回执走 streams append fleet + 回信总台(命名标准方案同步,候 CONTRACT 收编)
+
 ### 变更 2026-10-13 第一百三十七批:herdr 技能淘汰序与 agent-prim 唯一操作面,总台令（附 R1 三件复核）
 
 - **R1 三件复核收编**(REQ-029;ai-ccoe main 实落 d524d7c,总台令引 9a6856c 仓内未寻得,回执注明):斜杠流名 cursor 崩修(父链全建,`streams view room/deferred/w8:p1 -n 3` 净退 0)、streams 手册补 -n/--lines、mode 动词实装(presence 走 shares 键,`agents mode online` 落键实测);agent-prim 差异表收缩至残余十行(cursor 崩与手册 -n 与 mode 三行撤;layout 挂账行入 = herdr 0.9.3 无 layout 子命令,preview 面),mode 入速查表与保留动词表与协作惯例

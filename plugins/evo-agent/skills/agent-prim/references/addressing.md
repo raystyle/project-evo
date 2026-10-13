@@ -21,10 +21,14 @@
 3. 未中:遍历在册机(enabled)逐台查
 4. 全未中:not_found,CTA 指 `agents view`;**多名命中 = not_found**(信息注多名),契约规定不取先命中
 
-## 命名纪律
+## 命名标准（用户令 2026-10-13:工作台-agent类型-编号,不乱取）
 
-- 起格必带名:`agent start --name <名>`;无名格在裸名寻址里不可达,只能 `local:<格>` 或 `<机>:<格>` 显式形
-- 名字稳定复用:跨机递件、dm 流名、deferred 流名(shell 形)都拿名字做键;改名 = 换身份
+- **标准形**:`<工作台标签>-<agent类型>-<编号>`,全小写 kebab;例 `evo-claude-1`、`hst-kimi-2`、`pi-grok-1`
+- 三段义:工作台标签 = 工作台别名,台以仓为单位建(`agents ws <标签>`,即仓短名,如 evo、hst、pi、s5);agent类型 = TUI 家族(claude/codex/grok/kimi);编号 = 工作台窗格位序号,名与格一一对应
+- **窗格位与布局(用户令 2026-10-13)**:工作台默认至多四窗格,田字布局顺时针开(TL-TR-BR-BL 即 1 至 4);第五格起自动开新 tab(新格进新 tab),编号续增;名里的编号即格位(如 `evo-claude-2` = evo 台 2 号格的 claude)
+- 结构性全局唯一:一格一名,格位即编号,同台不撞;跨台台标签分域;裸名全局寻址下同名多格 = not_found,标准形从根上免撞
+- **起格必带名**:`agents start <名> --kind <类>`;无名格在裸名寻址里不可达,只能 `local:<格>` 或 `<机>:<格>` 显式形
+- 名即身份:跨机递件、dm 流名、deferred 流名(shell 形)、presence 键都拿名字做键;改名 = 换身份;存量名(hst_rs、evo-claude)兼容在役,新起一律标准形
 - 查名面:`agents view`(全局格表:HOST、NAME、PANE、STATUS、KIND、CWD)
 
 ## 隐式路由（各端一致）
@@ -33,10 +37,11 @@
 - 同一文法在任何端点可用;远端解析走 `herdr --machine` 转发,零 ssh 零旁路
 - 本机名取 `hostname -s`;与机册注册名不合时可 `PRIM_HOST_LABEL` 覆写(如 win 机)
 
-## 回信地址与 src 核验
+## 回信地址与 from 核验（信封 v2）
 
-- 投递方自动附 `src=<host>:<pane>`(以 cwd 匹配本机格得出;匹配不中退化为仅 host);你在仓目录里投的件,回信地址就指向你那格
-- **src 是提示非签名**:收方回信前以 `agents view` 核对 host:pane 仍是活格;取用行是唯一协议面(见 deliver-gate.md 信封节)
+- 投递方自动附 `from=<host>:<pane>`(以 cwd 匹配本机格得出;匹配不中退化为仅 host)加 `to=<收方 id>`;你在格的仓目录里投的件,回信地址就指向你那格
+- **from 是提示非签名**:收方回信前以 `agents view` 核对 host:pane 仍是活格;取用行是唯一协议面(见 deliver-gate.md 信封节)
+- **在格 cwd 里投递**:host-only from 生成的取用行不可解析(判例:from=AI-LAB 无格段,`agents to AI-LAB` not_found;AI-LAB 是裸 hostname 非格名)
 
 ## 坑簿
 

@@ -7,6 +7,7 @@
 - **文法模板**:`<命令> [全局旗标] <动词> [动词旗标] [位置参数...]`;全局七旗标(`--help -h --llms --json --format --full-output --filter-output --schema`)任意槽;`--format` 与 `--filter-output` 带值;`--` 逃生口;未知词 usage 退 2 禁静默 shift
 - **两形同源**:`--json` 出机器形(DELIVER 出单行信封 `{"ok":true,"data":{...},"meta":{"command":"<名>"}}`,data 恒带 status 四态);缺省人读形;两形字段序一致
 - **错误分道**:错误一律 stderr;`--json` 时 stderr 单行 `{"code":"...","message":"...","cta":[{"command":"...","description":"..."}]}`;stdout 永纯数据 [实证:not_found 实测形]
+- **CTA 专业标准**:错误必带下一步,统一『下一步:』前缀与 target= 键值形,俚语清零(『开吃/候/强投』不再出);例 `目标存在操作对话框,已拒投并代记;下一步:--force 跳过门控重发`
 - **退出码**:0 成功;1 业务未命中(目标无、拒投、键不存在);2 用法错;禁其他码。拒投时 stdout 仍出 ok:true 信封 + exit 1,判定看退出码与 data.status 勿单信 ok [实证]
 - **裸调用**:无参 = VIEW,exit 0,不进交互(agent 可放心探测)
 
@@ -34,7 +35,7 @@
 - **收件面(隐式等待)**:`agents read <id> [--lines N] [--timeout S]`(默认 20 行、90 秒);目标 working 则内候(5s 轮询)到闲/完成或超时;status 随信封出(闲 = idle/done,超时未闲 = timeout-working,内容仍全量附上,exit 0);无内容才 engine_fail 加 CTA `--timeout 加长重试` [实证:本机 working 格与闲格双实测]
 - 读屏即收件:等队友回话就用 read,勿手写轮询
 - 全局面:`agents view` 跨全部在册机出格表(HOST、NAME、PANE、STATUS、KIND、CWD);`agents machines` 出机表与可达性 [实证:实测本机外四机在册]
-- 投递:`agents to <id> <文本>` 过门控 v2 投自由文(无信封模板);拒投自动代记 room/deferred(含原文截 80 字)并 stderr 指 `--force 强投` [实证:包源直读]
+- 投递:`agents to <id> <文本>` 过门控 v2 投信封 v2 三行形;成功面 `已投递,目标已开始处理(target=…)`,拒投自动代记 room/deferred(含原文截 80 字)并 stderr `下一步:--force 跳过门控重发` [实证:包源直读]
 - 工位管理:`agents start <名> --kind <类>` 起格、`ws`/`shell <机> <仓>`/`dev <机> <仓>` 开台起 agent、`split`/`tab`/`zoom` 布局、`trust` 信任屏放行、`sync` 机册面;tab id 解析 = `机:tabid`
 - 在场声明:`agents mode <dnd|away|online> [until]`(自声明,写 shares 键 `share/presence/<host>/<格>` 覆盖,正文 mode 与 until;勿扰与离开建议短窗,过期自动回落) [实证:mode online 实测落键]
 - 按键:`agents keys <id> <键>`;跨机 = usage 拒,CTA 指本机 keys 或 mesh trust(契约面)
@@ -73,7 +74,7 @@
 | VIEW 与 OPERATE 的 --json 两形 | 未落(--json 仅 DELIVER 信封与错误 stderr 生效) |
 | tasks view [机|id] 带参面 | 忽略参数,恒出 tasks/shared 最近 8 事件 |
 | --force 审计 room/force-audit | 未落(五域皆无;强投前自问必要性) |
-| 幂等 id、v=1 字段、tasks 事件 prev | 未落 |
+| 幂等 id、tasks 事件 prev | 未落(v=1 已随信封 v2 落,from/to 恒在) |
 | 拒投代记流键 = 收方名 | 用目标格 pane id;shell 形旧流按名仍在,补收两边都看 |
 | presence 声明键 = share/presence/<机>/<名>(五a) | 实装用 <机>/<格> pane 形 [实证:mode online 落键] |
 | streams 拒投代记含原文 | 只记意图行(流名加待递),不含消息体;须 --force 重发或改走 append |
