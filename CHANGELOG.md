@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-13 第一百四十五批:zh-lint 删除,用户令
+
+- **终裁**(REQ-036):zh-lint 删除,中文语言纪律不设 skill 面(沿革 = 批 141 三合一、批 144 拆出复独立、本批删除;工具与判例存 git 档案);终形回两插件九 skill = dev 三(doc-gov、dev-cli、dev-lint)加 evo 六
+- dev-lint 去姊妹指路,沿革改写;test_zh_lint_tool 退役;守卫与路由面全随形(SKILLS、pre-commit 九目标、双 manifest 与市场清单、AGENTS 与根 README 与 docs 地图与 dev README);ADR-0025 终形改九
+- dev 独立升 0.14.2(evo 0.14.1 不动);四门禁全绿 + fleet 回执 + 知会 grok(评审 2 终局 = 删除)
+
 ### 变更 2026-10-13 第一百四十四批:拆中文面 zh-lint 复独立,用户裁定
 
 - **裁定落形**(REQ-035;grok 评审 2 触发竞争论获采纳):zh-lint 复独立 skill 归 dev,SKILL 与 references 索引自 git 史恢复(分工行随新形:dev-lint 管格式禁字断链结构,zh-lint 管语言清晰度),stc-rules 与 reporting 复原名,scripts/zh-lint.py 随迁回

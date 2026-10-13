@@ -13,7 +13,7 @@ date: 2026-10-13
 
 ## 决策
 
-1. **市场终形 = 两插件十 skill**:dev(开发治理面:doc-gov、dev-cli、dev-lint、zh-lint)与 evo(agent 操作面:agents、shares、streams、tasks、pipes、distil)。市场后续按域可再添插件;本轮由单插件 evo 中途定形为两插件;lint 三 skill 先并一 dev-lint(用户令续令),中文面经用户裁定拆回 zh-lint 独立(批 144,采纳 grok 评审 2 触发竞争论)。
+1. **市场终形 = 两插件九 skill**:dev(开发治理面:doc-gov、dev-cli、dev-lint)与 evo(agent 操作面:agents、shares、streams、tasks、pipes、distil)。市场后续按域可再添插件;本轮由单插件 evo 中途定形为两插件;lint 三 skill 先并一 dev-lint,中文面拆出复独立后经用户令删除(批 144 拆、批 145 删,中文语言纪律不设 skill 面)。
 2. **裁撤四 skill**:herdr-orch(淘汰序由留档改删除,推翻批 137 过渡安排)、agent-s5(s5 引擎面,取用行所需 s5 知识内嵌五原语 skill)、agent-rloop(循环协议,hst task 引擎面自持)、agent-doctor(四端配置诊断)。
 3. **agent-prim 拆分**:五原语 skill = `agents`/`shares`/`streams`/`tasks`/`pipes`(skill 名即命令名,触发词直配);共享面(id 三产生式、命名标准、门控 v2 尾窗、信封 v2、status 四态、协作惯例、差异表)归 `agents` 独家 references,四域 skill 单文件自持加相对链接,守单一权威源。
 4. **两改名与一合并**:doc-cli 改名 `dev-cli` 随 doc-gov 归 dev;distil-skill 改名 `distil`(触发词蒸馏);md-lint、ls-lint、zh-lint 合并为 `dev-lint`(references 扁平前缀分组,工具与模板随迁)。
@@ -23,6 +23,6 @@ date: 2026-10-13
 
 ## 后果
 
-- 当前版图 = dev 四 skill 加 evo 六 skill;守卫与挡板(测试 PLUGIN/SKILLS/市场一致性/断链段/段名断言/计数守卫,pre-commit,check.py)随形改;「五插件同版本线」律改两插件同线。
+- 当前版图 = dev 三 skill 加 evo 六 skill;守卫与挡板(测试 PLUGIN/SKILLS/市场一致性/断链段/段名断言/计数守卫,pre-commit,check.py)随形改;「五插件同版本线」律改两插件同线。
 - herdr-orch 教学内容与 agent-doctor 诊断面随删退出市场;回溯走 git 历史与本 ADR。
 - 先例回环:v0.3.0 曾单插件形态(批 47),后拆五,今回环再分域。

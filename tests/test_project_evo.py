@@ -22,7 +22,7 @@ SCRIPTS = REPO / ".tools"
 GUARD = PLUGINS["dev"] / "scripts" / "md-guard.py"
 LINT_HOOK = PLUGINS["dev"] / "scripts" / "lint-hook.py"
 SKILLS = {
-    "dev": ["dev-cli", "dev-lint", "doc-gov", "zh-lint"],
+    "dev": ["dev-cli", "dev-lint", "doc-gov"],
     "evo": ["agents", "distil", "pipes", "shares", "streams", "tasks"],
 }
 SINGLE_FILE_SKILLS = {"shares", "streams", "tasks", "pipes"}  # 四原语域面单文件,共享面在 agents skill(ADR-0025)
@@ -542,30 +542,3 @@ def test_no_stale_plugin_counts_in_live_surfaces():
             if m.group() != want:
                 hits.append(f"{p.relative_to(REPO)}: {m.group()}")
     assert not hits, f"陈旧插件计数残留(应全为 {want}): {hits}"
-def test_zh_lint_tool(tmp_path: Path):
-    """zh-lint(REQ-024):禁用词、选词、句长三类命中;好文零发现。"""
-    import importlib.util as iu
-    zh = PLUGINS["dev"] / "skills" / "zh-lint" / "scripts" / "zh-lint.py"
-    spec = iu.spec_from_file_location("pevo_zh_lint", zh)
-    mod = iu.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    bad = tmp_path / "bad.md"
-    bad.write_text("安装前先进行备份。\n出现报错时查看日志。\n单击保存按钮。\n"
-                   "这是一条明显超过四十字上限的长描述句,塞进了两三个分句与大量修饰成分,静检必须报句长超限。\n", encoding="utf-8")
-    findings = []
-    for i, line in enumerate(bad.read_text(encoding="utf-8").splitlines(), 1):
-        out = []
-        mod.check_line(line, i, str(bad), dict(mod.CORE_BANNED), dict(mod.CORE_CHOICE), False, out)
-        findings += out
-    msgs = " ".join(m for _, _, m in findings)
-    assert "禁用词「进行」" in msgs and "禁用词「报错」" in msgs
-    assert "单击" in msgs
-    assert "句长超限" in msgs
-    good = tmp_path / "good.md"
-    good.write_text("备份数据库。\n出现错误时查看日志。\n点击「保存」。\n", encoding="utf-8")
-    findings2 = []
-    for i, line in enumerate(good.read_text(encoding="utf-8").splitlines(), 1):
-        out = []
-        mod.check_line(line, i, str(good), dict(mod.CORE_BANNED), dict(mod.CORE_CHOICE), False, out)
-        findings2 += out
-    assert not findings2

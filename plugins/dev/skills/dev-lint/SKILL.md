@@ -6,7 +6,7 @@ description: >-
   上限、禁字四类、断链扫描);语言面 = cargo fmt 与 clippy 加 missing_docs、ruff 含 D 系
   docstring、tsc 与 eslint;结构面 = 类型化项目结构标准(四类型模板卡与声明式规则件,
   init 脚手架加结构 check);门禁三态退出码、提交挡板 pre-commit 与写后自动静检 hook
-  双端。中文语言清晰度面在姊妹 skill zh-lint(用户令批 144 拆出)。
+  双端。
   Use when 给项目配静态检查门禁、排查 md 或代码静检报错、把 lint 挂进 pre-commit 或 CI、
   新仓脚手架或存量仓结构 lint 时;触发词 dev-lint、lint、静态检查、静态分析、禁字、
   断链、clippy、ruff、tsc、eslint、fmt、missing_docs、docstring 检查、门禁、退出码、
@@ -15,7 +15,7 @@ description: >-
 
 # dev-lint - dev 静态检查（md、语言、结构）
 
-**渐进知识库型 skill**:本文件只做意图路由与纪律速览,细则在 `references/` 六篇,按需定点读。原 md-lint、ls-lint 合并而来(ADR-0025 市场重构续令;中文面 zh-lint 经用户令批 144 拆出)。
+**渐进知识库型 skill**:本文件只做意图路由与纪律速览,细则在 `references/` 六篇,按需定点读。原 md-lint、ls-lint 合并而来(ADR-0025 市场重构续令;中文面 zh-lint 经拆出后于批 145 删除,中文语言纪律不设 skill 面)。
 
 ## 一、意图路由
 
@@ -28,7 +28,7 @@ description: >-
 | 新仓脚手架 init 或存量仓结构 check:声明式规则件(toml)与豁免登记 | `references/ls-rules.md` |
 | 结构判定触发用例与边界(脚手架或咨询分流) | `references/ls-evals.md` |
 
-结构模板 `templates/*.toml` 四类型;中文语言面工具 zh-lint.py 在姊妹 skill zh-lint/scripts/。
+结构模板 `templates/*.toml` 四类型。
 
 ## 二、三面速览
 
