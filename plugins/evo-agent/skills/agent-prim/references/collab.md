@@ -31,7 +31,7 @@
 - `streams view <流> --from <seq>`:从序号回放;全量 = `--from 0`
 - `--resume`:从机内 cursor 续读(cursor 落 `~/.local/state/prim/cursor/<流名>`,机内不共享;换机从 0 或显式 seq 起)
 - 默认尾读最近 100 行(s5 tail -n 100);要更多用 `-n N` 调量或 `--from` 回放
-- [实证] 3.0.0a1 斜杠流名(room/、dm/、channel/ 族)view 尾段 cursor 写崩:数据行已全打印,退出码 1 加栈;读 stdout 即得,要净退出码走 s5 tail(agent-s5 面)
+- [实证] 斜杠流名 cursor 崩已修(R1:父链全建,`view room/deferred/<格>` 净退 0);cursor 随每次具名 view 落盘,回放判据不受影响
 - 保留策略(契约面):room/ 与 dm/ 14 天、tasks/shared 30 天;要长留的内容上 shares 看板
 
 ## 与邻 skill 分工

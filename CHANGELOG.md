@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-13 第一百三十七批:herdr 技能淘汰序与 agent-prim 唯一操作面,总台令（附 R1 三件复核）
+
+- **R1 三件复核收编**(REQ-029;ai-ccoe main 实落 d524d7c,总台令引 9a6856c 仓内未寻得,回执注明):斜杠流名 cursor 崩修(父链全建,`streams view room/deferred/w8:p1 -n 3` 净退 0)、streams 手册补 -n/--lines、mode 动词实装(presence 走 shares 键,`agents mode online` 落键实测);agent-prim 差异表收缩至残余十行(cursor 崩与手册 -n 与 mode 三行撤;layout 挂账行入 = herdr 0.9.3 无 layout 子命令,preview 面),mode 入速查表与保留动词表与协作惯例
+- **淘汰序(用户裁:herdr 退役出代理操作面,操作面唯一 = agent-prim)**:herdr-orch 标 deprecated(description 前缀加题下指路条,一条不删只指路,内容留档);evo-herdr README 与双 manifest 与市场条目同步淘汰序;agent-prim 定位与 description 升「代理操作唯一面」,herdr 分工行改「herdr CLI 退役为引擎(同 s5)」
+- **裸命令教学节改五原语反射**:agent-rloop(派单门控改 agents to 内置门控 v2 与信封回执、登记簿核对改 agents view、回执收件改 agents read 忙候、跨机路由改机:名一次命中、herdr --skill 活权威改 agents --llms、参考路由)、agent-s5(分工行两处)、agent-rloop references/rounds.md(四处);裁定 = rloop 协议面存续不整 deprecated(其 herdr 操作面已反射化),候总台裁
+- 路由面同步:AGENTS 定位段、根 README(定位行与 herdr-orch 及 agent-prim 两行)、docs 地图两行、evo-agent README;顺手修 herdr-orch 与 agent-rloop 既存标题半角括号三处(静检 hook 抓出)
+- 版本线 0.11.1 进 0.12.0(淘汰序 = 面级变更;五插件双 manifest、市场清单、五插件 README 发行行);四门禁全绿 + 回执走 streams append fleet
+
 ### 变更 2026-10-13 第一百三十六批:agent-prim R0 三反射收编,总台令
 
 - **反射节重铸**(REQ-028;R0 修件 = ai-ccoe main 5f7b48c):SKILL.md 四节改投递与收件反射三律(投递只看 status 与 CTA、收件 agents read 自带忙候与超时、拒投自动代记 deferred);门控 v2 入律 = TUI 实况检测替代状态字段,四家 TUI 判标族(claude/codex/grok/kimi 实测文案),操作对话框拒投、空 TUI 可投、busy 排队不拦,保守清单误拒优于误投

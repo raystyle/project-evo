@@ -33,7 +33,7 @@
 | `../plugins/evo-doc/skills/doc-cli/references/tool-cli-agents.md` | agent-native CLI 设计(发现通道、token 经济学、脚本 workspace) | 定发现通道与 token 面时 |
 | `../.tools/README.md` | 本仓自用脚本工具登记(md-ref-scan、init、check、scan) | 跑仓门禁或维护骨架模板时 |
 | `../.tools/verification/command-test-cases.md` | check 的等价 PowerShell 用例集(参数化 ProjectRoot) | 验证骨架合规时 |
-| `../plugins/evo-herdr/skills/herdr-orch/SKILL.md` | 主开发台:初始角色邻居窗格并配合工作(通用四窗格与 PI 五窗格布局定式)、评审闸门加自省验收双闸门、任务分发 lane;ADR-0011 起,ADR-0019 双模式定形 | 定开发布局、发评审请求或写对线回执时 |
+| `../plugins/evo-herdr/skills/herdr-orch/SKILL.md` | 主开发台(已淘汰序,操作面唯一 = evo-agent:agent-prim):布局定式、评审闸门加自省验收双闸门、任务分发 lane 教学留档指路;ADR-0011 起,ADR-0019 双模式定形 | 评审闸门与自省验收方法论参考;工位与派单操作走 agent-prim |
 | `../plugins/evo-agent/skills/agent-rloop/SKILL.md` | 目标驱动多角色循环:hst goal 防停、按轮派单回执断言吸收、义务图、s5 信道 | 给一组窗格角色立目标开循环、并行义务图对账时 | 跨仓派单、收回执或落产物契约验收对账时 |
 | `../plugins/evo-distil/skills/distil-skill/SKILL.md` | 技能自进化:三层聚合(sources 唯一出处层、knowledge 带版本双链知识、operations 标准技能与 how-to 手册,git 边界三选一,归档统一字母表),四步环蒸馏提案与合取闸门 | 把项目经验沉淀成 skill、迭代标准技能集时 |
 | `../plugins/evo-lint/skills/md-lint/SKILL.md` | 静态检查报错:md 三面(skill 格式标准、agents 与 claude 长度限制、禁字断链)加 rs 加 py 加 ts,写后自动静检 hook 双端 | 配静态检查门禁、修静检红时 |
@@ -41,5 +41,5 @@
 | `../plugins/evo-lint/skills/zh-lint/SKILL.md` | 简明技术中文静检:禁用词、选词表、句长机检与改写指导(STC 受控中文) | 写改中文技术文档、AI 解释面要无歧义时 |
 | `../plugins/evo-agent/skills/agent-doctor/SKILL.md` | agent 客户端环境诊断修复:四端配置诊断(config-lint)、hook 诊断修复、goal 与 loop 状态、overcast 网关诊断候实装 | 四端配置体检、修 hook、查 goal 与 loop 时 |
 | `../plugins/evo-agent/skills/agent-s5/SKILL.md` | s5 全局看板与频道操作面:文件道加流道、命名约定、读写规约与消息礼仪 | 跨台放取共享文件、频道播报取阅时 |
-| `../plugins/evo-agent/skills/agent-prim/SKILL.md` | 舰队互操作五原语:agents/shares/streams/tasks/pipes 同构文法、id 三产生式、门控与拒投代记与 status 四态、IM 映射与回执惯例 | 跨机找格读屏发提示、传文件交回执、跨机设持久任务、开实时管道时 |
+| `../plugins/evo-agent/skills/agent-prim/SKILL.md` | 舰队互操作五原语与代理操作唯一面:agents/shares/streams/tasks/pipes 同构文法、id 三产生式、门控 v2 与拒投代记与 status 四态、投递与收件三反射、IM 映射与回执惯例 | 跨机找格读屏发提示、读队友格等回话、传文件交回执、跨机设持久任务、开实时管道、开台起格调布局时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |

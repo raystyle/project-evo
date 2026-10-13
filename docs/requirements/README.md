@@ -32,3 +32,4 @@
 | REQ-026 | implemented | must | zh-lint 汇报面吸收(结构律与状态词与验证状态与五模板) | tests/test_project_evo.py |
 | REQ-027 | implemented | must | agent-prim 升格 prim v3 契约对齐(to 统一投递与 id 三产生式与 status 四态) | tests/test_project_evo.py |
 | REQ-028 | implemented | must | agent-prim R0 三反射收编(门控 v2 与 read 隐式收件与拒投代记) | tests/test_project_evo.py |
+| REQ-029 | implemented | must | herdr 技能淘汰序与 agent-prim 唯一操作面(附 R1 三件复核收编) | tests/test_project_evo.py |

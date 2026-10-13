@@ -1,28 +1,29 @@
 ---
 name: agent-prim
 description: >-
-  舰队互操作五原语操作面(prim v3):五命令 agents/shares/streams/tasks/pipes,文法 =
-  全局旗标加动词加位置参数,投递动词统一 to;id 三产生式(裸名全局寻址、机:名或格、
-  local: 前缀,裸 pane id 非法);隐式路由 local 与 --machine 零感知,任何端点同一文法;
-  投递与收件三反射(投递只看 status 与 CTA、收件 agents read 自带忙候与超时、拒投自动
-  代记 deferred 补收);门控 v2 = TUI 实况判标族(操作对话框拒投,busy 排队不拦);
-  status 四态信封(delivered/engine_fail/deferred/stalled);协作惯例(流即房间、
-  DELIVER 即 @、dm/ 与 room/ 前缀、agents view 即 presence、回执走 streams append
-  fleet、--from/--resume 回放)。契约单一真源 = ai-ccoe 仓 plugins/CONTRACT.md,本 skill
-  只路由不复述;与 agent-s5 分工 = s5 是引擎命令面,五原语是骑在其上的协议面。
+  舰队互操作五原语操作面(prim v3),代理操作唯一面(herdr 技能已进淘汰序,herdr CLI
+  退役为引擎):五命令 agents/shares/streams/tasks/pipes,文法 = 全局旗标加动词加位置
+  参数,投递动词统一 to;id 三产生式(裸名全局寻址、机:名或格、local: 前缀,裸 pane
+  id 非法);隐式路由 local 与 --machine 零感知,任何端点同一文法;投递与收件三反射
+  (投递只看 status 与 CTA、收件 agents read 自带忙候与超时、拒投自动代记 deferred
+  补收);门控 v2 = TUI 实况判标族(操作对话框拒投,busy 排队不拦);status 四态信封
+  (delivered/engine_fail/deferred/stalled);协作惯例(流即房间、DELIVER 即 @、dm/
+  与 room/ 前缀、agents view 即 presence、mode 自声明、回执走 streams append fleet、
+  --from/--resume 回放)。契约单一真源 = ai-ccoe 仓 plugins/CONTRACT.md,本 skill 只
+  路由不复述;与 agent-s5 分工 = s5 是引擎命令面,五原语是骑在其上的协议面。
   Use when 要跨机找格读屏发提示、读队友格等回话、把文件交给指定 agent、往流交回执或
-  播报、设别的格所在项目的持久任务、开实时管道时;触发词 agent-prim、五原语、原语、
-  prim、agents、shares、streams、tasks、pipes、to、投递、门控、拒投、deferred、代记、
-  force、强投、四态、信封、status、收件、忙候、timeout-working、判标、隐式路由、
-  machine、房间、room、dm、presence、取用行、回执、回放、cursor、from、resume、
-  舰队互操作。
+  播报、设别的格所在项目的持久任务、开实时管道、开工作台起格调布局时;触发词
+  agent-prim、五原语、原语、prim、agents、shares、streams、tasks、pipes、to、投递、
+  门控、拒投、deferred、代记、force、强投、四态、信封、status、收件、忙候、
+  timeout-working、判标、mode、presence、隐式路由、machine、房间、room、dm、取用行、
+  回执、回放、cursor、from、resume、舰队互操作、唯一操作面。
 ---
 
 # agent-prim - evo-agent 舰队互操作五原语
 
-**定位**:舰队(多机多格 agent)互操作协议的操作面。五命令各管一域,同构文法;DELIVER 自带门控与代记,消息不静默丢失。契约唯一真源 = ai-ccoe 仓 `plugins/CONTRACT.md`,本 skill 蒸馏速览加路由,不复述契约全文;契约演进以真源为准,本 skill 随批对齐。
+**定位**:舰队(多机多格 agent)互操作协议的操作面,代理操作唯一面(用户令 2026-10-13:既有 herdr 技能进淘汰序,herdr CLI 退役为引擎,窗格、工位、投递、读屏操作面一律本 skill)。五命令各管一域,同构文法;DELIVER 自带门控与代记,消息不静默丢失。契约唯一真源 = ai-ccoe 仓 `plugins/CONTRACT.md`,本 skill 蒸馏速览加路由,不复述契约全文;契约演进以真源为准,本 skill 随批对齐。
 
-**版本对齐**:契约五节加五a/b/c/d(2026-10-13 参数规范批,v3.0 蓝图);本机实装 prim 3.0.0a1 R0 修件后实态(2026-10-13:门控 v2 四家 TUI 判标族、read 隐式收件、agents to 拒投代记、动词面与 pipes 域补齐;ai-ccoe main 5f7b48c) [实证:本机 uv 工具重装自仓源,五命令 --llms 与行为实测]。残余差异面(force 审计、VIEW --json、斜杠流名 cursor 崩等)见 `references/commands.md` 差异表,用前实查。
+**版本对齐**:契约五节加五a/b/c/d(2026-10-13 参数规范批,v3.0 蓝图);本机实装 prim 3.0.0a1 R1 修件后实态(2026-10-13:R0 四件加 R1 三件 = 斜杠流名 cursor 崩修、手册补 -n、mode 实装;ai-ccoe main d524d7c) [实证:本机 uv 工具重装自仓源,五命令 --llms 与行为实测]。残余差异面(force 审计、VIEW --json、layout 挂账等)见 `references/commands.md` 差异表,用前实查。
 
 ## 一、五域路由（何时用哪条）
 
@@ -35,7 +36,7 @@ description: >-
 | 要对方实时往我这里发字节(日志、进度,本机收对方发) | `pipes` |
 
 - 与 evo-agent:agent-s5 分工:s5 是引擎命令面(put/get/ls/del/append/tail 直用);五原语是骑在 s5 与 herdr 与 hst 之上的协议面(寻址、门控、模板、状态信封)。裸引擎够用走 agent-s5;要投给人走本 skill。
-- 与 evo-herdr:herdr-orch 分工:herdr 管本台窗格布局与信号;跨机跨格投递走本 skill。
+- herdr 分工(淘汰序后):herdr CLI 退役为引擎(同 s5),窗格、工位、投递、读屏操作面一律本 skill(`agents start/ws/shell/dev/split/tab/zoom`);既有 herdr 技能(herdr-orch 等)已进淘汰序,指路至此。
 
 ## 二、文法与全局旗标（五命令同构）
 
@@ -46,7 +47,7 @@ description: >-
 
 - 全局七旗标任意槽:`--help -h --llms --json --format --full-output --filter-output --schema`;`--` 逃生口;未知词 usage 退 2,禁静默吞
 - 投递动词统一 `to`(v3.0 收口;`prompt` 在 agents 域为 to 别名);`--force` 任意参数位识别
-- 保留动词首词命中即非目标:view read keys list put get append set open close to prompt machines start ws shell dev split tab zoom trust sync
+- 保留动词首词命中即非目标:view read keys list mode put get append set open close to prompt machines start ws shell dev split tab zoom trust sync
 - 逐命令动词表、输出契约与错误码表见 `references/commands.md`
 
 ## 三、id 三产生式（目标文法）
@@ -99,7 +100,6 @@ description: >-
 | `streams view` 只见最近一段 | 默认尾读最近 100 行(s5 tail -n 100);`-n`/`--lines` 调量,全量回放 `--from 0`,续读 `--resume` |
 | streams 拒投后找消息原文 | 代记通知自动落 `room/deferred/` 但不含消息体、消息也不进流;要留原文改走 `streams append`(OPERATE 无门控)记流 |
 | 目标 working 就不敢投 | 门控 v2 busy 排队不拦,只拒操作对话框;要等人回话用 `agents read` 忙候语义 |
-| 斜杠流名 view 退出码 1 | cursor 写入崩但数据行已全打印;读 stdout 即得,净退出码走 s5 tail [实证:R0 后复测仍在] |
 | tasks 面沿用 goal 旧名 | hst 已正名 task;取用行 = `hst task show`,旧 goal 面仅作回退 |
 
 ## 七、协作惯例（速览,IM 映射）
@@ -109,7 +109,7 @@ description: >-
 | 聊天室/房间 | 流(stream),`room/` 前缀表房间,如 room/deferred、room/force-audit |
 | @某人 | DELIVER(门控加信封加提示词落格) |
 | 私信 | `dm/<a>/<b>` 双方名专线流 |
-| 在场状态 | `agents view`(presence 展示列) |
+| 在场状态 | `agents view` 看全场(presence 展示列);`agents mode <dnd|away|online> [until]` 自声明 |
 | 离线消息补收 | room/deferred 代记流 |
 
 - **回执惯例**:批次完工交回执走 `streams append fleet "<一句话>"`(host 前缀自动带,勿手写裸 s5 append;判例:批 132 首例回执手写前缀写错机名);收方 tail 取阅,取阅不回写

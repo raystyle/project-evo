@@ -1,7 +1,7 @@
 {
   "name": "evo-herdr",
-  "version": "0.11.1",
-  "description": "项目进化主开发台:herdr-orch(窗格布局定式、评审闸门与自省验收双闸门、lane 任务分发、工位带起与跨机器路由、信号命令速查);目标循环协议(派单回执断言吸收、义务图)在 evo-agent:agent-rloop",
+  "version": "0.12.0",
+  "description": "项目进化主开发台(已进淘汰序):herdr-orch 教学留档指路,代理操作面唯一 = evo-agent:agent-prim(窗格布局定式、评审闸门与自省验收双闸门、lane 任务分发留档);目标循环协议(派单回执断言吸收、义务图)在 evo-agent:agent-rloop",
   "author": {
     "name": "raystyle"
   },
