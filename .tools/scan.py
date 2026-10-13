@@ -20,7 +20,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "plugins" / "evo-doc" / "scripts"))  # mdrules 唯一权威随插件 hook 走
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "plugins" / "dev" / "scripts"))  # mdrules 唯一权威随插件 hook 走
 from mdrules import SKIP_DIRS, file_violations  # noqa: E402
 
 SECRET_RULES: list[tuple[str, str, re.Pattern]] = [

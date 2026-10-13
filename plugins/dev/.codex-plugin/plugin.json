@@ -1,0 +1,34 @@
+{
+  "name": "dev",
+  "version": "0.13.0",
+  "description": "开发治理面插件,五 skill:doc-gov(ADR 与 REQ 需求决策、文档即代码)、dev-cli(Agent 原生友好开发)、md-lint(五面静检)、ls-lint(类型化结构脚手架与声明式检查)、zh-lint(简明技术中文静检);含写后静检 hook 与提交挡板脚本",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/dev",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "skill",
+    "governance",
+    "lint",
+    "fleet",
+    "llm"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Dev",
+    "shortDescription": "开发治理面:文档决策、agent 友好 CLI、三面静检。",
+    "developerName": "raystyle",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "用 doc-gov 给这个项目立 ADR 与 REQ 体系。",
+      "用 zh-lint 给中文技术文档做简明静检。"
+    ]
+  }
+}

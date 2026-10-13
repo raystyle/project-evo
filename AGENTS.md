@@ -1,12 +1,12 @@
 # ProjectEvo 开发协作规则
 
 > 唯一权威源。`CLAUDE.md` 仅一行 `@AGENTS.md` 桥接,不重复维护。
-> 定位:项目治理插件市场仓(五插件十一 skill 同属项目治理面,非业务工具面):evo-doc(文档治理与原生设计:doc-gov 需求决策与代码契约注释与文档即代码、doc-cli Agent 原生友好开发;插件级 md 禁字 hook 与 skill 解耦)、evo-herdr(主开发台 herdr-orch 已进淘汰序,代理操作面唯一 = evo-agent:agent-prim:窗格布局定式、评审闸门与自省验收双闸门、lane 任务分发、工位带起教学留档指路;herdr 态是检测信号,md 文件是状态与产物,消息与产物传递内置 s5)、evo-distil(技能自进化:distil-skill 三层聚合与项目级标准 skill 产生迭代)、evo-lint(静态检查与结构标准:md-lint 五面静检、ls-lint 类型化结构脚手架与声明式检查、zh-lint 简明技术中文静检;写后自动静检 hook 双端)、evo-agent(agent 客户端环境与共享能力四 skill:agent-doctor 四端配置诊断修复与 hook 诊断修复与 goal 和 loop 状态与 overcast 网关诊断候实装、agent-s5 全局看板与实时流、agent-rloop 目标驱动多角色循环进化任务、agent-prim 舰队互操作五原语(代理操作唯一面,herdr 技能淘汰序指路于此);增强 hst doctor 编排补面),市场名 project-evo,客户端显示 `<插件>:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
+> 定位:项目治理插件市场仓(两插件十一 skill 同属项目治理面,非业务工具面):dev(开发治理面:doc-gov 需求决策与代码契约注释与文档即代码、dev-cli Agent 原生友好开发、md-lint 五面静检、ls-lint 类型化结构脚手架与声明式检查、zh-lint 简明技术中文静检;插件级写后静检 hook 与 md 禁字挡板脚本随插件)、evo(agent 操作面六 skill:agents 消息域原语与五原语共享面(to 投递、id 三产生式、命名标准、门控 v2、信封 v2、status 四态)、shares 文件域、streams 流域、tasks 持久任务域、pipes 实时字节域、distil 技能自进化三层聚合),市场名 project-evo,客户端显示 `<插件>:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
 
 ## Commands
 
 - `uv run pytest` 全测试(脚本行为 + 清单一致性守卫 + 仓内禁字回归)
-- `uv run .tools/md-ref-scan.py plugins/<插件>/skills/<skill>` 断链扫描(五插件九 skill 各跑一次;pre-commit 自动)
+- `uv run .tools/md-ref-scan.py plugins/<插件>/skills/<skill>` 断链扫描(两插件十一 skill 各跑一次;pre-commit 自动)
 - `uv run .tools/check.py` 本仓骨架自检(PE-01 至 PE-12;下游仓 PE-11 历史档案豁免走 PEVO_CHECK_ALLOW,正则见 docs/guides/gates.md)
 - `uv run .tools/scan.py . --no-history` 禁字与密钥扫描(测试夹具与研究档案的公开示例假密钥走 `PEVO_SCAN_ALLOW` 豁免:tests/test_project_evo.py 的 ghp_ 假 token 与 docs/research/S006 的公开示例样值;标准命令与完整豁免正则见 docs/guides/gates.md)
 - 提交挡板:`git config core.hooksPath githooks`(md 禁字 + 断链,不过不进库)
@@ -17,7 +17,7 @@
 - 变更完整性:只改 skill 不同步 SKILL 索引/references/CHANGELOG = 变更不完整
 - 事实性断言标六态;操作前先查 references/ 索引,禁止凭记忆重写删减版
 - 吸收即提炼:外部信源与家族实践进库只留最准确精练的可复用表达;成品不点名外部仓库
-- 五插件各持双 manifest(Claude/Codex 面)字段同步改;五插件同版本线,Claude 市场条目与各插件双 manifest 版本一致(守卫测试断言;Codex 市场清单无 version 字段)
+- 两插件各持双 manifest(Claude/Codex 面)字段同步改;两插件同版本线,Claude 市场条目与各插件双 manifest 版本一致(守卫测试断言;Codex 市场清单无 version 字段)
 - 不可逆技术选择先立 `docs/adr/`;新需求先立 `docs/requirements/REQ` 再实现
 - 新写与改写 SKILL.md 命令块实证准入:写进去的命令当会真跑过(ADR-0010 构造纪律)
 - skill 依赖的外部命令(gh、reader 等)全平台分发安装由宿主工具链 omc 与 ark 统一维护:skill 只认 PATH(或等价显式指定),不内置安装路径
@@ -26,20 +26,20 @@
 
 - 禁止 emoji;流程图用 mermaid,禁止 box-drawing 手拼伪流程图
 - frontmatter 禁 `version`/`argument-hint` 等非官方字段
-- 生成物手改、双份并行维护(单一权威源:skill 只在 `plugins/<插件>/skills/` 下,插件共五个:evo-doc、evo-herdr、evo-distil、evo-lint、evo-agent)
+- 生成物手改、双份并行维护(单一权威源:skill 只在 `plugins/<插件>/skills/` 下,插件共两个:dev、evo;ADR-0025 前旧插件名只存历史档案)
 - 中文 md 用 PowerShell 管道批量改写(塌行/截断,用编辑工具逐处改)
 
 ## Read first
 
 - 本文件(合同)
 - `docs/README.md`(全仓文档地图 + skill references 索引)
-- `plugins/evo-doc/skills/doc-gov/SKILL.md`(治理知识面意图路由)
+- `plugins/dev/skills/doc-gov/SKILL.md`(治理知识面意图路由)
 - `docs/adr/` 仅在改对应决策时;`CHANGELOG.md`/`ROADMAP.md` 查历史与阶段
 
 ## 环境
 
 - 平台:Windows + PowerShell 7(禁 powershell.exe 5.1 与 cmd);uv 运行时,脚本 PEP 723 零依赖(>=3.12);WSL 到宿主恒走 127.0.0.1 回环加 interop 直调,不走宿主 mesh IP;验收运维脚本载体统一 pwsh
-- 当前阶段:v0.15.0 已封版(2026-10-12,第一百二十三至一百三十一批:herdr-flywheel 升格 evo-agent:agent-rloop、s5 归一 agent-s5、s5 信道翻转与窗格登记簿、zh-lint 受控中文、channels 判据,版本载体 0.10.0);已封版沿革与批次史见 CHANGELOG 与 ROADMAP,不在本文件续写
-- 部署:Claude Code `/plugin marketplace add raystyle/project-evo` 后按插件装(如 `/plugin install evo-doc@project-evo`);Codex `codex plugin marketplace add raystyle/project-evo`;Grok `grok plugin install <插件>@project-evo --trust`;Kimi 无市场,拷 `plugins/*/skills/*` 至 `~/.kimi/skills`
+- 当前阶段:批 140 市场重构(2026-10-13,ADR-0025):两插件十一 skill = dev 五加 evo 六,agent-prim 拆五原语 skill,doc-cli 改名 dev-cli,distil-skill 改名 distil,herdr-orch 与 agent-s5 与 agent-rloop 与 agent-doctor 裁撤,版本载体 0.13.0;v0.15.0 前封版沿革与批次史见 CHANGELOG 与 ROADMAP,不在本文件续写
+- 部署:Claude Code `/plugin marketplace add raystyle/project-evo` 后按插件装(`/plugin install evo@project-evo` 或 `/plugin install dev@project-evo`);Codex `codex plugin marketplace add raystyle/project-evo`;Grok `grok plugin install <插件>@project-evo --trust`;Kimi 无市场,拷 `plugins/*/skills/*` 至 `~/.kimi/skills`
 - 工作根:`~/repos/ProjectEvo`(WSL 独立 VHDX 挂载 /mnt/wsl/repos 快捷 ~/repos;2026-09-16 迁移,旧位 /mnt/d/ProjectEvo 过渡后裁)
 - 项目状态与待办见 `ROADMAP.md`,不在本文件维护

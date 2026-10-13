@@ -5,10 +5,10 @@
   },
   "plugins": [
     {
-      "name": "evo-doc",
+      "name": "dev",
       "source": {
         "source": "local",
-        "path": "./plugins/evo-doc"
+        "path": "./plugins/dev"
       },
       "policy": {
         "installation": "AVAILABLE",
@@ -17,46 +17,10 @@
       "category": "Productivity"
     },
     {
-      "name": "evo-herdr",
+      "name": "evo",
       "source": {
         "source": "local",
-        "path": "./plugins/evo-herdr"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Productivity"
-    },
-    {
-      "name": "evo-distil",
-      "source": {
-        "source": "local",
-        "path": "./plugins/evo-distil"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Productivity"
-    },
-    {
-      "name": "evo-lint",
-      "source": {
-        "source": "local",
-        "path": "./plugins/evo-lint"
-      },
-      "policy": {
-        "installation": "AVAILABLE",
-        "authentication": "ON_INSTALL"
-      },
-      "category": "Productivity"
-    },
-    {
-      "name": "evo-agent",
-      "source": {
-        "source": "local",
-        "path": "./plugins/evo-agent"
+        "path": "./plugins/evo"
       },
       "policy": {
         "installation": "AVAILABLE",

@@ -1,6 +1,6 @@
 # docs 地图
 
-> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、research 存研究档案;过程轨迹(日记)继续落 diary/,形态权威已迁 `../plugins/evo-distil/skills/distil-skill/references/trajectories.md`;skill 知识库在 `plugins/<插件>/skills/` 下(五插件九 skill)。
+> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、research 存研究档案;过程轨迹(日记)继续落 diary/,形态权威已迁 `../plugins/evo/skills/distil/references/trajectories.md`;skill 知识库在 `plugins/<插件>/skills/` 下(两插件十一 skill)。
 
 | 文档 | 讲什么 | 何时看 |
 |------|--------|--------|
@@ -20,26 +20,26 @@
 | `research/S011-herdr-dispatch对照.md` | herdr 任务分发编排对照分流(lane 模型、探针契约、py 脚本评估结论;档案) | 改 lane-dispatch 标准或复核委派口径时 |
 | `research/S012-五窗格开发布局对照.md` | 窗格布局定式对照(通用四窗格与 PI 五窗格、双闸门、会话纪律;档案) | 改布局定式或自省验收口径时 |
 | `research/S013-研究形态与工具链范式对照.md` | 研究形态与工具链范式对照分流(三仓研究形态、十仓工具链扫描;档案) | 复核四形态与工具范式口径时 |
-| `diary/2026-09-08-bh与reader使用过程.md` | 轨迹样例(写法权威在 distil-skill 轨迹篇) | 写轨迹前对照格式时 |
-| `../plugins/evo-doc/skills/doc-gov/SKILL.md` | 文档框架治理知识本体(意图路由与形态速览) | 使用/修改 skill 前 |
-| `../plugins/evo-doc/skills/doc-gov/references/README.md` | 参考索引(5 篇全量与快速路由) | 找治理参考时先看 |
-| `../plugins/evo-doc/skills/doc-gov/references/base-adr.md` | ADR 模板、状态机、supersede 流 | 立 ADR 时 |
-| `../plugins/evo-doc/skills/doc-gov/references/base-req.md` | REQ 状态机与 trace 回填 | 立需求时 |
-| `../plugins/evo-doc/skills/doc-gov/references/base-code-doc.md` | 代码 doc 注释契约与文档即代码(单一权威源、投影再生成) | 立代码契约注释或投影守卫时 |
-| `../plugins/evo-doc/skills/doc-gov/references/base-research.md` | 研究档案形态(S 编号一题一篇、六态结论、对照分流) | 立研究档案时 |
-| `../plugins/evo-doc/skills/doc-gov/references/tool-project-kit.md` | 项目工具链范式(工具归档、PEP 723 零依赖 uv 直跑、门禁与发布) | 建项目工具骨架时 |
-| `../plugins/evo-doc/skills/doc-cli/SKILL.md` | Agent 原生友好开发指导(五件速览与意图路由) | 造或改 agent 友好 CLI 时 |
-| `../plugins/evo-doc/skills/doc-cli/references/agent-face.md` | Agent 友好 CLI 五件(手册面、CTA 协议、帮助面、自省、裸调用) | 配 CLI agent 面时 |
-| `../plugins/evo-doc/skills/doc-cli/references/tool-cli-agents.md` | agent-native CLI 设计(发现通道、token 经济学、脚本 workspace) | 定发现通道与 token 面时 |
+| `diary/2026-09-08-bh与reader使用过程.md` | 轨迹样例(写法权威在 distil 轨迹篇) | 写轨迹前对照格式时 |
+| `../plugins/dev/skills/doc-gov/SKILL.md` | 文档框架治理知识本体(意图路由与形态速览) | 使用/修改 skill 前 |
+| `../plugins/dev/skills/doc-gov/references/README.md` | 参考索引(5 篇全量与快速路由) | 找治理参考时先看 |
+| `../plugins/dev/skills/doc-gov/references/base-adr.md` | ADR 模板、状态机、supersede 流 | 立 ADR 时 |
+| `../plugins/dev/skills/doc-gov/references/base-req.md` | REQ 状态机与 trace 回填 | 立需求时 |
+| `../plugins/dev/skills/doc-gov/references/base-code-doc.md` | 代码 doc 注释契约与文档即代码(单一权威源、投影再生成) | 立代码契约注释或投影守卫时 |
+| `../plugins/dev/skills/doc-gov/references/base-research.md` | 研究档案形态(S 编号一题一篇、六态结论、对照分流) | 立研究档案时 |
+| `../plugins/dev/skills/doc-gov/references/tool-project-kit.md` | 项目工具链范式(工具归档、PEP 723 零依赖 uv 直跑、门禁与发布) | 建项目工具骨架时 |
+| `../plugins/dev/skills/dev-cli/SKILL.md` | Agent 原生友好开发指导(原 doc-cli)(五件速览与意图路由) | 造或改 agent 友好 CLI 时 |
+| `../plugins/dev/skills/dev-cli/references/agent-face.md` | Agent 友好 CLI 五件(手册面、CTA 协议、帮助面、自省、裸调用) | 配 CLI agent 面时 |
+| `../plugins/dev/skills/dev-cli/references/tool-cli-agents.md` | agent-native CLI 设计(发现通道、token 经济学、脚本 workspace) | 定发现通道与 token 面时 |
 | `../.tools/README.md` | 本仓自用脚本工具登记(md-ref-scan、init、check、scan) | 跑仓门禁或维护骨架模板时 |
 | `../.tools/verification/command-test-cases.md` | check 的等价 PowerShell 用例集(参数化 ProjectRoot) | 验证骨架合规时 |
-| `../plugins/evo-herdr/skills/herdr-orch/SKILL.md` | 主开发台(已淘汰序,操作面唯一 = evo-agent:agent-prim):布局定式、评审闸门加自省验收双闸门、任务分发 lane 教学留档指路;ADR-0011 起,ADR-0019 双模式定形 | 评审闸门与自省验收方法论参考;工位与派单操作走 agent-prim |
-| `../plugins/evo-agent/skills/agent-rloop/SKILL.md` | 目标驱动多角色循环:hst goal 防停、按轮派单回执断言吸收、义务图、s5 信道 | 给一组窗格角色立目标开循环、并行义务图对账时 | 跨仓派单、收回执或落产物契约验收对账时 |
-| `../plugins/evo-distil/skills/distil-skill/SKILL.md` | 技能自进化:三层聚合(sources 唯一出处层、knowledge 带版本双链知识、operations 标准技能与 how-to 手册,git 边界三选一,归档统一字母表),四步环蒸馏提案与合取闸门 | 把项目经验沉淀成 skill、迭代标准技能集时 |
-| `../plugins/evo-lint/skills/md-lint/SKILL.md` | 静态检查报错:md 三面(skill 格式标准、agents 与 claude 长度限制、禁字断链)加 rs 加 py 加 ts,写后自动静检 hook 双端 | 配静态检查门禁、修静检红时 |
-| `../plugins/evo-lint/skills/ls-lint/SKILL.md` | 类型化项目结构标准:四类型模板卡与声明式规则件,init 脚手架加结构 check | 新仓脚手架、存量仓结构 lint 时 |
-| `../plugins/evo-lint/skills/zh-lint/SKILL.md` | 简明技术中文静检:禁用词、选词表、句长机检与改写指导(STC 受控中文) | 写改中文技术文档、AI 解释面要无歧义时 |
-| `../plugins/evo-agent/skills/agent-doctor/SKILL.md` | agent 客户端环境诊断修复:四端配置诊断(config-lint)、hook 诊断修复、goal 与 loop 状态、overcast 网关诊断候实装 | 四端配置体检、修 hook、查 goal 与 loop 时 |
-| `../plugins/evo-agent/skills/agent-s5/SKILL.md` | s5 全局看板与频道操作面:文件道加流道、命名约定、读写规约与消息礼仪 | 跨台放取共享文件、频道播报取阅时 |
-| `../plugins/evo-agent/skills/agent-prim/SKILL.md` | 舰队互操作五原语与代理操作唯一面:agents/shares/streams/tasks/pipes 同构文法、id 三产生式、门控 v2 与拒投代记与 status 四态、投递与收件三反射、IM 映射与回执惯例 | 跨机找格读屏发提示、读队友格等回话、传文件交回执、跨机设持久任务、开实时管道、开台起格调布局时 |
+| `../plugins/evo/skills/distil/SKILL.md` | 技能自进化:三层聚合(sources 唯一出处层、knowledge 带版本双链知识、operations 标准技能与 how-to 手册,git 边界三选一,归档统一字母表),四步环蒸馏提案与合取闸门 | 把项目经验沉淀成 skill、迭代标准技能集时 |
+| `../plugins/dev/skills/md-lint/SKILL.md` | 静态检查报错:md 三面(skill 格式标准、agents 与 claude 长度限制、禁字断链)加 rs 加 py 加 ts,写后自动静检 hook 双端 | 配静态检查门禁、修静检红时 |
+| `../plugins/dev/skills/ls-lint/SKILL.md` | 类型化项目结构标准:四类型模板卡与声明式规则件,init 脚手架加结构 check | 新仓脚手架、存量仓结构 lint 时 |
+| `../plugins/dev/skills/zh-lint/SKILL.md` | 简明技术中文静检:禁用词、选词表、句长机检与改写指导(STC 受控中文) | 写改中文技术文档、AI 解释面要无歧义时 |
+| `../plugins/evo/skills/agents/SKILL.md` | 五原语消息域原语与共享面枢纽:to 投递、id 三产生式、命名标准 工作台-类型-编号、门控 v2 尾窗、信封 v2、status 四态、read 收件、工位管理 | 告诉或委派某 agent、找格读屏等回话、开工作台调窗格布局、查在场时 |
+| `../plugins/evo/skills/shares/SKILL.md` | 文件域原语:put/get/to,内容哈希键 | 把文件共享给指定 agent、交付产物、取回共享时 |
+| `../plugins/evo/skills/streams/SKILL.md` | 流域原语:append/view/to,流即房间,fleet 回执主频道 | 往流交回执或广播、私信、回放续读时 |
+| `../plugins/evo/skills/tasks/SKILL.md` | 持久任务域原语:set/to,事件入流,远机零 ssh | 设别的格的持久任务、跨机委派目标时 |
+| `../plugins/evo/skills/pipes/SKILL.md` | 实时字节域原语:open/close/to,本机收对方发 | 要对方实时发字节、开实时管道时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |

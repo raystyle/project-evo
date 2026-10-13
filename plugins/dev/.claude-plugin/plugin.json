@@ -1,0 +1,19 @@
+{
+  "name": "dev",
+  "version": "0.13.0",
+  "description": "开发治理面插件,五 skill:doc-gov(ADR 与 REQ 需求决策、文档即代码)、dev-cli(Agent 原生友好开发)、md-lint(五面静检)、ls-lint(类型化结构脚手架与声明式检查)、zh-lint(简明技术中文静检);含写后静检 hook 与提交挡板脚本",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/dev",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "skill",
+    "governance",
+    "lint",
+    "fleet",
+    "llm"
+  ]
+}

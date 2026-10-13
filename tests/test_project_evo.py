@@ -16,19 +16,16 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-PLUGIN_NAMES = ("evo-doc", "evo-herdr", "evo-distil", "evo-lint", "evo-agent")
+PLUGIN_NAMES = ("dev", "evo")
 PLUGINS = {n: REPO / "plugins" / n for n in PLUGIN_NAMES}
 SCRIPTS = REPO / ".tools"
-GUARD = PLUGINS["evo-doc"] / "scripts" / "md-guard.py"
-LINT_HOOK = PLUGINS["evo-lint"] / "scripts" / "lint-hook.py"
-CONFIG_LINT = PLUGINS["evo-agent"] / "skills" / "agent-doctor" / "scripts" / "config-lint.py"
+GUARD = PLUGINS["dev"] / "scripts" / "md-guard.py"
+LINT_HOOK = PLUGINS["dev"] / "scripts" / "lint-hook.py"
 SKILLS = {
-    "evo-doc": ["doc-gov", "doc-cli"],
-    "evo-herdr": ["herdr-orch"],
-    "evo-distil": ["distil-skill"],
-    "evo-lint": ["md-lint", "ls-lint", "zh-lint"],
-    "evo-agent": ["agent-doctor", "agent-s5", "agent-rloop", "agent-prim"],
+    "dev": ["dev-cli", "doc-gov", "ls-lint", "md-lint", "zh-lint"],
+    "evo": ["agents", "distil", "pipes", "shares", "streams", "tasks"],
 }
+SINGLE_FILE_SKILLS = {"shares", "streams", "tasks", "pipes"}  # 四原语域面单文件,共享面在 agents skill(ADR-0025)
 
 
 def _load(name: str):
@@ -268,15 +265,15 @@ def test_check_json_skip_counts_via_allow(tmp_path: Path):
 
 
 def test_marketplace_catalog_consistency():
-    """清单守卫:市场名 project-evo 收五插件、双清单一致、每插件双 manifest 与市场版本同步、
-    五插件同版、九 skill 分属正确与 hook 面在位(ADR-0010 起逐批演进至五插件,批 113 增 evo-agent、批 117 增 agent-s5)。"""
+    """清单守卫:市场名 project-evo 收两插件、双清单一致、每插件双 manifest 与市场版本同步、
+    两插件同版、skill 分属正确与 hook 面在位(ADR-0025 市场重构,dev 与 evo)。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     codex_mkt = json.loads((REPO / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
     assert claude_mkt["name"] == codex_mkt["name"] == "project-evo", "市场名须为 project-evo"
 
     names_c = {p["name"] for p in claude_mkt["plugins"]}
     names_x = {p["name"] for p in codex_mkt["plugins"]}
-    assert names_c == names_x == set(PLUGIN_NAMES), f"市场恰收五插件(ADR-0010 起): {names_c}"
+    assert names_c == names_x == set(PLUGIN_NAMES), f"市场恰收两插件(ADR-0025): {names_c}"
     for p in claude_mkt["plugins"]:
         assert (REPO / p["source"].removeprefix("./")).is_dir(), f"Claude source 不可达: {p['source']}"
     for p in codex_mkt["plugins"]:
@@ -302,18 +299,18 @@ def test_marketplace_catalog_consistency():
             head = text.split("---")[1]
             declared = next(l.split(":", 1)[1].strip() for l in head.splitlines() if l.startswith("name:"))
             assert declared == sname, f"frontmatter name({declared}) 须与目录名({sname})一致"
-            assert (skills / sname / "references").is_dir(), f"参考目录缺失: {sname}"
+            if sname not in SINGLE_FILE_SKILLS:
+                assert (skills / sname / "references").is_dir(), f"参考目录缺失: {sname}"
 
-    assert len(versions) == 1, f"五插件同版本线(ADR-0010): {versions}"
+    assert len(versions) == 1, f"两插件同版本线(ADR-0025): {versions}"
 
     tools = REPO / ".tools"
     for s in ("init.py", "check.py", "scan.py", "md-ref-scan.py"):
         assert (tools / s).is_file(), f"仓工具缺失: {s}"
     assert (tools / "templates").is_dir(), ".tools 缺骨架模板目录"
-    plugin_scripts = PLUGINS["evo-doc"] / "scripts"
-    for s in ("md-guard.py", "mdrules.py"):
-        assert (plugin_scripts / s).is_file(), f"插件级脚本缺失(pre-commit 挡板用,live hook 已撤): {s}"
-    assert not (PLUGINS["evo-doc"] / "hooks" / "hooks.json").exists(), "live PostToolUse 禁字 hook 已裁撤(批 105),不得回潮"
+    plugin_scripts = PLUGINS["dev"] / "scripts"
+    for s in ("md-guard.py", "mdrules.py", "lint-hook.py"):
+        assert (plugin_scripts / s).is_file(), f"插件级脚本缺失: {s}"
 
 
 def _run_md_guard(payload: str) -> subprocess.CompletedProcess:
@@ -408,9 +405,9 @@ def test_lint_hook_flags_md_forbidden(tmp_path: Path):
 
 def test_evo_lint_hooks_use_braced_plugin_root():
     """hook 命令须花括号 ${CLAUDE_PLUGIN_ROOT} 加 commandWindows 双形(Codex 只替换花括号,Windows 走 cmd.exe /C)。"""
-    hooks = json.loads((PLUGINS["evo-lint"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+    hooks = json.loads((PLUGINS["dev"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
     handlers = [h for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]]
-    assert handlers, "evo-lint hooks.json 须有 PostToolUse 处理器"
+    assert handlers, "dev hooks.json 须有 PostToolUse 处理器"
     for h in handlers:
         for field in ("command", "commandWindows"):
             cmd = h.get(field)
@@ -420,16 +417,16 @@ def test_evo_lint_hooks_use_braced_plugin_root():
 
 
 def test_evo_lint_hook_status_message_english():
-    """hook 段名纯英文裁定(herdr/hst 状态栏段名英文化同批):statusMessage 形为 evo-lint 加空格加英文短形,
-    statusrender 拼接形 evo-lint-{title};标题段限小写字母数字连字符,防中文名回潮。"""
-    hooks = json.loads((PLUGINS["evo-lint"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+    """hook 段名纯英文裁定:statusMessage 形为 dev 加空格加英文短形(ADR-0025 两插件形),
+    statusrender 拼接形 dev-{title};标题段限小写字母数字连字符,防中文名回潮。"""
+    hooks = json.loads((PLUGINS["dev"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
     handlers = [h for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]]
     for h in handlers:
         msg = h.get("statusMessage", "")
-        assert msg.startswith("evo-lint "), f"statusMessage 须带插件前缀: {msg}"
-        title = msg.removeprefix("evo-lint ")
+        assert msg.startswith("dev "), f"statusMessage 须带插件前缀: {msg}"
+        title = msg.removeprefix("dev ")
         assert re.fullmatch(r"[a-z0-9-]+", title), \
-            f"hook 段名须纯英文短形(statusrender 拼接 evo-lint-{{title}}): {msg}"
+            f"hook 段名须纯英文短形(statusrender 拼接 dev-{{title}}): {msg}"
 
 
 def test_live_md_hook_stays_removed():
@@ -439,7 +436,10 @@ def test_live_md_hook_stays_removed():
     裁撤后禁字纪律由 githooks pre-commit 的 --staged 挡板与 check.py PE-11 承担,
     脚本本体保留。此用例守住裁撤不回潮(原 REQ-014 挂接回归用例的翻转形)。
     """
-    assert not (PLUGINS["evo-doc"] / "hooks").exists(), "插件 live hook 目录不得回潮(批 105 裁撤)"
+    hooks = json.loads((PLUGINS["dev"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+    cmds = " ".join(h.get("command", "") + h.get("commandWindows", "")
+                    for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"])
+    assert "md-guard" not in cmds, "md-guard 不得作 live hook(批 105 裁撤),只走 pre-commit --staged"
     settings = json.loads((REPO / ".claude" / "settings.json").read_text(encoding="utf-8"))
     assert not settings.get("hooks", {}).get("PostToolUse"), \
         "仓 settings.json 不得回挂 live PostToolUse 禁字挡板(批 105 裁撤)"
@@ -451,7 +451,7 @@ def test_pre_commit_matches_current_skills():
     历史:批 81 删 skill 后 CI 悬空引用漏改而红;本用例让清单与挡板漂移当场红灯。
     """
     text = (REPO / "githooks" / "pre-commit").read_text(encoding="utf-8")
-    guard_ref = "plugins/evo-doc/scripts/md-guard.py"
+    guard_ref = "plugins/dev/scripts/md-guard.py"
     assert guard_ref in text, f"pre-commit 须挂 {guard_ref}"
     assert (REPO / guard_ref).is_file(), f"pre-commit 挂的挡板不存在: {guard_ref}"
     targets = sorted(re.findall(r"md-ref-scan\.py (\S+)", text))
@@ -484,90 +484,6 @@ def test_fleet_exec_tool():
     assert mod.build_cmd(["pane", "list"], None) == ["herdr", "pane", "list"]
     assert mod.build_cmd(["agent", "list"], "lan-mac") == \
         ["herdr", "--machine", "lan-mac", "agent", "list"]
-
-
-def _config_home(tmp_path: Path, *, bad: bool = True) -> Path:
-    """agent-doctor 配置面夹具:bad 形四端各埋错与治理项,good 形零错零警。"""
-    home = tmp_path / "home"
-    (home / ".claude").mkdir(parents=True)
-    if bad:
-        (home / ".claude" / "settings.json").write_text(json.dumps({
-            "enabledPlugins": {"ghost@project-evo": True},
-            "env": {"ANTHROPIC_AUTH_TOKEN": "plaintext-not-a-real-secret",
-                    "ANTHROPIC_BASE_URL": "http://gw.invalid:1/v1"},
-            "statusLine": {"type": "command", "command": '"/nope/hst" render'},
-            "unknownTop": 1,
-        }, ensure_ascii=False), encoding="utf-8")
-        (home / ".codex").mkdir()
-        (home / ".codex" / "config.toml").write_text(
-            'model = "x"\n[mcp_servers.bad]\nargs = ["a"]\n', encoding="utf-8")
-        (home / ".grok").mkdir()
-        (home / ".grok" / "config.toml").write_text(
-            '[plugins]\nenabled = ["ghost"]\n', encoding="utf-8")
-        (home / ".kimi-code").mkdir()
-        (home / ".kimi-code" / "config.toml").write_text(
-            '[[hooks]]\ncommand = \'bash "/nope/kimi-hook.sh" x\'\nevent = "Stop"\ntimeout = 10\n',
-            encoding="utf-8")
-        (home / ".kimi" / "skills" / "orphan").mkdir(parents=True)
-    else:
-        cache = home / ".claude" / "plugins" / "cache" / "project-evo" / "evo-doc"
-        cache.mkdir(parents=True)
-        (home / ".claude" / "settings.json").write_text(json.dumps(
-            {"enabledPlugins": {"evo-doc@project-evo": True}}), encoding="utf-8")
-        skill = home / ".kimi" / "skills" / "doc-gov"
-        skill.mkdir(parents=True)
-        (skill / "SKILL.md").write_text("---\nname: doc-gov\n---\n正文\n", encoding="utf-8")
-    return home
-
-
-def _load_config_lint(name: str):
-    spec = importlib.util.spec_from_file_location(name, CONFIG_LINT)
-    mod = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(mod)
-    return mod
-
-
-def test_config_lint_catches_all_four_faces(tmp_path: Path):
-    """agent-doctor 配置面:四端坏配置逐面报,判据分档对账(悬空引用走 advisory 的文档容忍态)。"""
-    mod = _load_config_lint("pevo_config_lint")
-    home = _config_home(tmp_path)
-    findings, notes = mod.run(home, home / ".claude" / "settings.json",
-                              home / ".codex" / "config.toml",
-                              home / ".grok" / "config.toml",
-                              home / ".kimi-code" / "config.toml",
-                              home / ".kimi" / "skills", None)
-    errors = [f for f in findings if f[0] == "error"]
-    assert {f[1] for f in errors} == {"claude", "codex", "grok", "kimi"}
-    msgs = " ".join(f[3] for f in findings)
-    for needle in ("悬空引用", "明文凭据", "绝对路径不存在", "command 须为字符串",
-                   "缺 SKILL.md", "网关键组不齐", "/v1 结尾"):
-        assert needle in msgs, f"缺报错: {needle}"
-    assert notes == []
-
-
-def test_config_lint_clean_home_passes(tmp_path: Path):
-    """agent-doctor 配置面:好配置零错零警(白名单内字段不报,豁免变量未用)。"""
-    mod = _load_config_lint("pevo_config_lint")
-    home = _config_home(tmp_path, bad=False)
-    findings, _ = mod.run(home, home / ".claude" / "settings.json",
-                          home / ".codex" / "config.toml",
-                          home / ".grok" / "config.toml",
-                          home / ".kimi-code" / "config.toml",
-                          home / ".kimi" / "skills", None)
-    assert findings == []
-
-
-def test_config_lint_allow_env_and_exit_code(tmp_path: Path, monkeypatch, capsys):
-    """agent-doctor 配置面:豁免变量压 advisory;main 有 error 退出码 1,汇总行数对账。"""
-    monkeypatch.setenv("PEVO_CONFIG_LINT_ALLOW", "unknownTop")
-    mod = _load_config_lint("pevo_config_lint_main")
-    home = _config_home(tmp_path)
-    assert mod.main(["--home", str(home)]) == 1
-    out = capsys.readouterr().out
-    assert "共 6 错 3 警" in out
-    assert "unknownTop" not in out
-
-
 def test_lint_hook_scopes_to_event_cwd(tmp_path: Path):
     """后缀静检辖域限仓内(ADR-0017 同批裁定,与 md-guard 同律):仓外 md 放行,仓内照检。"""
     bad = tmp_path / "bad.md"
@@ -578,41 +494,9 @@ def test_lint_hook_scopes_to_event_cwd(tmp_path: Path):
     inside = json.dumps({"hook_event_name": "PostToolUse", "cwd": str(tmp_path),
                          "tool_input": {"file_path": str(bad)}})
     assert _run_lint_hook(inside).returncode == 2, "仓内 md 照检"
-
-
-def test_config_lint_survives_malformed_shapes(tmp_path: Path):
-    """config-lint 形态防御(review F1):坏形态出 error 不崩,其余面发现不丢。"""
-    mod = _load_config_lint("pevo_config_lint_shape")
-    home = _config_home(tmp_path)
-    (home / ".claude" / "settings.json").write_text(
-        '{"env": "oops", "enabledPlugins": [], "permissions": "plan", "hooks": []}', encoding="utf-8")
-    findings, notes = mod.run(home, home / ".claude" / "settings.json",
-                              home / ".codex" / "config.toml",
-                              home / ".grok" / "config.toml",
-                              home / ".kimi-code" / "config.toml",
-                              home / ".kimi" / "skills", None)
-    errs = [f for f in findings if f[0] == "error"]
-    assert any("形态非法" in f[3] for f in errs), "坏形态应报形态非法而非崩溃"
-    assert {f[1] for f in errs} == {"claude", "codex", "grok", "kimi"}, "单面坏形态不吞其余面"
-
-
-def test_config_lint_secret_family_case(tmp_path: Path):
-    """凭证键族扩容与大小写(review F2):小写 token 与 _KEY 族命中,占位符形放行。"""
-    mod = _load_config_lint("pevo_config_lint_sec")
-    home = _config_home(tmp_path, bad=False)
-    (home / ".claude" / "settings.json").write_text(json.dumps(
-        {"env": {"anthropic_auth_token": "x", "MY_SERVICE_KEY": "y", "OK_TOKEN": "$MY_TOKEN"}}),
-        encoding="utf-8")
-    findings, _ = mod.run(home, home / ".claude" / "settings.json",
-                          home / ".codex" / "config.toml",
-                          home / ".grok" / "config.toml",
-                          home / ".kimi-code" / "config.toml",
-                          home / ".kimi" / "skills", None)
-    hits = [f for f in findings if "明文凭据" in f[3]]
-    assert len(hits) == 2, f"小写与 _KEY 族应命中、$VAR 占位放行,实得 {[f[3] for f in hits]}"
-
-
 def _cn(n: int) -> str:
+    if n == 2:
+        return "两"
     digits = "零一二三四五六七八九"
     if n < 10:
         return digits[n]
@@ -656,29 +540,10 @@ def test_no_stale_plugin_counts_in_live_surfaces():
             if m.group() != want:
                 hits.append(f"{p.relative_to(REPO)}: {m.group()}")
     assert not hits, f"陈旧插件计数残留(应全为 {want}): {hits}"
-
-
-def test_config_lint_codex_enum_shape_and_safe_guard(tmp_path: Path):
-    """review 三轮补断言:codex 枚举不可哈希形态不崩(_safe 与类型守卫真在仓内)。"""
-    mod = _load_config_lint("pevo_config_lint_enum")
-    home = _config_home(tmp_path)
-    (home / ".codex" / "config.toml").write_text(
-        'approval_policy = [1]\nsandbox_mode = ["x"]\n', encoding="utf-8")
-    findings, _ = mod.run(home, home / ".claude" / "settings.json",
-                          home / ".codex" / "config.toml",
-                          home / ".grok" / "config.toml",
-                          home / ".kimi-code" / "config.toml",
-                          home / ".kimi" / "skills", None)
-    errs = [f for f in findings if f[0] == "error"]
-    assert any("形态非法" in f[3] and "approval_policy" in f[3] for f in errs)
-    assert any("形态非法" in f[3] and "sandbox_mode" in f[3] for f in errs)
-    assert not any("内部异常兜底" in f[3] for f in errs), "类型守卫应先于 _safe 兜底命中"
-
-
 def test_zh_lint_tool(tmp_path: Path):
     """zh-lint(REQ-024):禁用词、选词、句长三类命中;好文零发现。"""
     import importlib.util as iu
-    zh = PLUGINS["evo-lint"] / "skills" / "zh-lint" / "scripts" / "zh-lint.py"
+    zh = PLUGINS["dev"] / "skills" / "zh-lint" / "scripts" / "zh-lint.py"
     spec = iu.spec_from_file_location("pevo_zh_lint", zh)
     mod = iu.module_from_spec(spec)
     spec.loader.exec_module(mod)

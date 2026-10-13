@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-13 第一百四十批:市场重构两插件 dev 与 evo,用户令（五原语拆分与四裁撤与两改名）
+
+- **市场终形**(REQ-032;ADR-0025,用户令数条渐进定形):两插件十一 skill = dev(开发治理面:doc-gov、dev-cli、md-lint、ls-lint、zh-lint)与 evo(agent 操作面:agents、shares、streams、tasks、pipes、distil);市场后续按域可再添插件
+- **裁撤四 skill**:herdr-orch(淘汰序留档改删除)、agent-s5、agent-rloop、agent-doctor;config-lint 测试族随 agent-doctor 退役;存活面与路由面引用清零或改注历史
+- **agent-prim 拆五原语 skill**:agents(消息域原语与共享面枢纽,持 id 三产生式、命名标准、门控 v2 尾窗、信封 v2、status 四态、协作惯例、差异表四 references)加 shares/streams/tasks/pipes 四单文件域面(相对链指共享面);触发词按域自然语化(fleet seq 44 延续)
+- **两改名**:doc-cli 改 dev-cli 随 doc-gov 归 dev;distil-skill 改 distil(触发 = 蒸馏);lint 三 skill 与 md-guard、mdrules、lint-hook 及写后 hook(段名 dev file-check)归 dev;evo 纯 skill 面
+- **守卫与路由面随形**:测试 PLUGIN/SKILLS/市场一致性/断链段/段名断言/活面计数守卫(两插件十一 skill),pre-commit 断链段(十一目标),check.py 路径;AGENTS 定位段与 Commands 与 Must 与 Read first、根 README 定位与 skill 表、docs 地图、双 manifest 与两市场清单、两插件 README;版本线 0.12.2 进 0.13.0(两插件同线)
+- 四门禁全绿 + fleet 回执;部署道 = 各端卸旧五插件装 dev 与 evo(市场条目已换)
+
 ### 变更 2026-10-13 第一百三十九批:R2 复核收编（起名校验与取用行降级）,总台令
 
 - **R2 两件实测过**(REQ-031;ai-ccoe main 6bb8a6b,本机重装后):起名校验 = `agents start` 非标准名 stderr 提示不拦截(正则 = 台标签-类型(-编号 可选),类型族 claude/codex/grok/kimi/pi)[实证:非标准名实测出提示];取用行降级 = cwd 无格匹配时 caller_addr 退化告警 [实证:/tmp 直调] 加取用行自动降级指 agents view 定位(总台来信取用行即在飞活证)
