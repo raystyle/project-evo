@@ -3,10 +3,8 @@ name: pipes
 description: >-
   pipes 原语(prim v3 实时字节域):tailcat 实时管道(本机收对方发)。open [--keep]
   本机起收听(地址与日志落 ~/.local/state/pipe/),close <addr|pid> 关闭,view [机]
-  看本机活动管道或跨机只读(room/pipe-live 流),to <id> 开管道并向对方投信封 v2 知会
-  (取用行 = tailcat <addr>)。字节方向恒 = 本机收、对方发;本机 30 分钟超时自关,
-  --keep 长 transport。id 文法、门控 v2、信封 v2 等共享面在 evo:agents skill(相对链
-  ../agents/)。契约单一真源 = ai-ccoe 仓 plugins/CONTRACT.md。
+  看本机活动管道或跨机只读(room/pipe-live 流),to <id> 开管道并知会对方(取用行 = tailcat <addr>)。字节方向恒 = 本机收、对方发;本机 30 分钟超时自关,
+  --keep 长 transport。共享规则(id、门控、信封)见 evo:agents skill(相对链 ../agents/)。契约单一真源 = ai-ccoe 仓 plugins/CONTRACT.md。
   Use when 要让对方实时往我这里发字节(日志尾随、进度流、实时输出)、开实时管道、看
   活动管道、跨机看管道在册时;触发词 pipes、管道、实时发、实时流、日志尾随、tailcat、
   open、close、addr。

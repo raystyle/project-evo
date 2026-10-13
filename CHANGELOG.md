@@ -4,6 +4,16 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-13 第一百四十二批:grok 业界先例评审吸收,总台令（收口与独立 semver 与命名细节）
+
+- **评审来源**:邻居 grok(w8:p4)对照业界先例(Claude Code 插件市场、VS Code 扩展、npm scope 与 changesets、oh-my-zsh)六条;全文 /tmp/grok-evo-review.md;**裁定落五条,一条 hold**(拆 dev-lint 中文面与用户明令 lint 三合一相抵,候用户裁)
+- **收口**(评审 1):根 README 安装例与挡板行与文档表残留 evo-doc 三处清零;doc-gov 路由行 evo:distil-skill 改 evo:distil、evo:dev-cli 改同插件 dev:dev-cli;dev 与 evo codex 面 shortDescription 与 defaultPrompt 随终形(zh-lint 改 dev-lint,evo 去诊断);AGENTS 当前阶段随批 141 与 142
+- **独立 semver**(评审 3):两插件各自升版本(本批双改,dev 与 evo 各进 0.14.0),市场快照仍走 git tag(下一号 v0.16.0 候打);守卫改独立校验(0.13 起可混装,弃同号硬锁)
+- **命名细节**(评审 4):keywords 分域(dev 去 fleet、evo 去 lint);agents description 加适用域句(读项目协作规则文件 AGENTS.md 时本 skill 不适用,防误触发);shares/streams/tasks/pipes 四域 description 瘦身(门控信封复述删除,共享规则只留 agents 一处)
+- **distil 压缩**(评审 5 轻形,distil 归 dev 候下轮):description 约 767 字压至约 350 字,触发词蒸馏保留
+- **hook 与环境变量**(评审 6):lint-hook、mdrules、md-guard 留 dev 插件根,zh-lint.py 留 skill scripts(现状确认);EVO_LINT_* 三环境变量新名 DEV_LINT_*(旧名再认一版,下版移除),hook-face 表随改
+- 保持项(评审结论同向):不恢复五插件、五原语不并回、hook 不进 evo;REQ-034 在册;四门禁全绿 + fleet 回执 + 回信 grok
+
 ### 变更 2026-10-13 第一百四十一批:lint 三 skill 合并为 dev-lint,用户令
 
 - **dev-lint 落形**(REQ-033;ADR-0025 续令):md-lint、ls-lint、zh-lint 三 skill 并一归 dev;SKILL.md 意图路由四类面(md 面、语言面、结构面、中文面)加门禁速览;references 八篇扁平前缀分组加索引;scripts/zh-lint.py 与四类型模板随迁;触发词三合一(旧名保留)

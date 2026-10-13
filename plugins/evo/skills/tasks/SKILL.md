@@ -3,8 +3,7 @@ name: tasks
 description: >-
   tasks 原语(prim v3 持久任务域):hst task 全局遥控(引擎 hst;goal 命令族已正名
   task)。set <id> <文本> 设别的格所在项目的持久任务(本地直设;远机零 ssh = pending
-  流加 apply 受体),to <id> <文本> 定向委派(= set 加事件入 tasks/shared 加信封 v2
-  知会,取用行 = cd <cwd> && hst task show),view 看 tasks/shared 最近事件。id 文法、
+  流加 apply 受体),to <id> <文本> 定向委派(= set 加事件加知会,取用行 = cd <cwd> && hst task show),view 看 tasks/shared 最近事件。id 文法、
   门控 v2、信封 v2 等共享面在 evo:agents skill(相对链 ../agents/)。契约单一真源 =
   ai-ccoe 仓 plugins/CONTRACT.md。
   Use when 要设别的格所在项目的持久任务、跨机委派目标、查任务事件流时;触发词 tasks、

@@ -12,9 +12,9 @@
 
 | 面 | 缺省 | 环境变量 |
 | --- | --- | --- |
-| AGENTS.md | 200 行 | EVO_LINT_AGENTS_MAX |
-| CLAUDE.md(单行桥接免检) | 50 行 | EVO_LINT_CLAUDE_MAX |
-| SKILL.md | 500 行(spec) | EVO_LINT_SKILL_MAX |
+| AGENTS.md | 200 行 | DEV_LINT_AGENTS_MAX(旧名 EVO_LINT_AGENTS_MAX 再认一版) |
+| CLAUDE.md(单行桥接免检) | 50 行 | DEV_LINT_CLAUDE_MAX |
+| SKILL.md | 500 行(spec) | DEV_LINT_SKILL_MAX |
 
 裁值登记在仓 AGENTS 或 lint 配置在册,不静默超。
 

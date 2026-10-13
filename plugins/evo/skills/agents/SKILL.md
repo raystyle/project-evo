@@ -1,7 +1,8 @@
 ---
 name: agents
 description: >-
-  agents 原语(prim v3 消息域)与五原语共享面枢纽:全局 pane 操作器(隐式路由,任何端点
+  agents 原语(prim v3 消息域)与五原语共享面枢纽;仅舰队窗格与消息操作域,读项目协作
+  规则文件 AGENTS.md 时本 skill 不适用。全局 pane 操作器(隐式路由,任何端点
   同一文法),告诉或委派某 agent 干活、找格读屏等回话(read 自带忙候与超时)、按键、
   在场声明(mode)、开工作台起格调窗格邻居布局(ws/start/shell/dev/split/tab/zoom)、
   查在网机器;投递动词统一 to,投递与收件三反射(投递只看 status 与 CTA『下一步』、

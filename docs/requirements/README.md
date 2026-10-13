@@ -37,3 +37,4 @@
 | REQ-031 | implemented | must | R2 复核收编:命名起名校验与取用行降级 | tests/test_project_evo.py |
 | REQ-032 | implemented | must | 市场重构:两插件 dev 与 evo,裁四 skill 与五原语拆分 | tests/test_project_evo.py |
 | REQ-033 | implemented | must | lint 三 skill 合并为 dev-lint | tests/test_project_evo.py |
+| REQ-034 | implemented | must | grok 业界先例评审吸收(收口、独立 semver、命名细节、distil 压缩、环境变量) | tests/test_project_evo.py |

@@ -17,9 +17,12 @@ MD_FORBIDDEN = [
     ("em-dash", re.compile(r"——|—")),
 ]
 
-AGENTS_MAX_LINES = int(os.environ.get("EVO_LINT_AGENTS_MAX", "200"))
-CLAUDE_MAX_LINES = int(os.environ.get("EVO_LINT_CLAUDE_MAX", "50"))
-SKILL_MAX_LINES = int(os.environ.get("EVO_LINT_SKILL_MAX", "500"))
+def _env(new: str, legacy: str, default: str) -> str:
+    return os.environ.get(new) or os.environ.get(legacy) or default  # EVO_LINT_* 旧名再认一版,下版移除
+
+AGENTS_MAX_LINES = int(_env("DEV_LINT_AGENTS_MAX", "EVO_LINT_AGENTS_MAX", "200"))
+CLAUDE_MAX_LINES = int(_env("DEV_LINT_CLAUDE_MAX", "EVO_LINT_CLAUDE_MAX", "50"))
+SKILL_MAX_LINES = int(_env("DEV_LINT_SKILL_MAX", "EVO_LINT_SKILL_MAX", "500"))
 
 
 def check_md(text: str, name: str) -> list[str]:
@@ -33,7 +36,7 @@ def check_md(text: str, name: str) -> list[str]:
     n = len(text.splitlines())
     base = os.path.basename(name)
     if base == "AGENTS.md" and n > AGENTS_MAX_LINES:
-        errs.append(f"{name} 行数 {n} 超 AGENTS 上限 {AGENTS_MAX_LINES}(EVO_LINT_AGENTS_MAX 可裁)")
+        errs.append(f"{name} 行数 {n} 超 AGENTS 上限 {AGENTS_MAX_LINES}(DEV_LINT_AGENTS_MAX 可裁)")
     if base == "CLAUDE.md" and n > CLAUDE_MAX_LINES and "@AGENTS.md" not in text:
         errs.append(f"{name} 行数 {n} 超 CLAUDE 上限 {CLAUDE_MAX_LINES}(单行桥接形免检)")
     if base == "SKILL.md" and n > SKILL_MAX_LINES:

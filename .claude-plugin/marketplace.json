@@ -12,14 +12,14 @@
       "name": "dev",
       "source": "./plugins/dev",
       "description": "开发治理面插件,三 skill:doc-gov(ADR 与 REQ 需求决策、文档即代码)、dev-cli(Agent 原生友好开发)、dev-lint(静态检查三合一:md 五面、语言三面、结构面、中文面与门禁接线);含写后静检 hook 与提交挡板脚本",
-      "version": "0.13.1",
+      "version": "0.14.0",
       "category": "productivity"
     },
     {
       "name": "evo",
       "source": "./plugins/evo",
       "description": "agent 操作面插件,六 skill:agents(消息域原语与五原语共享面:to 投递、id 三产生式、命名标准、门控 v2、信封 v2、status 四态)、shares(文件域)、streams(流域)、tasks(持久任务域)、pipes(实时字节域)、distil(技能自进化三层聚合)",
-      "version": "0.13.1",
+      "version": "0.14.0",
       "category": "productivity"
     }
   ]

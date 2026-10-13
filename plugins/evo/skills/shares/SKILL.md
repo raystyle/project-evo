@@ -3,10 +3,8 @@ name: shares
 description: >-
   shares 原语(prim v3 文件域):S3 形中转看板(引擎 s5,内容哈希键),把文件交给指定
   agent 或全舰队共享。put 上架回显键(同内容同键,不同内容不互覆),get 取回,
-  to <id> <文件> 定向交付(先上架再投信封 v2 加知会,取用行 = s5 get;拒投时文件
-  已在键上、代记注明待达,人不丢件)。键形 share/<源机>/<内容短哈希>/<文件名>;
-  大内容上键流里只放键引用。id 文法、门控 v2、信封 v2、status 四态等共享面在
-  evo:agents skill(相对链 ../agents/)。契约单一真源 = ai-ccoe 仓
+  to <id> <文件> 定向交付(先上架再知会,取用行 = s5 get;拒投时文件已在键上,人不丢件)。键形 share/<源机>/<内容短哈希>/<文件名>;
+  大内容上键流里只放键引用。共享规则(id、门控、信封)见 evo:agents skill(相对链 ../agents/)。契约单一真源 = ai-ccoe 仓
   plugins/CONTRACT.md。
   Use when 要把文件共享给指定 agent、给某格递文件、交付产物或报告、取回别人共享的
   文件、大内容上键流里放引用时;触发词 shares、共享、给文件、传文件、递文件、交付、

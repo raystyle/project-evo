@@ -266,7 +266,7 @@ def test_check_json_skip_counts_via_allow(tmp_path: Path):
 
 def test_marketplace_catalog_consistency():
     """清单守卫:市场名 project-evo 收两插件、双清单一致、每插件双 manifest 与市场版本同步、
-    两插件同版、skill 分属正确与 hook 面在位(ADR-0025 市场重构,dev 与 evo)。"""
+    两插件独立 semver(0.13 起可混装,批 142)、skill 分属正确与 hook 面在位(ADR-0025 市场重构,dev 与 evo)。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     codex_mkt = json.loads((REPO / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
     assert claude_mkt["name"] == codex_mkt["name"] == "project-evo", "市场名须为 project-evo"
@@ -302,7 +302,9 @@ def test_marketplace_catalog_consistency():
             if sname not in SINGLE_FILE_SKILLS:
                 assert (skills / sname / "references").is_dir(), f"参考目录缺失: {sname}"
 
-    assert len(versions) == 1, f"两插件同版本线(ADR-0025): {versions}"
+    for v in versions:
+        parts = tuple(int(x) for x in v.split("."))
+        assert parts >= (0, 13), f"两插件独立 semver,起步线 0.13 可混装(grok 评审批 142): {v}"
 
     tools = REPO / ".tools"
     for s in ("init.py", "check.py", "scan.py", "md-ref-scan.py"):

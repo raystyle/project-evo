@@ -8,7 +8,7 @@
 
 | 客户端 | 命令 |
 |--------|------|
-| Claude Code | `/plugin marketplace add raystyle/project-evo`,再 `/plugin install <插件>@project-evo`(如 `evo-doc@project-evo`) |
+| Claude Code | `/plugin marketplace add raystyle/project-evo`,再 `/plugin install <插件>@project-evo`(如 `evo@project-evo`、`dev@project-evo`) |
 | Codex | `codex plugin marketplace add raystyle/project-evo`,再 `codex plugin add <插件>@project-evo` |
 | Grok | `grok plugin marketplace add raystyle/project-evo`,再 `grok plugin install <插件>@project-evo --trust` |
 | Kimi | 无插件市场:按 `~/.kimi-code/config.toml` 的 `extra_skill_dirs`(默认 `~/.kimi/skills`)拷 `plugins/<插件>/skills/*`;斜杠命令与 hook 不随行 |
@@ -35,7 +35,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 - 市场源与协议:HTTPS 与 SSH git URL 都收;GitHub 简写默认协议相反,Claude Code 走 SSH(`CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1` 切 HTTPS),Codex 走 HTTPS;Grok 另收本地路径与 `@ref`、`#subdir`
 - 私有仓认证:标准 git 凭据(credential helper 或 ssh-agent),与终端 git 行为一致
 - 钉版:Claude Code `raystyle/project-evo@v0.15.0`(或 URL 尾 `#v0.15.0`);Codex `--ref v0.15.0`(下一封版后同理)
-- md 禁字挡板:装 evo-doc 后编辑仓内 markdown 触发 PostToolUse 提醒(四类禁字,仓外 md 不管;规则唯一权威是插件级 `scripts/mdrules.py`,与 skill 解耦)
+- md 禁字挡板:装 dev 后编辑仓内 markdown 触发 PostToolUse 提醒(四类禁字,仓外 md 不管;规则唯一权威是插件级 `scripts/mdrules.py`,与 skill 解耦)
 - 扫描豁免:本仓 `.tools/scan.py` 的误报走环境变量 `PEVO_SCAN_ALLOW`(分号分隔正则,匹配 文件:行)
 
 ## 插件与 SKILL 介绍
@@ -67,7 +67,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 |------|--------|--------|
 | `AGENTS.md` | 开发协作规则唯一权威源 | 写/改任何文件前 |
 | `plugins/<插件>/README.md` | 各插件说明(前置、安装、用法、敏感产物) | 用插件面时 |
-| `plugins/evo-doc/skills/doc-gov/SKILL.md` | 治理知识面 skill 本体(意图路由) | 使用/修改 skill 前 |
+| `plugins/dev/skills/doc-gov/SKILL.md` | 治理知识面 skill 本体(意图路由) | 使用/修改 skill 前 |
 | `docs/README.md` | 全仓文档地图 | 找任何文档时 |
 | `ROADMAP.md` | 阶段与里程碑状态 | 看进度时 |
 | `CHANGELOG.md` | 变更日志 | 查历史时 |

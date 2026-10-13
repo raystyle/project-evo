@@ -39,7 +39,7 @@
 ## 环境
 
 - 平台:Windows + PowerShell 7(禁 powershell.exe 5.1 与 cmd);uv 运行时,脚本 PEP 723 零依赖(>=3.12);WSL 到宿主恒走 127.0.0.1 回环加 interop 直调,不走宿主 mesh IP;验收运维脚本载体统一 pwsh
-- 当前阶段:批 140 市场重构(2026-10-13,ADR-0025):两插件九 skill = dev 三加 evo 六,agent-prim 拆五原语 skill,doc-cli 改名 dev-cli,distil-skill 改名 distil,herdr-orch 与 agent-s5 与 agent-rloop 与 agent-doctor 裁撤,版本载体 0.13.0;v0.15.0 前封版沿革与批次史见 CHANGELOG 与 ROADMAP,不在本文件续写
+- 当前阶段:市场重构收口中(2026-10-13,ADR-0025):两插件九 skill = dev 三加 evo 六;批 141 lint 三合一 dev-lint,批 142 grok 评审收口(独立 semver,两插件各自升版,市场快照 tag 候 v0.16.0);v0.15.0 前封版沿革与批次史见 CHANGELOG 与 ROADMAP,不在本文件续写
 - 部署:Claude Code `/plugin marketplace add raystyle/project-evo` 后按插件装(`/plugin install evo@project-evo` 或 `/plugin install dev@project-evo`);Codex `codex plugin marketplace add raystyle/project-evo`;Grok `grok plugin install <插件>@project-evo --trust`;Kimi 无市场,拷 `plugins/*/skills/*` 至 `~/.kimi/skills`
 - 工作根:`~/repos/ProjectEvo`(WSL 独立 VHDX 挂载 /mnt/wsl/repos 快捷 ~/repos;2026-09-16 迁移,旧位 /mnt/d/ProjectEvo 过渡后裁)
 - 项目状态与待办见 `ROADMAP.md`,不在本文件维护

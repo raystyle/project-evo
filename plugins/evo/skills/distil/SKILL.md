@@ -1,20 +1,14 @@
 ---
 name: distil
 description: >-
-  项目技能自进化:把项目自身执行经验蒸馏成模式,经一案提案与合取闸门,持续产生并迭代
-  Claude Code 与 Codex 双端支持的标准项目级 SKILL。三层聚合:sources 层收唯一出处件(自产
-  轨迹、自产证据、外档留底;资格过滤),knowledge 层收带版本、双向链接关联的结构化知识
-  (模式页必带 trace 引文、防重提页只读),operations 层收标准 skill 与 how-to 手册(agentskills
-  官方 spec 形态,过闸才进)。四步环:执行产痕、蒸馏模式、一案提案(create/patch/no_action
-  三选一)、合取闸门(既有门禁无回归、点名失败义务翻转、标准页链到有 sources 的知识页)。
-  知识层永不回滚,标准层拒绝即回滚,no_action 是合法出口;无人值守接受停待审;双端项目级
-  加载与跨端转移重过闸。
-  Use when 把项目执行经验沉淀成 skill、迭代项目标准技能集、建三层聚合知识库与双链图、蒸馏
-  执行轨迹、给标准技能改动设闸验收、双端分发项目级 skill 时;触发词 技能自进化、distil、
-  蒸馏、三层聚合、sources、knowledge、operations、轨迹总结、模式页、标准 skill、项目级
-  skill、提案、合取闸门、no_action、防重提、CLAUDE_CONFIG_DIR、CODEX_HOME、双端、跨端
-  转移、双链图、日记、活轨迹。
-compatibility: 通用;跑环需项目 git 与既有门禁;双端执行面需 claude 或 codex CLI(命令面活权威是本机 --help 实查)
+  项目技能自进化:把执行经验蒸馏成模式,经一案提案与合取闸门,持续产生并迭代双端标准
+  项目级 SKILL。三层聚合:sources 唯一出处层、knowledge 带版本双链知识层、operations
+  标准 skill 层(过闸才进);四步环 = 执行产痕、蒸馏模式、一案提案(create/patch/
+  no_action)、合取闸门(门禁无回归、义务翻转、标准页链 sources);知识层永不回滚,
+  标准层拒绝即回滚。
+  Use when 把项目执行经验沉淀成 skill、迭代项目标准技能集、建三层聚合知识库、蒸馏执行
+  轨迹、给标准技能改动设闸验收时;触发词 distil、蒸馏、技能自进化、三层聚合、sources、
+  knowledge、operations、轨迹总结、模式页、标准 skill、项目级 skill、合取闸门、no_action。
 ---
 
 # distil - evo 项目技能自进化

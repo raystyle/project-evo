@@ -31,8 +31,8 @@ description: >-
 | 写代码 doc 注释 / 契约注释 / 文档即代码 / 投影守卫 | `references/base-code-doc.md` |
 | 立研究档案 / S 编号一题一篇 / 对照分流与六态结论 | `references/base-research.md` |
 | 建项目工具链 / uv 与 PEP 723 形态 / 门禁挂接与发布面 | `references/tool-project-kit.md` |
-| 三层聚合与技能自进化 / 轨迹总结 / 模式页 / 标准 skill / 归档统一字母表与本面工件归层 | 同市场技能 `evo:distil-skill`(唯一权威源) |
-| Agent 原生友好开发 / --llms 手册 / CTA 协议 / 自省 | 同插件 skill `evo:dev-cli` |
+| 三层聚合与技能自进化 / 轨迹总结 / 模式页 / 标准 skill / 归档统一字母表与本面工件归层 | 同市场技能 `evo:distil`(唯一权威源) |
+| Agent 原生友好开发 / --llms 手册 / CTA 协议 / 自省 | 同插件 skill `dev:dev-cli` |
 | 多仓协作 / 派单回执 | `evo:agents` 与 `evo:streams`(五原语操作面) |
 
 ## 二、知识库检索(rg 定位 + 结构提取)
