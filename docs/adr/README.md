@@ -28,4 +28,4 @@
 | ADR-0022 | accepted | 类型化项目结构标准:struct 技能挂 evo-lint,声明式自研规则,四类型模板库(2026-10-12 更名 ls-lint) | |
 | ADR-0023 | accepted | 第五插件 evo-agent:agent-doctor 四端环境诊断修复,判据两级,增强 hst doctor 编排 | |
 | ADR-0024 | accepted | herdr:s5 删除并入 agent-s5,s5 归一为全 agent 共享看板与实时流 | |
-| ADR-0025 | accepted | 市场重构:两插件 dev 与 evo,裁四 skill,agent-prim 拆五原语,两改名 | 2026-10-13 用户令渐进定形 |
+| ADR-0025 | accepted | 市场重构:两插件 dev 与 evo,裁四 skill,agent-prim 拆五原语,两改名与 lint 三合一 | 2026-10-13 用户令渐进定形 |

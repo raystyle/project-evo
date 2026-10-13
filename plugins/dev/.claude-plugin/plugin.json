@@ -1,7 +1,7 @@
 {
   "name": "dev",
-  "version": "0.13.0",
-  "description": "开发治理面插件,五 skill:doc-gov(ADR 与 REQ 需求决策、文档即代码)、dev-cli(Agent 原生友好开发)、md-lint(五面静检)、ls-lint(类型化结构脚手架与声明式检查)、zh-lint(简明技术中文静检);含写后静检 hook 与提交挡板脚本",
+  "version": "0.13.1",
+  "description": "开发治理面插件,三 skill:doc-gov(ADR 与 REQ 需求决策、文档即代码)、dev-cli(Agent 原生友好开发)、dev-lint(静态检查三合一:md 五面、语言三面、结构面、中文面与门禁接线);含写后静检 hook 与提交挡板脚本",
   "author": {
     "name": "raystyle"
   },

@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-13 第一百四十一批:lint 三 skill 合并为 dev-lint,用户令
+
+- **dev-lint 落形**(REQ-033;ADR-0025 续令):md-lint、ls-lint、zh-lint 三 skill 并一归 dev;SKILL.md 意图路由四类面(md 面、语言面、结构面、中文面)加门禁速览;references 八篇扁平前缀分组加索引;scripts/zh-lint.py 与四类型模板随迁;触发词三合一(旧名保留)
+- 守卫与路由面随形:SKILLS 清单、pre-commit 断链段(九目标)、双 manifest 与市场清单、AGENTS 与根 README 与 docs 地图、dev README;版本载体 0.13.0 进 0.13.1(两插件同线);终形 = dev 三 skill(doc-gov、dev-cli、dev-lint)加 evo 六 skill;四门禁全绿 + fleet 回执
+
 ### 变更 2026-10-13 第一百四十批:市场重构两插件 dev 与 evo,用户令（五原语拆分与四裁撤与两改名）
 
 - **市场终形**(REQ-032;ADR-0025,用户令数条渐进定形):两插件十一 skill = dev(开发治理面:doc-gov、dev-cli、md-lint、ls-lint、zh-lint)与 evo(agent 操作面:agents、shares、streams、tasks、pipes、distil);市场后续按域可再添插件

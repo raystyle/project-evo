@@ -1,6 +1,6 @@
 # docs 地图
 
-> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、research 存研究档案;过程轨迹(日记)继续落 diary/,形态权威已迁 `../plugins/evo/skills/distil/references/trajectories.md`;skill 知识库在 `plugins/<插件>/skills/` 下(两插件十一 skill)。
+> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、research 存研究档案;过程轨迹(日记)继续落 diary/,形态权威已迁 `../plugins/evo/skills/distil/references/trajectories.md`;skill 知识库在 `plugins/<插件>/skills/` 下(两插件九 skill)。
 
 | 文档 | 讲什么 | 何时看 |
 |------|--------|--------|
@@ -34,9 +34,7 @@
 | `../.tools/README.md` | 本仓自用脚本工具登记(md-ref-scan、init、check、scan) | 跑仓门禁或维护骨架模板时 |
 | `../.tools/verification/command-test-cases.md` | check 的等价 PowerShell 用例集(参数化 ProjectRoot) | 验证骨架合规时 |
 | `../plugins/evo/skills/distil/SKILL.md` | 技能自进化:三层聚合(sources 唯一出处层、knowledge 带版本双链知识、operations 标准技能与 how-to 手册,git 边界三选一,归档统一字母表),四步环蒸馏提案与合取闸门 | 把项目经验沉淀成 skill、迭代标准技能集时 |
-| `../plugins/dev/skills/md-lint/SKILL.md` | 静态检查报错:md 三面(skill 格式标准、agents 与 claude 长度限制、禁字断链)加 rs 加 py 加 ts,写后自动静检 hook 双端 | 配静态检查门禁、修静检红时 |
-| `../plugins/dev/skills/ls-lint/SKILL.md` | 类型化项目结构标准:四类型模板卡与声明式规则件,init 脚手架加结构 check | 新仓脚手架、存量仓结构 lint 时 |
-| `../plugins/dev/skills/zh-lint/SKILL.md` | 简明技术中文静检:禁用词、选词表、句长机检与改写指导(STC 受控中文) | 写改中文技术文档、AI 解释面要无歧义时 |
+| `../plugins/dev/skills/dev-lint/SKILL.md` | 静态检查三合一(原 md-lint、ls-lint、zh-lint):md 三面与 rs/py/ts 语言面、类型化结构与四类型模板、简明技术中文与汇报面,写后 hook | 配静态检查门禁、新仓脚手架、中文文档要无歧义时 |
 | `../plugins/evo/skills/agents/SKILL.md` | 五原语消息域原语与共享面枢纽:to 投递、id 三产生式、命名标准 工作台-类型-编号、门控 v2 尾窗、信封 v2、status 四态、read 收件、工位管理 | 告诉或委派某 agent、找格读屏等回话、开工作台调窗格布局、查在场时 |
 | `../plugins/evo/skills/shares/SKILL.md` | 文件域原语:put/get/to,内容哈希键 | 把文件共享给指定 agent、交付产物、取回共享时 |
 | `../plugins/evo/skills/streams/SKILL.md` | 流域原语:append/view/to,流即房间,fleet 回执主频道 | 往流交回执或广播、私信、回放续读时 |

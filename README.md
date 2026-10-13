@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件十一 skill:`dev`(开发治理面:doc-gov、dev-cli(原 doc-cli)、md-lint、ls-lint、zh-lint)、`evo`(agent 操作面:agents、shares、streams、tasks、pipes 五原语 skill 加 distil;五原语 = 舰队互操作代理操作唯一面,herdr 技能已淘汰)。客户端显示 `<插件>:<skill>`。
+> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件九 skill:`dev`(开发治理面:doc-gov、dev-cli(原 doc-cli)、dev-lint 静态检查三合一)、`evo`(agent 操作面:agents、shares、streams、tasks、pipes 五原语 skill 加 distil;五原语 = 舰队互操作代理操作唯一面,herdr 技能已淘汰)。客户端显示 `<插件>:<skill>`。
 
 ## 安装
 
@@ -44,9 +44,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 |------|-------|--------|--------|
 | dev | `doc-gov` | 文档框架治理知识:ADR 与 REQ 需求决策、代码 doc 注释契约、文档即代码(单一权威源与投影守卫)、研究档案、项目工具链范式 | 立 ADR/REQ、立代码契约注释与文档即代码守卫、立研究档案、建项目工具链 |
 | dev | `dev-cli` | Agent 原生友好开发(原 doc-cli):--llms 手册面、类型化 CTA 输出协议、默认帮助面、命令自省与漂移守卫、裸调用面、发现通道与 token 经济学 | 配 CLI agent 面、为 agent 时代设计命令与工具面 |
-| dev | `md-lint` | 静态检查报错:md 三面(skill 格式标准、agents 与 claude 长度限制、禁字断链)加 rs 加 py 加 ts,写后自动静检 hook | 配静态检查门禁、修静检红时 |
-| dev | `ls-lint` | 类型化项目结构标准:四类型模板卡与声明式规则件,init 脚手架加结构 check | 新仓脚手架、存量仓结构 lint 时 |
-| dev | `zh-lint` | 简明技术中文静检:禁用词、选词表、句长机检与改写指导(STC 受控中文) | 写改中文技术文档、AI 解释面要无歧义时 |
+| dev | `dev-lint` | 静态检查三合一:md 三面(skill 格式、agents 与 claude 限制、禁字断链)加 rs/py/ts 语言面、类型化结构 init 与 check、简明技术中文与汇报面,写后 hook 与提交挡板 | 配静态检查门禁、修静检红、新仓脚手架、中文技术文档要无歧义时 |
 | evo | `agents` | 五原语消息域原语与共享面枢纽:to 投递、id 三产生式、命名标准(工作台-类型-编号)、门控 v2 尾窗、信封 v2、status 四态、read 收件、工位管理 | 告诉或委派某 agent、找格读屏等回话、开工作台调窗格布局、查在场时 |
 | evo | `shares` | 文件域原语:put/get/to,内容哈希键,拒投不丢件 | 传文件给指定 agent、交付产物、取回共享时 |
 | evo | `streams` | 流域原语:append/view/to,流即房间,fleet 回执主频道 | 往流交回执或广播、私信、回放续读时 |
