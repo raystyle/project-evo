@@ -44,3 +44,4 @@
 | REQ-038 | implemented | must | 差异表对 ef8fca6 全刷(互审 CONFIRM 家庭作业) | tests/test_project_evo.py |
 | REQ-039 | implemented | must | 改面收编:tasks 实时任务面与 herdr_run 容错 | tests/test_project_evo.py |
 | REQ-040 | implemented | must | 六原语收编:ctx 对话历史域 skill | tests/test_project_evo.py |
+| REQ-041 | implemented | must | ctx skill 对齐 prim v3.1.3(直连双闸与 --around 与多词 snip) | tests/test_project_evo.py |

@@ -42,4 +42,4 @@ Kimi:无市场,拷 `plugins/evo/skills/*` 至 `~/.kimi/skills`
 - 全端序:每端 `/plugin marketplace update project-evo` 再到 卸旧插件(evo-doc、evo-herdr、evo-distil、evo-lint、evo-agent 五件)再到 装 dev 与 evo 再到 全格 `agents reload`
 - Kimi 端:清 `~/.kimi/skills` 旧目录后重拷,重启会话
 
-当前发布:0.15.0(独立 semver,dev 独立号)。
+当前发布:0.15.1(独立 semver,dev 独立号)。

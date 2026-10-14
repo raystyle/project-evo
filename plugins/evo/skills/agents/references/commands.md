@@ -29,7 +29,7 @@
 | streams | `view [流名] [--from <seq>|--resume]`(流表加尾读) | `append <流> <消息>` | `to <id> <流> <消息> [--force]` |
 | tasks | `view [机]`(实时任务面:fleet 总览加各格 hst task show) | `set <id> <文本>` | `to <id> <文本> [--force]`(= set 加知会) |
 | pipes | `view [机]` | `open [--keep]`;`close <addr|pid>` | `to <id> [--force]` |
-| ctx | `view [agent] [--limit N]` |  | `show <request_id>`;`search <关键词> [--limit N]`(历史检索,非投递) |
+| ctx | `view [agent] [--limit N]` |  | `show <request_id> [--around <词>] [--window N]`;`search <词> [--term <词>]...`(历史检索,非投递) |
 
 ## agents（消息域）
 

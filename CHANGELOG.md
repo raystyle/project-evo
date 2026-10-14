@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-14 第一百五十批:ctx skill 对齐 prim v3.1.3,总台令
+
+- **v3.1.3 面收编**(REQ-041;v3.1.0 稿漂移全刷):检索道 ssh 单道改直连 https 8123 主道(双闸 = client 证书 TLS 层加 basic ctx_reader SELECT-only;CTX_* 环境变量优先,~/.ctx/reader.env 六键 600)加 ssh 兜底;动词面增 show --around <词> --window N(命中块±N 邻块,命中点居中 3000 字,SQL 侧全文匹配)与 search --term 多词 OR 加 snip 片段列;坑表三入(词至少 2 字符、嵌套抓 rid 用 --limit 1 且切列认准 f8/f1、块命中 rid 无头行属管道时滞)
+- 三发实弹全绿:search 多词(收编 OR ensure_ascii)出 snip 命中退 0;show --around 收编 --window 1 出命中块 [16] ±1 带命中点居中标注退 0;view --limit 3 表头加三行退 0;途中两踩列位坑(rid 取 f8/f1)入坑表;观察一件报总台 = search 命中 rid 而 show 无记录(块先入头后入时滞)
+- 本端 prim 滚至 v3.1.3(ai-ccoe main 5b43650;中间版残差 stash 路弃用,总台已复位);evo 独立升 0.15.1;四门禁全绿 + fleet 回执
+
 ### 变更 2026-10-14 第一百四十九批:六原语收编 ctx 对话历史域,总台令
 
 - **ctx 第六原语**(REQ-040;prim v3.1.0,e98e4af 起实装):新 skill evo:ctx = agent 请求全链检索历史档案面(引擎 ClickHouse gw_logs,ssh 道进容器内 client 免证书面);动词 view [agent] [--limit N] 与 show <request_id> 与 search <关键词>;窗口 head 365 天正文 180 天;与 agents read 分工 = read 实时屏对 ctx 历史档案
