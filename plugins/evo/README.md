@@ -1,6 +1,6 @@
 # evo
 
-> project-evo 市场 agent 操作面插件:六 skill。客户端显示 `evo:<skill>`。
+> project-evo 市场 agent 操作面插件:七 skill(六原语加 distil)。客户端显示 `evo:<skill>`。
 
 ## skill 清单
 
@@ -11,6 +11,7 @@
 | streams | 流域原语:S2 形持久流(append/view/to,流即房间,fleet 回执主频道) |
 | tasks | 持久任务域原语:hst task 全局遥控(set/to,事件入流,远机零 ssh) |
 | pipes | 实时字节域原语:tailcat 管道(open/close/to,本机收对方发) |
+| ctx | 对话历史域原语:agent 请求全链检索(view/show/search,引擎 ClickHouse gw_logs;与 agents read 分工 = 实时屏对历史档案) |
 | distil | 技能自进化:三层聚合(sources/knowledge/operations)、一案提案、合取闸门、双端分发 |
 
 结构沿革:由旧多插件形态收敛重构而来(ADR-0025):herdr-orch、agent-s5、agent-rloop、agent-doctor 裁撤;agent-prim 拆五原语 skill,共享面在 agents;distil-skill 改名 distil;doc-gov 与 doc-cli(改名 dev-cli)及 lint 三 skill 归 dev 插件。旧名映射以 ADR-0025 为准。
@@ -41,4 +42,4 @@ Kimi:无市场,拷 `plugins/evo/skills/*` 至 `~/.kimi/skills`
 - 全端序:每端 `/plugin marketplace update project-evo` 再到 卸旧插件(evo-doc、evo-herdr、evo-distil、evo-lint、evo-agent 五件)再到 装 dev 与 evo 再到 全格 `agents reload`
 - Kimi 端:清 `~/.kimi/skills` 旧目录后重拷,重启会话
 
-当前发布:0.14.4(独立 semver,dev 独立号)。
+当前发布:0.15.0(独立 semver,dev 独立号)。

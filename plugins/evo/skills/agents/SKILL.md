@@ -1,7 +1,7 @@
 ---
 name: agents
 description: >-
-  agents 原语(prim v3 消息域)与五原语共享面枢纽;仅舰队窗格与消息操作域,读项目协作
+  agents 原语(prim v3 消息域)与六原语共享面枢纽;仅舰队窗格与消息操作域,读项目协作
   规则文件 AGENTS.md 时本 skill 不适用。全局 pane 操作器(隐式路由,任何端点
   同一文法),告诉或委派某 agent 干活、找格读屏等回话(read 自带忙候与超时)、按键、
   在场声明(mode)、开工作台起格调窗格邻居布局(ws/start/shell/dev/split/tab/zoom)、
@@ -23,9 +23,9 @@ description: >-
 
 # agents - evo 消息域原语与五原语共享面
 
-**定位**:五原语(agents/shares/streams/tasks/pipes)的消息域原语,兼**共享面枢纽**:id 三产生式、命名标准、门控 v2、信封 v2、status 四态、协作惯例、实装差异表独家在本 skill 的 references,其余四原语 skill(shares/streams/tasks/pipes)以相对链至此,守单一权威源。契约唯一真源 = ai-ccoe 仓 `plugins/CONTRACT.md`,本 skill 蒸馏速览加路由,不复述契约全文。
+**定位**:六原语(agents/shares/streams/tasks/pipes/ctx)的消息域原语,兼**共享面枢纽**:id 三产生式、命名标准、门控 v2、信封 v2、status 四态、协作惯例、实装差异表独家在本 skill 的 references,其余五原语 skill(shares/streams/tasks/pipes/ctx)以相对链至此,守单一权威源。契约唯一真源 = ai-ccoe 仓 `plugins/CONTRACT.md`,本 skill 蒸馏速览加路由,不复述契约全文。
 
-**版本对齐**:契约五节加五a/b/c/d 加八(2026-10-13,v3.0 蓝图);本机实装 prim 3.0.0a1 R2 后实态(ai-ccoe main 6bb8a6b) [实证:本机 uv 工具重装自仓源,--llms 与行为实测]。残余差异面见 `references/commands.md` 差异表,用前实查。
+**版本对齐**:契约五节加五a/b/c/d 加八(v3.0 蓝图)加 v3.1.0(七节批次记,ctx 第六原语);本机实装 prim 3.0.0a1 R2 后实态(ai-ccoe main 6bb8a6b) [实证:本机 uv 工具重装自仓源,--llms 与行为实测]。残余差异面见 `references/commands.md` 差异表,用前实查。
 
 ## 一、agents 域路由（何时用）
 
@@ -50,7 +50,7 @@ description: >-
 
 - 全局七旗标任意槽:`--help -h --llms --json --format --full-output --filter-output --schema`;`--` 逃生口;未知词 usage 退 2,禁静默吞
 - 投递动词统一 `to`(`prompt` 为别名);`--force` 任意参数位识别
-- 保留动词首词命中即非目标:view read keys list mode put get append set open close to prompt machines start ws shell dev split tab zoom close wt trust sync reload
+- 保留动词首词命中即非目标:view read keys list mode put get append set open close to prompt machines start ws shell dev split tab zoom close wt trust sync reload show search
 
 ## 三、id 三产生式（目标文法）
 
@@ -73,7 +73,7 @@ description: >-
 | 拒投 | 自动代记 `deferred`(全域含 agents to);勿手补投,补收看 `room/deferred/` 流 |
 
 - **门控 v2 = TUI 实况尾窗检测**:读格可见内容尾 12 行对四家 TUI 判标族(claude/codex/grok/kimi)匹配;操作对话框(信任屏/权限屏/模式选择)即拒,空 TUI 可投,**busy 排队不拦**;误拒优于误投 [实证:包源直读,evo 实弹案]
-- **read 收件面**:忙候到闲/完成或超时;超时未闲出 `status:"timeout-working"`(内容仍全量附上,exit 0);无内容才 engine_fail 加 CTA `--timeout 加长重试` [实证:本机双态实测]
+- **read 收件面**:忙候到闲/完成或超时;超时未闲出 `status:"timeout-working"`(内容仍全量附上,exit 0);无内容才 engine_fail 加 CTA `--timeout 加长重试`;**历史档案检索走 ctx 原语,read 只管实时屏** [实证:本机双态实测]
 - **拒投自动代记**:意图自动记入 `room/deferred/<目标格>` 流,退出码仍 1;agents 域代记含原文截 80 字
 - **--force**:跳门控强投(契约面审计流 room/force-audit;实装未落见差异表,强投前自问必要性)
 - **status 四态信封**(DELIVER 的 `--json` data 恒带 `status`):

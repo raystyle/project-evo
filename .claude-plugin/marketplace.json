@@ -3,9 +3,9 @@
   "owner": {
     "name": "raystyle"
   },
-  "description": "项目治理插件市场,两插件九 skill:dev(开发治理面:doc-gov、dev-cli、dev-lint)与 evo(agent 操作面:agents、shares、streams、tasks、pipes、distil;五原语 = 舰队互操作代理操作唯一面)",
+  "description": "项目治理插件市场,两插件十 skill:dev(开发治理面:doc-gov、dev-cli、dev-lint)与 evo(agent 操作面:agents、shares、streams、tasks、pipes、ctx、distil;六原语 = 舰队互操作代理操作唯一面)",
   "metadata": {
-    "description": "项目治理插件市场,两插件九 skill:dev(开发治理面:doc-gov、dev-cli、dev-lint)与 evo(agent 操作面:agents、shares、streams、tasks、pipes、distil;五原语 = 舰队互操作代理操作唯一面)"
+    "description": "项目治理插件市场,两插件十 skill:dev(开发治理面:doc-gov、dev-cli、dev-lint)与 evo(agent 操作面:agents、shares、streams、tasks、pipes、ctx、distil;六原语 = 舰队互操作代理操作唯一面)"
   },
   "plugins": [
     {
@@ -18,8 +18,8 @@
     {
       "name": "evo",
       "source": "./plugins/evo",
-      "description": "agent 操作面插件,六 skill:agents(消息域原语与五原语共享面:to 投递、id 三产生式、命名标准、门控 v2、信封 v2、status 四态)、shares(文件域)、streams(流域)、tasks(持久任务域)、pipes(实时字节域)、distil(技能自进化三层聚合)",
-      "version": "0.14.4",
+      "description": "agent 操作面插件,七 skill:agents(消息域原语与六原语共享面:to 投递、id 三产生式、命名标准、门控 v2、信封 v2、status 四态)、shares(文件域)、streams(流域)、tasks(持久任务域)、pipes(实时字节域)、ctx(对话历史域:ClickHouse gw_logs 全链检索)、distil(技能自进化三层聚合)",
+      "version": "0.15.0",
       "category": "productivity"
     }
   ]

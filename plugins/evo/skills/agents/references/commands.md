@@ -1,6 +1,6 @@
 # agents 域文法与五原语共享输出契约
 
-> 蒸馏自契约二、三、四、五d 节(真源 ai-ccoe plugins/CONTRACT.md,v3.0 蓝图);标注 [实证] 的行为以本机 wrapper 实读为准(prim 3.0.0a1,ai-ccoe main ef8fca6:close 零击杀、reload 保名、caller_addr 歧义不猜、wt/reload/close 三动词、mode 实装、信封 v2、门控 v2 尾窗俱在)。通则、错误码表、五域速查与差异表为五原语共享面,四 skill 共参本篇。
+> 蒸馏自契约二、三、四、五d 节(真源 ai-ccoe plugins/CONTRACT.md,v3.0 蓝图);标注 [实证] 的行为以本机 wrapper 实读为准(prim 3.0.0a1,ai-ccoe main ef8fca6:close 零击杀、reload 保名、caller_addr 歧义不猜、wt/reload/close 三动词、mode 实装、信封 v2、门控 v2 尾窗俱在)。通则、错误码表、六域速查与差异表为六原语共享面,五 skill 共参本篇(ctx 域 = 对话历史检索,read 实时屏对 ctx 历史档案)。
 
 ## 通则（文法与输出契约）
 
@@ -29,6 +29,7 @@
 | streams | `view [流名] [--from <seq>|--resume]`(流表加尾读) | `append <流> <消息>` | `to <id> <流> <消息> [--force]` |
 | tasks | `view [机]`(实时任务面:fleet 总览加各格 hst task show) | `set <id> <文本>` | `to <id> <文本> [--force]`(= set 加知会) |
 | pipes | `view [机]` | `open [--keep]`;`close <addr|pid>` | `to <id> [--force]` |
+| ctx | `view [agent] [--limit N]` |  | `show <request_id>`;`search <关键词> [--limit N]`(历史检索,非投递) |
 
 ## agents（消息域）
 

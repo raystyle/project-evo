@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-14 第一百四十九批:六原语收编 ctx 对话历史域,总台令
+
+- **ctx 第六原语**(REQ-040;prim v3.1.0,e98e4af 起实装):新 skill evo:ctx = agent 请求全链检索历史档案面(引擎 ClickHouse gw_logs,ssh 道进容器内 client 免证书面);动词 view [agent] [--limit N] 与 show <request_id> 与 search <关键词>;窗口 head 365 天正文 180 天;与 agents read 分工 = read 实时屏对 ctx 历史档案
+- agents 枢纽升六原语(定位、description、路由行、保留动词表增 show/search、read 分工注);commands.md 六域速查加 ctx;守卫与路由面全随形(evo 七 skill 共十,pre-commit 十目标,市场清单);evo 独立升 0.15.0
+- 本端滚装 prim v3.1.0(六命令入口含 ctx,ctx --llms 实测);实弹两发如实报件 = 本机 ssh 道无 lan-linux2 凭据,ctx view 与 ctx search 均 engine_fail 退 1(错误原文 stderr,退出码实测),链路全通待总台侧或配钥后验;四门禁全绿 + fleet 回执
+
 ### 变更 2026-10-14 第一百四十八批:改面收编 tasks 实时任务面与引擎容错,总台令（顺手批）
 
 - **tasks view 实时任务面**(REQ-039;prim 369e57b):fleet 各格状态总览(标记在跑)加各格仓内 hst task show 直读,tasks/shared 历史事件流弃用(set 不再写事件,旧档只读);tasks SKILL 与五域速查与差异表随改,tasks 事件 prev 差异行销账;streams 与 collab 保留策略去 tasks/shared 面
