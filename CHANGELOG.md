@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-13 第一百四十七批:差异表对 ef8fca6 全刷,总台令（互审 CONFIRM 家庭作业）
+
+- **实证三修**(REQ-038;本机重装 ef8fca6):caller_addr 同 cwd 多格歧义不猜(自探针回环,告警加退化取用行双落地);close 零击杀(/exit 优雅退加 shell exit 末步);reload 名字保真(存量名保名,非法名自修正披露 old-name)
+- 差异表全刷:caller_addr 行改歧义已修;**新入漂移行 = 手册 close 语义滞后于零击杀码**(手册仍书「分裂格杀 shell」,报总台);表头实态升至 ef8fca6;agents SKILL close 行改零击杀、reload 行补保名;addressing.md 同 cwd 判例更新
+- evo 独立升 0.14.3(dev 不动);四门禁全绿 + 回执贴台;总台走 rollout 序,六端 reload 归其辖
+
 ### 变更 2026-10-13 第一百四十六批:对抗式 review 协议单收编,总台令
 
 - **三新动词入 skill**(REQ-037;prim ai-ccoe main 04ba9bf):agents 补 close(关格三形)、reload(同格同 session 重进翻台,四家 resume 形,resume 失败自回滚裸形 fresh-session 披露)、wt(win 专属本窗开 tab 显任意机 herdr 视图);保留动词表与触发词随改

@@ -92,8 +92,8 @@ description: >-
 
 - **收件**:`agents read <id> [--lines N] [--timeout S]`(默认 20 行、90 秒;5s 轮询内候)
 - **在场**:`agents mode <dnd|away|online> [until]`(自声明,写 shares 键 `share/presence/<host>/<格>`;勿扰与离开建议短窗) [实证:mode online 实测落键]
-- **工位**:`agents start <名> --kind <类>` 起格(命名校验)、`ws <label>`/`ws list`/`ws close`、`shell <机> <仓>`(开台 shell 回 root 格)、`dev <机> <仓> [--kind]`(开台起 agent)、`split <id> [--direction]`、`tab list/create/close`、`zoom <id>`、`close <id>`(关格:agent 优雅退,末格收台,分裂格杀 shell)、`wt [机|wsl] [--title 名]`(win 专属:本窗开 tab 显该机 herdr 视图;wsl 走 wsl.exe 道,在册机走 ssh -t)、`trust`(信任屏放行)、`sync`(机册面)
-- **翻台**:`agents reload <id>`(同格同 session 重进,重载技能与插件;四家 resume 形在册,resume 失败自回滚裸形新会话,信封 resume 字段披露;名字不合 herdr 规则自修正) [实证:包源直读 04ba9bf]
+- **工位**:`agents start <名> --kind <类>` 起格(命名校验)、`ws <label>`/`ws list`/`ws close`、`shell <机> <仓>`(开台 shell 回 root 格)、`dev <机> <仓> [--kind]`(开台起 agent)、`split <id> [--direction]`、`tab list/create/close`、`zoom <id>`、`close <id>`(关格:agent 优雅退 /exit 后 shell exit,格自消,零击杀) [实证:包源直读 ef8fca6]、`wt [机|wsl] [--title 名]`(win 专属:本窗开 tab 显该机 herdr 视图;wsl 走 wsl.exe 道,在册机走 ssh -t)、`trust`(信任屏放行)、`sync`(机册面)
+- **翻台**:`agents reload <id>`(同格同 session 重进,重载技能与插件;四家 resume 形在册,resume 失败自回滚裸形新会话,信封 resume 字段披露;**名字保真**:存量名含非标形一律保名,仅非法字符名自修正且信封披露 old-name) [实证:包源直读 ef8fca6]
 - **机器**:`agents machines`(机表与可达性);跨机 id 一次命中,--machine 由 primlib 隐式路由零感知
 - **按键**:`agents keys <id> <键>`(仅本机与 local: 目标;跨机 usage 拒)
 

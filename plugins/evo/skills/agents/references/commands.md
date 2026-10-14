@@ -1,6 +1,6 @@
 # agents 域文法与五原语共享输出契约
 
-> 蒸馏自契约二、三、四、五d 节(真源 ai-ccoe plugins/CONTRACT.md,v3.0 蓝图);标注 [实证] 的行为以本机 wrapper 实读为准(prim 3.0.0a1,R2 后实态:ai-ccoe main 6bb8a6b)。通则、错误码表、五域速查与差异表为五原语共享面,shares/streams/tasks/pipes 四 skill 共参本篇。
+> 蒸馏自契约二、三、四、五d 节(真源 ai-ccoe plugins/CONTRACT.md,v3.0 蓝图);标注 [实证] 的行为以本机 wrapper 实读为准(prim 3.0.0a1,ai-ccoe main ef8fca6:close 零击杀、reload 保名、caller_addr 歧义不猜、wt/reload/close 三动词、mode 实装、信封 v2、门控 v2 尾窗俱在)。通则、错误码表、五域速查与差异表为五原语共享面,四 skill 共参本篇。
 
 ## 通则（文法与输出契约）
 
@@ -56,6 +56,7 @@
 | 裸 pane id = usage | 偏离:名字解析同时命中 pane_id,勿依赖此偏离 |
 | --help = 手册加节序展开 | --help 与 --llms 同面(无节序展开) |
 | layout 动词(契约八节) | 挂账:herdr 0.9.3 无 layout 子命令(preview 面,候 herdr 后续版) |
-| from=<host> 可直接回投 | host 用 hostname;与在册机标签不合时同册不可解析,按名回信(判例见 addressing.md) |
+| from=<host> 可直接回投 | host 用 hostname 非在册标签(lan-ubuntu 对 local 判例);多格同 cwd 歧义已修(ef8fca6 不猜加告警 [实证:批 147 自探针]) |
+| 手册 close 语义 = 代码零击杀 | 漂移:手册仍书「分裂格杀 shell」,码已是 /exit 优雅退加 shell exit 零击杀(报总台) |
 
 - 用前实查:`command -v agents` 等五命令在不在、`<命令> --llms` 看手册面;差异面如实报,不猜不代装(分发归宿主工具链 omc 与 ark)

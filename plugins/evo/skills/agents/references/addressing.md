@@ -44,6 +44,7 @@
 - **from 是提示非签名**:收方回信前以 `agents view` 核对 host:pane 仍是活格;取用行是唯一协议面(见 deliver-gate.md 信封节)
 - **在格 cwd 里投递**:cwd 无格匹配时 caller_addr 退化 host-only 并 stderr 告警 [实证:/tmp 直调实测],取用行自动降级指 `agents view` 定位再 `agents to <机:格>`;判例 = from=AI-LAB 的降级形 `取用:agents view(定位 AI-LAB 上发话格后 agents to <机:格> <回复>)`;在格 cwd 里投递即回直答形
 - **from 的 host 是 hostname 非在册机标签**:同机回信按名或 `local:<格>`;hostname 与本册标签不合时 from 形同册不可解析(判例:本机 hostname lan-ubuntu 对在册标签 local,`agents to lan-ubuntu:w8:p1` 同机 not_found,evo-grok-4 按名回信成) [实证:批 143 实弹]
+- **同 cwd 多格歧义不猜**(ef8fca6 修):caller_addr 多命中时退化机名并告警,不取首格(批判例:w8:p1 与 w8:p4 同仓,旧形误指) [实证:批 147 自探针回环,告警与退化取用行双落地]
 
 ## 坑簿
 
