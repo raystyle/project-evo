@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-14 第一百五十一批:ctx 在途降级判例收编(v3.1.4),总台令
+
+- 批 150 观察定谳根修落 v3.1.4:管道时序 = 正文块先入 gwlog、头行随 request_end 批后入(近 10 分钟在途差);show 对在途 rid 降级出「头行:未落」加正文块先行,双无记录才 not_found
+- ctx skill 坑表改判例行(在途降级属正常非错误);本端重装 v3.1.4;evo 独立升 0.15.2;四门禁全绿 + fleet 回执
+
 ### 变更 2026-10-14 第一百五十批:ctx skill 对齐 prim v3.1.3,总台令
 
 - **v3.1.3 面收编**(REQ-041;v3.1.0 稿漂移全刷):检索道 ssh 单道改直连 https 8123 主道(双闸 = client 证书 TLS 层加 basic ctx_reader SELECT-only;CTX_* 环境变量优先,~/.ctx/reader.env 六键 600)加 ssh 兜底;动词面增 show --around <词> --window N(命中块±N 邻块,命中点居中 3000 字,SQL 侧全文匹配)与 search --term 多词 OR 加 snip 片段列;坑表三入(词至少 2 字符、嵌套抓 rid 用 --limit 1 且切列认准 f8/f1、块命中 rid 无头行属管道时滞)
