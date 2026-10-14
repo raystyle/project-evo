@@ -42,3 +42,4 @@
 | REQ-036 | implemented | must | zh-lint 删除(中文面退出 skill 面) | tests/test_project_evo.py |
 | REQ-037 | implemented | must | 对抗 review 协议单收编(三新动词、重载铁律、sha 反射、rollout 段) | tests/test_project_evo.py |
 | REQ-038 | implemented | must | 差异表对 ef8fca6 全刷(互审 CONFIRM 家庭作业) | tests/test_project_evo.py |
+| REQ-039 | implemented | must | 改面收编:tasks 实时任务面与 herdr_run 容错 | tests/test_project_evo.py |

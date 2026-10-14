@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-14 第一百四十八批:改面收编 tasks 实时任务面与引擎容错,总台令（顺手批）
+
+- **tasks view 实时任务面**(REQ-039;prim 369e57b):fleet 各格状态总览(标记在跑)加各格仓内 hst task show 直读,tasks/shared 历史事件流弃用(set 不再写事件,旧档只读);tasks SKILL 与五域速查与差异表随改,tasks 事件 prev 差异行销账;streams 与 collab 保留策略去 tasks/shared 面
+- **herdr_run 容错**:超时/离线机回 rc=124 不抛栈,view 跳过不可达机单行告警;tasks 坑表与 agents 坑表与 addressing 坑簿随改(离线不挂死)
+- 实证:本机重装后 tasks view 实测(实时总览);evo 独立升 0.14.4(dev 不动);四门禁全绿 + fleet 回执;rollout 双到位闸门维持
+
 ### 变更 2026-10-13 第一百四十七批:差异表对 ef8fca6 全刷,总台令（互审 CONFIRM 家庭作业）
 
 - **实证三修**(REQ-038;本机重装 ef8fca6):caller_addr 同 cwd 多格歧义不猜(自探针回环,告警加退化取用行双落地);close 零击杀(/exit 优雅退加 shell exit 末步);reload 名字保真(存量名保名,非法名自修正披露 old-name)

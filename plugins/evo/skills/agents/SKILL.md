@@ -105,6 +105,7 @@ description: >-
 | 目标 working 就不敢投 | 门控 v2 busy 排队不拦,只拒操作对话框;要等人回话用 `agents read` 忙候语义 |
 | 拒投信封 ok:true | deferred 也走 ok:true 信封 + exit 1;判定看退出码与 data.status |
 | **旧进程 = 旧技能** | 装/更插件后不 reload 则旧技能仍在跑;翻台恒 `agents reload <id>`,重进失败回滚裸形时上下文弃(信封 resume 字段披露 fresh-session) |
+| 目标机离线 | 引擎容错 rc=124 不挂死;view 跳过不可达机单行告警,投递面按引擎错原文报 |
 
 ## 七、协作惯例（速览,IM 映射）
 

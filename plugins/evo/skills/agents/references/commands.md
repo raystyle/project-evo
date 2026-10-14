@@ -27,7 +27,7 @@
 | agents | `view [机]`;`machines`;`list [机]` | `read <id> [--lines N] [--timeout S]`(收件面);`keys <id> <键>`;`mode <dnd|away|online> [until]`;`start <名> --kind <类>`;`ws <label>`/`ws list`/`ws close`;`shell <机> <仓>`;`dev <机> <仓> [--kind]`;`split <id> [--direction]`;`tab list/create/close`;`zoom <id>`;`trust`;`sync` | `to <id> <文本> [--force]`(prompt = 别名) |
 | shares | `view`(share/ 键表) | `put <文件>`;`get <键> [-o|--output 名]` | `to <id> <文件> [--force]` |
 | streams | `view [流名] [--from <seq>|--resume]`(流表加尾读) | `append <流> <消息>` | `to <id> <流> <消息> [--force]` |
-| tasks | `view`(tasks/shared 最近事件) | `set <id> <文本>` | `to <id> <文本> [--force]`(= set 加事件加知会) |
+| tasks | `view [机]`(实时任务面:fleet 总览加各格 hst task show) | `set <id> <文本>` | `to <id> <文本> [--force]`(= set 加知会) |
 | pipes | `view [机]` | `open [--keep]`;`close <addr|pid>` | `to <id> [--force]` |
 
 ## agents（消息域）
@@ -47,9 +47,9 @@
 | 契约 v3.0 面 | R1 后实装 |
 | --- | --- |
 | VIEW 与 OPERATE 的 --json 两形 | 未落(--json 仅 DELIVER 信封与错误 stderr 生效) |
-| tasks view [机|id] 带参面 | 忽略参数,恒出 tasks/shared 最近 8 事件 |
+| tasks view 转实时任务面(369e57b) | 各格 hst task show 直读加 fleet 总览,机过滤在位,id 带参未收;tasks/shared 事件流已弃 |
 | --force 审计 room/force-audit | 未落(五域皆无;强投前自问必要性) |
-| 幂等 id、tasks 事件 prev | 未落(v=1 已随信封 v2 落,from/to 恒在) |
+| 幂等 id | 未落(v=1 已随信封 v2 落,from/to 恒在;tasks 事件 prev 随事件流弃用销账) |
 | 拒投代记流键 = 收方名 | 用目标格 pane id;shell 形旧流按名仍在,补收两边都看 |
 | presence 声明键 = share/presence/<机>/<名>(五a) | 实装用 <机>/<格> pane 形 [实证:mode online 落键] |
 | streams 拒投代记含原文 | 只记意图行(流名加待递),不含消息体;须 --force 重发或改走 append |
