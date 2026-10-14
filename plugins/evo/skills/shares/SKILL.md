@@ -37,4 +37,5 @@ description: >-
 
 - 大内容走本域上键,流里只放键引用(streams 域配合)
 - ack 惯例:文件件可回执 ack 键(shares 上 share/<名>/…-ack.txt 判例)
+- 版本链传 sha 反射:发版件 put 上键后,消息里带键与 sha(catalog pin 类对笺);sha 是验证面,键是取用面,两写并存
 - 取回指定落名用 `-o`,免键尾名撞本地件

@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-13 第一百四十六批:对抗式 review 协议单收编,总台令
+
+- **三新动词入 skill**(REQ-037;prim ai-ccoe main 04ba9bf):agents 补 close(关格三形)、reload(同格同 session 重进翻台,四家 resume 形,resume 失败自回滚裸形 fresh-session 披露)、wt(win 专属本窗开 tab 显任意机 herdr 视图);保留动词表与触发词随改
+- **重载铁律入坑**(总台 Q5):旧进程 = 旧技能,装更插件后必 agents reload 翻台;shares 补版本链传 sha 反射(键取用面加 sha 验证面,总台 Q4 实操面);browse update 滚版注为外部工具自面不入五原语
+- **rollout 段入两插件 README**:全端序 = 市场更新、卸旧五插件、装 dev 与 evo、全格 agents reload;Kimi 清目录重拷重启
+- 实证:本机重装 prim 04ba9bf;evo 0.14.2 加 dev 0.14.3 独立升;四门禁全绿;回执贴台 = 五问答卷(触发歧义矩阵、hook 面核对、漂移全列、实操覆盖、安装序)加我方攻单(动词缺口、门控误判面、reload 误标、信封退化道)
+
 ### 变更 2026-10-13 第一百四十五批:zh-lint 删除,用户令
 
 - **终裁**(REQ-036):zh-lint 删除,中文语言纪律不设 skill 面(沿革 = 批 141 三合一、批 144 拆出复独立、本批删除;工具与判例存 git 档案);终形回两插件九 skill = dev 三(doc-gov、dev-cli、dev-lint)加 evo 六

@@ -40,3 +40,4 @@
 | REQ-034 | implemented | must | grok 业界先例评审吸收(收口、独立 semver、命名细节、distil 压缩、环境变量) | tests/test_project_evo.py |
 | REQ-035 | implemented | must | 拆中文面:zh-lint 复独立 skill | tests/test_project_evo.py |
 | REQ-036 | implemented | must | zh-lint 删除(中文面退出 skill 面) | tests/test_project_evo.py |
+| REQ-037 | implemented | must | 对抗 review 协议单收编(三新动词、重载铁律、sha 反射、rollout 段) | tests/test_project_evo.py |

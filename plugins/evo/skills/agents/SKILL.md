@@ -17,7 +17,7 @@ description: >-
   查在场改 presence、开工作台或 tab 调窗格邻居布局、查在网机器时;触发词 agents、
   原语、prim、告诉、委派、让干、找格、读屏、读格、窗格、邻居、tab、工作台、table、
   投递、派单、门控、拒投、deferred、代记、补收、force、四态、信封、status、收件、
-  忙候、timeout-working、mode、presence、machines、id、命名标准、隐式路由、机:格、
+  忙候、timeout-working、mode、presence、machines、id、命名标准、隐式路由、机:格、close、关格、reload、翻台、重载、wt、开视图、
   local:、舰队互操作。
 ---
 
@@ -50,7 +50,7 @@ description: >-
 
 - 全局七旗标任意槽:`--help -h --llms --json --format --full-output --filter-output --schema`;`--` 逃生口;未知词 usage 退 2,禁静默吞
 - 投递动词统一 `to`(`prompt` 为别名);`--force` 任意参数位识别
-- 保留动词首词命中即非目标:view read keys list mode put get append set open close to prompt machines start ws shell dev split tab zoom trust sync
+- 保留动词首词命中即非目标:view read keys list mode put get append set open close to prompt machines start ws shell dev split tab zoom close wt trust sync reload
 
 ## 三、id 三产生式（目标文法）
 
@@ -92,7 +92,8 @@ description: >-
 
 - **收件**:`agents read <id> [--lines N] [--timeout S]`(默认 20 行、90 秒;5s 轮询内候)
 - **在场**:`agents mode <dnd|away|online> [until]`(自声明,写 shares 键 `share/presence/<host>/<格>`;勿扰与离开建议短窗) [实证:mode online 实测落键]
-- **工位**:`agents start <名> --kind <类>` 起格(命名校验)、`ws <label>`/`ws list`/`ws close`、`shell <机> <仓>`(开台 shell 回 root 格)、`dev <机> <仓> [--kind]`(开台起 agent)、`split <id> [--direction]`、`tab list/create/close`、`zoom <id>`、`trust`(信任屏放行)、`sync`(机册面)
+- **工位**:`agents start <名> --kind <类>` 起格(命名校验)、`ws <label>`/`ws list`/`ws close`、`shell <机> <仓>`(开台 shell 回 root 格)、`dev <机> <仓> [--kind]`(开台起 agent)、`split <id> [--direction]`、`tab list/create/close`、`zoom <id>`、`close <id>`(关格:agent 优雅退,末格收台,分裂格杀 shell)、`wt [机|wsl] [--title 名]`(win 专属:本窗开 tab 显该机 herdr 视图;wsl 走 wsl.exe 道,在册机走 ssh -t)、`trust`(信任屏放行)、`sync`(机册面)
+- **翻台**:`agents reload <id>`(同格同 session 重进,重载技能与插件;四家 resume 形在册,resume 失败自回滚裸形新会话,信封 resume 字段披露;名字不合 herdr 规则自修正) [实证:包源直读 04ba9bf]
 - **机器**:`agents machines`(机表与可达性);跨机 id 一次命中,--machine 由 primlib 隐式路由零感知
 - **按键**:`agents keys <id> <键>`(仅本机与 local: 目标;跨机 usage 拒)
 
@@ -103,6 +104,7 @@ description: >-
 | 裸格直写格 id(如 `to w8:p1`) | 首冒号先当机标签解析,报「机器不在册」;无名格必须 `local:<格>` 或 `<机>:<格>` |
 | 目标 working 就不敢投 | 门控 v2 busy 排队不拦,只拒操作对话框;要等人回话用 `agents read` 忙候语义 |
 | 拒投信封 ok:true | deferred 也走 ok:true 信封 + exit 1;判定看退出码与 data.status |
+| **旧进程 = 旧技能** | 装/更插件后不 reload 则旧技能仍在跑;翻台恒 `agents reload <id>`,重进失败回滚裸形时上下文弃(信封 resume 字段披露 fresh-session) |
 
 ## 七、协作惯例（速览,IM 映射）
 
