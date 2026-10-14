@@ -1,41 +1,49 @@
 ---
 name: streams
 description: >-
-  streams 原语(prim v3 流域):S2 形持久流(引擎 s5,流即房间),播报、留痕、交回执、
-  房间消息。append <流> <消息> 落流(自动带 host 前缀,勿手写裸 s5 append),view
-  读流(-n 调量、--from <seq> 回放、--resume 从机内 cursor 续读),to <id> <流>
-  <消息> 定向递流(先入流再知会,取用行 = s5 tail;拒投不写流不保原文,要留消息改走
-  append 或 --force 重发)。room/ 与 dm/ 保留 14 天(tasks/shared 事件流已弃,旧档只读);
-  fleet 流 = 全舰队回执主频道。共享规则(id、门控、信封)见 evo:agents skill(相对链 ../agents/)。契约单一真源 = ai-ccoe 仓 plugins/CONTRACT.md。
-  Use when 要往流交回执或广播、播报进展、留痕、发房间消息、私信(dm/ 专线)、回放或
-  续读历史消息、查流列表时;触发词 streams、流、回执、房间、广播、播报、留痕、私信、
-  dm、频道、append、tail、view、cursor、回放、from、resume、S2。
+  流消息原语:播报、留痕、交回执、房间消息与私信(append 落流、tail 取阅;fleet 流 =
+  全舰队回执主频道)。Use when 往流交回执或广播、播报进展、留痕、发房间消息、私信、
+  回放或续读历史消息、查流列表时;触发词 streams、流、回执、房间、广播、播报、留痕、
+  私信、dm、频道、append、tail、回放、cursor、resume、S2。
 ---
 
 # streams - evo 流域原语
 
-**定位**:五原语的流域:S2 形持久流,引擎 s5,流即房间。播报、回执、留痕、房间消息的主载体。共享面在 `../agents/references/`,本篇只持域面。
+| 动词 | 文法 | 何时用 |
+| --- | --- | --- |
+| view | `view [流名] [--from <seq>] [--resume] [-n N]` | 要查流列表或读流(具名时尾读,默认最近 100 行) |
+| append | `append <流> <消息>` | 要落一条消息(自动带 host 前缀) |
+| to | `to <id> <流> <消息> [--force]` | 要定向递流(先入流再知会对方) |
 
-## 动词面
+## 文法
 
-| 动词 | 义 |
+- 裸调用 = view;全局旗标以 `streams --llms` 为准
+- 读控制:`-n N` 调量;`--from <seq>` 回放(全量 = `--from 0`);`--resume` 从机内 cursor 续读
+- 消息一行一事;append-only,更正 = 追加新行注明对象
+- 保留策略:room/ 与 dm/ 14 天;长留内容上 shares 键
+
+## 示例
+
+```bash
+streams view
+streams view fleet --from 0 -n 20
+streams append fleet "批X 回执:发版位 abc1234"
+streams to evo-claude-1 fleet "回执:批 X 完成"
+```
+
+## 坑
+
+| 错 | 对 |
 | --- | --- |
-| `view [流名]` | 流表;具名时尾读(默认最近 100 行) |
-| `append <流> <消息>` | 落流,自动加 `<host>\|` 前缀 |
-| `to <id> <流> <消息> [--force]` | 定向递流 = 先入流再投信封知会 |
+| 手写裸 `s5 append` | 用 `streams append`,host 前缀自动带 |
+| 定向递流被拒后找原文 | 拒投不写流不保原文,改走 `append` 或 `--force` 重发 |
+| 默认尾读当全量 | 只见最近 100 行;全量 `--from 0` |
+| 取阅后回写确认 | 取阅 = tail,不回写 |
 
-- 读控制:`-n N`/`--lines N` 调量;`--from <seq>` 从序号回放(全量 = `--from 0`);`--resume` 从机内 cursor 续读(cursor 落 `~/.local/state/prim/cursor/<流名>`,机内不共享)
-- 裸调用 = view,exit 0;全局旗标与文法见 `../agents/SKILL.md` 二节
+## 分工
 
-## 语义
+文件走 shares;回执主频道 = fleet 流;共享规则见 `../agents/SKILL.md`。
 
-- DELIVER:先 append 入流再投信封 v2,域字段 stream,取用行 = `s5 tail <流>`
-- 拒投不写流不保原文:要留消息改走 `streams append`(无门控)或 `--force` 重发
+## 接着读
 
-## 惯例与坑
-
-- **回执主频道 = fleet 流**:`streams append fleet "<一句话>"`(host 前缀自动带,勿手写裸 s5 append);收方 tail 取阅,取阅不回写
-- 一行一事;append-only:发出去不撤回,更正 = 追加新行注明对象
-- 私信 = `dm/<a>/<b>` 双方名字典序专线;房间 = `room/` 前缀
-- 保留策略:room/ 与 dm/ 14 天;要长留的内容上 shares 键
-- 默认尾读只最近 100 行,全量记得 `--from 0`
+- `../agents/references/collab.md`:消息礼仪与 ack 惯例,交回执或发私信时

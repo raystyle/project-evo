@@ -1,37 +1,46 @@
 ---
 name: tasks
 description: >-
-  tasks 原语(prim v3 持久任务域):hst task 全局遥控(引擎 hst;goal 命令族已正名
-  task)。set <id> <文本> 设别的格所在项目的持久任务(本地直设;远机零 ssh = pending
-  流加 apply 受体),to <id> <文本> 定向委派(= set 加知会,取用行 = cd <cwd> && hst task show),view 出实时任务面(fleet 各格状态总览标记在跑,各格仓内 hst task show 直读)。id 文法、
-  门控 v2、信封 v2 等共享面在 evo:agents skill(相对链 ../agents/)。契约单一真源 =
-  ai-ccoe 仓 plugins/CONTRACT.md。
-  Use when 要设别的格所在项目的持久任务、跨机委派目标、查任务事件流时;触发词 tasks、
-  持久任务、任务、goal、委派目标、设任务、task set、实时任务、总览。
+  持久任务原语:给别的格所在项目钉任务并定向委派,view 出各格现在跑什么的实时总览。
+  Use when 设别的格的持久任务、跨机委派目标、查各格当前任务时;触发词 tasks、持久任务、
+  任务、goal、委派、设任务、实时任务、总览、task set。
 ---
 
 # tasks - evo 持久任务域原语
 
-**定位**:五原语的持久任务域:hst task 全局遥控,引擎 hst。给别的格(或本机格)所在项目钉持久任务。共享面在 `../agents/references/`,本篇只持域面。
+| 动词 | 文法 | 何时用 |
+| --- | --- | --- |
+| view | `view [机]` | 要 fleet 各格状态总览(标记在跑)加各格仓内任务直读 |
+| set | `set <id> <文本>` | 要设目标格 cwd 的持久任务 |
+| to | `to <id> <文本> [--force]` | 要定向委派(set 加知会) |
 
-## 动词面
+## 文法
 
-| 动词 | 义 |
-| --- | --- |
-| `view [机]` | 实时任务面:fleet 各格状态总览(标记在跑)加各格仓内 `hst task show` 直读 |
-| `set <id> <文本>` | 设目标格 cwd 的持久任务 |
-| `to <id> <文本> [--force]` | 定向委派 = set 加知会 |
+- 裸调用 = view;全局旗标以 `tasks --llms` 为准
+- 本地直设;远机零 ssh:pending 流加 apply 受体唤醒
+- 交付取用行 = `cd <cwd> && hst task show`;拒投自动代记(任务文本待设)
 
-- 裸调用 = view,exit 0;全局旗标与文法见 `../agents/SKILL.md` 二节
+## 示例
 
-## 语义
-
-- 底座 = hst task(goal 命令族已正名 task,旧 goal 面仅作回退)
-- 本地直设;**远机零 ssh**:pending 流 `tasks/pending/<机>` 加 apply 受体唤醒
-- DELIVER:域字段 cwd,取用行 = `cd <cwd> && hst task show`;拒投自动代记(任务文本待设)
+```bash
+tasks view
+tasks view lan-win
+tasks set hst-kimi-2 "收束评审后发版"
+tasks to pi-web "评审收束后发版" --json
+```
 
 ## 坑
 
-- 取用行是 `hst task show`,别再写 `hst goal show`
-- 任务设在目标格 cwd 上:目标格换目录后任务仍指原仓,以取用行 cwd 为准
-- 目标机离线:view 跳过并单行告警,不挂死
+| 错 | 对 |
+| --- | --- |
+| 取用行写 `hst goal show` | 用 `hst task show`(goal 面只作回退) |
+| 目标格换目录后找不到任务 | 任务钉在设时的 cwd,以取用行 cwd 为准 |
+| 目标机离线时等全表 | view 跳过不可达机单行告警,不挂死 |
+
+## 分工
+
+消息走 agents;共享规则见 `../agents/SKILL.md`。
+
+## 接着读
+
+- `../agents/SKILL.md`:id 文法与委派信封,定向委派被拒时

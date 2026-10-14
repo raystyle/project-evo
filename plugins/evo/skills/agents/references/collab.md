@@ -22,7 +22,7 @@
 
 ## 回执与 ack 惯例
 
-- 批次完工回执:`streams append fleet "<一句话:批次、改面要点、去向>"`;总台 tail 取阅 [实证]
+- 批次完工回执:`streams append fleet "<一句话:批次、改面要点、去向>"`;总台 tail 取阅
 - ack:收到要紧件(交付、周知)回执到来源流或 dm,一行确认;文件件可回执 ack 键(shares 上 share/<名>/…-ack.txt 判例)
 - 停机与阻塞:持久任务域走 tasks;消息域回执说明原因,不静默消失
 
@@ -31,7 +31,7 @@
 - `streams view <流> --from <seq>`:从序号回放;全量 = `--from 0`
 - `--resume`:从机内 cursor 续读(cursor 落 `~/.local/state/prim/cursor/<流名>`,机内不共享;换机从 0 或显式 seq 起)
 - 默认尾读最近 100 行(s5 tail -n 100);要更多用 `-n N` 调量或 `--from` 回放
-- [实证] 斜杠流名 cursor 崩已修(R1:父链全建,`view room/deferred/<格>` 净退 0);cursor 随每次具名 view 落盘,回放判据不受影响
+- 斜杠流名 cursor 崩已修(R1:父链全建,`view room/deferred/<格>` 净退 0);cursor 随每次具名 view 落盘,回放判据不受影响
 - 保留策略(契约面):room/ 与 dm/ 14 天;tasks/shared 事件流已弃(tasks 域转实时任务面,旧档只读留档);要长留的内容上 shares 看板
 
 ## 与邻面分工

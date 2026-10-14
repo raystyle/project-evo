@@ -1,41 +1,47 @@
 ---
 name: ctx
 description: >-
-  ctx 原语(prim v3.1.3 对话历史域):agent 请求全链检索的历史档案面(引擎 ClickHouse
-  gw_logs,lan-linux2 gwlogs 实例)。检索道 = 直连 https 8123 主道(双闸 = client 证书
-  TLS 层加 basic ctx_reader SELECT-only;凭据环境变量 CTX_URL/CTX_USER/CTX_PASSWORD
-  优先,缺省读 ~/.ctx/reader.env 六键 600),ssh 道兜底(无凭据或直连败自动落,容器内
-  client)。动词三枚:view [agent] [--limit N] 出最近请求头行(时间/模型/token/耗时/
-  request_id);show <request_id> [--around <词>] [--window N] 出单请求全档,--around
-  只出命中块±N 邻块(命中块为命中点居中 3000 字,SQL 侧全文匹配突破块截断);search
-  <词> [--term <词>]... [--limit N] 跨请求全文多词 OR,每行带命中片段 snip 列。窗口:
-  head 365 天,正文 180 天;词至少 2 字符(UTF-8 计)。与 agents read 分工 = read 实时屏,
-  ctx 历史档案。共享规则见 evo:agents skill(相对链 ../agents/)。契约单一真源 =
-  ai-ccoe 仓 plugins/CONTRACT.md(七节批次记)。
-  Use when 要查历史对话、回溯任何 agent 对话细节、按 request_id 调单次请求原文、跨请求
-  全文搜关键词、看某 agent 最近请求开销(token、耗时、模型)时;触发词 ctx、历史对话、
-  对话历史、回溯、检索、全链、档案、请求、request_id、正文、view、show、search、
-  ClickHouse、gw_logs、gwlogs。
+  对话历史检索原语:查任何 agent 跑过的请求(最近请求头行、单请求原文、跨请求全文搜词)。
+  Use when 查历史对话、回溯对话细节、按 request_id 调单次请求原文、跨请求搜关键词、看某
+  agent 最近请求开销时;触发词 ctx、历史对话、对话历史、回溯、检索、全链、档案、
+  request_id、snip、gw_logs、gwlogs。
 ---
 
 # ctx - evo 对话历史域原语
 
-**定位**:agent 请求全链检索的历史档案。引擎 ClickHouse gw_logs(lan-linux2 gwlogs 实例);检索道 = 直连 https 8123 主道(双闸:client 证书 TLS 层加 basic ctx_reader SELECT-only;凭据 `CTX_URL/CTX_USER/CTX_PASSWORD` 优先,缺省读 `~/.ctx/reader.env` 六键 600),ssh 道兜底(直连败自动落)。共享面在 `../agents/references/`。
+| 动词 | 文法 | 何时用 |
+| --- | --- | --- |
+| view | `view [agent] [--limit N]` | 要最近请求的头行(时间/模型/token/耗时/request_id) |
+| show | `show <request_id> [--around <词>] [--window N]` | 要单请求原文;`--around` 只看命中块±N 邻块 |
+| search | `search <词> [--term <词>]... [--limit N]` | 跨请求全文搜词,多词 OR,行带 snip 片段 |
 
-## 动词面
+## 文法
 
-| 动词 | 义 |
-| --- | --- |
-| `view [agent] [--limit N]` | 最近请求头行:时间、模型、token、耗时、request_id |
-| `show <request_id> [--around <词>] [--window N]` | 单请求全档;`--around` 只出命中块±N 邻块,命中点居中 3000 字 |
-| `search <词> [--term <词>]... [--limit N]` | 跨请求全文多词 OR,每行带命中片段 snip |
+- 裸调用 = view;窗口:head 365 天,正文 180 天
+- 词至少 2 字符(UTF-8 计)
+- 旗标全集与默认值以 `ctx --llms` 为准
 
-- 裸调用 = view,exit 0;窗口:head 365 天,正文 180 天
-- 与 agents read 分工:read = 实时屏,ctx = 历史档案
-- 示例:`ctx search --term 挂死 --term ensure_ascii`;`ctx show <rid> --around "挂死" --window 1`
+## 示例
+
+```bash
+ctx view --limit 3
+ctx view <agent> --limit 5
+ctx show <request_id> --around <词> --window 1
+ctx search --term <中文词> --term <ascii词> --limit 5
+```
 
 ## 坑
 
-- 词至少 2 字符(UTF-8 计),单字词 usage 拒
-- 嵌套取 rid:先 `--limit 1` 再 show;rid = view 头行末列(f8)或 search 行首列(f1)
-- 在途请求 show 出「头行:未落」加正文块属正常降级;双无记录才 not_found
+| 错 | 对 |
+| --- | --- |
+| 嵌套一把梭取 rid | 先 `search --limit 1` 或 `view` 取 rid:rid = view 头行末列,search 行首列 |
+| show 报「头行:未落」当 not_found | 头行未落正文已在属正常降级,接着读正文块;双无记录才 not_found |
+| 表空当链路断 | 零行但表头出即链路通,数据候采集入库 |
+
+## 分工
+
+实时屏用 agents read,本命令只查历史。
+
+## 接着读
+
+- 共享规则与实装差异表:`../agents/references/commands.md`,跨 skill 投递或协作时

@@ -46,3 +46,4 @@
 | REQ-040 | implemented | must | 六原语收编:ctx 对话历史域 skill | tests/test_project_evo.py |
 | REQ-041 | implemented | must | ctx skill 对齐 prim v3.1.3(直连双闸与 --around 与多词 snip) | tests/test_project_evo.py |
 | REQ-042 | implemented | must | evo 插件 skill 减熵批(正文只留正确用法) | tests/test_project_evo.py |
+| REQ-043 | implemented | must | 命令指导 SKILL 写作标准采纳与六域过标 | tests/test_project_evo.py |

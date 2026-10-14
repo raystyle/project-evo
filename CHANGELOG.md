@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-14 第一百五十三批:写作标准采纳与六域过标,总台令
+
+- **标准采纳**(REQ-043):「命令指导 SKILL 写作标准」入 docs/guides/skill-spec.md(命令指导类节,出处 = fleet room/gateway-logging 草案链保留);description 压 400 字符、正文五节序、--llms 指针、references 三档、验收八条俱为本仓 skill 写作长期依据
+- **六域过标**:evo 六 skill 全套重写(ctx 先行样稿):description 前后(字符)= agents 904 到 230、shares 395 到 166、streams 529 到 182、tasks 421 到 125、pipes 436 到 130、ctx 839 到 175;正文五节序与坑表错|对形,定位段删除,分工一行;agents references 三档落盘(pitfalls、rulings、obsolete),存量知识件标签与哈希注记出清
+- 验收自检过:四词全文零命中、抽三命令对 --llms 一致实弹退 0、回指修正;evo 独立升 0.15.4;四门禁全绿 + fleet 回执带字符对比
+
 ### 变更 2026-10-14 第一百五十二批:evo skill 减熵批,总台令（用户令）
 
 - 六域 SKILL 正文与 references 知识面减熵(REQ-042):批号引用、根修来龙去脉、误判轨迹叙事撤出;坑与规则收敛一行正确姿势;description 发现面不动;功能零漂移(ctx search 多词实弹自验绿);evo 独立升 0.15.3;commit 标题自本批起一行形
