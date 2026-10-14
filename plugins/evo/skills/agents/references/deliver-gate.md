@@ -47,11 +47,14 @@
 
 ```
 [<域>] @<收方> <一句话动作>
-from=<host>:<pane> to=<id> <域字段...> v=1
+from=<机器段>:<pane> to=<id> <域字段...> v=1
 取用:<可复制命令行>
 ```
+
+- `from` 机器段目标感知两形:目标在本机 = `local`(本机别名不在自己机册,收方须 local 形);目标跨机 = 在册别名(互注册可路由);真 hostname 永不进路由位
 
 - 人话行带 `@收方`(兼容 IM 直觉),正文自由;字段行与取用行禁改写(自然语言信封的失败处 = 对方改写取用命令)
 - `from=` 与 `to=` 恒在;`v=` 恒带;域字段随域:shares = key/name;streams = stream;tasks = cwd;pipes = addr;agents 自由文
 - 收方机读:`parse_fieldline` 解析字段行,缺 from/to 视为旧形(src= 时代)记 compatibility 警
 - 第三行前缀一律 `取用:`;收方动作 = 执行取用行,失败时回信给 from(先核验,见 addressing.md)
+- 回信直答:同机 local 形与跨机别名形均可直接 `agents to <from>`

@@ -43,7 +43,7 @@
 - 投递方自动附 `from=<host>:<pane>`(以 cwd 匹配本机格得出;匹配不中退化为仅 host)加 `to=<收方 id>`;你在格的仓目录里投的件,回信地址就指向你那格
 - **from 是提示非签名**:收方回信前以 `agents view` 核对 host:pane 仍是活格;取用行是唯一协议面(见 deliver-gate.md 信封节)
 - **在格 cwd 里投递**:cwd 无格匹配时 caller_addr 退化 host-only 并 stderr 告警,取用行自动降级指 `agents view` 定位再 `agents to <机:格>`;判例 = from=AI-LAB 的降级形 `取用:agents view(定位 AI-LAB 上发话格后 agents to <机:格> <回复>)`;在格 cwd 里投递即回直答形
-- **from 的 host 是 hostname 非在册机标签**:hostname 与本册标签不合时 from 形同册不可解析;同机回信按名或 `local:<格>`
+- **from 机器段目标感知**:同机投递出 `local:<格>`,跨机出在册别名;回信可直答,真 hostname 不进路由位
 - **同 cwd 多格歧义不猜**:caller_addr 多命中时退化机名并告警,不取首格
 
 ## 坑簿
@@ -51,4 +51,4 @@
 - 无名格别裸写:`to w8:p1` 首冒号先当机标签,报「机器 w8 不在册」;要打该格用 `local:w8:p1`
 - 裸名先本机后远程:同名本机远程都有时,本机优先;要打远程格用 `机:名` 显式形
 - 离线机不挂死(rc=124 容错,view 单行告警跳过);知道机仍写 `机:名` 一次命中,免逐台轮询
-- `hostname -s` 与 herdr 机标签不一致的机,裸名跨机查不到;用 `机:名` 并报总台对齐;不符端设 `PRIM_HOST_LABEL` 对齐在册标签
+- 裸名跨机寻址依赖在册别名;端上别名与 hostname 不合时设 `PRIM_HOST_LABEL` 对齐

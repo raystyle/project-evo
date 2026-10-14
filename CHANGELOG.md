@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-14 第一百五十四批:信封机器段目标感知同步,总台令
+
+- **v3.1.7 同步**(REQ-044):信封 from 机器段目标感知 = 同机 local 形(本机别名不在自己机册)、跨机在册别名形,真 hostname 永不进路由位;deliver-gate 信封规范行补两形与回信直答注;commands 差异表 from 行改现行形;addressing 与 pitfalls 旧 hostname 判例出清,分叉史(AI-LAB 对 lan-win,机器改名注册挂起,重启合一)归档 rulings.md
+- 验收实弹:local 到 local 投递回环,信封 from=local:w8:p1 to=local:w8:p1 v=1,local 形实证;本端拉新装 prim v3.1.7
+- evo 独立升 0.15.5;四门禁全绿 + fleet 回执
+
 ### 变更 2026-10-14 第一百五十三批:写作标准采纳与六域过标,总台令
 
 - **标准采纳**(REQ-043):「命令指导 SKILL 写作标准」入 docs/guides/skill-spec.md(命令指导类节,出处 = fleet room/gateway-logging 草案链保留);description 压 400 字符、正文五节序、--llms 指针、references 三档、验收八条俱为本仓 skill 写作长期依据

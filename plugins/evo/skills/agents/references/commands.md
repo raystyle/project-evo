@@ -57,7 +57,7 @@
 | 裸 pane id = usage | 偏离:名字解析同时命中 pane_id,勿依赖此偏离 |
 | --help = 手册加节序展开 | --help 与 --llms 同面(无节序展开) |
 | layout 动词(契约八节) | 挂账:herdr 0.9.3 无 layout 子命令(preview 面,候 herdr 后续版) |
-| from=<host> 可直接回投 | host 用 hostname 非在册标签(lan-ubuntu 对 local 判例);多格同 cwd 歧义已修(ef8fca6 不猜加告警) |
+| from=<host> 可直接回投 | 已落(v3.1.7 目标感知):同机 local 形、跨机在册别名形均可直答,hostname 不进路由位;多格同 cwd 歧义不猜加告警 |
 | 手册 close 语义 = 代码零击杀 | 漂移:手册仍书「分裂格杀 shell」,码已是 /exit 优雅退加 shell exit 零击杀(报总台) |
 
 - 用前实查:`command -v agents` 等五命令在不在、`<命令> --llms` 看手册面;差异面如实报,不猜不代装(分发归宿主工具链 omc 与 ark)
