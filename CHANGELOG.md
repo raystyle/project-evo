@@ -11,6 +11,7 @@
 - 翻台 lan-ubuntu prim v3.4.0(七入口上 PATH,旧 ctx 清);ports open 8123/view/close 环过三段 rc=0
 - 对抗审查 herdr-mesh src/src/prim 四面(domains ports 节、cli 七入口、msg 六域信封、pyproject):keep 死参双域继承、ports to 滤旗标只滤 force、view 机名注册标签语义等发现随 fleet 回执呈;信封 ports=addr 复用与英文化正文、pyproject 3.4.0、公开流分立、死档四件清理诸项相合
 - herdr-mesh skills/ 镜像面同步(ctxs 正名 + ports 入列)并提交;evo 独立升 0.16.0;门禁全绿 + fleet 回执
+- **v3.4.1 对抗修批跟刷**:--keep 废除双域(pipes/ports 常驻至 close,rc=2 拒)、ports 取用行全端口枚举(_use_line,grok F1 修)、spec 映射形语义注(serve 面被服务端口)同步入 ports/pipes SKILL 与 commands/deliver-gate/collab;evo 升 0.16.1
 
 ### 变更 2026-10-15 第一百六十三批:tasks 三键措辞落 skill,总台收正回执
 
