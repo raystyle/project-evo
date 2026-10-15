@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-15 第一百六十批:英文面自查修正与 hst 2.15.0 台对齐,总台续单(批159续)
+
+- **自查修正**(REQ-049;六 SKILL + references 对 prim v3.2.6 --llms 逐面核对):动词面零漂移,信封取用行文档旧中文形出清:deliver-gate 模板行与第三行注 `取用:` 改 `use:`(英文令 2026-10-15,msg.py use_line 实形)、取用行 reply 字面量形五处(agents/shares/streams SKILL 与 addressing/collab,退化与降级形同步英文化)、streams 附注 `(stream <流> attached)`、agents reload 行补 idle/done 皆可翻(2026-10-15 修;working/blocked 拒 --force 过;/exit 三选一自动应答);streams 文法「管道道」叠字修
+- **hst_rs 台对齐**:派单对齐 tasks skill 与 hst 2.15.0 命令面(hst task show/自驱唤醒面),漂移清单随 fleet 回执(hst_rs ack 在案)
+- 重启正名纪律(重启后第一动作 = agents view 查无名格及时正名)进 evo 台 memory
+- evo 独立升 0.15.10;门禁全绿 + fleet 回执
+
 ### 变更 2026-10-15 第一百五十九批:命名标准六裁定对齐,总台对齐单
 
 - **v3.2.4 同步**(REQ-048):命名标准定稿六裁定(别名活注册、编号 = 出生序号非格位、新标准形禁下划线、start 拒非标形、起名全局扫全舰队、台名 1-22)入 skill:addressing 命名标准节全刷(四概念开篇:节点名/工作台名/窗格名/agent 别名;正则标准形;起名两闸),agents SKILL start 动词行补两闸注(非标形 rc=2、撞名全局扫 rc=2)加文法命名标准行随刷;旧「编号即格位」「非标形提示不拦截」语义出清

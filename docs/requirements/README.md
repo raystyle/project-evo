@@ -52,3 +52,4 @@
 | REQ-046 | implemented | must | skill 对抗审核 F 项修复(grok 审单) | tests/test_project_evo.py |
 | REQ-047 | implemented | must | 双轨制信封与房间面收编(核验单 F1-F4) | tests/test_project_evo.py |
 | REQ-048 | implemented | must | 命名标准六裁定对齐(v3.2.4) | tests/test_project_evo.py |
+| REQ-049 | implemented | must | 英文面自查与 hst 2.15.0 台对齐(批159续) | tests/test_project_evo.py |
