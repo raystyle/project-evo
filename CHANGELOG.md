@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-15 第一百六十七批:skill description 定稿三句形,总台终卷令
+
+- **三句形重写**(REQ-056;grok F1-F6 加 hst_rs T1-T3/A 族合流):七域 frontmatter description 按定稿文逐字落(做什么一句、Use when 中英触发词一句、不要用于一句;预算约 100 token 不顶满,旧同义词串删不追加;批166 触发词语汇吸收进 Use when 句)
+- 顺批:commands.md agents 行 `(prompt = 别名)` 残清(F5 退役残留);collab 补 A 族易混速判注记(在跑族/实时族/知会)
+- evo 独立升 0.16.6;门禁全绿 + 镜像推 + fleet 回执
+
+
 ### 变更 2026-10-15 第一百六十六批:触发词验收轮,总台令
 
 - **反射表语汇与切分句**(REQ-055;fleet 177 号草案):agents 补知会/谁在跑/舰队总览;shares 补文件三道切分句与持久文件;streams 补消息三道切分句与活跟随;tasks 补任务一道切分句与记住任务/持久目标;pipes 补文件三道切分句与实时喂/喂日志/tail;ports 补访问对方机服务口他视角词;ctxs 全命中不动

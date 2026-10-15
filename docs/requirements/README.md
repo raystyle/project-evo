@@ -59,3 +59,4 @@
 | REQ-053 | implemented | must | 七原语 v3.4.0 对齐:ports 入列与 ctxs 正名(批 evo-164) | tests/test_project_evo.py |
 | REQ-054 | implemented | must | v3.4.3 批收编:send/fwd 收方动词与 token 英文化(批165) | tests/test_project_evo.py |
 | REQ-055 | implemented | must | 触发词验收轮:反射表语汇与易混带切分句入 frontmatter(批166) | tests/test_project_evo.py |
+| REQ-056 | implemented | must | skill description 定稿三句形落地(批167) | tests/test_project_evo.py |
