@@ -51,3 +51,4 @@
 | REQ-045 | implemented | must | 信封取用行全原语化同步(v3.1.8) | tests/test_project_evo.py |
 | REQ-046 | implemented | must | skill 对抗审核 F 项修复(grok 审单) | tests/test_project_evo.py |
 | REQ-047 | implemented | must | 双轨制信封与房间面收编(核验单 F1-F4) | tests/test_project_evo.py |
+| REQ-048 | implemented | must | 命名标准六裁定对齐(v3.2.4) | tests/test_project_evo.py |

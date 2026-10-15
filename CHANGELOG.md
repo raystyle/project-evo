@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-15 第一百五十九批:命名标准六裁定对齐,总台对齐单
+
+- **v3.2.4 同步**(REQ-048):命名标准定稿六裁定(别名活注册、编号 = 出生序号非格位、新标准形禁下划线、start 拒非标形、起名全局扫全舰队、台名 1-22)入 skill:addressing 命名标准节全刷(四概念开篇:节点名/工作台名/窗格名/agent 别名;正则标准形;起名两闸),agents SKILL start 动词行补两闸注(非标形 rc=2、撞名全局扫 rc=2)加文法命名标准行随刷;旧「编号即格位」「非标形提示不拦截」语义出清
+- 验收实弹:非标形(下划线名)与撞名(在役名)两发各验,双 rc=2 正响
+- evo 独立升 0.15.9;四门禁全绿 + fleet 回执
+
 ### 变更 2026-10-15 第一百五十八批:双轨制信封与房间面收编,总台令
 
 - **核验单 F1-F4**(REQ-047;research-grok-1 核验单 share/lan-win/289df2185a,F5/F6/F7 总台已修 prim v3.2.2):信封文档改渲染函数实形(F1:deliver-gate 模板行 from=host_label:别名、双轨注、回信取用裸别名;addressing 回信节 session 直配三级退化全刷;collab 拆回信与取文件两句;agents id 行双轨句;shares/streams 交付取用行改裸别名,键与流名归字段行,取文件命令入坑表);streams 房间面整段收编(F2:rooms/room/dm 三动词照手册、view 带 -f、--file 整档上架语义、stdin 管道道、fleet 是房;commands 速查与 collab 尾读同步);commands 标头对 v3.2.2 加差异三行(F3);死例子换活名(F4:local:w13:p1、去 lan-win、ai-ccoe-claude-1、put 打印键指引形);G1/G4 顺带(collab 私信补 dm 动词、shares get 真键形)
