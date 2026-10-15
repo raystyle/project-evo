@@ -18,7 +18,7 @@ description: >-
 
 - 裸调用 = view;全局旗标以 `tasks --llms` 为准
 - 本地直设;远机零 ssh:pending 流加 apply 受体唤醒
-- 交付取用行 = `cd <cwd> && hst task show`;拒投自动代记(任务文本待设)
+- 交付取用行 = `tasks view`;拒投自动代记(任务文本待设)
 
 ## 示例
 
@@ -33,8 +33,8 @@ tasks to pi-web "评审收束后发版" --json
 
 | 错 | 对 |
 | --- | --- |
-| 取用行写 `hst goal show` | 用 `hst task show`(goal 面只作回退) |
-| 目标格换目录后找不到任务 | 任务钉在设时的 cwd,以取用行 cwd 为准 |
+| 取用行手写引擎直读(cd 加 hst) | 用 `tasks view`(引擎名不漏照抄面) |
+| 目标格换目录后找不到任务 | 任务钉在设时的 cwd,以信封字段行 cwd 为准 |
 | 目标机离线时等全表 | view 跳过不可达机单行告警,不挂死 |
 
 ## 分工

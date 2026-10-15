@@ -41,7 +41,7 @@
 - 在场声明:`agents mode <dnd|away|online> [until]`(自声明,写 shares 键 `share/presence/<host>/<格>` 覆盖,正文 mode 与 until;勿扰与离开建议短窗,过期自动回落)
 - 按键:`agents keys <id> <键>`;跨机 = usage 拒,CTA 指本机 keys 或 mesh trust(契约面)
 
-## 本机实装差异表## 本机实装差异表（v3.0 契约面 vs prim 3.0.0a1 R1 后实装）
+## 本机实装差异表（v3.0 契约面 vs prim 3.0.0a1 R1 后实装）
 
 
 

@@ -55,6 +55,7 @@ from=<机器段>:<pane> to=<id> <域字段...> v=1
 
 - 人话行带 `@收方`(兼容 IM 直觉),正文自由;字段行与取用行禁改写(自然语言信封的失败处 = 对方改写取用命令)
 - `from=` 与 `to=` 恒在;`v=` 恒带;域字段随域:shares = key/name;streams = stream;tasks = cwd;pipes = addr;agents 自由文
+- 取用行命令随域原语形:shares = `shares get <键>`;streams = `streams view <流> -n 20`;tasks = `tasks view`;pipes 暂留 `tailcat <addr>`(send 原语缺口记档);agents 直答 `agents to <机:格> <回复>`,无格匹配降级 `agents view` 定位
 - 收方机读:`parse_fieldline` 解析字段行,缺 from/to 视为旧形(src= 时代)记 compatibility 警
 - 第三行前缀一律 `取用:`;收方动作 = 执行取用行,失败时回信给 from(先核验,见 addressing.md)
 - 回信直答:同机 local 形与跨机别名形均可直接 `agents to <from>`

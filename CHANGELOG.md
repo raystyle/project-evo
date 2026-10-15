@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-15 第一百五十五批:信封取用行全原语化同步,总台令
+
+- **v3.1.8 同步**(REQ-045):信封取用行全原语化(用户令:原语更抽象更直觉,引擎名不漏照抄面;win 面裸 s5 本不存在,旧取用行是照抄即炸死链,兼正确性修):shares 取用 `s5 get -o` 改 `shares get <键>`、tasks 取用 cd 加 hst 直读改 `tasks view`、streams 文法补 `streams view <流> -n 20`、collab 协议面注与 deliver-gate 取用行随域词汇表同步、obsolete 旧形归档;pipes 取用暂留 tailcat(send 原语缺口 CONTRACT 记档,勿改);commands 差异表重拼标题与 obsolete 标题括号全角顺手修
+- 验收实弹:shares to 本地格,信封取用行 = `shares get <键>`;本端拉新装 prim v3.1.8
+- evo 独立升 0.15.6;四门禁全绿 + fleet 回执
+
 ### 变更 2026-10-14 第一百五十四批:信封机器段目标感知同步,总台令
 
 - **v3.1.7 同步**(REQ-044):信封 from 机器段目标感知 = 同机 local 形(本机别名不在自己机册)、跨机在册别名形,真 hostname 永不进路由位;deliver-gate 信封规范行补两形与回信直答注;commands 差异表 from 行改现行形;addressing 与 pitfalls 旧 hostname 判例出清,分叉史(AI-LAB 对 lan-win,机器改名注册挂起,重启合一)归档 rulings.md
@@ -20,7 +26,7 @@
 
 - 六域 SKILL 正文与 references 知识面减熵(REQ-042):批号引用、根修来龙去脉、误判轨迹叙事撤出;坑与规则收敛一行正确姿势;description 发现面不动;功能零漂移(ctx search 多词实弹自验绿);evo 独立升 0.15.3;commit 标题自本批起一行形
 
-### 变更 2026-10-14 第一百五十一批:ctx 在途降级判例收编(v3.1.4),总台令
+### 变更 2026-10-14 第一百五十一批:ctx 在途降级判例收编（v3.1.4）,总台令
 
 - 批 150 观察定谳根修落 v3.1.4:管道时序 = 正文块先入 gwlog、头行随 request_end 批后入(近 10 分钟在途差);show 对在途 rid 降级出「头行:未落」加正文块先行,双无记录才 not_found
 - ctx skill 坑表改判例行(在途降级属正常非错误);本端重装 v3.1.4;evo 独立升 0.15.2;四门禁全绿 + fleet 回执
@@ -69,7 +75,7 @@
 - 守卫与路由面随形:SKILLS(dev 四 skill)、pre-commit(十目标)、双 manifest 与市场清单、AGENTS 与根 README 与 docs 地图与 dev README(两插件十 skill);ADR-0025 补裁定;dev 独立升 0.14.1(evo 0.14.1 不动)
 - 四门禁全绿 + fleet 回执 + 知会 grok 评审闭环;市场 tag v0.16.0 候打(裁后即备)
 
-### 变更 2026-10-13 第一百四十三批:from 判例收编(grok 回信信道实弹)
+### 变更 2026-10-13 第一百四十三批:from 判例收编（grok 回信信道实弹）
 
 - **判例**:grok 评审回信暴露 from=<host> 用 hostname 而非在册机标签,同机回信 hostname 形不可解析(本机 lan-ubuntu 对在册标签 local,`agents to lan-ubuntu:w8:p1` not_found),按名回信(evo-grok-4)成;同 cwd 多格时 caller_addr 首命中可能误指他格(w8:p4 的信写 w8:p1),以名为准 [实证:双向实弹]
 - addressing.md from 核验节与 commands.md 差异表各落一行;evo 独立升 0.14.1(dev 不动,独立 semver 首例);报总台 prim 侧:from= 建议改用注册标签或同机 local

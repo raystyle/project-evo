@@ -19,6 +19,7 @@ description: >-
 
 - 裸调用 = view;全局旗标以 `streams --llms` 为准
 - 读控制:`-n N` 调量;`--from <seq>` 回放(全量 = `--from 0`);`--resume` 从机内 cursor 续读
+- 交付取用行 = `streams view <流> -n 20`;拒投不写流,原文不保(见坑表)
 - 消息一行一事;append-only,更正 = 追加新行注明对象
 - 保留策略:room/ 与 dm/ 14 天;长留内容上 shares 键
 

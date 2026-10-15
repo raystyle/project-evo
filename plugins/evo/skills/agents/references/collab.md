@@ -30,7 +30,7 @@
 
 - `streams view <流> --from <seq>`:从序号回放;全量 = `--from 0`
 - `--resume`:从机内 cursor 续读(cursor 落 `~/.local/state/prim/cursor/<流名>`,机内不共享;换机从 0 或显式 seq 起)
-- 默认尾读最近 100 行(s5 tail -n 100);要更多用 `-n N` 调量或 `--from` 回放
+- 默认尾读最近 100 行;要更多用 `-n N` 调量或 `--from` 回放
 - 斜杠流名 cursor 崩已修(R1:父链全建,`view room/deferred/<格>` 净退 0);cursor 随每次具名 view 落盘,回放判据不受影响
 - 保留策略(契约面):room/ 与 dm/ 14 天;tasks/shared 事件流已弃(tasks 域转实时任务面,旧档只读留档);要长留的内容上 shares 看板
 
@@ -38,4 +38,4 @@
 
 - 四域原语 skill = shares/streams/tasks/pipes 各自持域面;本 skill(agents)持消息域与共享面(id、门控、信封、命名标准、差异表)
 - s5 与 herdr 与 hst = 引擎(herdr 已退役出操作面);代理操作一律五原语,引擎裸面不再设 skill
-- 取用行里的 s5 命令(s5 get、s5 tail)是协议面一部分,收方照行执行即可
+- 取用行全原语形(shares get、streams view、tasks view;pipes 暂留 tailcat,send 原语缺口契约记档),是协议面一部分,收方照行执行即可

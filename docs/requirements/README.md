@@ -48,3 +48,4 @@
 | REQ-042 | implemented | must | evo 插件 skill 减熵批(正文只留正确用法) | tests/test_project_evo.py |
 | REQ-043 | implemented | must | 命令指导 SKILL 写作标准采纳与六域过标 | tests/test_project_evo.py |
 | REQ-044 | implemented | must | 信封 from 机器段目标感知同步(v3.1.7) | tests/test_project_evo.py |
+| REQ-045 | implemented | must | 信封取用行全原语化同步(v3.1.8) | tests/test_project_evo.py |
