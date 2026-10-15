@@ -19,7 +19,7 @@
       "name": "evo",
       "source": "./plugins/evo",
       "description": "agent 操作面插件,七 skill:agents(消息域原语与六原语共享面:to 投递、id 三产生式、命名标准、门控 v2、信封 v2、status 四态)、shares(文件域)、streams(流域)、tasks(持久任务域)、pipes(实时字节域)、ctx(对话历史域:ClickHouse gw_logs 全链检索)、distil(技能自进化三层聚合)",
-      "version": "0.15.12",
+      "version": "0.15.13",
       "category": "productivity"
     }
   ]

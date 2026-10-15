@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-15 第一百六十三批:tasks 三键措辞落 skill,总台收正回执
+
+- **D5/D6/D9 措辞**(REQ-052;ai-ccoe 7b233ee 真落盘,批162 审出两失后总台实修):tasks SKILL set 动词行补「只写不扰,知会走 to」、文法补任务键按格 agent 隔离(set/show 跟目标格 agent 类型,hst --agent,非 claude 格不断链)、坑表补「想知会对方却用 set」行;D6 view 行措辞修复后即为真,不改
+- 核验实弹:ai-ccoe 7b233ee 逐行核四键(D3 死码清/D5 --agent/D6 task.text 行/D9 set 即返),本机源装 prim v3.3.0,tasks view 出 task.text 行加无 task 降级、set 打本格即返无投递、--agent 键面读写清一条龙
+- evo 独立升 0.15.13;门禁全绿 + fleet 回执
+
 ### 变更 2026-10-15 第一百六十二批:信封定稿四行形收编,总台令
 
 - **三次定形收编**(REQ-051;总台令 2026-10-15,prim 9cf91ac):信封定稿四行形 = 头行 [域] @收方 <一句话> 合一带全部路由面 / 空行 / 字段行 / use 行,结构行沉底;deliver-gate 信封节全刷,commands 投递行、agents SKILL 索引行与 grok 拍扁坑行、collab use 行注、rulings 三次定形裁定行同步(同日早形三行合头与五行头序旋立旋废记档);grok TUI 输入面拍扁粘贴换行注收方显示怪癖不降协议;本机 prim 源装 ai-ccoe 9cf91ac,render 头行合一实证
@@ -16,7 +22,7 @@
 - 代码面六键(D1 远机插件 show action 仍 goal 形、D2 apply 受体序、D3 prim 死码、D5 --agent 会话隔离、D6 kv 首行取 text、D9 set 也知会)转呈总台裁定;D8 远机唤醒路径相合,三注记随单转呈
 - evo 独立升 0.15.11;门禁全绿 + fleet 回执
 
-### 变更 2026-10-15 第一百六十批:英文面自查修正与 hst 2.15.0 台对齐,总台续单(批159续)
+### 变更 2026-10-15 第一百六十批:英文面自查修正与 hst 2.15.0 台对齐,总台续单（批159续）
 
 - **自查修正**(REQ-049;六 SKILL + references 对 prim v3.2.6 --llms 逐面核对):动词面零漂移,信封取用行文档旧中文形出清:deliver-gate 模板行与第三行注 `取用:` 改 `use:`(英文令 2026-10-15,msg.py use_line 实形)、取用行 reply 字面量形五处(agents/shares/streams SKILL 与 addressing/collab,退化与降级形同步英文化)、streams 附注 `(stream <流> attached)`、agents reload 行补 idle/done 皆可翻(2026-10-15 修;working/blocked 拒 --force 过;/exit 三选一自动应答);streams 文法「管道道」叠字修
 - **hst_rs 台对齐**:派单对齐 tasks skill 与 hst 2.15.0 命令面(hst task show/自驱唤醒面),漂移清单随 fleet 回执(hst_rs ack 在案)

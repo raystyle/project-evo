@@ -55,3 +55,4 @@
 | REQ-049 | implemented | must | 英文面自查与 hst 2.15.0 台对齐(批159续) | tests/test_project_evo.py |
 | REQ-050 | implemented | must | tasks skill 对齐 hst 2.15.0 漂移收编(D4/D7) | tests/test_project_evo.py |
 | REQ-051 | implemented | must | 信封定稿四行形收编(总台批162令) | tests/test_project_evo.py |
+| REQ-052 | implemented | must | tasks 三键措辞随批 163 落 skill(D5/D6/D9) | tests/test_project_evo.py |
