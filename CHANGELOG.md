@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-15 第一百六十一批:tasks 坑表对 hst 2.15.0 漂移收编,hst_rs 对齐单
+
+- **D4/D7 修**(REQ-050;hst_rs 漂移单 9 键四面分诊后 skill 事实项):坑表反例改引擎裸命令泛形并注 goal 组 hst 2.15.0 已摘(旧反例引 hst goal show 已失效)、离线坑行改「静默跳过不可达机不挂死(离线告警行在 agents 域)」(旧称 tasks 域出告警行,实装静默跳过)
+- 代码面六键(D1 远机插件 show action 仍 goal 形、D2 apply 受体序、D3 prim 死码、D5 --agent 会话隔离、D6 kv 首行取 text、D9 set 也知会)转呈总台裁定;D8 远机唤醒路径相合,三注记随单转呈
+- evo 独立升 0.15.11;门禁全绿 + fleet 回执
+
 ### 变更 2026-10-15 第一百六十批:英文面自查修正与 hst 2.15.0 台对齐,总台续单(批159续)
 
 - **自查修正**(REQ-049;六 SKILL + references 对 prim v3.2.6 --llms 逐面核对):动词面零漂移,信封取用行文档旧中文形出清:deliver-gate 模板行与第三行注 `取用:` 改 `use:`(英文令 2026-10-15,msg.py use_line 实形)、取用行 reply 字面量形五处(agents/shares/streams SKILL 与 addressing/collab,退化与降级形同步英文化)、streams 附注 `(stream <流> attached)`、agents reload 行补 idle/done 皆可翻(2026-10-15 修;working/blocked 拒 --force 过;/exit 三选一自动应答);streams 文法「管道道」叠字修

@@ -33,9 +33,9 @@ tasks to pi-web "评审收束后发版" --json
 
 | 错 | 对 |
 | --- | --- |
-| 取用行写 `hst task show` 或 `hst goal show` | 执行信封上的 `tasks view` |
+| 取用行写引擎裸命令(hst task show 等;goal 组 hst 2.15.0 已摘) | 执行信封上的 `tasks view` |
 | 目标格换目录后找不到任务 | 任务钉在设时的 cwd,以信封字段行 cwd 为准 |
-| 目标机离线时等全表 | view 跳过不可达机单行告警,不挂死 |
+| 目标机离线时等全表 | view 静默跳过不可达机不挂死(离线告警行在 agents 域) |
 
 ## 接着读
 
