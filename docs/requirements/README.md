@@ -58,3 +58,4 @@
 | REQ-052 | implemented | must | tasks 三键措辞随批 163 落 skill(D5/D6/D9) | tests/test_project_evo.py |
 | REQ-053 | implemented | must | 七原语 v3.4.0 对齐:ports 入列与 ctxs 正名(批 evo-164) | tests/test_project_evo.py |
 | REQ-054 | implemented | must | v3.4.3 批收编:send/fwd 收方动词与 token 英文化(批165) | tests/test_project_evo.py |
+| REQ-055 | implemented | must | 触发词验收轮:反射表语汇与易混带切分句入 frontmatter(批166) | tests/test_project_evo.py |

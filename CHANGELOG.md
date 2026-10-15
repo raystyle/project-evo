@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-15 第一百六十六批:触发词验收轮,总台令
+
+- **反射表语汇与切分句**(REQ-055;fleet 177 号草案):agents 补知会/谁在跑/舰队总览;shares 补文件三道切分句与持久文件;streams 补消息三道切分句与活跟随;tasks 补任务一道切分句与记住任务/持久目标;pipes 补文件三道切分句与实时喂/喂日志/tail;ports 补访问对方机服务口他视角词;ctxs 全命中不动
+- 漏触发实例呈报(知会近留痕、端口他视角、实时喂我发视角、活跟随跟随)
+- evo 独立升 0.16.5;门禁全绿 + 镜像推 + fleet 回执
+
+
 ### 变更 2026-10-15 第一百六十五批:v3.4.3 批收编,总台令
 
 - **send/fwd 与 token 英文化**(REQ-054;真源 412cfef):pipes SKILL 加 send 动词行与 win 坑行、取用行改 `pipes send <addr>`;ports SKILL 加 fwd 动词行与 win 坑行、取用行改 `ports fwd <addr> <本地>:<远端口>`;deliver-gate/collab/commands 取用行族同步,send 原语缺口记档出清(引擎名退出取用行);token 英文化全扫(host:pane/host:alias/@recipient/view [host]);win 防火墙坑行两域入表(默认入站 Block,CTA 放行,规则名 tailcat-in)
