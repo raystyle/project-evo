@@ -27,7 +27,7 @@ description: >-
 ## 示例
 
 ```bash
-pipes view lan-win
+pipes view lan-ubuntu
 pipes open --keep
 pipes close <addr>
 pipes to evo-claude

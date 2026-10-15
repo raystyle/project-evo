@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-15 第一百五十八批:双轨制信封与房间面收编,总台令
+
+- **核验单 F1-F4**(REQ-047;research-grok-1 核验单 share/lan-win/289df2185a,F5/F6/F7 总台已修 prim v3.2.2):信封文档改渲染函数实形(F1:deliver-gate 模板行 from=host_label:别名、双轨注、回信取用裸别名;addressing 回信节 session 直配三级退化全刷;collab 拆回信与取文件两句;agents id 行双轨句;shares/streams 交付取用行改裸别名,键与流名归字段行,取文件命令入坑表);streams 房间面整段收编(F2:rooms/room/dm 三动词照手册、view 带 -f、--file 整档上架语义、stdin 管道道、fleet 是房;commands 速查与 collab 尾读同步);commands 标头对 v3.2.2 加差异三行(F3);死例子换活名(F4:local:w13:p1、去 lan-win、ai-ccoe-claude-1、put 打印键指引形);G1/G4 顺带(collab 私信补 dm 动词、shares get 真键形)
+- tasks 取用(tasks view)与 pipes 取用(tailcat)遵核验单 CONFIRM 1 未裁定不动,与 v3.2.2 代码对齐
+- 终核:六面 --llms 对 v3.2.2 逐面零漂移;四门禁全绿
+- evo 独立升 0.15.8;fleet 回执
+
 ### 变更 2026-10-15 第一百五十六批:skill 对抗审核 F 项修复,总台令
 
 - **F1-F13 加 G1/G2/G7**(REQ-046;grok 审单 share/lan-win/6cf96633fd,对象 evo 0.15.5 对 prim v3.1.8;代码面 G3/G5/G4/G6 总台已修 prim v3.1.9,本端核对零漂移):取用行余量收口(F1 坑表按审单、F5 坑表去 s5 字样)、tasks view 远机声称修正(F2)、示例可复制化(F4/F9,五域 view 各留一条带参形,活名 evo-claude)、streams 旗标或形与复述收敛(F6)、agents 正文六主动词与工位在场族下放 references/workspace.md(F8)、ctx 示例换 --llms 四行加坑行可判定加接着读去两级跳(F10)、pipes 触发词去引擎名与缺口挪文法(F11)、六域触发词修漏误(F12)与 agents 去 AGENTS.md 路径词(G2)、六域分工节收文法一行(F13)、插件 README 与 codex interface 旧语清(G7)
