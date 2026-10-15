@@ -19,4 +19,5 @@ trace: tests/test_project_evo.py
 - [x] deliver-gate/collab/commands:取用行族同步,缺口记档出清,七域速查 send/fwd 行
 - [x] token 英文化全扫:机:格/机:别名/机:agent别名/@收方 改 host:pane/host:alias/@recipient;view [机] ; view [host]
 - [x] lan-ubuntu 翻台 prim v3.4.3
-- [x] evo 独立升 0.16.3;门禁全绿 + fleet 回执
+- [x] V8 补:ports frontmatter 描述与触发词去引擎操作字面(tailcat serve/forward 出清)
+- [x] evo 独立升 0.16.4;门禁全绿 + fleet 回执

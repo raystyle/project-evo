@@ -8,7 +8,8 @@
 
 - **send/fwd 与 token 英文化**(REQ-054;真源 412cfef):pipes SKILL 加 send 动词行与 win 坑行、取用行改 `pipes send <addr>`;ports SKILL 加 fwd 动词行与 win 坑行、取用行改 `ports fwd <addr> <本地>:<远端口>`;deliver-gate/collab/commands 取用行族同步,send 原语缺口记档出清(引擎名退出取用行);token 英文化全扫(host:pane/host:alias/@recipient/view [host]);win 防火墙坑行两域入表(默认入站 Block,CTA 放行,规则名 tailcat-in)
 - lan-ubuntu 翻台 prim v3.4.3;herdr-mesh 镜像面同步
-- evo 独立升 0.16.3;门禁全绿 + fleet 回执
+- V8 补:ports frontmatter 描述与触发词去 tailcat serve/forward 操作字面(改 ports fwd 接入与接入端口触发词),引擎名只留正文分野内幕注
+- evo 独立升 0.16.4;门禁全绿 + fleet 回执
 
 
 ### 变更 2026-10-15 第一百六十四批:七原语 v3.4.0 对齐,总台令（evo-164）
