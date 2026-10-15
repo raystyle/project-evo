@@ -17,4 +17,5 @@ trace: tests/test_project_evo.py
 - [x] 七域 description 三句形逐字落总台定稿文(agents/shares/streams/pipes/ports/tasks/ctxs,84 至 128 字符)
 - [x] commands.md `(prompt = 别名)` 残清
 - [x] collab 与邻面分工补 A 族速判注记(在跑族:agents view 或 tasks view;实时族:pipes 字节或 streams -f 消息;知会:to 直达或 streams 留痕或 tasks 记住)
-- [x] evo 独立升 0.16.6;门禁全绿 + 镜像推 + fleet 回执
+- [x] 二轮修(grok N1/N2 加派单词):streams 补 to 先入流再叫人句与 send the stream and ping;pipes/ports/agents 补 close 命中面;agents Use when 中文组补派单(183 裁定)
+- [x] evo 独立升 0.16.7;门禁全绿 + 镜像推 + fleet 回执

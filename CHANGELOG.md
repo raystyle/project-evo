@@ -9,6 +9,7 @@
 - **三句形重写**(REQ-056;grok F1-F6 加 hst_rs T1-T3/A 族合流):七域 frontmatter description 按定稿文逐字落(做什么一句、Use when 中英触发词一句、不要用于一句;预算约 100 token 不顶满,旧同义词串删不追加;批166 触发词语汇吸收进 Use when 句)
 - 顺批:commands.md agents 行 `(prompt = 别名)` 残清(F5 退役残留);collab 补 A 族易混速判注记(在跑族/实时族/知会)
 - evo 独立升 0.16.6;门禁全绿 + 镜像推 + fleet 回执
+- 二轮修(grok N1/N2 加派单词):streams 增 to 先入流再叫人句与英文组补 send the stream and ping;pipes 补 close <addr> 停听、ports 补 close 停映射、agents 补关格场景词与 close pane;agents Use when 中文组补派单(183 裁定:派单 = agents to 一次性);evo 升 0.16.7
 
 
 ### 变更 2026-10-15 第一百六十六批:触发词验收轮,总台令
