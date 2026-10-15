@@ -51,9 +51,10 @@ agents tab list
 | 判成败单看信封 ok 字段 | 先看退出码,再看 `data.status` |
 | 装更插件后不翻台 | `reload <id>` 翻台才生效(旧进程 = 旧技能);回滚裸形时上下文弃,信封 resume 字段披露 |
 | 同 cwd 多格投递按格猜发话方 | caller_addr 歧义不猜,退化机名加告警;按名寻址 |
+| grok 面信封见单行拍扁 | 收方 TUI 显示怪癖,定稿四行形不降协议(见 deliver-gate 信封节) |
 
 ## 接着读
 
 - `references/addressing.md`:id 解析算法、命名标准细则、from 核验,跨机寻址出错时
-- `references/deliver-gate.md`:门控判据、status 四态、信封 v2 三行形、代记补收,投递被拒或读信封时
+- `references/deliver-gate.md`:门控判据、status 四态、信封 v2 定稿四行形、代记补收,投递被拒或读信封时
 - `references/collab.md`:IM 映射、回执与 ack 惯例、回放与保留策略,交回执或发房间消息时

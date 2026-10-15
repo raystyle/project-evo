@@ -36,7 +36,7 @@
 - **收件面(隐式等待)**:`agents read <id> [--lines N] [--timeout S]`(默认 20 行、90 秒);目标 working 则内候(5s 轮询)到闲/完成或超时;status 随信封出(闲 = idle/done,超时未闲 = timeout-working,内容仍全量附上,exit 0);无内容才 engine_fail 加 CTA `--timeout 加长重试`
 - 读屏即收件:等队友回话就用 read,勿手写轮询
 - 全局面:`agents view` 跨全部在册机出格表(HOST、NAME、PANE、STATUS、KIND、CWD);`agents machines` 出机表与可达性
-- 投递:`agents to <id> <文本>` 过门控 v2 投信封 v2 三行形;成功面 `已投递,目标已开始处理(target=…)`,拒投自动代记 room/deferred(含原文截 80 字)并 stderr `下一步:--force 跳过门控重发`
+- 投递:`agents to <id> <文本>` 过门控 v2 投信封 v2 定稿四行形;成功面 `已投递,目标已开始处理(target=…)`,拒投自动代记 room/deferred(含原文截 80 字)并 stderr `下一步:--force 跳过门控重发`
 - 工位管理:`agents start <名> --kind <类>` 起格(非标准名 stderr 提示不拦截,标准形见 addressing.md 命名标准)、`ws`/`shell <机> <仓>`/`dev <机> <仓>` 开台起 agent、`split`/`tab`/`zoom` 布局、`trust` 信任屏放行、`sync` 机册面;tab id 解析 = `机:tabid`
 - 在场声明:`agents mode <dnd|away|online> [until]`(自声明,写 shares 键 `share/presence/<host>/<格>` 覆盖,正文 mode 与 until;勿扰与离开建议短窗,过期自动回落)
 - 按键:`agents keys <id> <键>`;跨机 = usage 拒,CTA 指本机 keys 或 mesh trust(契约面)

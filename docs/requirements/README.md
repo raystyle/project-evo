@@ -54,3 +54,4 @@
 | REQ-048 | implemented | must | 命名标准六裁定对齐(v3.2.4) | tests/test_project_evo.py |
 | REQ-049 | implemented | must | 英文面自查与 hst 2.15.0 台对齐(批159续) | tests/test_project_evo.py |
 | REQ-050 | implemented | must | tasks skill 对齐 hst 2.15.0 漂移收编(D4/D7) | tests/test_project_evo.py |
+| REQ-051 | implemented | must | 信封定稿四行形收编(总台批162令) | tests/test_project_evo.py |

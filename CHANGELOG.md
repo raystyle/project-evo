@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-15 第一百六十二批:信封定稿四行形收编,总台令
+
+- **三次定形收编**(REQ-051;总台令 2026-10-15,prim 9cf91ac):信封定稿四行形 = 头行 [域] @收方 <一句话> 合一带全部路由面 / 空行 / 字段行 / use 行,结构行沉底;deliver-gate 信封节全刷,commands 投递行、agents SKILL 索引行与 grok 拍扁坑行、collab use 行注、rulings 三次定形裁定行同步(同日早形三行合头与五行头序旋立旋废记档);grok TUI 输入面拍扁粘贴换行注收方显示怪癖不降协议;本机 prim 源装 ai-ccoe 9cf91ac,render 头行合一实证
+- D5/D6/D9 skill 措辞挂起:v3.3.0 提交链记 tasks 六键修,但 d053be7/9cf91ac diff 均只碰 CONTRACT 与 msg.py,domains.py 无改(set/to 仍同块知会、view 仍取 kv 首行、goal 死码在、无 --agent),按构造纪律待代码真落随批刷,证据回执总台
+- evo 独立升 0.15.12;门禁全绿 + fleet 回执
+
 ### 变更 2026-10-15 第一百六十一批:tasks 坑表对 hst 2.15.0 漂移收编,hst_rs 对齐单
 
 - **D4/D7 修**(REQ-050;hst_rs 漂移单 9 键四面分诊后 skill 事实项):坑表反例改引擎裸命令泛形并注 goal 组 hst 2.15.0 已摘(旧反例引 hst goal show 已失效)、离线坑行改「静默跳过不可达机不挂死(离线告警行在 agents 域)」(旧称 tasks 域出告警行,实装静默跳过)
