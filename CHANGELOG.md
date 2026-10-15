@@ -4,6 +4,12 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-15 第一百五十六批:skill 对抗审核 F 项修复,总台令
+
+- **F1-F13 加 G1/G2/G7**(REQ-046;grok 审单 share/lan-win/6cf96633fd,对象 evo 0.15.5 对 prim v3.1.8;代码面 G3/G5/G4/G6 总台已修 prim v3.1.9,本端核对零漂移):取用行余量收口(F1 坑表按审单、F5 坑表去 s5 字样)、tasks view 远机声称修正(F2)、示例可复制化(F4/F9,五域 view 各留一条带参形,活名 evo-claude)、streams 旗标或形与复述收敛(F6)、agents 正文六主动词与工位在场族下放 references/workspace.md(F8)、ctx 示例换 --llms 四行加坑行可判定加接着读去两级跳(F10)、pipes 触发词去引擎名与缺口挪文法(F11)、六域触发词修漏误(F12)与 agents 去 AGENTS.md 路径词(G2)、六域分工节收文法一行(F13)、插件 README 与 codex interface 旧语清(G7)
+- 验收:六域动词表文法对 prim v3.1.9 --llms 逐面核对一致;四门禁全绿
+- evo 独立升 0.15.7;fleet 回执
+
 ### 变更 2026-10-15 第一百五十五批:信封取用行全原语化同步,总台令
 
 - **v3.1.8 同步**(REQ-045):信封取用行全原语化(用户令:原语更抽象更直觉,引擎名不漏照抄面;win 面裸 s5 本不存在,旧取用行是照抄即炸死链,兼正确性修):shares 取用 `s5 get -o` 改 `shares get <键>`、tasks 取用 cd 加 hst 直读改 `tasks view`、streams 文法补 `streams view <流> -n 20`、collab 协议面注与 deliver-gate 取用行随域词汇表同步、obsolete 旧形归档;pipes 取用暂留 tailcat(send 原语缺口 CONTRACT 记档,勿改);commands 差异表重拼标题与 obsolete 标题括号全角顺手修

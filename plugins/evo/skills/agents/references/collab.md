@@ -15,7 +15,7 @@
 
 ## 消息礼仪
 
-- 一行一事,带端名前缀(`streams append` 自动加 `<host>|`;勿手写裸 `s5 append`)
+- 一行一事,带端名前缀(`streams append` 自动加 `<host>|`;勿手写引擎裸追加)
 - append-only:发出去不撤回不改写;更正 = 追加新行注明更正对象
 - 大内容走 shares 上键,流里只放键引用;频道不做请求应答(轮次协议不在 skill 面,持久任务域走 tasks 原语)
 - 取阅 = tail,不回写、不 re-put
@@ -38,4 +38,4 @@
 
 - 四域原语 skill = shares/streams/tasks/pipes 各自持域面;本 skill(agents)持消息域与共享面(id、门控、信封、命名标准、差异表)
 - s5 与 herdr 与 hst = 引擎(herdr 已退役出操作面);代理操作一律五原语,引擎裸面不再设 skill
-- 取用行全原语形(shares get、streams view、tasks view;pipes 暂留 tailcat,send 原语缺口契约记档),是协议面一部分,收方照行执行即可
+- 取用行是原语命令:`shares get <键>`;`streams view <流> -n 20`;`tasks view`;pipes 暂留 `tailcat <addr>`(无 send 动词,缺口记档)。收方照行执行即可

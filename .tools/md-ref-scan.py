@@ -21,7 +21,7 @@ SKIP = {
     "ROADMAP.md", "template.md", "notes.md", "A.md", "a.md", "b.md", "2.md",
     "api.md", "API.md", "0000-template.md",
     # 报告类产物名兜底(审计/报告输出文件,非仓内静态文件)
-    "REPORT.md", "FINDINGS-DETAIL.md", "NEEDS-VALIDATION.md",
+    "REPORT.md", "report.md", "FINDINGS-DETAIL.md", "NEEDS-VALIDATION.md",
     "architecture.md", "FILE.md",
     # herdr-flywheel 产物契约三件套示意名(<单号>-brief/state/receipt.md 落临时目录)
     "-brief.md", "-state.md", "-receipt.md",

@@ -1,6 +1,6 @@
-# agents 域文法与五原语共享输出契约
+# agents 域文法与六原语共享输出契约
 
-> 蒸馏自契约二、三、四、五d 节(真源 ai-ccoe plugins/CONTRACT.md,v3.0 蓝图);标注 的行为以本机 wrapper 实读为准(prim 3.1.x;以 `--llms` 实查为准)。通则、错误码表、六域速查与差异表为六原语共享面,五 skill 共参本篇(ctx 域 = 对话历史检索,read 实时屏对 ctx 历史档案)。
+> 蒸馏自契约二、三、四、五d 节(真源 ai-ccoe plugins/CONTRACT.md,v3.0 蓝图);标注 的行为以本机 wrapper 实读为准(prim 3.1.x;以 `--llms` 实查为准)。通则、错误码表、六域速查与差异表为六原语共享面,六 skill 共参本篇(ctx 域 = 对话历史检索,read 实时屏对 ctx 历史档案)。
 
 ## 通则（文法与输出契约）
 
@@ -27,7 +27,7 @@
 | agents | `view [机]`;`machines`;`list [机]` | `read <id> [--lines N] [--timeout S]`(收件面);`keys <id> <键>`;`mode <dnd|away|online> [until]`;`start <名> --kind <类>`;`ws <label>`/`ws list`/`ws close`;`shell <机> <仓>`;`dev <机> <仓> [--kind]`;`split <id> [--direction]`;`tab list/create/close`;`zoom <id>`;`trust`;`sync` | `to <id> <文本> [--force]`(prompt = 别名) |
 | shares | `view`(share/ 键表) | `put <文件>`;`get <键> [-o|--output 名]` | `to <id> <文件> [--force]` |
 | streams | `view [流名] [--from <seq>|--resume]`(流表加尾读) | `append <流> <消息>` | `to <id> <流> <消息> [--force]` |
-| tasks | `view [机]`(实时任务面:fleet 总览加各格 hst task show) | `set <id> <文本>` | `to <id> <文本> [--force]`(= set 加知会) |
+| tasks | `view [机]`(实时任务面:fleet 总览加本机 hst 直读,远机经 agents read;收方取用行 = `tasks view`) | `set <id> <文本>` | `to <id> <文本> [--force]`(= set 加知会) |
 | pipes | `view [机]` | `open [--keep]`;`close <addr|pid>` | `to <id> [--force]` |
 | ctx | `view [agent] [--limit N]` |  | `show <request_id> [--around <词>] [--window N]`;`search <词> [--term <词>]...`(历史检索,非投递) |
 
@@ -41,14 +41,14 @@
 - 在场声明:`agents mode <dnd|away|online> [until]`(自声明,写 shares 键 `share/presence/<host>/<格>` 覆盖,正文 mode 与 until;勿扰与离开建议短窗,过期自动回落)
 - 按键:`agents keys <id> <键>`;跨机 = usage 拒,CTA 指本机 keys 或 mesh trust(契约面)
 
-## 本机实装差异表（v3.0 契约面 vs prim 3.0.0a1 R1 后实装）
+## 本机实装差异表（v3.0 契约面 vs prim v3.1.9 实装）
 
 
 
 | 契约 v3.0 面 | R1 后实装 |
 | --- | --- |
 | VIEW 与 OPERATE 的 --json 两形 | 未落(--json 仅 DELIVER 信封与错误 stderr 生效) |
-| tasks view 转实时任务面本机实查 | 各格 hst task show 直读加 fleet 总览,机过滤在位,id 带参未收;tasks/shared 事件流已弃 |
+| tasks view 转实时任务面本机实查 | 本机 hst 直读加 fleet 总览,远机经 agents read 看屏;机过滤在位,id 带参未收;tasks/shared 事件流已弃 |
 | --force 审计 room/force-audit | 未落(五域皆无;强投前自问必要性) |
 | 幂等 id | 未落(v=1 已随信封 v2 落,from/to 恒在;tasks 事件 prev 随事件流弃用销账) |
 | 拒投代记流键 = 收方名 | 用目标格 pane id;shell 形旧流按名仍在,补收两边都看 |
