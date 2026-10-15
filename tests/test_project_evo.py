@@ -23,9 +23,9 @@ GUARD = PLUGINS["dev"] / "scripts" / "md-guard.py"
 LINT_HOOK = PLUGINS["dev"] / "scripts" / "lint-hook.py"
 SKILLS = {
     "dev": ["dev-cli", "dev-lint", "doc-gov"],
-    "evo": ["agents", "ctx", "distil", "pipes", "shares", "streams", "tasks"],
+    "evo": ["agents", "ctxs", "distil", "pipes", "ports", "shares", "streams", "tasks"],
 }
-SINGLE_FILE_SKILLS = {"shares", "streams", "tasks", "pipes", "ctx"}  # 五原语域面单文件,共享面在 agents skill(ADR-0025)
+SINGLE_FILE_SKILLS = {"shares", "streams", "tasks", "pipes", "ports", "ctxs"}  # 六原语域面单文件,共享面在 agents skill(ADR-0025)
 
 
 def _load(name: str):

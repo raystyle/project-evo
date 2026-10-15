@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-15 第一百六十四批:七原语 v3.4.0 对齐,总台令（evo-164）
+
+- **ports 入列与 ctxs 正名**(REQ-053;herdr-mesh 5f5f903,CONTRACT 批注 v3.4.0):新增 ports/SKILL.md(镜像 pipes 形:spec 端口表/映射/all/exit-node 四形,动词 view/open/close/to 对称,取用行 tailcat forward,公开流 room/port-live,与 pipes 临时管道分野,坑面注册标签机名);ctx 正名 ctxs(目录与 frontmatter 与触发词与命令面全改,触发词留 ctx 兼容);agents references 七原语口径(commands 七域速查加 ports 行、collab 五域投递分工加 ports 与 port-live、deliver-gate pipes/ports=addr 与 ports 取用行、rulings 七原语裁定行);pipes SKILL 分野行
+- 清单计数同步:tests SKILLS 与 SINGLE_FILE_SKILLS、githooks/pre-commit 断链段、AGENTS 与根 README 两插件十一 skill、docs/README、双 manifest 与市场清单八 skill 描述
+- 翻台 lan-ubuntu prim v3.4.0(七入口上 PATH,旧 ctx 清);ports open 8123/view/close 环过三段 rc=0
+- 对抗审查 herdr-mesh src/src/prim 四面(domains ports 节、cli 七入口、msg 六域信封、pyproject):keep 死参双域继承、ports to 滤旗标只滤 force、view 机名注册标签语义等发现随 fleet 回执呈;信封 ports=addr 复用与英文化正文、pyproject 3.4.0、公开流分立、死档四件清理诸项相合
+- herdr-mesh skills/ 镜像面同步(ctxs 正名 + ports 入列)并提交;evo 独立升 0.16.0;门禁全绿 + fleet 回执
+
 ### 变更 2026-10-15 第一百六十三批:tasks 三键措辞落 skill,总台收正回执
 
 - **D5/D6/D9 措辞**(REQ-052;ai-ccoe 7b233ee 真落盘,批162 审出两失后总台实修):tasks SKILL set 动词行补「只写不扰,知会走 to」、文法补任务键按格 agent 隔离(set/show 跟目标格 agent 类型,hst --agent,非 claude 格不断链)、坑表补「想知会对方却用 set」行;D6 view 行措辞修复后即为真,不改

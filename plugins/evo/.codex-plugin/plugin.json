@@ -1,7 +1,7 @@
 {
   "name": "evo",
-  "version": "0.15.13",
-  "description": "agent 操作面插件,七 skill:agents(消息域原语与六原语共享面:to 投递、id 三产生式、命名标准、门控 v2、信封 v2、status 四态)、shares(文件域)、streams(流域)、tasks(持久任务域)、pipes(实时字节域)、ctx(对话历史域:ClickHouse gw_logs 全链检索)、distil(技能自进化三层聚合)",
+  "version": "0.16.0",
+  "description": "agent 操作面插件,八 skill:agents(消息域原语与七原语共享面:to 投递、id 三产生式、命名标准、门控 v2、信封 v2、status 四态)、shares(文件域)、streams(流域)、tasks(持久任务域)、pipes(实时字节域)、ports(端口映射域:tailcat serve,与 pipes 临时管道分野)、ctxs(对话历史域:ClickHouse gw_logs 全链检索)、distil(技能自进化三层聚合)",
   "author": {
     "name": "raystyle"
   },
@@ -19,7 +19,7 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Evo",
-    "shortDescription": "agent 操作面:六原语与技能自进化。",
+    "shortDescription": "agent 操作面:七原语与技能自进化。",
     "developerName": "raystyle",
     "category": "Productivity",
     "capabilities": [
@@ -27,7 +27,7 @@
       "Write"
     ],
     "defaultPrompt": [
-      "用 agents 六原语操作舰队窗格与投递。"
+      "用 agents 七原语操作舰队窗格与投递。"
     ]
   }
 }

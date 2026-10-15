@@ -1,6 +1,6 @@
 # docs 地图
 
-> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、research 存研究档案;过程轨迹(日记)继续落 diary/,形态权威已迁 `../plugins/evo/skills/distil/references/trajectories.md`;skill 知识库在 `plugins/<插件>/skills/` 下(两插件十 skill)。
+> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、research 存研究档案;过程轨迹(日记)继续落 diary/,形态权威已迁 `../plugins/evo/skills/distil/references/trajectories.md`;skill 知识库在 `plugins/<插件>/skills/` 下(两插件十一 skill)。
 
 | 文档 | 讲什么 | 何时看 |
 |------|--------|--------|
@@ -40,5 +40,6 @@
 | `../plugins/evo/skills/streams/SKILL.md` | 流域原语:append/view/to,流即房间,fleet 回执主频道 | 往流交回执或广播、私信、回放续读时 |
 | `../plugins/evo/skills/tasks/SKILL.md` | 持久任务域原语:set/to,事件入流,远机零 ssh | 设别的格的持久任务、跨机委派目标时 |
 | `../plugins/evo/skills/pipes/SKILL.md` | 实时字节域原语:open/close/to,本机收对方发 | 要对方实时发字节、开实时管道时 |
-| `../plugins/evo/skills/ctx/SKILL.md` | 对话历史域原语:agent 请求全链检索(view/show/search,head 365 天正文 180 天) | 查历史对话、回溯细节、跨请求搜词时 |
+| `../plugins/evo/skills/ports/SKILL.md` | 端口域原语:任意节点端口转发映射(view/open/close/to,引擎 tailcat serve) | 开端口转发、让对方接入端口服务时 |
+| `../plugins/evo/skills/ctxs/SKILL.md` | 对话历史域原语:agent 请求全链检索(view/show/search,head 365 天正文 180 天) | 查历史对话、回溯细节、跨请求搜词时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |

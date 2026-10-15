@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件十 skill:`dev`(开发治理面:doc-gov、dev-cli(原 doc-cli)、dev-lint 静态检查)、`evo`(agent 操作面:agents、shares、streams、tasks、pipes、ctx 六原语 skill 加 distil;六原语 = 舰队互操作代理操作唯一面,herdr 技能已淘汰)。客户端显示 `<插件>:<skill>`。
+> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件十一 skill:`dev`(开发治理面:doc-gov、dev-cli(原 doc-cli)、dev-lint 静态检查)、`evo`(agent 操作面:agents、shares、streams、tasks、pipes、ports、ctxs 七原语 skill 加 distil;七原语 = 舰队互操作代理操作唯一面,herdr 技能已淘汰)。客户端显示 `<插件>:<skill>`。
 
 ## 安装
 
@@ -50,7 +50,8 @@ Kimi          重新拷 plugins/<插件>/skills/*
 | evo | `streams` | 流域原语:append/view/to,流即房间,fleet 回执主频道 | 往流交回执或广播、私信、回放续读时 |
 | evo | `tasks` | 持久任务域原语:set/to,事件入流,远机零 ssh | 设别的格的持久任务、跨机委派目标时 |
 | evo | `pipes` | 实时字节域原语:open/close/to,本机收对方发 | 要对方实时发字节、开实时管道时 |
-| evo | `ctx` | 对话历史域原语:agent 请求全链检索(ClickHouse gw_logs;view 头行、show 单请求、search 全文;head 365 天正文 180 天) | 查历史对话、回溯对话细节、跨请求搜关键词、看请求开销时 |
+| evo | `ports` | 端口域原语:任意节点端口转发映射(view/open/close/to,引擎 tailcat serve;spec = 端口表/定点映射/all/exit-node;取用行 tailcat forward) | 开端口转发、映射远端端口、让对方接入端口服务时 |
+| evo | `ctxs` | 对话历史域原语:agent 请求全链检索(ClickHouse gw_logs;view 头行、show 单请求、search 全文;head 365 天正文 180 天) | 查历史对话、回溯对话细节、跨请求搜关键词、看请求开销时 |
 | evo | `distil` | 技能自进化(原 distil-skill):三层聚合、一案提案、合取闸门 | 把项目经验沉淀成 skill 时 |
 
 装 dev 即得写后静检 hook 与 md 禁字挡板脚本(插件级,与 skill 解耦);本仓自用骨架工具(init/check/scan 与模板)在仓根 `.tools/`,不随插件分发。结构沿革(旧多插件形态收敛、裁撤与改名映射)见 ADR-0025。
