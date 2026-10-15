@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-15 第一百六十五批:v3.4.3 批收编,总台令
+
+- **send/fwd 与 token 英文化**(REQ-054;真源 412cfef):pipes SKILL 加 send 动词行与 win 坑行、取用行改 `pipes send <addr>`;ports SKILL 加 fwd 动词行与 win 坑行、取用行改 `ports fwd <addr> <本地>:<远端口>`;deliver-gate/collab/commands 取用行族同步,send 原语缺口记档出清(引擎名退出取用行);token 英文化全扫(host:pane/host:alias/@recipient/view [host]);win 防火墙坑行两域入表(默认入站 Block,CTA 放行,规则名 tailcat-in)
+- lan-ubuntu 翻台 prim v3.4.3;herdr-mesh 镜像面同步
+- evo 独立升 0.16.3;门禁全绿 + fleet 回执
+
+
 ### 变更 2026-10-15 第一百六十四批:七原语 v3.4.0 对齐,总台令（evo-164）
 
 - **ports 入列与 ctxs 正名**(REQ-053;herdr-mesh 5f5f903,CONTRACT 批注 v3.4.0):新增 ports/SKILL.md(镜像 pipes 形:spec 端口表/映射/all/exit-node 四形,动词 view/open/close/to 对称,取用行 tailcat forward,公开流 room/port-live,与 pipes 临时管道分野,坑面注册标签机名);ctx 正名 ctxs(目录与 frontmatter 与触发词与命令面全改,触发词留 ctx 兼容);agents references 七原语口径(commands 七域速查加 ports 行、collab 五域投递分工加 ports 与 port-live、deliver-gate pipes/ports=addr 与 ports 取用行、rulings 七原语裁定行);pipes SKILL 分野行
