@@ -31,7 +31,8 @@ description: >-
 
 ```bash
 pipes view lan-ubuntu
-pipes open --keep
+pipes open
+pipes send <addr>
 pipes close <addr>
 pipes to evo-claude
 ```

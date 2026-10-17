@@ -20,6 +20,9 @@
 | `research/S011-herdr-dispatch对照.md` | herdr 任务分发编排对照分流(lane 模型、探针契约、py 脚本评估结论;档案) | 改 lane-dispatch 标准或复核委派口径时 |
 | `research/S012-五窗格开发布局对照.md` | 窗格布局定式对照(通用四窗格与 PI 五窗格、双闸门、会话纪律;档案) | 改布局定式或自省验收口径时 |
 | `research/S013-研究形态与工具链范式对照.md` | 研究形态与工具链范式对照分流(三仓研究形态、十仓工具链扫描;档案) | 复核四形态与工具范式口径时 |
+| `research/S014-wikiskill对照.md` | wikiskill 对照,三层聚合成技能自进化(吸收进 distil;档案) | 复核 distil 三层口径时 |
+| `research/S015-四仓三层聚合标准合流.md` | 四仓三层聚合标准合流:实践判例与业界对照(档案) | 复核三层聚合与 distil 终态口径时 |
+| `research/S016-skill双规范业界先例对照.md` | SKILL 双规范业界先例对照(grok 研究轮,计数勘误;吸收进 skill-spec 规范 A/B) | 对表 skill 双规范口径与业界先例时 |
 | `diary/2026-09-08-bh与reader使用过程.md` | 轨迹样例(写法权威在 distil 轨迹篇) | 写轨迹前对照格式时 |
 | `../plugins/dev/skills/doc-gov/SKILL.md` | 文档框架治理知识本体(意图路由与形态速览) | 使用/修改 skill 前 |
 | `../plugins/dev/skills/doc-gov/references/README.md` | 参考索引(5 篇全量与快速路由) | 找治理参考时先看 |
@@ -35,7 +38,7 @@
 | `../.tools/verification/command-test-cases.md` | check 的等价 PowerShell 用例集(参数化 ProjectRoot) | 验证骨架合规时 |
 | `../plugins/evo/skills/distil/SKILL.md` | 技能自进化:三层聚合(sources 唯一出处层、knowledge 带版本双链知识、operations 标准技能与 how-to 手册,git 边界三选一,归档统一字母表),四步环蒸馏提案与合取闸门 | 把项目经验沉淀成 skill、迭代标准技能集时 |
 | `../plugins/dev/skills/dev-lint/SKILL.md` | 静态检查:md 三面与 rs/py/ts 语言面、类型化结构与四类型模板,写后 hook | 配静态检查门禁、新仓脚手架时 |
-| `../plugins/evo/skills/agents/SKILL.md` | 五原语消息域原语与共享面枢纽:to 投递、id 三产生式、命名标准 工作台-类型-编号、门控 v2 尾窗、信封 v2、status 四态、read 收件、工位管理 | 告诉或委派某 agent、找格读屏等回话、开工作台调窗格布局、查在场时 |
+| `../plugins/evo/skills/agents/SKILL.md` | 消息域原语与七原语共享面枢纽:to 投递、id 三产生式、命名标准 工作台-类型-编号、门控 v2 尾窗、信封 v2、status 四态、read 收件、工位管理 | 告诉或委派某 agent、找格读屏等回话、开工作台调窗格布局、查在场时 |
 | `../plugins/evo/skills/shares/SKILL.md` | 文件域原语:put/get/to,内容哈希键 | 把文件共享给指定 agent、交付产物、取回共享时 |
 | `../plugins/evo/skills/streams/SKILL.md` | 流域原语:append/view/to,流即房间,fleet 回执主频道 | 往流交回执或广播、私信、回放续读时 |
 | `../plugins/evo/skills/tasks/SKILL.md` | 持久任务域原语:set/to,事件入流,远机零 ssh | 设别的格的持久任务、跨机委派目标时 |

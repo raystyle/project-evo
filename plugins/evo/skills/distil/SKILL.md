@@ -1,14 +1,14 @@
 ---
 name: distil
 description: >-
-  项目技能自进化:把执行经验蒸馏成模式,经一案提案与合取闸门,持续产生并迭代双端标准
-  项目级 SKILL。三层聚合:sources 唯一出处层、knowledge 带版本双链知识层、operations
-  标准 skill 层(过闸才进);四步环 = 执行产痕、蒸馏模式、一案提案(create/patch/
-  no_action)、合取闸门(门禁无回归、义务翻转、标准页链 sources);知识层永不回滚,
-  标准层拒绝即回滚。
-  Use when 把项目执行经验沉淀成 skill、迭代项目标准技能集、建三层聚合知识库、蒸馏执行
-  轨迹、给标准技能改动设闸验收时;触发词 distil、蒸馏、技能自进化、三层聚合、sources、
-  knowledge、operations、轨迹总结、模式页、标准 skill、项目级 skill、合取闸门、no_action。
+  项目技能自进化:把执行经验蒸馏成模式,经一案提案与合取闸门产出并迭代双端标准项目级
+  SKILL;三层聚合 = sources 唯一出处、knowledge 带版本双链、operations 过闸标准层;
+  知识层永不回滚,标准层拒绝即回滚。
+  Use when: distillation, standard skills, 把执行经验沉淀成 skill、迭代项目标准技能集、
+  建三层聚合知识库、蒸馏执行轨迹、给标准技能改动设闸验收;触发词 distil、蒸馏、技能
+  自进化、三层聚合、sources、knowledge、operations、轨迹总结、模式页、标准 skill、
+  项目级 skill、合取闸门、no_action。
+  不要用于一次性代码修改或未经轨迹蒸馏直接改标准技能。
 ---
 
 # distil - evo 项目技能自进化
@@ -48,7 +48,7 @@ flowchart LR
 - 闸门合取三条:既有门禁无回归;至少一条点名失败义务翻转为过;标准页链到有 sources 的知识页
 - 停机:无未覆盖的失败义务,或连续 no_action;没有满分短路
 
-## 三、硬规则(速览)
+## 三、硬规则（速览）
 
 - 标准面收标准 skill 与 how-to 手册两类,过闸才进;技能安装路径是加载视图,常驻面只有 frontmatter 的 name 与 description,knowledge 不进安装路径
 - sources 是唯一出处层,证据分级靠 relation 两根词(derived_from、cited_source);否证走 supersede 不原地改写;执行回合不整层注入 knowledge

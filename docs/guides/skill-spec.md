@@ -1,36 +1,70 @@
 # skill 规范细则（agentskills 硬标准）
 
 > 本仓 skill 目录的硬性规范细则,从 AGENTS 下沉至此;AGENTS 只留合同速查。以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准。
+> 两规范 = 2026-10-17 总台三人组合稿(总台令:evo 真源方起草 + grok 业界先例研究 + 总台终审);业界先例与口径分流档案见 `../research/S016-skill双规范业界先例对照.md`。条目尾标执行面:[静检] = md-guard/mdrules 或 md-ref-scan 机检;[守卫] = pytest 清单守卫;[闸门] = distil 合取闸门;[纪律] = 评审过程约束(暂未机检)。
+> 治理层追加声明:规范无强制正文节序,本仓节序、description ≤400、行量双带皆为治理层追加,不是业界已有硬标准;追加理由与业界口径见 S016。
 
-## frontmatter 字段
+## 规范 A:SKILL 语言约束
 
-| 字段 | 是否必填 | 约束 |
-|------|------|------|
-| `name` | 必填 | ≤64 字符;小写字母/数字/连字符;**必须与目录名一致** |
-| `description` | 必填 | 1-1024 字符;「做什么 + 何时用」兼具;含触发关键词 |
-| `license` / `compatibility` / `metadata` / `allowed-tools` | 可选 | 见官方 spec |
-| `version` / `argument-hint` 等非官方字段 | **禁止** | 版本由 git tag / release 管理 |
+| 编号 | 条目 | 执行面 |
+|------|------|--------|
+| A1 | description 是唯一触发面:启动层只装 name 与 description,正文启动不可见;触发词只写 description,不写正文代偿 | [纪律] |
+| A2 | description 三句形:做什么一句(动词开头第三人称)+ `Use when:` 中英触发词一句(用用户会说的词,不只内部代号)+ 「不要用于」一句划界防误唤起;总长 ≤400 字符(治理层收紧;规范硬顶 1024) | [纪律;升静检在案] |
+| A3 | 长度双口径记档:规范硬顶 1024;Claude Code 列表层把 description 与 when_to_use 拼条、每条截 1536 从尾切,evo 面 ≤400 双口径皆安;若逼近上限,关键用例放前部,触发词不放最尾 | [纪律] |
+| A4 | 原文保真:同一命令、旗标、键名、路径、环境变量一名到底,不另译一套;中文句中英文词是标识,不整句英化也不译掉标识 | [纪律] |
+| A5 | 命令引用完整形:示例用围栏内完整参数行,不写「用相关命令」类转述;正例写要做的事,否定句只用于硬禁与排除范围 | [纪律] |
+| A6 | 一事实一处:同一事实只在 SKILL.md 或 references 一处出现;references 细节不在 SKILL.md 重抄;改一处不改他处 = 变更不完整 | [纪律] |
+| A7 | 禁 emoji;流程图用 mermaid,禁 box-drawing 手拼伪流程图 | [静检:mdrules 禁字四类] |
+| A8 | 中文为主;命令、代码、专有名词保原文(与 A4 同源,语言基调) | [纪律] |
+| A9 | 事实性断言标六态(`[实证]/[推断]/[经验]/[记忆]/[假设]/[直觉]`);适用面 = 研究档案(S 文档)、REQ/ADR、盘点评审类产物;skill 标准面正文与 references 缺省不标(操作面走 B17 实证准入与静检,不靠标注) | [纪律] |
+| A10 | 吸收即提炼:外部先例进库只留最准确精练的可复用表达;成品不点名外部仓库;信源与对照全文入研究档案 | [纪律] |
+| A11 | 批号不进 skill 正文与 references 三档;溯源进 git 提交信息与 CHANGELOG | [纪律;验收自检] |
+| A12 | 无点数不写分布;一次失误修拥有该事实的那一节,不加只打一次的禁句 | [纪律] |
 
-## 正文与目录
+## 规范 B:SKILL 格式结构约束
 
-- `SKILL.md` ≤500 行;只留意图路由 + 体系速览;详细操作移 `references/`
-- 标准布局:`SKILL.md`(意图路由+速览) + `references/`(分类+扁平,前缀 base/flow/env/tool/exp 分组) + `verification/`(命令行为);无 evals 层(渐进知识库型 skill,不做用例评估)
-- 分层原则:references/ 每篇一主题自包含完整参考;实现代码放插件级 `scripts/`(如 dev 的 md-guard 加 mdrules,hook 与 skill 解耦)或仓自用 `.tools/`(PEP 723 零依赖;禁字规则唯一权威在 dev 的 `scripts/mdrules.py`,check PE-11/scan/md-guard 三面同源)
+### frontmatter 与目录
 
-## 命令指导类 skill 写作标准（舰队规范）
+| 编号 | 条目 | 执行面 |
+|------|------|--------|
+| B1 | 仅官方字段:name 与 description 必填;可选 license、compatibility(≤500 字符)、metadata(字符串映射)、allowed-tools(实验,空格分隔);产品页扩展字段(when_to_use、argument-hint、paths、disable-model-invocation)禁入跨端技能(Claude 端静默忽略、校验器拒);起始 `---` 必须是文件首行;禁 version/argument-hint 等非官方字段,版本走 git tag/release | [静检:md-faces] |
+| B2 | name 硬标准:1-64 字符,小写字母/数字/连字符,不首尾连字符、不连续连字符,必须等于目录名 | [静检:md-faces] |
+| B3 | 目录名 = 命令名全词复数形(kubectl 裁定;原语域面:agents/shares/streams/tasks/pipes/ports/ctxs/mcps/nodes;非命令面如 distil 例外);命令正名时目录与 name 字段同批同步、全引用面扫净 | [守卫:目录-命令对齐] |
 
-> 出处 = fleet room/gateway-logging 流「命令指导 SKILL 写作标准 · 草案」;参照 [agentskills spec](https://agentskills.io/specification) 与 [Anthropic skill best practices](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices)。
+### 正文骨架
 
-- **description ≤400 字符**(硬顶 1024):一句职责第三人称 + 触发场景与触发词;旗标、端口、路径、凭据、版本、分工不进
-- **正文节序**:动词表(动词、文法、何时用;何时用写任务不写同义词)到 文法(三至六条会改变敲法的;共享规则一行指属主)到 示例(一块,每动词恰一条,块下不讲解)到 坑表(列只有「错」与「对」,对 = 下一步动作或判定句)到 接着读(至多三条带何时读);定位段删除,分工一行
-- **旗标全集与默认值不进正文**:一行「以 <cmd> --llms 为准」;与 --llms 冲突时改技能不改命令
-- **行量**:正文 80 至 120 行(硬顶 150);单份 reference 至多 150 行(过 100 行顶上写目录);动词超 8 个时族细节下放 references/<族>.md
-- **references 三档**:pitfalls.md(现行坑反例,80 行)/rulings.md(日期现象结论档案,正文不链)/obsolete.md(废止敲法,正文不链);批号不进这三档,进 git
-- **验收八条**:description 无旗标路径版本批号;正文首节是动词表;每动词示例恰一次;坑行可独立执行或判定;全文检索不到批号实证根修定谳;同一事实只出现一处;正文无指向 reference 的 reference;抽三命令对 --llms 文法一致
+| 编号 | 条目 | 执行面 |
+|------|------|--------|
+| B4 | 双骨架选型:命令指导型六节(动词表 到 文法 到 示例 到 坑 到 接着读;域定位只进 H1 不设定位段);渐进知识库型(渐进声明段 到 意图路由 到 速览 到 硬规则)。选型判据 = 有无 CLI 动词面;有动词表再谈动词,无动词表不硬造 | [纪律] |
+| B5 | 渐进三层加载:启动层只装 name+description(规范约 100 token 是启动层预算指导语,不另造更小门禁数);命中层装整份 SKILL.md(建议 <5000 token);按需层 references/scripts/assets 用到才读 | [静检:行数兜底] |
+| B6 | 行量双带:命令指导型正文 40-80 行、渐进知识库型 ≤100 行(硬顶 150;spec 硬顶 500;md-guard 缺省 200 兜底);单份 reference ≤150 行,过 100 顶上写目录;动词超 8 个时族细节下放 references/<族>.md | [静检] |
+| B7 | 动词表三列:动词、文法、何时用;何时用写任务不写同义词 | [纪律] |
+| B8 | 旗标全集与默认值不进正文:一行「以 `<cmd> --llms` 为准」;与 --llms 冲突时改技能不改命令 | [纪律] |
+| B9 | 示例纪律:一块;每动词恰一条;每条围栏完整参数行可拷贝;块下不讲解;禁展示已废旗标形 | [纪律;废形自洽升静检在案] |
+| B10 | 坑表两列「错/对」:对 = 可独立执行的下一步动作或判定句,不写解释文 | [纪律] |
+| B11 | 接着读至多三条,相对路径,每条带何时读条件 | [纪律] |
+| B12 | 引用一层:从 SKILL.md 只走一层;references 不再套必读引用链(references/README.md 索引与显式出处链例外) | [纪律] |
 
-## 写作约束
+### references 与共享面
 
-- 禁止 emoji;流程图用 mermaid,禁止 box-drawing 手拼伪流程图
-- 事实性断言标六态:`[实证]/[推断]/[经验]/[记忆]/[假设]/[直觉]`
-- 中文为主;命令/代码/专有名词保原文
-- 吸收即提炼:外部经验进库前剔除冗余,只留最准确精练的可复用表达;成品不点名外部仓库,吸收后都是本仓知识
+| 编号 | 条目 | 执行面 |
+|------|------|--------|
+| B13 | references 每篇一主题自包含完整参考;三档 = pitfalls.md(现行坑反例)/rulings.md(日期现象结论档案)/obsolete.md(废止敲法),后两档正文不链 | [纪律] |
+| B14 | 标准布局 = SKILL.md(意图路由+速览)+ references/(分类扁平)+ verification/(命令行为);无 evals 层(渐进知识库型 skill 不做用例评估);实现代码放插件级 `scripts/` 或仓自用 `.tools/`(PEP 723 零依赖;禁字规则唯一权威在 dev 的 `scripts/mdrules.py`,check PE-11/scan/md-guard 三面同源);判断与步骤留 markdown | [纪律] |
+| B15 | 共享面单一权威源:跨域共享语义(id 三产生式、门控 v2、信封 v2、命名标准)只住 owner 面(七原语共享面 = agents),各域一行回链,禁双份并行维护 | [纪律] |
+
+### 变更与验收
+
+| 编号 | 条目 | 执行面 |
+|------|------|--------|
+| B16 | 变更完整性:改 skill 必同步 references 索引、docs 地图与 CHANGELOG;两插件双 manifest(Claude/Codex 面)字段同步、同版本线,Claude 市场条目版本一致 | [守卫:清单一致性] |
+| B17 | 命令实证准入:写进 SKILL.md 的命令当会真跑过(ADR-0010 构造纪律) | [纪律] |
+| B18 | 标准面变更过 distil 合取闸门三条:既有门禁无回归;至少一条点名失败义务翻转为过;标准页链到有 sources 的知识页。知识层永不回滚,标准层拒绝即回滚 | [闸门] |
+
+## 验收自检清单
+
+- description 无旗标、路径、版本、批号;三句形齐(做什么 + Use when + 不要用于)
+- 正文首节是动词表;每动词示例恰一次;坑行可独立执行或判定;接着读 ≤3 条带何时读
+- 全文检索不到批号;同一事实只出现一处;正文无指向 reference 的 reference
+- 目录名 = 命令名复数形(非命令面例外);name = 目录名;frontmatter 仅官方字段
+- 抽三命令对 `--llms` 文法一致;示例无已废旗标形

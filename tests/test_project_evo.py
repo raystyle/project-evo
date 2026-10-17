@@ -542,3 +542,15 @@ def test_no_stale_plugin_counts_in_live_surfaces():
             if m.group() != want:
                 hits.append(f"{p.relative_to(REPO)}: {m.group()}")
     assert not hits, f"陈旧插件计数残留(应全为 {want}): {hits}"
+
+
+def test_evo_primitive_skill_dirs_align_with_commands():
+    """B3 目录-命令对齐守卫(REQ-057;批 164 ctxs 正名判例):evo 原语域 skill 目录名
+    必须落在正典原语命令集内且为全词复数形;非命令面(渐进知识库型 distil)例外。
+    mcps/nodes 入真源时须有意识更新本正典集与 SKILLS 清单(REQ-058),静默漂移当场红灯。"""
+    canonical = {"agents", "shares", "streams", "tasks", "pipes", "ports", "ctxs"}
+    primitives = set(SKILLS["evo"]) - {"distil"}
+    assert primitives == canonical, \
+        f"原语域目录对正典命令集漂移(改集须过 REQ,勿静默): {primitives ^ canonical}"
+    for name in sorted(primitives):
+        assert name.endswith("s"), f"原语域目录须命令名全词复数形: {name}"

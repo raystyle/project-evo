@@ -60,3 +60,5 @@
 | REQ-054 | implemented | must | v3.4.3 批收编:send/fwd 收方动词与 token 英文化(批165) | tests/test_project_evo.py |
 | REQ-055 | implemented | must | 触发词验收轮:反射表语汇与易混带切分句入 frontmatter(批166) | tests/test_project_evo.py |
 | REQ-056 | implemented | must | skill description 定稿三句形落地(批167) | tests/test_project_evo.py |
+| REQ-057 | implemented | must | SKILL 双规范定稿与修批(批168) | tests/test_project_evo.py |
+| REQ-058 | draft | must | mcps/nodes skill 入真源与 dev description 收口(挂起:待总台缓存件) | tests/test_project_evo.py |

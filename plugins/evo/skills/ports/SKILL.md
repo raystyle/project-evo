@@ -31,6 +31,8 @@ description: >-
 ports view lan-ubuntu
 ports open 8123
 ports open 5555:10.2.200.213:5555
+ports close <addr>
+ports fwd <addr> 18778:18777
 ports to evo-claude 8123
 ```
 
