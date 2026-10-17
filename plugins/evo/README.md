@@ -1,6 +1,6 @@
 # evo
 
-> project-evo 市场 agent 操作面插件:八 skill(七原语加 distil)。客户端显示 `evo:<skill>`。
+> project-evo 市场 agent 操作面插件:十一 skill(九原语加 research 与 distil)。客户端显示 `evo:<skill>`。
 
 ## skill 清单
 
@@ -13,6 +13,9 @@
 | pipes | 实时字节域原语:跨机实时管道(open/close/to,本机收对方发) |
 | ports | 端口域原语:任意节点端口转发映射(view/open/close/to,引擎 tailcat serve;取用行 tailcat forward;与 pipes 临时管道分野) |
 | ctxs | 对话历史域原语:agent 请求全链检索(view/show/search,引擎 ClickHouse gw_logs;与 agents read 分工 = 实时屏对历史档案) |
+| mcps | MCP 目标域原语(第八原语,出站):view/tools/call/add/remove,骑 mcp2cli,无门控 |
+| nodes | 节点与窗格域原语(第九原语):herdr 机册、run/close/pane 直透、runtime 骑 ark |
+| research | 检索域知识面:按研究目标路由通道(gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针;产出交棒 doc-gov 研究档案) |
 | distil | 技能自进化:三层聚合(sources/knowledge/operations)、一案提案、合取闸门、双端分发 |
 
 结构沿革:由旧多插件形态收敛重构而来(ADR-0025):herdr-orch、agent-s5、agent-rloop、agent-doctor 裁撤;agent-prim 拆原语 skill,共享面在 agents;distil-skill 改名 distil;doc-gov 与 doc-cli(改名 dev-cli)及 lint 三 skill 归 dev 插件。旧名映射以 ADR-0025 为准。
@@ -37,10 +40,10 @@ Grok:`grok plugin install evo@project-evo --trust`
 
 Kimi:无市场,拷 `plugins/evo/skills/*` 至 `~/.kimi/skills`
 
-## 翻台与清理(重载铁律)
+## 翻台与清理（重载铁律）
 
 - **旧进程 = 旧技能**:装/更新插件后必须翻台才生效,恒 `agents reload <id>`(同格同 session 重进)
 - 全端序:每端 `/plugin marketplace update project-evo` 再到 卸旧插件(evo-doc、evo-herdr、evo-distil、evo-lint、evo-agent 五件)再到 装 dev 与 evo 再到 全格 `agents reload`
 - Kimi 端:清 `~/.kimi/skills` 旧目录后重拷,重启会话
 
-当前发布:0.15.9(独立 semver,dev 独立号)。
+当前发布:0.17.0(独立 semver,dev 独立号)。

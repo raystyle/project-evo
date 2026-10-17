@@ -23,7 +23,7 @@ GUARD = PLUGINS["dev"] / "scripts" / "md-guard.py"
 LINT_HOOK = PLUGINS["dev"] / "scripts" / "lint-hook.py"
 SKILLS = {
     "dev": ["dev-cli", "dev-lint", "doc-gov"],
-    "evo": ["agents", "ctxs", "distil", "mcps", "nodes", "pipes", "ports", "shares", "streams", "tasks"],
+    "evo": ["agents", "ctxs", "distil", "mcps", "nodes", "pipes", "ports", "research", "shares", "streams", "tasks"],
 }
 SINGLE_FILE_SKILLS = {"shares", "streams", "tasks", "pipes", "ports", "ctxs", "mcps", "nodes"}  # 原语域面单文件,共享面在 agents skill(ADR-0025;mcps/nodes 批 169 入列)
 
@@ -546,10 +546,10 @@ def test_no_stale_plugin_counts_in_live_surfaces():
 
 def test_evo_primitive_skill_dirs_align_with_commands():
     """B3 目录-命令对齐守卫(REQ-057;批 164 ctxs 正名判例):evo 原语域 skill 目录名
-    必须落在正典原语命令集内且为全词复数形;非命令面(渐进知识库型 distil)例外。
+    必须落在正典原语命令集内且为全词复数形;非命令面(渐进知识库型 distil、research)例外。
     mcps/nodes 入真源时须有意识更新本正典集与 SKILLS 清单(REQ-058),静默漂移当场红灯。"""
     canonical = {"agents", "shares", "streams", "tasks", "pipes", "ports", "ctxs", "mcps", "nodes"}
-    primitives = set(SKILLS["evo"]) - {"distil"}
+    primitives = set(SKILLS["evo"]) - {"distil", "research"}  # research 批 170 入列(REQ-059,渐进知识库型非命令面)
     assert primitives == canonical, \
         f"原语域目录对正典命令集漂移(改集须过 REQ,勿静默): {primitives ^ canonical}"
     for name in sorted(primitives):

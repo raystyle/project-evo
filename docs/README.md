@@ -1,6 +1,6 @@
 # docs 地图
 
-> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、research 存研究档案;过程轨迹(日记)继续落 diary/,形态权威已迁 `../plugins/evo/skills/distil/references/trajectories.md`;skill 知识库在 `plugins/<插件>/skills/` 下(两插件十一 skill)。
+> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、research 存研究档案;过程轨迹(日记)继续落 diary/,形态权威已迁 `../plugins/evo/skills/distil/references/trajectories.md`;skill 知识库在 `plugins/<插件>/skills/` 下(两插件十四 skill)。
 
 | 文档 | 讲什么 | 何时看 |
 |------|--------|--------|
@@ -47,4 +47,5 @@
 | `../plugins/evo/skills/ctxs/SKILL.md` | 对话历史域原语:agent 请求全链检索(view/show/search,head 365 天正文 180 天) | 查历史对话、回溯细节、跨请求搜词时 |
 | `../plugins/evo/skills/mcps/SKILL.md` | MCP 目标域原语(第八原语,出站):view/tools/call/add/remove,骑 mcp2cli,无门控 | 驱动任意 MCP server、注册跨机 MCP 目标时 |
 | `../plugins/evo/skills/nodes/SKILL.md` | 节点与窗格域原语(第九原语):herdr 机册、run/close/pane 直透、runtime 骑 ark | 注册管理舰队节点、指定窗格跑命令、对齐运行环境时 |
+| `../plugins/evo/skills/research/SKILL.md` | 检索域知识面:按研究目标路由通道(gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针;产出交棒 doc-gov 研究档案) | 调研主题、找库选型、学术检索、跨源对照搜索时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |

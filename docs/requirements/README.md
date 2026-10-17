@@ -62,3 +62,4 @@
 | REQ-056 | implemented | must | skill description 定稿三句形落地(批167) | tests/test_project_evo.py |
 | REQ-057 | implemented | must | SKILL 双规范定稿与修批(批168) | tests/test_project_evo.py |
 | REQ-058 | implemented | must | mcps/nodes skill 入真源与 dev description 收口(批169) | tests/test_project_evo.py |
+| REQ-059 | implemented | must | research 检索 skill 入真源(多通道路由,批170) | tests/test_project_evo.py |

@@ -4,6 +4,16 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-17 第一百七十批:research 检索 skill 入真源,总台令加批中修正
+
+- **research skill 入真源**(REQ-059;evo 第十一 skill,检索域知识面,渐进知识库型非命令面):意图路由四通道 + 成本递增梯(fetch 直抓、无头引擎方言、rn 编排与油猴探针三级递进);产出纯检索原语+交棒,立档案走 doc-gov 研究档案面;references 五篇(channels/browse-rn/probes/rulings/索引)
+- **批中修正两令**:google 主搜索面易被挑战出路由(本机 mech 实弹 verdict=challenged 落 /sorry),网页检索只用 bing 不设备胎;bing 与 github 无头即通(bing fetch 直出实测 `via: http`,无头引擎 goto+js 抽取亦通)
+- **实证准入全过**(B17):gh 五动词各真跑一条;bing/scholar/github fetch 三源真跑(scholar 直通 HTTP 200 满页 10 条,与 google 主面风控独立);google-search 双探针实装、判读机 mech 真跑;自写最小编排 .rn 裸形入口实跑(无头 bing 三条干净返回);三敲法坑入判例(--vars 含空格整体引号、userscript 绝对径、非终端 stdin 空串提示)
+- **判例真源链**:fleet intelligence 工作台四问应答(browse_rs 代转)+ browse workspace 仓(git 7814fc0:mech 入口裸形、verdict 族、scholar 判据);上游两注对齐(rn 入口裸形不引 `-> Result` 旧形、verdict 术语从 mech)
+- **计数与守卫同步**:AGENTS/README/docs 地图两插件十四 skill(dev 三加 evo 十一)、evo 双 manifest 十一 skill 枚举、githooks 断链段与 SKILLS 清单增 research、B3 豁免集增 research(渐进知识库型非命令面)
+- **顺批清账(存量滞后)**:根市场清单两插件计数与 evo 枚举(此前仍写八 skill 漏 mcps/nodes)、根 README 表补 mcps/nodes 行、evo README 八 skill 与发布号 0.15.9、dev README 发布号 0.14.3、gates.md 断链计数
+- evo 独立升 0.17.0(新能力 minor);门禁全绿 + fleet 回执
+
 ### 变更 2026-10-17 第一百六十九批续:nodes 四例补与判例注收口,总台实弹回执单
 
 - **nodes 四动词例补**(REQ-058 判例注收口;总台四动词实跑回文:disable/enable lan-mac 状态翻转、pane get JSON 面出):示例块补 `nodes disable lan-mac`/`nodes enable lan-mac`/`nodes reconnect lan-ubuntu`/`nodes pane lan-pve get w1:p1`,11 动词行例全覆盖
