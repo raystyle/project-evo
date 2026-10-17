@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件十一 skill:`dev`(开发治理面:doc-gov、dev-cli(原 doc-cli)、dev-lint 静态检查)、`evo`(agent 操作面:agents、shares、streams、tasks、pipes、ports、ctxs 七原语 skill 加 distil;七原语 = 舰队互操作代理操作唯一面,herdr 技能已淘汰)。客户端显示 `<插件>:<skill>`。
+> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件十三 skill:`dev`(开发治理面:doc-gov、dev-cli(原 doc-cli)、dev-lint 静态检查)、`evo`(agent 操作面:agents、shares、streams、tasks、pipes、ports、ctxs、mcps、nodes 九原语 skill 加 distil;九原语 = 舰队互操作代理操作唯一面,herdr 技能已淘汰)。客户端显示 `<插件>:<skill>`。
 
 ## 安装
 

@@ -1,7 +1,7 @@
 ---
 id: REQ-058
 title: mcps/nodes skill 入真源与 dev description 收口(挂起)
-status: draft
+status: implemented
 priority: must
 trace: tests/test_project_evo.py
 ---
@@ -14,9 +14,9 @@ trace: tests/test_project_evo.py
 
 ## Criteria
 
-- [ ] mcps skill 入真源(缓存件为底 + 本机 `mcps --llms` v3 实况校准;设计稿键 share/lan-win/bc42cd3cbf)
-- [ ] nodes skill 入真源(缓存件为底;命令实证待 nodes 装机或总台侧实弹回执)
-- [ ] 双 manifest 与市场清单计数同步(十一 skill 增至十三 skill),守卫 SKILLS 清单增两 skill
-- [ ] dev 两面 description 压 400 内(dev-lint、doc-gov)
-- [ ] md-faces 静检升三件(三句形、≤400、废形自洽)
-- [ ] evo 与 dev 升版;门禁全绿 + fleet 回执
+- [x] mcps skill 入真源(缓存件为底 + 本机 view/tools 错径/add/remove 回环实弹;设计稿键 share/lan-win/bc42cd3cbf)
+- [x] nodes skill 入真源(总台新写件为底微校;总台本日全动词实弹回执在单,enable/disable/reconnect/pane 示例例待下轮实弹补)
+- [x] 双 manifest 与市场清单计数同步(十三 skill),守卫 SKILLS 清单与 B3 正典集增两 skill
+- [x] dev 三面 description 压 400 内(dev-cli 380/dev-lint 399/doc-gov 400,连带补三句形)
+- [x] md-faces 静检升两件(三句形、≤400,mdrules+md-guard+pytest 三面接线);废形自洽延后:需逐域废旗标登记表,另批立项
+- [x] evo 升 0.16.9、dev 升 0.15.0;门禁全绿 + fleet 回执

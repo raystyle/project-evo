@@ -1,16 +1,14 @@
 ---
 name: dev-lint
 description: >-
-  开发治理静态检查(md 面、语言面、结构面)与门禁接线。md 面 = skill/agents/claude
-  markdown 五面静检(frontmatter 官方字段、name 同目录名、description 形态与上限、行数
-  上限、禁字四类、断链扫描);语言面 = cargo fmt 与 clippy 加 missing_docs、ruff 含 D 系
-  docstring、tsc 与 eslint;结构面 = 类型化项目结构标准(四类型模板卡与声明式规则件,
-  init 脚手架加结构 check);门禁三态退出码、提交挡板 pre-commit 与写后自动静检 hook
-  双端。
-  Use when 给项目配静态检查门禁、排查 md 或代码静检报错、把 lint 挂进 pre-commit 或 CI、
-  新仓脚手架或存量仓结构 lint 时;触发词 dev-lint、lint、静态检查、静态分析、禁字、
-  断链、clippy、ruff、tsc、eslint、fmt、missing_docs、docstring 检查、门禁、退出码、
-  pre-commit、md-guard、结构、脚手架、scaffold、目录树、ls-lint、md-lint。
+  开发治理静态检查(md、语言、结构三面)与门禁接线。md 面 = skill/agents/claude markdown
+  五面静检;语言面 = cargo fmt 与 clippy 加 missing_docs、ruff、tsc 与 eslint;
+  结构面 = 四类型模板卡与声明式规则件;门禁三态退出码与 pre-commit 挡板。
+  Use when: lint gate, 配静态检查门禁、把 lint 挂进 pre-commit 或 CI、
+  新仓脚手架或存量仓结构 lint 时;触发词 dev-lint、lint、静态检查、禁字、断链、clippy、
+  ruff、tsc、eslint、fmt、missing_docs、docstring、门禁、pre-commit、md-guard、
+  脚手架、ls-lint、md-lint。
+  不要用于运行时行为验证或业务逻辑调试。
 ---
 
 # dev-lint - dev 静态检查（md、语言、结构）

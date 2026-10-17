@@ -1,12 +1,12 @@
 # ProjectEvo 开发协作规则
 
 > 唯一权威源。`CLAUDE.md` 仅一行 `@AGENTS.md` 桥接,不重复维护。
-> 定位:项目治理插件市场仓(两插件十一 skill 同属项目治理面,非业务工具面):dev(开发治理面:doc-gov 需求决策与代码契约注释与文档即代码、dev-cli Agent 原生友好开发、dev-lint 静态检查(md 五面与语言三面与结构面);插件级写后静检 hook 与 md 禁字挡板脚本随插件)、evo(agent 操作面八 skill:agents 消息域原语与七原语共享面(to 投递、id 三产生式、命名标准、门控 v2、信封 v2、status 四态)、shares 文件域、streams 流域、tasks 持久任务域、pipes 实时字节域、ports 端口映射域(tailcat serve,与 pipes 临时管道分野)、ctxs 对话历史域(ClickHouse gw_logs 全链检索,read 实时屏对历史档案)、distil 技能自进化三层聚合),市场名 project-evo,客户端显示 `<插件>:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
+> 定位:项目治理插件市场仓(两插件十三 skill 同属项目治理面,非业务工具面):dev(开发治理面:doc-gov 需求决策与代码契约注释与文档即代码、dev-cli Agent 原生友好开发、dev-lint 静态检查(md 五面与语言三面与结构面);插件级写后静检 hook 与 md 禁字挡板脚本随插件)、evo(agent 操作面十 skill:agents 消息域原语与七原语共享面(to 投递、id 三产生式、命名标准、门控 v2、信封 v2、status 四态)、shares 文件域、streams 流域、tasks 持久任务域、pipes 实时字节域、ports 端口映射域(tailcat serve,与 pipes 临时管道分野)、ctxs 对话历史域(ClickHouse gw_logs 全链检索,read 实时屏对历史档案)、mcps MCP 目标域(出站通用 MCP 客户端,无门控)、nodes 节点与窗格域(herdr 机册与 run/close/pane 直透,runtime 骑 ark)、distil 技能自进化三层聚合),市场名 project-evo,客户端显示 `<插件>:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
 
 ## Commands
 
 - `uv run pytest` 全测试(脚本行为 + 清单一致性守卫 + 仓内禁字回归)
-- `uv run .tools/md-ref-scan.py plugins/<插件>/skills/<skill>` 断链扫描(两插件十一 skill 各跑一次;pre-commit 自动)
+- `uv run .tools/md-ref-scan.py plugins/<插件>/skills/<skill>` 断链扫描(两插件十三 skill 各跑一次;pre-commit 自动)
 - `uv run .tools/check.py` 本仓骨架自检(PE-01 至 PE-12;下游仓 PE-11 历史档案豁免走 PEVO_CHECK_ALLOW,正则见 docs/guides/gates.md)
 - `uv run .tools/scan.py . --no-history` 禁字与密钥扫描(测试夹具与研究档案的公开示例假密钥走 `PEVO_SCAN_ALLOW` 豁免:tests/test_project_evo.py 的 ghp_ 假 token 与 docs/research/S006 的公开示例样值;标准命令与完整豁免正则见 docs/guides/gates.md)
 - 提交挡板:`git config core.hooksPath githooks`(md 禁字 + 断链,不过不进库)
@@ -39,7 +39,7 @@
 ## 环境
 
 - 平台:Windows + PowerShell 7(禁 powershell.exe 5.1 与 cmd);uv 运行时,脚本 PEP 723 零依赖(>=3.12);WSL 到宿主恒走 127.0.0.1 回环加 interop 直调,不走宿主 mesh IP;验收运维脚本载体统一 pwsh
-- 当前阶段:市场重构收口中(2026-10-13,ADR-0025):两插件十一 skill = dev 三加 evo 八;批 141 lint 三合一 dev-lint,批 142 grok 评审收口(独立 semver,两插件各自升版,市场快照 tag 候 v0.16.0);v0.15.0 前封版沿革与批次史见 CHANGELOG 与 ROADMAP,不在本文件续写
+- 当前阶段:市场重构收口中(2026-10-13,ADR-0025):两插件十三 skill = dev 三加 evo 十;批 141 lint 三合一 dev-lint,批 142 grok 评审收口(独立 semver,两插件各自升版,市场快照 tag 候 v0.16.0);v0.15.0 前封版沿革与批次史见 CHANGELOG 与 ROADMAP,不在本文件续写
 - 部署:Claude Code `/plugin marketplace add raystyle/project-evo` 后按插件装(`/plugin install evo@project-evo` 或 `/plugin install dev@project-evo`);Codex `codex plugin marketplace add raystyle/project-evo`;Grok `grok plugin install <插件>@project-evo --trust`;Kimi 无市场,拷 `plugins/*/skills/*` 至 `~/.kimi/skills`
 - 工作根:`~/repos/ProjectEvo`(WSL 独立 VHDX 挂载 /mnt/wsl/repos 快捷 ~/repos;2026-09-16 迁移,旧位 /mnt/d/ProjectEvo 过渡后裁)
 - 项目状态与待办见 `ROADMAP.md`,不在本文件维护

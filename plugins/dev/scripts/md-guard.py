@@ -24,13 +24,17 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from mdrules import file_violations  # noqa: E402
+from mdrules import file_violations, skill_description_violations  # noqa: E402
 
 
 def check_file(path: Path) -> list[str]:
     """返回该 md 文件的违规行描述;空列表 = 干净。"""
-    v = file_violations(path.read_text(encoding="utf-8"))
-    return [f"{path}:{line} {'、'.join(cats)}" for line, cats in sorted(v.items())]
+    text = path.read_text(encoding="utf-8")
+    v = file_violations(text)
+    out = [f"{path}:{line} {'、'.join(cats)}" for line, cats in sorted(v.items())]
+    if path.name == "SKILL.md":
+        out += [f"{path}: {msg}" for msg in skill_description_violations(text)]
+    return out
 
 
 def main(argv: list[str]) -> int:

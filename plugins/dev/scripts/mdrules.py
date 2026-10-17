@@ -68,3 +68,42 @@ def file_violations(text: str) -> dict[int, list[str]]:
         if v:
             out[i + 1] = v
     return out
+
+
+def skill_description_violations(text: str) -> list[str]:
+    """SKILL.md frontmatter description 面检(REQ-057 规范 A2/A3;md-guard 挡板接线)。
+
+    - 折叠后 ≤400 字符(治理层收紧,官方 spec 硬顶 1024 不在此重复检)
+    - 三句形:含 Use when 触发句与「不要用于」排除句
+    非 SKILL.md 形态(无 frontmatter)返回空,不误报。
+    """
+    lines = text.splitlines()
+    if lines[:1] != ["---"]:
+        return []
+    close = next((i for i in range(1, len(lines)) if lines[i] == "---"), None)
+    if close is None:
+        return []
+    desc: list[str] = []
+    in_desc = False
+    for l in lines[1:close]:
+        if l.startswith("description:"):
+            in_desc = True
+            v = l.split(":", 1)[1]
+            if v.lstrip().startswith(">-"):
+                v = v.lstrip()[2:]
+            desc.append(v.strip())
+        elif in_desc and l[:1] in (" ", "\t"):
+            desc.append(l.strip())
+        else:
+            in_desc = False
+    joined = "".join(desc)
+    if not joined:
+        return ["description 为空"]
+    out: list[str] = []
+    if len(joined) > 400:
+        out.append(f"description {len(joined)} 字符超 400 上限(规范 A2)")
+    if "Use when" not in joined:
+        out.append("description 缺 Use when 触发句(规范 A2 三句形)")
+    if "不要用于" not in joined:
+        out.append("description 缺「不要用于」排除句(规范 A2 三句形)")
+    return out

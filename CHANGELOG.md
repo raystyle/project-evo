@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-17 第一百六十九批:九原语收口,mcps/nodes 入真源,总台三人组令
+
+- **mcps skill 入真源**(REQ-058;总台 0.15.13 缓存件为底,真源方校准):description 补三句形(Use when 冒号形 + 英文触发词 + 不要用于句);view/tools 错径/add/remove 回环本机实弹,tools/call 成功径以总台回执与设计稿验收档为据(键 share/lan-win/bc42cd3cbf)
+- **nodes skill 入真源**(REQ-058;总台新写件为底):description 三句形微校(冒号 + 英文触发词 + 不要用于独立句)、文法行警示符禁字改文字表述;11 动词单表 55 行在带,六示例为总台本日全动词实弹回执的族代表形;enable/disable/reconnect/pane 例待下轮实弹补(判例注 REQ-058)
+- **静检升件**:mdrules 增 `skill_description_violations`(三句形 + ≤400,唯一判定权威),md-guard --staged 接线,pytest 仓级守卫 `test_skill_description_form_repo_wide`;废形自洽检(B9)延后(需逐域废旗标登记,另批)
+- **dev 三面 description 收口**:dev-cli 380/dev-lint 399/doc-gov 400 全入 ≤400 且补三句形;doc-gov 四处存量半角标题括号顺手全角化,md-faces.md 补收紧面文档
+- **计数与守卫同步**:AGENTS/README 两插件十三 skill(dev 三加 evo 十)、evo 双 manifest 十 skill 枚举、githooks 断链段与 SKILLS 清单增两面、B3 正典命令集增 mcps/nodes、docs 地图补两行
+- evo 独立升 0.16.9,dev 独立升 0.15.0;门禁全绿 + fleet 回执
+
 ### 变更 2026-10-17 第一百六十八批:SKILL 双规范合稿立卷,总台三人组令
 
 - **双规范立卷**(REQ-057;总台三人组:总台终审令 + grok 业界先例研究 + evo 真源方起草):skill-spec.md 重构为规范 A 语言约束十二条 + 规范 B 格式结构约束十八条,条目尾标执行面(静检/守卫/闸门/纪律);业界口径与治理层追加显式分流(spec 1024 硬顶与产品页 1536 尾截双口径记档、正文无强制节序声明);先例档案 S016 立卷,研究轮计数勘误入档(真源 11 面,研究方在总台侧旧缓存点 10 面)
