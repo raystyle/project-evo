@@ -24,3 +24,4 @@ trace: tests/test_project_evo.py
 - [x] 双 manifest 与市场清单计数同步(十四 skill),市场清单存量滞后顺批清账(两插件计数、evo 枚举补 mcps/nodes/research;连带根 README 表补 mcps/nodes 行、两插件 README 发布号、gates.md 计数)
 - [x] 变更完整性:AGENTS/README/docs 地图/githooks 断链段同步;三敲法坑入 rulings.md(--vars 引号、userscript 绝对径、stdin 空串提示)
 - [x] evo 独立升 0.17.0(新能力 minor);门禁全绿(pytest + check + scan + md-ref-scan 十四面)
+- [x] 批 170 续:Rune 官方书通道入 browse-rn(`browse fetch https://rune-rs.github.io/book/print.html --markdown` 直读,实测 185KB 全书单页;evo 0.17.1)

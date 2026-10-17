@@ -25,7 +25,7 @@ description: >-
 | GitHub 网页面:discussions、topics、渲染 README | `browse fetch <url> --markdown`(零引擎;详情 `references/channels.md`) |
 | 通用网页、技术调研、新闻面 | `browse fetch 'https://www.bing.com/search?q=<词>' --markdown`(唯一网页引擎;无头引擎形同篇) |
 | 学术、文献、论文 | `browse fetch 'https://scholar.google.com/scholar?q=<词>&hl=en' --markdown`(直通实测;锚点抽取 `references/channels.md`) |
-| 多页采集、批量关键词、重反爬面 | rn 编排 + 油猴探针(`references/browse-rn.md`、`references/probes.md`) |
+| 多页采集、批量关键词、重反爬面、Rune 语法疑问 | rn 编排 + 油猴探针(`references/browse-rn.md`、`references/probes.md`) |
 | 页级/域级坑与选择器 | `browse workspace site <域名段>` / `browse workspace page <slug>`(活知识仓,git 更新) |
 
 ## 二、速览（每通道一条实跑锚形）

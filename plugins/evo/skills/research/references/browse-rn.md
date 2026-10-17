@@ -6,6 +6,17 @@
 
 Rune 不支持返回类型注解:入口 `pub async fn main() {`,错误用 `?` 传播、回值用 `Ok(..)`/`Err(..)`;旧 README 的 `-> Result` 形编译错,不引。原生 CDP `cdp::raw("Domain.method", params)`;封装 `cdp::goto(url)`、`cdp::js(code, args)`、`cdp::dialect(动词, 参)`;等待节流 `time::sleep(time::Duration::from_millis(..))`。
 
+## 语言面参考
+
+写 .rn 遇语法与标准库疑问,查 Rune 官方书,fetch 直读(mdbook,零引擎;2026-10-17 实测直出):
+
+```bash
+browse fetch https://rune-rs.github.io/book/print.html --markdown
+```
+
+- `print.html` 是全书单页(实测 185KB 一次拿全);单章按 mdbook 路径直 fetch
+- 语言基调「Rust without types」:async 走 `.await`、错误走 `?`、无类型注解;browse 封装面(`cdp::goto` 等)以 `browse --llms` 为准,语言面以书为准
+
 ## 最小编排件（2026-10-17 本机实跑,无头引擎 bing 三条干净返回）
 
 ```rune

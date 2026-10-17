@@ -4,6 +4,11 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-17 第一百七十批续:Rune 官方书通道入 research
+
+- **语言面参考通道**(REQ-059 续):browse-rn.md 增语言面参考节,`browse fetch https://rune-rs.github.io/book/print.html --markdown` 直读 Rune 官方书(mdbook,`print.html` 全书单页实测 185KB 一次拿全);意图路由 rn 行目标面补「Rune 语法疑问」;语言面以书为准、browse 封装面以 `browse --llms` 为准
+- evo 独立升 0.17.1;门禁全绿
+
 ### 变更 2026-10-17 第一百七十批:research 检索 skill 入真源,总台令加批中修正
 
 - **research skill 入真源**(REQ-059;evo 第十一 skill,检索域知识面,渐进知识库型非命令面):意图路由四通道 + 成本递增梯(fetch 直抓、无头引擎方言、rn 编排与油猴探针三级递进);产出纯检索原语+交棒,立档案走 doc-gov 研究档案面;references 五篇(channels/browse-rn/probes/rulings/索引)
