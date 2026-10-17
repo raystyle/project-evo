@@ -9,7 +9,7 @@ description: >-
   不要用于 agent 消息与工位操作(走 agents)。
 ---
 
-# nodes - evo 节点与窗格域原语(第九原语)
+# nodes - evo 节点与窗格域原语（第九原语）
 
 | 动词 | 文法 | 何时用 |
 | --- | --- | --- |
@@ -40,6 +40,10 @@ nodes view
 nodes add ray@10.10.10.7 --label lan-pve
 nodes run lan-pve w1:p1 claude
 nodes close local w1A:p1
+nodes disable lan-mac
+nodes enable lan-mac
+nodes reconnect lan-ubuntu
+nodes pane lan-pve get w1:p1
 nodes runtime check
 nodes runtime --machine lan-pve --repo ~/repos/pve-harness
 ```
@@ -51,6 +55,7 @@ nodes runtime --machine lan-pve --repo ~/repos/pve-harness
 | agent 会话操作走 nodes | agents = agent 面(启停/检测);nodes 只管窗格与机册 |
 | `~` 路径跨机直传(被本地 shell 吸收) | 远端路径用绝对形或加引号 |
 | 远端装环境手搓 apt | nodes runtime + ark(镜像道,pin 锁定) |
+| 非交互面敲 reconnect 求自动重连 | reconnect 需交互终端(herdr 报 requires an interactive terminal);非交互态用 `nodes status <名>` 查可达 |
 
 ## 接着读
 

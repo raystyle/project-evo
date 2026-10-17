@@ -8,7 +8,7 @@ description: >-
   不要用于 agent 消息投递与本机窗格操作(走 agents)。
 ---
 
-# mcps - evo MCP 目标域原语(第八原语,出站)
+# mcps - evo MCP 目标域原语（第八原语,出站）
 
 | 动词 | 文法 | 何时用 |
 | --- | --- | --- |

@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-17 第一百六十九批续:nodes 四例补与判例注收口,总台实弹回执单
+
+- **nodes 四动词例补**(REQ-058 判例注收口;总台四动词实跑回文:disable/enable lan-mac 状态翻转、pane get JSON 面出):示例块补 `nodes disable lan-mac`/`nodes enable lan-mac`/`nodes reconnect lan-ubuntu`/`nodes pane lan-pve get w1:p1`,11 动词行例全覆盖
+- **reconnect 非交互面限制入坑表**:reconnect 需交互终端(herdr 报 requires an interactive terminal),非交互态用 `nodes status <名>` 查可达
+- 顺手修:mcps/nodes H1 半角标题括号全角化(创建时写后钩子拦后漏修的账)
+- evo 独立升 0.16.10;门禁全绿 + fleet 回执
+
 ### 变更 2026-10-17 第一百六十九批:九原语收口,mcps/nodes 入真源,总台三人组令
 
 - **mcps skill 入真源**(REQ-058;总台 0.15.13 缓存件为底,真源方校准):description 补三句形(Use when 冒号形 + 英文触发词 + 不要用于句);view/tools 错径/add/remove 回环本机实弹,tools/call 成功径以总台回执与设计稿验收档为据(键 share/lan-win/bc42cd3cbf)

@@ -15,7 +15,7 @@ trace: tests/test_project_evo.py
 ## Criteria
 
 - [x] mcps skill 入真源(缓存件为底 + 本机 view/tools 错径/add/remove 回环实弹;设计稿键 share/lan-win/bc42cd3cbf)
-- [x] nodes skill 入真源(总台新写件为底微校;总台本日全动词实弹回执在单,enable/disable/reconnect/pane 示例例待下轮实弹补)
+- [x] nodes skill 入真源(总台新写件为底微校;总台全动词实弹回执在单;enable/disable/reconnect/pane 四例已补,总台 2026-10-17 四动词实跑回文:disable/enable lan-mac 状态翻转、reconnect 非交互面限制入坑表、pane get JSON 面出,批 169续)
 - [x] 双 manifest 与市场清单计数同步(十三 skill),守卫 SKILLS 清单与 B3 正典集增两 skill
 - [x] dev 三面 description 压 400 内(dev-cli 380/dev-lint 399/doc-gov 400,连带补三句形)
 - [x] md-faces 静检升两件(三句形、≤400,mdrules+md-guard+pytest 三面接线);废形自洽延后:需逐域废旗标登记表,另批立项
