@@ -4,6 +4,6 @@
 
 | 我要… | 看哪篇 |
 | --- | --- |
-| 五件标准逐件细则(手册面、CTA 协议、帮助面、自省、裸调用) | [agent-face.md](agent-face.md) |
+| 五件标准逐件细则(手册面、CTA 协议、帮助面、自省、裸调用)加舰队公约分级 | [agent-face.md](agent-face.md) |
 | 发现通道选型、token 经济学、任务脚本 workspace | [tool-cli-agents.md](tool-cli-agents.md) |
 | 可拷模板(README 骨架、--llms 手册、信封 schema、TS 与 Rust 实现) | [templates.md](templates.md) |

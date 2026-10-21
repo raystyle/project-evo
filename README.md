@@ -43,7 +43,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 | 插件 | skill | 做什么 | 何时用 |
 |------|-------|--------|--------|
 | dev | `doc-gov` | 文档框架治理知识:ADR 与 REQ 需求决策、代码 doc 注释契约、文档即代码(单一权威源与投影守卫)、研究档案、项目工具链范式 | 立 ADR/REQ、立代码契约注释与文档即代码守卫、立研究档案、建项目工具链 |
-| dev | `dev-cli` | Agent 原生友好开发(原 doc-cli):--llms 手册面、类型化 CTA 输出协议、默认帮助面、命令自省与漂移守卫、裸调用面、发现通道与 token 经济学 | 配 CLI agent 面、为 agent 时代设计命令与工具面 |
+| dev | `dev-cli` | Agent 原生友好开发(原 doc-cli):--llms 手册面、类型化 CTA 输出协议、默认帮助面、命令自省与漂移守卫、裸调用面、Rust CLI 舰队公约、发现通道与 token 经济学 | 配 CLI agent 面、为 agent 时代设计命令与工具面 |
 | dev | `dev-lint` | 静态检查:md 三面(skill 格式、agents 与 claude 限制、禁字断链)加 rs/py/ts 语言面、类型化结构 init 与 check,写后 hook 与提交挡板 | 配静态检查门禁、修静检红、新仓脚手架时 |
 | evo | `agents` | 五原语消息域原语与共享面枢纽:to 投递、id 三产生式、命名标准(工作台-类型-编号)、门控 v2 尾窗、信封 v2、status 四态、read 收件、工位管理 | 告诉或委派某 agent、找格读屏等回话、开工作台调窗格布局、查在场时 |
 | evo | `shares` | 文件域原语:put/get/to,内容哈希键,拒投不丢件 | 传文件给指定 agent、交付产物、取回共享时 |

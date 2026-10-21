@@ -63,3 +63,4 @@
 | REQ-057 | implemented | must | SKILL 双规范定稿与修批(批168) | tests/test_project_evo.py |
 | REQ-058 | implemented | must | mcps/nodes skill 入真源与 dev description 收口(批169) | tests/test_project_evo.py |
 | REQ-059 | implemented | must | research 检索 skill 入真源(多通道路由,批170) | tests/test_project_evo.py |
+| REQ-060 | implemented | must | agent 原生 CLI 舰队公约入 dev-cli(交流波聚合,批171) | tests/test_project_evo.py |

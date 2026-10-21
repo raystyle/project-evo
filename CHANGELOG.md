@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-21 第一百七十一批:rust 交流波蒸馏,dev-cli 舰队公约面（REQ-060）
+
+- **sources 层首建**(ADR-0021 external 根):docs/sources/external 两留底件(rust-exchange 裸流与 room 劈叉支流全文、研究件 verbatim diff 验证字节一致)加 sources 索引;同波对话劈两流与流列表截断入坑档(优化清单 B1 加 A2)
+- **knowledge 三页**:S017 业界先例对照(grok 研究轮,cited_source 级信源与分流)、S018 跨仓互鉴表(谁偷谁什么)、S019 公约聚合页(六仓票去重,必须 10 应该 3,反票降级判例与定稿判点入档)
+- **dev-cli 舰队公约面**(REQ-060 operations 一案,过合取闸门三谓词):agent-face 第六节分级表(必须 10 应该 3,各条映射五件锚点);信封载体定名 next_step(cta 兼容别名)agent-face、templates、公约节三面同步;SKILL.md 速览与意图路由补公约行,description 增触发词(折叠 386);顺手清 templates 与 agent-face 存量半角标题账
+- **原语优化清单交割**(首令任务一):shares 键 share/lan-ubuntu/2fa1cd5487/,A 类 prim 实锤四条(streams rooms 崩、列表截断、view 噪声、lint-hook 围栏不感知)、B 类 skill 语义四条(流劈叉、跨机寻址两型、rename 缺位、shares 键生命周期含敏感件警示)
+- dev 升 0.16.0(双 manifest加市场清单三处同步);门禁全绿(pytest 34 passed、check 12 PASS 0 FAIL、scan 0 发现、断链 0 十四面);总台当日裁过闸放行提交发布;pi-rs 票待收,S018/S019 增量定稿
+
 ### 变更 2026-10-17 第一百七十批续:Rune 官方书通道入 research
 
 - **语言面参考通道**(REQ-059 续):browse-rn.md 增语言面参考节,`browse fetch https://rune-rs.github.io/book/print.html --markdown` 直读 Rune 官方书(mdbook,`print.html` 全书单页实测 185KB 一次拿全);意图路由 rn 行目标面补「Rune 语法疑问」;语言面以书为准、browse 封装面以 `browse --llms` 为准

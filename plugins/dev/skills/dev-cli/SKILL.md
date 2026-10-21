@@ -3,11 +3,12 @@ name: dev-cli
 description: >-
   Agent 原生友好开发指导:把 agent 当第一用户设计 CLI 与工具面。--llms 紧凑手册面(至多
   120 行)、旗标全家与类型化 CTA 输出协议、默认帮助面节序、活命令树三面同源自省(禁手
-  维护)、裸调用面(不弹交互 exit 恒 0)、发现通道选型与 token 经济学、双面可拷实现模板。
+  维护)、裸调用面(不弹交互 exit 恒 0)、Rust CLI 舰队公约分级、发现通道选型与 token 经济学、
+  双面可拷实现模板。
   Use when: design agent-friendly CLI, llms manual, 造或改 agent 友好 CLI、配 --llms 手册、
-  定输出协议与帮助面、做命令自省与漂移守卫、定裸调用面或发现通道时;触发词 dev-cli、原生、
-  agent 友好、llms、手册面、CTA、信封、帮助面、自省、裸调用、发现通道、token 经济学、
-  workspace。
+  定输出协议与帮助面、做命令自省与漂移守卫、定裸调用面或发现通道或舰队公约时;触发词
+  dev-cli、原生、agent 友好、llms、手册面、CTA、信封、帮助面、自省、裸调用、公约、
+  发现通道、token 经济学、workspace。
   不要用于图形界面或非 CLI 产品的交互设计。
 ---
 
@@ -28,6 +29,7 @@ description: >-
 | 定默认帮助面节序 | `references/agent-face.md` 第三节加 `references/templates.md` 第四节 |
 | 做命令自省与漂移守卫 | `references/agent-face.md` 第四节加 `references/templates.md` 第五节 |
 | 定裸调用面(不弹交互,exit 恒 0) | `references/agent-face.md` 第五节加 `references/templates.md` 第三节 |
+| 定 Rust CLI 舰队公约分级(必须与应该) | `references/agent-face.md` 第六节 |
 | agent CLI 发现通道选型与 token 经济学 / 任务脚本 workspace | `references/tool-cli-agents.md` |
 
 ## 二、五件速览
@@ -37,3 +39,4 @@ description: >-
 - **默认帮助面**:节序固定,人读面与 --llms 面同源不双维护
 - **活命令树自省**:帮助、手册、自省三面同一来源生成,漂移守卫进门禁
 - **裸调用面**:无参调用不弹交互、exit 恒 0,输出给 agent 的下一步提示
+- **舰队公约**:Rust CLI 六仓实践聚合分级(必须 10 条、应该 3 条),各条映射五件锚点,见 agent-face.md 第六节

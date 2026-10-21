@@ -44,14 +44,15 @@
 ```json
 { "ok": true, "data": {},
   "meta": { "command": "<命令>", "duration_ms": 0,
-    "cta": { "description": "Suggested commands:", "commands": [ { "command": "<cli> get 1", "description": "<说明>" } ] } } }
+    "next_step": { "description": "Suggested commands:",
+      "commands": [ { "command": "<cli> get 1", "description": "<说明>" } ] } } }
 ```
 
 - `ok` 布尔恒有;成功载 `data`,失败载 `error`(字符串,人读信息;错误码走 stderr 分道,见下);`meta` 放命令、计时与 CTA 块
 - **类型化 CTA**(ok 与 error 回执皆可带,agent 链式免猜免问):
-  - 载体形:`commands` 数组每项为字符串或 `{command, args?, options?, description?}`;description 缺省单数 `Suggested command:` 复数 `Suggested commands:`
+  - 载体形:进信封 `meta.next_step`(字段名舰队统一,`cta` 为兼容别名,新件统一 `next_step`);`commands` 数组每项为字符串或 `{command, args?, options?, description?}`;description 缺省单数 `Suggested command:` 复数 `Suggested commands:`
   - 折算:CLI 名自动前缀;args 值为 true 折 `<键>` 占位、否则字面;options 值为 true 折 `--键 <键>`、否则 `--键 值`
-  - 渲染(人机同源):描述行加两空格缩进条目 `<折算后命令> - <描述>`;折算后形进信封 meta.cta,人读形由同一块渲染
+  - 渲染(人机同源):描述行加两空格缩进条目 `<折算后命令> - <描述>`;折算后形进信封 meta.next_step,人读形由同一块渲染
 - **jsonl**:列表型数据逐行对象,无信封(数据即数据)
 - **错误分道**:结构化模式下错误走 **stderr 单行 JSON** `{"code":"<错误码>","message":"<人读信息>"}`(可携 cta),stdout 保纯数据;人读模式错误 `<工具名>: <信息>` 前缀 stderr;错误对象可选携 `retryable` 布尔(机器可判可否重试)
 - **退出码约定**:0 成功;1 业务未命中(搜索无结果类);2 用法错误与系统错误(grep 语义族)
@@ -59,7 +60,7 @@
 - **字段序稳定**:JSON 字段序与人读行序一致(序列化保插入序,禁默认字母序重排)
 - **对外契约即接口**:旗标与缺省、信封与错误码、退出码、非 TTY 行为皆属对外接口,变更视作接口变更(弃用走 `[deprecated]` 前缀过渡,禁静默改语义)
 
-## 三、默认帮助面(--help)
+## 三、默认帮助面（--help）
 
 **节序**(根与组形):头行、Usage、Commands;叶形:头行、Usage、Arguments、Options、Examples、Global Options、Environment Variables。
 
@@ -80,7 +81,7 @@
 - **漂移守卫**(集成测试):遍历命令树,断言每个子命令与长旗标出现在 `--llms` 输出中(防新增参数漏登记);curated 实现形下此守卫必配
 - **版本单源**:帮助头行与手册的版本号从载体 manifest 注入(Cargo.toml、package.json 等),与版本一致性闸同口径
 
-## 五、裸调用面(无参进入)
+## 五、裸调用面（无参进入）
 
 无参运行是 agent 的第一探针,标准四条:
 
@@ -93,6 +94,27 @@
 4. **管道特例**:有管道模式或代码模式的仓,非 TTY 面显式分离归代码面,不算违规
 
 实测参照:全貌形与紧凑形各有正例,弹交互与纯报错各为反例;上游产品形与旧俗形(usage 长文)属豁免参照,不改上游。示例见 templates.md 第三节末。
+
+## 六、舰队公约（Rust CLI 分级）
+
+> 六仓实践聚合定稿:必须 10 条、应该 3 条;分级判据,必须 = 破坏互操作或埋坑,应该 = 收益明确但仓可裁。聚合档案与票源在治理仓 docs/research/S019 与 docs/sources/external 留底件(治理仓内档,消费者只读本节即可执行,不依赖仓外信源)。
+
+| 号 | 公约(必须级) | 落点 |
+| --- | --- | --- |
+| C1 | 三面同源派生:命令树唯一真源,curated 段配穷尽对锁漂移守卫(精确等值断言、锁输出形态不锁旗标),守卫进 CI 发布链;手写第二份清单 lint 红 | 第四节 |
+| C2 | 机器形统一信封:--llms --json 机器形;信封 ok、data 或 error、meta;next-step 载体类型化进 meta 且字段名舰队统一;字段序稳定禁字母序重排 | 第二节 |
+| C3 | 错误机器化:非 0 必有结构化 stderr 单行 JSON(code 加 message);code 稳定枚举;解析级错误同走机器形(灭双解析);stdout 数据 stderr 诊断恒分道;裁 2 须记录 | 第二节 |
+| C4 | 退出码契约三态文档化:0 成功、1 业务未命中、2 用法与系统错误;信号码直通记档;契约写进 --llms 表;裸调用恒 0 | 第二节、第五节 |
+| C5 | 写级动词预览缺省:写级操作预览缺省,确认旗标才执行,非交互路径不弹询问 | 第二节 |
+| C6 | 版本单源注入:版本号从载体 manifest 编译期注入,手写版本号即第二真相 | 第三节、第四节 |
+| C7 | 生成物进仓与投影守卫:生成物进仓 clone 即得;凡投影必带 --check 严格门禁进 CI 发布链 | 第一节 |
+| C8 | 安全面:凭据零参数(守卫断言)、回显掩码、密档 0600、外插子进程文本不裸进机器面 | 第二节 |
+| C9 | 快照守卫标配:人机可读面(help、llms、信封、文案)insta 或等价快照锁;路径时间戳 redact;CI 防静默改金 | 第一节 |
+| C10 | 多端味实机冒烟:每平台味产物三面(help、version、llms)实机冒烟 | 第四节 |
+
+应该级 3 条:agent 检测机器形默认(is-ai-agent 检测自动切 JSON,管道与人读兜底);成功面 next-step 结构化(成功回执可带指引,承第二节折算律);类型化 CTA 分级(类型化 code 必须;CTA 独立字段应该,错误面已有 hint 类字段覆盖时可不重复)。
+
+next-step 载体定名:字段名统一 `next_step`,承第二节折算律(commands 数组形);既有 `cta` 字段名为兼容别名。
 
 ## 附录:可选件 mcp、http api 与 skill 分发
 

@@ -2,7 +2,7 @@
 
 > 占位符一律尖括号形,零私有名;拷进目标仓按栈替换。
 
-## 一、README 骨架(四节加可选尾节)
+## 一、README 骨架（四节加可选尾节）
 
 ```markdown
 # <tool>
@@ -59,12 +59,12 @@
 
 完整选项:`<tool> --help`;agent 手册:`<tool> --llms`
 
-## 排障(可选)
+## 排障（可选）
 
 | 问题 | 对策 |
 | --- | --- |
 
-## 开发与贡献(可选)
+## 开发与贡献（可选）
 
 <构建、测试、贡献指引>
 
@@ -73,7 +73,7 @@
 <许可>
 ```
 
-## 二、--llms 手册骨架(至多 120 行)
+## 二、--llms 手册骨架（至多 120 行）
 
 ```markdown
 # <tool>
@@ -116,14 +116,14 @@
 // 成功:<tool> --json
 { "ok": true, "data": <载荷>,
   "meta": { "command": "<命令>", "duration_ms": 0,
-    "cta": { "description": "Suggested commands:",
+    "next_step": { "description": "Suggested commands:",
              "commands": [ { "command": "<cli> get 1", "description": "<说明>" } ] } } }
-// 失败:stdout 无输出,stderr 单行(可携 cta 同形)
+// 失败:stdout 无输出,stderr 单行(可携 next_step 同形)
 { "code": "<错误码>", "message": "<人读信息>" }
 ```
 
 - 信封 `error` 字段定形:字符串(人读信息);错误码与结构化细节走 stderr 单行形,不混载
-- 人读 CTA(与 meta.cta 同源渲染,正文后):
+- 人读 CTA(与 meta.next_step 同源渲染,正文后):
 
 ```text
 Suggested commands:
@@ -153,7 +153,7 @@ Global Options:
   --help    人读帮助
 ```
 
-## 四、双语言实现模板(TS 加 Rust)
+## 四、双语言实现模板（TS 加 Rust）
 
 TypeScript(信封、类型化 CTA 与帮助渲染):
 
@@ -175,7 +175,7 @@ function renderCta(block: { description: string; commands: FormattedCta[] }): st
 }
 function stderrError(code: string, message: string, cta?: CtaBlock, name = "<cli>") { // stderr 单行
   const b = cta && cta.commands.length ? { description: cta.description ?? "Suggested commands:", commands: cta.commands.map(c => formatCta(name, c)) } : undefined;
-  process.stderr.write(JSON.stringify({ code, message, ...(b ? { cta: b } : {}) }) + "\n");
+  process.stderr.write(JSON.stringify({ code, message, ...(b ? { next_step: b } : {}) }) + "\n");
 }
 ```
 
@@ -229,7 +229,7 @@ struct Envelope {
 struct Meta {
     command: String,
     duration_ms: u64,
-    #[serde(skip_serializing_if = "Option::is_none")] cta: Option<CtaMeta>,
+    #[serde(skip_serializing_if = "Option::is_none")] next_step: Option<CtaMeta>,
 }
 
 fn format_cta(name: &str, cta: &str) -> FormattedCta { // 字符串形;结构形同 TS 折算规则

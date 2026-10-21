@@ -23,6 +23,10 @@
 | `research/S014-wikiskill对照.md` | wikiskill 对照,三层聚合成技能自进化(吸收进 distil;档案) | 复核 distil 三层口径时 |
 | `research/S015-四仓三层聚合标准合流.md` | 四仓三层聚合标准合流:实践判例与业界对照(档案) | 复核三层聚合与 distil 终态口径时 |
 | `research/S016-skill双规范业界先例对照.md` | SKILL 双规范业界先例对照(grok 研究轮,计数勘误;吸收进 skill-spec 规范 A/B) | 对表 skill 双规范口径与业界先例时 |
+| `research/S017-rust交流波业界先例对照.md` | rust 交流波业界先例对照(grok 研究轮;最小公约数五条与按仓建议分流) | 复核交流波工具链判读口径时 |
+| `research/S018-rust交流波跨仓互鉴.md` | rust 交流波跨仓互鉴:谁偷谁什么表(七仓晒单档案) | 复核互鉴判定与采纳去向时 |
+| `research/S019-agent原生CLI标准聚合.md` | agent 原生 CLI 标准聚合(六仓票去重定稿;吸收进 dev-cli 公约面) | 对表 CLI 公约口径与票源时 |
+| `sources/README.md` | sources 唯一出处层索引(diary 与 external 两根,ADR-0021) | 查出处件留底与 trace 引文时 |
 | `diary/2026-09-08-bh与reader使用过程.md` | 轨迹样例(写法权威在 distil 轨迹篇) | 写轨迹前对照格式时 |
 | `../plugins/dev/skills/doc-gov/SKILL.md` | 文档框架治理知识本体(意图路由与形态速览) | 使用/修改 skill 前 |
 | `../plugins/dev/skills/doc-gov/references/README.md` | 参考索引(5 篇全量与快速路由) | 找治理参考时先看 |
@@ -31,7 +35,7 @@
 | `../plugins/dev/skills/doc-gov/references/base-code-doc.md` | 代码 doc 注释契约与文档即代码(单一权威源、投影再生成) | 立代码契约注释或投影守卫时 |
 | `../plugins/dev/skills/doc-gov/references/base-research.md` | 研究档案形态(S 编号一题一篇、六态结论、对照分流) | 立研究档案时 |
 | `../plugins/dev/skills/doc-gov/references/tool-project-kit.md` | 项目工具链范式(工具归档、PEP 723 零依赖 uv 直跑、门禁与发布) | 建项目工具骨架时 |
-| `../plugins/dev/skills/dev-cli/SKILL.md` | Agent 原生友好开发指导(原 doc-cli)(五件速览与意图路由) | 造或改 agent 友好 CLI 时 |
+| `../plugins/dev/skills/dev-cli/SKILL.md` | Agent 原生友好开发指导(原 doc-cli)(五件与舰队公约速览、意图路由) | 造或改 agent 友好 CLI 时 |
 | `../plugins/dev/skills/dev-cli/references/agent-face.md` | Agent 友好 CLI 五件(手册面、CTA 协议、帮助面、自省、裸调用) | 配 CLI agent 面时 |
 | `../plugins/dev/skills/dev-cli/references/tool-cli-agents.md` | agent-native CLI 设计(发现通道、token 经济学、脚本 workspace) | 定发现通道与 token 面时 |
 | `../.tools/README.md` | 本仓自用脚本工具登记(md-ref-scan、init、check、scan) | 跑仓门禁或维护骨架模板时 |

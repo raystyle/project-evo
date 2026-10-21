@@ -12,7 +12,7 @@
       "name": "dev",
       "source": "./plugins/dev",
       "description": "开发治理面插件,三 skill:doc-gov(ADR 与 REQ 需求决策、文档即代码)、dev-cli(Agent 原生友好开发)、dev-lint(静态检查:md 五面、语言三面、结构面与门禁接线);含写后静检 hook 与提交挡板脚本",
-      "version": "0.15.0",
+      "version": "0.16.0",
       "category": "productivity"
     },
     {
