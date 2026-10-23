@@ -12,7 +12,9 @@ description: >-
 | --- | --- | --- |
 | view | `view [机]`(族:`machines` 机表、`list [机]` 机读形) | 要全局格表与机册 |
 | read | `read <id> [--lines N] [--timeout S]` | 要读某格屏幕或等队友回话(忙则内候) |
-| to | `to <id> <文本> [--force]`(prompt 为别名) | 要给某格发一句话指令 |
+| to | `to <id> <文本> [--force]`(prompt 为别名) | 要给某格发一句话指令;投递即镜像 dm 流(回信事件道) |
+| wait | `wait [--from <id>] [--timeout S]` | 要事件驱动等回信:阻塞到新入站即返全文,不再 sleep 盲等(prim 3.9) |
+| inbox | `inbox [--from <id>]` | 非阻塞收件单:dm 流入站消息清单 |
 | keys | `keys <id> <键>` | 要给某格按键(仅本机与 local: 目标) |
 | start | `start <名> --kind <类> [--pane 格] [--cwd DIR] [--machine 机]` | 要起一个带名新格(非标形拒 rc=2;起名全局扫,撞名拒 rc=2) |
 | close | `close <id>` | 要关格(优雅退后 shell exit,零击杀) |
@@ -34,6 +36,8 @@ description: >-
 agents view
 agents read evo-claude --lines 40 --timeout 30
 agents to evo-claude "评审请求已递" --json
+agents wait --from evo-claude --timeout 300
+agents inbox --from evo-claude
 agents keys local:w13:p1 Enter
 agents start hst-kimi-2 --kind kimi --cwd ~/repos/hst_rs
 agents close local:w13:p1
