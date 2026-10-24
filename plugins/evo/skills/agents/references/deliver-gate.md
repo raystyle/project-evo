@@ -19,11 +19,11 @@
 | `delivered` | 投出且 15s 内目标转 working | 目标已开始处理才算送达 |
 | `deferred` | 门控拒投,已代记 | 退出码仍 1;stdout 仍出 `"ok":true` 信封,判定看退出码与 status,勿单信 ok |
 | `stalled` | 写入但 15s 未转 working | 收编 herdr agent_prompt_stalled/timeout |
-| `engine_fail` | 引擎写败 | data 带 `engine_error`(引擎 stderr 摘要,原文不吞不裁透传) |
+| `engine_fail` | 引擎写败 | data 带 `engine_error`(引擎 stderr 摘要,原文不吞不裁透传);机在册名错时 stderr 定向清单直出该机在册命名格(3.9.1),照单改投 |
 
 - 退出码不变(0/1/2);状态分型走 data.status,不新码
 - 实现形:`herdr agent prompt <格> <文本> --wait --until working --timeout 15000`,返回码与 stderr 关键词归四态
-- 收件面(read)另出目标态信封:idle/done 即得即回,忙候超时出 `timeout-working`(内容仍全量附上,exit 0);read 是收件反射,与 DELIVER 四态分立
+- 收件面(read)另出目标态信封:idle/done 即得即回,忙候超时出 `timeout-working`(内容仍全量附上,exit 0);read 是收件反射,与 DELIVER 四态分立;事件道收件 = `wait`(阻塞到件,rc=0 返全文)/`inbox`(非阻塞单),键 = 本格 canonical dm 流,read 仍是看屏面
 
 ## --force 审计（契约面）
 

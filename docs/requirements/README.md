@@ -64,3 +64,4 @@
 | REQ-058 | implemented | must | mcps/nodes skill 入真源与 dev description 收口(批169) | tests/test_project_evo.py |
 | REQ-059 | implemented | must | research 检索 skill 入真源(多通道路由,批170) | tests/test_project_evo.py |
 | REQ-060 | implemented | must | agent 原生 CLI 舰队公约入 dev-cli(交流波聚合,批171) | tests/test_project_evo.py |
+| REQ-061 | implemented | must | agents 与 streams skill 3.9.1 判例蒸馏(wait 事件道与 canonical 寻址,批172) | tests/test_project_evo.py |

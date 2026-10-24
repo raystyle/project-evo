@@ -13,8 +13,8 @@ description: >-
 | view | `view [机]`(族:`machines` 机表、`list [机]` 机读形) | 要全局格表与机册 |
 | read | `read <id> [--lines N] [--timeout S]` | 要读某格屏幕或等队友回话(忙则内候) |
 | to | `to <id> <文本> [--force]`(prompt 为别名) | 要给某格发一句话指令;投递即镜像 dm 流(回信事件道) |
-| wait | `wait [--from <id>] [--timeout S]` | 要事件驱动等回信:阻塞到新入站即返全文,不再 sleep 盲等(prim 3.9) |
-| inbox | `inbox [--from <id>]` | 非阻塞收件单:dm 流入站消息清单 |
+| wait | `wait [--from <id>] [--timeout S]` | 要事件驱动等回信:阻塞到本格 dm 流新入站即返全文,不再 sleep 盲等;到件 rc=0,超时 rc=1 非 failure(`--json` status=timeout 带监视流键) |
+| inbox | `inbox [--from <id>]` | 非阻塞收件单:dm 流入站消息清单(幂等,读不消费) |
 | keys | `keys <id> <键>` | 要给某格按键(仅本机与 local: 目标) |
 | start | `start <名> --kind <类> [--pane 格] [--cwd DIR] [--machine 机]` | 要起一个带名新格(非标形拒 rc=2;起名全局扫,撞名拒 rc=2) |
 | close | `close <id>` | 要关格(优雅退后 shell exit,零击杀) |
@@ -25,7 +25,8 @@ description: >-
 - 投递动词统一 `to`;`--force` 任意参数位,跳门控强投
 - id 三产生式:`<名>`(全局寻址,本机先) / `<机>:<名或格>` / `local:<格>`;裸 pane id 非法;投递与回信用裸别名,格 id 只用于窗格操作
 - 命名标准:`<台名>-<类型>-<编号>`,字母开头禁下划线;编号 = 出生序号,该台该类型不复用(田字只约束创建顺序,非格位)
-- 投递判成败:先退出码(0/1/2),再看 `--json` 的 `data.status`(delivered/engine_fail/deferred/stalled)与 CTA;拒投时信封仍 ok:true
+- 投递判成败:先退出码(0/1/2),再看 `--json` 的 `data.status`(delivered/engine_fail/deferred/stalled)与 CTA;engine_fail 时 stderr 定向清单直出该机在册命名格,照单改投;拒投时信封仍 ok:true
+- 事件道:`to` 投递即镜像 dm 流(流名双端 canonical `机:别名` 段),等回信用 `wait` 阻塞或 `inbox` 非阻塞查;看屏才 `read`
 - 门控只拒操作对话框(信任屏/权限屏/模式选择)
 - 工位与在场族动词(ws、shell、dev、split、tab、zoom、wt、trust、sync、reload、mode)见 `references/workspace.md`
 - 文件走 shares,流走 streams,持久任务走 tasks,实时字节走 pipes,端口映射走 ports,历史对话走 ctxs;共享细语义见本 skill references
@@ -36,7 +37,7 @@ description: >-
 agents view
 agents read evo-claude --lines 40 --timeout 30
 agents to evo-claude "评审请求已递" --json
-agents wait --from evo-claude --timeout 300
+agents wait --from lan-win:lan-win-claude-1 --timeout 300
 agents inbox --from evo-claude
 agents keys local:w13:p1 Enter
 agents start hst-kimi-2 --kind kimi --cwd ~/repos/hst_rs
@@ -50,8 +51,12 @@ agents tab list
 | 错 | 对 |
 | --- | --- |
 | 裸格直写格 id(如 `to w8:p1`) | 无名格用 `local:<格>` 或 `<机>:<格>` |
-| 目标 working 就不敢投 | busy 排队不拦,照投;等回话用 `read` 忙候 |
+| 目标 working 就不敢投 | busy 排队不拦,照投;等回信用 `wait` 事件道,要看屏才 `read` |
 | 判成败单看信封 ok 字段 | 先看退出码,再看 `data.status` |
+| engine_fail 当笼统链路坏,翻 view 逐格找 | stderr 定向清单直出该机在册命名格,照单改用 `机:别名` 再投(错名实测:`lan-mac:lan-mac-claude-1` 即提示 `ray-claude-1`) |
+| dm 用 `local:别名` 与 `机:别名` 两写法各开一条流 | dm 流名 canonical 双端 `机:别名` 段,与写法无关(3.9.1 治);跨机一律 `机:别名` 显式 |
+| 无名格上 wait/inbox 等回信 | 事件道键退化 `机:格`,正名后旧键消息成孤儿;开机先正名,旧 dm 按 `streams view <旧键>` 显式读 |
+| `to` 后 sleep 盲等回信 | `wait --from <别名> --timeout S` 阻塞到件(rc=0 返全文;超时 rc=1、status=timeout,续等即可) |
 | 装更插件后不翻台 | `reload <id>` 翻台才生效(旧进程 = 旧技能);回滚裸形时上下文弃,信封 resume 字段披露 |
 | 同 cwd 多格投递按格猜发话方 | caller_addr 歧义不猜,退化机名加告警;按名寻址 |
 | grok 面信封见单行拍扁 | 收方 TUI 显示怪癖,定稿四行形不降协议(见 deliver-gate 信封节) |

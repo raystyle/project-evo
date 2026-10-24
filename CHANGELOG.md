@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-24 第一百七十二批:agents 与 streams 3.9.1 判例蒸馏（REQ-061）
+
+- **wait 事件道入档**(prim 3.9.0 f848d8c 动词行续,3.9.1 判例精化):wait/inbox 行实弹定形(到件 rc=0 返全文、超时 rc=1 非 failure、--json status=timeout 带监视流键;inbox 幂等读不消费);文法节事件道句(to 镜像 dm 流,等回信 wait、看屏才 read);坑表 sleep 盲等对 wait 行
+- **寻址 canonical 判例入档**:engine_fail 定向清单照单改投(实测 lan-mac:lan-mac-claude-1 stderr 直出 ray-claude-1);dm 流名 canonical 双端 机:别名 段与写法无关(3.9.1 治劈叉,存量旧形流不迁移按名显式读);无名格事件道键退化 机:格,正名致旧键消息孤儿(开机先正名判例);示例 wait 行改 canonical 形
+- **streams 面同步**:dm 行 canonical 流名形;流列表全量无截断(实测 73 条,10-21 优化单 A2 修实证)与 rooms 不崩(A1 修实证)入文法节
+- **references 三件同步**:addressing 解析算法第五条(机在册名错定向清单)加坑簿两行;collab 私信行 canonical 与「等回信」速判;deliver-gate engine_fail 行与收件面事件道句
+- **ctxs 窗口缺口上报**:正文窗宣称 180 天,实测 view 10000 行不出当日,10-21 至 10-23 判例不可达(本批真源改实弹探针,判例七发七中);随回执报 ctxs 域
+- evo 升 0.17.2;门禁全绿;蒸馏真源 = 本机实弹(prim v3.9.1)加总台侧判例对照,非单抄
+
 ### 变更 2026-10-21 第一百七十一批:rust 交流波蒸馏,dev-cli 舰队公约面（REQ-060）
 
 - **sources 层首建**(ADR-0021 external 根):docs/sources/external 两留底件(rust-exchange 裸流与 room 劈叉支流全文、研究件 verbatim diff 验证字节一致)加 sources 索引;同波对话劈两流与流列表截断入坑档(优化清单 B1 加 A2)

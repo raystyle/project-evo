@@ -9,7 +9,7 @@
 | 聊天室/房间 | 流名带 `room/` 前缀 | room/deferred(代记)、room/force-audit(审计)、room/pipe-live(跨机管道)、room/port-live(跨机端口映射,契约面) |
 | 全舰队大厅 | `fleet` 流 | 播报与回执主频道;`streams room fleet <消息>` 说房,`streams room fleet` 读房 |
 | @某人 | DELIVER | 门控加信封加提示词落格;比房间消息重,要人看见才用 |
-| 私信 | `dm/<a>/<b>` 流 | 双方名专线;`streams dm <对方别名>`,流名按双别名排序自动定,避免双开 |
+| 私信 | `dm/<机:别名>/<机:别名>` 流 | 双方 canonical 专线(双端各 `机:别名` 段,无名端退化 `机:格`);`streams dm <对方别名>` 或 `agents to` 自动镜像,流名与写法无关,避免双开劈叉 |
 | 在场状态 | `agents view` | presence 展示列;契约面另有声明键 share/presence(勿扰等,带 until) |
 | 离线消息 | room/deferred | 拒投代记,收方补收(落点两形见 deliver-gate.md) |
 
@@ -37,7 +37,7 @@
 ## 与邻面分工
 
 - 五域投递原语 skill = shares/streams/tasks/pipes/ports 各自持域面,ctxs 持历史检索面;本 skill(agents)持消息域与共享面(id、门控、信封、命名标准、差异表)
-- 易混场景速判(A 族):「谁在跑」= agents view(在场)或 tasks view(任务文本),房间流回放不算;「实时」= pipes(字节)或 streams `-f`(消息),别混;「知会」要人立刻看见 = agents to,留痕给人翻 = streams,要对方记住 = tasks to
+- 易混场景速判(A 族):「谁在跑」= agents view(在场)或 tasks view(任务文本),房间流回放不算;「实时」= pipes(字节)或 streams `-f`(消息),别混;「知会」要人立刻看见 = agents to,留痕给人翻 = streams,要对方记住 = tasks to;「等回信」= agents wait(事件道阻塞,rc=0 到件 rc=1 超时)或 inbox(非阻塞收件单),看屏才 read
 - s5 与 herdr 与 hst = 引擎(herdr 已退役出操作面);代理操作一律七原语,引擎裸面不再设 skill
 - skill 面禁用原始 s5 裸命令(s5 put/s5 cat 等):文件一律 shares、流一律 streams,宿主前缀与引擎细节不进示例
 - 取用行 = 回信命令:`agents to <裸别名> reply`(streams 域附 `(stream <流> attached)`)。取文件是 `shares get <键>`,键在字段行,不占 use 行;tasks 取用 = `tasks view`,pipes 取用 = `pipes send <addr>`,ports 取用 = `ports fwd <addr> <本地>:<远端口>`(数字 spec 全端口枚举)。收方照行执行即可

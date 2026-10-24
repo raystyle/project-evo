@@ -1,6 +1,6 @@
 {
   "name": "evo",
-  "version": "0.17.1",
+  "version": "0.17.2",
   "description": "agent 操作面插件,十一 skill:agents(消息域原语与七原语共享面:to 投递、id 三产生式、命名标准、门控 v2、信封 v2、status 四态)、shares(文件域)、streams(流域)、tasks(持久任务域)、pipes(实时字节域)、ports(端口映射域:tailcat serve,与 pipes 临时管道分野)、ctxs(对话历史域:ClickHouse gw_logs 全链检索)、mcps(MCP 目标域:出站通用 MCP 客户端,无门控)、nodes(节点与窗格域:herdr 机册、run/close/pane 直透、runtime 骑 ark)、research(检索域知识面:gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针)、distil(技能自进化三层聚合)",
   "author": {
     "name": "raystyle"

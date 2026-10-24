@@ -42,7 +42,7 @@
 | `../.tools/verification/command-test-cases.md` | check 的等价 PowerShell 用例集(参数化 ProjectRoot) | 验证骨架合规时 |
 | `../plugins/evo/skills/distil/SKILL.md` | 技能自进化:三层聚合(sources 唯一出处层、knowledge 带版本双链知识、operations 标准技能与 how-to 手册,git 边界三选一,归档统一字母表),四步环蒸馏提案与合取闸门 | 把项目经验沉淀成 skill、迭代标准技能集时 |
 | `../plugins/dev/skills/dev-lint/SKILL.md` | 静态检查:md 三面与 rs/py/ts 语言面、类型化结构与四类型模板,写后 hook | 配静态检查门禁、新仓脚手架时 |
-| `../plugins/evo/skills/agents/SKILL.md` | 消息域原语与七原语共享面枢纽:to 投递、id 三产生式、命名标准 工作台-类型-编号、门控 v2 尾窗、信封 v2、status 四态、read 收件、工位管理 | 告诉或委派某 agent、找格读屏等回话、开工作台调窗格布局、查在场时 |
+| `../plugins/evo/skills/agents/SKILL.md` | 消息域原语与七原语共享面枢纽:to 投递、wait 事件道、id 三产生式、命名标准 工作台-类型-编号、门控 v2 尾窗、信封 v2、status 四态、read 收件、工位管理 | 告诉或委派某 agent、找格读屏等回话、开工作台调窗格布局、查在场时 |
 | `../plugins/evo/skills/shares/SKILL.md` | 文件域原语:put/get/to,内容哈希键 | 把文件共享给指定 agent、交付产物、取回共享时 |
 | `../plugins/evo/skills/streams/SKILL.md` | 流域原语:append/view/to,流即房间,fleet 回执主频道 | 往流交回执或广播、私信、回放续读时 |
 | `../plugins/evo/skills/tasks/SKILL.md` | 持久任务域原语:set/to,事件入流,远机零 ssh | 设别的格的持久任务、跨机委派目标时 |
