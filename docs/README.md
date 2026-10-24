@@ -42,7 +42,7 @@
 | `../.tools/verification/command-test-cases.md` | check 的等价 PowerShell 用例集(参数化 ProjectRoot) | 验证骨架合规时 |
 | `../plugins/evo/skills/distil/SKILL.md` | 技能自进化:三层聚合(sources 唯一出处层、knowledge 带版本双链知识、operations 标准技能与 how-to 手册,git 边界三选一,归档统一字母表),四步环蒸馏提案与合取闸门 | 把项目经验沉淀成 skill、迭代标准技能集时 |
 | `../plugins/dev/skills/dev-lint/SKILL.md` | 静态检查:md 三面与 rs/py/ts 语言面、类型化结构与四类型模板,写后 hook | 配静态检查门禁、新仓脚手架时 |
-| `../plugins/evo/skills/agents/SKILL.md` | 消息域原语与七原语共享面枢纽:to 投递、wait 事件道、id 三产生式、命名标准 工作台-类型-编号、门控 v2 尾窗、信封 v2、status 四态、read 收件、工位管理 | 告诉或委派某 agent、找格读屏等回话、开工作台调窗格布局、查在场时 |
+| `../plugins/evo/skills/agents/SKILL.md` | 消息域原语与七原语共享面枢纽:to 投递、wait 事件道、id 三产生式、命名标准 工作台-类型-编号、门控 v2 尾窗、信封 v2、status 四态、read 收件、在场与翻台 | 告诉或委派某 agent、找格读屏等回话、查在场时 |
 | `../plugins/evo/skills/shares/SKILL.md` | 文件域原语:put/get/to,内容哈希键 | 把文件共享给指定 agent、交付产物、取回共享时 |
 | `../plugins/evo/skills/streams/SKILL.md` | 流域原语:append/view/to,流即房间,fleet 回执主频道 | 往流交回执或广播、私信、回放续读时 |
 | `../plugins/evo/skills/tasks/SKILL.md` | 持久任务域原语:set/to,事件入流,远机零 ssh | 设别的格的持久任务、跨机委派目标时 |
@@ -50,6 +50,7 @@
 | `../plugins/evo/skills/ports/SKILL.md` | 端口域原语:任意节点端口转发映射(view/open/close/to,引擎 tailcat serve) | 开端口转发、让对方接入端口服务时 |
 | `../plugins/evo/skills/ctxs/SKILL.md` | 对话历史域原语:agent 请求全链检索(view/show/search,head 365 天正文 180 天) | 查历史对话、回溯细节、跨请求搜词时 |
 | `../plugins/evo/skills/mcps/SKILL.md` | MCP 目标域原语(第八原语,出站):view/tools/call/add/remove,骑 mcp2cli,无门控 | 驱动任意 MCP server、注册跨机 MCP 目标时 |
-| `../plugins/evo/skills/nodes/SKILL.md` | 节点与窗格域原语(第九原语):herdr 机册、run/close/pane 直透、runtime 骑 ark | 注册管理舰队节点、指定窗格跑命令、对齐运行环境时 |
+| `../plugins/evo/skills/desk/SKILL.md` | 工位与窗格拓扑域原语:开台起格、分屏切tab、聚焦信任(prim 3.10 命名三分) | 开工作台、起格分屏、切 tab、聚焦格时 |
+| `../plugins/evo/skills/machines/SKILL.md` | 机册域原语(原 nodes):herdr 机册、run/close/pane 直透、runtime 骑 ark | 注册管理舰队节点、指定窗格跑命令、对齐运行环境时 |
 | `../plugins/evo/skills/research/SKILL.md` | 检索域知识面:按研究目标路由通道(gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针;产出交棒 doc-gov 研究档案) | 调研主题、找库选型、学术检索、跨源对照搜索时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |

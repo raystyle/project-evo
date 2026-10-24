@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-24 第一百七十三批:prim 3.10 命名三分同步,desk 析出与 machines 更名（REQ-062）
+
+- **desk skill 入真源**(evo 第十二 skill,工位与窗格拓扑域):动词表 12 行(start/close/split/tab/zoom/ws/shell/dev/wt/yolo/trust/view),alias 期与行话对齐(工位 = desk、格 = pane)入文法;workspace.md 自 agents references 迁入(mode/reload 行留 agents);ws list 旧形被当机标签真坑入表(3.10 实测)
+- **nodes 更名 machines**(git mv 保史):frontmatter 与触发词换新(nodes 留 deprecated 别名说明),维度分职工句改三分(machines 机册与直透、agents 消息、desk 拓扑)
+- **agents 瘦身**:动词表删 start/close 指向 desk,mode/reload 留域内联;description 收敛消息面(to/wait/inbox、在场翻台);示例去拓扑行
+- **计数与守卫全同步**:两插件十五 skill(dev 三加 evo 十二),SKILLS/SINGLE_FILE_SKILLS、githooks 断链段十五面、AGENTS 与根 README 与 docs 地图与 gates 计数、双 manifest 与市场清单四面描述同步
+- **顺手件**:ctxs --around 真聚焦根修实证收讫(命中 3 块加邻窗 27KB 非全量);prim 侧残留上报(machines llms 头仍印 nodes@v3 字样)
+- evo 升 0.18.0(新 skill 与更名,minor);门禁全绿
+
 ### 变更 2026-10-24 第一百七十二批续:--since 重挖认账修正,fleet 兜底判例入档
 
 - **认账修正**:ctxs 数据面无缺(head 27k 行全在),批 172 「判例不可达」为慢道万行翻页超时假象;prim 3.9.2 --since/--before 时间旗标实证秒圈 10-21 至 23

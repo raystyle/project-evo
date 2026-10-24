@@ -1,6 +1,6 @@
 # evo
 
-> project-evo 市场 agent 操作面插件:十一 skill(九原语加 research 与 distil)。客户端显示 `evo:<skill>`。
+> project-evo 市场 agent 操作面插件:十二 skill(九原语加 research 与 distil)。客户端显示 `evo:<skill>`。
 
 ## skill 清单
 
@@ -14,7 +14,8 @@
 | ports | 端口域原语:任意节点端口转发映射(view/open/close/to,引擎 tailcat serve;取用行 tailcat forward;与 pipes 临时管道分野) |
 | ctxs | 对话历史域原语:agent 请求全链检索(view/show/search,引擎 ClickHouse gw_logs;与 agents read 分工 = 实时屏对历史档案) |
 | mcps | MCP 目标域原语(第八原语,出站):view/tools/call/add/remove,骑 mcp2cli,无门控 |
-| nodes | 节点与窗格域原语(第九原语):herdr 机册、run/close/pane 直透、runtime 骑 ark |
+| desk | 工位与窗格拓扑域原语:开台起格、分屏切tab、聚焦信任(prim 3.10 命名三分) |
+| machines | 机册域原语(原 nodes,第九原语):herdr 机册、run/close/pane 直透、runtime 骑 ark |
 | research | 检索域知识面:按研究目标路由通道(gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针;产出交棒 doc-gov 研究档案) |
 | distil | 技能自进化:三层聚合(sources/knowledge/operations)、一案提案、合取闸门、双端分发 |
 
@@ -46,4 +47,4 @@ Kimi:无市场,拷 `plugins/evo/skills/*` 至 `~/.kimi/skills`
 - 全端序:每端 `/plugin marketplace update project-evo` 再到 卸旧插件(evo-doc、evo-herdr、evo-distil、evo-lint、evo-agent 五件)再到 装 dev 与 evo 再到 全格 `agents reload`
 - Kimi 端:清 `~/.kimi/skills` 旧目录后重拷,重启会话
 
-当前发布:0.17.3(独立 semver,dev 独立号)。
+当前发布:0.18.0(独立 semver,dev 独立号)。

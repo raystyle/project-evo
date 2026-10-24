@@ -3,7 +3,7 @@
 | 我要… | 看哪篇 |
 | --- | --- |
 | id 解析算法、命名标准细则、from 核验 | [addressing.md](addressing.md) |
-| 工位与在场族动词(ws、shell、dev、split、tab、zoom、wt、trust、sync、reload、mode) | [workspace.md](workspace.md) |
+| 工位与在场族动词(ws、shell、dev、split、tab、zoom、wt、trust、sync) | 已迁 desk skill(../../desk/references/workspace.md);mode 与 reload 留本域 |
 | 门控判据、status 四态、信封 v2、代记补收、幂等 id | [deliver-gate.md](deliver-gate.md) |
 | IM 映射、回执与 ack 惯例、回放与保留期、与邻面分工 | [collab.md](collab.md) |
 | 共享输出契约、错误码表、六域速查、本机实装差异表 | [commands.md](commands.md) |

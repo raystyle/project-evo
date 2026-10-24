@@ -1,9 +1,10 @@
 ---
 name: agents
 description: >-
-  给窗格发一次指令并等回话、读屏看谁在跑、按键与在场管理。
-  Use when: tell, ask, ping, reply, read the screen, wait for a reply, close pane, 等回话、读屏、按键、翻台、派单、关格、关闭窗格。
-  不要用于文件、房间留痕或跨回合任务。
+  给格发指令并事件等回信(to/wait/inbox)、读屏按键、在场与翻台管理。
+  Use when: tell, ask, ping, reply, read the screen, wait for a reply, 等回话、读屏、按键、
+  派单、私信回执、翻台、在场声明。
+  不要用于文件、房间留痕、跨回合任务或工位开格分屏(开格分屏走 desk)。
 ---
 
 # agents - evo 消息域原语与七原语共享面
@@ -16,8 +17,6 @@ description: >-
 | wait | `wait [--from <id>] [--timeout S]` | 要事件驱动等回信:阻塞到本格 dm 流新入站即返全文,不再 sleep 盲等;到件 rc=0,超时 rc=1 非 failure(`--json` status=timeout 带监视流键) |
 | inbox | `inbox [--from <id>]` | 非阻塞收件单:dm 流入站消息清单(幂等,读不消费) |
 | keys | `keys <id> <键>` | 要给某格按键(仅本机与 local: 目标) |
-| start | `start <名> --kind <类> [--pane 格] [--cwd DIR] [--machine 机]` | 要起一个带名新格(非标形拒 rc=2;起名全局扫,撞名拒 rc=2) |
-| close | `close <id>` | 要关格(优雅退后 shell exit,零击杀) |
 
 ## 文法
 
@@ -28,7 +27,7 @@ description: >-
 - 投递判成败:先退出码(0/1/2),再看 `--json` 的 `data.status`(delivered/engine_fail/deferred/stalled)与 CTA;engine_fail 时 stderr 定向清单直出该机在册命名格,照单改投;拒投时信封仍 ok:true
 - 事件道:`to` 投递即镜像 dm 流(流名双端 canonical `机:别名` 段),等回信用 `wait` 阻塞或 `inbox` 非阻塞查;看屏才 `read`
 - 门控只拒操作对话框(信任屏/权限屏/模式选择)
-- 工位与在场族动词(ws、shell、dev、split、tab、zoom、wt、trust、sync、reload、mode)见 `references/workspace.md`
+- 拓扑动词(start/close/split/tab/zoom/ws/shell/dev/wt/yolo/trust)走 `desk` skill(prim 3.10 命名三分,alias 期 agents 暂兼容,新写 desk);`mode <dnd|away|online> [until]`(在场声明,走 shares 键)与 `reload <id>`(翻台重载技能与插件,idle/done 皆可翻,working/blocked 拒 --force 过)仍本域
 - 文件走 shares,流走 streams,持久任务走 tasks,实时字节走 pipes,端口映射走 ports,历史对话走 ctxs;共享细语义见本 skill references
 
 ## 示例
@@ -40,10 +39,8 @@ agents to evo-claude "评审请求已递" --json
 agents wait --from lan-win:lan-win-claude-1 --timeout 300
 agents inbox --from evo-claude
 agents keys local:w13:p1 Enter
-agents start hst-kimi-2 --kind kimi --cwd ~/repos/hst_rs
-agents close local:w13:p1
-agents ws evo
-agents tab list
+agents mode dnd 2h
+agents reload evo-claude
 ```
 
 ## 坑
