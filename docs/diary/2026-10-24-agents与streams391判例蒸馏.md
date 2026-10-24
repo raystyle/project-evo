@@ -27,3 +27,7 @@
 - evo 插件 0.17.1 至 0.17.2(双 manifest加市场清单三处同步);批 172 提交推送(REQ-061 implemented)
 - 实弹判例七发七中(prim v3.9.1):错名定向清单、wait rc=1 加 status=timeout、inbox 两态、dm canonical 键、流列表 73 条无截断、rooms 净退、无名格退化
 - 上报件:ctxs 正文窗缺口加时间旗标缺(随批回执报 ctxs 域);prim 侧无待办(A1/A2 已修实证入档)
+
+## 修正（批后,新条目不回写上文）
+
+1. ctxs 缺口认账修正:总台复(prim 3.9.2)view/search 增 --since/--before,数据面无缺(head 27k 行全在);本台「不可达」实为慢道万行翻页超时假象,本篇坑 2 与坑 3 的定性以此为准修正,REQ-061 末项「窗口缺口上报」按已修结案。重挖实证:--since 秒圈 10-21 至 23;新判读一条入档(engine_fail 双败 fleet 兜底,坑表外 collab.md);另 --around 聚焦不生效(show 仍全量转储,80KB 级),随回执续报 ctxs 域。

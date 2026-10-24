@@ -22,3 +22,4 @@ trace: tests/test_project_evo.py
 - [x] 实证准入:全部新句本机实跑(prim v3.9.1:错名投递、wait 超时 rc=1 与 --json 形、inbox 两态、dm 流名清单、流列表 73 条、rooms 净退)
 - [x] 变更完整性:docs 地图 agents 行与 AGENTS 描述行补 wait 事件道、CHANGELOG 批 172、evo 升 0.17.2(双 manifest加市场清单三处同步)
 - [x] ctxs 窗口缺口上报:正文窗宣称 180 天,实测 view 10000 行不出当日,10-21 至 10-23 判例不可达,随回执报 ctxs 域
+- [x] 批 172 续(总台复后认账修正):ctxs 数据面无缺(head 27k 行全在),「不可达」为慢道翻页超时假象;prim 3.9.2 增 --since/--before 时间旗标,--since 重挖 10-21 至 23 秒圈;增量判例一条入档(engine_fail 双败 fleet 兜底回执,collab.md 回执节);--around 聚焦不生效(show 全量转储)续报 ctxs 域;evo 0.17.3

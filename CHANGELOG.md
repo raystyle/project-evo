@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-24 第一百七十二批续:--since 重挖认账修正,fleet 兜底判例入档
+
+- **认账修正**:ctxs 数据面无缺(head 27k 行全在),批 172 「判例不可达」为慢道万行翻页超时假象;prim 3.9.2 --since/--before 时间旗标实证秒圈 10-21 至 23
+- **增量判例一条**:投递双败兜底(直投 engine_fail 且改投仍败、机当窗不可达)走 fleet 流留痕回执加收方自取,入 collab.md 回执节(10-23 协调实战三连判例)
+- **续报 ctxs 域**:--around 聚焦不生效(show 仍全量转储 80KB 级),命中块定位靠 search snip 而非 show
+- evo 升 0.17.3;门禁全绿
+
 ### 变更 2026-10-24 第一百七十二批:agents 与 streams 3.9.1 判例蒸馏（REQ-061）
 
 - **wait 事件道入档**(prim 3.9.0 f848d8c 动词行续,3.9.1 判例精化):wait/inbox 行实弹定形(到件 rc=0 返全文、超时 rc=1 非 failure、--json status=timeout 带监视流键;inbox 幂等读不消费);文法节事件道句(to 镜像 dm 流,等回信 wait、看屏才 read);坑表 sleep 盲等对 wait 行
