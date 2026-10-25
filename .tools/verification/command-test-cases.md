@@ -1,6 +1,6 @@
 # project-evo 命令行为验证用例集（（1） 工具/命令行为评估）
 
-> 本仓(evo-doc 市场源仓)的骨架合规机检为 `.tools/check.py`（PEP 723 零依赖，`uv run .tools/check.py <项目>` 直跑，退出码 0/1/2），本文件是其等价 PowerShell 用例集，验证一个项目是否遵守 project-evo 骨架;骨架知识面在 evo-doc:doc-gov。
+> 本仓(project-evo 市场源仓)的骨架合规机检为 `.tools/check.py`（PEP 723 零依赖，`uv run .tools/check.py <项目>` 直跑，退出码 0/1/2），本文件是其等价 PowerShell 用例集，验证一个项目是否遵守 project-evo 骨架;骨架知识面在 dev:dev-doc。
 > 用例均参数化 `$ProjectRoot`（默认指向本仓库自身，也能指向任意目标项目复用）。
 > 每条可直接复制复验。
 
@@ -19,11 +19,11 @@ Set-Location $ProjectRoot
 Select-String -Path AGENTS.md -Pattern "^## Must$" -Quiet
 # 预期: True
 
-# [PE-02] ADR 目录与索引在位(纯 doc-gov 形,或三层聚合形仓根/docs 二选一层根)
+# [PE-02] ADR 目录与索引在位(纯文档治理形,或三层聚合形仓根/docs 二选一层根)
 ((Test-Path "docs\adr") -and (Test-Path "docs\adr\README.md")) -or (Test-Path "knowledge\adr") -or (Test-Path "docs\knowledge\adr")
 # 预期: True
 
-# [PE-03] REQ 目录与索引在位(纯 doc-gov 形,或三层聚合形仓根/docs 二选一层根)
+# [PE-03] REQ 目录与索引在位(纯文档治理形,或三层聚合形仓根/docs 二选一层根)
 ((Test-Path "docs\requirements") -and (Test-Path "docs\requirements\README.md")) -or (Test-Path "knowledge\req") -or (Test-Path "docs\knowledge\req")
 # 预期: True
 
@@ -81,7 +81,7 @@ $reqs | Where-Object { -not $reqIdx.Contains(((Select-String -Path $_.FullName -
 # [PE-09] 六态标记在研究文档中出现(有此类文档时)
 rg -l "\[实证:|\[推断:|\[经验:|\[假设:" docs\research
 # 预期: 非空(research 至少一篇带标记;目录空则跳过)
-# 注记: 中转态是否带验证路径、收尾是否处置悬空条目,属语义判断,机检不做,收尾手检(六态红线见 doc-gov 的 base-writing-standards)
+# 注记: 中转态是否带验证路径、收尾是否处置悬空条目,属语义判断,机检不做,收尾手检(六态红线见 dev-doc 的 base-research)
 
 # [PE-10] 标题禁括号(正文 markdown 标题行)
 rg -n "^#+ .*[()]" docs AGENTS.md README.md

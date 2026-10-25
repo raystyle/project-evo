@@ -2,7 +2,7 @@
 # requires-python = ">=3.12"
 # dependencies = []
 # ///
-"""check:文档即代码骨架合规检查(PE-01 至 PE-12)。
+"""check:文档即代码骨架合规检查(PE-01 至 PE-13)。
 
 用法: uv run check.py [目标项目] [--json]
 退出码: 0 全部通过(含 SKIP)/ 1 存在 FAIL / 2 出错;--json 不改退出码。检查只读,不改目标项目。
@@ -11,10 +11,11 @@
 violations 是该检查全部违规项(file:line 或路径串,不截断),note 是人读说明不供解析;
 出错(退出码 2)仍走 stderr 文本,不包 JSON。人读面违规清单同样全量,不再截前 5 或前 4 处。
 规则对象:AGENTS 五节合同、docs/adr 与 docs/requirements 的 ADR/REQ 状态机与索引一致、
-写作规范(六态/标题/禁字)与引用断链。
-白名单: 环境变量 PEVO_CHECK_ALLOW="正则;正则" 豁免历史档案存量禁字(匹配 docs/ 下
-相对路径:行,命中的报 SKIP 不 FAIL;根三件 AGENTS/README/CHANGELOG 是活跃面,永不受益,
-`.*` 类全域正则只能吞 docs/ 档案,吞不掉根三件;与 scan 的 PEVO_SCAN_ALLOW 同一惯例)。
+写作规范(六态/标题/禁字/约束术语)与引用断链。
+白名单: 环境变量 PEVO_CHECK_ALLOW="正则;正则" 豁免历史档案存量禁字,PEVO_TERM_ALLOW
+同式豁免 PE-13 术语存量(匹配 docs/ 下相对路径:行,命中的报 SKIP 不 FAIL;根三件
+AGENTS/README/CHANGELOG 是活跃面,永不受益,`.*` 类全域正则只能吞 docs/ 档案,
+吞不掉根三件;与 scan 的 PEVO_SCAN_ALLOW 同一惯例)。
 """
 
 from __future__ import annotations
@@ -26,8 +27,9 @@ import re
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "plugins" / "dev" / "scripts"))  # mdrules 唯一权威随插件 hook 走
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "plugins" / "dev" / "scripts"))  # mdrules 与 termrules 唯一权威随插件走
 from mdrules import file_violations  # noqa: E402
+from termrules import file_term_violations  # noqa: E402
 
 AGENT_SECTIONS = ["Commands", "Must", "Must not", "Read first"]
 DOC_DIRS = ["adr", "requirements", "guides", "diary", "research"]
@@ -89,14 +91,14 @@ def check(root: Path) -> tuple[list[tuple[str, str, str, list[str]]], bool]:
             f"缺节: {', '.join(miss)}" if miss else "四硬节齐备,缺可选环境节")
         r.append(("PE-01", "FAIL" if miss else "PASS", note, []))
 
-    # PE-02 ADR 目录与索引(纯 doc-gov 形 docs/adr,或三层聚合形 knowledge/adr;层根仓根或 docs/ 二选一)
+    # PE-02 ADR 目录与索引(纯文档治理形 docs/adr,或三层聚合形 knowledge/adr;层根仓根或 docs/ 二选一)
     ok2 = ((root / "docs" / "adr").is_dir() and (root / "docs" / "adr" / "README.md").is_file()) or \
         (root / "knowledge" / "adr").is_dir() or \
         (root / "docs" / "knowledge" / "adr").is_dir()
     r.append(("PE-02", "PASS" if ok2 else "FAIL",
               "ADR 目录与索引在位(docs/adr 或 knowledge/adr 形)" if ok2 else "缺 ADR 目录(docs/adr 或 knowledge/adr 形)", []))
 
-    # PE-03 REQ 目录与索引(纯 doc-gov 形 docs/requirements,或三层聚合形 knowledge/req;层根仓根或 docs/ 二选一)
+    # PE-03 REQ 目录与索引(纯文档治理形 docs/requirements,或三层聚合形 knowledge/req;层根仓根或 docs/ 二选一)
     ok3 = ((root / "docs" / "requirements").is_dir() and \
         (root / "docs" / "requirements" / "README.md").is_file()) or \
         (root / "knowledge" / "req").is_dir() or \
@@ -235,6 +237,26 @@ def check(root: Path) -> tuple[list[tuple[str, str, str, list[str]]], bool]:
                 dead.append(rel)
     r.append(("PE-12", "FAIL" if dead else "PASS",
               f"引用不存在: {', '.join(dead)}" if dead else "README 引用可达", dead))
+
+    # PE-13 约束术语(非标准中文与英文黑话;词表权威 termrules.py,存量词入 PENDING 层不强制)
+    em13: list[str] = []
+    exempt13 = 0
+    allow13 = [re.compile(p) for p in os.environ.get("PEVO_TERM_ALLOW", "").split(";") if p.strip()]
+    cands13 = [root / f for f in ("AGENTS.md", "README.md", "CHANGELOG.md")] + \
+        list((root / "docs").rglob("*.md"))
+    for p in [p for p in cands13 if p.exists()]:
+        v13 = file_term_violations(_read(p))
+        if not v13:
+            continue
+        rel13 = p.relative_to(root).as_posix()
+        live13 = {ln: hits for ln, hits in v13.items()
+                  if not (rel13.startswith("docs/") and any(a.search(f"{rel13}:{ln}") for a in allow13))}
+        exempt13 += len(v13) - len(live13)
+        for ln in sorted(live13):
+            em13.append(f"{rel13}:{ln}({'+'.join(cat for cat, _ in live13[ln])})")
+    r.append(("PE-13", "FAIL" if em13 else ("SKIP" if exempt13 else "PASS"),
+              f"含约束术语违规: {', '.join(em13)}" if em13 else
+              (f"术语存量豁免 {exempt13} 处(PEVO_TERM_ALLOW),活跃面无违规" if exempt13 else "无约束术语违规"), em13))
 
     ok = all(s != "FAIL" for _, s, _, _ in r)
     return r, ok

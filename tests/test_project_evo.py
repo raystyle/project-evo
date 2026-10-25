@@ -22,7 +22,7 @@ SCRIPTS = REPO / ".tools"
 GUARD = PLUGINS["dev"] / "scripts" / "md-guard.py"
 LINT_HOOK = PLUGINS["dev"] / "scripts" / "lint-hook.py"
 SKILLS = {
-    "dev": ["dev-cli", "dev-lint", "doc-gov"],
+    "dev": ["dev-cli", "dev-doc"],
     "evo": ["agents", "ctxs", "desks", "distil", "machines", "mcps", "pipes", "ports", "research", "shares", "streams", "tasks"],
 }
 SINGLE_FILE_SKILLS = {"shares", "streams", "tasks", "pipes", "ports", "ctxs", "mcps", "machines"}  # 原语域面单文件,共享面在 agents skill(ADR-0025;mcps 批 169、machines/desk 批 173 入列)
@@ -228,8 +228,8 @@ def test_check_json_clean_scaffold(tmp_path: Path):
     assert r.stdout.lstrip().startswith("{")
     data = json.loads(r.stdout)
     assert data["ok"] is True
-    assert data["counts"] == {"pass": 9, "fail": 0, "skip": 3}, "脚手架态 PE-06/07/09 SKIP"
-    assert [x["id"] for x in data["results"]] == [f"PE-{i:02d}" for i in range(1, 13)]
+    assert data["counts"] == {"pass": 10, "fail": 0, "skip": 3}, "脚手架态 PE-06/07/09 SKIP"
+    assert [x["id"] for x in data["results"]] == [f"PE-{i:02d}" for i in range(1, 14)]
     assert all(x["violations"] == [] for x in data["results"])
     assert all(set(x) == {"id", "status", "note", "violations"} for x in data["results"])
 
@@ -264,7 +264,69 @@ def test_check_json_skip_counts_via_allow(tmp_path: Path):
     assert data["counts"]["skip"] == 4, "脚手架 3 处 SKIP 加豁免 PE-11"
 
 
-def test_marketplace_catalog_consistency():
+def test_check_pe13_term_allowlist(tmp_path: Path):
+    """PE-13 术语面:违规 FAIL、PEVO_TERM_ALLOW 豁免 docs/ 报 SKIP、根三件永不受益。"""
+    init_mod.generate(tmp_path, "demo")
+    (tmp_path / "docs" / "diary" / "2026-01-01-旧档.md").write_text(
+        "# 旧档\n\n这方案是个抓手\n", encoding="utf-8")
+    r_bad = subprocess.run([sys.executable, str(SCRIPTS / "check.py"), str(tmp_path), "--json"],
+                           capture_output=True, text=True, encoding="utf-8")
+    assert r_bad.returncode == 1
+    data = json.loads(r_bad.stdout)
+    pe13 = next(x for x in data["results"] if x["id"] == "PE-13")
+    assert pe13["status"] == "FAIL" and any("抓手" in v for v in pe13["violations"])
+
+    r_ok = subprocess.run([sys.executable, str(SCRIPTS / "check.py"), str(tmp_path), "--json"],
+                          capture_output=True, text=True, encoding="utf-8",
+                          env={**os.environ, "PEVO_TERM_ALLOW": r"docs/diary/2026-01-01-旧档\.md:3"})
+    data = json.loads(r_ok.stdout)
+    assert data["ok"] is True, r_ok.stdout
+    pe13 = next(x for x in data["results"] if x["id"] == "PE-13")
+    assert pe13["status"] == "SKIP", "豁免命中报 SKIP 不 FAIL"
+
+    (tmp_path / "README.md").write_text("# demo\n\n这方案是个抓手\n", encoding="utf-8")
+    r_root = subprocess.run([sys.executable, str(SCRIPTS / "check.py"), str(tmp_path), "--json"],
+                            capture_output=True, text=True, encoding="utf-8",
+                            env={**os.environ, "PEVO_TERM_ALLOW": ".*"})
+    data = json.loads(r_root.stdout)
+    pe13 = next(x for x in data["results"] if x["id"] == "PE-13")
+    assert pe13["status"] == "FAIL", "根三件永不受益(与 PEVO_CHECK_ALLOW 同律)"
+
+
+def test_term_lint_exit_codes(tmp_path: Path):
+    """term-lint 三态退出码:0 净 / 1 违规 / 2 无参用法错。"""
+    term_lint = PLUGINS["dev"] / "scripts" / "term-lint.py"
+    clean = tmp_path / "clean.md"
+    clean.write_text("干净一行\n", encoding="utf-8")
+    dirty = tmp_path / "dirty.md"
+    dirty.write_text("这方案是个抓手\n", encoding="utf-8")
+    r0 = subprocess.run([sys.executable, str(term_lint), str(clean)],
+                        capture_output=True, text=True, encoding="utf-8")
+    assert r0.returncode == 0
+    r1 = subprocess.run([sys.executable, str(term_lint), str(dirty)],
+                        capture_output=True, text=True, encoding="utf-8")
+    assert r1.returncode == 1 and "抓手" in r1.stdout
+    r2 = subprocess.run([sys.executable, str(term_lint)],
+                        capture_output=True, text=True, encoding="utf-8")
+    assert r2.returncode == 2
+
+
+def test_termrules_table_sanity():
+    """词表健全:四层 ENFORCED 表非空、键不跨表重复、PENDING 与 ENFORCED 不相交、修法非空。"""
+    spec = importlib.util.spec_from_file_location(
+        "pevo_termrules", PLUGINS["dev"] / "scripts" / "termrules.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    enforced = [mod.ZH_BANNED, mod.ZH_CHOICE, mod.EN_JARGON, mod.TERM_VARIANTS]
+    assert mod.ZH_BANNED and mod.ZH_CHOICE and mod.EN_JARGON, "三层主表须非空"
+    assert isinstance(mod.PENDING, dict) and mod.PENDING, "PENDING 存量层须在位"
+    seen: set[str] = set()
+    for tbl in enforced:
+        for w, fix in tbl.items():
+            assert w and fix, f"条目须词与修法齐: {w!r}"
+            assert w not in seen, f"跨表重复词: {w}"
+            seen.add(w)
+    assert not seen & set(mod.PENDING), f"ENFORCED 与 PENDING 相交: {seen & set(mod.PENDING)}"
     """清单守卫:市场名 project-evo 收两插件、双清单一致、每插件双 manifest 与市场版本同步、
     两插件独立 semver(0.13 起可混装,批 142)、skill 分属正确与 hook 面在位(ADR-0025 市场重构,dev 与 evo)。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
@@ -311,7 +373,8 @@ def test_marketplace_catalog_consistency():
         assert (tools / s).is_file(), f"仓工具缺失: {s}"
     assert (tools / "templates").is_dir(), ".tools 缺骨架模板目录"
     plugin_scripts = PLUGINS["dev"] / "scripts"
-    for s in ("md-guard.py", "mdrules.py", "lint-hook.py"):
+    for s in ("md-guard.py", "mdrules.py", "lint-hook.py",
+              "termrules.py", "term-lint.py", "term-mine.py"):
         assert (plugin_scripts / s).is_file(), f"插件级脚本缺失: {s}"
 
 
@@ -463,6 +526,9 @@ def test_pre_commit_matches_current_skills():
     guard_ref = "plugins/dev/scripts/md-guard.py"
     assert guard_ref in text, f"pre-commit 须挂 {guard_ref}"
     assert (REPO / guard_ref).is_file(), f"pre-commit 挂的挡板不存在: {guard_ref}"
+    term_ref = "plugins/dev/scripts/term-lint.py"
+    assert term_ref in text, f"pre-commit 须挂 {term_ref}(批 175 术语挡板)"
+    assert (REPO / term_ref).is_file(), f"pre-commit 挂的术语挡板不存在: {term_ref}"
     targets = sorted(re.findall(r"md-ref-scan\.py (\S+)", text))
     expected = sorted(f"plugins/{p}/skills/{s}" for p, ss in SKILLS.items() for s in ss)
     assert targets == expected, f"断链段与 SKILLS 漂移:挡板 {targets} 对清单 {expected}"

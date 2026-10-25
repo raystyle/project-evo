@@ -67,3 +67,4 @@
 | REQ-061 | implemented | must | agents 与 streams skill 3.9.1 判例蒸馏(wait 事件道与 canonical 寻址,批172) | tests/test_project_evo.py |
 | REQ-062 | implemented | must | desk 析出与 nodes 更名 machines(prim 3.10 命名三分同步,批173) | tests/test_project_evo.py |
 | REQ-063 | implemented | must | desk 更名 desks 复数对齐与拓扑真视图入面(prim 3.11.0 同步,批174) | tests/test_project_evo.py |
+| REQ-064 | implemented | must | 约束术语表 lint 与 dev-doc 合一(term-lint 面 PE-13,批175) | tests/test_project_evo.py |

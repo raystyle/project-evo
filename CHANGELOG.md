@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-26 第一百七十五批:doc-gov 与 dev-lint 合一 dev-doc,约束术语表 lint 立 PE-13（ADR-0026,REQ-064）
+
+- **dev-doc 合一**(git mv 保史):router SKILL.md 80 行三句形(旧名 doc-gov、dev-lint 留触发词);references 10 篇(base/tool 五篇原样 + md-faces 吸收 hook 面手动道 + term-rules 新术语面 + ls 三篇);语言面裁撤(lang-checks 退 git 史,同 zh-lint 批 145 律);templates 四 toml 随迁;顺手修 base 篇 distil-skill 残留引用
+- **term-lint 立 PE-13**:termrules.py 词表唯一权威(ENFORCED 四表与 PENDING 两层,复用 mdrules 豁免机制)+ term-lint.py(三态退出码,--staged 挡板,--pending advisory)+ term-mine.py(gw_logs 挖词研究道,reader.env 主道加 ssh 备道,截头抽样限流三板,ORDER BY 爆内存判例入档);PEVO_TERM_ALLOW 豁免同 PEVO_CHECK_ALLOW 惯例;check.py PE-01 至 PE-13
+- **挖词实证**:gw_logs 13 天窗 5% 抽样 16.2 万块,种子词验活与高频黑话候选蒸馏分流入表,仓基线 45 项首跑全降 PENDING 收存量,S020 立档(方法、基线、复现命令)
+- **门禁接线**:pre-commit 加 term-lint --staged(禁字加术语加断链三板);测试守卫全同步(SKILLS dev 二、PE 计数 13、plugin 脚本清单六件、挡板断言)加新三测(PE-13 豁免镜像、term-lint 退出码、词表健全)与仓级 ENFORCED 零命中回归
+- **计数与守卫全同步**:两插件十四 skill(dev 二加 evo 十二)全活面(AGENTS、根 README、docs 地图、gates、dev 与 evo README、双 manifest、市场清单三处、.tools 面陈旧引用清零)
+- dev 升 0.17.0(skill 集变更,minor);evo 升 0.19.1(跨插件引用改,patch);门禁全绿
+
 ### 变更 2026-10-25 第一百七十四批:prim 3.11 复数对齐,desk 更名 desks 与拓扑真视图（REQ-063）
 
 - **desk 更名 desks**(git mv 保史,prim 3.11.0 主名 desks、desk 留旧名单字别名四端在役):frontmatter 与文内命令前缀全 desks 化,B3 复数律全量成立撤销 desk 单数豁免;references 两件同步

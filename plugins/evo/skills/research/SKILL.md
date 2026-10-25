@@ -6,14 +6,14 @@ description: >-
   Use when: 调研某主题、找库选型、学术检索、跨源对照搜索、GitHub 找仓找码找 issue、
   要引擎采集或写采集编排时;触发词 research、检索、调研、搜索、找库、选型、学术、
   scholar、文献、找仓。
-  不要用于检索结论的档案沉淀(走 dev:doc-gov 研究档案面)与 agent 消息操作(走 evo 原语域)。
+  不要用于检索结论的档案沉淀(走 dev:dev-doc 研究档案面)与 agent 消息操作(走 evo 原语域)。
 ---
 
 # research - evo 检索域知识面
 
 **渐进知识库型 skill**:本文件只做意图路由与通道速览;通道细节与判例在 `references/` 分类扁平目录,按「先路由、再读对应篇」渐进检索,不要求一次读完。
 
-核心思想:**研究目标定通道,通道按成本递增**:fetch 直抓、无头引擎方言、rn 编排与油猴探针,三级递进(零引擎、单页、多页重采集)。网页检索主通道只有 bing;google 主搜索面易被挑战,不在通道内(判例 `references/rulings.md`)。产出是对照后的信源清单;结论断言与立档案走 `dev:doc-gov` 研究档案面(S 编号、六态)。
+核心思想:**研究目标定通道,通道按成本递增**:fetch 直抓、无头引擎方言、rn 编排与油猴探针,三级递进(零引擎、单页、多页重采集)。网页检索主通道只有 bing;google 主搜索面易被挑战,不在通道内(判例 `references/rulings.md`)。产出是对照后的信源清单;结论断言与立档案走 `dev:dev-doc` 研究档案面(S 编号、六态)。
 
 ## 一、意图路由（按目标直达通道）
 
@@ -44,7 +44,7 @@ browse rune ~/.browse-rs/workspace/page-skills/google-search/mech.rn --vars 'q=r
 
 - 网页检索只用 bing,不设备胎;google 主搜索面 `/sorry` 挑战高发(实测 verdict=challenged),出现在结果里即弃走,不重试不硬闯
 - 旗标全集不进本 skill:gh 以 `gh search --help` 自省,browse 以 `browse --llms` 自省;与手册冲突时改本 skill 不改命令
-- 同一研究目标至少两源对照(如 gh 面 + bing 面),单源结论标注未对照;事实断言六态走 `dev:doc-gov`
+- 同一研究目标至少两源对照(如 gh 面 + bing 面),单源结论标注未对照;事实断言六态走 `dev:dev-doc`
 - 写进本 skill 与 references 的命令形当会真跑过再写(ADR-0010);`--vars` 含空格必须整体引号(裂参退出 2)
 - 引擎只在 fetch 塌(空正文/墙页)后起,缺省无头;探针只在结构高频漂移面装,稳定静态站用 `--js`
 - 退出码三态判定:0 成功 / 1 执行失败 / 2 用法错;fetch 回执看 `via` 字段区分 http 与引擎

@@ -25,7 +25,7 @@ docs/ 中心形(或仓根形,仓自选唯一):
 AGENTS.md(纪律句:单仓纪律形或 git 三选一)   .claude/skills/(加载视图,符号链接或投影加守卫)
 ```
 
-要点:字母表八元组定归层(distil-skill layers);git 边界三选一;防重提页空态也要立;既有 docs 全家桶仓走既有仓迁移形(映射注记、引用面清单、rg 旧名清零)。
+要点:字母表八元组定归层(distil layers);git 边界三选一;防重提页空态也要立;既有 docs 全家桶仓走既有仓迁移形(映射注记、引用面清单、rg 旧名清零)。
 
 ## 三、worker 服务仓
 
@@ -43,7 +43,7 @@ tests/  docs/(简面:adr 加 req 加 diary 即可,不必全三层)
 
 ```
 仓根: AGENTS.md CLAUDE.md README.md CHANGELOG.md pyproject.toml uv.lock
-src/<包名>/   tests/   .tools/(PEP 723 零依赖脚本,uv 直跑)   docs/(三层聚合或 doc-gov 面,按仓)
+src/<包名>/   tests/   .tools/(PEP 723 零依赖脚本,uv 直跑)   docs/(三层聚合或文档治理面,按仓)
 配置: pyproject 一件收 ruff(select 含 D 系加按仓 ignore)与 pytest;真源不手改生成面
 禁入源码树: __pycache__/ .venv/ dist/ *.egg-info/
 ```

@@ -1,7 +1,7 @@
 {
   "name": "dev",
-  "version": "0.16.1",
-  "description": "开发治理面插件,三 skill:doc-gov(ADR 与 REQ 需求决策、文档即代码)、dev-cli(Agent 原生友好开发)、dev-lint(静态检查:md 五面、语言三面、结构面与门禁接线);含提交挡板脚本(hook 已撤,静检走 dev-lint 手动道)",
+  "version": "0.17.0",
+  "description": "开发治理面插件,两 skill:dev-doc(ADR 与 REQ 需求决策、文档即代码、md 静检与约束术语表、结构面与门禁接线)、dev-cli(Agent 原生友好开发);含提交挡板脚本(md 禁字与术语表,hook 已撤,静检走 dev-doc 手动道)",
   "author": {
     "name": "raystyle"
   },
@@ -19,7 +19,7 @@
   "skills": "./skills/",
   "interface": {
     "displayName": "Dev",
-    "shortDescription": "开发治理面:文档决策、agent 友好 CLI、静态检查三合一。",
+    "shortDescription": "开发治理面:文档决策、agent 友好 CLI、md 静检与术语表。",
     "developerName": "raystyle",
     "category": "Productivity",
     "capabilities": [
@@ -27,8 +27,8 @@
       "Write"
     ],
     "defaultPrompt": [
-      "用 doc-gov 给这个项目立 ADR 与 REQ 体系。",
-      "用 dev-lint 给项目配静态检查门禁。"
+      "用 dev-doc 给这个项目立 ADR 与 REQ 体系。",
+      "用 dev-doc 的术语表 lint 扫描非标准中文与英文黑话并配文档门禁。"
     ]
   }
 }

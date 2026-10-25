@@ -23,7 +23,13 @@
 - **长度限制**:非桥接形上限缺省 50 行(同上下文成本纪律;仓可裁登记)
 - 检查形态:行数断言加桥接形态断言,退出码制
 
+## 静检脚本面（插件级,手动道）
+
+- `md-guard.py`:禁字挡板,--staged 形挂 pre-commit(PostToolUse live hook 批 105/174 两撤,只留提交挡板道);载荷宽容,异形放行
+- `lint-hook.py`:写后静检脚本面留档(hooks.json 已空,不再自动挂);md/py/rs/ts 后缀路由,行量上限环境变量 `DEV_LINT_{AGENTS,CLAUDE,SKILL}_MAX` 可调(缺省 AGENTS 200、CLAUDE 50、SKILL 500),退出码 2 回传
+- 约束术语面见 `term-rules.md`(term-lint 同挂 pre-commit --staged)
+
 ## 门禁接线（md 面）
 
-- pre-commit 挂禁字与断链(--staged 形,只查当批);结构合同与长度限制进门禁清单(AGENTS 或 README 固定成文)
+- pre-commit 挂禁字、术语与断链(--staged 形,只查当批);结构合同与长度限制进门禁清单(AGENTS 或 README 固定成文)
 - 豁免纪律:整文件或目录豁免须登记在册带因由;历史档案面(旧轨迹、verbatim 外档)按只增不改豁免,不追改
