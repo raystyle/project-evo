@@ -50,7 +50,7 @@
 | `../plugins/evo/skills/ports/SKILL.md` | 端口域原语:任意节点端口转发映射(view/open/close/to,引擎 tailcat serve) | 开端口转发、让对方接入端口服务时 |
 | `../plugins/evo/skills/ctxs/SKILL.md` | 对话历史域原语:agent 请求全链检索(view/show/search,head 365 天正文 180 天) | 查历史对话、回溯细节、跨请求搜词时 |
 | `../plugins/evo/skills/mcps/SKILL.md` | MCP 目标域原语(第八原语,出站):view/tools/call/add/remove,骑 mcp2cli,无门控 | 驱动任意 MCP server、注册跨机 MCP 目标时 |
-| `../plugins/evo/skills/desk/SKILL.md` | 工位与窗格拓扑域原语:开台起格、分屏切tab、聚焦信任(prim 3.10 命名三分) | 开工作台、起格分屏、切 tab、聚焦格时 |
+| `../plugins/evo/skills/desks/SKILL.md` | 工位与窗格拓扑域原语:开台起格、分屏切tab、聚焦信任、拓扑真视图(prim 3.11 复数对齐) | 开工作台、起格分屏、切 tab、聚焦格、看拓扑时 |
 | `../plugins/evo/skills/machines/SKILL.md` | 机册域原语(原 nodes):herdr 机册、run/close/pane 直透、runtime 骑 ark | 注册管理舰队节点、指定窗格跑命令、对齐运行环境时 |
 | `../plugins/evo/skills/research/SKILL.md` | 检索域知识面:按研究目标路由通道(gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针;产出交棒 doc-gov 研究档案) | 调研主题、找库选型、学术检索、跨源对照搜索时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |

@@ -4,6 +4,16 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-25 第一百七十四批:prim 3.11 复数对齐,desk 更名 desks 与拓扑真视图（REQ-063）
+
+- **desk 更名 desks**(git mv 保史,prim 3.11.0 主名 desks、desk 留旧名单字别名四端在役):frontmatter 与文内命令前缀全 desks 化,B3 复数律全量成立撤销 desk 单数豁免;references 两件同步
+- **desks view 拓扑真视图入面**:窗台 w -> tab -> 工位 pane 三层分组、▍ 焦点工位、活动列 = 终端标题、含非 agent 工位;与 agents view 消息面分职入动词行与坑表
+- **术语行入册**(用户定谳 2026-10-25):工位/窗格 = pane;工作台/窗台 = workspace(w 编号,一个终端窗);tab = 窗台内页
+- **命名契约与空间语义两节入 desks skill**(用户补令):四层命名律、pane id 尾缀字母无词义规则实态披露、方向寻址仅分裂时、布局查询实态限制;作原语缺陷审查最终版提案的 skill 侧输入
+- **顺手收口**:批 77a6599 遗留 dev codex manifest 0.16.0 漂移与市场条目同步至 0.16.1;三 hook 守卫用例翻空面守卫(hooks.json 清空后 KeyError 红灯修复,批 105 加批 174 双裁撤不回潮)
+- **计数与守卫全同步**:SKILLS 与正典集、githooks 断链段、AGENTS、根 README(九原语翻十原语)与 evo README、docs 地图、双 manifest(十一 skill 翻十二)与市场清单四面描述
+- evo 升 0.19.0(改名加新面,minor);门禁全绿
+
 ### 变更 2026-10-24 第一百七十三批:prim 3.10 命名三分同步,desk 析出与 machines 更名（REQ-062）
 
 - **desk skill 入真源**(evo 第十二 skill,工位与窗格拓扑域):动词表 12 行(start/close/split/tab/zoom/ws/shell/dev/wt/yolo/trust/view),alias 期与行话对齐(工位 = desk、格 = pane)入文法;workspace.md 自 agents references 迁入(mode/reload 行留 agents);ws list 旧形被当机标签真坑入表(3.10 实测)

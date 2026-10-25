@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件十五 skill:`dev`(开发治理面:doc-gov、dev-cli(原 doc-cli)、dev-lint 静态检查)、`evo`(agent 操作面:agents、desk、shares、streams、tasks、pipes、ports、ctxs、mcps、machines 九原语 skill 加 research 检索域与 distil;九原语 = 舰队互操作代理操作唯一面,herdr 技能已淘汰)。客户端显示 `<插件>:<skill>`。
+> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件十五 skill:`dev`(开发治理面:doc-gov、dev-cli(原 doc-cli)、dev-lint 静态检查)、`evo`(agent 操作面:agents、desks、shares、streams、tasks、pipes、ports、ctxs、mcps、machines 十原语 skill 加 research 检索域与 distil;十原语 = 舰队互操作代理操作唯一面,herdr 技能已淘汰)。客户端显示 `<插件>:<skill>`。
 
 ## 安装
 
@@ -53,7 +53,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 | evo | `ports` | 端口域原语:任意节点端口转发映射(view/open/close/to,引擎 tailcat serve;spec = 端口表/定点映射/all/exit-node;取用行 tailcat forward) | 开端口转发、映射远端端口、让对方接入端口服务时 |
 | evo | `ctxs` | 对话历史域原语:agent 请求全链检索(ClickHouse gw_logs;view 头行、show 单请求、search 全文;head 365 天正文 180 天) | 查历史对话、回溯对话细节、跨请求搜关键词、看请求开销时 |
 | evo | `mcps` | MCP 目标域原语:出站通用 MCP 客户端(view 健康、tools 面、call 调用、注册表管理),无门控 | 驱动任意 MCP server、查工具面、跨机调用工具时 |
-| evo | `desk` | 工位与窗格拓扑域原语:开工作台、起停格、分屏切tab、聚焦、信任放行(prim 3.10 命名三分) | 开工作台、起格分屏、切 tab、聚焦格、放行信任屏时 |
+| evo | `desks` | 工位与窗格拓扑域原语:开工作台、起停格、分屏切tab、聚焦、信任放行、拓扑真视图(prim 3.11 复数对齐,原 desk 留单字别名) | 开工作台、起格分屏、切 tab、聚焦格、放行信任屏、看窗台工位分组拓扑时 |
 | evo | `machines` | 机册域原语(原 nodes):herdr 机册管理、原始窗格操作(run/close/pane 直透)、runtime 环境面(骑 ark) | 注册或管理舰队节点、在指定节点窗格跑命令、环境对齐时 |
 | evo | `research` | 检索域知识面:按研究目标路由通道(gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针) | 调研主题、找库选型、学术检索、跨源对照搜索时 |
 | evo | `distil` | 技能自进化(原 distil-skill):三层聚合、一案提案、合取闸门 | 把项目经验沉淀成 skill 时 |

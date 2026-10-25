@@ -4,7 +4,7 @@ description: >-
   给格发指令并事件等回信(to/wait/inbox)、读屏按键、在场与翻台管理。
   Use when: tell, ask, ping, reply, read the screen, wait for a reply, 等回话、读屏、按键、
   派单、私信回执、翻台、在场声明。
-  不要用于文件、房间留痕、跨回合任务或工位开格分屏(开格分屏走 desk)。
+  不要用于文件、房间留痕、跨回合任务或工位开格分屏(开格分屏走 desks)。
 ---
 
 # agents - evo 消息域原语与七原语共享面
@@ -27,7 +27,7 @@ description: >-
 - 投递判成败:先退出码(0/1/2),再看 `--json` 的 `data.status`(delivered/engine_fail/deferred/stalled)与 CTA;engine_fail 时 stderr 定向清单直出该机在册命名格,照单改投;拒投时信封仍 ok:true
 - 事件道:`to` 投递即镜像 dm 流(流名双端 canonical `机:别名` 段),等回信用 `wait` 阻塞或 `inbox` 非阻塞查;看屏才 `read`
 - 门控只拒操作对话框(信任屏/权限屏/模式选择)
-- 拓扑动词(start/close/split/tab/zoom/ws/shell/dev/wt/yolo/trust)走 `desk` skill(prim 3.10 命名三分,alias 期 agents 暂兼容,新写 desk);`mode <dnd|away|online> [until]`(在场声明,走 shares 键)与 `reload <id>`(翻台重载技能与插件,idle/done 皆可翻,working/blocked 拒 --force 过)仍本域
+- 拓扑动词(start/close/split/tab/zoom/ws/shell/dev/wt/yolo/trust)走 `desks` skill(prim 3.10 命名三分,3.11 复数对齐主名 desks;alias 期 agents 暂兼容,新写 desks);`mode <dnd|away|online> [until]`(在场声明,走 shares 键)与 `reload <id>`(翻台重载技能与插件,idle/done 皆可翻,working/blocked 拒 --force 过)仍本域
 - 文件走 shares,流走 streams,持久任务走 tasks,实时字节走 pipes,端口映射走 ports,历史对话走 ctxs;共享细语义见本 skill references
 
 ## 示例

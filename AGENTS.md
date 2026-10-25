@@ -1,7 +1,7 @@
 # ProjectEvo 开发协作规则
 
 > 唯一权威源。`CLAUDE.md` 仅一行 `@AGENTS.md` 桥接,不重复维护。
-> 定位:项目治理插件市场仓(两插件十五 skill 同属项目治理面,非业务工具面):dev(开发治理面:doc-gov 需求决策与代码契约注释与文档即代码、dev-cli Agent 原生友好开发、dev-lint 静态检查(md 五面与语言三面与结构面);插件级写后静检 hook 与 md 禁字挡板脚本随插件)、evo(agent 操作面十二 skill:agents 消息域原语与七原语共享面(to 投递、wait 事件道、id 三产生式、命名标准、门控 v2、信封 v2、status 四态)、desk 工位与窗格拓扑域(开台起格分屏切tab聚焦,prim 3.10 命名三分)、shares 文件域、streams 流域、tasks 持久任务域、pipes 实时字节域、ports 端口映射域(tailcat serve,与 pipes 临时管道分野)、ctxs 对话历史域(ClickHouse gw_logs 全链检索,read 实时屏对历史档案)、mcps MCP 目标域(出站通用 MCP 客户端,无门控)、machines 机册域(原 nodes,herdr 机册与 run/close/pane 直透,runtime 骑 ark)、research 检索域知识面(gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针)、distil 技能自进化三层聚合),市场名 project-evo,客户端显示 `<插件>:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
+> 定位:项目治理插件市场仓(两插件十五 skill 同属项目治理面,非业务工具面):dev(开发治理面:doc-gov 需求决策与代码契约注释与文档即代码、dev-cli Agent 原生友好开发、dev-lint 静态检查(md 五面与语言三面与结构面);插件级写后静检 hook 与 md 禁字挡板脚本随插件)、evo(agent 操作面十二 skill:agents 消息域原语与七原语共享面(to 投递、wait 事件道、id 三产生式、命名标准、门控 v2、信封 v2、status 四态)、desks 工位与窗格拓扑域(开台起格分屏切tab聚焦与拓扑真视图,prim 3.11 复数对齐,原 desk)、shares 文件域、streams 流域、tasks 持久任务域、pipes 实时字节域、ports 端口映射域(tailcat serve,与 pipes 临时管道分野)、ctxs 对话历史域(ClickHouse gw_logs 全链检索,read 实时屏对历史档案)、mcps MCP 目标域(出站通用 MCP 客户端,无门控)、machines 机册域(原 nodes,herdr 机册与 run/close/pane 直透,runtime 骑 ark)、research 检索域知识面(gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针)、distil 技能自进化三层聚合),市场名 project-evo,客户端显示 `<插件>:<skill>`。skill 硬性规范以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准,细则见 `docs/guides/skill-spec.md`。
 
 ## Commands
 

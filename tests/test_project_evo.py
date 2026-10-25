@@ -23,7 +23,7 @@ GUARD = PLUGINS["dev"] / "scripts" / "md-guard.py"
 LINT_HOOK = PLUGINS["dev"] / "scripts" / "lint-hook.py"
 SKILLS = {
     "dev": ["dev-cli", "dev-lint", "doc-gov"],
-    "evo": ["agents", "ctxs", "desk", "distil", "machines", "mcps", "pipes", "ports", "research", "shares", "streams", "tasks"],
+    "evo": ["agents", "ctxs", "desks", "distil", "machines", "mcps", "pipes", "ports", "research", "shares", "streams", "tasks"],
 }
 SINGLE_FILE_SKILLS = {"shares", "streams", "tasks", "pipes", "ports", "ctxs", "mcps", "machines"}  # 原语域面单文件,共享面在 agents skill(ADR-0025;mcps 批 169、machines/desk 批 173 入列)
 
@@ -406,8 +406,10 @@ def test_lint_hook_flags_md_forbidden(tmp_path: Path):
 
 
 def test_evo_lint_hooks_use_braced_plugin_root():
-    """hook 命令须花括号 ${CLAUDE_PLUGIN_ROOT} 加 commandWindows 双形(Codex 只替换花括号,Windows 走 cmd.exe /C)。"""
+    """批 174 撤 hook 后形态守卫:hooks.json 为空对象时视为已撤,不再断言花括号形。"""
     hooks = json.loads((PLUGINS["dev"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+    if not hooks.get("hooks"):
+        return
     handlers = [h for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]]
     assert handlers, "dev hooks.json 须有 PostToolUse 处理器"
     for h in handlers:
@@ -419,9 +421,11 @@ def test_evo_lint_hooks_use_braced_plugin_root():
 
 
 def test_evo_lint_hook_status_message_english():
-    """hook 段名纯英文裁定:statusMessage 形为 dev 加空格加英文短形(ADR-0025 两插件形),
-    statusrender 拼接形 dev-{title};标题段限小写字母数字连字符,防中文名回潮。"""
+    """批 174 撤 hook 后形态守卫:hooks.json 为空对象时视为已撤;在役时 statusMessage 形为
+    dev 加空格加英文短形(statusrender 拼接形 dev-{title}),标题段限小写字母数字连字符。"""
     hooks = json.loads((PLUGINS["dev"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+    if not hooks.get("hooks"):
+        return
     handlers = [h for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]]
     for h in handlers:
         msg = h.get("statusMessage", "")
@@ -436,11 +440,14 @@ def test_live_md_hook_stays_removed():
 
     历史:hook 实时拦编辑当日四犯(本仓三笔破折号加一笔标题括号),下游仓自有豁免面三度误拦;
     裁撤后禁字纪律由 githooks pre-commit 的 --staged 挡板与 check.py PE-11 承担,
-    脚本本体保留。此用例守住裁撤不回潮(原 REQ-014 挂接回归用例的翻转形)。
+    脚本本体保留。批 174(2026-10-25 用户令「不再 hook」)再撤 PostToolUse 静检 hook
+    整段(hooks.json 清空),本用例同步守空形态:PostToolUse 段存在即红。
     """
     hooks = json.loads((PLUGINS["dev"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+    assert not hooks.get("hooks", {}).get("PostToolUse"), \
+        "hooks.json 不得回挂 PostToolUse hook(批 105 禁字面裁撤、批 174 静检面整段裁撤)"
     cmds = " ".join(h.get("command", "") + h.get("commandWindows", "")
-                    for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"])
+                    for g in hooks.get("hooks", {}).get("PostToolUse", []) for h in g.get("hooks", []))
     assert "md-guard" not in cmds, "md-guard 不得作 live hook(批 105 裁撤),只走 pre-commit --staged"
     settings = json.loads((REPO / ".claude" / "settings.json").read_text(encoding="utf-8"))
     assert not settings.get("hooks", {}).get("PostToolUse"), \
@@ -548,13 +555,14 @@ def test_evo_primitive_skill_dirs_align_with_commands():
     """B3 目录-命令对齐守卫(REQ-057;批 164 ctxs 正名判例):evo 原语域 skill 目录名
     必须落在正典原语命令集内且为全词复数形;非命令面(渐进知识库型 distil、research)例外。
     mcps/nodes 入真源时须有意识更新本正典集与 SKILLS 清单(REQ-058),静默漂移当场红灯。
-    批 173 命名三分(REQ-062):nodes 更名 machines,desk 析出(desk 命令名单数形,复数律豁免)。"""
-    canonical = {"agents", "shares", "streams", "tasks", "pipes", "ports", "ctxs", "mcps", "machines", "desk"}
+    批 173 命名三分(REQ-062):nodes 更名 machines,desk 析出(desk 命令名单数形,复数律豁免)。
+    批 174 复数对齐(REQ-063):desk 更名 desks(prim 3.11.0 主名,desk 留旧名单字别名)。"""
+    canonical = {"agents", "shares", "streams", "tasks", "pipes", "ports", "ctxs", "mcps", "machines", "desks"}
     primitives = set(SKILLS["evo"]) - {"distil", "research"}  # research 批 170 入列(REQ-059,渐进知识库型非命令面)
     assert primitives == canonical, \
         f"原语域目录对正典命令集漂移(改集须过 REQ,勿静默): {primitives ^ canonical}"
     for name in sorted(primitives):
-        assert name.endswith("s") or name == "desk", f"原语域目录须命令名全词形(desk 单数命令名豁免): {name}"
+        assert name.endswith("s"), f"原语域目录须命令名全词复数形: {name}"
 
 
 def test_skill_description_form_repo_wide():

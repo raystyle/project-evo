@@ -1,6 +1,6 @@
 # 工位族动词细则
 
-> desk 正文动词表收主行;本篇收动词旗标与示例。mode 与 reload 在 agents 面;旗标全集以 `desk --llms` 为准。
+> desks 正文动词表收主行;本篇收动词旗标与示例。mode 与 reload 在 agents 面;旗标全集以 `desks --llms` 为准。
 
 | 动词 | 文法 | 何时用 |
 | --- | --- | --- |
@@ -17,11 +17,11 @@
 ## 示例
 
 ```bash
-desk shell lan-ubuntu ~/repos/ai-ccoe
-desk dev lan-ubuntu ~/repos/pi-rs --kind grok
-desk split local:w13:p1 --direction down
-desk zoom local:w13:p1
-desk wt wsl --title 台面
-desk trust
-desk sync
+desks shell lan-ubuntu ~/repos/ai-ccoe
+desks dev lan-ubuntu ~/repos/pi-rs --kind grok
+desks split local:w13:p1 --direction down
+desks zoom local:w13:p1
+desks wt wsl --title 台面
+desks trust
+desks sync
 ```
