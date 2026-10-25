@@ -27,11 +27,11 @@ description: >-
 ## 文法
 
 - 裸调用 = view;全局旗标任意槽,以 `desks --llms` 为准
-- 主名 desks(prim 3.11.0 实装,ADR-0007+0008 复数对齐):desk 为旧名单字别名,四端在役仍可用,新写统一 desks
-- 与 agents 同实现 alias 期(prim 3.10 起 1 至 2 大版本):两入口等价,新写统一 desks;消息面动词(to/wait/read/keys/mode/inbox)恒在 agents
-- 术语行(用户定谳 2026-10-25):工位/窗格 = pane(p1、p1W);工作台/窗台 = workspace(w 编号,一个终端窗);tab = 窗台内页
+- desk 为旧名单字别名,仍可用,新写统一 desks
+- 与 agents 同实现 alias 期:两入口等价,新写统一 desks;消息面动词(to/wait/read/keys/mode/inbox)恒在 agents
+- 术语:工位/窗格 = pane(p1、p1W);工作台/窗台 = workspace(w 编号,一个终端窗);tab = 窗台内页
 - 格寻址:`<名>` / `<机>:<名或格>` / `local:<格>`;格操作用格 id,消息用别名(id 三产生式细语义见 `../agents/SKILL.md`)
-- 行话(ADR-0007):工位 = 本命令域;格 = pane;邻格 = 同机邻 agent
+- 行话:工位 = 本命令域;格 = pane;邻格 = 同机邻 agent
 - reload(同格同 session 重进,重载技能与插件)与 mode(在场声明)仍在 agents 面
 
 ## 命名契约(四层)
@@ -48,7 +48,7 @@ description: >-
 ## 空间语义
 
 - 实态:方向词仅分裂时存在(`split <id> --direction right|down`,相对被分裂格);无 focus/neighbor/layout 动词,空间关系只能从 `view` 人读(窗台 -> tab -> 工位三层分组即排布),聚焦单格 = `zoom <id>`
-- 邻格 = 同机邻 agent(ADR-0007);语义上边相邻(共享分割条)才算,对角不算
+- 邻格 = 同机邻 agent;语义上边相邻(共享分割条)才算,对角不算
 - 提案面(缺陷审查最终版候选,未实装勿当真跑):`focus --dir` 四向、`neighbor` 查询、`layout get/set` 序列化 split 树、split 统一四向;zoom 态方向 focus 先隐式退 zoom;方向寻址不跨 tab 与窗台,跨界用显式 id
 
 ## 示例
@@ -74,10 +74,10 @@ desks trust
 | start 起名随手敲 | 命名标准 `<台名>-<类型>-<编号>`(细则见 agents skill) |
 | reload 找 desks | reload 与 mode 是会话面动词,仍在 agents |
 | 空 pane 出现不管 | 空 pane = 异常态(所有 pane 须有 agent);补 agent 或 close 收格 |
-| `ws list` 旧形列台 | 3.10 起 `ws` 裸调用即列台;`ws list` 的 list 会被当机标签(报 unknown machine,实测 3.11 未修) |
+| `ws list` 列台 | `ws` 裸调用即列台;`ws list` 的 list 会被当机标签(报 unknown machine) |
 | 找 agents view 看拓扑分组 | `desks view` 是拓扑真视图(窗台 -> tab -> 工位三层);agents view 是消息面格表,分职不同 |
 | 拿 workspace label 或斜杠形当寻址键 | label 是显示名非寻址键;寻址恒走 `wN:pX` 或别名,禁 `机/label` 形 |
-| 用 `local:wN:pX` 当跨机投递主址 | local 形仅本机调试;跨机恒 `机:别名`,同 cwd 多格时 from 退化机名勿猜,按别名寻址 |
+| 用 `local:wN:pX` 当跨机投递主址 | local 形仅本机调试;跨机恒 `机:别名` |
 
 ## 接着读
 
