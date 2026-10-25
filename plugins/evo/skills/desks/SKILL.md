@@ -34,19 +34,22 @@ description: >-
 - 行话(ADR-0007):工位 = 本命令域;格 = pane;邻格 = 同机邻 agent
 - reload(同格同 session 重进,重载技能与插件)与 mode(在场声明)仍在 agents 面
 
-## 命名契约(四层,实态披露)
+## 命名契约(四层)
 
-- machine 层:机册 label(herdr 真源,如 local、lan-win、lan-mac);跨机窗台恒 `机:w13` 限定形
-- workspace 层:机内 w 编号(终端窗序号,字母数字递增: w8、w13、w1G);人读名 = 仓即台(ws 按仓路径开台,view 台面列 WORKBENCH 路径)
-- tab 层:窗台内页,t 编号(t1、t2),无独立人读名
-- pane 层:p 加编号(p1、p2、p25);尾缀字母(p1W 的 W、pT 的 T)为窗格系统指派,**无词义规则**,勿猜语义、勿当稳定键引用
-- agent 层:工位上的 agent 用 `<台名>-<类型>-<编号>` 命名标准(唯一权威源在 agents skill);工位 id 与 agent 名是两套键,操作格用 pane id、投递用别名
+中英术语:窗台 = workspace、工位/窗格 = pane、邻格 = neighbor、机 = machine。
+
+- machine 层:机册 label(herdr 真源,如 local、lan-win、lan-mac);跨机窗台恒 `机:w13` 限定形;local 是本机视角词,禁当跨机身份
+- workspace 层:机内 w 编号(w8、w13、w1G,字母数字递增)为唯一寻址键;**label 是显示名非寻址键**(ws 按仓路径开台,view 台面列 WORKBENCH 路径即人读面),寻址恒走 `wN:pX` 或别名,禁 `机/label` 斜杠形
+- tab 层:窗台内页,t 编号(t1、t2),无独立人读名,寻址不单独指 tab
+- pane 层:p 加编号(p1、p25);尾缀字母(pT 的 T、p1W 的 W)为窗格系统指派,**无词义规则**,勿猜语义、勿当稳定键引用;角色槽(main/review/shell 类)只进显示面与 layout 树,**不进寻址**
+- agent 层:工位上的 agent 用 `<台名>-<类型>-<编号>` 命名标准(唯一权威源在 agents skill);工位 id 与 agent 名是两套键:操作格用 pane id,投递用别名
+- 寻址优先级:裸别名(消息面唯一推荐)> `机:别名` > `机:格`;`local:格` 仅本机调试,禁写入跨机信封主 to
 
 ## 空间语义
 
-- 方向寻址仅分裂时:`split <id> --direction right|down` 相对被分裂格;无绝对方位词
-- 邻格 = 同机邻 agent(ADR-0007);布局真视图 = `view`(窗台 -> tab -> 工位三层分组即空间排布),聚焦单格 = `zoom <id>`
-- 实态限制:无程序化邻格查询与布局变换命令(仅 split 单步分裂);空间关系只能从 view 人读,提案改进走 prim 域
+- 实态:方向词仅分裂时存在(`split <id> --direction right|down`,相对被分裂格);无 focus/neighbor/layout 动词,空间关系只能从 `view` 人读(窗台 -> tab -> 工位三层分组即排布),聚焦单格 = `zoom <id>`
+- 邻格 = 同机邻 agent(ADR-0007);语义上边相邻(共享分割条)才算,对角不算
+- 提案面(缺陷审查最终版候选,未实装勿当真跑):`focus --dir` 四向、`neighbor` 查询、`layout get/set` 序列化 split 树、split 统一四向;zoom 态方向 focus 先隐式退 zoom;方向寻址不跨 tab 与窗台,跨界用显式 id
 
 ## 示例
 
@@ -71,8 +74,10 @@ desks trust
 | start 起名随手敲 | 命名标准 `<台名>-<类型>-<编号>`(细则见 agents skill) |
 | reload 找 desks | reload 与 mode 是会话面动词,仍在 agents |
 | 空 pane 出现不管 | 空 pane = 异常态(所有 pane 须有 agent);补 agent 或 close 收格 |
-| `ws list` 旧形列台 | 3.10 起 `ws` 裸调用即列台;`ws list` 的 list 会被当机标签(报 unknown machine,实测) |
+| `ws list` 旧形列台 | 3.10 起 `ws` 裸调用即列台;`ws list` 的 list 会被当机标签(报 unknown machine,实测 3.11 未修) |
 | 找 agents view 看拓扑分组 | `desks view` 是拓扑真视图(窗台 -> tab -> 工位三层);agents view 是消息面格表,分职不同 |
+| 拿 workspace label 或斜杠形当寻址键 | label 是显示名非寻址键;寻址恒走 `wN:pX` 或别名,禁 `机/label` 形 |
+| 用 `local:wN:pX` 当跨机投递主址 | local 形仅本机调试;跨机恒 `机:别名`,同 cwd 多格时 from 退化机名勿猜,按别名寻址 |
 
 ## 接着读
 
