@@ -6,7 +6,7 @@ description: >-
   Use when: machine registry, run in a pane, runtime check, 查或管舰队机器与节点、
   在指定节点窗格跑命令或关窗格、检查或对齐某仓 agent 运行环境时;触发词 machines、
   机册、机器、节点、舰队节点、pane 直透、runtime、runtimes、ark、环境对齐。
-  不要用于 agent 消息与等回信(走 agents)或工位开格分屏(走 desks);nodes 为旧名别名。
+  不要用于 agent 消息与等回信(走 agents)或工位开格分屏(走 desks)。
 ---
 
 # machines - evo 机册与直透域原语
@@ -28,7 +28,7 @@ description: >-
 ## 文法
 
 - 裸调用 = view;全局旗标以 `machines --llms` 为准
-- `nodes` 为旧名 deprecated 别名(prim 3.10 命名三分,ADR-0007):仍可用,新写统一 machines
+- `nodes` 旧名已淘汰(prim 3.10 更名 machines,3.12 别名四端全撤):一律写 machines
 - 寻址:label 或 profile-id 皆收(label 优先);机册真源在 herdr
 - 维度分职:machines = 机册与原始窗格面;agents = 在线 agent 消息面;desks = 工位拓扑面
 - runtime 栈真源 = 仓根 runtimes.toml(由工作台仓的 agent 自己定,init 出模板);骑 ark,三平台统一契约
