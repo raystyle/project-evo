@@ -10,7 +10,7 @@
 | dev-cli | Agent 原生友好开发:--llms 手册面、类型化 CTA 协议、命令自省、发现通道与 token 经济学(原 doc-cli 改名) |
 | dev-lint | 静态检查(原 md-lint、ls-lint):md 五面与 rs/py/ts 语言面、类型化结构 init 与 check(四类型模板) |
 
-插件级资产:scripts(md-guard.py 提交挡板、mdrules.py 禁字唯一权威、lint-hook.py 写后静检)与 hooks(PostToolUse,段名 dev file-check)。
+插件级资产:scripts(md-guard.py 提交挡板、mdrules.py 禁字唯一权威、lint-hook.py 静检脚本面)。hooks 已撤(2026-10-25 用户令:不再 PostToolUse 拦截;静检走 dev-lint skill 手动道与提交挡板)。
 
 结构沿革:由原 evo-doc 与 evo-lint 两插件域合成;中文面 zh-lint 经拆出后于批 145 删除(ADR-0025)。
 

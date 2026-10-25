@@ -1,18 +1,3 @@
 {
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Edit|Write|MultiEdit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "uv run --no-project \"${CLAUDE_PLUGIN_ROOT}/scripts/lint-hook.py\"",
-            "commandWindows": "uv run --no-project \"${CLAUDE_PLUGIN_ROOT}\\scripts\\lint-hook.py\"",
-            "timeout": 30,
-            "statusMessage": "dev file-check"
-          }
-        ]
-      }
-    ]
-  }
+  "hooks": {}
 }
