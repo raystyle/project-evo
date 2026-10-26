@@ -4,6 +4,16 @@
 
 ## [Unreleased]
 
+### 变更 2026-10-26 第一百七十六批:十四 skill 知识面翻 hook_rules,薄壳指针与双 bun 注入加载器（ADR-0027,REQ-065）
+
+- **蒸馏体系翻转**(总台用户裁定):知识沉淀从 SKILL.md 常驻面改 hook rule 按需注入(token 经济学);distil 产出物 = 标准 hook rule 集,闸门加 pattern 实弹验证判据(应触发至少一命中、近失零误命中)
+- **hook_rules 双层树**:每插件 intents(patterns 词表,UserPromptSubmit 注入)与 dev-rules(match 路径,PreToolUse Edit/Write 注入);evo intents 26 件、dev intents 六件加 dev-rules 四件,词表取自原 description 触发词;插件树随装随卸,项目 .claude/hook_rules 优先合并(总台裁定一)
+- **薄指针壳**(裁定二):十四 SKILL.md 留 name 与原 description 加一句指路,非 hook 端(Kimi 等)直读同源 md 知识零失效;references 目录全撤(git 史可溯);dev 结构模板四 toml 迁插件级 tools/
+- **双加载器**:intent-guidance.ts 与 dev-rules.ts(bun 直跑 .ts;坑位:String.fromCharCode 防换行炸、env 锚定防路径歪)dev 正源 evo 拷贝守卫字节等一;hooks.json 挂 UserPromptSubmit 加 PreToolUse,PostToolUse 禁令不破(批 105/174 律)
+- **守卫翻新**(裁定三):hooks 形态守卫重写(恰两事件、花括号形、statusMessage 英文短形)、hook_rules 树扫描测(frontmatter 与正文非空、禁字与术语清零、计数断言)、pre-commit 断链段加两子树、加载器实弹测(38 测全绿);SINGLE_FILE_SKILLS 与 references 必须断言退役
+- **活面全同步**:AGENTS 定位与断链行、根 README 配置与 Kimi 节(拷 skills 加 hook_rules)、docs 地图、gates、双插件 README、双 manifest 与市场清单描述;dev 升 0.18.0、evo 升 0.20.0
+- 批内待验:kimi additionalContext 实测与 codex/grok 注入面核验(舰队端)
+
 ### 变更 2026-10-26 第一百七十五批:doc-gov 与 dev-lint 合一 dev-doc,约束术语表 lint 立 PE-13（ADR-0026,REQ-064）
 
 - **dev-doc 合一**(git mv 保史):router SKILL.md 80 行三句形(旧名 doc-gov、dev-lint 留触发词);references 10 篇(base/tool 五篇原样 + md-faces 吸收 hook 面手动道 + term-rules 新术语面 + ls 三篇);语言面裁撤(lang-checks 退 git 史,同 zh-lint 批 145 律);templates 四 toml 随迁;顺手修 base 篇 distil-skill 残留引用

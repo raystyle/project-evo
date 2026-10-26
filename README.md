@@ -11,7 +11,7 @@
 | Claude Code | `/plugin marketplace add raystyle/project-evo`,再 `/plugin install <插件>@project-evo`(如 `evo@project-evo`、`dev@project-evo`) |
 | Codex | `codex plugin marketplace add raystyle/project-evo`,再 `codex plugin add <插件>@project-evo` |
 | Grok | `grok plugin marketplace add raystyle/project-evo`,再 `grok plugin install <插件>@project-evo --trust` |
-| Kimi | 无插件市场:按 `~/.kimi-code/config.toml` 的 `extra_skill_dirs`(默认 `~/.kimi/skills`)拷 `plugins/<插件>/skills/*`;斜杠命令与 hook 不随行 |
+| Kimi | 无插件市场:按 `~/.kimi-code/config.toml` 的 `extra_skill_dirs`(默认 `~/.kimi/skills`)拷 `plugins/<插件>/skills/*` 与 `plugins/<插件>/hook_rules/*`(壳指路直读);斜杠命令不随行 |
 
 开发态(指向工作树,改动即生效,免推送):把 `marketplace add` 的源换成仓根路径,如 `/plugin marketplace add /mnt/wsl/repos/project-evo`。
 
@@ -35,7 +35,8 @@ Kimi          重新拷 plugins/<插件>/skills/*
 - 市场源与协议:HTTPS 与 SSH git URL 都收;GitHub 简写默认协议相反,Claude Code 走 SSH(`CLAUDE_CODE_PLUGIN_PREFER_HTTPS=1` 切 HTTPS),Codex 走 HTTPS;Grok 另收本地路径与 `@ref`、`#subdir`
 - 私有仓认证:标准 git 凭据(credential helper 或 ssh-agent),与终端 git 行为一致
 - 钉版:Claude Code `raystyle/project-evo@v0.15.0`(或 URL 尾 `#v0.15.0`);Codex `--ref v0.15.0`(下一封版后同理)
-- md 禁字与术语表挡板:提交挡板脚本在插件级 `scripts/`(md-guard 禁字、term-lint 约束术语;hook 已撤,走 pre-commit --staged;规则唯一权威 `mdrules.py` 与 `termrules.py`,与 skill 解耦)
+- md 禁字与术语表挡板:提交挡板脚本在插件级 `scripts/`(md-guard 禁字、term-lint 约束术语;走 pre-commit --staged;规则唯一权威 `mdrules.py` 与 `termrules.py`,与 skill 解耦)
+- hook_rules 注入面(批 176):知识本体在插件 `hook_rules/`(intents 意图注入 + dev-rules 路径注入),插件 hooks 挂两枚 bun 加载器(UserPromptSubmit + PreToolUse);SKILL.md 为薄壳指针,非 hook 端直读 hook_rules md
 - 扫描豁免:本仓 `.tools/scan.py` 的误报走环境变量 `PEVO_SCAN_ALLOW`(分号分隔正则,匹配 文件:行)
 
 ## 插件与 SKILL 介绍
@@ -43,7 +44,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 | 插件 | skill | 做什么 | 何时用 |
 |------|-------|--------|--------|
 | dev | `dev-doc` | 文档治理与静态检查(原 doc-gov 与 dev-lint 合一):ADR 与 REQ 需求决策、代码 doc 注释契约、文档即代码、研究档案、工具链;md 静检与约束术语表 term-lint、四类型结构模板卡、门禁接线 | 立 ADR/REQ、立代码契约注释与文档即代码守卫、配静态检查与术语门禁、新仓脚手架时 |
-| dev | `dev-cli` | Agent 原生友好开发(原 doc-cli):--llms 手册面、类型化 CTA 输出协议、默认帮助面、命令自省与漂移守卫、裸调用面、Rust CLI 舰队公约、发现通道与 token 经济学 | 配 CLI agent 面、为 agent 时代设计命令与工具面 |
+| dev | `dev-cli` | Agent 原生友好开发(原 doc-cli;批 176 知识面在插件 hook_rules,壳指路):--llms 手册面、类型化 CTA 输出协议、命令自省与漂移守卫、Rust CLI 舰队公约、发现通道与 token 经济学 | 配 CLI agent 面、为 agent 时代设计命令与工具面 |
 | evo | `agents` | 五原语消息域原语与共享面枢纽:to 投递、id 三产生式、命名标准(工作台-类型-编号)、门控 v2 尾窗、信封 v2、status 四态、read 收件、工位管理 | 告诉或委派某 agent、找格读屏等回话、开工作台调窗格布局、查在场时 |
 | evo | `shares` | 文件域原语:put/get/to,内容哈希键,拒投不丢件 | 传文件给指定 agent、交付产物、取回共享时 |
 | evo | `streams` | 流域原语:append/view/to,流即房间,fleet 回执主频道 | 往流交回执或广播、私信、回放续读时 |
@@ -57,7 +58,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 | evo | `research` | 检索域知识面:按研究目标路由通道(gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针) | 调研主题、找库选型、学术检索、跨源对照搜索时 |
 | evo | `distil` | 技能自进化(原 distil-skill):三层聚合、一案提案、合取闸门 | 把项目经验沉淀成 skill 时 |
 
-装 dev 即得 md 禁字与术语表挡板脚本(插件级,与 skill 解耦);本仓自用骨架工具(init/check/scan 与模板)在仓根 `.tools/`,不随插件分发。结构沿革(旧多插件形态收敛、裁撤与改名映射)见 ADR-0025 与 ADR-0026。
+装 dev 即得 md 禁字与术语表挡板脚本与 hook_rules 注入面(插件级,与 skill 解耦);本仓自用骨架工具(init/check/scan 与模板)在仓根 `.tools/`,不随插件分发。结构沿革(旧多插件形态收敛、裁撤与改名映射)见 ADR-0025、ADR-0026 与 ADR-0027。
 
 ## 环境前提
 

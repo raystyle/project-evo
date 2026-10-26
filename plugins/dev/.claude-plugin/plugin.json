@@ -1,7 +1,7 @@
 {
   "name": "dev",
-  "version": "0.17.0",
-  "description": "开发治理面插件,两 skill:dev-doc(ADR 与 REQ 需求决策、文档即代码、md 静检与约束术语表、结构面与门禁接线)、dev-cli(Agent 原生友好开发);含提交挡板脚本(md 禁字与术语表,hook 已撤,静检走 dev-doc 手动道)",
+  "version": "0.18.0",
+  "description": "开发治理面插件,两 skill 薄壳(知识面在插件 hook_rules 按意图与路径注入,批 176):dev-doc(ADR 与 REQ 决策、文档即代码、md 静检与约束术语表、结构面)、dev-cli(Agent 原生友好开发);含提交挡板脚本与双 bun 注入加载器",
   "author": {
     "name": "raystyle"
   },

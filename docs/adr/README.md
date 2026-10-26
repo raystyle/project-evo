@@ -30,3 +30,4 @@
 | ADR-0024 | accepted | herdr:s5 删除并入 agent-s5,s5 归一为全 agent 共享看板与实时流 | |
 | ADR-0025 | accepted | 市场重构:两插件 dev 与 evo,裁四 skill,agent-prim 拆五原语,两改名,lint 合并后中文面终删 | 2026-10-13 用户令渐进定形 |
 | ADR-0026 | accepted | doc-gov 与 dev-lint 合一为 dev-doc,语言面裁撤,约束术语表 lint 立 PE-13 | 2026-10-25 用户令,三项定制 |
+| ADR-0027 | accepted | 十四 skill 知识面翻 hook_rules,薄壳指针与双 bun 注入加载器 | 2026-10-26 总台三裁定放行 |

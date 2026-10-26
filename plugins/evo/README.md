@@ -19,7 +19,7 @@
 | research | 检索域知识面:按研究目标路由通道(gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针;产出交棒 dev-doc 研究档案) |
 | distil | 技能自进化:三层聚合(sources/knowledge/operations)、一案提案、合取闸门、双端分发 |
 
-结构沿革:由旧多插件形态收敛重构而来(ADR-0025):herdr-orch、agent-s5、agent-rloop、agent-doctor 裁撤;agent-prim 拆原语 skill,共享面在 agents;distil-skill 改名 distil;doc-gov 与 doc-cli(改名 dev-cli)及 lint 三 skill 归 dev 插件(批 175 前两者合一 dev-doc,ADR-0026)。旧名映射以 ADR-0025 为准。
+结构沿革:由旧多插件形态收敛重构而来(ADR-0025):herdr-orch、agent-s5、agent-rloop、agent-doctor 裁撤;agent-prim 拆原语 skill,共享面在 agents;distil-skill 改名 distil;doc-gov 与 doc-cli(改名 dev-cli)及 lint 三 skill 归 dev 插件(批 175 前两者合一 dev-doc,ADR-0026);批 176 十二 skill 知识面翻 hook_rules 薄壳指针(ADR-0027)。旧名映射以 ADR-0025 为准。
 
 ## 前置
 
@@ -47,4 +47,4 @@ Kimi:无市场,拷 `plugins/evo/skills/*` 至 `~/.kimi/skills`
 - 全端序:每端 `/plugin marketplace update project-evo` 再到 卸旧插件(evo-doc、evo-herdr、evo-distil、evo-lint、evo-agent 五件)再到 装 dev 与 evo 再到 全格 `agents reload`
 - Kimi 端:清 `~/.kimi/skills` 旧目录后重拷,重启会话
 
-当前发布:0.19.0(独立 semver,dev 独立号)。
+当前发布:0.20.0(独立 semver,dev 独立号)。

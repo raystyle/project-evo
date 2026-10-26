@@ -25,7 +25,10 @@ SKILLS = {
     "dev": ["dev-cli", "dev-doc"],
     "evo": ["agents", "ctxs", "desks", "distil", "machines", "mcps", "pipes", "ports", "research", "shares", "streams", "tasks"],
 }
-SINGLE_FILE_SKILLS = {"shares", "streams", "tasks", "pipes", "ports", "ctxs", "mcps", "machines"}  # 原语域面单文件,共享面在 agents skill(ADR-0025;mcps 批 169、machines/desk 批 173 入列)
+HOOK_RULES = {  # 批 176 知识面:skill 壳指路,知识本体在 hook_rules(ADR-0027)
+    "dev": {"intents": 6, "dev-rules": 4},
+    "evo": {"intents": 26, "dev-rules": 0},
+}
 
 
 def _load(name: str):
@@ -361,8 +364,7 @@ def test_termrules_table_sanity():
             head = text.split("---")[1]
             declared = next(l.split(":", 1)[1].strip() for l in head.splitlines() if l.startswith("name:"))
             assert declared == sname, f"frontmatter name({declared}) 须与目录名({sname})一致"
-            if sname not in SINGLE_FILE_SKILLS:
-                assert (skills / sname / "references").is_dir(), f"参考目录缺失: {sname}"
+            assert "hook_rules" in text, f"{sname}/SKILL.md 薄壳缺 hook_rules 指路行(批 176)"
 
     for v in versions:
         parts = tuple(int(x) for x in v.split("."))
@@ -468,43 +470,13 @@ def test_lint_hook_flags_md_forbidden(tmp_path: Path):
     assert r2.returncode == 0
 
 
-def test_evo_lint_hooks_use_braced_plugin_root():
-    """批 174 撤 hook 后形态守卫:hooks.json 为空对象时视为已撤,不再断言花括号形。"""
-    hooks = json.loads((PLUGINS["dev"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
-    if not hooks.get("hooks"):
-        return
-    handlers = [h for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]]
-    assert handlers, "dev hooks.json 须有 PostToolUse 处理器"
-    for h in handlers:
-        for field in ("command", "commandWindows"):
-            cmd = h.get(field)
-            assert cmd, f"hooks.json 缺 {field}"
-            assert "${CLAUDE_PLUGIN_ROOT}" in cmd, f"{field} 须用花括号形态(Codex 只替换 ${{VAR}})"
-            assert "$env:" not in cmd, f"{field} 禁 PowerShell 语法:Windows 走 cmd.exe /C"
-
-
-def test_evo_lint_hook_status_message_english():
-    """批 174 撤 hook 后形态守卫:hooks.json 为空对象时视为已撤;在役时 statusMessage 形为
-    dev 加空格加英文短形(statusrender 拼接形 dev-{title}),标题段限小写字母数字连字符。"""
-    hooks = json.loads((PLUGINS["dev"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
-    if not hooks.get("hooks"):
-        return
-    handlers = [h for g in hooks["hooks"]["PostToolUse"] for h in g["hooks"]]
-    for h in handlers:
-        msg = h.get("statusMessage", "")
-        assert msg.startswith("dev "), f"statusMessage 须带插件前缀: {msg}"
-        title = msg.removeprefix("dev ")
-        assert re.fullmatch(r"[a-z0-9-]+", title), \
-            f"hook 段名须纯英文短形(statusrender 拼接 dev-{{title}}): {msg}"
-
-
 def test_live_md_hook_stays_removed():
-    """批 105 裁撤:live PostToolUse 禁字 hook(插件 hooks.json 与仓 settings.json)不得回潮。
+    """批 105/174 裁撤:live PostToolUse 禁字静检 hook(插件 hooks.json 与仓 settings.json)不得回潮。
 
     历史:hook 实时拦编辑当日四犯(本仓三笔破折号加一笔标题括号),下游仓自有豁免面三度误拦;
     裁撤后禁字纪律由 githooks pre-commit 的 --staged 挡板与 check.py PE-11 承担,
-    脚本本体保留。批 174(2026-10-25 用户令「不再 hook」)再撤 PostToolUse 静检 hook
-    整段(hooks.json 清空),本用例同步守空形态:PostToolUse 段存在即红。
+    脚本本体保留。批 176(ADR-0027)hooks.json 重启用,但只挂 UserPromptSubmit 与
+    PreToolUse 注入面(intent-guidance/dev-rules 加载器);PostToolUse 禁令不破:段存在即红。
     """
     hooks = json.loads((PLUGINS["dev"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
     assert not hooks.get("hooks", {}).get("PostToolUse"), \
@@ -517,10 +489,116 @@ def test_live_md_hook_stays_removed():
         "仓 settings.json 不得回挂 live PostToolUse 禁字挡板(批 105 裁撤)"
 
 
-def test_pre_commit_matches_current_skills():
-    """提交挡板回归:pre-commit 的断链段恰覆盖当前 SKILLS,引用路径全部存在。
+def test_hook_loaders_wired_and_isolated():
+    """批 176 注入面守卫:两插件各挂 UserPromptSubmit + PreToolUse(Edit|Write),命令花括号形;
+    statusMessage 英文短形带插件前缀;加载器双拷贝字节等一(dev 正源,evo 拷贝,双 manifest 同步先例)。"""
+    for name in PLUGIN_NAMES:
+        plugin = PLUGINS[name]
+        hooks = json.loads((plugin / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+        events = hooks.get("hooks", {})
+        assert set(events) == {"UserPromptSubmit", "PreToolUse"}, \
+            f"{name} hooks.json 须恰挂 UserPromptSubmit + PreToolUse(批 176),实际 {sorted(events)}"
+        for group in events["PreToolUse"]:
+            assert group.get("matcher") == "Edit|Write", f"{name} PreToolUse 须限 Edit|Write"
+        for ev, groups in events.items():
+            for g in groups:
+                for h in g["hooks"]:
+                    for field in ("command",):
+                        cmd = h.get(field, "")
+                        assert "${CLAUDE_PLUGIN_ROOT}" in cmd, f"{name} {field} 须花括号形: {cmd}"
+                        assert "$env:" not in cmd, f"{name} {field} 禁 PowerShell 语法"
+                    msg = h.get("statusMessage", "")
+                    assert msg.startswith(f"{name} "), f"{name} statusMessage 须带插件前缀: {msg}"
+                    title = msg.removeprefix(f"{name} ")
+                    assert re.fullmatch(r"[a-z0-9-]+", title), f"{name} statusMessage 段名须英文短形: {msg}"
+    for f in ("intent-guidance.ts", "dev-rules.ts"):
+        a = (PLUGINS["dev"] / "hooks" / f).read_bytes()
+        b = (PLUGINS["evo"] / "hooks" / f).read_bytes()
+        assert a == b, f"加载器双拷贝漂移(唯一权威 dev 正源,evo 须同步): {f}"
 
-    历史:批 81 删 skill 后 CI 悬空引用漏改而红;本用例让清单与挡板漂移当场红灯。
+
+def test_hook_rules_tree_valid():
+    """批 176 规则面守卫:两插件 hook_rules 树 frontmatter 校验(intents patterns 非空、dev-rules
+    match 非空)、正文非空、禁字与约束术语清零、件数与 HOOK_RULES 计数断言一致。"""
+    import importlib.util as _ilu
+    spec = _ilu.spec_from_file_location("pevo_mdrules", PLUGINS["dev"] / "scripts" / "mdrules.py")
+    mdr = _ilu.module_from_spec(spec)
+    spec.loader.exec_module(mdr)
+    tspec = _ilu.spec_from_file_location("pevo_termrules", PLUGINS["dev"] / "scripts" / "termrules.py")
+    import sys as _sys
+    _sys.path.insert(0, str(PLUGINS["dev"] / "scripts"))
+    trm = _ilu.module_from_spec(tspec)
+    tspec.loader.exec_module(trm)
+    for name in PLUGIN_NAMES:
+        counts = {"intents": 0, "dev-rules": 0}
+        for sub in ("intents", "dev-rules"):
+            d = PLUGINS[name] / "hook_rules" / sub
+            assert d.is_dir(), f"{name} 缺 hook_rules/{sub}"
+            for f in sorted(d.glob("*.md")):
+                counts[sub] += 1
+                text = f.read_text(encoding="utf-8")
+                m = re.match(r"^---\n(.*?)\n---\n?(.*)$", text, re.S)
+                assert m, f"{f.relative_to(REPO)} 缺 frontmatter"
+                fm, body = m.group(1), m.group(2)
+                key = "patterns" if sub == "intents" else "match"
+                kv = re.search(rf"^{key}:\s*(.+)$", fm, re.M)
+                assert kv, f"{f.relative_to(REPO)} 缺 {key} 字段"
+                val = kv.group(1).strip()
+                assert val not in ("", "[]"), f"{f.relative_to(REPO)} {key} 空"
+                assert body.strip(), f"{f.relative_to(REPO)} 正文空"
+                assert not mdr.file_violations(text), f"{f.relative_to(REPO)} 禁字违规"
+                assert not trm.file_term_violations(text), f"{f.relative_to(REPO)} 约束术语违规"
+        assert counts == HOOK_RULES[name], \
+            f"{name} hook_rules 计数漂移: 实际 {counts} 对断言 {HOOK_RULES[name]}"
+
+
+def test_hook_loader_live_fire(tmp_path):
+    """批 176 加载器实弹:tmp 项目树起样例规则,intent-guidance 按词表命中注入、dev-rules 按路径注入;
+    无 bun 则 skip(分型 bun 主道)。"""
+    import shutil
+    bun = shutil.which("bun")
+    if not bun:
+        import pytest
+        pytest.skip("bun 不在 PATH(分型 bun 主道),跳过实弹")
+    proj = tmp_path / "proj"
+    (proj / ".claude" / "hook_rules" / "intents").mkdir(parents=True)
+    (proj / ".claude" / "hook_rules" / "intents" / "样例.md").write_text(
+        "---\npatterns: [网关, gateway]\n---\n\n## 样例注入\n\n- 样例行\n", encoding="utf-8")
+    r = subprocess.run(
+        [bun, str(PLUGINS["dev"] / "hooks" / "intent-guidance.ts")],
+        input=json.dumps({"prompt": "帮我看网关"}),
+        capture_output=True, text=True, encoding="utf-8",
+        env={**os.environ, "CLAUDE_PROJECT_DIR": str(proj)},
+    )
+    assert r.returncode == 0, r.stderr
+    out = json.loads(r.stdout) if r.stdout.strip() else {}
+    ctx = out.get("hookSpecificOutput", {}).get("additionalContext", "")
+    assert "样例注入" in ctx, "词表命中须注入正文"
+    r2 = subprocess.run(
+        [bun, str(PLUGINS["dev"] / "hooks" / "intent-guidance.ts")],
+        input=json.dumps({"prompt": "无关提示"}),
+        capture_output=True, text=True, encoding="utf-8",
+        env={**os.environ, "CLAUDE_PROJECT_DIR": str(proj)},
+    )
+    assert r2.returncode == 0 and not r2.stdout.strip(), "未命中不得有输出"
+    (proj / ".claude" / "hook_rules" / "dev-rules").mkdir(parents=True)
+    (proj / ".claude" / "hook_rules" / "dev-rules" / "样例路径.md").write_text(
+        "---\nmatch: /docs/\n---\n\n## 路径注入\n\n- 路径行\n", encoding="utf-8")
+    r3 = subprocess.run(
+        [bun, str(PLUGINS["dev"] / "hooks" / "dev-rules.ts")],
+        input=json.dumps({"tool_name": "Edit", "tool_input": {"file_path": "/x/docs/页.md"}}),
+        capture_output=True, text=True, encoding="utf-8",
+        env={**os.environ, "CLAUDE_PROJECT_DIR": str(proj)},
+    )
+    assert r3.returncode == 0, r3.stderr
+    out3 = json.loads(r3.stdout) if r3.stdout.strip() else {}
+    assert "路径注入" in out3.get("hookSpecificOutput", {}).get("additionalContext", ""), "match 命中须注入"
+
+
+def test_pre_commit_matches_current_skills():
+    """提交挡板回归:pre-commit 的断链段恰覆盖当前规则面(skill 壳树加 hook_rules 树),引用路径全在。
+
+    历史:批 81 删 skill 后 CI 悬空引用漏改而红;批 176 知识面迁 hook_rules(ADR-0027),断链段随翻。
     """
     text = (REPO / "githooks" / "pre-commit").read_text(encoding="utf-8")
     guard_ref = "plugins/dev/scripts/md-guard.py"
@@ -530,10 +608,13 @@ def test_pre_commit_matches_current_skills():
     assert term_ref in text, f"pre-commit 须挂 {term_ref}(批 175 术语挡板)"
     assert (REPO / term_ref).is_file(), f"pre-commit 挂的术语挡板不存在: {term_ref}"
     targets = sorted(re.findall(r"md-ref-scan\.py (\S+)", text))
-    expected = sorted(f"plugins/{p}/skills/{s}" for p, ss in SKILLS.items() for s in ss)
-    assert targets == expected, f"断链段与 SKILLS 漂移:挡板 {targets} 对清单 {expected}"
+    expected = sorted(
+        [f"plugins/{p}/skills/{s}" for p, ss in SKILLS.items() for s in ss]
+        + [f"plugins/{p}/hook_rules/{sub}" for p in PLUGIN_NAMES for sub in ("intents", "dev-rules")]
+    )
+    assert targets == expected, f"断链段与规则面漂移:挡板 {targets} 对清单 {expected}"
     for t in targets:
-        assert (REPO / t).is_dir(), f"断链段引用的 skill 目录不存在: {t}"
+        assert (REPO / t).is_dir(), f"断链段引用的目录不存在: {t}"
 
 
 def test_ci_workflow_refs_exist():

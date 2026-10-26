@@ -1,6 +1,6 @@
 # docs 地图
 
-> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、research 存研究档案;过程轨迹(日记)继续落 diary/,形态权威已迁 `../plugins/evo/skills/distil/references/trajectories.md`;skill 知识库在 `plugins/<插件>/skills/` 下(两插件十四 skill)。
+> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、research 存研究档案;skill 知识面批 176 起在插件 `hook_rules/`(薄壳指路,ADR-0027)。
 
 | 文档 | 讲什么 | 何时看 |
 |------|--------|--------|
@@ -29,33 +29,9 @@
 | `research/S020-gwlogs术语挖词与词表基线.md` | gw_logs 对话语料术语挖词与仓内基线(termrules 两层词表与 term-lint 出处) | 复核术语表口径或再挖词时 |
 | `sources/README.md` | sources 唯一出处层索引(diary 与 external 两根,ADR-0021) | 查出处件留底与 trace 引文时 |
 | `diary/2026-09-08-bh与reader使用过程.md` | 轨迹样例(写法权威在 distil 轨迹篇) | 写轨迹前对照格式时 |
-| `../plugins/dev/skills/dev-doc/SKILL.md` | 文档治理与静态检查知识本体(意图路由与形态速览) | 使用/修改 skill 前 |
-| `../plugins/dev/skills/dev-doc/references/README.md` | 参考索引(10 篇全量与快速路由) | 找治理或静检参考时先看 |
-| `../plugins/dev/skills/dev-doc/references/base-adr.md` | ADR 模板、状态机、supersede 流 | 立 ADR 时 |
-| `../plugins/dev/skills/dev-doc/references/base-req.md` | REQ 状态机与 trace 回填 | 立需求时 |
-| `../plugins/dev/skills/dev-doc/references/base-code-doc.md` | 代码 doc 注释契约与文档即代码(单一权威源、投影再生成) | 立代码契约注释或投影守卫时 |
-| `../plugins/dev/skills/dev-doc/references/base-research.md` | 研究档案形态(S 编号一题一篇、六态结论、对照分流) | 立研究档案时 |
-| `../plugins/dev/skills/dev-doc/references/tool-project-kit.md` | 项目工具链范式(工具归档、PEP 723 零依赖 uv 直跑、门禁与发布) | 建项目工具骨架时 |
-| `../plugins/dev/skills/dev-doc/references/md-faces.md` | md 五面静检(skill/agents/claude markdown、禁字、断链、行量与门禁接线) | 配 md 静检时 |
-| `../plugins/dev/skills/dev-doc/references/term-rules.md` | 约束术语表 lint(两层政策、term-lint 用法、豁免通道、挖词程序) | 配术语门禁或挖词时 |
-| `../plugins/dev/skills/dev-doc/references/ls-types.md` | 四类型结构模板卡(TS CLI、知识三层、worker 服务、Python 工具) | 新仓选类型时 |
-| `../plugins/dev/skills/dev-doc/references/ls-rules.md` | 结构 lint 声明式规则件(toml 六节表式) | 写结构规则件时 |
-| `../plugins/dev/skills/dev-doc/references/ls-evals.md` | 结构 lint 触发场景 | 判断何时结构面时 |
-| `../plugins/dev/skills/dev-cli/SKILL.md` | Agent 原生友好开发指导(原 doc-cli)(五件与舰队公约速览、意图路由) | 造或改 agent 友好 CLI 时 |
-| `../plugins/dev/skills/dev-cli/references/agent-face.md` | Agent 友好 CLI 五件(手册面、CTA 协议、帮助面、自省、裸调用) | 配 CLI agent 面时 |
-| `../plugins/dev/skills/dev-cli/references/tool-cli-agents.md` | agent-native CLI 设计(发现通道、token 经济学、脚本 workspace) | 定发现通道与 token 面时 |
+| `../plugins/dev/hook_rules/intents/` | dev 意图注入件六枚(dev-cli 面、ADR/REQ、研究档案、doc 注释、工具链) | 改治理与静检知识时 |
+| `../plugins/dev/hook_rules/dev-rules/` | dev 路径注入件四枚(md 纪律、术语纪律、结构面、骨架治理) | 改写 md/toml/合同时 |
+| `../plugins/evo/hook_rules/intents/` | evo 意图注入件 26 枚(十二域主件加拆件:坑、协作、契约、闸门、层结构、判例) | 改 evo 操作知识时 |
 | `../.tools/README.md` | 本仓自用脚本工具登记(md-ref-scan、init、check、scan) | 跑仓门禁或维护骨架模板时 |
 | `../.tools/verification/command-test-cases.md` | check 的等价 PowerShell 用例集(参数化 ProjectRoot) | 验证骨架合规时 |
-| `../plugins/evo/skills/distil/SKILL.md` | 技能自进化:三层聚合(sources 唯一出处层、knowledge 带版本双链知识、operations 标准技能与 how-to 手册,git 边界三选一,归档统一字母表),四步环蒸馏提案与合取闸门 | 把项目经验沉淀成 skill、迭代标准技能集时 |
-| `../plugins/evo/skills/agents/SKILL.md` | 消息域原语与七原语共享面枢纽:to 投递、wait 事件道、id 三产生式、命名标准 工作台-类型-编号、门控 v2 尾窗、信封 v2、status 四态、read 收件、在场与翻台 | 告诉或委派某 agent、找格读屏等回话、查在场时 |
-| `../plugins/evo/skills/shares/SKILL.md` | 文件域原语:put/get/to,内容哈希键 | 把文件共享给指定 agent、交付产物、取回共享时 |
-| `../plugins/evo/skills/streams/SKILL.md` | 流域原语:append/view/to,流即房间,fleet 回执主频道 | 往流交回执或广播、私信、回放续读时 |
-| `../plugins/evo/skills/tasks/SKILL.md` | 持久任务域原语:set/to,事件入流,远机零 ssh | 设别的格的持久任务、跨机委派目标时 |
-| `../plugins/evo/skills/pipes/SKILL.md` | 实时字节域原语:open/close/to,本机收对方发 | 要对方实时发字节、开实时管道时 |
-| `../plugins/evo/skills/ports/SKILL.md` | 端口域原语:任意节点端口转发映射(view/open/close/to,引擎 tailcat serve) | 开端口转发、让对方接入端口服务时 |
-| `../plugins/evo/skills/ctxs/SKILL.md` | 对话历史域原语:agent 请求全链检索(view/show/search,head 365 天正文 180 天) | 查历史对话、回溯细节、跨请求搜词时 |
-| `../plugins/evo/skills/mcps/SKILL.md` | MCP 目标域原语(第八原语,出站):view/tools/call/add/remove,骑 mcp2cli,无门控 | 驱动任意 MCP server、注册跨机 MCP 目标时 |
-| `../plugins/evo/skills/desks/SKILL.md` | 工位与窗格拓扑域原语:开台起格、分屏切tab、聚焦信任、拓扑真视图(prim 3.11 复数对齐) | 开工作台、起格分屏、切 tab、聚焦格、看拓扑时 |
-| `../plugins/evo/skills/machines/SKILL.md` | 机册域原语(原 nodes):herdr 机册、run/close/pane 直透、runtime 骑 ark | 注册管理舰队节点、指定窗格跑命令、对齐运行环境时 |
-| `../plugins/evo/skills/research/SKILL.md` | 检索域知识面:按研究目标路由通道(gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针;产出交棒 dev-doc 研究档案) | 调研主题、找库选型、学术检索、跨源对照搜索时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |
