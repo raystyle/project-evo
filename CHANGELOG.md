@@ -12,7 +12,7 @@
 - **双加载器**:intent-guidance.ts 与 dev-rules.ts(bun 直跑 .ts;坑位:String.fromCharCode 防换行炸、env 锚定防路径歪)dev 正源 evo 拷贝守卫字节等一;hooks.json 挂 UserPromptSubmit 加 PreToolUse,PostToolUse 禁令不破(批 105/174 律)
 - **守卫翻新**(裁定三):hooks 形态守卫重写(恰两事件、花括号形、statusMessage 英文短形)、hook_rules 树扫描测(frontmatter 与正文非空、禁字与术语清零、计数断言)、pre-commit 断链段加两子树、加载器实弹测(38 测全绿);SINGLE_FILE_SKILLS 与 references 必须断言退役
 - **活面全同步**:AGENTS 定位与断链行、根 README 配置与 Kimi 节(拷 skills 加 hook_rules)、docs 地图、gates、双插件 README、双 manifest 与市场清单描述;dev 升 0.18.0、evo 升 0.20.0
-- 批内待验:kimi additionalContext 实测与 codex/grok 注入面核验(舰队端)
+- 批内待验收口:kimi additionalContext 已验不支持(源码与官方 issue #4255,Kimi 端恒走壳直读道无破坏);codex/grok 注入面核验(舰队端)
 
 ### 变更 2026-10-26 第一百七十五批:doc-gov 与 dev-lint 合一 dev-doc,约束术语表 lint 立 PE-13（ADR-0026,REQ-064）
 

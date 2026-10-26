@@ -25,6 +25,6 @@ date: 2026-10-26
 ## 后果
 
 - 知识注入即所得:意图命中或路径命中才注入,常驻上下文只余薄壳 description;非 hook 端读同源 md,知识零失效。
-- 双端加载差异:Claude Code 端自动注入;Kimi 端拷 skills 加 hook_rules 靠壳指路(additionalContext 语义未验,批内列实测);codex/grok 支持面待舰队核验。
+- 双端加载差异:Claude Code 端自动注入;Kimi 端拷 skills 加 hook_rules 靠壳指路(additionalContext 已验不支持:源码 HookSpecificOutputSchema 不消费该字段,官方 issue #4255 open;若 kimi 端要注入须改道 UserPromptSubmit 纯文本 stdout 或 message 通道);codex/grok 支持面待舰队核验。
 - SKILL.md 正文退出市场历史可溯(git 史);新知识面变更入口 = hook_rules 加件或改件,蒸馏闸门管辖。
 - bun 依赖进插件前置(加载器 .ts 直跑);node 备道与 rust hook 面另属(pi-rs-plugins 承接)。
