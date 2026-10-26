@@ -24,3 +24,4 @@
 | S018 | [S018-rust交流波跨仓互鉴.md](S018-rust交流波跨仓互鉴.md) | rust 交流波跨仓互鉴:谁偷谁什么表(七仓晒单) | 进行中 2026-10-21(dctl、pi-rs 晒单待收) |
 | S019 | [S019-agent原生CLI标准聚合.md](S019-agent原生CLI标准聚合.md) | agent 原生 CLI 标准聚合(六仓票去重,10 必须 3 应该),吸收进 dev-cli 公约面(REQ-060) | 进行中 2026-10-21(pi-rs 票待收) |
 | S020 | [S020-gwlogs术语挖词与词表基线.md](S020-gwlogs术语挖词与词表基线.md) | gw_logs 对话语料术语挖词与仓内基线,产出 termrules 两层词表与 term-lint(REQ-064,ADR-0026) | 已完成 2026-10-26 |
+| S021 | [S021-术语扩表双源协作挖词.md](S021-术语扩表双源协作挖词.md) | 术语扩表双源协作挖词(CH 块频加 ctxs 例句,与 search-harness 工位),扩表 ENFORCED 28 词 PENDING 12 词,域词白名单立(REQ-066) | 已完成 2026-10-26 |
