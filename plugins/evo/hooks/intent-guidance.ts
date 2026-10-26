@@ -5,6 +5,12 @@
 // 加规则 = 加 md 件,本脚本零改;坑位:字面量换行用 String.fromCharCode(10),路径 env 锚定
 import { join } from "node:path";
 import { readdir } from "node:fs/promises";
+import { z } from "zod";
+
+// 输入面 schema 校验(zod,批 176 后续用户令):非法定形降级空处理,不裸 as 断言
+const InputSchema = z.object({
+  prompt: z.string().optional(),
+}).loose();
 
 const NL = String.fromCharCode(10);
 // 双层树:项目树 .claude/hook_rules/(先,项目优先)加插件树 hook_rules/(后),合并注入
@@ -17,8 +23,15 @@ if (process.env.CLAUDE_PLUGIN_ROOT) {
 }
 if (ruleDirs.length === 0) ruleDirs.push(join(import.meta.dir, "..", "hook_rules", "intents"));
 
-const input = await Bun.stdin.json() as { prompt?: string };
-const prompt = (input.prompt || "").toLowerCase();
+let raw: unknown = {};
+try {
+  raw = await Bun.stdin.json();
+} catch {
+  process.exit(0);  // 非法 JSON 降级空处理(载荷宽容,异形放行)
+}
+const parsed = InputSchema.safeParse(raw);
+if (!parsed.success) process.exit(0);
+const prompt = (parsed.data.prompt || "").toLowerCase();
 
 function parseFrontmatter(text: string): { fm: Record<string, string>; body: string } {
   const m = text.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/);
