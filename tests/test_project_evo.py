@@ -27,7 +27,7 @@ SKILLS = {
 }
 HOOK_RULES = {  # 批 176 知识面:skill 壳指路,知识本体在 hook_rules(ADR-0027)
     "dev": {"intents": 6, "dev-rules": 4},
-    "evo": {"intents": 26, "dev-rules": 0},
+    "evo": {"intents": 27, "dev-rules": 0},
 }
 
 
