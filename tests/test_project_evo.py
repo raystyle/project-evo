@@ -490,29 +490,13 @@ def test_live_md_hook_stays_removed():
 
 
 def test_hook_loaders_wired_and_isolated():
-    """批 176 注入面守卫(dev 侧不变)+ 2026-11-09 evo 注入面剔除守卫:
-    dev 双挂 UserPromptSubmit + PreToolUse(Edit|Write) 花括号形、statusMessage 英文短形带前缀;
-    evo hooks.json 须为空装配(用户令剔除两 hook,知识面保留 hook_rules 树供技能直读)。"""
-    dev_hooks = json.loads((PLUGINS["dev"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
-    events = dev_hooks.get("hooks", {})
-    assert set(events) == {"UserPromptSubmit", "PreToolUse"},         f"dev hooks.json 须恰挂 UserPromptSubmit + PreToolUse(批 176),实际 {sorted(events)}"
-    for group in events["PreToolUse"]:
-        assert group.get("matcher") == "Edit|Write", "dev PreToolUse 须限 Edit|Write"
-    for ev, groups in events.items():
-        for g in groups:
-            for h in g["hooks"]:
-                cmd = h.get("command", "")
-                assert "${CLAUDE_PLUGIN_ROOT}" in cmd, f"dev {ev} 须花括号形: {cmd}"
-                assert "$env:" not in cmd, "dev 禁 PowerShell 语法"
-                msg = h.get("statusMessage", "")
-                assert msg.startswith("dev "), f"dev statusMessage 须带插件前缀: {msg}"
-                title = msg.removeprefix("dev ")
-                assert re.fullmatch(r"[a-z0-9-]+", title), f"dev statusMessage 段名须英文短形: {msg}"
-    evo_hooks = json.loads((PLUGINS["evo"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
-    assert not evo_hooks.get("hooks"),         "evo hooks.json 须空装配(2026-11-09 用户令剔除注入面;知识面 hook_rules 树保留)"
-    for f in ("intent-guidance.ts", "dev-rules.ts"):
-        assert (PLUGINS["dev"] / "hooks" / f).is_file(), f"dev 加载器缺失: {f}"
-        assert not (PLUGINS["evo"] / "hooks" / f).exists(),             f"evo 加载器须删(注入面剔除): {f}"
+    """2026-11-09 注入面全剔守卫(用户令):两插件 hooks.json 均须空装配、加载器均须删;
+    知识面 hook_rules 树保留供技能直读(ADR-0027 知识本体不废,只废注入道)。"""
+    for name in PLUGIN_NAMES:
+        hooks = json.loads((PLUGINS[name] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+        assert not hooks.get("hooks"),             f"{name} hooks.json 须空装配(2026-11-09 用户令剔除注入面;知识面 hook_rules 树保留)"
+        for f in ("intent-guidance.ts", "dev-rules.ts"):
+            assert not (PLUGINS[name] / "hooks" / f).exists(),                 f"{name} 加载器须删(注入面剔除): {f}"
 
 def test_hook_rules_tree_valid():
     """批 176 规则面守卫:两插件 hook_rules 树 frontmatter 校验(intents patterns 非空、dev-rules
@@ -549,49 +533,6 @@ def test_hook_rules_tree_valid():
                 assert not trm.file_term_violations(text), f"{f.relative_to(REPO)} 约束术语违规"
         assert counts == HOOK_RULES[name], \
             f"{name} hook_rules 计数漂移: 实际 {counts} 对断言 {HOOK_RULES[name]}"
-
-
-def test_hook_loader_live_fire(tmp_path):
-    """批 176 加载器实弹:tmp 项目树起样例规则,intent-guidance 按词表命中注入、dev-rules 按路径注入;
-    无 bun 则 skip(分型 bun 主道)。"""
-    import shutil
-    bun = shutil.which("bun")
-    if not bun:
-        import pytest
-        pytest.skip("bun 不在 PATH(分型 bun 主道),跳过实弹")
-    proj = tmp_path / "proj"
-    (proj / ".claude" / "hook_rules" / "intents").mkdir(parents=True)
-    (proj / ".claude" / "hook_rules" / "intents" / "样例.md").write_text(
-        "---\npatterns: [网关, gateway]\n---\n\n## 样例注入\n\n- 样例行\n", encoding="utf-8")
-    r = subprocess.run(
-        [bun, str(PLUGINS["dev"] / "hooks" / "intent-guidance.ts")],
-        input=json.dumps({"prompt": "帮我看网关"}),
-        capture_output=True, text=True, encoding="utf-8",
-        env={**os.environ, "CLAUDE_PROJECT_DIR": str(proj)},
-    )
-    assert r.returncode == 0, r.stderr
-    out = json.loads(r.stdout) if r.stdout.strip() else {}
-    ctx = out.get("hookSpecificOutput", {}).get("additionalContext", "")
-    assert "样例注入" in ctx, "词表命中须注入正文"
-    r2 = subprocess.run(
-        [bun, str(PLUGINS["dev"] / "hooks" / "intent-guidance.ts")],
-        input=json.dumps({"prompt": "无关提示"}),
-        capture_output=True, text=True, encoding="utf-8",
-        env={**os.environ, "CLAUDE_PROJECT_DIR": str(proj)},
-    )
-    assert r2.returncode == 0 and not r2.stdout.strip(), "未命中不得有输出"
-    (proj / ".claude" / "hook_rules" / "dev-rules").mkdir(parents=True)
-    (proj / ".claude" / "hook_rules" / "dev-rules" / "样例路径.md").write_text(
-        "---\nmatch: /docs/\n---\n\n## 路径注入\n\n- 路径行\n", encoding="utf-8")
-    r3 = subprocess.run(
-        [bun, str(PLUGINS["dev"] / "hooks" / "dev-rules.ts")],
-        input=json.dumps({"tool_name": "Edit", "tool_input": {"file_path": "/x/docs/页.md"}}),
-        capture_output=True, text=True, encoding="utf-8",
-        env={**os.environ, "CLAUDE_PROJECT_DIR": str(proj)},
-    )
-    assert r3.returncode == 0, r3.stderr
-    out3 = json.loads(r3.stdout) if r3.stdout.strip() else {}
-    assert "路径注入" in out3.get("hookSpecificOutput", {}).get("additionalContext", ""), "match 命中须注入"
 
 
 def test_pre_commit_matches_current_skills():

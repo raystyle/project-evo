@@ -11,4 +11,4 @@ description: >-
   不要用于运行时行为验证、与文档治理无关的代码实现或一次性脚本。
 ---
 
-规则面已转 hook_rules(意图注入与路径注入);注入未发生时(非 Claude 端或 hook 缺位)直读 `plugins/dev/hook_rules/` 下同名与拆件。
+知识面在本插件 hook_rules(技能直读):按需直读 `plugins/dev/hook_rules/` 下同名与拆件(注入面 2026-11-09 用户令剔除)。
