@@ -69,3 +69,4 @@
 | REQ-063 | implemented | must | desk 更名 desks 复数对齐与拓扑真视图入面(prim 3.11.0 同步,批174) | tests/test_project_evo.py |
 | REQ-064 | implemented | must | 约束术语表 lint 与 dev-doc 合一(term-lint 面 PE-13,批175) | tests/test_project_evo.py |
 | REQ-065 | implemented | must | 十四 skill 知识面翻 hook_rules(薄壳指针与双加载器,批176) | tests/test_project_evo.py |
+| REQ-066 | implemented | must | 注入加载器与 distil 技能退役(批178,壳直读) | tests/test_project_evo.py |

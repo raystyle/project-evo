@@ -4,6 +4,14 @@
 
 ## [Unreleased]
 
+### 移除 2026-11-09 第一百七十八批:distil 技能退役,知识面壳直读定形收尾（ADR-0028,REQ-066;与总台注入面剔除两批合流）
+
+- **注入面剔除**(总台先批 3d0fb88 与 43fea40,用户令 2026-11-09):两插件 hooks.json 空装配、双 bun 加载器(intent-guidance.ts、dev-rules.ts)删;知识面 hook_rules 树保留供技能直读;本批补齐 AGENTS 与 README 的批 178 表述与 ADR/REQ 立档
+- **distil 技能退役**(本批主体,用户令):skill 目录与六枚 hook_rules 知识件(distil、distil-loop、distil-gate、distil-layers、distil-trajectories、distil-backends)删除;三层聚合方法论存档 S014 与 S015 及 git 史;skill-spec B18 闸门机检面改纪律条(评审承担)
+- **守卫计数同步**:SKILLS 清单(evo 十一)与 HOOK_RULES 计数(evo intents 27 减 21)与原语例外集同步;pre-commit 断链段去 distil 树
+- **活面同步**:AGENTS 定位与环境节、根 README 配置与表格与尾段、双插件 README、docs 地图、gates 计数、skill-spec、evo 双 manifest 与市场清单描述(去 distil,十二改十一)
+- 版本随总台批:dev 0.19.0、evo 0.21.0;门禁全绿(五道)
+
 ### 变更 2026-10-26 第一百七十六批:十四 skill 知识面翻 hook_rules,薄壳指针与双 bun 注入加载器（ADR-0027,REQ-065）
 
 - **蒸馏体系翻转**(总台用户裁定):知识沉淀从 SKILL.md 常驻面改 hook rule 按需注入(token 经济学);distil 产出物 = 标准 hook rule 集,闸门加 pattern 实弹验证判据(应触发至少一命中、近失零误命中)

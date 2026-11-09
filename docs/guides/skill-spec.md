@@ -1,7 +1,7 @@
 # skill 规范细则（agentskills 硬标准）
 
 > 本仓 skill 目录的硬性规范细则,从 AGENTS 下沉至此;AGENTS 只留合同速查。以 [agentskills 官方 spec](https://agentskills.io/specification) 为硬标准。
-> 两规范 = 2026-10-17 总台三人组合稿(总台令:evo 真源方起草 + grok 业界先例研究 + 总台终审);业界先例与口径分流档案见 `../research/S016-skill双规范业界先例对照.md`。条目尾标执行面:[静检] = md-guard/mdrules 或 md-ref-scan 机检;[守卫] = pytest 清单守卫;[闸门] = distil 合取闸门;[纪律] = 评审过程约束(暂未机检)。
+> 两规范 = 2026-10-17 总台三人组合稿(总台令:evo 真源方起草 + grok 业界先例研究 + 总台终审);业界先例与口径分流档案见 `../research/S016-skill双规范业界先例对照.md`。条目尾标执行面:[静检] = md-guard/mdrules 或 md-ref-scan 机检;[守卫] = pytest 清单守卫;[闸门] = distil 合取闸门(distil 批 178 退役,现由评审承担);[纪律] = 评审过程约束(暂未机检)。
 > 治理层追加声明:规范无强制正文节序,本仓节序、description ≤400、行量双带皆为治理层追加,不是业界已有硬标准;追加理由与业界口径见 S016。
 
 ## 规范 A:SKILL 语言约束
@@ -29,7 +29,7 @@
 |------|------|--------|
 | B1 | 仅官方字段:name 与 description 必填;可选 license、compatibility(≤500 字符)、metadata(字符串映射)、allowed-tools(实验,空格分隔);产品页扩展字段(when_to_use、argument-hint、paths、disable-model-invocation)禁入跨端技能(Claude 端静默忽略、校验器拒);起始 `---` 必须是文件首行;禁 version/argument-hint 等非官方字段,版本走 git tag/release | [静检:md-faces] |
 | B2 | name 硬标准:1-64 字符,小写字母/数字/连字符,不首尾连字符、不连续连字符,必须等于目录名 | [静检:md-faces] |
-| B3 | 目录名 = 命令名全词复数形(kubectl 裁定;原语域面:agents/shares/streams/tasks/pipes/ports/ctxs/mcps/nodes;非命令面如 distil 例外);命令正名时目录与 name 字段同批同步、全引用面扫净 | [守卫:目录-命令对齐] |
+| B3 | 目录名 = 命令名全词复数形(kubectl 裁定;原语域面:agents/shares/streams/tasks/pipes/ports/ctxs/mcps/nodes;非命令面例外,如 research);命令正名时目录与 name 字段同批同步、全引用面扫净 | [守卫:目录-命令对齐] |
 
 ### 正文骨架
 
@@ -59,7 +59,7 @@
 |------|------|--------|
 | B16 | 变更完整性:改 skill 必同步 references 索引、docs 地图与 CHANGELOG;两插件双 manifest(Claude/Codex 面)字段同步、同版本线,Claude 市场条目版本一致 | [守卫:清单一致性] |
 | B17 | 命令实证准入:写进 SKILL.md 的命令当会真跑过(ADR-0010 构造纪律) | [纪律] |
-| B18 | 标准面变更过 distil 合取闸门三条:既有门禁无回归;至少一条点名失败义务翻转为过;标准页链到有 sources 的知识页。知识层永不回滚,标准层拒绝即回滚 | [闸门] |
+| B18 | 标准面变更过闸门三条:既有门禁无回归;至少一条点名失败义务翻转为过;标准页链到有 sources 的知识页。知识层永不回滚,标准层拒绝即回滚(distil 闸门机检面批 178 退役,改评审承担,ADR-0028) | [纪律] |
 
 ## 验收自检清单
 

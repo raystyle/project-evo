@@ -23,11 +23,11 @@ GUARD = PLUGINS["dev"] / "scripts" / "md-guard.py"
 LINT_HOOK = PLUGINS["dev"] / "scripts" / "lint-hook.py"
 SKILLS = {
     "dev": ["dev-cli", "dev-doc"],
-    "evo": ["agents", "ctxs", "desks", "distil", "machines", "mcps", "pipes", "ports", "research", "shares", "streams", "tasks"],
+    "evo": ["agents", "ctxs", "desks", "machines", "mcps", "pipes", "ports", "research", "shares", "streams", "tasks"],  # distil 批 178 退役(ADR-0028)
 }
 HOOK_RULES = {  # 知识面本体在 hook_rules(ADR-0027);evo 注入面 2026-11-09 剔除,树保留供技能直读
     "dev": {"intents": 6, "dev-rules": 4},
-    "evo": {"intents": 27, "dev-rules": 0},
+    "evo": {"intents": 21, "dev-rules": 0},  # distil 六件随技能退役(批 178)
 }
 
 
@@ -640,12 +640,12 @@ def test_no_stale_plugin_counts_in_live_surfaces():
 
 def test_evo_primitive_skill_dirs_align_with_commands():
     """B3 目录-命令对齐守卫(REQ-057;批 164 ctxs 正名判例):evo 原语域 skill 目录名
-    必须落在正典原语命令集内且为全词复数形;非命令面(渐进知识库型 distil、research)例外。
+    必须落在正典原语命令集内且为全词复数形;非命令面(渐进知识库型 research)例外。
     mcps/nodes 入真源时须有意识更新本正典集与 SKILLS 清单(REQ-058),静默漂移当场红灯。
     批 173 命名三分(REQ-062):nodes 更名 machines,desk 析出(desk 命令名单数形,复数律豁免)。
     批 174 复数对齐(REQ-063):desk 更名 desks(prim 3.11.0 主名,desk 留旧名单字别名)。"""
     canonical = {"agents", "shares", "streams", "tasks", "pipes", "ports", "ctxs", "mcps", "machines", "desks"}
-    primitives = set(SKILLS["evo"]) - {"distil", "research"}  # research 批 170 入列(REQ-059,渐进知识库型非命令面)
+    primitives = set(SKILLS["evo"]) - {"research"}  # research 批 170 入列(REQ-059);distil 批 178 退役
     assert primitives == canonical, \
         f"原语域目录对正典命令集漂移(改集须过 REQ,勿静默): {primitives ^ canonical}"
     for name in sorted(primitives):

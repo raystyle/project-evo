@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件十四 skill:`dev`(开发治理面:dev-doc 文档治理与静态检查、dev-cli(原 doc-cli))、`evo`(agent 操作面:agents、desks、shares、streams、tasks、pipes、ports、ctxs、mcps、machines 十原语 skill 加 research 检索域与 distil;十原语 = 舰队互操作代理操作唯一面,herdr 技能已淘汰)。客户端显示 `<插件>:<skill>`。
+> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件十三 skill:`dev`(开发治理面:dev-doc 文档治理与静态检查、dev-cli(原 doc-cli))、`evo`(agent 操作面:agents、desks、shares、streams、tasks、pipes、ports、ctxs、mcps、machines 十原语 skill 加 research 检索域;十原语 = 舰队互操作代理操作唯一面,herdr 技能已淘汰;distil 批 178 退役)。客户端显示 `<插件>:<skill>`。
 
 ## 安装
 
@@ -36,7 +36,7 @@ Kimi          重新拷 plugins/<插件>/skills/*
 - 私有仓认证:标准 git 凭据(credential helper 或 ssh-agent),与终端 git 行为一致
 - 钉版:Claude Code `raystyle/project-evo@v0.15.0`(或 URL 尾 `#v0.15.0`);Codex `--ref v0.15.0`(下一封版后同理)
 - md 禁字与术语表挡板:提交挡板脚本在插件级 `scripts/`(md-guard 禁字、term-lint 约束术语;走 pre-commit --staged;规则唯一权威 `mdrules.py` 与 `termrules.py`,与 skill 解耦)
-- hook_rules 注入面(批 176):知识本体在插件 `hook_rules/`(intents 意图注入 + dev-rules 路径注入),插件 hooks 挂两枚 bun 加载器(UserPromptSubmit + PreToolUse);SKILL.md 为薄壳指针,非 hook 端直读 hook_rules md
+- hook_rules 知识面(批 176 起;2026-11-09 用户令注入面剔除):知识本体在插件 `hook_rules/`(intents 意图件 + dev-rules 路径件),SKILL.md 为薄壳指针,各端一律壳直读;批 176 起曾挂两枚 bun 注入加载器(UserPromptSubmit + PreToolUse),已删,hooks.json 留空装配
 - 扫描豁免:本仓 `.tools/scan.py` 的误报走环境变量 `PEVO_SCAN_ALLOW`(分号分隔正则,匹配 文件:行)
 
 ## 插件与 SKILL 介绍
@@ -56,9 +56,8 @@ Kimi          重新拷 plugins/<插件>/skills/*
 | evo | `desks` | 工位与窗格拓扑域原语:开工作台、起停格、分屏切tab、聚焦、信任放行、拓扑真视图(prim 3.11 复数对齐,原 desk 留单字别名) | 开工作台、起格分屏、切 tab、聚焦格、放行信任屏、看窗台工位分组拓扑时 |
 | evo | `machines` | 机册域原语(原 nodes):herdr 机册管理、原始窗格操作(run/close/pane 直透)、runtime 环境面(骑 ark) | 注册或管理舰队节点、在指定节点窗格跑命令、环境对齐时 |
 | evo | `research` | 检索域知识面:按研究目标路由通道(gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针) | 调研主题、找库选型、学术检索、跨源对照搜索时 |
-| evo | `distil` | 技能自进化(原 distil-skill):三层聚合、一案提案、合取闸门 | 把项目经验沉淀成 skill 时 |
 
-装 dev 即得 md 禁字与术语表挡板脚本与 hook_rules 注入面(插件级,与 skill 解耦);本仓自用骨架工具(init/check/scan 与模板)在仓根 `.tools/`,不随插件分发。结构沿革(旧多插件形态收敛、裁撤与改名映射)见 ADR-0025、ADR-0026 与 ADR-0027。
+装 dev 即得 md 禁字与术语表挡板脚本与 hook_rules 知识面(插件级,与 skill 解耦);本仓自用骨架工具(init/check/scan 与模板)在仓根 `.tools/`,不随插件分发。结构沿革(旧多插件形态收敛、裁撤与改名映射)见 ADR-0025、ADR-0026、ADR-0027 与 ADR-0028。
 
 ## 环境前提
 
