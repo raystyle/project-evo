@@ -25,7 +25,7 @@ SKILLS = {
     "dev": ["dev-cli", "dev-doc"],
     "evo": ["agents", "ctxs", "desks", "distil", "machines", "mcps", "pipes", "ports", "research", "shares", "streams", "tasks"],
 }
-HOOK_RULES = {  # 批 176 知识面:skill 壳指路,知识本体在 hook_rules(ADR-0027)
+HOOK_RULES = {  # 知识面本体在 hook_rules(ADR-0027);evo 注入面 2026-11-09 剔除,树保留供技能直读
     "dev": {"intents": 6, "dev-rules": 4},
     "evo": {"intents": 27, "dev-rules": 0},
 }
@@ -364,7 +364,7 @@ def test_termrules_table_sanity():
             head = text.split("---")[1]
             declared = next(l.split(":", 1)[1].strip() for l in head.splitlines() if l.startswith("name:"))
             assert declared == sname, f"frontmatter name({declared}) 须与目录名({sname})一致"
-            assert "hook_rules" in text, f"{sname}/SKILL.md 薄壳缺 hook_rules 指路行(批 176)"
+            assert "hook_rules" in text, f"{sname}/SKILL.md 薄壳缺 hook_rules 指路行"
 
     for v in versions:
         parts = tuple(int(x) for x in v.split("."))
@@ -490,32 +490,29 @@ def test_live_md_hook_stays_removed():
 
 
 def test_hook_loaders_wired_and_isolated():
-    """批 176 注入面守卫:两插件各挂 UserPromptSubmit + PreToolUse(Edit|Write),命令花括号形;
-    statusMessage 英文短形带插件前缀;加载器双拷贝字节等一(dev 正源,evo 拷贝,双 manifest 同步先例)。"""
-    for name in PLUGIN_NAMES:
-        plugin = PLUGINS[name]
-        hooks = json.loads((plugin / "hooks" / "hooks.json").read_text(encoding="utf-8"))
-        events = hooks.get("hooks", {})
-        assert set(events) == {"UserPromptSubmit", "PreToolUse"}, \
-            f"{name} hooks.json 须恰挂 UserPromptSubmit + PreToolUse(批 176),实际 {sorted(events)}"
-        for group in events["PreToolUse"]:
-            assert group.get("matcher") == "Edit|Write", f"{name} PreToolUse 须限 Edit|Write"
-        for ev, groups in events.items():
-            for g in groups:
-                for h in g["hooks"]:
-                    for field in ("command",):
-                        cmd = h.get(field, "")
-                        assert "${CLAUDE_PLUGIN_ROOT}" in cmd, f"{name} {field} 须花括号形: {cmd}"
-                        assert "$env:" not in cmd, f"{name} {field} 禁 PowerShell 语法"
-                    msg = h.get("statusMessage", "")
-                    assert msg.startswith(f"{name} "), f"{name} statusMessage 须带插件前缀: {msg}"
-                    title = msg.removeprefix(f"{name} ")
-                    assert re.fullmatch(r"[a-z0-9-]+", title), f"{name} statusMessage 段名须英文短形: {msg}"
+    """批 176 注入面守卫(dev 侧不变)+ 2026-11-09 evo 注入面剔除守卫:
+    dev 双挂 UserPromptSubmit + PreToolUse(Edit|Write) 花括号形、statusMessage 英文短形带前缀;
+    evo hooks.json 须为空装配(用户令剔除两 hook,知识面保留 hook_rules 树供技能直读)。"""
+    dev_hooks = json.loads((PLUGINS["dev"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+    events = dev_hooks.get("hooks", {})
+    assert set(events) == {"UserPromptSubmit", "PreToolUse"},         f"dev hooks.json 须恰挂 UserPromptSubmit + PreToolUse(批 176),实际 {sorted(events)}"
+    for group in events["PreToolUse"]:
+        assert group.get("matcher") == "Edit|Write", "dev PreToolUse 须限 Edit|Write"
+    for ev, groups in events.items():
+        for g in groups:
+            for h in g["hooks"]:
+                cmd = h.get("command", "")
+                assert "${CLAUDE_PLUGIN_ROOT}" in cmd, f"dev {ev} 须花括号形: {cmd}"
+                assert "$env:" not in cmd, "dev 禁 PowerShell 语法"
+                msg = h.get("statusMessage", "")
+                assert msg.startswith("dev "), f"dev statusMessage 须带插件前缀: {msg}"
+                title = msg.removeprefix("dev ")
+                assert re.fullmatch(r"[a-z0-9-]+", title), f"dev statusMessage 段名须英文短形: {msg}"
+    evo_hooks = json.loads((PLUGINS["evo"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
+    assert not evo_hooks.get("hooks"),         "evo hooks.json 须空装配(2026-11-09 用户令剔除注入面;知识面 hook_rules 树保留)"
     for f in ("intent-guidance.ts", "dev-rules.ts"):
-        a = (PLUGINS["dev"] / "hooks" / f).read_bytes()
-        b = (PLUGINS["evo"] / "hooks" / f).read_bytes()
-        assert a == b, f"加载器双拷贝漂移(唯一权威 dev 正源,evo 须同步): {f}"
-
+        assert (PLUGINS["dev"] / "hooks" / f).is_file(), f"dev 加载器缺失: {f}"
+        assert not (PLUGINS["evo"] / "hooks" / f).exists(),             f"evo 加载器须删(注入面剔除): {f}"
 
 def test_hook_rules_tree_valid():
     """批 176 规则面守卫:两插件 hook_rules 树 frontmatter 校验(intents patterns 非空、dev-rules
@@ -529,9 +526,11 @@ def test_hook_rules_tree_valid():
     _sys.path.insert(0, str(PLUGINS["dev"] / "scripts"))
     trm = _ilu.module_from_spec(tspec)
     tspec.loader.exec_module(trm)
+    # evo 树只含 intents(dev-rules 是 dev 插件专属,evo 注入面剔除后不再要求)
+    tree_subs = {"dev": ("intents", "dev-rules"), "evo": ("intents",)}
     for name in PLUGIN_NAMES:
         counts = {"intents": 0, "dev-rules": 0}
-        for sub in ("intents", "dev-rules"):
+        for sub in tree_subs[name]:
             d = PLUGINS[name] / "hook_rules" / sub
             assert d.is_dir(), f"{name} 缺 hook_rules/{sub}"
             for f in sorted(d.glob("*.md")):
@@ -610,7 +609,7 @@ def test_pre_commit_matches_current_skills():
     targets = sorted(re.findall(r"md-ref-scan\.py (\S+)", text))
     expected = sorted(
         [f"plugins/{p}/skills/{s}" for p, ss in SKILLS.items() for s in ss]
-        + [f"plugins/{p}/hook_rules/{sub}" for p in PLUGIN_NAMES for sub in ("intents", "dev-rules")]
+        + [f"plugins/{p}/hook_rules/{sub}" for p in PLUGIN_NAMES for sub in (("intents", "dev-rules") if p == "dev" else ("intents",))]
     )
     assert targets == expected, f"断链段与规则面漂移:挡板 {targets} 对清单 {expected}"
     for t in targets:

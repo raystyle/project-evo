@@ -7,4 +7,4 @@ description: >-
   不要用于发消息与等回信(走 agents)或机册管理(走 machines)。
 ---
 
-规则面已转 hook_rules(意图注入与路径注入);注入未发生时(非 Claude 端或 hook 缺位)直读 `plugins/evo/hook_rules/` 下同名与拆件。
+知识面在本插件 hook_rules(技能直读):按需直读 `plugins/evo/hook_rules/` 下同名与拆件(注入面 2026-11-09 用户令剔除)。
