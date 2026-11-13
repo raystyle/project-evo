@@ -12,6 +12,13 @@
 - **活面同步**:AGENTS 定位与环境节、根 README 配置与表格与尾段、双插件 README、docs 地图、gates 计数、skill-spec、evo 双 manifest 与市场清单描述(去 distil,十二改十一)
 - 版本随总台批:dev 0.19.0、evo 0.21.0;门禁全绿(五道)
 
+### 变更 2026-10-26 第一百七十七批预研:术语扩表双源协作挖词,ENFORCED 与 PENDING 扩表与域词白名单（S021;需求线 REQ-066）
+
+- **双源协作**:与 search-harness 驻仓工位(lan-win-grok-1)双源挖词;本侧 ClickHouse 直连批量块频(慢道全量),grok 侧 ctxs search 快道(存在性加例句);合并规则 = CH 块频为准、grok 侧作存在性与例句,freq_source 双注(ch_blocks / ctxs_requests)
+- **termrules 扩表**:ENFORCED zh 扩 14 词、en 扩 14 词与短语同表;PENDING 扩 12 词;DOMAIN_ALLOW 域词白名单立(3 枚)
+- **termrules 双重赋值缺陷修复**(grok 交叉审出)
+- **S021 立档**(方法、分工、底表续 S020)
+
 ### 变更 2026-10-26 第一百七十六批:十四 skill 知识面翻 hook_rules,薄壳指针与双 bun 注入加载器（ADR-0027,REQ-065）
 
 - **蒸馏体系翻转**(总台用户裁定):知识沉淀从 SKILL.md 常驻面改 hook rule 按需注入(token 经济学);distil 产出物 = 标准 hook rule 集,闸门加 pattern 实弹验证判据(应触发至少一命中、近失零误命中)
