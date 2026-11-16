@@ -49,7 +49,9 @@ machines list/runtimes 别名退役、ctxs show 并入 view <id>、streams rooms
   加 streams 留痕。需求再现属上游命运表翻案,不在本仓复活。
 - 守卫同步:SKILLS 清单(evo 七)、HOOK_RULES 计数(evo intents 21 减 17)、
   正典原语集(六)、pre-commit 断链段、活面计数(九 skill)。
-- 上游缺陷记档(已回执 fleet):prim/src/prim/ctx.py 并法行漏传 g,
-  ctxs view <request_id> 实弹 TypeError;知识件按契约面书写,上游修复后即合。
+- 上游缺陷记档(已闭环):prim/src/prim/ctx.py 并法行漏传 g,ctxs view <request_id>
+  实弹 TypeError(批 179 滚装实弹揪出,回执 fleet);上游已修(herdr-ccoe 6ca7baa
+  补参),本端重装后实弹复验详情道全链返回与头行面、退役 stub 面均正常,
+  六入口 skills 验收通过(总台 2026-11-16)。
 - 六入口动词面以本机 PATH 上 prim --llms 为准(滚装 v5.0.0 实证);
   prim 分发由宿主工具链统一维护,skill 只认 PATH。
