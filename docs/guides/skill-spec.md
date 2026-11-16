@@ -51,7 +51,7 @@
 |------|------|--------|
 | B13 | references 每篇一主题自包含完整参考;三档 = pitfalls.md(现行坑反例)/rulings.md(日期现象结论档案)/obsolete.md(废止敲法),后两档正文不链 | [纪律] |
 | B14 | 标准布局 = SKILL.md(意图路由+速览)+ references/(分类扁平)+ verification/(命令行为);无 evals 层(渐进知识库型 skill 不做用例评估);实现代码放插件级 `scripts/` 或仓自用 `.tools/`(PEP 723 零依赖;禁字规则唯一权威在 dev 的 `scripts/mdrules.py`,check PE-11/scan/md-guard 三面同源);判断与步骤留 markdown | [纪律] |
-| B15 | 共享面单一权威源:跨域共享语义(id 三产生式、门控 v2、信封 v2、命名标准)只住 owner 面(七原语共享面 = agents),各域一行回链,禁双份并行维护 | [纪律] |
+| B15 | 共享面单一权威源:跨域共享语义(id 三产生式、门控 v2、信封 v2、命名标准)只住 owner 面(六入口共享面 = agents),各域一行回链,禁双份并行维护 | [纪律] |
 
 ### 变更与验收
 

@@ -1,5 +1,5 @@
 ---
-patterns: [寻址歧义, not_found, 拒投, 代记, 同名多格, hostname 回投, cursor, 尾读]
+patterns: [寻址歧义, not_found, 拒投, 代记, 同名多格, hostname 回投, cursor, 尾读, 旧动词]
 ---
 
 ## agents 现行坑指导
@@ -9,3 +9,4 @@ patterns: [寻址歧义, not_found, 拒投, 代记, 同名多格, hostname 回�
 - 拒投代记流键两形并存(实装 `room/deferred/<格 pane id>`、shell 旧流按收方名),补收两边都看;streams 域拒投不写流不保原文,要留消息走 `streams append` 或 `--force` 重发
 - from 机器段按目标感知(同机 local、跨机别名);同 cwd 多格 caller_addr 歧义不猜,按名寻址
 - 读流默认尾读 100 行(`-n N` 调,全量 `--from 0`);cursor 机内不共享,换机从 0 起
+- prim v5 旧动词勿再教:agents split/tab/zoom/wt 已退役(拓扑归 mod GUI,消息面同形动词走 agents 面)、machines list/runtimes/status 已退役、streams rooms/task 已退役、ctxs show 已并入 view <id>;调用回 usage 退 2 指新道

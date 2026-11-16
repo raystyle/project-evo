@@ -1,6 +1,6 @@
 # ProjectEvo
 
-> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件十三 skill:`dev`(开发治理面:dev-doc 文档治理与静态检查、dev-cli(原 doc-cli))、`evo`(agent 操作面:agents、desks、shares、streams、tasks、pipes、ports、ctxs、mcps、machines 十原语 skill 加 research 检索域;十原语 = 舰队互操作代理操作唯一面,herdr 技能已淘汰;distil 批 178 退役)。客户端显示 `<插件>:<skill>`。
+> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件九 skill:`dev`(开发治理面:dev-doc 文档治理与静态检查、dev-cli(原 doc-cli))、`evo`(agent 操作面:agents、desks、machines、streams、shares、ctxs 六原语 skill 加 research 检索域;六原语 = 舰队互操作代理操作唯一面,prim v5.0.0 六入口对齐,tasks/pipes/ports/mcps 批 179 退役)。客户端显示 `<插件>:<skill>`。
 
 ## 安装
 
@@ -45,19 +45,15 @@ Kimi          重新拷 plugins/<插件>/skills/*
 |------|-------|--------|--------|
 | dev | `dev-doc` | 文档治理与静态检查(原 doc-gov 与 dev-lint 合一):ADR 与 REQ 需求决策、代码 doc 注释契约、文档即代码、研究档案、工具链;md 静检与约束术语表 term-lint、四类型结构模板卡、门禁接线 | 立 ADR/REQ、立代码契约注释与文档即代码守卫、配静态检查与术语门禁、新仓脚手架时 |
 | dev | `dev-cli` | Agent 原生友好开发(原 doc-cli;批 176 知识面在插件 hook_rules,壳指路):--llms 手册面、类型化 CTA 输出协议、命令自省与漂移守卫、Rust CLI 舰队公约、发现通道与 token 经济学 | 配 CLI agent 面、为 agent 时代设计命令与工具面 |
-| evo | `agents` | 五原语消息域原语与共享面枢纽:to 投递、id 三产生式、命名标准(工作台-类型-编号)、门控 v2 尾窗、信封 v2、status 四态、read 收件、工位管理 | 告诉或委派某 agent、找格读屏等回话、开工作台调窗格布局、查在场时 |
+| evo | `agents` | 消息域原语与六入口共享面枢纽:to 投递、wait 事件道、inbox 收件、read 读屏、start/close/reload 生命周期、mode 在场、workbenches 工作台清点 | 告诉或委派某 agent、找格读屏等回话、起格开工作台、查在场时 |
 | evo | `shares` | 文件域原语:put/get/to,内容哈希键,拒投不丢件 | 传文件给指定 agent、交付产物、取回共享时 |
-| evo | `streams` | 流域原语:append/view/to,流即房间,fleet 回执主频道 | 往流交回执或广播、私信、回放续读时 |
-| evo | `tasks` | 持久任务域原语:set/to,事件入流,远机零 ssh | 设别的格的持久任务、跨机委派目标时 |
-| evo | `pipes` | 实时字节域原语:open/close/to,本机收对方发 | 要对方实时发字节、开实时管道时 |
-| evo | `ports` | 端口域原语:任意节点端口转发映射(view/open/close/to,引擎 tailcat serve;spec = 端口表/定点映射/all/exit-node;取用行 tailcat forward) | 开端口转发、映射远端端口、让对方接入端口服务时 |
-| evo | `ctxs` | 对话历史域原语:agent 请求全链检索(ClickHouse gw_logs;view 头行、show 单请求、search 全文;head 365 天正文 180 天) | 查历史对话、回溯对话细节、跨请求搜关键词、看请求开销时 |
-| evo | `mcps` | MCP 目标域原语:出站通用 MCP 客户端(view 健康、tools 面、call 调用、注册表管理),无门控 | 驱动任意 MCP server、查工具面、跨机调用工具时 |
-| evo | `desks` | 工位与窗格拓扑域原语:开工作台、起停格、分屏切tab、聚焦、信任放行、拓扑真视图(prim 3.11 复数对齐,原 desk 留单字别名) | 开工作台、起格分屏、切 tab、聚焦格、放行信任屏、看窗台工位分组拓扑时 |
-| evo | `machines` | 机册域原语(原 nodes):herdr 机册管理、原始窗格操作(run/close/pane 直透)、runtime 环境面(骑 ark) | 注册或管理舰队节点、在指定节点窗格跑命令、环境对齐时 |
+| evo | `streams` | 流域原语:增量消息,裸 view 房间清单、room/dm/view 读流/append/to,fleet 回执主频道 | 往流交回执或广播、私信、回放续读、列房间时 |
+| evo | `ctxs` | 对话历史域原语:agent 请求全链检索(ClickHouse gw_logs;view 头行与单请求全链、search 全文;head 365 天正文 180 天) | 查历史对话、回溯对话细节、跨请求搜关键词、看请求开销时 |
+| evo | `desks` | 工位拓扑兜底原语:view 工位表、start 起格、close 优雅退;树形拓扑归 mod GUI | 看工位表、起格、关格时 |
+| evo | `machines` | 机册域原语:册表与注册(view/add/reconnect)、窗格直透(run/close)、runtime 环境面(骑 ark) | 注册或管理舰队节点、在指定节点窗格跑命令、环境对齐时 |
 | evo | `research` | 检索域知识面:按研究目标路由通道(gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针) | 调研主题、找库选型、学术检索、跨源对照搜索时 |
 
-装 dev 即得 md 禁字与术语表挡板脚本与 hook_rules 知识面(插件级,与 skill 解耦);本仓自用骨架工具(init/check/scan 与模板)在仓根 `.tools/`,不随插件分发。结构沿革(旧多插件形态收敛、裁撤与改名映射)见 ADR-0025、ADR-0026、ADR-0027 与 ADR-0028。
+装 dev 即得 md 禁字与术语表挡板脚本与 hook_rules 知识面(插件级,与 skill 解耦);本仓自用骨架工具(init/check/scan 与模板)在仓根 `.tools/`,不随插件分发。结构沿革(旧多插件形态收敛、裁撤与改名映射)见 ADR-0025、ADR-0026、ADR-0027、ADR-0028 与 ADR-0029。
 
 ## 环境前提
 

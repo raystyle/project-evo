@@ -1,12 +1,11 @@
 ---
-patterns: [工位, 工作台, 窗台, 开台, 开格, 起格, 分屏, 切tab, 关格, 聚焦, 翻台, 信任屏, 拓扑, desks]
+patterns: [工位, 工位表, 拓扑, 看拓扑, 起格, 关格, 空格, desks, 分屏, 切tab, 聚焦, wt]
 ---
 
-## desks 工位与窗格拓扑操作指导
+## desks 工位拓扑操作指导(prim v5 三动词)
 
-- 开台:`desks ws <label> [--cwd DIR]`(按仓路径开工作台);起格:`desks start <名> --kind <类> [--cwd DIR]`;分屏:`desks split <id> --direction right|down`;切页:`desks tab <list|create|close>`;聚焦:`desks zoom <id>`
-- 拓扑真视图:`desks view`(窗台 w -> tab -> 工位 pane 三层分组,▍ 焦点工位,活动列 = 终端标题);`ws` 裸调用即列台
-- 命名契约四层:机册 label(herdr 真源)> workspace w 编号(唯一寻址键,label 是显示名非寻址键,禁斜杠形)> tab t 编号 > pane p 编号(尾缀字母系统指派无词义规则,角色槽不进寻址)
-- 寻址优先级:裸别名 > `机:别名` > `机:格`;方向词仅分裂时存在;无 focus/neighbor/layout 动词,空间关系从 view 人读
-- 坑:`ws list` 的 list 被当机标签(用 `ws` 裸调用列台);空 pane = 异常态须补 agent 或 close
-- 消息与等回信走 agents;机册管理走 machines;desk 为旧名单字别名
+- 三动词:`view [host]`(全量工位表:机/格/类/态/活动,裸调用同,--json 出行形)/ `start <名> --kind <类> [--cwd DIR] [--machine 机]`(起 agent,命名标准形校验)/ `close <id>`(优雅退场)
+- 空 pane = 异常态,须 `start` 补 agent 或 `close` 收格
+- 已退役(调用回 usage 退 2 指新道):split、tab、zoom、wt(树形拓扑归 herdr-app mod GUI);desk 单字别名删除;shell/dev/workbenches 等开台面走 agents 面(见 desks-workspace)
+- 寻址:裸别名 > `机:别名` > `机:格`;空间关系从 view 人读
+- 消息与等回信走 agents;机册管理走 machines

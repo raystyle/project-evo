@@ -32,3 +32,4 @@
 | ADR-0026 | accepted | doc-gov 与 dev-lint 合一为 dev-doc,语言面裁撤,约束术语表 lint 立 PE-13 | 2026-10-25 用户令,三项定制 |
 | ADR-0027 | accepted | 十四 skill 知识面翻 hook_rules,薄壳指针与双 bun 注入加载器 | 2026-10-26 总台三裁定放行 |
 | ADR-0028 | accepted | 注入加载器与 distil 技能退役,知识面壳直读定形 | 2026-11-09 用户令 |
+| ADR-0029 | accepted | evo 六入口对齐与四域退役,tasks/pipes/ports/mcps 出面 | 2026-11-16 上游 prim v5.0.0 定形(4e5006c) |

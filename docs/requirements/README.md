@@ -70,3 +70,4 @@
 | REQ-064 | implemented | must | 约束术语表 lint 与 dev-doc 合一(term-lint 面 PE-13,批175) | tests/test_project_evo.py |
 | REQ-065 | implemented | must | 十四 skill 知识面翻 hook_rules(薄壳指针与双加载器,批176) | tests/test_project_evo.py |
 | REQ-066 | implemented | must | 注入加载器与 distil 技能退役(批178,壳直读) | tests/test_project_evo.py |
+| REQ-067 | implemented | must | evo skills 六入口重写与四域退役(批 179,prim v5.0.0 对齐) | tests/test_project_evo.py |

@@ -4,6 +4,15 @@
 
 ## [Unreleased]
 
+### 变更 2026-11-16 第一百七十九批:evo skills 六入口重写与四域退役（ADR-0029,REQ-067;prim v5.0.0 六入口定形 4e5006c 总台令）
+
+- **六入口重写**:agents/desks/machines/streams/shares/ctxs 六 skill 壳与知识件按 prim v5.0.0 六面手册重写(manual.py 与金样为源):agents 十五动词(view/workbenches/read/to/wait/inbox/mode/start/close/reload/trust/yolo/run/shell/dev/keys)、desks 三动词兜底(view/start/close,树形拓扑归 mod GUI)、machines(view/add/reconnect/run/close/runtime)、shares 复活(view/put/get/to)、streams 增量消息(裸 view 房间清单/room/dm/view 读流/append/to)、ctxs(view 头行与 view <id> 单请求并法/search)
+- **四域退役(破坏性)**:tasks、pipes、ports、mcps 四 skill 目录与同名 intents 知识件删除;消费方卸载重装(evo 0.22.0);实时字节与端口映射 skill 面无后继(上游域消亡),日志切片走 streams --file,钉任务走 agents to
+- **动词标准全域统一随形**:machines list/runtimes/status 退役、ctxs show 并入 view <id>(--around/--window 保留)、streams rooms 并入裸 view、agents split/tab/zoom/wt 退役(归 mod GUI);退役可见化口径入 agents-pitfalls 坑件
+- **实证准入**:本端 prim 先滚装 v5.0.0(uv tool install,六入口脚本上 PATH),view 族/shares put/get 往返/streams 裸 view 清单与读流/退役 stub 退 2 逐面实跑;上游缺陷如实报 = prim/src/prim/ctx.py 并法行漏传 g(ctxs view <request_id> 实弹 TypeError),已回执 fleet 修向,知识件按契约面书写
+- **活面全同步**:AGENTS 定位与 Commands 与阶段行、根 README 定位与 skill 表、evo README、docs 地图、gates、skill-spec B15(七原语改六入口)、双 manifest 与市场清单(evo 0.22.0;dev 0.19.1 顺手修描述残留「双 bun 注入加载器」)、pre-commit 断链段;守卫同步 SKILLS(evo 七)与 HOOK_RULES(evo intents 17)与正典原语集(六)
+- 版图:两插件九 skill(dev 二加 evo 七 = 六原语加 research);五道门禁全绿
+
 ### 移除 2026-11-09 第一百七十八批:distil 技能退役,知识面壳直读定形收尾（ADR-0028,REQ-066;与总台注入面剔除两批合流）
 
 - **注入面剔除**(总台先批 3d0fb88 与 43fea40,用户令 2026-11-09):两插件 hooks.json 空装配、双 bun 加载器(intent-guidance.ts、dev-rules.ts)删;知识面 hook_rules 树保留供技能直读;本批补齐 AGENTS 与 README 的批 178 表述与 ADR/REQ 立档

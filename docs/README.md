@@ -31,7 +31,7 @@
 | `diary/2026-09-08-bh与reader使用过程.md` | 轨迹样例(档案;distil 批 178 退役) | 写轨迹前对照格式时 |
 | `../plugins/dev/hook_rules/intents/` | dev 意图注入件六枚(dev-cli 面、ADR/REQ、研究档案、doc 注释、工具链) | 改治理与静检知识时 |
 | `../plugins/dev/hook_rules/dev-rules/` | dev 路径注入件四枚(md 纪律、术语纪律、结构面、骨架治理) | 改写 md/toml/合同时 |
-| `../plugins/evo/hook_rules/intents/` | evo 意图知识件 21 枚(壳直读;批 178 注入加载器退役) | 改 evo 操作知识时 |
+| `../plugins/evo/hook_rules/intents/` | evo 意图知识件 17 枚(壳直读;批 178 注入加载器退役,批 179 六入口对齐) | 改 evo 操作知识时 |
 | `../.tools/README.md` | 本仓自用脚本工具登记(md-ref-scan、init、check、scan) | 跑仓门禁或维护骨架模板时 |
 | `../.tools/verification/command-test-cases.md` | check 的等价 PowerShell 用例集(参数化 ProjectRoot) | 验证骨架合规时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |
