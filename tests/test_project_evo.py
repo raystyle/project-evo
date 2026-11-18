@@ -16,19 +16,14 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-PLUGIN_NAMES = ("dev", "evo")
+PLUGIN_NAMES = ("evo",)  # dev 插件批 180 退役(ADR-0030),市场收敛单插件
 PLUGINS = {n: REPO / "plugins" / n for n in PLUGIN_NAMES}
 SCRIPTS = REPO / ".tools"
-GUARD = PLUGINS["dev"] / "scripts" / "md-guard.py"
-LINT_HOOK = PLUGINS["dev"] / "scripts" / "lint-hook.py"
+GUARD = SCRIPTS / "md-guard.py"  # 门禁脚本批 180 随 dev 插件退役迁 .tools
 SKILLS = {
-    "dev": ["dev-cli", "dev-doc"],
-    "evo": ["agents", "ctxs", "desks", "machines", "research", "shares", "streams"],  # 六原语加 research(prim v5 六入口,批 179;tasks/pipes/ports/mcps 退役)
+    "evo": ["ctxs", "pipes", "ports", "shares", "streams"],  # prim v5 五入口(批 180;agents/desks/machines/research 退役)
 }
-HOOK_RULES = {  # 知识面本体在 hook_rules(ADR-0027);evo 注入面 2026-11-09 剔除,树保留供技能直读
-    "dev": {"intents": 6, "dev-rules": 4},
-    "evo": {"intents": 17, "dev-rules": 0},  # distil 批 178 退役;四域 intents 批 179 随技能退役(21 减 17)
-}
+HOOK_RULES = None  # hook_rules 知识树批 180 二段令删除(知识面并回 SKILL.md 自含)
 
 
 def _load(name: str):
@@ -298,7 +293,7 @@ def test_check_pe13_term_allowlist(tmp_path: Path):
 
 def test_term_lint_exit_codes(tmp_path: Path):
     """term-lint 三态退出码:0 净 / 1 违规 / 2 无参用法错。"""
-    term_lint = PLUGINS["dev"] / "scripts" / "term-lint.py"
+    term_lint = SCRIPTS / "term-lint.py"
     clean = tmp_path / "clean.md"
     clean.write_text("干净一行\n", encoding="utf-8")
     dirty = tmp_path / "dirty.md"
@@ -317,7 +312,7 @@ def test_term_lint_exit_codes(tmp_path: Path):
 def test_termrules_table_sanity():
     """词表健全:四层 ENFORCED 表非空、键不跨表重复、PENDING 与 ENFORCED 不相交、修法非空。"""
     spec = importlib.util.spec_from_file_location(
-        "pevo_termrules", PLUGINS["dev"] / "scripts" / "termrules.py")
+        "pevo_termrules", SCRIPTS / "termrules.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     enforced = [mod.ZH_BANNED, mod.ZH_CHOICE, mod.EN_JARGON, mod.TERM_VARIANTS]
@@ -330,15 +325,19 @@ def test_termrules_table_sanity():
             assert w not in seen, f"跨表重复词: {w}"
             seen.add(w)
     assert not seen & set(mod.PENDING), f"ENFORCED 与 PENDING 相交: {seen & set(mod.PENDING)}"
-    """清单守卫:市场名 project-evo 收两插件、双清单一致、每插件双 manifest 与市场版本同步、
-    两插件独立 semver(0.13 起可混装,批 142)、skill 分属正确与 hook 面在位(ADR-0025 市场重构,dev 与 evo)。"""
+
+
+def test_skill_manifests_and_marketplace():
+    """清单守卫:市场名 project-evo 收单插件 evo(批 180,dev 退役)、双清单一致、
+    evo 双 manifest 与市场版本同步、skill 分属正确(ADR-0025 市场重构定形,
+    ADR-0030 收敛单插件)。"""
     claude_mkt = json.loads((REPO / ".claude-plugin" / "marketplace.json").read_text(encoding="utf-8"))
     codex_mkt = json.loads((REPO / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
     assert claude_mkt["name"] == codex_mkt["name"] == "project-evo", "市场名须为 project-evo"
 
     names_c = {p["name"] for p in claude_mkt["plugins"]}
     names_x = {p["name"] for p in codex_mkt["plugins"]}
-    assert names_c == names_x == set(PLUGIN_NAMES), f"市场恰收两插件(ADR-0025): {names_c}"
+    assert names_c == names_x == set(PLUGIN_NAMES), f"市场恰收插件集 {set(PLUGIN_NAMES)}(批 180 单插件): {names_c}"
     for p in claude_mkt["plugins"]:
         assert (REPO / p["source"].removeprefix("./")).is_dir(), f"Claude source 不可达: {p['source']}"
     for p in codex_mkt["plugins"]:
@@ -364,20 +363,18 @@ def test_termrules_table_sanity():
             head = text.split("---")[1]
             declared = next(l.split(":", 1)[1].strip() for l in head.splitlines() if l.startswith("name:"))
             assert declared == sname, f"frontmatter name({declared}) 须与目录名({sname})一致"
-            assert "hook_rules" in text, f"{sname}/SKILL.md 薄壳缺 hook_rules 指路行"
+            assert "--llms" in text, f"{sname}/SKILL.md 自含形缺 --llms 权威行(批 180 知识面并回)"
 
     for v in versions:
         parts = tuple(int(x) for x in v.split("."))
-        assert parts >= (0, 13), f"两插件独立 semver,起步线 0.13 可混装(grok 评审批 142): {v}"
+        assert parts >= (0, 23), f"evo semver 起步线 0.23(批 180 五入口收敛): {v}"
 
     tools = REPO / ".tools"
-    for s in ("init.py", "check.py", "scan.py", "md-ref-scan.py"):
+    for s in ("init.py", "check.py", "scan.py", "md-ref-scan.py",
+              "md-guard.py", "mdrules.py", "termrules.py",
+              "term-lint.py", "term-mine.py"):
         assert (tools / s).is_file(), f"仓工具缺失: {s}"
     assert (tools / "templates").is_dir(), ".tools 缺骨架模板目录"
-    plugin_scripts = PLUGINS["dev"] / "scripts"
-    for s in ("md-guard.py", "mdrules.py", "lint-hook.py",
-              "termrules.py", "term-lint.py", "term-mine.py"):
-        assert (plugin_scripts / s).is_file(), f"插件级脚本缺失: {s}"
 
 
 def _run_md_guard(payload: str) -> subprocess.CompletedProcess:
@@ -429,128 +426,46 @@ def test_md_guard_hook_scopes_to_event_cwd(tmp_path: Path):
     assert _run_md_guard(inside).returncode == 2, "仓内 md 照检"
 
 
-def _run_lint_hook(payload: str) -> subprocess.CompletedProcess:
-    env = {**os.environ, "PYTHONIOENCODING": "utf-8"}
-    return subprocess.run(
-        [sys.executable, str(LINT_HOOK)],
-        input=payload, capture_output=True, text=True, encoding="utf-8",
-        errors="replace", env=env,
-    )
+def test_dev_plugin_and_hooks_stay_removed():
+    """批 180 退役守卫(ADR-0030):dev 插件整目录、evo hooks 目录与注入面不得回潮。
 
-
-def test_lint_hook_tolerates_alien_payload():
-    """evo-lint hook 载荷宽容:Codex apply_patch 形(有 tool_input 无 file_path)与非对象整体均放行 0。"""
-    codex_shape = json.dumps({
-        "hook_event_name": "PostToolUse",
-        "tool_name": "apply_patch",
-        "tool_input": {"command": "*** Begin Patch\n*** Update File: note.md\n+x\n*** End Patch\n"},
-    })
-    assert _run_lint_hook(codex_shape).returncode == 0
-    assert _run_lint_hook(json.dumps({"tool_name": "Edit", "tool_input": {}})).returncode == 0
-    assert _run_lint_hook("not json at all").returncode == 0
-
-
-def test_lint_hook_flags_md_forbidden(tmp_path: Path):
-    """evo-lint hook md 面:禁字与超限退出码 2 加 stderr 报错信息;净文件放行 0。"""
-    bad = tmp_path / "AGENTS.md"
-    bad.write_text("# 合同\n\n正文 —— 有破折号\n", encoding="utf-8")
-    r = _run_lint_hook(json.dumps({
-        "hook_event_name": "PostToolUse", "tool_name": "Write",
-        "tool_input": {"file_path": str(bad)},
-    }))
-    assert r.returncode == 2, "禁字须 exit 2 回传报错"
-    assert "禁字" in (r.stderr or "")
-
-    good = tmp_path / "AGENTS.md"
-    good.write_text("# 合同\n\n正文无禁字\n", encoding="utf-8")
-    r2 = _run_lint_hook(json.dumps({
-        "hook_event_name": "PostToolUse", "tool_name": "Write",
-        "tool_input": {"file_path": str(good)},
-    }))
-    assert r2.returncode == 0
-
-
-def test_live_md_hook_stays_removed():
-    """批 105/174 裁撤:live PostToolUse 禁字静检 hook(插件 hooks.json 与仓 settings.json)不得回潮。
-
-    历史:hook 实时拦编辑当日四犯(本仓三笔破折号加一笔标题括号),下游仓自有豁免面三度误拦;
-    裁撤后禁字纪律由 githooks pre-commit 的 --staged 挡板与 check.py PE-11 承担,
-    脚本本体保留。批 176(ADR-0027)hooks.json 重启用,但只挂 UserPromptSubmit 与
-    PreToolUse 注入面(intent-guidance/dev-rules 加载器);PostToolUse 禁令不破:段存在即红。
+    历史:批 105/174 live PostToolUse hook 裁撤,批 178(ADR-0028)注入加载器退役,
+    2026-11-09 用户令 hooks.json 空装配;批 180 dev 插件退役(hst 已退役,无 hook 面),
+    evo hooks 目录整删。禁字纪律由 githooks pre-commit --staged 挡板与 check.py PE-11 承担。
     """
-    hooks = json.loads((PLUGINS["dev"] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
-    assert not hooks.get("hooks", {}).get("PostToolUse"), \
-        "hooks.json 不得回挂 PostToolUse hook(批 105 禁字面裁撤、批 174 静检面整段裁撤)"
-    cmds = " ".join(h.get("command", "") + h.get("commandWindows", "")
-                    for g in hooks.get("hooks", {}).get("PostToolUse", []) for h in g.get("hooks", []))
-    assert "md-guard" not in cmds, "md-guard 不得作 live hook(批 105 裁撤),只走 pre-commit --staged"
+    assert not (REPO / "plugins" / "dev").exists(), "dev 插件批 180 退役,不得回潮(ADR-0030)"
+    assert not (PLUGINS["evo"] / "hooks").exists(), "evo hooks 目录批 180 清理(hst 已退役),不得回潮"
     settings = json.loads((REPO / ".claude" / "settings.json").read_text(encoding="utf-8"))
     assert not settings.get("hooks", {}).get("PostToolUse"), \
         "仓 settings.json 不得回挂 live PostToolUse 禁字挡板(批 105 裁撤)"
 
+def test_hook_rules_tree_stays_removed():
+    """批 180 二段令守卫:hook_rules 知识树不得回潮(知识面并回 SKILL.md 自含)。
 
-def test_hook_loaders_wired_and_isolated():
-    """2026-11-09 注入面全剔守卫(用户令):两插件 hooks.json 均须空装配、加载器均须删;
-    知识面 hook_rules 树保留供技能直读(ADR-0027 知识本体不废,只废注入道)。"""
+    历史:批 176(ADR-0027)知识面翻 hook_rules 薄壳指针;批 180 一段令五入口收敛
+    (intents 收敛六枚),二段令用户裁定知识树整删,五 skill 壳自含知识面。
+    """
     for name in PLUGIN_NAMES:
-        hooks = json.loads((PLUGINS[name] / "hooks" / "hooks.json").read_text(encoding="utf-8"))
-        assert not hooks.get("hooks"),             f"{name} hooks.json 须空装配(2026-11-09 用户令剔除注入面;知识面 hook_rules 树保留)"
-        for f in ("intent-guidance.ts", "dev-rules.ts"):
-            assert not (PLUGINS[name] / "hooks" / f).exists(),                 f"{name} 加载器须删(注入面剔除): {f}"
-
-def test_hook_rules_tree_valid():
-    """批 176 规则面守卫:两插件 hook_rules 树 frontmatter 校验(intents patterns 非空、dev-rules
-    match 非空)、正文非空、禁字与约束术语清零、件数与 HOOK_RULES 计数断言一致。"""
-    import importlib.util as _ilu
-    spec = _ilu.spec_from_file_location("pevo_mdrules", PLUGINS["dev"] / "scripts" / "mdrules.py")
-    mdr = _ilu.module_from_spec(spec)
-    spec.loader.exec_module(mdr)
-    tspec = _ilu.spec_from_file_location("pevo_termrules", PLUGINS["dev"] / "scripts" / "termrules.py")
-    import sys as _sys
-    _sys.path.insert(0, str(PLUGINS["dev"] / "scripts"))
-    trm = _ilu.module_from_spec(tspec)
-    tspec.loader.exec_module(trm)
-    # evo 树只含 intents(dev-rules 是 dev 插件专属,evo 注入面剔除后不再要求)
-    tree_subs = {"dev": ("intents", "dev-rules"), "evo": ("intents",)}
-    for name in PLUGIN_NAMES:
-        counts = {"intents": 0, "dev-rules": 0}
-        for sub in tree_subs[name]:
-            d = PLUGINS[name] / "hook_rules" / sub
-            assert d.is_dir(), f"{name} 缺 hook_rules/{sub}"
-            for f in sorted(d.glob("*.md")):
-                counts[sub] += 1
-                text = f.read_text(encoding="utf-8")
-                m = re.match(r"^---\n(.*?)\n---\n?(.*)$", text, re.S)
-                assert m, f"{f.relative_to(REPO)} 缺 frontmatter"
-                fm, body = m.group(1), m.group(2)
-                key = "patterns" if sub == "intents" else "match"
-                kv = re.search(rf"^{key}:\s*(.+)$", fm, re.M)
-                assert kv, f"{f.relative_to(REPO)} 缺 {key} 字段"
-                val = kv.group(1).strip()
-                assert val not in ("", "[]"), f"{f.relative_to(REPO)} {key} 空"
-                assert body.strip(), f"{f.relative_to(REPO)} 正文空"
-                assert not mdr.file_violations(text), f"{f.relative_to(REPO)} 禁字违规"
-                assert not trm.file_term_violations(text), f"{f.relative_to(REPO)} 约束术语违规"
-        assert counts == HOOK_RULES[name], \
-            f"{name} hook_rules 计数漂移: 实际 {counts} 对断言 {HOOK_RULES[name]}"
+        assert not (PLUGINS[name] / "hook_rules").exists(), \
+            f"{name} hook_rules 知识树批 180 二段令删除,不得回潮(知识面在 SKILL.md 自含)"
 
 
 def test_pre_commit_matches_current_skills():
-    """提交挡板回归:pre-commit 的断链段恰覆盖当前规则面(skill 壳树加 hook_rules 树),引用路径全在。
+    """提交挡板回归:pre-commit 的断链段恰覆盖当前规则面(skill 壳树),引用路径全在。
 
-    历史:批 81 删 skill 后 CI 悬空引用漏改而红;批 176 知识面迁 hook_rules(ADR-0027),断链段随翻。
+    历史:批 81 删 skill 后 CI 悬空引用漏改而红;批 176 知识面迁 hook_rules(ADR-0027),
+    批 180 二段令知识树删除断链段随收;批 180 挡板脚本随 dev 插件退役迁 .tools。
     """
     text = (REPO / "githooks" / "pre-commit").read_text(encoding="utf-8")
-    guard_ref = "plugins/dev/scripts/md-guard.py"
+    guard_ref = ".tools/md-guard.py"
     assert guard_ref in text, f"pre-commit 须挂 {guard_ref}"
     assert (REPO / guard_ref).is_file(), f"pre-commit 挂的挡板不存在: {guard_ref}"
-    term_ref = "plugins/dev/scripts/term-lint.py"
+    term_ref = ".tools/term-lint.py"
     assert term_ref in text, f"pre-commit 须挂 {term_ref}(批 175 术语挡板)"
     assert (REPO / term_ref).is_file(), f"pre-commit 挂的术语挡板不存在: {term_ref}"
     targets = sorted(re.findall(r"md-ref-scan\.py (\S+)", text))
     expected = sorted(
         [f"plugins/{p}/skills/{s}" for p, ss in SKILLS.items() for s in ss]
-        + [f"plugins/{p}/hook_rules/{sub}" for p in PLUGIN_NAMES for sub in (("intents", "dev-rules") if p == "dev" else ("intents",))]
     )
     assert targets == expected, f"断链段与规则面漂移:挡板 {targets} 对清单 {expected}"
     for t in targets:
@@ -580,17 +495,11 @@ def test_fleet_exec_tool():
     assert mod.build_cmd(["pane", "list"], None) == ["herdr", "pane", "list"]
     assert mod.build_cmd(["agent", "list"], "lan-mac") == \
         ["herdr", "--machine", "lan-mac", "agent", "list"]
-def test_lint_hook_scopes_to_event_cwd(tmp_path: Path):
-    """后缀静检辖域限仓内(ADR-0017 同批裁定,与 md-guard 同律):仓外 md 放行,仓内照检。"""
-    bad = tmp_path / "bad.md"
-    bad.write_text("带禁字——的一行\n", encoding="utf-8")
-    outside = json.dumps({"hook_event_name": "PostToolUse", "cwd": str(tmp_path / "repo"),
-                          "tool_input": {"file_path": str(bad)}})
-    assert _run_lint_hook(outside).returncode == 0, "仓外 md 不在静检辖域,应放行"
-    inside = json.dumps({"hook_event_name": "PostToolUse", "cwd": str(tmp_path),
-                         "tool_input": {"file_path": str(bad)}})
-    assert _run_lint_hook(inside).returncode == 2, "仓内 md 照检"
+
+
 def _cn(n: int) -> str:
+    if n == 1:
+        return "单"  # 批 180 起单插件(中文数字形外特判)
     if n == 2:
         return "两"
     digits = "零一二三四五六七八九"
@@ -640,13 +549,13 @@ def test_no_stale_plugin_counts_in_live_surfaces():
 
 def test_evo_primitive_skill_dirs_align_with_commands():
     """B3 目录-命令对齐守卫(REQ-057;批 164 ctxs 正名判例):evo 原语域 skill 目录名
-    必须落在正典原语命令集内且为全词复数形;非命令面(渐进知识库型 research)例外。
+    必须落在正典原语命令集内且为全词复数形。
     mcps/nodes 入真源时须有意识更新本正典集与 SKILLS 清单(REQ-058),静默漂移当场红灯。
-    批 173 命名三分(REQ-062):nodes 更名 machines,desk 析出(desk 命令名单数形,复数律豁免)。
-    批 174 复数对齐(REQ-063):desk 更名 desks(prim 3.11.0 主名,desk 留旧名单字别名)。
-    批 179 六入口对齐(REQ-067):正典收敛六原语(prim v5.0.0),tasks/pipes/ports/mcps 退役。"""
-    canonical = {"agents", "shares", "streams", "ctxs", "machines", "desks"}
-    primitives = set(SKILLS["evo"]) - {"research"}  # research 批 170 入列(REQ-059);distil 批 178 退役
+    批 179 六入口对齐(REQ-067):正典收敛六原语(prim v5.0.0),tasks/pipes/ports/mcps 退役。
+    批 180 五入口对齐(REQ-068):正典收敛五原语,agents/desks/machines/research 退役,
+    pipes/ports 直入复活(上游 2026-11-18 裁定,herdr-ccoe ce5dd93)。"""
+    canonical = {"shares", "streams", "ctxs", "ports", "pipes"}
+    primitives = set(SKILLS["evo"])
     assert primitives == canonical, \
         f"原语域目录对正典命令集漂移(改集须过 REQ,勿静默): {primitives ^ canonical}"
     for name in sorted(primitives):
@@ -657,7 +566,7 @@ def test_skill_description_form_repo_wide():
     """规范 A2/A3 静检(REQ-058):全仓 SKILL.md description 三句形齐(Use when 与不要用于)
     且折叠后 ≤400 字符;mdrules 为唯一判定权威,md-guard 挡板接线同源。"""
     spec = importlib.util.spec_from_file_location(
-        "pevo_mdrules", PLUGINS["dev"] / "scripts" / "mdrules.py")
+        "pevo_mdrules", SCRIPTS / "mdrules.py")
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
     check = mod.skill_description_violations

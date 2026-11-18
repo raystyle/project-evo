@@ -1,8 +1,9 @@
 ---
 id: ADR-0027
 title: 十四 skill 知识面翻 hook_rules,薄壳指针与双 bun 注入加载器
-status: accepted
+status: superseded
 date: 2026-10-26
+superseded_by: ADR-0030
 ---
 
 # ADR-0027:知识面翻 hook_rules 与薄壳指针
@@ -28,3 +29,9 @@ date: 2026-10-26
 - 双端加载差异:Claude Code 端自动注入;Kimi 端拷 skills 加 hook_rules 靠壳指路(additionalContext 已验不支持:源码 HookSpecificOutputSchema 不消费该字段,官方 issue #4255 open;若 kimi 端要注入须改道 UserPromptSubmit 纯文本 stdout 或 message 通道);codex 0.162.1 hooks 面在役(本机 UserPromptSubmit 与 PreToolUse 已挂 hst 脚本)且二进制含 additionalContext 与逐事件发射校验(机制在,逐事件支持面未精确枚举[推断: 二进制字符串证据]);grok 1.0.50 二进制内嵌 hook 文档(三节奏事件表,additionalContext 语义存在,PostToolUseFailure 明示可喂)。工程判定:两端皆不把注入当依赖面,壳直读道兜底;后续启用再逐端实弹。
 - SKILL.md 正文退出市场历史可溯(git 史);新知识面变更入口 = hook_rules 加件或改件,蒸馏闸门管辖。
 - bun 依赖进插件前置(加载器 .ts 直跑);node 备道与 rust hook 面另属(pi-rs-plugins 承接)。
+
+## 后继:ADR-0030,批 180
+
+注入加载器腿批 178 退役(ADR-0028);hook_rules 知识树与薄壳指针形态批 180 二段令
+退役(用户裁定:只保留 evo 插件的原语命令 skill,知识面并回各 SKILL.md 自含)。
+本决策的持久遗产:知识本体与壳分离的审计纪律;树本体存 git 史可考。

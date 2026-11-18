@@ -1,7 +1,7 @@
 {
   "name": "evo",
-  "version": "0.22.0",
-  "description": "agent 操作面插件,七 skill(六原语加 research;prim v5.0.0 六入口对齐,批 179):agents(消息域原语与六入口共享面:to 投递、wait 事件道、inbox 收件、read 读屏、start/close/reload 生命周期、mode 在场、workbenches 工作台清点)、desks(工位拓扑兜底:view/start/close,树形拓扑归 mod GUI)、machines(机册域:view/add/reconnect、run/close 直透、runtime 骑 ark)、streams(流域:增量消息,裸 view 房间清单、room/dm/append/to)、shares(文件域:view/put/get/to,内容哈希键)、ctxs(对话历史域:ClickHouse gw_logs 全链检索,view 头行与单请求、search 跨请求)、research(检索域知识面:gh 搜 GitHub、browse 搜 Bing 与 Scholar、rn 编排与油猴探针)",
+  "version": "0.23.0",
+  "description": "agent 操作面插件,五 skill 五入口(prim v5 五入口收敛批 180:shares/streams/ctxs/ports/pipes;动词对齐 hc = 清单 ls、留痕 send、生命周期 start,旧名不留别名;pipes send = 字节写,留痕知会归 streams send;agents/desks/machines/research 退役,消息与生命周期归 hc 与 herdr-app 原生面;CLI 真源在 herdr-ccoe 仓,本插件只维护 skill 面):shares(文件域:ls/put/get/send,内容哈希键)、streams(流域:增量消息,裸 ls 房间清单、room/dm/append/send)、ctxs(对话历史域:ClickHouse gw_logs 全链检索,ls 头行与单请求、search 跨请求)、ports(端口映射域:ls/start/close/fwd/send)、pipes(实时字节域:ls/start/close/send,stdin 直通)",
   "author": {
     "name": "raystyle"
   },

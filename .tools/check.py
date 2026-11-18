@@ -27,7 +27,7 @@ import re
 import sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "plugins" / "dev" / "scripts"))  # mdrules 与 termrules 唯一权威随插件走
+sys.path.insert(0, str(Path(__file__).resolve().parent))  # mdrules 与 termrules 唯一权威在本目录(dev 插件批 180 退役,脚本迁 .tools)
 from mdrules import file_violations  # noqa: E402
 from termrules import file_term_violations  # noqa: E402
 

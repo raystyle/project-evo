@@ -6,7 +6,7 @@
 # 连接:~/.ctx/reader.env(CTX_URL/CTX_USER/CTX_PASSWORD,SELECT 只读);HTTP 失败
 # 自动落 ssh 备道(lan-linux2 docker clickhouse-client)。原文只落 --out-dir(仓外),
 # 蒸馏结论才进仓(docs/research/S020)。用法:
-#   uv run plugins/dev/scripts/term-mine.py --since 2026-05-01 --slice 14d \
+#   uv run .tools/term-mine.py --since 2026-05-01 --slice 14d \
 #     --kind assistant,user --out-dir /tmp/term-mine/
 from __future__ import annotations
 

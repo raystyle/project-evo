@@ -15,8 +15,8 @@ from pathlib import Path
 import pytest
 
 REPO = Path(__file__).resolve().parent.parent
-_MDRULES = REPO / "plugins" / "dev" / "scripts" / "mdrules.py"
-_TERMRULES = REPO / "plugins" / "dev" / "scripts" / "termrules.py"
+_MDRULES = REPO / ".tools" / "mdrules.py"  # 批 180 随 dev 插件退役迁 .tools
+_TERMRULES = REPO / ".tools" / "termrules.py"
 
 sys.path.insert(0, str(_MDRULES.parent))  # termrules 复用 mdrules 豁免机制
 

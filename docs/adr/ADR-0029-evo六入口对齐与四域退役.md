@@ -55,3 +55,6 @@ machines list/runtimes 别名退役、ctxs show 并入 view <id>、streams rooms
   六入口 skills 验收通过(总台 2026-11-16)。
 - 六入口动词面以本机 PATH 上 prim --llms 为准(滚装 v5.0.0 实证);
   prim 分发由宿主工具链统一维护,skill 只认 PATH。
+- 后继(ADR-0030,批 180):六入口再收敛五入口,pipes/ports 直入复活,
+  agents/desks/machines/research 退役,动词对齐 hc(view 改 ls、to 改 send、
+  open 改 start)。

@@ -30,6 +30,7 @@
 | ADR-0024 | accepted | herdr:s5 删除并入 agent-s5,s5 归一为全 agent 共享看板与实时流 | |
 | ADR-0025 | accepted | 市场重构:两插件 dev 与 evo,裁四 skill,agent-prim 拆五原语,两改名,lint 合并后中文面终删 | 2026-10-13 用户令渐进定形 |
 | ADR-0026 | accepted | doc-gov 与 dev-lint 合一为 dev-doc,语言面裁撤,约束术语表 lint 立 PE-13 | 2026-10-25 用户令,三项定制 |
-| ADR-0027 | accepted | 十四 skill 知识面翻 hook_rules,薄壳指针与双 bun 注入加载器 | 2026-10-26 总台三裁定放行 |
+| ADR-0027 | superseded | 十四 skill 知识面翻 hook_rules,薄壳指针与双 bun 注入加载器 | 0028 注入加载器退役;0030 知识树删、知识面并回 SKILL.md |
 | ADR-0028 | accepted | 注入加载器与 distil 技能退役,知识面壳直读定形 | 2026-11-09 用户令 |
-| ADR-0029 | accepted | evo 六入口对齐与四域退役,tasks/pipes/ports/mcps 出面 | 2026-11-16 上游 prim v5.0.0 定形(4e5006c) |
+| ADR-0029 | accepted | evo 六入口对齐与四域退役,tasks/pipes/ports/mcps 出面 | 2026-11-16 上游 prim v5.0.0 定形(4e5006c);0030 收敛五入口 |
+| ADR-0030 | accepted | evo 五入口收敛与 dev 插件退役,hook_rules 知识树删,动词对齐 hc | 2026-11-18 上游五入口定形(herdr-ccoe ce5dd93) |

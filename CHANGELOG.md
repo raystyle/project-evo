@@ -4,6 +4,17 @@
 
 ## [Unreleased]
 
+### 变更 2026-11-18 第一百八十批:evo skills 五入口收敛与 dev 插件退役与 hook_rules 知识树删（ADR-0030,REQ-068;prim v5 五入口定形 herdr-ccoe ce5dd93 总台令,二段用户令）
+
+- **五入口收敛**:evo 插件七 skill 收敛五 skill,恰对 prim v5 五入口:shares/streams/ctxs 三壳按五面手册重写(动词对齐 hc = 清单 ls、留痕 send、生命周期 start,旧名不留别名);pipes/ports 两 skill 直入复活(批 179 曾随 carry 退役,上游 2026-11-18 五入口直入);pipes send = 字节写,留痕知会归 streams send
+- **hook_rules 知识树删(二段用户令)**:evo intents 树整删,五 skill 知识面(动词表、判读坑、礼仪、示例)并回各 SKILL.md 自含,薄壳指针形态终结(ADR-0027 superseded);agents-collab 耐久知识(fleet 回执道、dm 专线、append-only 礼仪)吸收进 streams SKILL.md
+- **四 skill 退役(破坏性)**:agents、desks、machines、research 四 skill 目录删除(消息与生命周期归 hc 与 herdr-app 原生面)
+- **dev 插件退役(破坏性)**:整目录删除(skills/hook_rules/hooks/manifests/README/tools);门禁脚本五枚(md-guard、mdrules、term-lint、termrules、term-mine)迁仓根 `.tools/` 保门禁(check PE-11/PE-13、scan、pre-commit 三面同源不破;先例 = 第八十九批移 .tools、ADR-0018 解耦);lint-hook.py 无消费方随退役删;evo hooks 目录整删(hst 已退役)
+- **职责声明**:本仓只维护 skill 面,不维护 prim(原语 CLI 真源与维护在 herdr-ccoe 仓);README 与 AGENTS 载明,skill-spec B15 改「动词形真源 = prim 手册,各域一行回链」
+- **实证准入**:本端 prim 先滚装五入口形(herdr-ccoe 源临时装验),五域 --llms 与金样逐字一致、五域 ls 实跑、shares put 实弹往返成功;旧入口 exe(agents/desks/machines)悬空链接清零
+- **活面全同步**:AGENTS 定位与阶段行、根 README(安装去 dev、配置挡板路径、skill 表五行)、evo README、docs 地图、gates、skill-spec B3/B14/B15/B16、双 manifest 与双市场清单(evo 0.23.0;Codex 删 dev 条目)、pre-commit 断链段、pyproject 描述;守卫同步 SKILLS(evo 五)与正典原语集(五)与 semver 起步线(0.23),新增 dev 与 hook_rules 退役防回潮守卫与 SKILL.md 自含形断言
+- 版图:单插件五 skill(evo);门禁全绿(pytest 34、check、scan、term-lint、md-ref-scan)
+
 ### 变更 2026-11-16 第一百七十九批:evo skills 六入口重写与四域退役（ADR-0029,REQ-067;prim v5.0.0 六入口定形 4e5006c 总台令）
 
 - **六入口重写**:agents/desks/machines/streams/shares/ctxs 六 skill 壳与知识件按 prim v5.0.0 六面手册重写(manual.py 与金样为源):agents 十五动词(view/workbenches/read/to/wait/inbox/mode/start/close/reload/trust/yolo/run/shell/dev/keys)、desks 三动词兜底(view/start/close,树形拓扑归 mod GUI)、machines(view/add/reconnect/run/close/runtime)、shares 复活(view/put/get/to)、streams 增量消息(裸 view 房间清单/room/dm/view 读流/append/to)、ctxs(view 头行与 view <id> 单请求并法/search)

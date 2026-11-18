@@ -1,6 +1,6 @@
 # docs 地图
 
-> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、research 存研究档案;skill 知识面批 176 起在插件 `hook_rules/`(薄壳指路,ADR-0027)。
+> 本仓自身的文档。体系为文档即代码形态:ADR 管不可逆决策、requirements 管需求登记、research 存研究档案;skill 知识面自含于 `plugins/evo/skills/*/SKILL.md`(批 180 二段令:hook_rules 知识树删除)。
 
 | 文档 | 讲什么 | 何时看 |
 |------|--------|--------|
@@ -25,13 +25,10 @@
 | `research/S016-skill双规范业界先例对照.md` | SKILL 双规范业界先例对照(grok 研究轮,计数勘误;吸收进 skill-spec 规范 A/B) | 对表 skill 双规范口径与业界先例时 |
 | `research/S017-rust交流波业界先例对照.md` | rust 交流波业界先例对照(grok 研究轮;最小公约数五条与按仓建议分流) | 复核交流波工具链判读口径时 |
 | `research/S018-rust交流波跨仓互鉴.md` | rust 交流波跨仓互鉴:谁偷谁什么表(七仓晒单档案) | 复核互鉴判定与采纳去向时 |
-| `research/S019-agent原生CLI标准聚合.md` | agent 原生 CLI 标准聚合(六仓票去重定稿;吸收进 dev-cli 公约面) | 对表 CLI 公约口径与票源时 |
+| `research/S019-agent原生CLI标准聚合.md` | agent 原生 CLI 标准聚合(六仓票去重定稿;吸收进 CLI 公约面(沿革:dev-cli,批 180 退役)) | 对表 CLI 公约口径与票源时 |
 | `research/S020-gwlogs术语挖词与词表基线.md` | gw_logs 对话语料术语挖词与仓内基线(termrules 两层词表与 term-lint 出处) | 复核术语表口径或再挖词时 |
 | `sources/README.md` | sources 唯一出处层索引(diary 与 external 两根,ADR-0021) | 查出处件留底与 trace 引文时 |
 | `diary/2026-09-08-bh与reader使用过程.md` | 轨迹样例(档案;distil 批 178 退役) | 写轨迹前对照格式时 |
-| `../plugins/dev/hook_rules/intents/` | dev 意图注入件六枚(dev-cli 面、ADR/REQ、研究档案、doc 注释、工具链) | 改治理与静检知识时 |
-| `../plugins/dev/hook_rules/dev-rules/` | dev 路径注入件四枚(md 纪律、术语纪律、结构面、骨架治理) | 改写 md/toml/合同时 |
-| `../plugins/evo/hook_rules/intents/` | evo 意图知识件 17 枚(壳直读;批 178 注入加载器退役,批 179 六入口对齐) | 改 evo 操作知识时 |
-| `../.tools/README.md` | 本仓自用脚本工具登记(md-ref-scan、init、check、scan) | 跑仓门禁或维护骨架模板时 |
+| `../.tools/README.md` | 本仓自用脚本工具登记(md 禁字与术语表五脚本、md-ref-scan、init、check、scan) | 跑仓门禁或维护骨架模板时 |
 | `../.tools/verification/command-test-cases.md` | check 的等价 PowerShell 用例集(参数化 ProjectRoot) | 验证骨架合规时 |
 | `guides/gates.md` | 本仓门禁全集标准命令（含 scan 豁免完整正则） | 跑门禁或被 scan 假红卡住时 |

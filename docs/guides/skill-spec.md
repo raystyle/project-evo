@@ -29,7 +29,7 @@
 |------|------|--------|
 | B1 | 仅官方字段:name 与 description 必填;可选 license、compatibility(≤500 字符)、metadata(字符串映射)、allowed-tools(实验,空格分隔);产品页扩展字段(when_to_use、argument-hint、paths、disable-model-invocation)禁入跨端技能(Claude 端静默忽略、校验器拒);起始 `---` 必须是文件首行;禁 version/argument-hint 等非官方字段,版本走 git tag/release | [静检:md-faces] |
 | B2 | name 硬标准:1-64 字符,小写字母/数字/连字符,不首尾连字符、不连续连字符,必须等于目录名 | [静检:md-faces] |
-| B3 | 目录名 = 命令名全词复数形(kubectl 裁定;原语域面:agents/shares/streams/tasks/pipes/ports/ctxs/mcps/nodes;非命令面例外,如 research);命令正名时目录与 name 字段同批同步、全引用面扫净 | [守卫:目录-命令对齐] |
+| B3 | 目录名 = 命令名全词复数形(kubectl 裁定;原语域面:shares/streams/ctxs/ports/pipes,prim v5 五入口批 180);命令正名时目录与 name 字段同批同步、全引用面扫净 | [守卫:目录-命令对齐] |
 
 ### 正文骨架
 
@@ -50,14 +50,14 @@
 | 编号 | 条目 | 执行面 |
 |------|------|--------|
 | B13 | references 每篇一主题自包含完整参考;三档 = pitfalls.md(现行坑反例)/rulings.md(日期现象结论档案)/obsolete.md(废止敲法),后两档正文不链 | [纪律] |
-| B14 | 标准布局 = SKILL.md(意图路由+速览)+ references/(分类扁平)+ verification/(命令行为);无 evals 层(渐进知识库型 skill 不做用例评估);实现代码放插件级 `scripts/` 或仓自用 `.tools/`(PEP 723 零依赖;禁字规则唯一权威在 dev 的 `scripts/mdrules.py`,check PE-11/scan/md-guard 三面同源);判断与步骤留 markdown | [纪律] |
-| B15 | 共享面单一权威源:跨域共享语义(id 三产生式、门控 v2、信封 v2、命名标准)只住 owner 面(六入口共享面 = agents),各域一行回链,禁双份并行维护 | [纪律] |
+| B14 | 标准布局 = SKILL.md(意图路由+速览)+ references/(分类扁平)+ verification/(命令行为);无 evals 层(渐进知识库型 skill 不做用例评估);实现代码放仓自用 `.tools/`(PEP 723 零依赖;禁字规则唯一权威在 `.tools/mdrules.py`,check PE-11/scan/md-guard 三面同源,批 180 随 dev 插件退役迁入);判断与步骤留 markdown | [纪律] |
+| B15 | 共享面单一权威源:动词形与文法契约的真源 = prim 手册(herdr-ccoe 仓 manual.py,本仓不复制),各域 intents 一行回链;消息与生命周期语义归 hc 与 herdr-app 原生面(批 180 agents 域退役),禁双份并行维护 | [纪律] |
 
 ### 变更与验收
 
 | 编号 | 条目 | 执行面 |
 |------|------|--------|
-| B16 | 变更完整性:改 skill 必同步 references 索引、docs 地图与 CHANGELOG;两插件双 manifest(Claude/Codex 面)字段同步、同版本线,Claude 市场条目版本一致 | [守卫:清单一致性] |
+| B16 | 变更完整性:改 skill 必同步 references 索引、docs 地图与 CHANGELOG;插件双 manifest(Claude/Codex 面)字段同步,Claude 市场条目版本一致 | [守卫:清单一致性] |
 | B17 | 命令实证准入:写进 SKILL.md 的命令当会真跑过(ADR-0010 构造纪律) | [纪律] |
 | B18 | 标准面变更过闸门三条:既有门禁无回归;至少一条点名失败义务翻转为过;标准页链到有 sources 的知识页。知识层永不回滚,标准层拒绝即回滚(distil 闸门机检面批 178 退役,改评审承担,ADR-0028) | [纪律] |
 
