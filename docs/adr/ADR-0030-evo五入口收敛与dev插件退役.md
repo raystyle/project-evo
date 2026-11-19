@@ -54,3 +54,5 @@ prim 命令面,必须随形。
 - 实证准入(ADR-0010):本端 prim 先滚装五入口形(herdr-ccoe 源临时装验,五域
   --llms 与金样逐字一致;五域 ls 实跑;shares put 实弹往返成功);prim 分发由宿主
   工具链统一维护,skill 只认 PATH。
+- 后继(ADR-0031,批 181):dev 以新义重建为项目初始化面(ccinit 单 skill);
+  本决策的 evo 五入口收敛、hook_rules 知识树删、门禁脚本迁 .tools 部分不变。

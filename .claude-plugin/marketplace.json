@@ -3,11 +3,18 @@
   "owner": {
     "name": "raystyle"
   },
-  "description": "项目治理插件市场,单插件五 skill:evo(agent 操作面:shares、streams、ctxs、ports、pipes 五入口,prim v5 五入口收敛批 180,动词对齐 hc = 清单 ls、留痕 send、生命周期 start;CLI 真源在 herdr-ccoe 仓,本市场只维护 skill 面)",
+  "description": "项目治理插件市场,两插件六 skill:dev(项目初始化面:ccinit,Claude 配置基线铺设)与 evo(agent 操作面:shares、streams、ctxs、ports、pipes 五入口,prim v5 五入口收敛批 180,动词对齐 hc;CLI 真源在 herdr-ccoe 仓,本市场只维护 skill 面)",
   "metadata": {
-    "description": "项目治理插件市场,单插件五 skill:evo(agent 操作面:shares、streams、ctxs、ports、pipes 五入口,prim v5 五入口收敛批 180,动词对齐 hc = 清单 ls、留痕 send、生命周期 start;CLI 真源在 herdr-ccoe 仓,本市场只维护 skill 面)"
+    "description": "项目治理插件市场,两插件六 skill:dev(项目初始化面:ccinit,Claude 配置基线铺设)与 evo(agent 操作面:shares、streams、ctxs、ports、pipes 五入口,prim v5 五入口收敛批 180,动词对齐 hc;CLI 真源在 herdr-ccoe 仓,本市场只维护 skill 面)"
   },
   "plugins": [
+    {
+      "name": "dev",
+      "source": "./plugins/dev",
+      "description": "项目初始化面插件:ccinit skill,按六件资产分工(CLAUDE.md/rules/skills/agents/memory/hooks)加 .reference 参考仓规范,为项目铺设 Claude 配置基线",
+      "version": "0.1.0",
+      "category": "productivity"
+    },
     {
       "name": "evo",
       "source": "./plugins/evo",

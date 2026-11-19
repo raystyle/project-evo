@@ -16,11 +16,12 @@ import sys
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[1]
-PLUGIN_NAMES = ("evo",)  # dev 插件批 180 退役(ADR-0030),市场收敛单插件
+PLUGIN_NAMES = ("dev", "evo")  # dev 批 180 退役后批 181 重建(项目初始化面 ccinit,ADR-0031)
 PLUGINS = {n: REPO / "plugins" / n for n in PLUGIN_NAMES}
 SCRIPTS = REPO / ".tools"
-GUARD = SCRIPTS / "md-guard.py"  # 门禁脚本批 180 随 dev 插件退役迁 .tools
+GUARD = SCRIPTS / "md-guard.py"  # 门禁脚本批 180 随旧 dev 插件退役迁 .tools(重建后留 .tools,不回插件)
 SKILLS = {
+    "dev": ["ccinit"],  # 批 181 重建(ADR-0031);旧 dev-doc/dev-cli 与门禁脚本面不回
     "evo": ["ctxs", "pipes", "ports", "shares", "streams"],  # prim v5 五入口(批 180;agents/desks/machines/research 退役)
 }
 HOOK_RULES = None  # hook_rules 知识树批 180 二段令删除(知识面并回 SKILL.md 自含)
@@ -343,7 +344,7 @@ def test_skill_manifests_and_marketplace():
     for p in codex_mkt["plugins"]:
         assert (REPO / p["source"]["path"].removeprefix("./")).is_dir(), "Codex source 不可达"
 
-    versions = set()
+    versions = {}
     for name in PLUGIN_NAMES:
         plugin = PLUGINS[name]
         claude_man = json.loads((plugin / ".claude-plugin" / "plugin.json").read_text(encoding="utf-8"))
@@ -352,7 +353,7 @@ def test_skill_manifests_and_marketplace():
             assert claude_man[k] == codex_man[k], f"{name} 双 manifest 的 {k} 漂移,须同步改两面"
         entry = next(p for p in claude_mkt["plugins"] if p["name"] == name)
         assert entry["version"] == claude_man["version"], f"{name} 市场清单版本与 manifest 漂移"
-        versions.add(claude_man["version"])
+        versions[name] = claude_man["version"]
 
         skills = plugin / "skills"
         dirs = sorted(d.name for d in skills.iterdir() if d.is_dir())
@@ -363,11 +364,13 @@ def test_skill_manifests_and_marketplace():
             head = text.split("---")[1]
             declared = next(l.split(":", 1)[1].strip() for l in head.splitlines() if l.startswith("name:"))
             assert declared == sname, f"frontmatter name({declared}) 须与目录名({sname})一致"
-            assert "--llms" in text, f"{sname}/SKILL.md 自含形缺 --llms 权威行(批 180 知识面并回)"
+            if name == "evo":  # 原语域挂 CLI,以 --llms 为权威出口;dev(ccinit)无 CLI 面不适用
+                assert "--llms" in text, f"{sname}/SKILL.md 自含形缺 --llms 权威行(批 180 知识面并回)"
 
-    for v in versions:
+    baselines = {"dev": (0, 1), "evo": (0, 23)}  # dev 批 181 重建 0.1;evo 批 180 五入口 0.23
+    for name, v in versions.items():
         parts = tuple(int(x) for x in v.split("."))
-        assert parts >= (0, 23), f"evo semver 起步线 0.23(批 180 五入口收敛): {v}"
+        assert parts >= baselines[name], f"{name} semver 起步线 {baselines[name]}: {v}"
 
     tools = REPO / ".tools"
     for s in ("init.py", "check.py", "scan.py", "md-ref-scan.py",
@@ -426,14 +429,19 @@ def test_md_guard_hook_scopes_to_event_cwd(tmp_path: Path):
     assert _run_md_guard(inside).returncode == 2, "仓内 md 照检"
 
 
-def test_dev_plugin_and_hooks_stay_removed():
-    """批 180 退役守卫(ADR-0030):dev 插件整目录、evo hooks 目录与注入面不得回潮。
+def test_dev_plugin_rebuilt_clean_and_hooks_stay_removed():
+    """批 181 重建守卫(ADR-0031):dev 插件只收 ccinit skill,旧面(hook_rules/hooks/scripts/
+    旧双 skill)不得随重建回潮;evo hooks 目录与注入面不得回潮。
 
-    历史:批 105/174 live PostToolUse hook 裁撤,批 178(ADR-0028)注入加载器退役,
-    2026-11-09 用户令 hooks.json 空装配;批 180 dev 插件退役(hst 已退役,无 hook 面),
-    evo hooks 目录整删。禁字纪律由 githooks pre-commit --staged 挡板与 check.py PE-11 承担。
+    历史:批 180 dev 插件退役(ADR-0030,hst 已退役无 hook 面);批 181 重建为项目初始化面
+    (ccinit 单 skill,知识面自含),门禁脚本留 .tools 不回插件。
     """
-    assert not (REPO / "plugins" / "dev").exists(), "dev 插件批 180 退役,不得回潮(ADR-0030)"
+    dev = REPO / "plugins" / "dev"
+    assert dev.is_dir(), "dev 插件批 181 重建(ADR-0031),须在位"
+    assert sorted(d.name for d in (dev / "skills").iterdir()) == ["ccinit"], \
+        "dev 插件只收 ccinit skill(批 181);旧 dev-doc/dev-cli 不得随重建回潮"
+    for gone in ("hook_rules", "hooks", "scripts", "tools"):
+        assert not (dev / gone).exists(), f"dev/{gone} 批 180 退役面,不得随重建回潮"
     assert not (PLUGINS["evo"] / "hooks").exists(), "evo hooks 目录批 180 清理(hst 已退役),不得回潮"
     settings = json.loads((REPO / ".claude" / "settings.json").read_text(encoding="utf-8"))
     assert not settings.get("hooks", {}).get("PostToolUse"), \

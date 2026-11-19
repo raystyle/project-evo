@@ -33,4 +33,5 @@
 | ADR-0027 | superseded | 十四 skill 知识面翻 hook_rules,薄壳指针与双 bun 注入加载器 | 0028 注入加载器退役;0030 知识树删、知识面并回 SKILL.md |
 | ADR-0028 | accepted | 注入加载器与 distil 技能退役,知识面壳直读定形 | 2026-11-09 用户令 |
 | ADR-0029 | accepted | evo 六入口对齐与四域退役,tasks/pipes/ports/mcps 出面 | 2026-11-16 上游 prim v5.0.0 定形(4e5006c);0030 收敛五入口 |
-| ADR-0030 | accepted | evo 五入口收敛与 dev 插件退役,hook_rules 知识树删,动词对齐 hc | 2026-11-18 上游五入口定形(herdr-ccoe ce5dd93) |
+| ADR-0030 | accepted | evo 五入口收敛与 dev 插件退役,hook_rules 知识树删,动词对齐 hc | 2026-11-18 上游五入口定形(herdr-ccoe ce5dd93);0031 dev 重建翻页 |
+| ADR-0031 | accepted | dev 插件重建为项目初始化面 ccinit,单 skill 知识面自含 | 2026-11-19 总台裁定 |

@@ -1,0 +1,32 @@
+{
+  "name": "dev",
+  "version": "0.1.0",
+  "description": "项目初始化面插件:ccinit skill,按六件资产分工(CLAUDE.md/rules/skills/agents/memory/hooks)加 .reference 参考仓规范,为项目铺设 Claude 配置基线",
+  "author": {
+    "name": "raystyle"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/raystyle/project-evo/tree/main/plugins/dev",
+  "repository": "https://github.com/raystyle/project-evo",
+  "keywords": [
+    "agent",
+    "skill",
+    "claude",
+    "initialization",
+    "configuration"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Dev",
+    "shortDescription": "项目初始化面:Claude 配置基线铺设。",
+    "developerName": "raystyle",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "用 ccinit 为项目铺设 Claude 配置基线。"
+    ]
+  }
+}

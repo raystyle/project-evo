@@ -4,6 +4,13 @@
 
 ## [Unreleased]
 
+### 变更 2026-11-19 第一百八十一批:dev 插件重建为项目初始化面 ccinit（ADR-0031,REQ-069;总台裁定,素材经 shares 通道收件落地）
+
+- **dev 插件重建(新义)**:项目初始化面,ccinit 单 skill(version 0.1.0 独立 semver):按六件资产分工(CLAUDE.md/rules/skills/agents/memory/hooks 各自职责、写入者、载入时机、判据)加 .reference 参考仓规范(放外部参考的项目仓库与文档:只读纪律、_provenance.yaml 出处链、片段优先、索引),为项目铺设 Claude 配置基线;初始化三步流程(勘察、铺资产、验证清单)与 CLAUDE.md/rules/hooks 骨架模板入面
+- **内容修正(用户裁定)**:去外部仓出处点名与双仓实践历史轨迹噪音(守「成品不点名外部仓库」纪律);补 .reference 用途说明;禁字与约束术语清零(md-guard 与 term-lint 实跑;破折号、箭头、智能引号、约束术语逐处修)
+- **仓规收口**:Codex 面 manifest 补齐(双 manifest 字段同步);双市场清单恢复 dev 条目;守卫恢复双插件形(两插件六 skill = dev 一加 evo 五)并新增 dev 重建洁面断言(旧 dev-doc/dev-cli、hook_rules、hooks、scripts、tools 不得随重建回潮,门禁脚本留 .tools);md-ref-scan SKIP 补目标项目示例文件名(MEMORY.md、NOTES.md、precedent-researcher.md)
+- 门禁全绿:pytest 34、check、scan(带豁免)、term-lint、md-ref-scan;evo 面零改动
+
 ### 变更 2026-11-18 第一百八十批:evo skills 五入口收敛与 dev 插件退役与 hook_rules 知识树删（ADR-0030,REQ-068;prim v5 五入口定形 herdr-ccoe ce5dd93 总台令,二段用户令）
 
 - **五入口收敛**:evo 插件七 skill 收敛五 skill,恰对 prim v5 五入口:shares/streams/ctxs 三壳按五面手册重写(动词对齐 hc = 清单 ls、留痕 send、生命周期 start,旧名不留别名);pipes/ports 两 skill 直入复活(批 179 曾随 carry 退役,上游 2026-11-18 五入口直入);pipes send = 字节写,留痕知会归 streams send

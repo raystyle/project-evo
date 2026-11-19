@@ -72,3 +72,4 @@
 | REQ-066 | implemented | must | 注入加载器与 distil 技能退役(批178,壳直读) | tests/test_project_evo.py |
 | REQ-067 | implemented | must | evo skills 六入口重写与四域退役(批 179,prim v5.0.0 对齐) | tests/test_project_evo.py |
 | REQ-068 | implemented | must | evo skills 五入口收敛与 dev 插件退役(批 180,动词对齐 hc) | tests/test_project_evo.py |
+| REQ-069 | implemented | must | dev 插件重建为项目初始化面 ccinit(批 181) | tests/test_project_evo.py |

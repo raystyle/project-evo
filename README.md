@@ -1,16 +1,16 @@
 # ProjectEvo
 
-> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,单插件五 skill:`evo`(agent 操作面:shares、streams、ctxs、ports、pipes 五入口,prim v5 五入口收敛批 180,动词对齐 hc = 清单 ls、留痕 send、生命周期 start;pipes send = 字节写,留痕知会归 streams send)。职责声明:本仓只维护 skill 面,不维护 prim(原语 CLI 真源与维护在 herdr-ccoe 仓)。客户端显示 `<插件>:<skill>`。
+> 一句话定位:项目治理插件市场仓。市场名 `project-evo`,源 `raystyle/project-evo`,两插件六 skill:`dev`(项目初始化面:ccinit 铺 Claude 配置基线)、`evo`(agent 操作面:shares、streams、ctxs、ports、pipes 五入口,prim v5 五入口收敛批 180,动词对齐 hc = 清单 ls、留痕 send、生命周期 start;pipes send = 字节写,留痕知会归 streams send)。职责声明:本仓只维护 skill 面,不维护 prim(原语 CLI 真源与维护在 herdr-ccoe 仓)。客户端显示 `<插件>:<skill>`。
 
 ## 安装
 
-市场名 `project-evo`,源 `raystyle/project-evo`;单插件 evo(批 180 起,dev 插件退役)。
+市场名 `project-evo`,源 `raystyle/project-evo`;两插件:dev(批 181 重建,项目初始化面)与 evo(agent 操作面)。
 
 | 客户端 | 命令 |
 |--------|------|
-| Claude Code | `/plugin marketplace add raystyle/project-evo`,再 `/plugin install evo@project-evo` |
-| Codex | `codex plugin marketplace add raystyle/project-evo`,再 `codex plugin add evo@project-evo` |
-| Grok | `grok plugin marketplace add raystyle/project-evo`,再 `grok plugin install evo@project-evo --trust` |
+| Claude Code | `/plugin marketplace add raystyle/project-evo`,再 `/plugin install <插件>@project-evo`(如 `evo@project-evo`、`dev@project-evo`) |
+| Codex | `codex plugin marketplace add raystyle/project-evo`,再 `codex plugin add <插件>@project-evo` |
+| Grok | `grok plugin marketplace add raystyle/project-evo`,再 `grok plugin install <插件>@project-evo --trust` |
 | Kimi | 无插件市场:按 `~/.kimi-code/config.toml` 的 `extra_skill_dirs`(默认 `~/.kimi/skills`)拷 `plugins/evo/skills/*`;斜杠命令不随行 |
 
 开发态(指向工作树,改动即生效,免推送):把 `marketplace add` 的源换成仓根路径,如 `/plugin marketplace add /mnt/wsl/repos/project-evo`。
@@ -20,8 +20,8 @@
 升级 = 刷新市场快照再更新插件;插件按 manifest 版本号归位缓存,版本号不变则不刷新。
 
 ```text
-Claude Code   /plugin marketplace update project-evo   /plugin update evo@project-evo     (重启会话生效)
-Codex         codex plugin marketplace upgrade         codex plugin add evo@project-evo
+Claude Code   /plugin marketplace update project-evo   /plugin update <插件>@project-evo     (重启会话生效)
+Codex         codex plugin marketplace upgrade         codex plugin add <插件>@project-evo
 Grok          grok plugin marketplace update           grok plugin update
 Kimi          重新拷 plugins/evo/skills/*
 ```
@@ -30,7 +30,7 @@ Kimi          重新拷 plugins/evo/skills/*
 
 **从旧市场 projectevo 迁移(破坏性)**:先卸载旧市场(`/plugin marketplace remove projectevo`)再按上方命令加 `project-evo` 装插件;旧缓存目录 `cache/projectevo/` 与已下线插件的缓存目录可整目录删除。
 
-**批 180 迁移(破坏性)**:dev 插件退役,消费方卸载 `dev@project-evo`;evo 的 agents/desks/machines/research 四 skill 退役(消息与生命周期归 hc 与 herdr-app 原生面),消费方更新 evo 至 0.23.0。
+**批 180 迁移(破坏性)**:旧 dev 插件(开发治理面)退役;evo 的 agents/desks/machines/research 四 skill 退役(消息与生命周期归 hc 与 herdr-app 原生面),消费方更新 evo 至 0.23.0。批 181 起 dev 以新义重建(项目初始化面 ccinit,0.1.0),旧 dev 消费方按需新装。
 
 ## 配置
 
@@ -45,6 +45,7 @@ Kimi          重新拷 plugins/evo/skills/*
 
 | 插件 | skill | 做什么 | 何时用 |
 |------|-------|--------|--------|
+| evo | dev | `ccinit` | 项目初始化面:按六件资产分工(CLAUDE.md/rules/skills/agents/memory/hooks)加 .reference 参考仓规范,铺 Claude 配置基线 | 新项目初始化 Claude 配置、铺 .claude/ 基线、设参考仓规范时 |
 | evo | `shares` | 文件域原语:ls/put/get/send,内容哈希键,拒投不丢件 | 传文件给指定 agent、交付产物、取回共享时 |
 | evo | `streams` | 流域原语:增量消息,裸 ls 房间清单、room/dm/ls 读流/append/send,fleet 回执主频道 | 往流交回执或广播、私信、回放续读、列房间时 |
 | evo | `ctxs` | 对话历史域原语:agent 请求全链检索(ClickHouse gw_logs;ls 头行与单请求全链、search 全文;head 365 天正文 180 天) | 查历史对话、回溯对话细节、跨请求搜关键词、看请求开销时 |
